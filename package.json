@@ -1,0 +1,18 @@
+{
+  "name": "neetcode-150",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "NeetCode 150 practice workspace - one TypeScript file per problem, grouped by pattern.",
+  "scripts": {
+    "test": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test \"**/*.test.ts\"",
+    "test:watch": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test --watch \"**/*.test.ts\"",
+    "play": "node --experimental-strip-types --disable-warning=ExperimentalWarning playground.ts",
+    "check": "tsc --noEmit",
+    "generate": "node _gen/generate.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.6.3"
+  }
+}
