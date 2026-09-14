@@ -45,5 +45,21 @@ export function containsDuplicate2(nums: number[]): boolean {
 }
 
 
+export const containsDuplicate3 = (nums: number[]): boolean => {
+  let str = "";
+
+  for (let i = 0; i < nums.length; i++) {
+    if (str.includes(nums[i].toString())) {
+      return true;
+    }
+
+    str += nums[i].toString();
+  }
+
+  return false;
+};
+
+
 console.log(containsDuplicate([1, 2, 3, 1])); // true
 console.log(containsDuplicate2([1, 2, 3, 4])); // false
+console.log(containsDuplicate3([1, 1, 1, 3, 3, 4, 3, 2, 4, 2])); // true
