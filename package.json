@@ -8,6 +8,7 @@
     "test": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test \"**/*.test.ts\"",
     "test:watch": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test --watch \"**/*.test.ts\"",
     "play": "node --experimental-strip-types --disable-warning=ExperimentalWarning playground.ts",
+    "file": "node --experimental-strip-types --disable-warning=ExperimentalWarning",
     "check": "tsc --noEmit",
     "generate": "node _gen/generate.mjs"
   },

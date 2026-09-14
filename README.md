@@ -10,18 +10,63 @@ teaches, a target complexity and a typed stub that throws until you fill it in.
 
 ## How to work through it
 
-```bash
-npm install
-npx tsc --noEmit
-```
-
 1. Open a file, read the doc block, ignore the video link.
 2. Replace the `throw new Error(...)` with your attempt.
-3. Stuck past ~25 minutes? Open the `Video:` timestamp printed in the same doc block.
-4. Tick the box in the category README.
+3. Run it (below) until it behaves.
+4. Stuck past ~25 minutes? Open the `Video:` timestamp printed in the same doc block.
+5. Tick the box in the category README.
 
 Shared `ListNode`, `TreeNode`, `RandomListNode` and `GraphNode` classes live in
 [`shared/types.ts`](./shared/types.ts); the linked-list, tree and graph files import them.
+
+## Running one file
+
+Node 22 executes TypeScript directly — nothing needs to be installed to run or test:
+
+```bash
+npm run file -- 01-arrays-hashing/001-contains-duplicate.ts
+```
+
+That is `node --experimental-strip-types <file>` with the experimental warning silenced.
+Plain `node some-file.ts` fails with `ERR_UNKNOWN_FILE_EXTENSION` on Node 22.14 because
+the flag is missing; Node 22.18+ and 23.6+ no longer need it.
+
+**A problem file only exports its function, so running it prints nothing by itself.** Add
+a log at the bottom while you experiment:
+
+```ts
+console.log(containsDuplicate([1, 2, 3, 1]));
+```
+
+For scratch work across several files, edit [`playground.ts`](./playground.ts) and run
+`npm run play`.
+
+## Tests
+
+```bash
+npm test          # every *.test.ts in the repo
+npm run test:watch
+```
+
+Tests use the built-in `node:test` runner and sit next to the problem as
+`NNN-slug.test.ts`. Five are included as templates, one per shape you will meet:
+
+- plain values — `01-arrays-hashing/001-contains-duplicate.test.ts`
+- order-insensitive output — `01-arrays-hashing/004-group-anagrams.test.ts`
+- linked lists — `06-linked-list/035-reverse-linked-list.test.ts`
+- trees — `07-trees/046-invert-binary-tree.test.ts`
+- a design/class problem — `04-stack/022-min-stack.test.ts`
+
+[`shared/testing.ts`](./shared/testing.ts) carries `buildList` / `listToArray`,
+`buildTree` / `treeToArray` and `normalizeGroups` so a test never has to wire nodes by
+hand. A red suite is the normal starting state: an unsolved stub throws.
+
+## Type-checking
+
+```bash
+npm install       # once, for typescript + @types/node
+npm run check     # tsc --noEmit
+```
 
 ## Categories
 
