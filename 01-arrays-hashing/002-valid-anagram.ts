@@ -33,14 +33,13 @@ export function isAnagram(s: string, t: string): boolean {
 export function isAnagram2(s: string, t: string): boolean {
   if (s.length !== t.length) return false;
 
-  const freq = new Int32Array(26);
+  const freq: Int32Array<ArrayBuffer> = new Int32Array(26);
   for (let i = 0; i < s.length; i++) {
     freq[s.charCodeAt(i) - 97]++;
     freq[t.charCodeAt(i) - 97]--;
   }
 
-  for (let i = 0; i < 26; i++) if (freq[i] !== 0) return false;
-  return true;
+  return freq.every((count) => count === 0);
 }
 console.log(isAnagram('anagram', 'nagaram')); // true
 console.log(isAnagram('rat', 'car')); // false
