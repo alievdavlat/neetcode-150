@@ -21,7 +21,7 @@ Shared `ListNode`, `TreeNode`, `RandomListNode` and `GraphNode` classes live in
 
 ## Running one file
 
-Node 22 executes TypeScript directly — nothing needs to be installed to run or test:
+Node 22 executes TypeScript directly, so nothing has to be installed to run a file:
 
 ```bash
 npm run file -- 01-arrays-hashing/001-contains-duplicate.ts
@@ -31,35 +31,15 @@ That is `node --experimental-strip-types <file>` with the experimental warning s
 Plain `node some-file.ts` fails with `ERR_UNKNOWN_FILE_EXTENSION` on Node 22.14 because
 the flag is missing; Node 22.18+ and 23.6+ no longer need it.
 
-**A problem file only exports its function, so running it prints nothing by itself.** Add
-a log at the bottom while you experiment:
+**A problem file only exports its function, so running it prints nothing by itself.** Call
+it at the bottom of the file and log the result:
 
 ```ts
-console.log(containsDuplicate([1, 2, 3, 1]));
+console.log(containsDuplicate([1, 2, 3, 1])); // true
+console.log(containsDuplicate([1, 2, 3, 4])); // false
 ```
 
-For scratch work across several files, edit [`playground.ts`](./playground.ts) and run
-`npm run play`.
-
-## Tests
-
-```bash
-npm test          # every *.test.ts in the repo
-npm run test:watch
-```
-
-Tests use the built-in `node:test` runner and sit next to the problem as
-`NNN-slug.test.ts`. Five are included as templates, one per shape you will meet:
-
-- plain values — `01-arrays-hashing/001-contains-duplicate.test.ts`
-- order-insensitive output — `01-arrays-hashing/004-group-anagrams.test.ts`
-- linked lists — `06-linked-list/035-reverse-linked-list.test.ts`
-- trees — `07-trees/046-invert-binary-tree.test.ts`
-- a design/class problem — `04-stack/022-min-stack.test.ts`
-
-[`shared/testing.ts`](./shared/testing.ts) carries `buildList` / `listToArray`,
-`buildTree` / `treeToArray` and `normalizeGroups` so a test never has to wire nodes by
-hand. A red suite is the normal starting state: an unsolved stub throws.
+Those lines are scratch work — delete them, or leave them as a record of what you checked.
 
 ## Type-checking
 

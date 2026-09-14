@@ -24,5 +24,23 @@
  * Video:     https://www.youtube.com/watch?v=T0u5nwSA0w0&t=129s  (00:02:09)
  */
 export function isAnagram(s: string, t: string): boolean {
-  throw new Error('Not implemented');
+  if (s.length !== t.length) return false;
+  const sString = s.split('').sort((a, b) => a.localeCompare(b)).join('');
+  const tString = t.split('').sort((a, b) => a.localeCompare(b)).join('');
+  return sString === tString;
 }
+
+export function isAnagram2(s: string, t: string): boolean {
+  if (s.length !== t.length) return false;
+
+  const freq = new Int32Array(26);
+  for (let i = 0; i < s.length; i++) {
+    freq[s.charCodeAt(i) - 97]++;
+    freq[t.charCodeAt(i) - 97]--;
+  }
+
+  for (let i = 0; i < 26; i++) if (freq[i] !== 0) return false;
+  return true;
+}
+console.log(isAnagram('anagram', 'nagaram')); // true
+console.log(isAnagram('rat', 'car')); // false
