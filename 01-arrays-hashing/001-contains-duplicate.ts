@@ -25,13 +25,30 @@
  * LeetCode:  https://leetcode.com/problems/contains-duplicate/
  * Video:     https://www.youtube.com/watch?v=T0u5nwSA0w0&t=129s  (00:02:09)
  */
+
 export function containsDuplicate(nums: number[]): boolean {
-  const isUnique = new Set<number>(nums);
-  if (isUnique.size === nums.length) return false;
-  return true;
+  const uniqueNums: Set<number> = new Set(nums);
+
+  if (uniqueNums.size === nums.length) return false;
+  return true
 }
 
 export function containsDuplicate2(nums: number[]): boolean {
+  const obj: Record<string, boolean> = {};
+
+  for (let i = 0; i < nums.length; i++) {
+    if (obj[nums[i]]) {
+      return true;
+    } else {
+      obj[nums[i]] = true;
+    }
+  }
+
+  return false
+}
+
+
+export function containsDuplicate3(nums: number[]): boolean {
   let obj: Record<number, number> = {};
   for (let i = 0; i < nums.length; i++) {
     if (nums[i] in obj) {
@@ -45,7 +62,7 @@ export function containsDuplicate2(nums: number[]): boolean {
 }
 
 
-export const containsDuplicate3 = (nums: number[]): boolean => {
+export const containsDuplicate4 = (nums: number[]): boolean => {
   let str = "";
 
   for (let i = 0; i < nums.length; i++) {

@@ -32,5 +32,31 @@
  * Video:     https://www.youtube.com/watch?v=T0u5nwSA0w0&t=1110s  (00:18:30)
  */
 export function twoSum(nums: number[], target: number): [number, number] {
-  throw new Error('Not implemented');
+  for (let i = 0; i < nums.length; i++) {
+    const j = nums.indexOf(target - nums[i], i + 1)
+    if (j !== -1) return [i, j];
+  }
+
+  return [-1, -1]
 }
+
+
+export function twoSum2(nums: number[], target: number): [number, number] {
+  const hashMap: Record<string, number> = {};
+  for (let i = 0; i < nums.length; i++) {
+    const complement = target - nums[i];
+    if (complement in hashMap) {
+      return [hashMap[complement], i]
+    }
+
+    hashMap[nums[i]] = i;
+  }
+
+  return [-1, -1]
+};
+
+
+console.log(twoSum([3, 2, 4], 9)); // [0, 3]
+console.log(twoSum2([3, 2, 4], 6)); // [1, 2]
+
+

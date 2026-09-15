@@ -41,5 +41,6 @@ export function isAnagram2(s: string, t: string): boolean {
 
   return freq.every((count) => count === 0);
 }
+
 console.log(isAnagram('anagram', 'nagaram')); // true
 console.log(isAnagram('rat', 'car')); // false
