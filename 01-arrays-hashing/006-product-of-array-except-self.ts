@@ -46,5 +46,16 @@ export function productExceptSelf(nums: number[]): number[] {
 
 }
 
+export function productExceptSelf2(nums: number[]): number[] {
+  const n = nums.length;
+  const pre = new Array(n).fill(1);
+  const post = new Array(n).fill(1);
+
+  for (let i = 1; i < n; i++) pre[i] = pre[i - 1] * nums[i - 1];
+  for (let i = n - 2; i >= 0; i--) post[i] = post[i + 1] * nums[i + 1];
+
+  return pre.map((p, i) => p * post[i]);
+}
+
 
 console.log(productExceptSelf([1, 2, 3, 4]))
