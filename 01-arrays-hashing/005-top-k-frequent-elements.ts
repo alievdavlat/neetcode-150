@@ -27,5 +27,14 @@
  * Video:     https://www.youtube.com/watch?v=T0u5nwSA0w0&t=2465s  (00:41:05)
  */
 export function topKFrequent(nums: number[], k: number): number[] {
-  throw new Error('Not implemented');
+  const count = new Map();
+  for (const n of nums) count.set(n, (count.get(n) ?? 0) + 1);
+
+  return [...count.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, k)
+    .map(([num]) => num);
 }
+
+
+console.log(topKFrequent([1, 1, 1, 2, 2, 3], 2))

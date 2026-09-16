@@ -28,5 +28,22 @@
  * Video:     https://www.youtube.com/watch?v=T0u5nwSA0w0&t=2465s  (00:41:05)
  */
 export function productExceptSelf(nums: number[]): number[] {
-  throw new Error('Not implemented');
+  const res = new Array(nums.length).fill(1);
+
+  let left = 1;
+  for (let i = 0; i < nums.length; i++) {
+    res[i] = left;
+    left *= nums[i];
+  }
+
+  let right = 1;
+  for (let i = nums.length - 1; i >= 0; i--) {
+    res[i] *= right;
+    right *= nums[i];
+  }
+
+  return res;
 }
+
+
+console.log(productExceptSelf([1, 2, 3, 4]))

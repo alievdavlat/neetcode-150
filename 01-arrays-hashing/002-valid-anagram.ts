@@ -25,8 +25,8 @@
  */
 export function isAnagram(s: string, t: string): boolean {
   if (s.length !== t.length) return false;
-  const sString = s.split('').sort((a, b) => a.localeCompare(b)).join('');
-  const tString = t.split('').sort((a, b) => a.localeCompare(b)).join('');
+  const sString = s.split('').sort().join('');
+  const tString = t.split('').sort().join('');
   return sString === tString;
 }
 
