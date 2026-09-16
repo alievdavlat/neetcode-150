@@ -42,7 +42,8 @@ export function productExceptSelf(nums: number[]): number[] {
     right *= nums[i];
   }
 
-  return res;
+  return res
+
 }
 
 
