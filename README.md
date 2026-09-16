@@ -41,6 +41,23 @@ console.log(containsDuplicate([1, 2, 3, 4])); // false
 
 Those lines are scratch work — delete them, or leave them as a record of what you checked.
 
+## Testing a solution
+
+`console.log` at the bottom of a file shows you *an* answer; it does not tell you
+whether the answer is right for every case. The runner in [`tests/`](./tests/) does:
+
+```bash
+npm test                  # every problem you have started
+npm test -- two-sum       # one problem, by slug, number or title
+npm run test:bigo         # time it at doubling sizes and fit a Big-O curve
+npm run test:mem          # heap growth per call
+```
+
+Cases come out of the examples already written in each problem's doc block, so
+most problems are covered with no setup. Every exported variant in a file is run
+against the same cases. See [`tests/README.md`](./tests/README.md) for adding your
+own cases and for what the complexity numbers can and cannot tell you.
+
 ## Type-checking
 
 ```bash

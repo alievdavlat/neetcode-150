@@ -7,7 +7,10 @@
   "scripts": {
     "file": "node --experimental-strip-types --disable-warning=ExperimentalWarning",
     "check": "tsc --noEmit",
-    "generate": "node _gen/generate.mjs"
+    "generate": "node _gen/generate.mjs",
+    "test": "node --experimental-strip-types --disable-warning=ExperimentalWarning tests/runner/cli.mjs",
+    "test:bigo": "node --experimental-strip-types --disable-warning=ExperimentalWarning tests/runner/cli.mjs --big-o --curve",
+    "test:mem": "node --experimental-strip-types --disable-warning=ExperimentalWarning tests/runner/cli.mjs --memory"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
