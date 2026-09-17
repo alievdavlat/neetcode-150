@@ -1,0 +1,318 @@
+import ts from 'typescript';
+
+/**
+ * Instrument a solution by inserting text at AST positions. Nothing is emitted
+ * or reprinted: every insertion is newline-free, so the instrumented copy has
+ * the same lines as the file the student is looking at and a recorded line
+ * number needs no mapping.
+ *
+ * The recorder is reached through `globalThis.__t`, which the worker sets
+ * before importing the copy - that way no import has to be injected into a file
+ * whose first line is a doc comment.
+ *
+ * Only the named function's own body is instrumented. Callbacks passed to
+ * built-ins run normally and produce no steps of their own, so a solution that
+ * hands its work to `sort()` honestly has little to show.
+ */
+export function instrument(source, { functionName }) {
+  const file = ts.createSourceFile('solution.ts', source, ts.ScriptTarget.ESNext, true, ts.ScriptKind.TS);
+
+  const fn = file.statements.find(
+    (node) => ts.isFunctionDeclaration(node) && node.name?.text === functionName,
+  );
+  if (!fn) throw new Error(`no exported function named ${functionName} in this file`);
+
+  const meta = [];
+  const edits = [];
+
+  const context = {
+    file,
+    source,
+    meta,
+    edits,
+    lineOf: (pos) => file.getLineAndCharacterOfPosition(pos).line + 1,
+    textOf: (node) => source.slice(node.getStart(file), node.getEnd()),
+    oneLine: (node) =>
+      file.getLineAndCharacterOfPosition(node.getStart(file)).line ===
+      file.getLineAndCharacterOfPosition(node.getEnd()).line,
+    insert: (at, text, rank = 0) => {
+      if (text.includes('\n')) throw new Error('an insertion may not contain a newline');
+      edits.push({ at, text, rank, order: edits.length });
+    },
+  };
+
+  walk(context, fn);
+
+  let code = source;
+  const ordered = [...edits].sort((a, b) => b.at - a.at || b.rank - a.rank || a.order - b.order);
+  for (const edit of ordered) code = code.slice(0, edit.at) + edit.text + code.slice(edit.at);
+
+  return { code, meta };
+}
+
+/** `obj[nums[i]]` changes `obj`, not `nums`. */
+function rootName(node) {
+  let current = node;
+  while (ts.isElementAccessExpression(current) || ts.isPropertyAccessExpression(current)) {
+    current = current.expression;
+  }
+  return ts.isIdentifier(current) ? current.text : null;
+}
+
+const declaredName = (statement) => {
+  if (ts.isVariableStatement(statement)) {
+    const declaration = statement.declarationList.declarations[0];
+    return ts.isIdentifier(declaration.name) ? declaration.name.text : null;
+  }
+
+  const expression = statement.expression;
+  if (ts.isBinaryExpression(expression) && expression.operatorToken.kind === ts.SyntaxKind.EqualsToken) {
+    return rootName(expression.left);
+  }
+  if (ts.isPostfixUnaryExpression(expression) || ts.isPrefixUnaryExpression(expression)) {
+    return rootName(expression.operand);
+  }
+  if (ts.isCallExpression(expression) && ts.isPropertyAccessExpression(expression.expression)) {
+    return rootName(expression.expression.expression);
+  }
+  return null;
+};
+
+function record(context, kind, node, extra = {}) {
+  const id = context.meta.length;
+  context.meta.push({
+    id,
+    kind,
+    line: context.lineOf(node.getStart(context.file)),
+    text: context.textOf(node),
+    changed: null,
+    leaves: [],
+    ...extra,
+  });
+  return id;
+}
+
+const isLeaf = (node) =>
+  ts.isIdentifier(node) || ts.isElementAccessExpression(node) || ts.isPropertyAccessExpression(node);
+
+/**
+ * `obj[k] = v` must not become `__t.l(id,0,obj[k]) = v` - that is a call on the
+ * left of an assignment, which will not parse. Assignment targets are visited
+ * for their element accesses but never wrapped as leaves.
+ */
+const isAssignment = (node) =>
+  ts.isBinaryExpression(node) &&
+  node.operatorToken.kind >= ts.SyntaxKind.FirstAssignment &&
+  node.operatorToken.kind <= ts.SyntaxKind.LastAssignment;
+
+/**
+ * `nums.sort()` must not become `__t.l(id,0,nums.sort)()` - wrapping a callee
+ * strips the receiver and the call loses its `this`.
+ */
+const isCallee = (node) => {
+  const parent = node.parent;
+  return (
+    !!parent && (ts.isCallExpression(parent) || ts.isNewExpression(parent)) && parent.expression === node
+  );
+};
+
+/** `freq[k]++` writes through its operand exactly as `freq[k] = freq[k] + 1` would. */
+const isUpdate = (node) =>
+  (ts.isPostfixUnaryExpression(node) || ts.isPrefixUnaryExpression(node)) &&
+  (node.operator === ts.SyntaxKind.PlusPlusToken || node.operator === ts.SyntaxKind.MinusMinusToken);
+
+const isAssignTarget = (node) => {
+  const parent = node.parent;
+  if (!parent) return false;
+  if (isAssignment(parent) && parent.left === node) return true;
+  if (ts.isElementAccessExpression(parent) && parent.expression === node) return isAssignTarget(parent);
+  return ts.isPostfixUnaryExpression(parent) || ts.isPrefixUnaryExpression(parent);
+};
+
+/**
+ * A leaf is the outermost readable piece of an expression: `nums[i]` is a leaf,
+ * the `i` inside it is not, or the substituted text would nest into itself. The
+ * index is still wrapped separately, for `touched` rather than for the chain.
+ */
+function wrapLeaves(context, id, root) {
+  const entry = context.meta[id];
+  const base = root.getStart(context.file);
+
+  const visit = (node, insideLeaf, insideTarget) => {
+    if (ts.isFunctionExpression(node) || ts.isArrowFunction(node)) return;
+
+    if (ts.isElementAccessExpression(node)) {
+      const name = rootName(node.expression);
+      const write = isAssignTarget(node);
+      if (name && context.oneLine(node.argumentExpression)) {
+        context.insert(
+          node.argumentExpression.getStart(context.file),
+          `globalThis.__t.x(${id},"${name}",`,
+          3,
+        );
+        context.insert(node.argumentExpression.getEnd(), `,${write})`, -3);
+      }
+    }
+
+    if (!insideLeaf && !insideTarget && !isCallee(node) && isLeaf(node) && node !== root) {
+      const index = entry.leaves.length;
+      entry.leaves.push({ start: node.getStart(context.file) - base, end: node.getEnd() - base });
+      context.insert(node.getStart(context.file), `globalThis.__t.l(${id},${index},`, 4);
+      context.insert(node.getEnd(), ')', -4);
+      node.forEachChild((child) => visit(child, true, false));
+      return;
+    }
+
+    /** The left of an assignment is where a value lands, not a value to read. */
+    if (isAssignment(node)) {
+      visit(node.left, insideLeaf, true);
+      visit(node.right, insideLeaf, insideTarget);
+      return;
+    }
+
+    if (isUpdate(node)) {
+      visit(node.operand, insideLeaf, true);
+      return;
+    }
+
+    /** A member name is not a value; only the receiver is worth reading. */
+    if (ts.isPropertyAccessExpression(node)) {
+      visit(node.expression, insideLeaf, insideTarget);
+      return;
+    }
+
+    node.forEachChild((child) => visit(child, insideLeaf, insideTarget));
+  };
+
+  if (isAssignment(root)) {
+    visit(root.left, false, true);
+    visit(root.right, false, false);
+    return;
+  }
+
+  if (isUpdate(root)) {
+    visit(root.operand, false, true);
+    return;
+  }
+
+  root.forEachChild((child) => visit(child, false, false));
+}
+
+/**
+ * Wrap a value-producing node, plus the leaves that make its substitution
+ * readable. The live scope rides along as a third argument so a condition or a
+ * return shows the same variable table a statement does - arguments evaluate
+ * left to right, so the snapshot is taken after the expression itself.
+ */
+function wrapValue(context, id, node, live) {
+  context.insert(node.getStart(context.file), `globalThis.__t.v(${id},`, 2);
+  context.insert(node.getEnd(), live ? `,{${live.join(',')}})` : ')', -2);
+  wrapLeaves(context, id, node);
+}
+
+function walk(context, fn) {
+  const scope = fn.parameters.filter((p) => ts.isIdentifier(p.name)).map((p) => p.name.text);
+  walkBlock(context, fn.body, scope);
+}
+
+const bodyOf = (statement) => (ts.isBlock(statement) ? statement : { statements: [statement] });
+
+function walkBlock(context, block, inherited) {
+  let live = [...inherited];
+
+  for (const statement of block.statements) {
+    if (ts.isVariableStatement(statement)) {
+      const declaration = statement.declarationList.declarations[0];
+      const id = record(context, 'stmt', statement, { changed: declaredName(statement) });
+      if (declaration.initializer && context.oneLine(declaration.initializer)) {
+        context.meta[id].text = context.textOf(declaration.initializer);
+        wrapValue(context, id, declaration.initializer);
+      }
+      if (ts.isIdentifier(declaration.name)) live = [...live, declaration.name.text];
+      context.insert(statement.getEnd(), `;globalThis.__t.s(${id},{${live.join(',')}});`, 100);
+      continue;
+    }
+
+    if (ts.isExpressionStatement(statement)) {
+      const id = record(context, 'stmt', statement, { changed: declaredName(statement) });
+      context.meta[id].text = context.textOf(statement.expression);
+      if (context.oneLine(statement.expression)) wrapValue(context, id, statement.expression);
+      context.insert(statement.getEnd(), `;globalThis.__t.s(${id},{${live.join(',')}});`, 100);
+      continue;
+    }
+
+    walkControl(context, statement, live);
+  }
+}
+
+function walkControl(context, statement, live) {
+  if (ts.isForStatement(statement)) {
+    let inner = [...live];
+
+    if (statement.initializer && ts.isVariableDeclarationList(statement.initializer)) {
+      const declaration = statement.initializer.declarations[0];
+      if (declaration.initializer) {
+        const id = record(context, 'loop-init', declaration.initializer, {
+          changed: ts.isIdentifier(declaration.name) ? declaration.name.text : null,
+        });
+        wrapValue(context, id, declaration.initializer, live);
+      }
+      if (ts.isIdentifier(declaration.name)) inner = [...inner, declaration.name.text];
+    }
+
+    if (statement.condition) {
+      const id = record(context, 'loop-cond', statement.condition);
+      wrapValue(context, id, statement.condition, inner);
+    }
+
+    if (statement.incrementor) {
+      const counter = rootName(
+        ts.isPostfixUnaryExpression(statement.incrementor) || ts.isPrefixUnaryExpression(statement.incrementor)
+          ? statement.incrementor.operand
+          : statement.incrementor,
+      );
+      const op = statement.incrementor.operator === ts.SyntaxKind.MinusMinusToken ? '-' : '+';
+      const id = record(context, 'loop-update', statement.incrementor, { changed: counter, op });
+      context.insert(statement.incrementor.getStart(context.file), `globalThis.__t.u(${id},`, 2);
+      context.insert(statement.incrementor.getEnd(), `,${counter},{${inner.join(',')}})`, -2);
+    }
+
+    walkBlock(context, bodyOf(statement.statement), inner);
+    return;
+  }
+
+  if (ts.isForOfStatement(statement)) {
+    const declaration = statement.initializer.declarations?.[0];
+    const bound = declaration && ts.isIdentifier(declaration.name) ? declaration.name.text : null;
+    const id = record(context, 'loop-update', statement.expression, { changed: bound });
+    const seen = bound ? [...live, bound] : live;
+    context.insert(statement.expression.getStart(context.file), `globalThis.__t.i(${id},`, 2);
+    context.insert(statement.expression.getEnd(), `,() => ({${seen.join(',')}}))`, -2);
+
+    walkBlock(context, bodyOf(statement.statement), seen);
+    return;
+  }
+
+  if (ts.isWhileStatement(statement) || ts.isDoStatement(statement)) {
+    const id = record(context, 'loop-cond', statement.expression);
+    wrapValue(context, id, statement.expression, live);
+    walkBlock(context, bodyOf(statement.statement), live);
+    return;
+  }
+
+  if (ts.isIfStatement(statement)) {
+    const id = record(context, 'cond', statement.expression);
+    wrapValue(context, id, statement.expression, live);
+    walkBlock(context, bodyOf(statement.thenStatement), live);
+    if (statement.elseStatement) walkBlock(context, bodyOf(statement.elseStatement), live);
+    return;
+  }
+
+  if (ts.isReturnStatement(statement) && statement.expression && context.oneLine(statement.expression)) {
+    const id = record(context, 'return', statement.expression);
+    wrapValue(context, id, statement.expression, live);
+    return;
+  }
+
+  if (ts.isBlock(statement)) walkBlock(context, statement, live);
+}

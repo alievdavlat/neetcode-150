@@ -11,6 +11,7 @@
     "test": "node --experimental-strip-types --disable-warning=ExperimentalWarning tests/runner/cli.mjs",
     "test:bigo": "node --experimental-strip-types --disable-warning=ExperimentalWarning tests/runner/cli.mjs --big-o --curve",
     "test:mem": "node --experimental-strip-types --disable-warning=ExperimentalWarning tests/runner/cli.mjs --memory",
+    "test:trace": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test tests/runner/trace/*.test.mjs",
     "studio": "npm --prefix studio run dev"
   },
   "devDependencies": {
