@@ -151,3 +151,35 @@ export interface ProblemSource {
   leetcode: string | null;
   video: string | null;
 }
+
+export type TraceKind = 'stmt' | 'loop-init' | 'loop-cond' | 'loop-update' | 'cond' | 'return';
+
+export type TraceValue =
+  | { t: 'scalar'; text: string }
+  | { t: 'array'; items: string[]; truncated: boolean }
+  | { t: 'map'; entries: [string, string][]; truncated: boolean };
+
+export interface TraceStep {
+  line: number;
+  kind: TraceKind;
+  chain: string[];
+  vars: Record<string, TraceValue>;
+  changed: string | null;
+  touched: { name: string; key: string | number; write: boolean }[];
+}
+
+export type TraceStatus = 'ok' | 'unsupported' | 'uninstrumentable' | 'threw' | 'stalled' | 'crashed';
+
+export interface TraceResult {
+  number: string;
+  variant: string;
+  caseIndex: number;
+  status: TraceStatus;
+  message: string | null;
+  args: string[];
+  expect: string | null;
+  result: string | null;
+  steps: TraceStep[];
+  truncated: boolean;
+  source: string;
+}

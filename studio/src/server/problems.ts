@@ -1,6 +1,15 @@
 import { mkdir, readFile, rename, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import type { Problem, ProblemHistory, ProblemSource, ProblemStatus, RunReport, RunStatus, SourceMode } from '@/lib/types';
+import type {
+  Problem,
+  ProblemHistory,
+  ProblemSource,
+  ProblemStatus,
+  RunReport,
+  RunStatus,
+  SourceMode,
+  TraceResult,
+} from '@/lib/types';
 import { EMPTY_HISTORY, getHistories, recordRun } from './history';
 import { syncCategoryReadme } from './readme';
 import { snapshotSolution } from './solutions';
@@ -214,6 +223,23 @@ export async function promoteScratch(file: string): Promise<void> {
   if (source === null) throw new Error('there is no practice copy to promote');
 
   await writeProblemSource(file, source);
+}
+
+/** Trace one case of one variant. The run path is untouched; this is a sibling. */
+export async function traceProblem(
+  number: string,
+  variant: string,
+  caseIndex: number,
+  mode: SourceMode = 'file',
+): Promise<TraceResult> {
+  const problems = await getProblems();
+  const problem = problems.find((entry) => entry.number === number);
+  if (!problem) throw new Error(`no problem numbered ${number}`);
+
+  const args = [number, variant, String(caseIndex)];
+  if (mode === 'scratch') args.push('--file', problemPath(problem.file, 'scratch'));
+
+  return runBridge<TraceResult>({ script: 'trace.mjs', args, timeoutMs: 30000 });
 }
 
 export async function runProblem(number: string, mode: SourceMode = 'file', bigO = false): Promise<RunReport> {
