@@ -34,4 +34,17 @@ export function topKFrequent(nums: number[], k: number): number[] {
   return [...count.entries()].sort((a, b) => b[1] - a[1]).slice(0, k).map(([num]) => num)
 }
 
+export function topKFrequent2(nums: number[], k: number): number[] {
+    let obj:Record<string, number> = {};
+    for(let i = 0; i < nums.length; i++) {
+      if(!obj[nums[i]]) {
+        obj[nums[i]] = 1
+      } else {
+         obj[nums[i]] += 1
+      }
+    }
+
+    return Object.entries(obj).sort((a, b) => b[1] - a[1]).slice(0, k).map(([num]) => Number(num));
+}
+
 console.log(topKFrequent([1, 1, 1, 2, 2, 3], 2))

@@ -31,13 +31,24 @@
  */
 export function groupAnagrams(strs: string[]): string[][] {
   const map = new Map();
-  for (const word of strs) {
-    const key = word.split('').sort().join('');
-    if (!map.has(key)) map.set(key, []);
-    map.get(key).push(word);
+  for(const word of strs) {
+    const str = word.split('').sort().join('');
+    if(!map.has(str)) map.set(str,[]);
+    map.get(str).push(word);
   }
 
   return [...map.values()];
 }
 
-console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+export function groupAnagrams2(strs: string[]): string[][] {
+  let obj:Record<string, string[]> = {};
+  for(let i = 0; i < strs.length; i++) {
+    const str = strs[i].split('').sort().join('');
+    if(!obj[str]) {
+       obj[str] = [];
+    } 
+      obj[str].push(strs[i]);
+  }
+
+  return Object.values(obj);
+}
