@@ -11,16 +11,18 @@ interface MonacoSurfaceProps {
   path: string;
   value: string;
   markers: TypeMarker[];
+  activeLine?: number | null;
   onChange: (value: string) => void;
   onSave: () => void;
   onRun: () => void;
 }
 
-export function MonacoSurface({ path, value, markers, onChange, onSave, onRun }: MonacoSurfaceProps) {
+export function MonacoSurface({ path, value, markers, activeLine, onChange, onSave, onRun }: MonacoSurfaceProps) {
   const save = useRef(onSave);
   const run = useRef(onRun);
   const monacoRef = useRef<Monaco | null>(null);
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
+  const decorationsRef = useRef<string[]>([]);
 
   useEffect(() => {
     save.current = onSave;
@@ -95,6 +97,27 @@ export function MonacoSurface({ path, value, markers, onChange, onSave, onRun }:
       })),
     );
   }, [markers, path, value]);
+
+  /** The replayed step highlights its line in the file the student is reading. */
+  useEffect(() => {
+    const editor = editorRef.current;
+    const monaco = monacoRef.current;
+    if (!editor || !monaco) return;
+
+    decorationsRef.current = editor.deltaDecorations(
+      decorationsRef.current,
+      activeLine
+        ? [
+            {
+              range: new monaco.Range(activeLine, 1, activeLine, 1),
+              options: { isWholeLine: true, className: 'trace-active-line' },
+            },
+          ]
+        : [],
+    );
+
+    if (activeLine) editor.revealLineInCenterIfOutsideViewport(activeLine);
+  }, [activeLine, path]);
 
   return (
     <Editor

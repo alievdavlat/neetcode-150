@@ -42,6 +42,7 @@ interface SolutionEditorProps {
   promoting: boolean;
   bigO: boolean;
   markers: TypeMarker[];
+  activeLine: number | null;
   checkingTypes: boolean;
   snapshots: number;
   onChange: (value: string) => void;
@@ -68,6 +69,7 @@ export function SolutionEditor({
   promoting,
   bigO,
   markers,
+  activeLine,
   checkingTypes,
   snapshots,
   onChange,
@@ -242,6 +244,7 @@ export function SolutionEditor({
             path={mode === 'scratch' ? `scratch/${file}` : file}
             value={source}
             markers={markers}
+            activeLine={activeLine}
             onChange={onChange}
             onSave={onSave}
             onRun={onRun}

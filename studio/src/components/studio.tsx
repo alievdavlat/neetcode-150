@@ -9,7 +9,9 @@ import { ProblemBrief } from './problem-brief';
 import { ProblemRail } from './problem-rail';
 import { SolutionEditor } from './solution-editor';
 import { StudioHeader } from './studio-header';
+import { TracePanel } from './trace-panel';
 import { VerdictPanel } from './verdict-panel';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { UNKNOWN_STATUS } from '@/lib/meta';
 import { request } from '@/lib/api';
 import type {
@@ -21,6 +23,7 @@ import type {
   RunReport,
   SolutionSnapshot,
   SourceMode,
+  TraceResult,
   TypeMarker,
 } from '@/lib/types';
 
@@ -96,6 +99,11 @@ export function Studio({ problems, statuses: initialStatuses, collections }: Stu
   const [diffOpen, setDiffOpen] = useState(false);
   const [checkingTypes, setCheckingTypes] = useState(false);
   const [report, setReport] = useState<RunReport | null>(null);
+  const [trace, setTrace] = useState<TraceResult | null>(null);
+  const [tracing, setTracing] = useState(false);
+  const [activeLine, setActiveLine] = useState<number | null>(null);
+  const [variant, setVariant] = useState<string | null>(null);
+  const [caseIndex, setCaseIndex] = useState(0);
   const busy = useRef(false);
   const synced = useRef(false);
   const checking = useRef(false);
@@ -127,6 +135,10 @@ export function Studio({ problems, statuses: initialStatuses, collections }: Stu
     setSavedSource(null);
     setReport(null);
     setMarkers([]);
+    setTrace(null);
+    setActiveLine(null);
+    setVariant(null);
+    setCaseIndex(0);
     window.localStorage.setItem(LAST_KEY, activeNumber);
 
     const number = activeNumber;
@@ -255,6 +267,7 @@ export function Studio({ problems, statuses: initialStatuses, collections }: Stu
       .then((payload) => {
         if (!payload) return;
         setReport(payload.report);
+        seedTrace(payload.report);
         setStatuses((current) => ({ ...current, [payload.status.number]: payload.status }));
 
         return request<SnapshotResponse>(`/api/solutions?number=${number}`)
@@ -266,6 +279,49 @@ export function Studio({ problems, statuses: initialStatuses, collections }: Stu
         setRunning(false);
         busy.current = false;
       });
+  };
+
+  /** After a run, follow the first export, and the first case that failed if one did. */
+  const seedTrace = (next: RunReport) => {
+    const first = next.variants[0];
+    setVariant(first?.name ?? null);
+    const failingAt = first?.cases.findIndex((item) => !item.passed) ?? -1;
+    setCaseIndex(failingAt === -1 ? 0 : failingAt);
+    setTrace(null);
+    setActiveLine(null);
+  };
+
+  const traceVariants = report?.variants.map((entry) => entry.name) ?? [];
+  const traceCases =
+    report?.variants
+      .find((entry) => entry.name === variant)
+      ?.cases.map((item) => ({ label: item.label, passed: item.passed })) ?? [];
+
+  const handlePick = (pickedVariant: string, pickedCase: number) => {
+    setVariant(pickedVariant);
+    setCaseIndex(pickedCase);
+    setTrace(null);
+    setActiveLine(null);
+  };
+
+  const handleTrace = async () => {
+    if (!active || !variant) {
+      toast.error('Run it once first, so the tracer knows which export to follow');
+      return;
+    }
+
+    setTracing(true);
+    try {
+      const answer = await request<{ trace: TraceResult }>('/api/trace', {
+        method: 'POST',
+        body: JSON.stringify({ number: active.number, variant, caseIndex, mode }),
+      });
+      setTrace(answer.trace);
+    } catch (error) {
+      toast.error(messageOf(error));
+    } finally {
+      setTracing(false);
+    }
   };
 
   const handleRun = () => runWith(bigO);
@@ -533,6 +589,7 @@ ${line}
                 promoting={promoting}
                 bigO={bigO}
                 markers={markers}
+                activeLine={activeLine}
                 checkingTypes={checkingTypes}
                 snapshots={snapshots.length}
                 onCompare={() => setDiffOpen(true)}
@@ -548,14 +605,37 @@ ${line}
             <ResizableHandle withHandle />
 
             <ResizablePanel defaultSize="38" minSize="15">
-              <VerdictPanel
-                report={report}
-                running={running}
-                bigO={bigO}
-                problemTitle={active.title}
-                onMeasure={handleMeasure}
-                onSnippet={handleSnippet}
-              />
+              <Tabs defaultValue="verdict" className="flex h-full min-h-0 flex-col gap-0">
+                <TabsList className="mx-3 mt-2 self-start">
+                  <TabsTrigger value="verdict">Verdict</TabsTrigger>
+                  <TabsTrigger value="trace">Simulation</TabsTrigger>
+                </TabsList>
+
+                <TabsContent value="verdict" className="min-h-0 flex-1">
+                  <VerdictPanel
+                    report={report}
+                    running={running}
+                    bigO={bigO}
+                    problemTitle={active.title}
+                    onMeasure={handleMeasure}
+                    onSnippet={handleSnippet}
+                  />
+                </TabsContent>
+
+                <TabsContent value="trace" className="min-h-0 flex-1">
+                  <TracePanel
+                    trace={trace}
+                    tracing={tracing}
+                    variants={traceVariants}
+                    cases={traceCases}
+                    variant={variant}
+                    caseIndex={caseIndex}
+                    onPick={handlePick}
+                    onTrace={handleTrace}
+                    onStep={setActiveLine}
+                  />
+                </TabsContent>
+              </Tabs>
             </ResizablePanel>
           </ResizablePanelGroup>
         </ResizablePanel>
