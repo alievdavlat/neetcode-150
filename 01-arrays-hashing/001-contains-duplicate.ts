@@ -27,56 +27,22 @@
  */
 
 export function containsDuplicate(nums: number[]): boolean {
-  const uniqueNums: Set<number> = new Set(nums);
+  const set = new Set(nums);
+  if (set.size !== nums.length) return true;
 
-  if (uniqueNums.size === nums.length) return false;
-  return true
+  return false
 }
 
 export function containsDuplicate2(nums: number[]): boolean {
   const obj: Record<string, boolean> = {};
-
   for (let i = 0; i < nums.length; i++) {
-    if (obj[nums[i]]) {
-      return true;
-    } else {
-      obj[nums[i]] = true;
-    }
+    if (obj[nums[i]]) return true;
+    obj[nums[i]] = true;
   }
 
   return false
 }
 
 
-export function containsDuplicate3(nums: number[]): boolean {
-  let obj: Record<number, number> = {};
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] in obj) {
-      return true;
-    } else {
-      obj[nums[i]] = i;
-    }
-  }
-
-  return false;
-}
-
-
-export const containsDuplicate4 = (nums: number[]): boolean => {
-  let str = "";
-
-  for (let i = 0; i < nums.length; i++) {
-    if (str.includes(nums[i].toString())) {
-      return true;
-    }
-
-    str += nums[i].toString();
-  }
-
-  return false;
-};
-
-
 console.log(containsDuplicate([1, 2, 3, 1])); // true
 console.log(containsDuplicate2([1, 2, 3, 4])); // false
-console.log(containsDuplicate3([1, 1, 1, 3, 3, 4, 3, 2, 4, 2])); // true

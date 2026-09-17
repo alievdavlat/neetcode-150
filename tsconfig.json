@@ -14,5 +14,5 @@
     "noEmit": true
   },
   "include": ["**/*.ts"],
-  "exclude": ["node_modules", "_gen"]
+  "exclude": ["node_modules", "_gen", "studio"]
 }

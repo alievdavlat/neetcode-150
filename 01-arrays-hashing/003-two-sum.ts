@@ -33,8 +33,8 @@
  */
 export function twoSum(nums: number[], target: number): [number, number] {
   for (let i = 0; i < nums.length; i++) {
-    const j = nums.indexOf(target - nums[i], i + 1)
-    if (j !== -1) return [i, j];
+    const complement = nums.indexOf(target - nums[i], i + 1);
+    if (complement !== -1) return [i, complement]
   }
 
   return [-1, -1]
@@ -42,14 +42,11 @@ export function twoSum(nums: number[], target: number): [number, number] {
 
 
 export function twoSum2(nums: number[], target: number): [number, number] {
-  const hashMap: Record<string, number> = {};
+  const obj: Record<string, number> = {};
   for (let i = 0; i < nums.length; i++) {
     const complement = target - nums[i];
-    if (complement in hashMap) {
-      return [hashMap[complement], i]
-    }
-
-    hashMap[nums[i]] = i;
+    if (complement in obj) return [i, obj[complement]];
+    obj[nums[i]] = i;
   }
 
   return [-1, -1]

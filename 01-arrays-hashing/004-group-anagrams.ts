@@ -30,12 +30,11 @@
  * Video:     https://www.youtube.com/watch?v=T0u5nwSA0w0&t=1110s  (00:18:30)
  */
 export function groupAnagrams(strs: string[]): string[][] {
-  const map = new Map<string, string[]>();
-
+  const map = new Map();
   for (const word of strs) {
     const key = word.split('').sort().join('');
-    if (!map.has(key)) map.set(key, [])
-    map.get(key)!.push(word)
+    if (!map.has(key)) map.set(key, []);
+    map.get(key).push(word);
   }
 
   return [...map.values()];

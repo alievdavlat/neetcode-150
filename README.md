@@ -58,6 +58,22 @@ most problems are covered with no setup. Every exported variant in a file is run
 against the same cases. See [`tests/README.md`](./tests/README.md) for adding your
 own cases and for what the complexity numbers can and cannot tell you.
 
+## Studio — the browser UI
+
+The same workspace with a LeetCode-shaped front end: problem list, the description,
+a Monaco editor wired to the real `.ts` file, and the runner's verdicts in a panel.
+
+```bash
+npm run studio        # http://localhost:3150
+```
+
+First run installs nothing extra at the root — the app lives in [`studio/`](./studio/)
+with its own dependencies (`cd studio && npm install` once).
+
+The editor edits the file on disk, not a copy: `Ctrl/Cmd + S` saves, `Ctrl/Cmd + Enter`
+saves and runs. Nothing is written until you save, so the terminal workflow above keeps
+working unchanged. See [`studio/README.md`](./studio/README.md).
+
 ## Type-checking
 
 ```bash

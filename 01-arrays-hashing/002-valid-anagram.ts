@@ -25,9 +25,10 @@
  */
 export function isAnagram(s: string, t: string): boolean {
   if (s.length !== t.length) return false;
-  const sString = s.split('').sort().join('');
-  const tString = t.split('').sort().join('');
-  return sString === tString;
+  const sortedS = s.split('').sort().join('');
+  const sortedT = t.split('').sort().join('');
+
+  return sortedS === sortedT;
 }
 
 export function isAnagram2(s: string, t: string): boolean {
@@ -39,8 +40,10 @@ export function isAnagram2(s: string, t: string): boolean {
     freq[t.charCodeAt(i) - 97]--;
   }
 
-  return freq.every((count) => count === 0);
+  return freq.every(count => count === 0);
 }
+
+
 
 console.log(isAnagram('anagram', 'nagaram')); // true
 console.log(isAnagram('rat', 'car')); // false

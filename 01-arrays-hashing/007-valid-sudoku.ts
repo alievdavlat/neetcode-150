@@ -29,9 +29,29 @@
  * Video:     https://www.youtube.com/watch?v=T0u5nwSA0w0&t=4113s  (01:08:33)
  */
 export function isValidSudoku(board: string[][]): boolean {
-  throw new Error('Not implemented');
-}
+  const set = new Set<string>();
 
+  for (let i = 0; i < board.length; i++) {
+    for (let k = 0; k < board[i].length; k++) {
+      const cell = board[i][k];
+      if (cell === '.') continue;
+
+      const row = `row:${i}, cell:${cell}`;
+      const col = `col:${k}, cell:${cell}`;
+
+      const boxNumber = 3 * Math.floor(i / 3) + Math.floor(k / 3);
+
+      const box = `box:${boxNumber}, cell;${cell}`;
+
+      if (set.has(box) || set.has(row) || set.has(col)) return false;
+      set.add(box);
+      set.add(row);
+      set.add(col);
+    }
+  }
+
+  return true;
+}
 
 
 // 1) VALID board → true

@@ -28,7 +28,7 @@
  * Video:     https://www.youtube.com/watch?v=T0u5nwSA0w0&t=2465s  (00:41:05)
  */
 export function productExceptSelf(nums: number[]): number[] {
-  const res = new Array(nums.length).fill(1);
+  const res = new Array(nums.length).fill(1)
 
   let left = 1;
   for (let i = 0; i < nums.length; i++) {
@@ -43,18 +43,6 @@ export function productExceptSelf(nums: number[]): number[] {
   }
 
   return res
-
-}
-
-export function productExceptSelf2(nums: number[]): number[] {
-  const n = nums.length;
-  const pre = new Array(n).fill(1);
-  const post = new Array(n).fill(1);
-
-  for (let i = 1; i < n; i++) pre[i] = pre[i - 1] * nums[i - 1];
-  for (let i = n - 2; i >= 0; i--) post[i] = post[i + 1] * nums[i + 1];
-
-  return pre.map((p, i) => p * post[i]);
 }
 
 

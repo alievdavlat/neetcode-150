@@ -10,7 +10,8 @@
     "generate": "node _gen/generate.mjs",
     "test": "node --experimental-strip-types --disable-warning=ExperimentalWarning tests/runner/cli.mjs",
     "test:bigo": "node --experimental-strip-types --disable-warning=ExperimentalWarning tests/runner/cli.mjs --big-o --curve",
-    "test:mem": "node --experimental-strip-types --disable-warning=ExperimentalWarning tests/runner/cli.mjs --memory"
+    "test:mem": "node --experimental-strip-types --disable-warning=ExperimentalWarning tests/runner/cli.mjs --memory",
+    "studio": "npm --prefix studio run dev"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
