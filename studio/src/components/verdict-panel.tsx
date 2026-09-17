@@ -219,6 +219,15 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure, o
       );
     }
 
+    if (current.status === 'load-error') {
+      return renderNotice(
+        <AlertTriangle className="size-6 text-fail" />,
+        'Your file did not load',
+        current.message ?? 'The file could not be imported. Look for a syntax error - a stray bracket, or two exports sharing a name.',
+        'border-fail/30 bg-fail/[0.05]',
+      );
+    }
+
     if (current.status === 'stalled') {
       return renderNotice(
         <Clock className="size-6 text-fail" />,

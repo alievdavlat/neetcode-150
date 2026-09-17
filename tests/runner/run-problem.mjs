@@ -10,6 +10,15 @@ const clone = (value) => (typeof value === 'object' && value !== null ? structur
 
 const decodeAll = (args, decoders) => args.map((arg, index) => (decoders[index] ?? RAW).decode(clone(arg)));
 
+/** A variant that throws on every input still belongs in the report; it just has no numbers. */
+const measured = (take) => {
+  try {
+    return take();
+  } catch {
+    return null;
+  }
+};
+
 /**
  * Everything the report needs about one problem, as plain data. Kept free of
  * functions and terminal formatting so it can cross a worker boundary.
@@ -26,7 +35,7 @@ export async function runProblem(problem, { showBigO = false, showMemory = false
     slug: prepared.slug,
   };
 
-  if (prepared.status !== 'attempted') return { ...shell, status: prepared.status };
+  if (prepared.status !== 'attempted') return { ...shell, status: prepared.status, message: prepared.error?.message ?? null };
   if (prepared.cases.length === 0) return { ...shell, status: 'no-cases' };
 
   const target = targetTimeComplexity(prepared.complexity);
@@ -54,8 +63,8 @@ export async function runProblem(problem, { showBigO = false, showMemory = false
       total: outcome.total,
       failures: outcome.failures,
       observed: outcome.observed,
-      ms: benchArgs ? timeCall(variant.fn, benchArgs) : null,
-      heap: showMemory && benchArgs ? measureHeap(variant.fn, benchArgs) : null,
+      ms: benchArgs ? measured(() => timeCall(variant.fn, benchArgs)) : null,
+      heap: showMemory && benchArgs ? measured(() => measureHeap(variant.fn, benchArgs)) : null,
       complexity,
       target,
     });

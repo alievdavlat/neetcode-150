@@ -110,7 +110,15 @@ export interface RunVariant {
   failures: RunFailure[];
 }
 
-export type RunStatus = 'attempted' | 'not-started' | 'no-cases' | 'stalled' | 'crashed' | 'missing' | 'error';
+export type RunStatus =
+  | 'attempted'
+  | 'not-started'
+  | 'no-cases'
+  | 'stalled'
+  | 'crashed'
+  | 'missing'
+  | 'load-error'
+  | 'error';
 
 export interface RunReport {
   number: string;
