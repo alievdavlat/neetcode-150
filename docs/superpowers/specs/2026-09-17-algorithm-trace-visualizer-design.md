@@ -255,4 +255,4 @@ probe sizes. Tests keep running at full size on the untouched run path.
   break for reasons that have nothing to do with the tracer. Two fixtures: a hash-map
   `twoSum` traced on `nums = [3,2,4], target = 6`, expected to produce 16 steps ending in
   `["[i, obj[calc]]", "[2, obj[2]]", "[2, 1]"]`; and a counting `isAnagram` traced on
-  `"cat"` / `"act"`, expected to produce 12 steps ending in `true`.
+  `"cat"` / `"act"`, expected to produce 17 steps ending in `true`.

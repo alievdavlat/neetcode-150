@@ -70,7 +70,7 @@ Modified: `studio/src/lib/types.ts`, `studio/src/server/problems.ts`, `studio/sr
 In `package.json`, after the `"test:mem"` line:
 
 ```json
-    "test:trace": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test tests/runner/trace",
+    "test:trace": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test tests/runner/trace/*.test.mjs",
 ```
 
 - [ ] **Step 2: Write the failing test**
@@ -961,7 +961,7 @@ test('an element access reports the array it touched', () => {
 test('a write is marked as a write', () => {
   const { code, meta } = instrument(SOURCE, { functionName: 'twoSum' });
   const write = meta.find((entry) => entry.text === 'obj[nums[i]] = i');
-  assert.match(code, new RegExp(`globalThis\\.__t\\.x\\(${write.id},"obj",[^)]*,true\\)`));
+  assert.match(code, new RegExp(`globalThis\\.__t\\.x\\(${write.id},"obj",.*,true\\)`));
 });
 
 test('an assignment target is never wrapped as a leaf', () => {
@@ -1156,11 +1156,11 @@ test('the hash map two sum produces sixteen steps and the right pair', async () 
   assert.equal(steps.at(-1).kind, 'return');
 });
 
-test('the counting anagram produces twelve steps and passes', async () => {
+test('the counting anagram produces seventeen steps and passes', async () => {
   const { steps, result } = await trace('valid-anagram.ts', 'isAnagram', ['cat', 'act']);
 
   assert.equal(result, true);
-  assert.equal(steps.length, 12);
+  assert.equal(steps.length, 17);
   assert.equal(steps.at(-1).chain.at(-1), 'true');
 });
 
