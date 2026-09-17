@@ -1,5 +1,6 @@
 import { spawn } from 'node:child_process';
 import path from 'node:path';
+import type { SourceMode } from '@/lib/types';
 
 export const WORKSPACE_ROOT = process.env.NEETCODE_ROOT
   ? path.resolve(process.env.NEETCODE_ROOT)
@@ -7,15 +8,23 @@ export const WORKSPACE_ROOT = process.env.NEETCODE_ROOT
 
 export const STUDIO_ROOT = path.join(WORKSPACE_ROOT, 'studio');
 
+/** Practice copies live here, one mirror of the problem tree, gitignored. */
+export const SCRATCH_PREFIX = 'studio/.studio/scratch';
+
 const BRIDGE_DIR = path.join(STUDIO_ROOT, 'bridge');
 const NODE_FLAGS = ['--experimental-strip-types', '--disable-warning=ExperimentalWarning'];
 const PROBLEM_FILE = /^\d{2}-[a-z0-9-]+\/\d{3}-[a-z0-9-]+\.ts$/;
 
-/** Only the generated problem files are reachable — nothing else in the workspace. */
-export function resolveProblemFile(file: string): string {
+/** The path the runner reads, relative to the workspace root. */
+export function problemPath(file: string, mode: SourceMode): string {
   if (!PROBLEM_FILE.test(file)) throw new Error(`not a problem file: ${file}`);
 
-  const absolute = path.resolve(WORKSPACE_ROOT, file);
+  return mode === 'scratch' ? `${SCRATCH_PREFIX}/${file}` : file;
+}
+
+/** Only the generated problem files and their practice copies are reachable. */
+export function resolveProblemFile(file: string, mode: SourceMode = 'file'): string {
+  const absolute = path.resolve(WORKSPACE_ROOT, problemPath(file, mode));
   if (!absolute.startsWith(WORKSPACE_ROOT + path.sep)) throw new Error(`path escapes the workspace: ${file}`);
 
   return absolute;

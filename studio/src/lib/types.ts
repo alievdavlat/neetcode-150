@@ -2,6 +2,9 @@ export type Difficulty = 'Easy' | 'Medium' | 'Hard';
 
 export type ProblemKind = 'function' | 'class';
 
+/** Which copy of a problem the editor and runner work on. */
+export type SourceMode = 'file' | 'scratch';
+
 export interface Problem {
   number: string;
   title: string;
@@ -51,17 +54,36 @@ export interface RunFailure {
   detail: string | null;
 }
 
+export interface ComplexityPoint {
+  n: number;
+  ms: number;
+}
+
+export interface RunComplexity {
+  verdict: string | null;
+  members: string[];
+  band: boolean;
+  confident: boolean;
+  deviation: number | null;
+  runnerUp: { name: string; deviation: number } | null;
+  reason: string | null;
+  points: ComplexityPoint[];
+  target: string | null;
+  relation: 'match' | 'differs' | 'unknown';
+}
+
 export interface RunVariant {
   name: string;
   passed: number;
   total: number;
   ms: number | null;
   target: string | null;
+  complexity: RunComplexity | null;
   cases: RunCase[];
   failures: RunFailure[];
 }
 
-export type RunStatus = 'attempted' | 'not-started' | 'no-cases' | 'stalled' | 'crashed' | 'error';
+export type RunStatus = 'attempted' | 'not-started' | 'no-cases' | 'stalled' | 'crashed' | 'missing' | 'error';
 
 export interface RunReport {
   number: string;
@@ -81,6 +103,7 @@ export interface RunReport {
 
 export interface ProblemSource {
   file: string;
+  mode: SourceMode;
   source: string;
   leetcode: string | null;
   video: string | null;

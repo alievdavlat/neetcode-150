@@ -1,17 +1,51 @@
+import { Worker } from 'node:worker_threads';
 import { loadProblems } from '../../tests/runner/derive-cases.mjs';
-import { runAll } from '../../tests/runner/schedule.mjs';
+import { compareToTarget } from '../../tests/runner/complexity.mjs';
 
 /**
- * Run one problem and print its report as JSON. The worker and stall handling
- * come from the CLI runner untouched; only the rendering differs.
+ * Run one problem and print its report as JSON. The report is the runner's own
+ * object; only the rendering differs. `--file <path>` reads the code from
+ * somewhere else than the problem's own file, which is how a practice attempt
+ * is tested against the real cases.
  */
+const WORKER = new URL('./worker.mjs', import.meta.url);
 const TIMEOUT_MS = 10000;
-const TIMEOUT_WITH_PROBE_MS = 90000;
+const TIMEOUT_WITH_PROBE_MS = 45000;
 const LIMIT = 160;
 
 const [number, ...flags] = process.argv.slice(2);
 const showBigO = flags.includes('--big-o');
 const showMemory = flags.includes('--memory');
+const fileFlag = flags.indexOf('--file');
+const file = fileFlag === -1 ? null : flags[fileFlag + 1];
+
+/** V8 and process-wide flags are rejected in a worker's execArgv. */
+const workerArgv = () =>
+  process.execArgv.filter((flag) => !flag.startsWith('--expose') && !flag.startsWith('--max-old'));
+
+/** One problem, one thread: a solution that never returns is terminated instead of hanging. */
+const runInWorker = (timeoutMs) =>
+  new Promise((resolve) => {
+    const worker = new Worker(WORKER, {
+      workerData: { number, file, options: { showBigO, showMemory } },
+      execArgv: workerArgv(),
+    });
+
+    const timer = setTimeout(() => {
+      worker.terminate();
+      resolve({ outcome: 'stalled' });
+    }, timeoutMs);
+
+    worker.on('message', (report) => {
+      clearTimeout(timer);
+      resolve({ outcome: 'done', report });
+    });
+
+    worker.on('error', (error) => {
+      clearTimeout(timer);
+      resolve({ outcome: 'crashed', error });
+    });
+  });
 
 const replacer = (_key, value) => {
   if (typeof value === 'bigint') return `${value}n`;
@@ -49,6 +83,19 @@ const serializeFailure = (failure) => ({
   detail: failure.detail ?? null,
 });
 
+const serializeComplexity = (complexity, target) => ({
+  verdict: complexity.verdict ?? null,
+  members: complexity.members ?? [],
+  band: Boolean(complexity.band),
+  confident: Boolean(complexity.confident),
+  deviation: complexity.deviation ?? null,
+  runnerUp: complexity.runnerUp ?? null,
+  reason: complexity.reason ?? null,
+  points: complexity.points ?? [],
+  target: target ?? null,
+  relation: compareToTarget(complexity, target),
+});
+
 const serializeVariant = (variant) => ({
   name: variant.name,
   passed: variant.passed,
@@ -56,13 +103,7 @@ const serializeVariant = (variant) => ({
   ms: variant.ms,
   heap: variant.heap ?? null,
   target: variant.target ?? null,
-  complexity: variant.complexity
-    ? {
-        verdict: variant.complexity.verdict ?? null,
-        deviation: variant.complexity.deviation ?? null,
-        points: variant.complexity.points ?? [],
-      }
-    : null,
+  complexity: variant.complexity ? serializeComplexity(variant.complexity, variant.target) : null,
   cases: (variant.observed ?? []).map(serializeCase),
   failures: (variant.failures ?? []).map(serializeFailure),
 });
@@ -90,24 +131,18 @@ const shell = {
   slug: problem.slug,
 };
 
-let payload = null;
+const timeoutMs = showBigO ? TIMEOUT_WITH_PROBE_MS : TIMEOUT_MS;
+const outcome = await runInWorker(timeoutMs);
 
-await runAll({
-  problems: [problem],
-  options: { showBigO, showMemory },
-  timeoutMs: showBigO ? TIMEOUT_WITH_PROBE_MS : TIMEOUT_MS,
-  onReport: (report) => {
-    payload = serialize(report);
-  },
-  onStall: (_stalled, timeoutMs, error) => {
-    payload = {
-      ...shell,
-      status: error ? 'crashed' : 'stalled',
-      timeoutMs,
-      message: error?.message ?? null,
-      variants: [],
-    };
-  },
-});
+const payload =
+  outcome.outcome === 'done'
+    ? serialize(outcome.report)
+    : {
+        ...shell,
+        status: outcome.outcome,
+        timeoutMs,
+        message: outcome.error?.message ?? null,
+        variants: [],
+      };
 
-process.stdout.write(JSON.stringify(payload ?? { ...shell, status: 'error', message: 'no report produced' }));
+process.stdout.write(JSON.stringify(payload));

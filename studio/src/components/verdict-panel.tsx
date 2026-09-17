@@ -1,8 +1,9 @@
 'use client';
 
 import { AnimatePresence, motion } from 'motion/react';
-import { AlertTriangle, Check, CircleSlash, Clock, Terminal, X } from 'lucide-react';
+import { ActivitySquare, AlertTriangle, Check, CircleSlash, Clock, Terminal, X } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { ComplexityChart } from './complexity-chart';
 import { formatMs } from '@/lib/meta';
 import type { RunCase, RunFailure, RunReport, RunVariant } from '@/lib/types';
 import { cn } from '@/lib/utils';
@@ -10,7 +11,9 @@ import { cn } from '@/lib/utils';
 interface VerdictPanelProps {
   report: RunReport | null;
   running: boolean;
+  bigO: boolean;
   problemTitle: string;
+  onMeasure: () => void;
 }
 
 const FAILURE_LIMIT = 6;
@@ -20,7 +23,7 @@ const CARD = {
   show: { opacity: 1, y: 0 },
 };
 
-export function VerdictPanel({ report, running, problemTitle }: VerdictPanelProps) {
+export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure }: VerdictPanelProps) {
   const renderNotice = (icon: React.ReactNode, title: string, body: string, tone: string) => (
     <div className="flex h-full items-center justify-center p-8">
       <div className={cn('max-w-sm rounded-2xl border p-6 text-center', tone)}>
@@ -95,6 +98,27 @@ export function VerdictPanel({ report, running, problemTitle }: VerdictPanelProp
     </div>
   );
 
+  const renderMeasurePrompt = (green: boolean) => {
+    if (!green) {
+      return (
+        <p className="rounded-xl border border-line bg-black/20 px-3 py-2 text-[11px] text-muted-foreground">
+          Big-O is measured only once every case passes.
+        </p>
+      );
+    }
+
+    return (
+      <button
+        type="button"
+        onClick={onMeasure}
+        className="flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-line px-3 py-2 text-[11px] text-muted-foreground transition-colors hover:border-hot/40 hover:text-hot"
+      >
+        <ActivitySquare className="size-3.5" />
+        Measure Big-O — time it at doubling input sizes and draw the curve
+      </button>
+    );
+  };
+
   const renderVariant = (variant: RunVariant, index: number) => {
     const green = variant.passed === variant.total;
 
@@ -120,6 +144,14 @@ export function VerdictPanel({ report, running, problemTitle }: VerdictPanelProp
             {variant.target && <span className="text-muted-foreground/70">target {variant.target}</span>}
           </span>
         </header>
+
+        <div className="mb-3">
+          {variant.complexity ? (
+            <ComplexityChart complexity={variant.complexity} variantName={variant.name} />
+          ) : (
+            renderMeasurePrompt(green)
+          )}
+        </div>
 
         {variant.failures.length > 0 && (
           <div className="mb-3 space-y-2">
@@ -153,6 +185,15 @@ export function VerdictPanel({ report, running, problemTitle }: VerdictPanelProp
         'No runnable cases',
         `Add tests/cases/${current.dir}/${current.number}-${current.slug}.cases.mjs to test this one.`,
         'border-medium/25 bg-medium/[0.05]',
+      );
+    }
+
+    if (current.status === 'missing') {
+      return renderNotice(
+        <CircleSlash className="size-6 text-muted-foreground" />,
+        'Nothing to run',
+        'The file the runner was pointed at does not exist yet. Save once, then run.',
+        'border-line bg-panel/60',
       );
     }
 
@@ -220,8 +261,10 @@ export function VerdictPanel({ report, running, problemTitle }: VerdictPanelProp
   if (running) {
     return renderNotice(
       <Terminal className="size-6 animate-pulse text-primary" />,
-      'Running your solution',
-      'Each export is tested against the worked examples and any hand-written cases.',
+      bigO ? 'Measuring your solution' : 'Running your solution',
+      bigO
+        ? 'Each export is tested, then timed at doubling input sizes to fit a curve. This takes a few seconds.'
+        : 'Each export is tested against the worked examples and any hand-written cases.',
       'border-primary/25 bg-primary/[0.04]',
     );
   }

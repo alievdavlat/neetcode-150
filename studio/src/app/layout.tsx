@@ -16,8 +16,8 @@ const code = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'NeetCode Studio',
-  description: '150 problems, one editor, your own runner.',
+  title: 'NeetCode Problems',
+  description: '150 problems, one editor, real verdicts.',
 };
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
