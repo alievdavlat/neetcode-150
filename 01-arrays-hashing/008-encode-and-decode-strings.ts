@@ -30,8 +30,11 @@
  */
 export function encode(strs: string[]): string {
   throw new Error('Not implemented');
+
 }
 
 export function decode(str: string): string[] {
   throw new Error('Not implemented');
 }
+
+console.log(['hello', 'world']);

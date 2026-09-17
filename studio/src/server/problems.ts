@@ -1,6 +1,8 @@
 import { mkdir, readFile, rename, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import type { Problem, ProblemSource, ProblemStatus, RunReport, RunStatus, SourceMode } from '@/lib/types';
+import type { Problem, ProblemHistory, ProblemSource, ProblemStatus, RunReport, RunStatus, SourceMode } from '@/lib/types';
+import { EMPTY_HISTORY, getHistories, recordRun } from './history';
+import { syncCategoryReadme } from './readme';
 import { problemPath, resolveProblemFile, runBridge, SCRATCH_PREFIX, STUDIO_ROOT, WORKSPACE_ROOT } from './workspace';
 
 const RESULTS_FILE = path.join(STUDIO_ROOT, '.studio', 'results.json');
@@ -72,9 +74,17 @@ const codeOnly = (source: string) =>
     .replace(/\s+/g, ' ')
     .trim();
 
-function deriveStatus(problem: Problem, source: string | null, mtimeMs: number, result?: StoredResult): ProblemStatus {
+interface DeriveInput {
+  problem: Problem;
+  source: string | null;
+  mtimeMs: number;
+  result?: StoredResult;
+  history: ProblemHistory;
+}
+
+function deriveStatus({ problem, source, mtimeMs, result, history }: DeriveInput): ProblemStatus {
   const untouched = source === null || codeOnly(source) === codeOnly(`${problem.imports ?? ''}\n${problem.stub}`);
-  const shell = { number: problem.number, stale: false, passed: null, total: null, ranAt: null };
+  const shell = { number: problem.number, stale: false, passed: null, total: null, ranAt: null, history };
 
   if (untouched) return { ...shell, state: 'not-started' };
   if (!result) return { ...shell, state: 'attempted' };
@@ -89,30 +99,60 @@ function deriveStatus(problem: Problem, source: string | null, mtimeMs: number, 
     passed: result.passed,
     total: result.total,
     ranAt: result.at,
+    history,
   };
 }
 
-async function statusFor(problem: Problem, results: ResultStore): Promise<ProblemStatus> {
+async function statusFor(
+  problem: Problem,
+  results: ResultStore,
+  histories: Record<string, ProblemHistory>,
+): Promise<ProblemStatus> {
   const absolute = resolveProblemFile(problem.file);
   const [source, info] = await Promise.all([
     readFile(absolute, 'utf8').catch(() => null),
     stat(absolute).catch(() => null),
   ]);
 
-  return deriveStatus(problem, source, info?.mtimeMs ?? 0, results[problem.number]);
+  return deriveStatus({
+    problem,
+    source,
+    mtimeMs: info?.mtimeMs ?? 0,
+    result: results[problem.number],
+    history: histories[problem.number] ?? EMPTY_HISTORY,
+  });
 }
 
 export async function getStatuses(): Promise<ProblemStatus[]> {
-  const [problems, results] = await Promise.all([getProblems(), readResults()]);
-  return Promise.all(problems.map((problem) => statusFor(problem, results)));
+  const [problems, results, histories] = await Promise.all([getProblems(), readResults(), getHistories()]);
+  return Promise.all(problems.map((problem) => statusFor(problem, results, histories)));
 }
 
 export async function getStatus(number: string): Promise<ProblemStatus> {
-  const [problems, results] = await Promise.all([getProblems(), readResults()]);
+  const [problems, results, histories] = await Promise.all([getProblems(), readResults(), getHistories()]);
   const problem = problems.find((entry) => entry.number === number);
   if (!problem) throw new Error(`no problem numbered ${number}`);
 
-  return statusFor(problem, results);
+  return statusFor(problem, results, histories);
+}
+
+/** Tick the generated category tables from the verdicts we actually hold. */
+export async function syncReadmes(dirs?: string[]): Promise<void> {
+  const [problems, results] = await Promise.all([getProblems(), readResults()]);
+  const wanted = dirs ? new Set(dirs) : null;
+  const byDir = new Map<string, Set<string>>();
+
+  for (const problem of problems) {
+    if (wanted && !wanted.has(problem.dir)) continue;
+
+    const result = results[problem.number];
+    const solved = Boolean(result) && (result.status ?? 'attempted') === 'attempted' && result.failingVariants === 0;
+    const set = byDir.get(problem.dir) ?? new Set<string>();
+    if (solved) set.add(problem.number);
+    byDir.set(problem.dir, set);
+  }
+
+  await Promise.all([...byDir].map(([dir, solved]) => syncCategoryReadme(dir, solved)));
 }
 
 const VIDEO_LINE = /Video:\s+(https:\/\/\S+)/;
@@ -180,13 +220,11 @@ export async function runProblem(number: string, mode: SourceMode = 'file', bigO
   const problem = problems.find((entry) => entry.number === number);
   if (!problem) throw new Error(`no problem numbered ${number}`);
 
-  const args = [number];
+  const args = [number, '--memory'];
   if (mode === 'scratch') args.push('--file', problemPath(problem.file, 'scratch'));
   if (bigO) args.push('--big-o');
 
   const report = await runBridge<RunReport>({ script: 'run.mjs', args, timeoutMs: bigO ? 180000 : 120000 });
-
-  if (mode === 'scratch') return report;
 
   const totals = report.variants.reduce(
     (sum, variant) => ({
@@ -197,27 +235,32 @@ export async function runProblem(number: string, mode: SourceMode = 'file', bigO
     { passed: 0, total: 0, failingVariants: 0 },
   );
 
+  const ok = report.status === 'attempted' && report.variants.length > 0 && totals.failingVariants === 0;
+  await recordRun({ number, kind: 'run', mode, status: report.status, passed: totals.passed, total: totals.total, ok });
+
+  if (mode === 'scratch') return report;
+
   const store = await readResults();
   store[number] = { ...totals, status: report.status, at: new Date().toISOString() };
   await writeResults(store);
+  await syncReadmes([problem.dir]);
 
   return report;
 }
 
-/** A status is only true once the code has been run, so run everything unverified. */
-export async function syncStatuses(): Promise<ProblemStatus[]> {
-  const statuses = await getStatuses();
-  const pending = statuses.filter((status) => status.state !== 'not-started' && (status.ranAt === null || status.stale));
-  if (pending.length === 0) return statuses;
+/** Run a list of problems in one process and fold the verdicts into the cache. */
+async function runMany(numbers: string[]): Promise<void> {
+  if (numbers.length === 0) return;
 
   const results = await runBridge<SyncResult[]>({
     script: 'run-all.mjs',
-    args: pending.map((status) => status.number),
+    args: numbers,
     timeoutMs: 300000,
   });
 
   const store = await readResults();
   const at = new Date().toISOString();
+
   for (const result of results) {
     store[result.number] = {
       status: result.status,
@@ -226,8 +269,42 @@ export async function syncStatuses(): Promise<ProblemStatus[]> {
       failingVariants: result.failingVariants,
       at,
     };
+
+    await recordRun({
+      number: result.number,
+      kind: 'sync',
+      mode: 'file',
+      status: result.status,
+      passed: result.passed,
+      total: result.total,
+      ok: result.status === 'attempted' && result.failingVariants === 0,
+    });
   }
 
   await writeResults(store);
+  await syncReadmes();
+}
+
+/** A status is only true once the code has been run, so run everything unverified. */
+export async function syncStatuses(): Promise<ProblemStatus[]> {
+  const statuses = await getStatuses();
+  const pending = statuses.filter((status) => status.state !== 'not-started' && (status.ranAt === null || status.stale));
+
+  await runMany(pending.map((status) => status.number));
+  return pending.length === 0 ? statuses : getStatuses();
+}
+
+/** Run every started problem of one category, whatever its current verdict. */
+export async function runCategory(dir: string): Promise<ProblemStatus[]> {
+  const statuses = await getStatuses();
+  const problems = (await getProblems()).filter((problem) => problem.dir === dir);
+  if (problems.length === 0) throw new Error(`no category named ${dir}`);
+
+  const started = new Set(
+    statuses.filter((status) => status.state !== 'not-started').map((status) => status.number),
+  );
+  const numbers = problems.map((problem) => problem.number).filter((number) => started.has(number));
+
+  await runMany(numbers);
   return getStatuses();
 }

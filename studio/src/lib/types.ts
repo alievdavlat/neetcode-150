@@ -28,6 +28,16 @@ export interface Problem {
 
 export type ProblemState = 'not-started' | 'attempted' | 'failing' | 'solved';
 
+export interface ProblemHistory {
+  runs: number;
+  runsToFirstPass: number | null;
+  firstPassAt: string | null;
+  lastPassAt: string | null;
+  lastRunAt: string | null;
+  hintLevel: number;
+  due: boolean;
+}
+
 export interface ProblemStatus {
   number: string;
   state: ProblemState;
@@ -35,6 +45,7 @@ export interface ProblemStatus {
   passed: number | null;
   total: number | null;
   ranAt: string | null;
+  history: ProblemHistory;
 }
 
 export interface RunCase {
@@ -77,6 +88,7 @@ export interface RunVariant {
   passed: number;
   total: number;
   ms: number | null;
+  heap: number | null;
   target: string | null;
   complexity: RunComplexity | null;
   cases: RunCase[];
@@ -99,6 +111,13 @@ export interface RunReport {
   isFunctionProblem?: boolean;
   hasGenerator?: boolean;
   unparsedExamples?: { index: number; reason: string }[];
+}
+
+export interface TypeMarker {
+  line: number;
+  column: number;
+  code: string;
+  message: string;
 }
 
 export interface ProblemSource {

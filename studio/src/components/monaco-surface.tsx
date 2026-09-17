@@ -1,21 +1,26 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import Editor, { loader, type BeforeMount, type OnMount } from '@monaco-editor/react';
+import Editor, { loader, type BeforeMount, type Monaco, type OnMount } from '@monaco-editor/react';
+import type { editor } from 'monaco-editor';
+import type { TypeMarker } from '@/lib/types';
 
 loader.config({ paths: { vs: '/monaco/vs' } });
 
 interface MonacoSurfaceProps {
   path: string;
   value: string;
+  markers: TypeMarker[];
   onChange: (value: string) => void;
   onSave: () => void;
   onRun: () => void;
 }
 
-export function MonacoSurface({ path, value, onChange, onSave, onRun }: MonacoSurfaceProps) {
+export function MonacoSurface({ path, value, markers, onChange, onSave, onRun }: MonacoSurfaceProps) {
   const save = useRef(onSave);
   const run = useRef(onRun);
+  const monacoRef = useRef<Monaco | null>(null);
+  const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
 
   useEffect(() => {
     save.current = onSave;
@@ -64,11 +69,32 @@ export function MonacoSurface({ path, value, onChange, onSave, onRun }: MonacoSu
     });
   };
 
-  const handleMount: OnMount = (editor, monaco) => {
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => save.current());
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => run.current());
-    editor.focus();
+  const handleMount: OnMount = (instance, monaco) => {
+    monacoRef.current = monaco;
+    editorRef.current = instance;
+    instance.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => save.current());
+    instance.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => run.current());
+    instance.focus();
   };
+
+  useEffect(() => {
+    const monaco = monacoRef.current;
+    const model = editorRef.current?.getModel();
+    if (!monaco || !model) return;
+
+    monaco.editor.setModelMarkers(
+      model,
+      'tsc',
+      markers.map((marker) => ({
+        severity: monaco.MarkerSeverity.Error,
+        startLineNumber: marker.line,
+        startColumn: marker.column,
+        endLineNumber: marker.line,
+        endColumn: marker.column + 1,
+        message: `${marker.code}: ${marker.message}`,
+      })),
+    );
+  }, [markers, path, value]);
 
   return (
     <Editor

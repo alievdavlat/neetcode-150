@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
-import type { SourceMode } from '@/lib/types';
+import type { SourceMode, TypeMarker } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
 const MonacoSurface = dynamic(() => import('./monaco-surface').then((module) => module.MonacoSurface), {
@@ -41,6 +41,8 @@ interface SolutionEditorProps {
   running: boolean;
   promoting: boolean;
   bigO: boolean;
+  markers: TypeMarker[];
+  checkingTypes: boolean;
   onChange: (value: string) => void;
   onModeChange: (mode: SourceMode) => void;
   onBigOChange: (bigO: boolean) => void;
@@ -63,6 +65,8 @@ export function SolutionEditor({
   running,
   promoting,
   bigO,
+  markers,
+  checkingTypes,
   onChange,
   onModeChange,
   onBigOChange,
@@ -156,6 +160,22 @@ export function SolutionEditor({
           </span>
         )}
 
+        {checkingTypes ? (
+          <span className="flex items-center gap-1.5 rounded-full border border-line px-2 py-0.5 text-[10px] text-muted-foreground">
+            <Loader2 className="size-2.5 animate-spin" />
+            types
+          </span>
+        ) : (
+          markers.length > 0 && (
+            <span
+              title={markers.map((marker) => `line ${marker.line}: ${marker.message}`).join('\n')}
+              className="rounded-full border border-fail/30 bg-fail/10 px-2 py-0.5 text-[10px] text-fail"
+            >
+              {markers.length} type {markers.length === 1 ? 'error' : 'errors'}
+            </span>
+          )
+        )}
+
         {dirty && (
           <motion.span
             initial={{ opacity: 0, scale: 0.7 }}
@@ -204,6 +224,7 @@ export function SolutionEditor({
           <MonacoSurface
             path={mode === 'scratch' ? `scratch/${file}` : file}
             value={source}
+            markers={markers}
             onChange={onChange}
             onSave={onSave}
             onRun={onRun}

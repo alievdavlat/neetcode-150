@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
+import { CommandPalette } from './command-palette';
 import { ProblemBrief } from './problem-brief';
 import { ProblemRail } from './problem-rail';
 import { SolutionEditor } from './solution-editor';
@@ -10,7 +11,15 @@ import { StudioHeader } from './studio-header';
 import { VerdictPanel } from './verdict-panel';
 import { UNKNOWN_STATUS } from '@/lib/meta';
 import { request } from '@/lib/api';
-import type { Problem, ProblemSource, ProblemState, ProblemStatus, RunReport, SourceMode } from '@/lib/types';
+import type {
+  Problem,
+  ProblemSource,
+  ProblemState,
+  ProblemStatus,
+  RunReport,
+  SourceMode,
+  TypeMarker,
+} from '@/lib/types';
 
 interface StudioProps {
   problems: Problem[];
@@ -28,6 +37,10 @@ interface RunResponse {
 
 interface SyncResponse {
   statuses: ProblemStatus[];
+}
+
+interface TypecheckResponse {
+  markers: TypeMarker[];
 }
 
 const LAST_KEY = 'neetcode-studio:last-problem';
@@ -60,9 +73,14 @@ export function Studio({ problems, statuses: initialStatuses }: StudioProps) {
   const [promoting, setPromoting] = useState(false);
   const [syncing, setSyncing] = useState(false);
   const [bigO, setBigO] = useState(true);
+  const [paletteOpen, setPaletteOpen] = useState(false);
+  const [runningCategory, setRunningCategory] = useState<string | null>(null);
+  const [markers, setMarkers] = useState<TypeMarker[]>([]);
+  const [checkingTypes, setCheckingTypes] = useState(false);
   const [report, setReport] = useState<RunReport | null>(null);
   const busy = useRef(false);
   const synced = useRef(false);
+  const checking = useRef(false);
 
   const active = problems.find((problem) => problem.number === activeNumber);
   const dirty = source !== null && source !== savedSource;
@@ -87,6 +105,7 @@ export function Studio({ problems, statuses: initialStatuses }: StudioProps) {
     setSource(null);
     setSavedSource(null);
     setReport(null);
+    setMarkers([]);
     window.localStorage.setItem(LAST_KEY, activeNumber);
 
     request<ProblemSource>(`/api/file?file=${encodeURIComponent(file)}&source=${mode}`, {
@@ -96,6 +115,7 @@ export function Studio({ problems, statuses: initialStatuses }: StudioProps) {
         setSource(payload.source);
         setSavedSource(payload.source);
         setLinks({ leetcode: payload.leetcode, video: payload.video });
+        checkTypes();
       })
       .catch((error: unknown) => {
         if (controller.signal.aborted) return;
@@ -140,6 +160,21 @@ export function Studio({ problems, statuses: initialStatuses }: StudioProps) {
     sync();
   }, [pending]);
 
+  const checkTypes = () => {
+    if (!active || mode === 'scratch' || checking.current) return;
+
+    const target = active.file;
+    checking.current = true;
+    setCheckingTypes(true);
+    request<TypecheckResponse>('/api/typecheck', { method: 'POST', body: JSON.stringify({ file: target }) })
+      .then((payload) => setMarkers(payload.markers))
+      .catch(() => setMarkers([]))
+      .finally(() => {
+        checking.current = false;
+        setCheckingTypes(false);
+      });
+  };
+
   const persist = () => {
     if (!active || source === null) return Promise.resolve(false);
 
@@ -151,6 +186,7 @@ export function Studio({ problems, statuses: initialStatuses }: StudioProps) {
       .then((payload) => {
         setSavedSource(source);
         setStatuses((current) => ({ ...current, [payload.status.number]: payload.status }));
+        checkTypes();
         return true;
       })
       .catch((error: unknown) => {
@@ -212,6 +248,28 @@ export function Studio({ problems, statuses: initialStatuses }: StudioProps) {
     runWith(true);
   };
 
+  const handleHint = (level: number) => {
+    if (!active) return;
+
+    const number = active.number;
+    request<SaveResponse>('/api/hint', { method: 'POST', body: JSON.stringify({ number, level }) })
+      .then((payload) => setStatuses((current) => ({ ...current, [payload.status.number]: payload.status })))
+      .catch((error: unknown) => toast.error(messageOf(error)));
+  };
+
+  const handleRunCategory = (dir: string) => {
+    if (runningCategory !== null) return;
+
+    setRunningCategory(dir);
+    request<SyncResponse>('/api/run-category', { method: 'POST', body: JSON.stringify({ dir }) })
+      .then((payload) => {
+        setStatuses(Object.fromEntries(payload.statuses.map((status) => [status.number, status])));
+        toast.success(`Ran ${dir}`);
+      })
+      .catch((error: unknown) => toast.error(messageOf(error)))
+      .finally(() => setRunningCategory(null));
+  };
+
   const handlePromote = () => {
     if (!active || busy.current) return;
 
@@ -271,9 +329,46 @@ export function Studio({ problems, statuses: initialStatuses }: StudioProps) {
     apply();
   };
 
+  const step = (delta: number) => {
+    const index = problems.findIndex((problem) => problem.number === activeNumber);
+    const next = problems[index + delta];
+    if (next) handleSelect(next.number);
+  };
+
+  const jumpToUnsolved = () => {
+    const index = problems.findIndex((problem) => problem.number === activeNumber);
+    const ordered = [...problems.slice(index + 1), ...problems.slice(0, index)];
+    const next = ordered.find((problem) => (statuses[problem.number]?.state ?? 'not-started') !== 'solved');
+    if (next) handleSelect(next.number);
+  };
+
   useEffect(() => {
     const handleKey = (event: KeyboardEvent) => {
       if (!(event.metaKey || event.ctrlKey)) return;
+
+      if (event.key.toLowerCase() === 'k') {
+        event.preventDefault();
+        setPaletteOpen((open) => !open);
+        return;
+      }
+
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        step(1);
+        return;
+      }
+
+      if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        step(-1);
+        return;
+      }
+
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        jumpToUnsolved();
+        return;
+      }
 
       if (event.key.toLowerCase() === 's') {
         event.preventDefault();
@@ -300,6 +395,14 @@ export function Studio({ problems, statuses: initialStatuses }: StudioProps) {
 
   return (
     <div className="flex h-dvh flex-col">
+      <CommandPalette
+        open={paletteOpen}
+        problems={problems}
+        statuses={statuses}
+        onOpenChange={setPaletteOpen}
+        onSelect={handleSelect}
+      />
+
       <StudioHeader
         counts={counts}
         total={problems.length}
@@ -314,7 +417,9 @@ export function Studio({ problems, statuses: initialStatuses }: StudioProps) {
             problems={problems}
             statuses={statuses}
             activeNumber={active.number}
+            runningCategory={runningCategory}
             onSelect={handleSelect}
+            onRunCategory={handleRunCategory}
           />
         </ResizablePanel>
 
@@ -326,6 +431,7 @@ export function Studio({ problems, statuses: initialStatuses }: StudioProps) {
             status={statuses[active.number] ?? UNKNOWN_STATUS}
             leetcode={links.leetcode ?? active.leetcode}
             video={links.video}
+            onHint={handleHint}
           />
         </ResizablePanel>
 
@@ -343,6 +449,8 @@ export function Studio({ problems, statuses: initialStatuses }: StudioProps) {
                 running={running}
                 promoting={promoting}
                 bigO={bigO}
+                markers={markers}
+                checkingTypes={checkingTypes}
                 onChange={setSource}
                 onModeChange={handleModeChange}
                 onBigOChange={handleBigOChange}

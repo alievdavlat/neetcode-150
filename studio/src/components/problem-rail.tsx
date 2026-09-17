@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { Search } from 'lucide-react';
+import { Loader2, Play, RotateCcw, Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { StatusDot } from './status-dot';
@@ -14,7 +14,9 @@ interface ProblemRailProps {
   problems: Problem[];
   statuses: Record<string, ProblemStatus>;
   activeNumber: string;
+  runningCategory: string | null;
   onSelect: (number: string) => void;
+  onRunCategory: (dir: string) => void;
 }
 
 interface Group {
@@ -23,10 +25,18 @@ interface Group {
   items: Problem[];
 }
 
-export function ProblemRail({ problems, statuses, activeNumber, onSelect }: ProblemRailProps) {
+export function ProblemRail({
+  problems,
+  statuses,
+  activeNumber,
+  runningCategory,
+  onSelect,
+  onRunCategory,
+}: ProblemRailProps) {
   const [query, setQuery] = useState('');
   const [difficulty, setDifficulty] = useState<Difficulty | null>(null);
   const [state, setState] = useState<ProblemState | null>(null);
+  const [dueOnly, setDueOnly] = useState(false);
 
   const statusOf = (problem: Problem) => statuses[problem.number] ?? UNKNOWN_STATUS;
   const needle = query.trim().toLowerCase();
@@ -34,6 +44,7 @@ export function ProblemRail({ problems, statuses, activeNumber, onSelect }: Prob
   const matches = (problem: Problem) => {
     if (difficulty && problem.difficulty !== difficulty) return false;
     if (state && statusOf(problem).state !== state) return false;
+    if (dueOnly && !statusOf(problem).history.due) return false;
     if (needle === '') return true;
 
     return `${problem.number} ${problem.title} ${problem.category} ${problem.pattern}`.toLowerCase().includes(needle);
@@ -90,6 +101,9 @@ export function ProblemRail({ problems, statuses, activeNumber, onSelect }: Prob
         <StatusDot state={status.state} stale={status.stale} className="relative shrink-0" />
         <span className="relative font-mono text-[11px] tabular-nums opacity-50">{problem.number}</span>
         <span className="relative flex-1 truncate text-[13px]">{problem.title}</span>
+        {status.history.due && (
+          <RotateCcw className="relative size-3 shrink-0 text-medium" aria-label="due for review" />
+        )}
         <span
           className={cn('relative size-1.5 shrink-0 rounded-full', DIFFICULTY_META[problem.difficulty].dot)}
           title={problem.difficulty}
@@ -102,15 +116,28 @@ export function ProblemRail({ problems, statuses, activeNumber, onSelect }: Prob
 
   const renderGroup = (group: Group) => {
     const solved = group.items.filter((problem) => statusOf(problem).state === 'solved').length;
+    const busy = runningCategory === group.dir;
 
     return (
       <section key={group.dir} className="mb-3">
-        <header className="sticky top-0 z-10 flex items-baseline justify-between bg-sidebar/85 px-3 py-2 backdrop-blur">
-          <h2 className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
+        <header className="sticky top-0 z-10 flex items-center justify-between gap-2 bg-sidebar/85 px-3 py-2 backdrop-blur">
+          <h2 className="truncate text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
             {group.category}
           </h2>
-          <span className="font-mono text-[10px] text-muted-foreground/70">
-            {solved}/{group.items.length}
+          <span className="flex items-center gap-1.5">
+            <span className="font-mono text-[10px] text-muted-foreground/70">
+              {solved}/{group.items.length}
+            </span>
+            <button
+              type="button"
+              onClick={() => onRunCategory(group.dir)}
+              disabled={runningCategory !== null}
+              title={`Run every started problem in ${group.category}`}
+              aria-label={`Run every started problem in ${group.category}`}
+              className="rounded p-0.5 text-muted-foreground transition-colors hover:text-primary disabled:opacity-40"
+            >
+              {busy ? <Loader2 className="size-3 animate-spin" /> : <Play className="size-3" />}
+            </button>
           </span>
         </header>
         <div className="space-y-px px-1.5">{group.items.map(renderRow)}</div>
@@ -144,6 +171,7 @@ export function ProblemRail({ problems, statuses, activeNumber, onSelect }: Prob
               setState(state === entry ? null : entry),
             ),
           )}
+          {renderChip('Due', dueOnly, 'bg-medium', () => setDueOnly(!dueOnly))}
         </div>
       </div>
 

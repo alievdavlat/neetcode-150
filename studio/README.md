@@ -65,13 +65,57 @@ changed after its last run — is re-run automatically when the page loads, and 
 in the header does the same on demand. The number beside Recheck is how many problems are
 waiting for a verdict.
 
+Each category header in the sidebar carries a ▶ button that runs every started problem in
+that category in one process — about three seconds for nine problems.
+
+When a problem goes green the Done column of its category README is ticked, and unticked
+again if a later run fails. Those ticks are never a guess: they follow the same verdicts
+the sidebar shows. `node _gen/generate.mjs` rewrites those tables, so a regenerate clears
+them — one more Recheck puts them back.
+
+## Practice history
+
+Every run is appended to `.studio/history.json`, and the brief shows what it adds up to:
+how many runs, which run first passed, when you last ran it, and how many hints you opened.
+A bulk Recheck is recorded too but never counted as an attempt.
+
+A problem you solved more than two weeks ago is marked **due for review** — in the sidebar,
+in the palette, and as a filter chip. Paired with **Fresh** mode this is the whole review
+loop: filter to Due, switch to Fresh, and solve it again without seeing your old answer.
+
+## Hints are opt-in
+
+The pattern, the target complexity and the walkthrough link start hidden — they are the
+answer's shape, and reading them by accident is not practice. Each is one click away, and
+opening one is recorded, so the history line tells you honestly whether a solve was yours.
+
+## Type errors
+
+Monaco cannot resolve `../shared/types.ts` in a browser, so its own checker is off. Instead
+the real compiler runs (`tsc --noEmit`, about 0.7s for the whole workspace) when a file is
+opened and after every save; anything it reports for the open file is underlined in the
+editor and counted in the toolbar.
+
+## Keyboard
+
+| Key | What it does |
+| --- | --- |
+| `Ctrl/Cmd + S` | save |
+| `Ctrl/Cmd + Enter` | save, then run |
+| `Ctrl/Cmd + K` | jump to any problem by number, title, category or pattern |
+| `Ctrl/Cmd + ↓` / `↑` | next / previous problem |
+| `Ctrl/Cmd + →` | next problem that is not solved |
+
 ## Big-O
 
 The **Big-O** toggle next to Run adds the complexity probe: each passing variant is timed
 at doubling input sizes and the standard curves are ranked by how constant `t(n)/f(n)`
-stays. The result is drawn as your measured curve against `O(1)`, `O(log n)`, `O(n)`,
-`O(n log n)` and `O(n²)`, all normalised through your first measurement, with the fitted
-one highlighted and the target from the problem file compared against it.
+stays. The result is one chart holding **every variant you wrote** — `fn`, `fn2`, `fn3` as
+separate lines — against `O(1)`, `O(log n)`, `O(n)`, `O(n log n)` and `O(n²)`, all
+normalised through the first measurement, with the fitted curves highlighted and the target
+from the problem file compared against it. The quickest variant is badged `fastest`, and
+each card also shows heap growth for one call, so a faster-but-hungrier approach is
+visible rather than assumed.
 
 It is on by default and remembered. It is not a cost while you are debugging: the probe
 only times a variant whose cases all pass, so a failing solution runs exactly as fast as

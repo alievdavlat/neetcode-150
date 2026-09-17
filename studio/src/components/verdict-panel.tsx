@@ -3,8 +3,8 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { ActivitySquare, AlertTriangle, Check, CircleSlash, Clock, Terminal, X } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { ComplexityChart } from './complexity-chart';
-import { formatMs } from '@/lib/meta';
+import { ComplexityChart, type ChartSeries } from './complexity-chart';
+import { formatBytes, formatMs } from '@/lib/meta';
 import type { RunCase, RunFailure, RunReport, RunVariant } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
@@ -119,7 +119,7 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure }:
     );
   };
 
-  const renderVariant = (variant: RunVariant, index: number) => {
+  const renderVariant = (variant: RunVariant, index: number, fastest: string | null) => {
     const green = variant.passed === variant.total;
 
     return (
@@ -139,19 +139,17 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure }:
           >
             {green ? 'PASS' : 'FAIL'} {variant.passed}/{variant.total}
           </span>
+          {fastest === variant.name && (
+            <span className="rounded-full border border-cool/30 bg-cool/10 px-2 py-0.5 text-[10px] text-cool">
+              fastest
+            </span>
+          )}
           <span className="ml-auto flex items-center gap-3 font-mono text-[11px] text-muted-foreground">
             <span title="time for one call">{formatMs(variant.ms)}</span>
+            <span title="heap growth across one call">{formatBytes(variant.heap)}</span>
             {variant.target && <span className="text-muted-foreground/70">target {variant.target}</span>}
           </span>
         </header>
-
-        <div className="mb-3">
-          {variant.complexity ? (
-            <ComplexityChart complexity={variant.complexity} variantName={variant.name} />
-          ) : (
-            renderMeasurePrompt(green)
-          )}
-        </div>
 
         {variant.failures.length > 0 && (
           <div className="mb-3 space-y-2">
@@ -218,6 +216,15 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure }:
     const passed = current.variants.reduce((sum, variant) => sum + variant.passed, 0);
     const total = current.variants.reduce((sum, variant) => sum + variant.total, 0);
     const green = passed === total;
+    const allPass = current.variants.every((variant) => variant.passed === variant.total);
+
+    const timed = current.variants.filter((variant) => variant.ms !== null && variant.passed === variant.total);
+    const fastest =
+      timed.length > 1 ? timed.reduce((best, variant) => ((variant.ms ?? 0) < (best.ms ?? 0) ? variant : best)).name : null;
+
+    const series: ChartSeries[] = current.variants.flatMap((variant) =>
+      variant.complexity ? [{ name: variant.name, complexity: variant.complexity }] : [],
+    );
 
     return (
       <ScrollArea className="h-full">
@@ -252,7 +259,11 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure }:
             </div>
           </motion.div>
 
-          {current.variants.map(renderVariant)}
+          <motion.div variants={CARD}>
+            {series.length > 0 ? <ComplexityChart series={series} /> : renderMeasurePrompt(allPass)}
+          </motion.div>
+
+          {current.variants.map((variant, index) => renderVariant(variant, index, fastest))}
         </motion.div>
       </ScrollArea>
     );

@@ -1,4 +1,4 @@
-import type { Difficulty, ProblemState, ProblemStatus } from './types';
+import type { Difficulty, ProblemHistory, ProblemState, ProblemStatus } from './types';
 
 interface Facet {
   label: string;
@@ -35,6 +35,16 @@ export const STATE_META: Record<ProblemState, Facet> = {
   solved: { label: 'Solved', dot: 'bg-pass', text: 'text-pass', chip: 'bg-pass/10 text-pass border-pass/25' },
 };
 
+export const NO_HISTORY: ProblemHistory = {
+  runs: 0,
+  runsToFirstPass: null,
+  firstPassAt: null,
+  lastPassAt: null,
+  lastRunAt: null,
+  hintLevel: 0,
+  due: false,
+};
+
 export const UNKNOWN_STATUS: ProblemStatus = {
   number: '',
   state: 'not-started',
@@ -42,11 +52,29 @@ export const UNKNOWN_STATUS: ProblemStatus = {
   passed: null,
   total: null,
   ranAt: null,
+  history: NO_HISTORY,
 };
 
 export const DIFFICULTIES: Difficulty[] = ['Easy', 'Medium', 'Hard'];
 
 export const STATES: ProblemState[] = ['solved', 'failing', 'attempted', 'not-started'];
+
+export const formatBytes = (bytes: number | null) => {
+  if (bytes === null) return '—';
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+};
+
+export const relativeTime = (iso: string | null) => {
+  if (!iso) return 'never';
+
+  const minutes = Math.round((Date.now() - new Date(iso).getTime()) / 60000);
+  if (minutes < 1) return 'just now';
+  if (minutes < 60) return `${minutes}m ago`;
+  if (minutes < 1440) return `${Math.round(minutes / 60)}h ago`;
+  return `${Math.round(minutes / 1440)}d ago`;
+};
 
 export const formatMs = (ms: number | null) => {
   if (ms === null) return '—';
