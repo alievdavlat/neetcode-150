@@ -3,6 +3,7 @@ import path from 'node:path';
 import type { Problem, ProblemHistory, ProblemSource, ProblemStatus, RunReport, RunStatus, SourceMode } from '@/lib/types';
 import { EMPTY_HISTORY, getHistories, recordRun } from './history';
 import { syncCategoryReadme } from './readme';
+import { snapshotSolution } from './solutions';
 import { problemPath, resolveProblemFile, runBridge, SCRATCH_PREFIX, STUDIO_ROOT, WORKSPACE_ROOT } from './workspace';
 
 const RESULTS_FILE = path.join(STUDIO_ROOT, '.studio', 'results.json');
@@ -244,6 +245,11 @@ export async function runProblem(number: string, mode: SourceMode = 'file', bigO
   store[number] = { ...totals, status: report.status, at: new Date().toISOString() };
   await writeResults(store);
   await syncReadmes([problem.dir]);
+
+  if (ok) {
+    const source = await readFile(resolveProblemFile(problem.file), 'utf8').catch(() => null);
+    if (source !== null) await snapshotSolution(number, source);
+  }
 
   return report;
 }

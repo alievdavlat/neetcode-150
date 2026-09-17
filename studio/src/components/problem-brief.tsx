@@ -1,8 +1,11 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
-import { ExternalLink, Eye, Gauge, History, PlayCircle, Route } from 'lucide-react';
+import { ExternalLink, Eye, Gauge, History, NotebookPen, PlayCircle, Route } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Textarea } from '@/components/ui/textarea';
 import { DIFFICULTY_META, relativeTime, STATE_META } from '@/lib/meta';
 import type { Problem, ProblemStatus } from '@/lib/types';
 import { cn } from '@/lib/utils';
@@ -12,7 +15,9 @@ interface ProblemBriefProps {
   status: ProblemStatus;
   leetcode: string | null;
   video: string | null;
+  note: string;
   onHint: (level: number) => void;
+  onNoteSave: (note: string) => void;
 }
 
 const SECTION = {
@@ -26,7 +31,13 @@ const HINT_LABEL: Record<number, string> = {
   3: 'Open the walkthrough',
 };
 
-export function ProblemBrief({ problem, status, leetcode, video, onHint }: ProblemBriefProps) {
+export function ProblemBrief({ problem, status, leetcode, video, note, onHint, onNoteSave }: ProblemBriefProps) {
+  const [draft, setDraft] = useState(note);
+
+  useEffect(() => {
+    setDraft(note);
+  }, [note, problem.number]);
+
   const difficulty = DIFFICULTY_META[problem.difficulty];
   const state = STATE_META[status.state];
   const { history } = status;
@@ -107,7 +118,15 @@ export function ProblemBrief({ problem, status, leetcode, video, onHint }: Probl
           first pass on run <span className="font-mono text-pass">{history.runsToFirstPass}</span>
         </span>
       )}
+      {history.solveMinutes !== null && (
+        <span>
+          solved in <span className="font-mono text-foreground/80">{history.solveMinutes}m</span>
+        </span>
+      )}
       <span>last run {relativeTime(history.lastRunAt)}</span>
+      {history.dueInDays !== null && !history.due && (
+        <span>review in {history.dueInDays === 1 ? 'a day' : `${history.dueInDays} days`}</span>
+      )}
       {history.hintLevel > 0 && (
         <span className="text-medium">
           {history.hintLevel} {history.hintLevel === 1 ? 'hint' : 'hints'} used
@@ -190,6 +209,23 @@ export function ProblemBrief({ problem, status, leetcode, video, onHint }: Probl
               renderLocked(2)
             )}
           </div>
+        </motion.section>
+
+        <motion.section variants={SECTION}>
+          {renderHeading('Your note')}
+          <Textarea
+            value={draft}
+            onChange={(event) => setDraft(event.target.value)}
+            placeholder="What tripped you up? What is the one idea to remember?"
+            aria-label="Note for this problem"
+            className="min-h-20 bg-white/[0.02] text-[13px]"
+          />
+          {draft !== note && (
+            <Button size="sm" variant="outline" className="mt-2" onClick={() => onNoteSave(draft)}>
+              <NotebookPen className="size-3.5" />
+              Save note
+            </Button>
+          )}
         </motion.section>
 
         <motion.section variants={SECTION} className="flex flex-wrap gap-2 pb-4">

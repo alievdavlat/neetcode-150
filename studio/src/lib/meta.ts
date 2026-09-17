@@ -1,4 +1,4 @@
-import type { Difficulty, ProblemHistory, ProblemState, ProblemStatus } from './types';
+import type { Difficulty, Problem, ProblemHistory, ProblemState, ProblemStatus } from './types';
 
 interface Facet {
   label: string;
@@ -41,6 +41,9 @@ export const NO_HISTORY: ProblemHistory = {
   firstPassAt: null,
   lastPassAt: null,
   lastRunAt: null,
+  solveMinutes: null,
+  reviewDays: null,
+  dueInDays: null,
   hintLevel: 0,
   due: false,
 };
@@ -53,6 +56,38 @@ export const UNKNOWN_STATUS: ProblemStatus = {
   total: null,
   ranAt: null,
   history: NO_HISTORY,
+};
+
+/**
+ * Every problem carries its own one-line pattern, so grouping by that string gives
+ * 150 groups of one. These rules fold those lines into the techniques behind them.
+ */
+const TAG_RULES: { tag: string; test: RegExp }[] = [
+  { tag: 'hash map', test: /hash (map|set)|frequency|counter|seen/i },
+  { tag: 'two pointers', test: /two pointer|both ends|left and right/i },
+  { tag: 'sliding window', test: /window/i },
+  { tag: 'binary search', test: /binary search|halve/i },
+  { tag: 'stack', test: /stack/i },
+  { tag: 'heap', test: /heap|priority queue/i },
+  { tag: 'linked list', test: /linked list|fast and slow|node pointer/i },
+  { tag: 'tree', test: /tree|in-?order|pre-?order|post-?order|subtree/i },
+  { tag: 'bfs', test: /bfs|breadth|level order|queue/i },
+  { tag: 'dfs', test: /dfs|depth.first|flood fill|recurse/i },
+  { tag: 'graph', test: /graph|union.find|topological|adjacen|island/i },
+  { tag: 'backtracking', test: /backtrack/i },
+  { tag: 'dynamic programming', test: /dp|dynamic programming|memo|bottom.up|top.down|tabulat/i },
+  { tag: 'greedy', test: /greedy/i },
+  { tag: 'intervals', test: /interval|overlap/i },
+  { tag: 'trie', test: /trie|prefix tree/i },
+  { tag: 'bit tricks', test: /bit|xor|mask|shift/i },
+  { tag: 'prefix sums', test: /prefix|suffix/i },
+  { tag: 'sorting', test: /sort/i },
+  { tag: 'math', test: /math|modulo|digit|prime|geometry/i },
+];
+
+export const tagsOf = (problem: Problem) => {
+  const haystack = `${problem.pattern} ${problem.category}`;
+  return TAG_RULES.filter((rule) => rule.test.test(haystack)).map((rule) => rule.tag);
 };
 
 export const DIFFICULTIES: Difficulty[] = ['Easy', 'Medium', 'Hard'];

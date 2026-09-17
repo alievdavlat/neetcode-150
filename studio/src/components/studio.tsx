@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 import { CommandPalette } from './command-palette';
+import { SolutionDiff } from './solution-diff';
 import { ProblemBrief } from './problem-brief';
 import { ProblemRail } from './problem-rail';
 import { SolutionEditor } from './solution-editor';
@@ -12,11 +13,13 @@ import { VerdictPanel } from './verdict-panel';
 import { UNKNOWN_STATUS } from '@/lib/meta';
 import { request } from '@/lib/api';
 import type {
+  Collection,
   Problem,
   ProblemSource,
   ProblemState,
   ProblemStatus,
   RunReport,
+  SolutionSnapshot,
   SourceMode,
   TypeMarker,
 } from '@/lib/types';
@@ -24,6 +27,7 @@ import type {
 interface StudioProps {
   problems: Problem[];
   statuses: ProblemStatus[];
+  collections: Collection[];
 }
 
 interface SaveResponse {
@@ -43,9 +47,19 @@ interface TypecheckResponse {
   markers: TypeMarker[];
 }
 
+interface NoteResponse {
+  note: string;
+}
+
+interface SnapshotResponse {
+  snapshots: SolutionSnapshot[];
+}
+
 const LAST_KEY = 'neetcode-studio:last-problem';
 const MODE_KEY = 'neetcode-studio:mode';
 const BIGO_KEY = 'neetcode-studio:big-o';
+const COLLECTION_KEY = 'neetcode-studio:collection';
+const ALL_COLLECTION = 'all';
 
 const EMPTY_COUNTS: Record<ProblemState, number> = {
   solved: 0,
@@ -59,7 +73,7 @@ const messageOf = (error: unknown) => (error instanceof Error ? error.message : 
 const storedMode = (number: string): SourceMode =>
   window.localStorage.getItem(`${MODE_KEY}:${number}`) === 'scratch' ? 'scratch' : 'file';
 
-export function Studio({ problems, statuses: initialStatuses }: StudioProps) {
+export function Studio({ problems, statuses: initialStatuses, collections }: StudioProps) {
   const [statuses, setStatuses] = useState<Record<string, ProblemStatus>>(() =>
     Object.fromEntries(initialStatuses.map((status) => [status.number, status])),
   );
@@ -76,6 +90,10 @@ export function Studio({ problems, statuses: initialStatuses }: StudioProps) {
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [runningCategory, setRunningCategory] = useState<string | null>(null);
   const [markers, setMarkers] = useState<TypeMarker[]>([]);
+  const [collectionId, setCollectionId] = useState(ALL_COLLECTION);
+  const [note, setNote] = useState('');
+  const [snapshots, setSnapshots] = useState<SolutionSnapshot[]>([]);
+  const [diffOpen, setDiffOpen] = useState(false);
   const [checkingTypes, setCheckingTypes] = useState(false);
   const [report, setReport] = useState<RunReport | null>(null);
   const busy = useRef(false);
@@ -96,6 +114,9 @@ export function Studio({ problems, statuses: initialStatuses }: StudioProps) {
 
   useEffect(() => {
     setBigO(window.localStorage.getItem(BIGO_KEY) !== 'off');
+
+    const storedCollection = window.localStorage.getItem(COLLECTION_KEY);
+    if (storedCollection) setCollectionId(storedCollection);
   }, []);
 
   useEffect(() => {
@@ -107,6 +128,13 @@ export function Studio({ problems, statuses: initialStatuses }: StudioProps) {
     setReport(null);
     setMarkers([]);
     window.localStorage.setItem(LAST_KEY, activeNumber);
+
+    const number = activeNumber;
+    request<{ recorded: boolean }>('/api/open', { method: 'POST', body: JSON.stringify({ number }) }).catch(() => null);
+    request<NoteResponse>(`/api/notes?number=${number}`).then((payload) => setNote(payload.note)).catch(() => setNote(''));
+    request<SnapshotResponse>(`/api/solutions?number=${number}`)
+      .then((payload) => setSnapshots(payload.snapshots))
+      .catch(() => setSnapshots([]));
 
     request<ProblemSource>(`/api/file?file=${encodeURIComponent(file)}&source=${mode}`, {
       signal: controller.signal,
@@ -228,6 +256,10 @@ export function Studio({ problems, statuses: initialStatuses }: StudioProps) {
         if (!payload) return;
         setReport(payload.report);
         setStatuses((current) => ({ ...current, [payload.status.number]: payload.status }));
+
+        return request<SnapshotResponse>(`/api/solutions?number=${number}`)
+          .then((fresh) => setSnapshots(fresh.snapshots))
+          .catch(() => null);
       })
       .catch((error: unknown) => toast.error(messageOf(error)))
       .finally(() => {
@@ -246,6 +278,32 @@ export function Studio({ problems, statuses: initialStatuses }: StudioProps) {
   const handleMeasure = () => {
     handleBigOChange(true);
     runWith(true);
+  };
+
+  const handleNoteSave = (next: string) => {
+    if (!active) return;
+
+    const number = active.number;
+    request<{ saved: boolean }>('/api/notes', { method: 'PUT', body: JSON.stringify({ number, note: next }) })
+      .then(() => {
+        setNote(next);
+        toast.success('Note saved');
+      })
+      .catch((error: unknown) => toast.error(messageOf(error)));
+  };
+
+  const handleSnippet = (line: string) => {
+    if (source === null) return;
+
+    setSource(`${source.replace(/\s*$/, '')}
+${line}
+`);
+    toast.success('Added to the end of the file — save when you are ready');
+  };
+
+  const handleCollectionChange = (id: string) => {
+    window.localStorage.setItem(COLLECTION_KEY, id);
+    setCollectionId(id);
   };
 
   const handleHint = (level: number) => {
@@ -388,6 +446,18 @@ export function Studio({ problems, statuses: initialStatuses }: StudioProps) {
 
   if (!active) return null;
 
+  const allCollections: Collection[] = [
+    {
+      id: ALL_COLLECTION,
+      name: 'All',
+      description: 'Every problem in the workspace',
+      numbers: problems.map((problem) => problem.number),
+    },
+    ...collections,
+  ];
+  const picked = collections.find((entry) => entry.id === collectionId);
+  const visible = picked ? problems.filter((problem) => picked.numbers.includes(problem.number)) : problems;
+
   const counts = Object.values(statuses).reduce(
     (totals, status) => ({ ...totals, [status.state]: totals[status.state] + 1 }),
     EMPTY_COUNTS,
@@ -395,6 +465,14 @@ export function Studio({ problems, statuses: initialStatuses }: StudioProps) {
 
   return (
     <div className="flex h-dvh flex-col">
+      <SolutionDiff
+        open={diffOpen}
+        title={active.title}
+        current={source ?? ''}
+        snapshots={snapshots}
+        onOpenChange={setDiffOpen}
+      />
+
       <CommandPalette
         open={paletteOpen}
         problems={problems}
@@ -414,8 +492,11 @@ export function Studio({ problems, statuses: initialStatuses }: StudioProps) {
       <ResizablePanelGroup orientation="horizontal" className="min-h-0 flex-1">
         <ResizablePanel defaultSize="19" minSize="13">
           <ProblemRail
-            problems={problems}
+            problems={visible}
             statuses={statuses}
+            collections={allCollections}
+            collectionId={collectionId}
+            onCollectionChange={handleCollectionChange}
             activeNumber={active.number}
             runningCategory={runningCategory}
             onSelect={handleSelect}
@@ -431,7 +512,9 @@ export function Studio({ problems, statuses: initialStatuses }: StudioProps) {
             status={statuses[active.number] ?? UNKNOWN_STATUS}
             leetcode={links.leetcode ?? active.leetcode}
             video={links.video}
+            note={note}
             onHint={handleHint}
+            onNoteSave={handleNoteSave}
           />
         </ResizablePanel>
 
@@ -451,6 +534,8 @@ export function Studio({ problems, statuses: initialStatuses }: StudioProps) {
                 bigO={bigO}
                 markers={markers}
                 checkingTypes={checkingTypes}
+                snapshots={snapshots.length}
+                onCompare={() => setDiffOpen(true)}
                 onChange={setSource}
                 onModeChange={handleModeChange}
                 onBigOChange={handleBigOChange}
@@ -469,6 +554,7 @@ export function Studio({ problems, statuses: initialStatuses }: StudioProps) {
                 bigO={bigO}
                 problemTitle={active.title}
                 onMeasure={handleMeasure}
+                onSnippet={handleSnippet}
               />
             </ResizablePanel>
           </ResizablePanelGroup>

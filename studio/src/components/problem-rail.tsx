@@ -6,17 +6,20 @@ import { Loader2, Play, RotateCcw, Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { StatusDot } from './status-dot';
-import { DIFFICULTIES, DIFFICULTY_META, STATES, STATE_META, UNKNOWN_STATUS } from '@/lib/meta';
-import type { Difficulty, Problem, ProblemState, ProblemStatus } from '@/lib/types';
+import { DIFFICULTIES, DIFFICULTY_META, STATES, STATE_META, tagsOf, UNKNOWN_STATUS } from '@/lib/meta';
+import type { Collection, Difficulty, Problem, ProblemState, ProblemStatus } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
 interface ProblemRailProps {
   problems: Problem[];
   statuses: Record<string, ProblemStatus>;
+  collections: Collection[];
+  collectionId: string;
   activeNumber: string;
   runningCategory: string | null;
   onSelect: (number: string) => void;
   onRunCategory: (dir: string) => void;
+  onCollectionChange: (id: string) => void;
 }
 
 interface Group {
@@ -28,20 +31,31 @@ interface Group {
 export function ProblemRail({
   problems,
   statuses,
+  collections,
+  collectionId,
   activeNumber,
   runningCategory,
   onSelect,
   onRunCategory,
+  onCollectionChange,
 }: ProblemRailProps) {
   const [query, setQuery] = useState('');
   const [difficulty, setDifficulty] = useState<Difficulty | null>(null);
   const [state, setState] = useState<ProblemState | null>(null);
   const [dueOnly, setDueOnly] = useState(false);
+  const [tag, setTag] = useState<string | null>(null);
 
   const statusOf = (problem: Problem) => statuses[problem.number] ?? UNKNOWN_STATUS;
   const needle = query.trim().toLowerCase();
 
+  const counts = new Map<string, number>();
+  for (const problem of problems) {
+    for (const entry of tagsOf(problem)) counts.set(entry, (counts.get(entry) ?? 0) + 1);
+  }
+  const tags = [...counts].sort((left, right) => right[1] - left[1]);
+
   const matches = (problem: Problem) => {
+    if (tag && !tagsOf(problem).includes(tag)) return false;
     if (difficulty && problem.difficulty !== difficulty) return false;
     if (state && statusOf(problem).state !== state) return false;
     if (dueOnly && !statusOf(problem).history.due) return false;
@@ -148,6 +162,19 @@ export function ProblemRail({
   return (
     <div className="flex h-full flex-col bg-sidebar/60">
       <div className="space-y-3 border-b border-line p-3">
+        {collections.length > 1 && (
+          <div className="flex flex-wrap gap-1.5">
+            {collections.map((entry) =>
+              renderChip(
+                `${entry.name} · ${entry.numbers.length}`,
+                collectionId === entry.id,
+                'bg-cool',
+                () => onCollectionChange(entry.id),
+              ),
+            )}
+          </div>
+        )}
+
         <div className="relative">
           <Search className="pointer-events-none absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2 text-muted-foreground" />
           <Input
@@ -172,6 +199,25 @@ export function ProblemRail({
             ),
           )}
           {renderChip('Due', dueOnly, 'bg-medium', () => setDueOnly(!dueOnly))}
+        </div>
+
+        <div className="-mx-1 flex gap-1.5 overflow-x-auto px-1 pb-1">
+          {tags.map(([entry, count]) => (
+            <button
+              key={entry}
+              type="button"
+              onClick={() => setTag(tag === entry ? null : entry)}
+              aria-pressed={tag === entry}
+              className={cn(
+                'shrink-0 rounded-full border px-2 py-0.5 text-[10px] whitespace-nowrap transition-colors',
+                tag === entry
+                  ? 'border-hot/40 bg-hot/10 text-hot'
+                  : 'border-line text-muted-foreground hover:border-white/15 hover:text-foreground',
+              )}
+            >
+              {entry} <span className="opacity-50">{count}</span>
+            </button>
+          ))}
         </div>
       </div>
 

@@ -34,8 +34,23 @@ export interface ProblemHistory {
   firstPassAt: string | null;
   lastPassAt: string | null;
   lastRunAt: string | null;
+  solveMinutes: number | null;
+  reviewDays: number | null;
+  dueInDays: number | null;
   hintLevel: number;
   due: boolean;
+}
+
+export interface Collection {
+  id: string;
+  name: string;
+  description: string;
+  numbers: string[];
+}
+
+export interface SolutionSnapshot {
+  at: string;
+  source: string;
 }
 
 export interface ProblemStatus {
@@ -110,6 +125,7 @@ export interface RunReport {
   message?: string | null;
   isFunctionProblem?: boolean;
   hasGenerator?: boolean;
+  scratch?: string | null;
   unparsedExamples?: { index: number; reason: string }[];
 }
 

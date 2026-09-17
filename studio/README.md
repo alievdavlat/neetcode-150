@@ -73,21 +73,53 @@ again if a later run fails. Those ticks are never a guess: they follow the same 
 the sidebar shows. `node _gen/generate.mjs` rewrites those tables, so a regenerate clears
 them — one more Recheck puts them back.
 
+## Collections
+
+The sidebar can narrow the whole workspace to a named list. `collections/*.json` holds the
+numbers a list covers — nothing else — so a list can never point at a problem this
+workspace does not have. **Blind 75** ships with it: all 75 are already here, so it is a
+view, not a copy.
+
+Below the filters is a row of technique tags (`hash map`, `sliding window`, `dfs`, …).
+They are derived from each problem's own pattern line: every problem carries a unique
+sentence there, so grouping by it would give 150 groups of one. Twenty tags cover all 150.
+
+## Notes
+
+Each problem has a note box under the description, stored in `.studio/notes/<number>.md`.
+It is for what tripped you up, and it is the first thing you see when a review comes due.
+
 ## Practice history
 
-Every run is appended to `.studio/history.json`, and the brief shows what it adds up to:
-how many runs, which run first passed, when you last ran it, and how many hints you opened.
-A bulk Recheck is recorded too but never counted as an attempt.
+Every run — and every time you open a problem — is appended to `.studio/history.json`, and
+the brief shows what it adds up to: how many runs, which run first passed, how long the
+first solve took from the moment you opened it, when you last ran it, and how many hints
+you opened. A bulk Recheck is recorded too but never counted as an attempt.
 
-A problem you solved more than two weeks ago is marked **due for review** — in the sidebar,
-in the palette, and as a filter chip. Paired with **Fresh** mode this is the whole review
-loop: filter to Due, switch to Fresh, and solve it again without seeing your old answer.
+When a problem comes back for review depends on how it went: solved on the first run with
+no hints waits three weeks, one that took more than five runs or two hints comes back in
+three days. A due problem is marked in the sidebar, in the palette and behind a filter
+chip; the brief counts down to the next one.
+
+Every passing run also snapshots the file into `.studio/solutions/<number>/` (last five).
+**Compare** in the toolbar diffs what is in the editor against the last solve — which is
+what makes **Fresh** mode a loop: solve it again blind, then see what you did differently.
 
 ## Hints are opt-in
 
 The pattern, the target complexity and the walkthrough link start hidden — they are the
 answer's shape, and reading them by accident is not practice. Each is one click away, and
 opening one is recorded, so the history line tells you honestly whether a solve was yours.
+
+## When a case fails
+
+A failing case spells out **Input**, **Your output** and **Output should be** — and where a
+case only checks a property (Encode and Decode, for example, checks a round trip) there is
+no single right answer, so that row is left out rather than filled with `undefined`.
+
+**add console.log** writes the failing call to the end of your file with the expected value
+already in the comment, so the line you debug with can never disagree with the test.
+Anything your file logs at import time is shown back under **your console output**.
 
 ## Type errors
 

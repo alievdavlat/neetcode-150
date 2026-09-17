@@ -77,7 +77,7 @@ const serializeCase = (item) => ({
 const serializeFailure = (failure) => ({
   label: failure.label,
   input: displayArgs(failure.args),
-  expected: failure.thrown ? null : display(failure.expect),
+  expected: failure.thrown || failure.expect === undefined ? null : display(failure.expect),
   got: failure.thrown ? null : display(failure.result),
   thrown: failure.thrown ?? null,
   detail: failure.detail ?? null,

@@ -20,4 +20,28 @@ if (options.showMemory && typeof globalThis.gc !== 'function') {
 const problem = (await loadProblems()).find((entry) => entry.number === number);
 if (!problem) throw new Error(`no problem numbered ${number}`);
 
-parentPort.postMessage(await runProblem(file ? { ...problem, file } : problem, options));
+const target = file ? { ...problem, file } : problem;
+
+/**
+ * Import the file once here, keeping console output line by line, so the scratch
+ * logging at the bottom of a solution survives into the report. The runner's own
+ * import comes later and finds the module cached, so nothing runs twice.
+ */
+const captured = [];
+const realLog = console.log;
+const realWrite = process.stdout.write.bind(process.stdout);
+
+console.log = (...args) => captured.push(args.map((value) => String(value)).join(' '));
+process.stdout.write = (chunk) => {
+  captured.push(String(chunk).replace(/\n$/, ''));
+  return true;
+};
+
+await import(new URL(`../../${target.file}`, import.meta.url).href).catch(() => null);
+
+console.log = realLog;
+process.stdout.write = realWrite;
+
+const report = await runProblem(target, options);
+
+parentPort.postMessage({ ...report, scratch: captured.join('\n').trim() || null });

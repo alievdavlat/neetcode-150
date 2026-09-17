@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { motion } from 'motion/react';
-import { ActivitySquare, ArrowUpToLine, FileCode2, Loader2, Play, Save } from 'lucide-react';
+import { ActivitySquare, ArrowUpToLine, FileCode2, GitCompareArrows, Loader2, Play, Save } from 'lucide-react';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -43,8 +43,10 @@ interface SolutionEditorProps {
   bigO: boolean;
   markers: TypeMarker[];
   checkingTypes: boolean;
+  snapshots: number;
   onChange: (value: string) => void;
   onModeChange: (mode: SourceMode) => void;
+  onCompare: () => void;
   onBigOChange: (bigO: boolean) => void;
   onSave: () => void;
   onRun: () => void;
@@ -67,8 +69,10 @@ export function SolutionEditor({
   bigO,
   markers,
   checkingTypes,
+  snapshots,
   onChange,
   onModeChange,
+  onCompare,
   onBigOChange,
   onSave,
   onRun,
@@ -190,6 +194,19 @@ export function SolutionEditor({
         <div className="ml-auto flex items-center gap-2">
           {renderModeToggle()}
           {renderBigO()}
+
+          {snapshots > 0 && (
+            <button
+              type="button"
+              onClick={onCompare}
+              title="Compare what is in the editor with your last passing solve"
+              aria-label="Compare with your last passing solve"
+              className="flex items-center gap-1.5 rounded-lg border border-line px-2 py-1 text-[11px] text-muted-foreground transition-colors hover:border-cool/40 hover:text-cool"
+            >
+              <GitCompareArrows className="size-3.5" />
+              Compare
+            </button>
+          )}
           {mode === 'scratch' && renderPromote()}
 
           <Button variant="ghost" size="sm" onClick={onSave} disabled={!dirty || saving} aria-label="Save file">

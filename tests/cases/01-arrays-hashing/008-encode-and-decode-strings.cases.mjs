@@ -14,9 +14,26 @@ const roundTrip = (strs, label) => ({
   },
 });
 
+import { intBetween, makeRng, pick, series } from '../_support/random.mjs';
+
+const rng = makeRng(1008);
+
+/** Characters a separator-based encoding tends to trip over. */
+const AWKWARD = ['#', ':', '/', '|', ',', '0', '1', '9', 'a', ' ', '"', 'é', '中'];
+
+const noisy = (length) => Array.from({ length }, () => pick(rng, AWKWARD)).join('');
+
+const generated = series(30, 'generated round trip', () =>
+  roundTrip(
+    Array.from({ length: intBetween(rng, 0, 6) }, () => noisy(intBetween(rng, 0, 8))),
+    '',
+  ),
+).map((entry, index) => ({ ...entry, label: `generated round trip ${index + 1}` }));
+
 export default {
   only: ['encode'],
   cases: [
+    ...generated,
     roundTrip(['neet', 'code', 'love', 'you'], 'plain words'),
     roundTrip(['we', 'say', ':', 'yes'], 'a separator character in the data'),
     roundTrip([''], 'one empty string'),

@@ -28,13 +28,23 @@
  * LeetCode:  https://leetcode.com/problems/encode-and-decode-strings/
  * Video:     https://www.youtube.com/watch?v=T0u5nwSA0w0&t=4113s  (01:08:33)
  */
-export function encode(strs: string[]): string {
-  throw new Error('Not implemented');
 
-}
+export function encode(strs: string[]): string {
+  let res = '';
+  for(const word of strs) res += `${strs.length}#${word}`
+  return res;
+};
 
 export function decode(str: string): string[] {
-  throw new Error('Not implemented');
+  let res:string[] = [];
+  let i  = 0;
+  while(i < str.length) {
+    let pos = str.indexOf('#', i); //2#hello2#world
+    let length = Number(str.slice(i, pos)); //2
+    i = pos + 1;
+    const s = str.slice(i, i + length);
+    res.push(s);
+    i += length;
+  }
+  return res;
 }
-
-console.log(['hello', 'world']);

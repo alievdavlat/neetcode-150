@@ -1,7 +1,7 @@
 'use client';
 
 import { AnimatePresence, motion } from 'motion/react';
-import { ActivitySquare, AlertTriangle, Check, CircleSlash, Clock, Terminal, X } from 'lucide-react';
+import { ActivitySquare, AlertTriangle, Check, CircleSlash, Clock, SquareTerminal, Terminal, X } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { ComplexityChart, type ChartSeries } from './complexity-chart';
 import { formatBytes, formatMs } from '@/lib/meta';
@@ -14,16 +14,18 @@ interface VerdictPanelProps {
   bigO: boolean;
   problemTitle: string;
   onMeasure: () => void;
+  onSnippet: (line: string) => void;
 }
 
 const FAILURE_LIMIT = 6;
+const PASSED_LIMIT = 12;
 
 const CARD = {
   hidden: { opacity: 0, y: 12 },
   show: { opacity: 1, y: 0 },
 };
 
-export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure }: VerdictPanelProps) {
+export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure, onSnippet }: VerdictPanelProps) {
   const renderNotice = (icon: React.ReactNode, title: string, body: string, tone: string) => (
     <div className="flex h-full items-center justify-center p-8">
       <div className={cn('max-w-sm rounded-2xl border p-6 text-center', tone)}>
@@ -60,37 +62,53 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure }:
     </motion.li>
   );
 
-  const renderFailure = (failure: RunFailure, index: number) => (
+  const renderFailure = (variantName: string) => (failure: RunFailure, index: number) => (
     <div key={`${failure.label}-${index}`} className="rounded-xl border border-fail/25 bg-fail/[0.05] p-3">
-      <p className="mb-2 flex items-center gap-1.5 text-[11px] font-medium text-fail">
-        <X className="size-3" />
-        {failure.label}
-      </p>
-      <dl className="space-y-1 font-mono text-[11px]">
+      <div className="mb-2 flex flex-wrap items-center gap-2">
+        <p className="flex items-center gap-1.5 text-[11px] font-medium text-fail">
+          <X className="size-3" />
+          {failure.label}
+        </p>
+        <button
+          type="button"
+          onClick={() =>
+            onSnippet(
+              `console.log(${variantName}(${failure.input}));${failure.expected ? ` // should be ${failure.expected}` : ''}`,
+            )
+          }
+          className="ml-auto rounded-md border border-line px-1.5 py-0.5 text-[10px] text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+        >
+          add console.log
+        </button>
+      </div>
+
+      <dl className="space-y-1.5 font-mono text-[11px]">
         <div className="flex gap-2">
-          <dt className="w-16 shrink-0 text-muted-foreground">input</dt>
+          <dt className="w-28 shrink-0 text-muted-foreground">Input</dt>
           <dd className="break-all text-foreground/80">{failure.input}</dd>
         </div>
         {failure.thrown ? (
           <div className="flex gap-2">
-            <dt className="w-16 shrink-0 text-muted-foreground">threw</dt>
+            <dt className="w-28 shrink-0 text-muted-foreground">It threw</dt>
             <dd className="break-all text-fail">{failure.thrown}</dd>
           </div>
         ) : (
           <>
             <div className="flex gap-2">
-              <dt className="w-16 shrink-0 text-muted-foreground">expected</dt>
-              <dd className="break-all text-pass">{failure.expected}</dd>
+              <dt className="w-28 shrink-0 text-fail/80">Your output</dt>
+              <dd className="break-all font-medium text-fail">{failure.got}</dd>
             </div>
-            <div className="flex gap-2">
-              <dt className="w-16 shrink-0 text-muted-foreground">got</dt>
-              <dd className="break-all text-fail">{failure.got}</dd>
-            </div>
+            {failure.expected !== null && (
+              <div className="flex gap-2">
+                <dt className="w-28 shrink-0 text-pass/80">Output should be</dt>
+                <dd className="break-all font-medium text-pass">{failure.expected}</dd>
+              </div>
+            )}
           </>
         )}
         {failure.detail && (
           <div className="flex gap-2">
-            <dt className="w-16 shrink-0 text-muted-foreground">note</dt>
+            <dt className="w-28 shrink-0 text-muted-foreground">Note</dt>
             <dd className="break-all text-muted-foreground">{failure.detail}</dd>
           </div>
         )}
@@ -121,6 +139,7 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure }:
 
   const renderVariant = (variant: RunVariant, index: number, fastest: string | null) => {
     const green = variant.passed === variant.total;
+    const passing = variant.cases.filter((item) => item.passed);
 
     return (
       <motion.section
@@ -153,7 +172,7 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure }:
 
         {variant.failures.length > 0 && (
           <div className="mb-3 space-y-2">
-            {variant.failures.slice(0, FAILURE_LIMIT).map(renderFailure)}
+            {variant.failures.slice(0, FAILURE_LIMIT).map(renderFailure(variant.name))}
             {variant.failures.length > FAILURE_LIMIT && (
               <p className="px-1 text-[11px] text-muted-foreground">
                 and {variant.failures.length - FAILURE_LIMIT} more failing cases
@@ -162,7 +181,12 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure }:
           </div>
         )}
 
-        <ul className="space-y-0.5">{variant.cases.filter((item) => item.passed).map(renderCase)}</ul>
+        <ul className="space-y-0.5">{passing.slice(0, PASSED_LIMIT).map(renderCase)}</ul>
+        {passing.length > PASSED_LIMIT && (
+          <p className="px-2 pt-1.5 text-[11px] text-muted-foreground">
+            and {passing.length - PASSED_LIMIT} more cases passed
+          </p>
+        )}
       </motion.section>
     );
   };
@@ -262,6 +286,18 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure }:
           <motion.div variants={CARD}>
             {series.length > 0 ? <ComplexityChart series={series} /> : renderMeasurePrompt(allPass)}
           </motion.div>
+
+          {current.scratch && (
+            <motion.section variants={CARD} className="rounded-2xl border border-line bg-black/30 p-4">
+              <p className="mb-2 flex items-center gap-1.5 text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
+                <SquareTerminal className="size-3" />
+                your console output
+              </p>
+              <pre className="overflow-x-auto font-mono text-[11px] leading-relaxed text-foreground/80">
+                {current.scratch}
+              </pre>
+            </motion.section>
+          )}
 
           {current.variants.map((variant, index) => renderVariant(variant, index, fastest))}
         </motion.div>
