@@ -18,6 +18,7 @@ import { ALL_BOARD, UNKNOWN_STATUS } from '@/lib/meta';
 import { request } from '@/lib/api';
 import type {
   Collection,
+  Course,
   Problem,
   ProblemSource,
   ProblemState,
@@ -34,7 +35,10 @@ interface StudioProps {
   problems: Problem[];
   statuses: ProblemStatus[];
   collections: Collection[];
+  courses: Course[];
   boardId: string;
+  /** The problem the URL asked for, so the first paint is not a blank page. */
+  initialNumber: string;
   settings: Settings;
 }
 
@@ -80,13 +84,21 @@ const messageOf = (error: unknown) => (error instanceof Error ? error.message : 
 const storedMode = (number: string): SourceMode =>
   window.localStorage.getItem(`${MODE_KEY}:${number}`) === 'scratch' ? 'scratch' : 'file';
 
-export function Studio({ problems, statuses: initialStatuses, collections, boardId, settings }: StudioProps) {
+export function Studio({
+  problems,
+  statuses: initialStatuses,
+  collections,
+  courses,
+  boardId,
+  initialNumber,
+  settings,
+}: StudioProps) {
   const router = useRouter();
   const search = useSearchParams();
   const [statuses, setStatuses] = useState<Record<string, ProblemStatus>>(() =>
     Object.fromEntries(initialStatuses.map((status) => [status.number, status])),
   );
-  const [activeNumber, setActiveNumber] = useState('');
+  const [activeNumber, setActiveNumber] = useState(initialNumber);
   const [mode, setMode] = useState<SourceMode>('file');
   const [source, setSource] = useState<string | null>(null);
   const [dirty, setDirty] = useState(false);
@@ -99,6 +111,7 @@ export function Studio({ problems, statuses: initialStatuses, collections, board
   const [focus, setFocus] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [runningCategory, setRunningCategory] = useState<string | null>(null);
+  const [runningBoard, setRunningBoard] = useState(false);
   const [markers, setMarkers] = useState<TypeMarker[]>([]);
   const [note, setNote] = useState('');
   const [snapshots, setSnapshots] = useState<SolutionSnapshot[]>([]);
@@ -392,7 +405,7 @@ export function Studio({ problems, statuses: initialStatuses, collections, board
     setActiveLine(null);
   };
 
-  const handleTrace = async () => {
+  const handleTrace = async (input?: unknown[]) => {
     if (!active || !variant || busy.current) {
       if (!variant) toast.error('Run it once first, so the tracer knows which export to follow');
       return;
@@ -407,7 +420,7 @@ export function Studio({ problems, statuses: initialStatuses, collections, board
       const number = active.number;
       const answer = await request<{ trace: TraceResult }>('/api/trace', {
         method: 'POST',
-        body: JSON.stringify({ number, variant, caseIndex, mode }),
+        body: JSON.stringify({ number, variant, caseIndex, mode, input: input ?? null }),
       });
       if (showing.current === number) setTrace(answer.trace);
     } catch (error) {
@@ -541,6 +554,22 @@ ${line}
     request<SaveResponse>('/api/hint', { method: 'POST', body: JSON.stringify({ number, level }) })
       .then((payload) => setStatuses((current) => ({ ...current, [payload.status.number]: payload.status })))
       .catch((error: unknown) => toast.error(messageOf(error)));
+  };
+
+  const handleRunBoard = () => {
+    if (runningBoard || runningCategory !== null) return;
+
+    setRunningBoard(true);
+    request<SyncResponse>('/api/run-board', {
+      method: 'POST',
+      body: JSON.stringify({ numbers: visible.map((problem) => problem.number) }),
+    })
+      .then((payload) => {
+        setStatuses(Object.fromEntries(payload.statuses.map((status) => [status.number, status])));
+        toast.success(`Ran ${board?.name ?? 'this board'}`);
+      })
+      .catch((error: unknown) => toast.error(messageOf(error)))
+      .finally(() => setRunningBoard(false));
   };
 
   const handleRunCategory = (dir: string) => {
@@ -700,8 +729,10 @@ ${line}
         open={paletteOpen}
         problems={problems}
         statuses={statuses}
+        courses={courses}
         onOpenChange={setPaletteOpen}
         onSelect={handleSelect}
+        onCourse={(id) => router.push(`/courses/${id}`)}
       />
 
       <StudioHeader
@@ -712,6 +743,8 @@ ${line}
         pending={pending}
         syncing={syncing}
         focus={focus}
+        runningBoard={runningBoard}
+        onRunBoard={handleRunBoard}
         onCollectionChange={handleCollectionChange}
         onFocusChange={handleFocusChange}
         onSync={handleSync}

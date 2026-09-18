@@ -11,7 +11,19 @@ import { traceSupport } from '../../tests/runner/trace/supported.mjs';
  * Record one case of one variant. The run path is untouched: this instruments a
  * copy of the file, imports the copy, and calls the function once.
  */
-const { number, variant, caseIndex, file } = workerData;
+const { number, variant, caseIndex, file, args: asked } = workerData;
+
+/** An input typed in the UI has no expected answer, so the run is shown, never judged. */
+const custom = (() => {
+  if (!asked) return null;
+
+  try {
+    const parsed = JSON.parse(asked);
+    return Array.isArray(parsed) ? parsed : null;
+  } catch {
+    return null;
+  }
+})();
 const ROOT = new URL('../../', import.meta.url);
 
 const shell = (status, message, extra = {}) => ({
@@ -21,6 +33,8 @@ const shell = (status, message, extra = {}) => ({
   status,
   message,
   args: [],
+  input: '[]',
+  custom: custom !== null,
   expect: null,
   result: null,
   passed: null,
@@ -111,7 +125,8 @@ if (!problem) {
 
         const { api, steps } = createRecorder(instrumented.meta);
 
-        const args = caseArgs(testCase, prepared);
+        const raw = custom ?? testCase.args;
+        const args = caseArgs({ ...testCase, args: raw }, prepared);
 
         let status = 'ok';
         let message = null;
@@ -161,7 +176,11 @@ if (!problem) {
          * export against another records the second one's steps too, and the
          * verdict is this replay's rather than the last run's.
          */
-        if (called) {
+        if (called && custom !== null) {
+          result = show(produced);
+        }
+
+        if (called && custom === null) {
           restore = quiet();
 
           try {
@@ -192,6 +211,8 @@ if (!problem) {
           status,
           message,
           args: args.map(show),
+          input: JSON.stringify(raw),
+          custom: custom !== null,
           expect,
           result,
           passed,

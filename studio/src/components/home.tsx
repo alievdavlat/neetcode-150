@@ -1,15 +1,18 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { motion } from 'motion/react';
 import { ArrowRight, Settings2 } from 'lucide-react';
 import { Brand } from './brand';
 import { BoardCard } from './board-card';
+import { CommandPalette } from './command-palette';
+import { ContinueCard } from './continue-card';
 import { ReviewQueue } from './review-queue';
 import { TagStrip, type Tag } from './tag-strip';
 import { ALL_BOARD, DIFFICULTY_META, STATE_META, tagsOf } from '@/lib/meta';
-import type { Board, Company, Problem, ProblemStatus, Settings } from '@/lib/types';
+import type { Board, Company, Course, Problem, ProblemStatus, Settings } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
 interface HomeProps {
@@ -17,6 +20,7 @@ interface HomeProps {
   statuses: ProblemStatus[];
   boards: Board[];
   companies: Company[];
+  courses: Course[];
   settings: Settings;
 }
 
@@ -38,9 +42,29 @@ const ACCENTS = [
 
 const RESULT_LIMIT = 60;
 
-export function Home({ problems, statuses, boards, companies, settings }: HomeProps) {
+export function Home({ problems, statuses, boards, companies, courses, settings }: HomeProps) {
+  const router = useRouter();
   const [source, setSource] = useState<Source>('topics');
   const [picked, setPicked] = useState<string | null>(null);
+  const [paletteOpen, setPaletteOpen] = useState(false);
+
+  const byNumber = useMemo(
+    () => Object.fromEntries(statuses.map((status) => [status.number, status])),
+    [statuses],
+  );
+
+  /** The same jump the board has, so it is one shortcut everywhere. */
+  useEffect(() => {
+    const handleKey = (event: KeyboardEvent) => {
+      if (!(event.metaKey || event.ctrlKey) || event.key.toLowerCase() !== 'k') return;
+
+      event.preventDefault();
+      setPaletteOpen((open) => !open);
+    };
+
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, []);
 
   const state = useMemo(
     () => Object.fromEntries(statuses.map((status) => [status.number, status.state])),
@@ -204,7 +228,19 @@ export function Home({ problems, statuses, boards, companies, settings }: HomePr
 
   return (
     <main className="mx-auto w-full max-w-7xl space-y-8 px-5 py-10">
+      <CommandPalette
+        open={paletteOpen}
+        problems={problems}
+        statuses={byNumber}
+        courses={courses}
+        onOpenChange={setPaletteOpen}
+        onSelect={(number) => router.push(`/c/${ALL_BOARD}?p=${number}`)}
+        onCourse={(id) => router.push(`/courses/${id}`)}
+      />
+
       {renderHero()}
+
+      <ContinueCard problems={problems} courses={courses} />
 
       {settings.reviewEnabled && (
         <ReviewQueue

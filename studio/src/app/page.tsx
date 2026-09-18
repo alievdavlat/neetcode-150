@@ -1,6 +1,7 @@
 import { Home } from '@/components/home';
 import { StrictGate } from '@/components/strict-gate';
 import { getBoards, getCompanies } from '@/server/collections';
+import { getCourses } from '@/server/courses';
 import { getProblems, getStatuses } from '@/server/problems';
 import { dueQueue } from '@/server/review';
 import { getSettings } from '@/server/settings';
@@ -8,10 +9,11 @@ import { getSettings } from '@/server/settings';
 export const dynamic = 'force-dynamic';
 
 export default async function Page() {
-  const [problems, statuses, companies, settings] = await Promise.all([
+  const [problems, statuses, companies, courses, settings] = await Promise.all([
     getProblems(),
     getStatuses(),
     getCompanies(),
+    getCourses(),
     getSettings(),
   ]);
 
@@ -30,6 +32,7 @@ export default async function Page() {
       statuses={statuses}
       boards={boards}
       companies={companies}
+      courses={courses}
       settings={settings}
     />
   );

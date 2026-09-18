@@ -194,7 +194,7 @@ export interface ProblemSource {
   video: string | null;
 }
 
-export type TraceKind = 'stmt' | 'loop-init' | 'loop-cond' | 'loop-update' | 'cond' | 'return';
+export type TraceKind = 'call' | 'stmt' | 'loop-init' | 'loop-cond' | 'loop-update' | 'cond' | 'return';
 
 export type TraceValue =
   | { t: 'scalar'; text: string }
@@ -233,6 +233,8 @@ export interface TraceStep {
   line: number;
   /** Which function the step is in; a case may run more than one. */
   fn: string | null;
+  /** How many calls deep, so recursion reads as a tree rather than a list. */
+  depth: number;
   kind: TraceKind;
   chain: string[];
   vars: Record<string, TraceValue>;
@@ -249,6 +251,9 @@ export interface TraceResult {
   status: TraceStatus;
   message: string | null;
   args: string[];
+  /** The arguments as JSON, which is what an input of your own is edited as. */
+  input: string;
+  custom: boolean;
   expect: string | null;
   result: string | null;
   /** This replay's own verdict, judged exactly as a run judges it. */

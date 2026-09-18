@@ -243,8 +243,25 @@ const counterMeta = (node) => ({
   pre: ts.isPrefixUnaryExpression(node),
 });
 
+/**
+ * Entering and leaving the function itself. The body is wrapped in
+ * `try { } finally { }` so a `return` from anywhere still reports the exit, and
+ * both insertions are newline-free, so every recorded line still matches the
+ * file the student is reading.
+ */
+function markCall(context, fn, name, scope) {
+  const id = record(context, 'call', fn, { changed: null, fn: name, text: `${name}(${scope.join(', ')})` });
+  const open = fn.body.getStart(context.file) + 1;
+  const close = fn.body.getEnd() - 1;
+
+  context.insert(open, `globalThis.__t.f(${id},{${scope.join(',')}});try{`, 3);
+  context.insert(close, `}finally{globalThis.__t.g(${id});}`, -3);
+}
+
 function walk(context, fn) {
   const scope = fn.parameters.filter((p) => ts.isIdentifier(p.name)).map((p) => p.name.text);
+
+  markCall(context, fn, context.fn, scope);
   walkBlock(context, fn.body, scope);
 }
 

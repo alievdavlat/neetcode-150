@@ -40,15 +40,24 @@ test('an unknown function name is refused', () => {
   assert.throws(() => instrument(SOURCE, { functionName: 'nope' }), /nope/);
 });
 
+test('the function itself is the first thing recorded', () => {
+  const { code, meta } = instrument(SIMPLE, { functionName: 'count' });
+
+  assert.equal(meta[0].kind, 'call');
+  assert.equal(meta[0].fn, 'count');
+  assert.match(code, /globalThis\.__t\.f\(0,\{nums\}\);try\{/);
+  assert.match(code, /\}finally\{globalThis\.__t\.g\(0\);\}/);
+});
+
 test('each statement gets a step marker carrying the live scope', () => {
   const { code, meta } = instrument(SIMPLE, { functionName: 'count' });
 
-  assert.match(code, /globalThis\.__t\.s\(0,\{nums,total\}\)/);
   assert.match(code, /globalThis\.__t\.s\(1,\{nums,total\}\)/);
-  assert.equal(meta[0].kind, 'stmt');
-  assert.equal(meta[0].line, 2);
-  assert.equal(meta[0].changed, 'total');
+  assert.match(code, /globalThis\.__t\.s\(2,\{nums,total\}\)/);
+  assert.equal(meta[1].kind, 'stmt');
+  assert.equal(meta[1].line, 2);
   assert.equal(meta[1].changed, 'total');
+  assert.equal(meta[2].changed, 'total');
 });
 
 test('a step marker starts with a semicolon so a missing one cannot bite', () => {

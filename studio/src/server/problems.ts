@@ -249,6 +249,7 @@ export async function traceProblem(
   variant: string,
   caseIndex: number,
   mode: SourceMode = 'file',
+  input: unknown[] | null = null,
 ): Promise<TraceResult> {
   const problems = await getProblems();
   const problem = problems.find((entry) => entry.number === number);
@@ -256,6 +257,7 @@ export async function traceProblem(
 
   const args = [number, variant, String(caseIndex)];
   if (mode === 'scratch') args.push('--file', problemPath(problem.file, 'scratch'));
+  if (input !== null) args.push('--args', JSON.stringify(input));
 
   return runBridge<TraceResult>({ script: 'trace.mjs', args, timeoutMs: 30000 });
 }
@@ -344,17 +346,25 @@ export async function syncStatuses(): Promise<ProblemStatus[]> {
   return pending.length === 0 ? statuses : getStatuses();
 }
 
-/** Run every started problem of one category, whatever its current verdict. */
-export async function runCategory(dir: string): Promise<ProblemStatus[]> {
+/** Run the started problems out of a set, whatever their current verdict. */
+async function runStarted(wanted: string[]): Promise<ProblemStatus[]> {
   const statuses = await getStatuses();
-  const problems = (await getProblems()).filter((problem) => problem.dir === dir);
-  if (problems.length === 0) throw new Error(`no category named ${dir}`);
-
   const started = new Set(
     statuses.filter((status) => status.state !== 'not-started').map((status) => status.number),
   );
-  const numbers = problems.map((problem) => problem.number).filter((number) => started.has(number));
 
-  await runMany(numbers);
+  await runMany(wanted.filter((number) => started.has(number)));
   return getStatuses();
+}
+
+export async function runCategory(dir: string): Promise<ProblemStatus[]> {
+  const problems = (await getProblems()).filter((problem) => problem.dir === dir);
+  if (problems.length === 0) throw new Error(`no category named ${dir}`);
+
+  return runStarted(problems.map((problem) => problem.number));
+}
+
+/** Everything on one board - the rail's list, not the whole workspace. */
+export async function runBoard(numbers: string[]): Promise<ProblemStatus[]> {
+  return runStarted(numbers);
 }

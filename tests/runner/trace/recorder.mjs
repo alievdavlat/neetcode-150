@@ -105,6 +105,7 @@ export function createRecorder(meta, { maxSteps = MAX_STEPS } = {}) {
   const steps = [];
   const frames = new Map();
   let lastId = null;
+  let depth = 0;
 
   /**
    * What one evaluation of one expression has reported so far. A recursive
@@ -148,6 +149,7 @@ export function createRecorder(meta, { maxSteps = MAX_STEPS } = {}) {
     return push({
       line: entry.line,
       fn: entry.fn ?? null,
+      depth,
       kind: entry.kind,
       chain,
       vars: {},
@@ -207,6 +209,31 @@ export function createRecorder(meta, { maxSteps = MAX_STEPS } = {}) {
         attach(emit(id, [entry.text, show(item)]), name ? { ...outer, [name]: item } : outer);
         yield item;
       }
+    },
+
+    /** Entering the function: the call, its arguments, and one level deeper. */
+    f: (id, scope) => {
+      const entry = meta[id];
+      depth += 1;
+      const shown = Object.entries(scope ?? {}).map(([, value]) => show(value));
+      attach(
+        push({
+          line: entry.line,
+          fn: entry.fn ?? null,
+          depth,
+          kind: 'call',
+          chain: [`${entry.fn}(${shown.join(', ')})`],
+          vars: {},
+          changed: null,
+          touched: [],
+        }),
+        scope,
+      );
+    },
+
+    /** Leaving it, however it left. */
+    g: () => {
+      depth = Math.max(0, depth - 1);
     },
 
     s: (id, scope) => {

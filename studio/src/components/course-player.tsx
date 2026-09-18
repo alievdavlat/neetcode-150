@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Check, ExternalLink, Play } from 'lucide-react';
 import { toast } from 'sonner';
 import { Progress } from '@/components/ui/progress';
@@ -13,14 +13,36 @@ import { cn } from '@/lib/utils';
 interface CoursePlayerProps {
   course: Course;
   watched: number[];
+  /** A link can name the lesson: `/courses/<id>?at=<seconds>`. */
+  start?: number;
 }
+
+const LESSON_KEY = 'neetcode-studio:lesson';
+const LAST_COURSE_KEY = 'neetcode-studio:last-course';
 
 const messageOf = (error: unknown) => (error instanceof Error ? error.message : String(error));
 
-export function CoursePlayer({ course, watched }: CoursePlayerProps) {
+export function CoursePlayer({ course, watched, start }: CoursePlayerProps) {
   const [seen, setSeen] = useState<number[]>(watched);
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(() => {
+    const asked = course.lessons.findIndex((entry) => entry.at === start);
+    return asked === -1 ? 0 : asked;
+  });
   const [saving, setSaving] = useState<number | null>(null);
+
+  /** Without a lesson in the link, carry on from wherever this course was left. */
+  useEffect(() => {
+    if (start !== undefined) return;
+
+    const stored = Number(window.localStorage.getItem(`${LESSON_KEY}:${course.id}`));
+    if (Number.isInteger(stored) && stored > 0 && stored < course.lessons.length) setCurrent(stored);
+  }, [course.id, course.lessons.length, start]);
+
+  const handlePick = (index: number) => {
+    window.localStorage.setItem(`${LESSON_KEY}:${course.id}`, String(index));
+    window.localStorage.setItem(LAST_COURSE_KEY, course.id);
+    setCurrent(index);
+  };
 
   const lesson = course.lessons[current];
   const done = new Set(seen);
@@ -60,7 +82,7 @@ export function CoursePlayer({ course, watched }: CoursePlayerProps) {
 
         <button
           type="button"
-          onClick={() => setCurrent(index)}
+          onClick={() => handlePick(index)}
           aria-current={playing ? 'true' : undefined}
           className={cn(
             'flex min-w-0 flex-1 items-center gap-3 rounded-lg px-2 py-1.5 text-left transition-colors',
@@ -117,7 +139,7 @@ export function CoursePlayer({ course, watched }: CoursePlayerProps) {
           {current + 1 < course.lessons.length && (
             <button
               type="button"
-              onClick={() => setCurrent(current + 1)}
+              onClick={() => handlePick(current + 1)}
               className="flex items-center gap-1.5 rounded-lg border border-line px-2.5 py-1 text-[11px] text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
             >
               <Play className="size-3.5" />

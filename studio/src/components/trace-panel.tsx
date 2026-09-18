@@ -12,6 +12,7 @@ import {
   Eye,
   Pause,
   Play,
+  Pencil,
   Radar,
   SkipBack,
   SkipForward,
@@ -19,6 +20,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { PanelNotice } from './panel-notice';
 import { TraceExpression } from './trace-expression';
@@ -41,7 +43,7 @@ interface TracePanelProps {
   caseIndex: number;
   jumpLine: { line: number; at: number } | null;
   onPick: (variant: string, caseIndex: number) => void;
-  onTrace: () => void;
+  onTrace: (input?: unknown[]) => void;
   onStep: (line: number | null) => void;
 }
 
@@ -55,6 +57,7 @@ const PICKED = 'border-primary/40 bg-primary/10 text-primary';
 const UNPICKED = 'border-line text-muted-foreground hover:border-primary/30 hover:text-foreground';
 
 const TICK: Record<TraceKind, string> = {
+  call: 'bg-hot/70',
   stmt: 'bg-cool/60',
   'loop-init': 'bg-medium/50',
   'loop-cond': 'bg-medium/70',
@@ -79,6 +82,10 @@ export function TracePanel({
   const [playing, setPlaying] = useState(false);
   const [speed, setSpeed] = useState(1);
   const [watching, setWatching] = useState<string | null>(null);
+  const [only, setOnly] = useState<string | null>(null);
+  const [editing, setEditing] = useState(false);
+  const [input, setInput] = useState('');
+  const [badInput, setBadInput] = useState<string | null>(null);
 
   const steps = useMemo(() => trace?.steps ?? [], [trace]);
   const current = steps[index] ?? null;
@@ -90,7 +97,23 @@ export function TracePanel({
   }, [index]);
 
   const passes = useMemo(() => passesOf(steps), [steps]);
-  const marks = useMemo(() => (watching ? stepsChanging(steps, watching) : null), [steps, watching]);
+
+  /** The functions this replay walked through; a case may run more than one. */
+  const walked = useMemo(
+    () => [...new Set(steps.map((step) => step.fn).filter((name): name is string => Boolean(name)))],
+    [steps],
+  );
+
+  /**
+   * Which steps the transport is allowed to land on: the ones that change the
+   * watched variable, inside the function being followed, or both.
+   */
+  const marks = useMemo(() => {
+    const changing = watching ? stepsChanging(steps, watching) : null;
+    if (!only) return changing;
+
+    return steps.map((step, position) => step.fn === only && (changing === null || changing[position]));
+  }, [steps, watching, only]);
   const changes = useMemo(
     () => (current ? changesOf(current, steps[index - 1] ?? null) : {}),
     [current, index, steps],
@@ -100,7 +123,25 @@ export function TracePanel({
     setIndex(0);
     setPlaying(false);
     setWatching(null);
+    setOnly(null);
   }, [trace]);
+
+  /** The box starts as whatever was just run, so an edit is a change to that. */
+  useEffect(() => {
+    if (trace?.input) setInput(trace.input);
+  }, [trace?.input]);
+
+  /** Following one function should land on it rather than wait for the next step. */
+  useEffect(() => {
+    if (!only) return;
+
+    setIndex((position) => {
+      if (steps[position]?.fn === only) return position;
+
+      const found = steps.findIndex((step) => step.fn === only);
+      return found === -1 ? position : found;
+    });
+  }, [only, steps]);
 
   useEffect(() => {
     onStep(current?.line ?? null);
@@ -168,6 +209,57 @@ export function TracePanel({
     });
   }, [steps, marks]);
 
+  const handleCustom = () => {
+    try {
+      const parsed = JSON.parse(input) as unknown;
+      if (!Array.isArray(parsed)) throw new Error('the input is the argument list, so it must be an array');
+
+      setBadInput(null);
+      onTrace(parsed);
+    } catch (error) {
+      setBadInput(error instanceof Error ? error.message : String(error));
+    }
+  };
+
+  /**
+   * Your own example, run through the same recorder. It has no expected answer,
+   * so the panel shows what happened and judges nothing.
+   */
+  const renderInput = () => (
+    <div className="space-y-1.5 rounded-lg border border-line bg-black/20 p-2">
+      <Textarea
+        value={input}
+        onChange={(event) => setInput(event.target.value)}
+        spellCheck={false}
+        aria-label="Arguments as JSON"
+        className="min-h-14 bg-transparent font-mono text-[11px]"
+      />
+
+      {badInput && <p className="text-[11px] text-fail">{badInput}</p>}
+
+      <div className="flex items-center gap-2">
+        <Button size="xs" onClick={handleCustom} disabled={tracing || !variant} className="gap-1.5">
+          <Radar className={cn(tracing && 'animate-pulse')} />
+          Simulate this
+        </Button>
+
+        <button
+          type="button"
+          onClick={() => {
+            setEditing(false);
+            setBadInput(null);
+            if (trace?.custom) onTrace();
+          }}
+          className="text-[11px] text-muted-foreground transition-colors hover:text-foreground"
+        >
+          back to the case
+        </button>
+
+        <span className="ml-auto font-mono text-[10px] text-muted-foreground">the argument list, as JSON</span>
+      </div>
+    </div>
+  );
+
   const renderPickers = () => (
     <div className="space-y-1.5 border-b border-line px-3 py-2">
       <div className="flex items-center gap-2">
@@ -175,11 +267,37 @@ export function TracePanel({
           simulation
         </p>
 
-        <Button size="xs" onClick={onTrace} disabled={tracing || !variant} className="ml-auto gap-1.5">
+        {trace?.custom && (
+          <span className="rounded-full border border-cool/40 bg-cool/10 px-2 py-0.5 text-[10px] text-cool">
+            your input · not judged
+          </span>
+        )}
+
+        {trace && (
+          <button
+            type="button"
+            onClick={() => setEditing(!editing)}
+            aria-pressed={editing}
+            title="Run this variant on an input you type"
+            className={cn('ml-auto flex items-center gap-1.5 rounded-lg border px-2 py-1 text-[11px] transition-colors', editing ? 'border-cool/40 bg-cool/10 text-cool' : 'border-line text-muted-foreground hover:border-cool/40 hover:text-foreground')}
+          >
+            <Pencil className="size-3" />
+            Input
+          </button>
+        )}
+
+        <Button
+          size="xs"
+          onClick={() => onTrace()}
+          disabled={tracing || !variant}
+          className={cn('gap-1.5', !trace && 'ml-auto')}
+        >
           <Radar className={cn(tracing && 'animate-pulse')} />
           {tracing ? 'Recording' : 'Simulate'}
         </Button>
       </div>
+
+      {editing && renderInput()}
 
       {variants.length > 1 && (
         <div role="group" aria-label="variant" className="flex flex-wrap gap-1">
@@ -296,6 +414,28 @@ export function TracePanel({
       >
         <SkipForward />
       </Button>
+
+      {walked.length > 1 && (
+        <span role="group" aria-label="follow one function" className="ml-2 flex items-center gap-1">
+          {walked.map((name) => (
+            <button
+              key={name}
+              type="button"
+              aria-pressed={only === name}
+              onClick={() => setOnly(only === name ? null : name)}
+              title={only === name ? `Step through every function again` : `Step only through ${name}`}
+              className={cn(
+                'rounded-full border px-2 py-0.5 font-mono text-[10px] transition-colors',
+                only === name
+                  ? 'border-primary/50 bg-primary/10 text-primary'
+                  : 'border-line text-muted-foreground hover:border-white/20 hover:text-foreground',
+              )}
+            >
+              {name}
+            </button>
+          ))}
+        </span>
+      )}
 
       <Button
         variant="ghost"

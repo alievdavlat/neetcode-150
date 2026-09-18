@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { GraduationCap, ListChecks, PanelLeftClose, PanelLeftOpen, Settings2 } from 'lucide-react';
+import { GraduationCap, ListChecks, NotebookPen, PanelLeftClose, PanelLeftOpen, Settings2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface Item {
@@ -28,6 +28,12 @@ const ITEMS: Item[] = [
     label: 'Courses',
     icon: GraduationCap,
     owns: (path) => path.startsWith('/courses'),
+  },
+  {
+    href: '/notes',
+    label: 'Notes',
+    icon: NotebookPen,
+    owns: (path) => path.startsWith('/notes'),
   },
 ];
 

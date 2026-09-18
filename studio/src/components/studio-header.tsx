@@ -2,7 +2,7 @@
 
 import { motion } from 'motion/react';
 import Link from 'next/link';
-import { ArrowLeft, Loader2, Maximize2, Minimize2, RefreshCw, Settings2 } from 'lucide-react';
+import { ArrowLeft, Loader2, Maximize2, Minimize2, Play, RefreshCw, Settings2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Brand } from './brand';
@@ -17,6 +17,8 @@ interface StudioHeaderProps {
   pending: number;
   syncing: boolean;
   focus: boolean;
+  runningBoard: boolean;
+  onRunBoard: () => void;
   onCollectionChange: (id: string) => void;
   onFocusChange: (focus: boolean) => void;
   onSync: () => void;
@@ -32,6 +34,8 @@ export function StudioHeader({
   pending,
   syncing,
   focus,
+  runningBoard,
+  onRunBoard,
   onCollectionChange,
   onFocusChange,
   onSync,
@@ -80,6 +84,20 @@ export function StudioHeader({
     </Link>
   );
 
+  const renderRunBoard = () => (
+    <Button
+      variant="ghost"
+      size="sm"
+      onClick={onRunBoard}
+      disabled={runningBoard}
+      title="Run every started problem on this board"
+      aria-label="Run every started problem on this board"
+    >
+      {runningBoard ? <Loader2 className="size-3.5 animate-spin" /> : <Play className="size-3.5" />}
+      {runningBoard ? 'Running' : 'Run board'}
+    </Button>
+  );
+
   const renderSync = () => (
     <Button
       variant="ghost"
@@ -120,6 +138,7 @@ export function StudioHeader({
       {renderBoards()}
 
       <div className="ml-auto flex items-center gap-2">
+        {renderRunBoard()}
         {renderSync()}
         {renderFocus()}
         {renderSettings()}

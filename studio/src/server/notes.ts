@@ -1,4 +1,4 @@
-import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
+import { mkdir, readdir, readFile, rename, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { STUDIO_ROOT } from './workspace';
 
@@ -23,4 +23,25 @@ export async function writeNote(number: string, text: string): Promise<void> {
   await mkdir(NOTES_DIR, { recursive: true });
   await writeFile(temp, text, 'utf8');
   await rename(temp, target);
+}
+
+/** Every note that has something in it, newest first, for the notes page. */
+export async function readNotes(): Promise<{ number: string; note: string; at: string }[]> {
+  const names = await readdir(NOTES_DIR).catch(() => []);
+
+  const notes = await Promise.all(
+    names
+      .filter((name) => /^\d{3,4}\.md$/.test(name))
+      .map(async (name) => {
+        const target = path.join(NOTES_DIR, name);
+        const [note, info] = await Promise.all([
+          readFile(target, 'utf8').catch(() => ''),
+          stat(target).catch(() => null),
+        ]);
+
+        return { number: name.replace('.md', ''), note: note.trim(), at: info?.mtime.toISOString() ?? '' };
+      }),
+  );
+
+  return notes.filter((entry) => entry.note !== '').sort((left, right) => right.at.localeCompare(left.at));
 }

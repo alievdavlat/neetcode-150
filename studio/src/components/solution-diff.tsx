@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import type { DiffOnMount } from '@monaco-editor/react';
 import type { editor } from 'monaco-editor';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { relativeTime } from '@/lib/meta';
 import type { SolutionSnapshot } from '@/lib/types';
 
@@ -78,7 +79,14 @@ function DiffSurface({ original, modified }: DiffSurfaceProps) {
 }
 
 export function SolutionDiff({ open, title, current, snapshots, onOpenChange }: SolutionDiffProps) {
-  const latest = snapshots[0];
+  const [pick, setPick] = useState(0);
+
+  /** Reopening for another problem must not keep the last one's chosen snapshot. */
+  useEffect(() => {
+    if (open) setPick(0);
+  }, [open]);
+
+  const chosen = snapshots[Math.min(pick, snapshots.length - 1)];
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -86,15 +94,30 @@ export function SolutionDiff({ open, title, current, snapshots, onOpenChange }: 
         <DialogHeader>
           <DialogTitle>{title} — your last solve vs now</DialogTitle>
           <DialogDescription>
-            {latest
-              ? `Snapshot taken ${relativeTime(readableStamp(latest.at))}. Left is what passed then, right is the editor now.`
+            {chosen
+              ? `Snapshot taken ${relativeTime(readableStamp(chosen.at))}. Left is what passed then, right is the editor now.`
               : 'No passing solve has been recorded for this problem yet.'}
           </DialogDescription>
         </DialogHeader>
 
-        {latest && (
+        {snapshots.length > 1 && (
+          <Select value={String(pick)} onValueChange={(next) => setPick(Number(next))}>
+            <SelectTrigger aria-label="Which passing solve to compare against" className="h-8 w-64">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {snapshots.map((entry, index) => (
+                <SelectItem key={entry.at} value={String(index)}>
+                  {index === 0 ? 'Latest' : `${index + 1} solves ago`} · {relativeTime(readableStamp(entry.at))}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        )}
+
+        {chosen && (
           <div className="h-[60vh] overflow-hidden rounded-xl border border-line">
-            <DiffSurface original={latest.source} modified={current} />
+            <DiffSurface original={chosen.source} modified={current} />
           </div>
         )}
       </DialogContent>

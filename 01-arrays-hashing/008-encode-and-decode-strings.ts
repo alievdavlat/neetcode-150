@@ -31,14 +31,23 @@
 
 export function encode(strs: string[]): string {
   let res = '';
-  for(const word of strs) res += `${strs.length}#${word}`
+  for(const word of strs) res += `${word.length}#${word}`
   return res;
 };
 
 export function decode(str: string): string[] {
   let res:string[] = [];
   let i:number = 0;
-  for(let i = 0; i < str.length; i++) {
-        const position = str.indexOf('#', i)
+
+  while(i < str.length) {
+    const pos = str.indexOf('#', i)
+    const len = Number(str.slice(i, pos));
+    i = pos + 1;
+
+    const word = str.slice(i, i + len);
+    res.push(word)
+
+    i += len;
   }
+  return res;
 }

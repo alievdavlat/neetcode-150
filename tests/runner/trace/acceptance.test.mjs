@@ -28,20 +28,23 @@ async function trace(fixture, functionName, args) {
   }
 }
 
-test('the hash map two sum produces sixteen steps and the right pair', async () => {
+test('the hash map two sum produces seventeen steps and the right pair', async () => {
   const { steps, result } = await trace('two-sum.ts', 'twoSum', [[3, 2, 4], 6]);
 
   assert.deepEqual(result, [2, 1]);
-  assert.equal(steps.length, 16);
+  assert.equal(steps.length, 17);
+  assert.equal(steps[0].kind, 'call');
+  assert.deepEqual(steps[0].chain, ['twoSum([3,2,4], 6)']);
+  assert.equal(steps[0].depth, 1);
   assert.deepEqual(steps.at(-1).chain, ['[i, obj[calc]]', '[2, 1]']);
   assert.equal(steps.at(-1).kind, 'return');
 });
 
-test('the counting anagram produces seventeen steps and passes', async () => {
+test('the counting anagram produces eighteen steps and passes', async () => {
   const { steps, result } = await trace('valid-anagram.ts', 'isAnagram', ['cat', 'act']);
 
   assert.equal(result, true);
-  assert.equal(steps.length, 17);
+  assert.equal(steps.length, 18);
   assert.equal(steps.at(-1).chain.at(-1), 'true');
 });
 

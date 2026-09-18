@@ -10,6 +10,8 @@ const TIMEOUT_MS = 15000;
 const [number, variant, index, ...flags] = process.argv.slice(2);
 const fileFlag = flags.indexOf('--file');
 const file = fileFlag === -1 ? null : flags[fileFlag + 1];
+const argsFlag = flags.indexOf('--args');
+const args = argsFlag === -1 ? null : flags[argsFlag + 1];
 
 /** V8 and process-wide flags are rejected in a worker's execArgv. */
 const workerArgv = () =>
@@ -17,7 +19,7 @@ const workerArgv = () =>
 
 const outcome = await new Promise((resolve) => {
   const worker = new Worker(WORKER, {
-    workerData: { number, variant, caseIndex: Number(index), file },
+    workerData: { number, variant, caseIndex: Number(index), file, args },
     execArgv: workerArgv(),
   });
 
@@ -49,6 +51,8 @@ process.stdout.write(
     caseIndex: Number(index),
     message: null,
     args: [],
+    input: '[]',
+    custom: false,
     expect: null,
     result: null,
     passed: null,

@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { StrictGate } from '@/components/strict-gate';
 import { Studio } from '@/components/studio';
 import { getBoards, getCollections } from '@/server/collections';
+import { getCourses } from '@/server/courses';
 import { getProblems, getStatuses } from '@/server/problems';
 import { dueQueue } from '@/server/review';
 import { getSettings } from '@/server/settings';
@@ -17,10 +18,11 @@ export default async function BoardPage({
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const [{ id }, query] = await Promise.all([params, searchParams]);
-  const [problems, statuses, collections, settings] = await Promise.all([
+  const [problems, statuses, collections, courses, settings] = await Promise.all([
     getProblems(),
     getStatuses(),
     getCollections(),
+    getCourses(),
     getSettings(),
   ]);
 
@@ -42,7 +44,9 @@ export default async function BoardPage({
         problems={problems}
         statuses={statuses}
         collections={collections}
+        courses={courses}
         boardId={id}
+        initialNumber={asked && problems.some((problem) => problem.number === asked) ? asked : ''}
         settings={settings}
       />
     </Suspense>

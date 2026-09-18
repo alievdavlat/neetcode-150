@@ -13,7 +13,8 @@
     "test:mem": "node --experimental-strip-types --disable-warning=ExperimentalWarning tests/runner/cli.mjs --memory",
     "test:trace": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test tests/runner/trace/*.test.mjs",
     "test:review": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test tests/runner/schedule/*.test.mjs",
-    "studio": "npm --prefix studio run dev"
+    "studio": "npm --prefix studio run dev",
+    "studio:prod": "npm --prefix studio run studio:prod"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",

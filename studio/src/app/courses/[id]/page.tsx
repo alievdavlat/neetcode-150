@@ -11,8 +11,15 @@ import { duration } from '@/lib/meta';
 
 export const dynamic = 'force-dynamic';
 
-export default async function CoursePage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+export default async function CoursePage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const [{ id }, query] = await Promise.all([params, searchParams]);
+  const asked = typeof query.at === 'string' ? Number(query.at) : Number.NaN;
   const [course, watched, statuses, settings] = await Promise.all([
     getCourse(id),
     getWatched(),
@@ -48,7 +55,11 @@ export default async function CoursePage({ params }: { params: Promise<{ id: str
         </div>
       </header>
 
-      <CoursePlayer course={course} watched={watched[course.id] ?? []} />
+      <CoursePlayer
+        course={course}
+        watched={watched[course.id] ?? []}
+        start={Number.isInteger(asked) ? asked : undefined}
+      />
     </main>
   );
 }

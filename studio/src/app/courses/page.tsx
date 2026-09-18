@@ -1,4 +1,5 @@
 import { CourseCard } from '@/components/course-card';
+import { CourseSearch } from '@/components/course-search';
 import { StrictGate } from '@/components/strict-gate';
 import { getCourses, getWatched } from '@/server/courses';
 import { getProblems, getStatuses } from '@/server/problems';
@@ -77,7 +78,9 @@ export default async function CoursesPage() {
           <span className="font-mono">npm run courses</span>.
         </p>
       ) : (
-        tracks.map(renderTrack)
+        <CourseSearch courses={courses}>
+          <div className="space-y-8">{tracks.map(renderTrack)}</div>
+        </CourseSearch>
       )}
     </main>
   );

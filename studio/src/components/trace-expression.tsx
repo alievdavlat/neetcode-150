@@ -13,6 +13,7 @@ interface TraceExpressionProps {
 }
 
 const LABEL: Record<TraceKind, string> = {
+  call: 'call',
   stmt: 'statement',
   'loop-init': 'loop start',
   'loop-cond': 'loop test',
@@ -22,6 +23,7 @@ const LABEL: Record<TraceKind, string> = {
 };
 
 const TONE: Record<TraceKind, string> = {
+  call: 'border-hot/30 bg-hot/10 text-hot',
   stmt: 'border-cool/30 bg-cool/10 text-cool',
   'loop-init': 'border-medium/30 bg-medium/10 text-medium',
   'loop-cond': 'border-medium/30 bg-medium/10 text-medium',
@@ -81,6 +83,15 @@ export function TraceExpression({ step, pass, onJumpLine }: TraceExpressionProps
 
         {step.fn && (
           <span className="font-mono text-[10px] text-muted-foreground/70">{step.fn}()</span>
+        )}
+
+        {step.depth > 1 && (
+          <span
+            title="How many calls deep this step is"
+            className="rounded-full border border-line px-2 py-0.5 font-mono text-[10px] text-muted-foreground"
+          >
+            depth {step.depth}
+          </span>
         )}
 
         <button
