@@ -5,8 +5,24 @@ import { STUDIO_ROOT } from './workspace';
 
 const COURSE_DIR = path.join(STUDIO_ROOT, 'courses');
 const WATCHED_FILE = path.join(STUDIO_ROOT, '.studio', 'courses.json');
+const NOTES_FILE = path.join(STUDIO_ROOT, '.studio', 'course-notes.json');
+const MAX_NOTE = 8 * 1024;
 
 type Watched = Record<string, number[]>;
+type CourseNotes = Record<string, Record<string, string>>;
+
+/**
+ * Both files are read, changed and written back, so two quick ticks could drop
+ * one. Writes take turns instead.
+ */
+let writing: Promise<unknown> = Promise.resolve();
+
+function inTurn<T>(job: () => Promise<T>): Promise<T> {
+  const next = writing.then(job, job);
+  writing = next.catch(() => null);
+
+  return next;
+}
 
 /**
  * Courses are whole files written by `npm run courses`, never by the app: the
@@ -25,6 +41,7 @@ export async function getCourses(): Promise<Course[]> {
       try {
         return JSON.parse(raw) as Course;
       } catch {
+        console.warn(`courses: ${name} is not readable JSON, so it is not listed`);
         return null;
       }
     }),
@@ -53,18 +70,55 @@ export async function getWatched(): Promise<Watched> {
 
 /** Marking a lesson watched is the student's own claim, so it is stored as one. */
 export async function setWatched(course: string, at: number, watched: boolean): Promise<number[]> {
-  const all = await getWatched();
-  const current = new Set(all[course] ?? []);
+  return inTurn(async () => {
+    const all = await getWatched();
+    const current = new Set(all[course] ?? []);
 
-  if (watched) current.add(at);
-  else current.delete(at);
+    if (watched) current.add(at);
+    else current.delete(at);
 
-  all[course] = [...current].sort((left, right) => left - right);
+    all[course] = [...current].sort((left, right) => left - right);
 
-  const temp = `${WATCHED_FILE}.tmp`;
-  await mkdir(path.dirname(WATCHED_FILE), { recursive: true });
-  await writeFile(temp, `${JSON.stringify(all, null, 2)}\n`);
-  await rename(temp, WATCHED_FILE);
+    const temp = `${WATCHED_FILE}.tmp`;
+    await mkdir(path.dirname(WATCHED_FILE), { recursive: true });
+    await writeFile(temp, `${JSON.stringify(all, null, 2)}\n`);
+    await rename(temp, WATCHED_FILE);
 
-  return all[course];
+    return all[course];
+  });
+}
+
+export async function getCourseNotes(): Promise<CourseNotes> {
+  const raw = await readFile(NOTES_FILE, 'utf8').catch(() => null);
+  if (raw === null) return {};
+
+  try {
+    const parsed = JSON.parse(raw) as CourseNotes;
+    return typeof parsed === 'object' && parsed !== null ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
+/** One note per lesson, keyed by where the lesson starts. */
+export async function setCourseNote(course: string, at: number, note: string): Promise<string> {
+  if (Buffer.byteLength(note) > MAX_NOTE) throw new Error('that note is too long');
+
+  return inTurn(async () => {
+  const all = await getCourseNotes();
+    const forCourse = { ...(all[course] ?? {}) };
+
+    if (note.trim() === '') delete forCourse[String(at)];
+    else forCourse[String(at)] = note;
+
+    all[course] = forCourse;
+
+    const temp = `${NOTES_FILE}.tmp`;
+    await mkdir(path.dirname(NOTES_FILE), { recursive: true });
+    await writeFile(temp, `${JSON.stringify(all, null, 2)}
+  `);
+    await rename(temp, NOTES_FILE);
+
+    return note;
+  });
 }

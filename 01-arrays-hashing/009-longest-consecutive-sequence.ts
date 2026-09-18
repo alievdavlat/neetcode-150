@@ -30,6 +30,42 @@
  * LeetCode:  https://leetcode.com/problems/longest-consecutive-sequence/
  * Video:     https://www.youtube.com/watch?v=T0u5nwSA0w0&t=5731s  (01:35:31)
  */
+// export function longestConsecutive(nums: number[]): number {
+//   let res:number[] = [];
+//   for(let i = 0; i < nums.length; i++) {
+//     let calc = Math.abs(nums[i] - (Number.isFinite(nums[i + 1]) ? nums[i + 1] : nums[nums.length - 1]));
+//     if(calc < 10) res.push(nums[i]);
+//   }
+
+//   return res.length
+// }
+
+
 export function longestConsecutive(nums: number[]): number {
-  throw new Error('Not implemented');
+  const set = new Set(nums);
+
+  let longest = 0;
+
+  for (const num of set) {
+
+    // 1. num sequence boshlanishimi?
+    if (!set.has(num - 1)) {
+
+      // 2. sequence uzunligini hisobla
+      let length = 1;
+
+      // 3. keyingi sonni tekshir
+      let current = num + 1;
+
+      while (set.has(current)) {
+        length++;
+        current++;
+      }
+
+      // 4. eng kattasini saqla
+      longest = Math.max(longest, length);
+    }
+  }
+
+  return longest;
 }

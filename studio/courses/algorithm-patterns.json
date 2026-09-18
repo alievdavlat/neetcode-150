@@ -1,0 +1,130 @@
+{
+  "id": "algorithm-patterns",
+  "track": "Algorithms",
+  "name": "Interview patterns",
+  "blurb": "The handful of shapes most interview problems reduce to, one after another.",
+  "video": "Z_c4byLrNBU",
+  "url": "https://www.youtube.com/watch?v=Z_c4byLrNBU",
+  "title": "Data Structure and Algorithm Patterns for LeetCode Interviews – Tutorial",
+  "channel": "freeCodeCamp.org",
+  "seconds": 4503,
+  "lessons": [
+    {
+      "title": "Array",
+      "at": 0,
+      "seconds": 191
+    },
+    {
+      "title": "String",
+      "at": 191,
+      "seconds": 105
+    },
+    {
+      "title": "Set",
+      "at": 296,
+      "seconds": 104
+    },
+    {
+      "title": "Control Flow & Looping",
+      "at": 400,
+      "seconds": 52
+    },
+    {
+      "title": "Big O Notation",
+      "at": 452,
+      "seconds": 150
+    },
+    {
+      "title": "Hashmap",
+      "at": 602,
+      "seconds": 352
+    },
+    {
+      "title": "Hashmap practice problems",
+      "at": 954,
+      "seconds": 178
+    },
+    {
+      "title": "Two Pointers",
+      "at": 1132,
+      "seconds": 244
+    },
+    {
+      "title": "Two Pointers practice problems",
+      "at": 1376,
+      "seconds": 232
+    },
+    {
+      "title": "Sliding Window",
+      "at": 1608,
+      "seconds": 297
+    },
+    {
+      "title": "Sliding Window practice problems",
+      "at": 1905,
+      "seconds": 354
+    },
+    {
+      "title": "Binary Search",
+      "at": 2259,
+      "seconds": 109
+    },
+    {
+      "title": "Binary Search practice problems",
+      "at": 2368,
+      "seconds": 540
+    },
+    {
+      "title": "Breadth-First Search (BFS) on Trees",
+      "at": 2908,
+      "seconds": 128
+    },
+    {
+      "title": "BFS on Graphs",
+      "at": 3036,
+      "seconds": 97
+    },
+    {
+      "title": "BFS practice problems",
+      "at": 3133,
+      "seconds": 318
+    },
+    {
+      "title": "Depth-First Search (DFS)",
+      "at": 3451,
+      "seconds": 90
+    },
+    {
+      "title": "DFS on Graphs",
+      "at": 3541,
+      "seconds": 83
+    },
+    {
+      "title": "DFS practice problems",
+      "at": 3624,
+      "seconds": 277
+    },
+    {
+      "title": "Backtracking",
+      "at": 3901,
+      "seconds": 193
+    },
+    {
+      "title": "Backtracking practice problems",
+      "at": 4094,
+      "seconds": 133
+    },
+    {
+      "title": "Priority Queue/heap",
+      "at": 4227,
+      "seconds": 69
+    },
+    {
+      "title": "Priority Queue/heap practice problems",
+      "at": 4296,
+      "seconds": 207
+    }
+  ],
+  "from": "chapter panel",
+  "fetchedAt": "2026-09-18T12:14:52.288Z"
+}

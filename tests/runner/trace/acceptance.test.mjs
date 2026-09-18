@@ -48,6 +48,15 @@ test('the counting anagram produces eighteen steps and passes', async () => {
   assert.equal(steps.at(-1).chain.at(-1), 'true');
 });
 
+test('a property name is not recorded as a value of its own', async () => {
+  const { steps, result } = await trace('name-leaves.ts', 'counts', [[1, 2, 3]]);
+
+  /** `res.length` reads one thing; wrapping `length` used to emit `res.globalThis.__t.l(...)`. */
+  assert.equal(result, 1);
+  assert.equal(steps.at(-1).kind, 'return');
+  assert.equal(steps.at(-1).chain.at(-1), '1');
+});
+
 test('every step points at a line the fixture actually has', async () => {
   const source = await readFile(new URL('fixtures/two-sum.ts', HERE), 'utf8');
   const total = source.split('\n').length;

@@ -125,6 +125,62 @@ async function fetchPage(url) {
   throw new Error('no video details after three tries');
 }
 
+/**
+ * A playlist is a course whose lessons are whole videos rather than chapters of
+ * one. Each lesson carries its own video id; the rest of the shape is the same.
+ */
+async function fetchPlaylist(entry) {
+  const url = `https://www.youtube.com/playlist?list=${entry.playlist}`;
+  const response = await fetch(url, { headers: HEADERS });
+  if (!response.ok) throw new Error(`youtube answered ${response.status}`);
+
+  const html = await response.text();
+  const data = extract(html, 'var ytInitialData =');
+  if (!data) throw new Error('no playlist data in the page');
+
+  const videos = [];
+  const collectVideos = (node) => {
+    if (!node || typeof node !== 'object') return;
+    if (node.playlistVideoRenderer) {
+      const item = node.playlistVideoRenderer;
+      const title = item.title?.runs?.[0]?.text ?? item.title?.simpleText;
+      const seconds = Number(item.lengthSeconds);
+      if (title && Number.isFinite(seconds)) videos.push({ title: title.trim(), seconds, video: item.videoId });
+    }
+    for (const key of Object.keys(node)) collectVideos(node[key]);
+  };
+  collectVideos(data);
+
+  const seen = new Set();
+  const lessons = videos
+    .filter((video) => !seen.has(video.video) && seen.add(video.video))
+    .map((video) => ({ title: video.title, at: 0, seconds: video.seconds, video: video.video }));
+
+  if (lessons.length === 0) {
+    throw new Error('youtube did not list this playlist to a plain request — it only serves some playlists this way');
+  }
+
+  const header = data.header?.playlistHeaderRenderer;
+  const title = header?.title?.simpleText ?? header?.title?.runs?.[0]?.text ?? entry.name;
+  const channel = header?.ownerText?.runs?.[0]?.text ?? 'YouTube';
+
+  return {
+    id: entry.id,
+    track: entry.track,
+    name: entry.name,
+    blurb: entry.blurb,
+    playlist: entry.playlist,
+    video: lessons[0]?.video ?? '',
+    url,
+    title,
+    channel,
+    seconds: lessons.reduce((total, lesson) => total + lesson.seconds, 0),
+    lessons,
+    from: 'playlist',
+    fetchedAt: new Date().toISOString(),
+  };
+}
+
 async function fetchCourse(entry) {
   const url = `https://www.youtube.com/watch?v=${entry.video}`;
   const { html, player } = await fetchPage(url);
@@ -184,7 +240,11 @@ for (const entry of source.courses) {
       .then((raw) => JSON.parse(raw))
       .catch(() => null);
 
-    if (existing?.video === entry.video && existing.lessons?.length > 0) {
+    const same = entry.playlist ? existing?.playlist === entry.playlist : existing?.video === entry.video;
+    if (same && existing.lessons?.length > 0) {
+      const merged = { ...existing, track: entry.track, name: entry.name, blurb: entry.blurb };
+      await writeFile(target, `${JSON.stringify(merged, null, 2)}
+`);
       console.log(`${entry.id}: already imported (${existing.lessons.length} lessons) — --force to refresh`);
       continue;
     }
@@ -195,7 +255,7 @@ for (const entry of source.courses) {
   first = false;
 
   try {
-    const course = await fetchCourse(entry);
+    const course = entry.playlist ? await fetchPlaylist(entry) : await fetchCourse(entry);
     if (course.lessons.length === 0) {
       console.log(`${entry.id}: no chapters on this video — skipped, it would be a course of one lesson`);
       continue;

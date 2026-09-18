@@ -1,0 +1,390 @@
+{
+  "id": "neetcode-150-course",
+  "track": "Algorithms",
+  "name": "NeetCode 150 walkthrough",
+  "blurb": "The course this workspace was generated from: every problem in the list, solved on video.",
+  "video": "T0u5nwSA0w0",
+  "url": "https://www.youtube.com/watch?v=T0u5nwSA0w0",
+  "title": "Neetcode 150 Course - All Coding Interview Questions Solved",
+  "channel": "freeCodeCamp.org",
+  "seconds": 140230,
+  "lessons": [
+    {
+      "title": "Into",
+      "at": 0,
+      "seconds": 129
+    },
+    {
+      "title": "1 Contains Duplicate, 2 Valid Anagram",
+      "at": 129,
+      "seconds": 981
+    },
+    {
+      "title": "3 Two Sum, 4 Group Anagrams",
+      "at": 1110,
+      "seconds": 1355
+    },
+    {
+      "title": "5 Top K Frequent Elements, 6 Product of Array Except Self",
+      "at": 2465,
+      "seconds": 1648
+    },
+    {
+      "title": "7 Valid Sudoku, 8 Encode and Decode Strings",
+      "at": 4113,
+      "seconds": 1618
+    },
+    {
+      "title": "9 Longest Consecutive Sequence, 10 Valid Palindrome",
+      "at": 5731,
+      "seconds": 1962
+    },
+    {
+      "title": "11 Two Sum II Input Array Is Sorted, 12 3Sum",
+      "at": 7693,
+      "seconds": 1965
+    },
+    {
+      "title": "13 Container With Most Water, 14 Trapping Rain Water",
+      "at": 9658,
+      "seconds": 2491
+    },
+    {
+      "title": "15 Best Time to Buy And Sell Stock, 16 Longest Substring w/out Repeating Characters",
+      "at": 12149,
+      "seconds": 1235
+    },
+    {
+      "title": "17 Longest Repeating Character Replacement, 18 Permutation In String",
+      "at": 13384,
+      "seconds": 2047
+    },
+    {
+      "title": "19 Minimum Window Substring, 20 Sliding Window Maximum",
+      "at": 15431,
+      "seconds": 2553
+    },
+    {
+      "title": "21 Valid Parentheses, 22 Min Stack",
+      "at": 17984,
+      "seconds": 1249
+    },
+    {
+      "title": "23 Evaluate Reverse Polish Notation, 24 Generate Parentheses",
+      "at": 19233,
+      "seconds": 1521
+    },
+    {
+      "title": "25 Daily Temperatures, 26 Car Fleet",
+      "at": 20754,
+      "seconds": 2008
+    },
+    {
+      "title": "27 Largest Rectangle In Histogram, 28 Binary Search",
+      "at": 22762,
+      "seconds": 1621
+    },
+    {
+      "title": "29 Search a 2D Matrix, 30 Koko Eating Bananas",
+      "at": 24383,
+      "seconds": 1498
+    },
+    {
+      "title": "31 Find Minimum In Rotated Sorted Array, 32 Search In Rotated Sorted Array",
+      "at": 25881,
+      "seconds": 1584
+    },
+    {
+      "title": "33 Time Based Key Value Store, 34 Median of Two Sorted Arrays",
+      "at": 27465,
+      "seconds": 2668
+    },
+    {
+      "title": "35 Reverse Linked List, 36 Merge Two Sorted Lists",
+      "at": 30133,
+      "seconds": 1131
+    },
+    {
+      "title": "37 Reorder List, 38 Remove Nth Node From End of List",
+      "at": 31264,
+      "seconds": 1577
+    },
+    {
+      "title": "39 Copy List With Random Pointer, 40 Add Two Numbers",
+      "at": 32841,
+      "seconds": 1579
+    },
+    {
+      "title": "41 Linked List Cycle, 42 Find The Duplicate Number",
+      "at": 34420,
+      "seconds": 1520
+    },
+    {
+      "title": "43 LRU Cache, 44 Merge K Sorted Lists",
+      "at": 35940,
+      "seconds": 2075
+    },
+    {
+      "title": "45 Reverse Nodes In K Group, 46 Invert Binary Tree",
+      "at": 38015,
+      "seconds": 1470
+    },
+    {
+      "title": "47 Maximum Depth of Binary Tree, 48 Diameter of Binary Tree",
+      "at": 39485,
+      "seconds": 877
+    },
+    {
+      "title": "49 Balanced Binary Tree, 50 Same Tree",
+      "at": 40362,
+      "seconds": 954
+    },
+    {
+      "title": "51 Subtree of Another Tree, 52 Lowest Common Ancestor of a Binary Search Tree",
+      "at": 41316,
+      "seconds": 1142
+    },
+    {
+      "title": "53 Binary Tree Level Order Traversal, 54 Binary Tree Right Side View",
+      "at": 42458,
+      "seconds": 1314
+    },
+    {
+      "title": "55 Count Good Nodes In Binary Tree, 56 Validate Binary Search Tree",
+      "at": 43772,
+      "seconds": 1256
+    },
+    {
+      "title": "57 Kth Smallest Element In a Bst, 58 Construct Binary Tree",
+      "at": 45028,
+      "seconds": 1398
+    },
+    {
+      "title": "59 Binary Tree Maximum Path Sum, 60 Serialize And Deserialize Binary Tree",
+      "at": 46426,
+      "seconds": 1598
+    },
+    {
+      "title": "61 Implement Trie Prefix Tree, 62 Design Add And Search Words",
+      "at": 48024,
+      "seconds": 2464
+    },
+    {
+      "title": "63 Word Search II, 64 Kth Largest Element In a Stream",
+      "at": 50488,
+      "seconds": 1749
+    },
+    {
+      "title": "65 Last Stone Weight, 66 K Closest Points to Origin",
+      "at": 52237,
+      "seconds": 1207
+    },
+    {
+      "title": "67 Kth Largest Element In Array, 68 Task Scheduler",
+      "at": 53444,
+      "seconds": 1752
+    },
+    {
+      "title": "69 Design Twitter, 70 Find Median From Data Stream",
+      "at": 55196,
+      "seconds": 3347
+    },
+    {
+      "title": "71 Subsets, 72 Combination Sum",
+      "at": 58543,
+      "seconds": 2051
+    },
+    {
+      "title": "75 Combination Sum II, 76 Word Search",
+      "at": 60594,
+      "seconds": 1569
+    },
+    {
+      "title": "77 Palindrome Partitioning, 78 Letter Combinations of a Phone",
+      "at": 62163,
+      "seconds": 1685
+    },
+    {
+      "title": "79 N Queens, 80 Number of Islands",
+      "at": 63848,
+      "seconds": 1716
+    },
+    {
+      "title": "81 Clone Graph, 82 Max Area of Island",
+      "at": 65564,
+      "seconds": 2481
+    },
+    {
+      "title": "83 Pacific Atlantic Water Flow, 84 Surrounded Regions",
+      "at": 68045,
+      "seconds": 1643
+    },
+    {
+      "title": "85 Rotting 🍊, 86 Walls And Gates",
+      "at": 69688,
+      "seconds": 2035
+    },
+    {
+      "title": "87 Course Schedule, 88 Course Schedule II",
+      "at": 71723,
+      "seconds": 1733
+    },
+    {
+      "title": "89 Redundant Connection, 90 Number of Connected Components",
+      "at": 73456,
+      "seconds": 2827
+    },
+    {
+      "title": "91 Graph Valid Tree, 92 Word Ladder",
+      "at": 76283,
+      "seconds": 1887
+    },
+    {
+      "title": "93 Reconstruct Itinerary, 94 Min Cost to Connect All Points",
+      "at": 78170,
+      "seconds": 3107
+    },
+    {
+      "title": "95 Network Delay Time, 96 🏊",
+      "at": 81277,
+      "seconds": 2403
+    },
+    {
+      "title": "97 Alien Dictionary, 98 Cheapest Flights Within K Stops",
+      "at": 83680,
+      "seconds": 1930
+    },
+    {
+      "title": "99 Climbing Stairs, 100 Min Cost Climbing Stairs",
+      "at": 85610,
+      "seconds": 3815
+    },
+    {
+      "title": "101 House Robber, 102 House Robber II",
+      "at": 89425,
+      "seconds": 1239
+    },
+    {
+      "title": "103 Longest Palindromic Substring, 104 Palindromic Substrings",
+      "at": 90664,
+      "seconds": 1732
+    },
+    {
+      "title": "105 Decode Ways, 106 Coin Change",
+      "at": 92396,
+      "seconds": 1827
+    },
+    {
+      "title": "107 Maximum Product Subarray, 108 Word Break",
+      "at": 94223,
+      "seconds": 3397
+    },
+    {
+      "title": "109 Longest Increasing Subsequence, 110 Partition Equal Subset Sum",
+      "at": 97620,
+      "seconds": 5932
+    },
+    {
+      "title": "111 Unique Paths, 112 Longest Common Subsequence",
+      "at": 103552,
+      "seconds": 1734
+    },
+    {
+      "title": "113 Best Time to Buy And Sell Stock, 114 Coin Change II",
+      "at": 105286,
+      "seconds": 2120
+    },
+    {
+      "title": "115 Target Sum, 116 Interleaving String",
+      "at": 107406,
+      "seconds": 2600
+    },
+    {
+      "title": "117 Longest Increasing Path In a Matrix, 118 Distinct Subsequences",
+      "at": 110006,
+      "seconds": 2303
+    },
+    {
+      "title": "119 Edit Distance, 120 Burst Balloons",
+      "at": 112309,
+      "seconds": 2568
+    },
+    {
+      "title": "121 Regular Expression Matching, 122 Maximum Subarray",
+      "at": 114877,
+      "seconds": 2229
+    },
+    {
+      "title": "123 Jump Game, 124 Jump Game II",
+      "at": 117106,
+      "seconds": 2116
+    },
+    {
+      "title": "125 ⛽, 126 Hand of Straights",
+      "at": 119222,
+      "seconds": 1633
+    },
+    {
+      "title": "127 Merge Triplets to Form Target Triplet, 128 Partition Labels",
+      "at": 120855,
+      "seconds": 1273
+    },
+    {
+      "title": "129 Valid Parenthesis String, 130 Insert Interval",
+      "at": 122128,
+      "seconds": 1906
+    },
+    {
+      "title": "131 Merge Intervals, 132 Non Overlapping Intervals",
+      "at": 124034,
+      "seconds": 2015
+    },
+    {
+      "title": "133 Meeting Rooms, 134 Meeting Rooms II",
+      "at": 126049,
+      "seconds": 1529
+    },
+    {
+      "title": "135 Minimum Interval to Include Each Query, 136 Rotate Image",
+      "at": 127578,
+      "seconds": 2053
+    },
+    {
+      "title": "137 Spiral Matrix, 138 Set Matrix Zeroes",
+      "at": 129631,
+      "seconds": 2222
+    },
+    {
+      "title": "139 Happy Number, 140 Plus One",
+      "at": 131853,
+      "seconds": 892
+    },
+    {
+      "title": "141 Pow(x, n), 142 Multiply Strings",
+      "at": 132745,
+      "seconds": 1168
+    },
+    {
+      "title": "143 Detect Squares, 144 Single Number",
+      "at": 133913,
+      "seconds": 1749
+    },
+    {
+      "title": "145 Number of 1 Bits, 146 Counting Bits",
+      "at": 135662,
+      "seconds": 1581
+    },
+    {
+      "title": "147 Reverse Bits, 148 Missing Number",
+      "at": 137243,
+      "seconds": 1660
+    },
+    {
+      "title": "149 Sum of Two Integers, 150 Reverse Integer",
+      "at": 138903,
+      "seconds": 1327
+    }
+  ],
+  "from": "description",
+  "fetchedAt": "2026-09-18T12:15:02.607Z"
+}

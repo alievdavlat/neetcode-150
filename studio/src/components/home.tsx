@@ -7,11 +7,13 @@ import { motion } from 'motion/react';
 import { ArrowRight, Settings2 } from 'lucide-react';
 import { Brand } from './brand';
 import { BoardCard } from './board-card';
+import { ActivityGrid } from './activity-grid';
 import { CommandPalette } from './command-palette';
 import { ContinueCard } from './continue-card';
 import { ReviewQueue } from './review-queue';
 import { TagStrip, type Tag } from './tag-strip';
 import { ALL_BOARD, DIFFICULTY_META, STATE_META, tagsOf } from '@/lib/meta';
+import type { ActivityDay } from '@/server/history';
 import type { Board, Company, Course, Problem, ProblemStatus, Settings } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
@@ -21,6 +23,7 @@ interface HomeProps {
   boards: Board[];
   companies: Company[];
   courses: Course[];
+  activity: { days: ActivityDay[]; total: number; streak: number };
   settings: Settings;
 }
 
@@ -42,7 +45,7 @@ const ACCENTS = [
 
 const RESULT_LIMIT = 60;
 
-export function Home({ problems, statuses, boards, companies, courses, settings }: HomeProps) {
+export function Home({ problems, statuses, boards, companies, courses, activity, settings }: HomeProps) {
   const router = useRouter();
   const [source, setSource] = useState<Source>('topics');
   const [picked, setPicked] = useState<string | null>(null);
@@ -241,6 +244,8 @@ export function Home({ problems, statuses, boards, companies, courses, settings 
       {renderHero()}
 
       <ContinueCard problems={problems} courses={courses} />
+
+      <ActivityGrid days={activity.days} total={activity.total} streak={activity.streak} />
 
       {settings.reviewEnabled && (
         <ReviewQueue

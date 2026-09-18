@@ -29,6 +29,13 @@ interface Group {
   items: Problem[];
 }
 
+/**
+ * How many rows are put on screen before the rest wait for a scroll. The whole
+ * workspace is 1,104 problems; hydrating that many rows costs more than anyone
+ * can read, and the ones past the fold are not being looked at yet.
+ */
+const PAGE = 300;
+
 export function ProblemRail({
   problems,
   statuses,
@@ -43,17 +50,25 @@ export function ProblemRail({
   const [state, setState] = useState<ProblemState | null>(null);
   const [dueOnly, setDueOnly] = useState(false);
   const [tag, setTag] = useState<string | null>(null);
+  const [shown, setShown] = useState(PAGE);
 
   const filtering = Boolean(query || difficulty || state || dueOnly || tag);
   const picked = [difficulty, state, dueOnly || null, tag].filter(Boolean).length;
 
-  const clearFilters = () => {
-    setQuery('');
-    setDifficulty(null);
-    setState(null);
-    setDueOnly(false);
-    setTag(null);
+  /** A new filter is a new list, so the rows loaded for the old one are no longer owed. */
+  const narrow = (change: () => void) => {
+    change();
+    setShown(PAGE);
   };
+
+  const clearFilters = () =>
+    narrow(() => {
+      setQuery('');
+      setDifficulty(null);
+      setState(null);
+      setDueOnly(false);
+      setTag(null);
+    });
 
   const statusOf = (problem: Problem) => statuses[problem.number] ?? UNKNOWN_STATUS;
   const needle = query.trim().toLowerCase();
@@ -74,13 +89,34 @@ export function ProblemRail({
     return `${problem.number} ${problem.title} ${problem.category} ${problem.pattern}`.toLowerCase().includes(needle);
   };
 
-  const groups = problems.filter(matches).reduce<Group[]>((acc, problem) => {
+  const matching = problems.filter(matches);
+
+  /** The open problem is always rendered, wherever it sits, or the rail cannot scroll to it. */
+  const reach = Math.max(shown, matching.findIndex((problem) => problem.number === activeNumber) + 40);
+  const visible = matching.slice(0, reach);
+  const waiting = matching.length - visible.length;
+
+  const groups = visible.reduce<Group[]>((acc, problem) => {
     const last = acc.at(-1);
     if (last?.dir === problem.dir) last.items.push(problem);
     else acc.push({ dir: problem.dir, category: problem.category, items: [problem] });
 
     return acc;
   }, []);
+
+  const more = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const sentinel = more.current;
+    if (!sentinel) return;
+
+    const watcher = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) setShown((count) => count + PAGE);
+    });
+
+    watcher.observe(sentinel);
+    return () => watcher.disconnect();
+  }, [waiting]);
 
   const renderChip = (label: string, selected: boolean, dot: string, onClick: () => void) => (
     <button
@@ -134,7 +170,7 @@ export function ProblemRail({
         <div className="flex flex-wrap gap-1.5">
           {DIFFICULTIES.map((entry) =>
             renderChip(entry, difficulty === entry, DIFFICULTY_META[entry].dot, () =>
-              setDifficulty(difficulty === entry ? null : entry),
+              narrow(() => setDifficulty(difficulty === entry ? null : entry)),
             ),
           )}
         </div>
@@ -143,10 +179,10 @@ export function ProblemRail({
         <div className="flex flex-wrap gap-1.5">
           {STATES.map((entry) =>
             renderChip(STATE_META[entry].label, state === entry, STATE_META[entry].dot, () =>
-              setState(state === entry ? null : entry),
+              narrow(() => setState(state === entry ? null : entry)),
             ),
           )}
-          {renderChip('Due', dueOnly, 'bg-medium', () => setDueOnly(!dueOnly))}
+          {renderChip('Due', dueOnly, 'bg-medium', () => narrow(() => setDueOnly(!dueOnly)))}
         </div>
 
         {tags.length > 0 && renderLabel('Topics')}
@@ -155,7 +191,7 @@ export function ProblemRail({
             <button
               key={entry}
               type="button"
-              onClick={() => setTag(tag === entry ? null : entry)}
+              onClick={() => narrow(() => setTag(tag === entry ? null : entry))}
               aria-pressed={tag === entry}
               className={cn(
                 'shrink-0 rounded-full border px-2 py-0.5 text-[10px] whitespace-nowrap transition-colors',
@@ -270,7 +306,7 @@ export function ProblemRail({
           <Search className="pointer-events-none absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2 text-muted-foreground" />
           <Input
             value={query}
-            onChange={(event) => setQuery(event.target.value)}
+            onChange={(event) => narrow(() => setQuery(event.target.value))}
             placeholder={`Search ${problems.length} problems`}
             aria-label="Search problems"
             className="h-8 pl-8 text-[13px]"
@@ -296,7 +332,15 @@ export function ProblemRail({
               )}
             </div>
           ) : (
-            groups.map(renderGroup)
+            <>
+              {groups.map(renderGroup)}
+
+              {waiting > 0 && (
+                <div ref={more} className="px-4 py-3 text-center text-[11px] text-muted-foreground">
+                  {waiting} more below
+                </div>
+              )}
+            </>
           )}
         </div>
       </ScrollArea>

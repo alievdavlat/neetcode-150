@@ -28,26 +28,25 @@
  * LeetCode:  https://leetcode.com/problems/encode-and-decode-strings/
  * Video:     https://www.youtube.com/watch?v=T0u5nwSA0w0&t=4113s  (01:08:33)
  */
-
 export function encode(strs: string[]): string {
-  let res = '';
-  for(const word of strs) res += `${word.length}#${word}`
+  let res:string = '';
+  for(const word of strs) res += `${word.length}#${word}`;
   return res;
 };
 
 export function decode(str: string): string[] {
-  let res:string[] = [];
-  let i:number = 0;
+ let res:string[] = [];
+ let i:number = 0;
 
   while(i < str.length) {
     const pos = str.indexOf('#', i)
-    const len = Number(str.slice(i, pos));
+    const length = Number(str.slice(i, pos));
     i = pos + 1;
+    const word = str.slice(i, length + i);
+    res.push(word);
 
-    const word = str.slice(i, i + len);
-    res.push(word)
-
-    i += len;
+    i += length;
   }
+
   return res;
 }

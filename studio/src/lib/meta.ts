@@ -69,7 +69,7 @@ export const UNKNOWN_STATUS: ProblemStatus = {
  * 150 groups of one. These rules fold those lines into the techniques behind them.
  */
 const TAG_RULES: { tag: string; test: RegExp }[] = [
-  { tag: 'hash map', test: /hash (map|set)|frequency|counter|seen/i },
+  { tag: 'hash map', test: /hash\s*(map|set|table)|frequency|counter|seen/i },
   { tag: 'two pointers', test: /two pointer|both ends|left and right/i },
   { tag: 'sliding window', test: /window/i },
   { tag: 'binary search', test: /binary search|halve/i },
@@ -91,10 +91,12 @@ const TAG_RULES: { tag: string; test: RegExp }[] = [
   { tag: 'math', test: /math|modulo|digit|prime|geometry/i },
 ];
 
-export const tagsOf = (problem: Problem) => {
-  const haystack = `${problem.title} ${problem.pattern} ${problem.category}`;
-  return TAG_RULES.filter((rule) => rule.test.test(haystack)).map((rule) => rule.tag);
-};
+/** The techniques a piece of text is about — a problem, or a lesson title. */
+export const tagsOfText = (text: string) =>
+  TAG_RULES.filter((rule) => rule.test.test(text)).map((rule) => rule.tag);
+
+export const tagsOf = (problem: Problem) =>
+  tagsOfText(`${problem.title} ${problem.pattern} ${problem.category}`);
 
 /** The board every problem in the workspace belongs to, with no file behind it. */
 export const ALL_BOARD = 'all';

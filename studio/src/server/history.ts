@@ -216,3 +216,66 @@ export async function recordReview({ number, ...rest }: RecordReviewInput): Prom
   history.reviews[number] = [...reviews, { at: new Date().toISOString(), ...rest }].slice(-KEEP_REVIEWS);
   await write(history);
 }
+
+export interface ActivityDay {
+  day: string;
+  runs: number;
+  reviews: number;
+}
+
+const pad = (value: number) => String(value).padStart(2, '0');
+
+/** Local days. `toISOString()` would push an hour past midnight onto yesterday. */
+const dayOf = (date: Date) => `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+
+/**
+ * What actually happened, per day, out of the run log: hand attempts and
+ * reviews. A bulk recheck is neither, so it never lights up a day you did not
+ * work.
+ */
+export async function getActivity(days = 119): Promise<{ days: ActivityDay[]; total: number; streak: number }> {
+  const history = await read();
+  const counted = new Map<string, ActivityDay>();
+
+  const bump = (day: string, key: 'runs' | 'reviews') => {
+    const entry = counted.get(day) ?? { day, runs: 0, reviews: 0 };
+    entry[key] += 1;
+    counted.set(day, entry);
+  };
+
+  for (const records of Object.values(history.runs)) {
+    for (const record of records) {
+      if (record.kind === 'run') bump(dayOf(new Date(record.at)), 'runs');
+    }
+  }
+
+  for (const records of Object.values(history.reviews)) {
+    for (const record of records) bump(dayOf(new Date(record.at)), 'reviews');
+  }
+
+  const out: ActivityDay[] = [];
+  const cursor = new Date();
+
+  for (let back = days; back >= 0; back -= 1) {
+    const date = new Date(cursor.getTime() - back * 86_400_000);
+    const day = dayOf(date);
+    out.push(counted.get(day) ?? { day, runs: 0, reviews: 0 });
+  }
+
+  let streak = 0;
+  for (let index = out.length - 1; index >= 0; index -= 1) {
+    const entry = out[index];
+    const busy = entry.runs + entry.reviews > 0;
+
+    /** Today not being over yet should not break a streak that is otherwise alive. */
+    if (!busy && index === out.length - 1) continue;
+    if (!busy) break;
+    streak += 1;
+  }
+
+  return {
+    days: out,
+    total: out.reduce((sum, entry) => sum + entry.runs + entry.reviews, 0),
+    streak,
+  };
+}

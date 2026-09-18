@@ -8,6 +8,7 @@ export async function POST(request: Request) {
   const numbers = Array.isArray(body?.numbers) ? body.numbers : null;
 
   if (!numbers || numbers.length === 0) return fail('a list of problem numbers is required');
+  if (numbers.length > 5000) return fail('that is more problems than this workspace has');
   if (!numbers.every((number) => typeof number === 'string' && /^\d{3,4}$/.test(number))) {
     return fail('those are not problem numbers');
   }

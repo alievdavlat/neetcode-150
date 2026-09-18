@@ -53,7 +53,21 @@ export function runFunctionCases(variant, prepared) {
       continue;
     }
 
-    const { result, expect, verdict } = judgeCase({ produced, args, testCase, prepared });
+    /**
+     * A case that checks one export against another runs the other one here -
+     * and a half-written pair throws. That is this case failing, not the run
+     * falling over with nothing to show.
+     */
+    let judged;
+    try {
+      judged = judgeCase({ produced, args, testCase, prepared });
+    } catch (error) {
+      failures.push({ label, args: testCase.args, thrown: `the check threw: ${error.message}` });
+      observed.push({ label, args: testCase.args, thrown: error.message, passed: false });
+      continue;
+    }
+
+    const { result, expect, verdict } = judged;
     observed.push({ label, args: testCase.args, result, passed: verdict.passed });
     if (verdict.passed) {
       passed += 1;

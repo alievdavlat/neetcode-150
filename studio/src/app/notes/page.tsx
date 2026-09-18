@@ -1,14 +1,29 @@
 import Link from 'next/link';
 import { NotebookPen } from 'lucide-react';
+import { StrictGate } from '@/components/strict-gate';
 import { readNotes } from '@/server/notes';
-import { getProblems } from '@/server/problems';
+import { getProblems, getStatuses } from '@/server/problems';
+import { dueQueue } from '@/server/review';
+import { getSettings } from '@/server/settings';
 import { ALL_BOARD, DIFFICULTY_META, relativeTime } from '@/lib/meta';
 import { cn } from '@/lib/utils';
 
 export const dynamic = 'force-dynamic';
 
 export default async function NotesPage() {
-  const [notes, problems] = await Promise.all([readNotes(), getProblems()]);
+  const [notes, problems, statuses, settings] = await Promise.all([
+    readNotes(),
+    getProblems(),
+    getStatuses(),
+    getSettings(),
+  ]);
+
+  const waiting = settings.reviewEnabled ? dueQueue(statuses) : [];
+  if (settings.strictMode && waiting.length > 0) {
+    const locked = problems.find((problem) => problem.number === waiting[0].number);
+    if (locked) return <StrictGate problem={locked} status={waiting[0]} waiting={waiting.length} />;
+  }
+
   const byNumber = new Map(problems.map((problem) => [problem.number, problem]));
 
   const renderNote = (entry: { number: string; note: string; at: string }) => {

@@ -84,6 +84,27 @@
       "name": "Docker",
       "blurb": "Images, containers, volumes and compose, up to deploying a containerised app.",
       "video": "rjjES5IsPdg"
+    },
+    {
+      "id": "algorithm-patterns",
+      "track": "Algorithms",
+      "name": "Interview patterns",
+      "blurb": "The handful of shapes most interview problems reduce to, one after another.",
+      "video": "Z_c4byLrNBU"
+    },
+    {
+      "id": "data-structures",
+      "track": "Algorithms",
+      "name": "Data structures",
+      "blurb": "Arrays through heaps, tries and union-find, with the implementation shown each time.",
+      "video": "RBSGKlAvoiM"
+    },
+    {
+      "id": "neetcode-150-course",
+      "track": "Algorithms",
+      "name": "NeetCode 150 walkthrough",
+      "blurb": "The course this workspace was generated from: every problem in the list, solved on video.",
+      "video": "T0u5nwSA0w0"
     }
   ]
 }

@@ -4,7 +4,7 @@ import { loadProblems } from '../../tests/runner/derive-cases.mjs';
 import { prepare } from '../../tests/runner/discover.mjs';
 import { caseArgs } from '../../tests/runner/execute.mjs';
 import { compareToTarget, fitOperations, targetTimeComplexity } from '../../tests/runner/complexity.mjs';
-import { instrument } from '../../tests/runner/trace/instrument.mjs';
+import { declaredFunctions, instrument } from '../../tests/runner/trace/instrument.mjs';
 import { createCounter } from '../../tests/runner/trace/recorder.mjs';
 
 /**
@@ -60,9 +60,16 @@ if (!problem) {
   } else {
     const source = await readFile(new URL(target.file, ROOT), 'utf8').catch(() => null);
 
+    /**
+     * Every function in the file is instrumented, not only the one being called:
+     * a solution that hands its loop to a helper would otherwise be counted as
+     * doing almost nothing, and the curve would be a lie.
+     */
+    const others = source === null ? [] : declaredFunctions(source).filter((name) => name !== variant);
+
     let instrumented = null;
     try {
-      instrumented = source === null ? null : instrument(source, { functionNames: [variant] });
+      instrumented = source === null ? null : instrument(source, { functionNames: [variant, ...others] });
     } catch (error) {
       answer({ status: 'unsupported', message: error.message });
     }

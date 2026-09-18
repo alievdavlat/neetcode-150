@@ -18,13 +18,22 @@ import ts from 'typescript';
  * in. The first name is the one being traced and must exist; the rest are
  * taken if they are declared functions and skipped if they are not.
  */
+/** Every function in a file that has a body, in source order. */
+export function declaredFunctions(source) {
+  const file = ts.createSourceFile('solution.ts', source, ts.ScriptTarget.ESNext, true, ts.ScriptKind.TS);
+
+  return file.statements
+    .filter((node) => ts.isFunctionDeclaration(node) && node.name && node.body)
+    .map((node) => node.name.text);
+}
+
 export function instrument(source, { functionName, functionNames }) {
   const file = ts.createSourceFile('solution.ts', source, ts.ScriptTarget.ESNext, true, ts.ScriptKind.TS);
 
   const wanted = functionNames ?? [functionName];
   const declared = new Map(
     file.statements
-      .filter((node) => ts.isFunctionDeclaration(node) && node.name)
+      .filter((node) => ts.isFunctionDeclaration(node) && node.name && node.body)
       .map((node) => [node.name.text, node]),
   );
   if (!declared.has(wanted[0])) throw new Error(`no exported function named ${wanted[0]} in this file`);
@@ -118,6 +127,22 @@ const isAssignment = (node) => ts.isBinaryExpression(node) && isAssignToken(node
  * `nums.sort()` must not become `__t.l(id,0,nums.sort)()` - wrapping a callee
  * strips the receiver and the call loses its `this`.
  */
+/**
+ * A name is not always a value. In `res.length` the whole property access is the
+ * read; wrapping `length` on its own produces `res.globalThis.__t.l(...)`, and
+ * the key in `{ total: 1 }` is a name too. Neither is a value to record.
+ */
+const isName = (node) => {
+  const parent = node.parent;
+  if (!parent) return false;
+  if (ts.isPropertyAccessExpression(parent) && parent.name === node) return true;
+  if (ts.isPropertyAssignment(parent) && parent.name === node) return true;
+  if (ts.isShorthandPropertyAssignment(parent)) return true;
+  if (ts.isBindingElement(parent) && parent.propertyName === node) return true;
+
+  return false;
+};
+
 const isCallee = (node) => {
   const parent = node.parent;
   return (
@@ -164,7 +189,7 @@ function wrapLeaves(context, id, root) {
       }
     }
 
-    if (!insideLeaf && !insideTarget && !isCallee(node) && isLeaf(node) && node !== root) {
+    if (!insideLeaf && !insideTarget && !isCallee(node) && !isName(node) && isLeaf(node) && node !== root) {
       const index = entry.leaves.length;
       entry.leaves.push({ start: node.getStart(context.file) - base, end: node.getEnd() - base });
       context.insert(node.getStart(context.file), `globalThis.__t.l(${id},${index},`, 4);

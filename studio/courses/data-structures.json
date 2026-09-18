@@ -1,0 +1,275 @@
+{
+  "id": "data-structures",
+  "track": "Algorithms",
+  "name": "Data structures",
+  "blurb": "Arrays through heaps, tries and union-find, with the implementation shown each time.",
+  "video": "RBSGKlAvoiM",
+  "url": "https://www.youtube.com/watch?v=RBSGKlAvoiM",
+  "title": "Data Structures Easy to Advanced Course - Full Tutorial from a Google Engineer",
+  "channel": "freeCodeCamp.org",
+  "seconds": 28997,
+  "lessons": [
+    {
+      "title": "Abstract data types",
+      "at": 0,
+      "seconds": 268
+    },
+    {
+      "title": "Introduction to Big-O",
+      "at": 268,
+      "seconds": 752
+    },
+    {
+      "title": "Dynamic and Static Arrays",
+      "at": 1020,
+      "seconds": 640
+    },
+    {
+      "title": "Dynamic Array Code",
+      "at": 1660,
+      "seconds": 443
+    },
+    {
+      "title": "Linked Lists Introduction",
+      "at": 2103,
+      "seconds": 853
+    },
+    {
+      "title": "Doubly Linked List Code",
+      "at": 2956,
+      "seconds": 550
+    },
+    {
+      "title": "Stack Introduction",
+      "at": 3506,
+      "seconds": 674
+    },
+    {
+      "title": "Stack Implementation",
+      "at": 4180,
+      "seconds": 189
+    },
+    {
+      "title": "Stack Code",
+      "at": 4369,
+      "seconds": 189
+    },
+    {
+      "title": "Queue Introduction",
+      "at": 4558,
+      "seconds": 365
+    },
+    {
+      "title": "Queue Implementation",
+      "at": 4923,
+      "seconds": 323
+    },
+    {
+      "title": "Queue Code",
+      "at": 5246,
+      "seconds": 246
+    },
+    {
+      "title": "Priority Queue Introduction",
+      "at": 5492,
+      "seconds": 764
+    },
+    {
+      "title": "Priority Queue Min Heaps and Max Heaps",
+      "at": 6256,
+      "seconds": 339
+    },
+    {
+      "title": "Priority Queue Inserting Elements",
+      "at": 6595,
+      "seconds": 572
+    },
+    {
+      "title": "Priority Queue Removing Elements",
+      "at": 7167,
+      "seconds": 813
+    },
+    {
+      "title": "Priority Queue Code",
+      "at": 7980,
+      "seconds": 926
+    },
+    {
+      "title": "Union Find Introduction",
+      "at": 8906,
+      "seconds": 331
+    },
+    {
+      "title": "Union Find Kruskal's Algorithm",
+      "at": 9237,
+      "seconds": 367
+    },
+    {
+      "title": "Union Find - Union and Find Operations",
+      "at": 9604,
+      "seconds": 626
+    },
+    {
+      "title": "Union Find Path Compression",
+      "at": 10230,
+      "seconds": 367
+    },
+    {
+      "title": "Union Find Code",
+      "at": 10597,
+      "seconds": 437
+    },
+    {
+      "title": "Binary Search Tree Introduction",
+      "at": 11034,
+      "seconds": 723
+    },
+    {
+      "title": "Binary Search Tree Insertion",
+      "at": 11757,
+      "seconds": 323
+    },
+    {
+      "title": "Binary Search Tree Removal",
+      "at": 12080,
+      "seconds": 807
+    },
+    {
+      "title": "Binary Search Tree Traversals",
+      "at": 12887,
+      "seconds": 690
+    },
+    {
+      "title": "Binary Search Tree Code",
+      "at": 13577,
+      "seconds": 789
+    },
+    {
+      "title": "Hash table hash function",
+      "at": 14366,
+      "seconds": 1019
+    },
+    {
+      "title": "Hash table separate chaining",
+      "at": 15385,
+      "seconds": 465
+    },
+    {
+      "title": "Hash table separate chaining source code",
+      "at": 15850,
+      "seconds": 694
+    },
+    {
+      "title": "Hash table open addressing",
+      "at": 16544,
+      "seconds": 652
+    },
+    {
+      "title": "Hash table linear probing",
+      "at": 17196,
+      "seconds": 825
+    },
+    {
+      "title": "Hash table quadratic probing",
+      "at": 18021,
+      "seconds": 551
+    },
+    {
+      "title": "Hash table double hashing",
+      "at": 18572,
+      "seconds": 864
+    },
+    {
+      "title": "Hash table open addressing removing",
+      "at": 19436,
+      "seconds": 426
+    },
+    {
+      "title": "Hash table open addressing code",
+      "at": 19862,
+      "seconds": 874
+    },
+    {
+      "title": "Fenwick Tree range queries",
+      "at": 20736,
+      "seconds": 790
+    },
+    {
+      "title": "Fenwick Tree point updates",
+      "at": 21526,
+      "seconds": 263
+    },
+    {
+      "title": "Fenwick Tree construction",
+      "at": 21789,
+      "seconds": 372
+    },
+    {
+      "title": "Fenwick tree source code",
+      "at": 22161,
+      "seconds": 326
+    },
+    {
+      "title": "Suffix Array introduction",
+      "at": 22487,
+      "seconds": 187
+    },
+    {
+      "title": "Longest Common Prefix (LCP) array",
+      "at": 22674,
+      "seconds": 193
+    },
+    {
+      "title": "Suffix array finding unique substrings",
+      "at": 22867,
+      "seconds": 269
+    },
+    {
+      "title": "Longest common substring problem suffix array",
+      "at": 23136,
+      "seconds": 688
+    },
+    {
+      "title": "Longest common substring problem suffix array part 2",
+      "at": 23824,
+      "seconds": 397
+    },
+    {
+      "title": "Longest Repeated Substring suffix array",
+      "at": 24221,
+      "seconds": 272
+    },
+    {
+      "title": "Balanced binary search tree rotations",
+      "at": 24493,
+      "seconds": 510
+    },
+    {
+      "title": "AVL tree insertion",
+      "at": 25003,
+      "seconds": 539
+    },
+    {
+      "title": "AVL tree removals",
+      "at": 25542,
+      "seconds": 510
+    },
+    {
+      "title": "AVL tree source code",
+      "at": 26052,
+      "seconds": 997
+    },
+    {
+      "title": "Indexed Priority Queue | Data Structure",
+      "at": 27049,
+      "seconds": 1461
+    },
+    {
+      "title": "Indexed Priority Queue | Data Structure | Source Code",
+      "at": 28510,
+      "seconds": 487
+    }
+  ],
+  "from": "chapter panel",
+  "fetchedAt": "2026-09-18T12:14:57.278Z"
+}

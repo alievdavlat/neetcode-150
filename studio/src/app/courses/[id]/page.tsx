@@ -3,11 +3,12 @@ import { notFound } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import { CoursePlayer } from '@/components/course-player';
 import { StrictGate } from '@/components/strict-gate';
-import { getCourse, getWatched } from '@/server/courses';
+import { getCourse, getCourseNotes, getWatched } from '@/server/courses';
 import { getProblems, getStatuses } from '@/server/problems';
 import { dueQueue } from '@/server/review';
 import { getSettings } from '@/server/settings';
-import { duration } from '@/lib/meta';
+import { duration, tagsOf } from '@/lib/meta';
+import type { PracticeProblem } from '@/lib/practice';
 
 export const dynamic = 'force-dynamic';
 
@@ -20,9 +21,10 @@ export default async function CoursePage({
 }) {
   const [{ id }, query] = await Promise.all([params, searchParams]);
   const asked = typeof query.at === 'string' ? Number(query.at) : Number.NaN;
-  const [course, watched, statuses, settings] = await Promise.all([
+  const [course, watched, notes, statuses, settings] = await Promise.all([
     getCourse(id),
     getWatched(),
+    getCourseNotes(),
     getStatuses(),
     getSettings(),
   ]);
@@ -34,6 +36,12 @@ export default async function CoursePage({
   }
 
   if (!course) notFound();
+
+  /** Only what a lesson needs to name a problem, so this page stays small. */
+  const practice: PracticeProblem[] = (await getProblems()).flatMap((problem) => {
+    const tags = tagsOf(problem);
+    return [{ number: problem.number, title: problem.title, difficulty: problem.difficulty, tags }];
+  });
 
   return (
     <main className="mx-auto w-full max-w-7xl space-y-5 px-5 py-8">
@@ -58,6 +66,8 @@ export default async function CoursePage({
       <CoursePlayer
         course={course}
         watched={watched[course.id] ?? []}
+        notes={notes[course.id] ?? {}}
+        practice={practice}
         start={Number.isInteger(asked) ? asked : undefined}
       />
     </main>

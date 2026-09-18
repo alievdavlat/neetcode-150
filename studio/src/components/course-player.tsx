@@ -1,18 +1,26 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Check, ExternalLink, Play } from 'lucide-react';
+import { ArrowUpRight, Check, ExternalLink, NotebookPen, Play } from 'lucide-react';
+import Link from 'next/link';
 import { toast } from 'sonner';
+import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Textarea } from '@/components/ui/textarea';
 import { request } from '@/lib/api';
-import { duration, stamp } from '@/lib/meta';
+import { ALL_BOARD, DIFFICULTY_META, duration, stamp } from '@/lib/meta';
+import { practiceFor, type PracticeProblem } from '@/lib/practice';
 import type { Course } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
 interface CoursePlayerProps {
   course: Course;
   watched: number[];
+  /** The workspace's problems, trimmed to what a lesson needs to link to one. */
+  practice: PracticeProblem[];
+  /** What you wrote against each lesson, keyed by where it starts. */
+  notes: Record<string, string>;
   /** A link can name the lesson: `/courses/<id>?at=<seconds>`. */
   start?: number;
 }
@@ -22,13 +30,20 @@ const LAST_COURSE_KEY = 'neetcode-studio:last-course';
 
 const messageOf = (error: unknown) => (error instanceof Error ? error.message : String(error));
 
-export function CoursePlayer({ course, watched, start }: CoursePlayerProps) {
+export function CoursePlayer({ course, watched, practice, notes, start }: CoursePlayerProps) {
   const [seen, setSeen] = useState<number[]>(watched);
   const [current, setCurrent] = useState(() => {
     const asked = course.lessons.findIndex((entry) => entry.at === start);
     return asked === -1 ? 0 : asked;
   });
   const [saving, setSaving] = useState<number | null>(null);
+  const [written, setWritten] = useState<Record<string, string>>(notes);
+  const [draft, setDraft] = useState('');
+
+  /** The box follows the lesson: switching lessons loads that lesson's note. */
+  useEffect(() => {
+    setDraft(written[course.lessons[current]?.at ?? -1] ?? '');
+  }, [current, course.lessons, written]);
 
   /** Without a lesson in the link, carry on from wherever this course was left. */
   useEffect(() => {
@@ -37,6 +52,21 @@ export function CoursePlayer({ course, watched, start }: CoursePlayerProps) {
     const stored = Number(window.localStorage.getItem(`${LESSON_KEY}:${course.id}`));
     if (Number.isInteger(stored) && stored > 0 && stored < course.lessons.length) setCurrent(stored);
   }, [course.id, course.lessons.length, start]);
+
+  const handleNote = () => {
+    if (!lesson) return;
+
+    const at = lesson.at;
+    request<{ note: string }>('/api/courses/note', {
+      method: 'PUT',
+      body: JSON.stringify({ course: course.id, at, note: draft }),
+    })
+      .then((payload) => {
+        setWritten((current) => ({ ...current, [at]: payload.note }));
+        toast.success('Note saved');
+      })
+      .catch((error: unknown) => toast.error(messageOf(error)));
+  };
 
   const handlePick = (index: number) => {
     window.localStorage.setItem(`${LESSON_KEY}:${course.id}`, String(index));
@@ -57,6 +87,83 @@ export function CoursePlayer({ course, watched, start }: CoursePlayerProps) {
       .then((payload) => setSeen(payload.watched))
       .catch((error: unknown) => toast.error(messageOf(error)))
       .finally(() => setSaving(null));
+  };
+
+  /** A note belongs to the lesson, so it follows the lesson rather than the course. */
+  const renderNote = () => {
+    if (!lesson) return null;
+
+    const stored = written[lesson.at] ?? '';
+
+    return (
+      <section className="space-y-2 rounded-2xl border border-line bg-panel/60 p-3">
+        <h2 className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
+          Note for this lesson
+        </h2>
+
+        <Textarea
+          value={draft}
+          onChange={(event) => setDraft(event.target.value)}
+          placeholder="The one idea from this lesson worth keeping."
+          aria-label="Note for this lesson"
+          className="min-h-16 bg-white/[0.02] text-[13px]"
+        />
+
+        {draft !== stored && (
+          <Button size="sm" variant="outline" onClick={handleNote} className="gap-1.5">
+            <NotebookPen className="size-3.5" />
+            Save note
+          </Button>
+        )}
+      </section>
+    );
+  };
+
+  /** Watching is not solving: what this lesson is about, in the workspace. */
+  const renderPractice = () => {
+    if (!lesson) return null;
+
+    const { named, related, tags } = practiceFor(lesson.title, practice);
+    const shown = [...named, ...related];
+    if (shown.length === 0) return null;
+
+    return (
+      <section className="space-y-2 rounded-2xl border border-line bg-panel/60 p-3">
+        <header className="flex flex-wrap items-center gap-2">
+          <h2 className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
+            Practice this
+          </h2>
+          {named.length > 0 && (
+            <span className="rounded-full border border-primary/40 bg-primary/10 px-2 py-0.5 text-[10px] text-primary">
+              named in this lesson
+            </span>
+          )}
+          {tags.map((tag) => (
+            <span key={tag} className="font-mono text-[10px] text-muted-foreground">
+              {tag}
+            </span>
+          ))}
+        </header>
+
+        <ul className="space-y-px">
+          {shown.map((problem) => (
+            <li key={problem.number}>
+              <Link
+                href={`/c/${ALL_BOARD}?p=${problem.number}`}
+                className="flex items-center gap-3 rounded-lg px-2 py-1.5 transition-colors hover:bg-white/[0.04]"
+              >
+                <span className="font-mono text-[10px] text-muted-foreground tabular-nums">{problem.number}</span>
+                <span className="min-w-0 flex-1 truncate text-[13px]">{problem.title}</span>
+                <span className={cn('text-[10px]', DIFFICULTY_META[problem.difficulty].text)}>
+                  {problem.difficulty}
+                </span>
+                <ArrowUpRight className="size-3 shrink-0 text-muted-foreground" />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+    );
   };
 
   const renderLesson = (entry: Course['lessons'][number], index: number) => {
@@ -147,6 +254,9 @@ export function CoursePlayer({ course, watched, start }: CoursePlayerProps) {
             </button>
           )}
         </div>
+
+        {renderPractice()}
+        {renderNote()}
       </div>
 
       <aside className="flex min-h-0 flex-col rounded-2xl border border-line bg-panel/60">

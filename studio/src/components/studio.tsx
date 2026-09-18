@@ -117,6 +117,7 @@ export function Studio({
   const [note, setNote] = useState('');
   const [snapshots, setSnapshots] = useState<SolutionSnapshot[]>([]);
   const [diffOpen, setDiffOpen] = useState(false);
+  const [diffSource, setDiffSource] = useState('');
   const [checkingTypes, setCheckingTypes] = useState(false);
   const [report, setReport] = useState<RunReport | null>(null);
   const [trace, setTrace] = useState<TraceResult | null>(null);
@@ -132,6 +133,7 @@ export function Studio({
   const draft = useRef('');
   const baseline = useRef('');
   const showing = useRef('');
+  const following = useRef<{ variant: string | null; caseIndex: number }>({ variant: null, caseIndex: 0 });
   const busy = useRef(false);
   const opened = useRef<string | null>(null);
   const reviewStarted = useRef(false);
@@ -201,6 +203,7 @@ export function Studio({
    */
   useEffect(() => {
     showing.current = activeNumber;
+    following.current = { variant, caseIndex };
   });
 
   /** A link from the review queue opens straight into a session. */
@@ -422,7 +425,10 @@ export function Studio({
       method: 'POST',
       body: JSON.stringify({ number, variant, mode }),
     })
-      .then((answer) => showing.current === number && setOps(answer.ops))
+      .then(
+        (answer) =>
+          showing.current === number && following.current.variant === variant && setOps(answer.ops),
+      )
       .catch((error: unknown) => toast.error(messageOf(error)))
       .finally(() => setCounting(false));
   };
@@ -444,7 +450,12 @@ export function Studio({
         method: 'POST',
         body: JSON.stringify({ number, variant, caseIndex, mode, input: input ?? null }),
       });
-      if (showing.current === number) setTrace(answer.trace);
+      /** A trace belongs to the variant and case it was asked for, not to whatever is picked now. */
+      const stale =
+        showing.current !== number ||
+        following.current.variant !== variant ||
+        following.current.caseIndex !== caseIndex;
+      if (!stale) setTrace(answer.trace);
     } catch (error) {
       toast.error(messageOf(error));
     } finally {
@@ -455,6 +466,12 @@ export function Studio({
 
   const handleGiveUp = () => {
     if (session) finishReview(session, false);
+  };
+
+  /** The dialog is handed the buffer as it was when it opened, rather than reading a ref while rendering. */
+  const handleCompare = () => {
+    setDiffSource(draft.current);
+    setDiffOpen(true);
   };
 
   const handleLineClick = (line: number) => {
@@ -513,7 +530,7 @@ export function Studio({
       else if (answer.grade === 1) toast.message(`Got there — back in ${next} days`);
       else toast.error('Marked for tomorrow');
 
-      if (passed && !current.revealed && snapshots.length > 0) setDiffOpen(true);
+      if (passed && !current.revealed && snapshots.length > 0) handleCompare();
     } catch (error) {
       toast.error(messageOf(error));
     }
@@ -742,7 +759,7 @@ ${line}
       <SolutionDiff
         open={diffOpen}
         title={active.title}
-        current={draft.current}
+        current={diffSource}
         snapshots={snapshots}
         onOpenChange={setDiffOpen}
       />
@@ -835,7 +852,7 @@ ${line}
                 onLineClick={handleLineClick}
                 checkingTypes={checkingTypes}
                 snapshots={snapshots.length}
-                onCompare={() => setDiffOpen(true)}
+                onCompare={handleCompare}
                 onChange={handleChange}
                 onModeChange={handleModeChange}
                 onBigOChange={handleBigOChange}
