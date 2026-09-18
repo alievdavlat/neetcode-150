@@ -4,13 +4,27 @@ const MAX_TEXT = 120;
 
 const cut = (text) => (text.length > MAX_TEXT ? `${text.slice(0, MAX_TEXT - 1)}…` : text);
 
+const MAX_DEPTH = 1;
+
 /** One line of text for a value sitting inside an array cell or a map row. */
-export function show(value) {
+export function show(value, depth = 0) {
   if (typeof value === 'string') return cut(`'${value}'`);
   if (typeof value === 'bigint') return `${value}n`;
   if (typeof value === 'number' && !Number.isFinite(value)) return String(value);
   if (value === null) return 'null';
   if (value === undefined) return 'undefined';
+
+  if (value instanceof Map) {
+    if (depth > MAX_DEPTH) return `Map(${value.size})`;
+    const rows = [...value].map(([key, item]) => `${show(key, depth + 1)} → ${show(item, depth + 1)}`);
+    return cut(`Map(${value.size}) {${rows.join(', ')}}`);
+  }
+
+  if (value instanceof Set) {
+    if (depth > MAX_DEPTH) return `Set(${value.size})`;
+    return cut(`Set(${value.size}) {${[...value].map((item) => show(item, depth + 1)).join(', ')}}`);
+  }
+
   if (typeof value === 'object') {
     try {
       return cut(JSON.stringify(value) ?? String(value));
@@ -68,6 +82,9 @@ export class TraceBudgetExceeded extends Error {
   }
 }
 
+/** Two entries that differ only in spacing say the same thing twice. */
+const same = (a, b) => a === b || a.replace(/\s+/g, '') === b.replace(/\s+/g, '');
+
 /** Splice the recorded leaf values back over their own ranges, right to left. */
 function substitute(entry, leaves) {
   let text = entry.text;
@@ -86,12 +103,30 @@ function substitute(entry, leaves) {
  */
 export function createRecorder(meta, { maxSteps = MAX_STEPS } = {}) {
   const steps = [];
-  const pending = new Map();
+  const frames = new Map();
   let lastId = null;
 
-  const buffer = (id) => {
-    if (!pending.has(id)) pending.set(id, { leaves: [], touched: [] });
-    return pending.get(id);
+  /**
+   * What one evaluation of one expression has reported so far. A recursive
+   * solution is part way through several evaluations of the same expression at
+   * once, so these stack: the leftmost leaf opens a frame and emitting closes
+   * the innermost one. Without that, the inner call erases the outer call's
+   * values and the substitution comes out half filled.
+   */
+  const buffer = (id, opens = false) => {
+    let stack = frames.get(id);
+    if (!stack) frames.set(id, (stack = []));
+    if (stack.length === 0 || (opens && stack.at(-1).leaves.length > 0)) {
+      stack.push({ leaves: [], touched: [] });
+    }
+    return stack.at(-1);
+  };
+
+  const take = (id) => {
+    const stack = frames.get(id);
+    const held = stack?.pop() ?? { leaves: [], touched: [] };
+    if (stack?.length === 0) frames.delete(id);
+    return held;
   };
 
   const push = (step) => {
@@ -108,8 +143,7 @@ export function createRecorder(meta, { maxSteps = MAX_STEPS } = {}) {
 
   const emit = (id, chain) => {
     const entry = meta[id];
-    const held = buffer(id);
-    pending.delete(id);
+    const held = take(id);
     lastId = id;
     return push({
       line: entry.line,
@@ -123,36 +157,53 @@ export function createRecorder(meta, { maxSteps = MAX_STEPS } = {}) {
 
   const api = {
     l: (id, index, value) => {
-      buffer(id).leaves[index] = show(value);
+      buffer(id, index === 0).leaves[index] = show(value);
       return value;
     },
 
-    x: (id, name, key, write) => {
-      buffer(id).touched.push({ name, key, write });
+    /** `from` is the index as it was written - what lets the stage label a cell `i`. */
+    x: (id, name, key, write, from) => {
+      buffer(id).touched.push({ name, key, write, from });
       return key;
     },
 
-    v: (id, value, scope) => {
+    /**
+     * `name` is the binding this expression initialises. It is passed rather
+     * than read from `scope`, because a name is still in its dead zone while
+     * its own initialiser runs.
+     */
+    v: (id, value, scope, name) => {
       const entry = meta[id];
       const chain = [entry.text];
       const filled = substitute(entry, buffer(id).leaves);
-      if (filled !== chain.at(-1)) chain.push(filled);
+      if (!same(filled, chain.at(-1))) chain.push(filled);
       const result = show(value);
-      if (result !== chain.at(-1)) chain.push(result);
-      attach(emit(id, chain), scope);
+      if (!same(result, chain.at(-1))) chain.push(result);
+      attach(emit(id, chain), name && scope ? { ...scope, [name]: value } : scope);
       return value;
     },
 
+    /**
+     * An update whose target is one named counter can say what the arithmetic
+     * was. Anything else - `i++, j--`, `i += 2`, `freq[k]++` - only says what it
+     * was; the new values are in the table, which is the honest half.
+     */
     u: (id, before, after, scope) => {
       const entry = meta[id];
-      attach(emit(id, [entry.text, `${show(before)} ${entry.op} 1`, show(after)]), scope);
+      const from = entry.pre && typeof after === 'number' ? after - (entry.op === '+' ? 1 : -1) : before;
+      const arithmetic = entry.op && !(entry.pre && typeof after !== 'number');
+      const chain = arithmetic ? [entry.text, `${show(from)} ${entry.op} 1`, show(after)] : [entry.text];
+
+      attach(emit(id, chain), scope);
+      return before;
     },
 
     /** `for (const word of strs)` reports the value bound on each turn. */
-    i: function* (id, iterable, scope) {
+    i: function* (id, iterable, scope, name) {
       const entry = meta[id];
       for (const item of iterable) {
-        attach(emit(id, [entry.text, show(item)]), scope());
+        const outer = scope();
+        attach(emit(id, [entry.text, show(item)]), name ? { ...outer, [name]: item } : outer);
         yield item;
       }
     },

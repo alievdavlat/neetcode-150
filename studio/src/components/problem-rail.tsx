@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
-import { Loader2, Play, RotateCcw, Search } from 'lucide-react';
+import { Loader2, Play, RotateCcw, Search, X } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { StatusDot } from './status-dot';
@@ -44,6 +44,16 @@ export function ProblemRail({
   const [state, setState] = useState<ProblemState | null>(null);
   const [dueOnly, setDueOnly] = useState(false);
   const [tag, setTag] = useState<string | null>(null);
+
+  const filtering = Boolean(query || difficulty || state || dueOnly || tag);
+
+  const clearFilters = () => {
+    setQuery('');
+    setDifficulty(null);
+    setState(null);
+    setDueOnly(false);
+    setTag(null);
+  };
 
   const statusOf = (problem: Problem) => statuses[problem.number] ?? UNKNOWN_STATUS;
   const needle = query.trim().toLowerCase();
@@ -90,6 +100,25 @@ export function ProblemRail({
     </button>
   );
 
+  const activeRow = useRef<HTMLButtonElement | null>(null);
+
+  /**
+   * Only the list scrolls. `scrollIntoView` walks every scrollable ancestor,
+   * including ones with `overflow: hidden`, which slides the filters off screen
+   * with no scrollbar to bring them back.
+   */
+  useEffect(() => {
+    const row = activeRow.current;
+    const viewport = row?.closest<HTMLElement>('[data-radix-scroll-area-viewport]');
+    if (!row || !viewport) return;
+
+    const seat = row.getBoundingClientRect();
+    const frame = viewport.getBoundingClientRect();
+
+    if (seat.top < frame.top) viewport.scrollTop -= frame.top - seat.top + 8;
+    else if (seat.bottom > frame.bottom) viewport.scrollTop += seat.bottom - frame.bottom + 8;
+  }, [activeNumber]);
+
   const renderRow = (problem: Problem) => {
     const status = statusOf(problem);
     const active = problem.number === activeNumber;
@@ -97,6 +126,7 @@ export function ProblemRail({
     return (
       <button
         key={problem.number}
+        ref={active ? activeRow : undefined}
         type="button"
         onClick={() => onSelect(problem.number)}
         aria-current={active ? 'true' : undefined}
@@ -192,13 +222,24 @@ export function ProblemRail({
             ),
           )}
         </div>
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap items-center gap-1.5">
           {STATES.map((entry) =>
             renderChip(STATE_META[entry].label, state === entry, STATE_META[entry].dot, () =>
               setState(state === entry ? null : entry),
             ),
           )}
           {renderChip('Due', dueOnly, 'bg-medium', () => setDueOnly(!dueOnly))}
+
+          {filtering && (
+            <button
+              type="button"
+              onClick={clearFilters}
+              className="ml-auto flex items-center gap-1 rounded-full border border-line px-2 py-0.5 text-[11px] text-muted-foreground transition-colors hover:border-fail/40 hover:text-fail"
+            >
+              <X className="size-3" />
+              Clear
+            </button>
+          )}
         </div>
 
         <div className="-mx-1 flex gap-1.5 overflow-x-auto px-1 pb-1">
@@ -221,10 +262,21 @@ export function ProblemRail({
         </div>
       </div>
 
-      <ScrollArea className="flex-1">
+      <ScrollArea className="min-h-0 flex-1">
         <div className="py-2">
           {groups.length === 0 ? (
-            <p className="px-4 py-10 text-center text-sm text-muted-foreground">Nothing matches that filter.</p>
+            <div className="px-4 py-10 text-center">
+              <p className="text-sm text-muted-foreground">Nothing matches that filter.</p>
+              {filtering && (
+                <button
+                  type="button"
+                  onClick={clearFilters}
+                  className="mt-2 text-[11px] text-primary transition-colors hover:underline"
+                >
+                  Clear the filters
+                </button>
+              )}
+            </div>
           ) : (
             groups.map(renderGroup)
           )}

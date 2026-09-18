@@ -12,7 +12,8 @@ import { StudioHeader } from './studio-header';
 import { TracePanel } from './trace-panel';
 import { VerdictPanel } from './verdict-panel';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { UNKNOWN_STATUS } from '@/lib/meta';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { ALL_BOARD, UNKNOWN_STATUS } from '@/lib/meta';
 import { request } from '@/lib/api';
 import type {
   Collection,
@@ -31,6 +32,7 @@ interface StudioProps {
   problems: Problem[];
   statuses: ProblemStatus[];
   collections: Collection[];
+  boardId: string;
 }
 
 interface SaveResponse {
@@ -61,8 +63,6 @@ interface SnapshotResponse {
 const LAST_KEY = 'neetcode-studio:last-problem';
 const MODE_KEY = 'neetcode-studio:mode';
 const BIGO_KEY = 'neetcode-studio:big-o';
-const COLLECTION_KEY = 'neetcode-studio:collection';
-const ALL_COLLECTION = 'all';
 
 const EMPTY_COUNTS: Record<ProblemState, number> = {
   solved: 0,
@@ -76,7 +76,9 @@ const messageOf = (error: unknown) => (error instanceof Error ? error.message : 
 const storedMode = (number: string): SourceMode =>
   window.localStorage.getItem(`${MODE_KEY}:${number}`) === 'scratch' ? 'scratch' : 'file';
 
-export function Studio({ problems, statuses: initialStatuses, collections }: StudioProps) {
+export function Studio({ problems, statuses: initialStatuses, collections, boardId }: StudioProps) {
+  const router = useRouter();
+  const search = useSearchParams();
   const [statuses, setStatuses] = useState<Record<string, ProblemStatus>>(() =>
     Object.fromEntries(initialStatuses.map((status) => [status.number, status])),
   );
@@ -93,7 +95,6 @@ export function Studio({ problems, statuses: initialStatuses, collections }: Stu
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [runningCategory, setRunningCategory] = useState<string | null>(null);
   const [markers, setMarkers] = useState<TypeMarker[]>([]);
-  const [collectionId, setCollectionId] = useState(ALL_COLLECTION);
   const [note, setNote] = useState('');
   const [snapshots, setSnapshots] = useState<SolutionSnapshot[]>([]);
   const [diffOpen, setDiffOpen] = useState(false);
@@ -104,27 +105,49 @@ export function Studio({ problems, statuses: initialStatuses, collections }: Stu
   const [activeLine, setActiveLine] = useState<number | null>(null);
   const [variant, setVariant] = useState<string | null>(null);
   const [caseIndex, setCaseIndex] = useState(0);
+  const [panel, setPanel] = useState('verdict');
+  const [jumpLine, setJumpLine] = useState<{ line: number; at: number } | null>(null);
   const busy = useRef(false);
+  const opened = useRef<string | null>(null);
   const synced = useRef(false);
   const checking = useRef(false);
+
+  const allCollections: Collection[] = [
+    {
+      id: ALL_BOARD,
+      name: 'All Problems',
+      description: 'Everything in this workspace',
+      numbers: problems.map((problem) => problem.number),
+    },
+    ...collections,
+  ];
+  const board = allCollections.find((entry) => entry.id === boardId);
+  const picked = collections.find((entry) => entry.id === boardId);
+  const visible = picked ? problems.filter((problem) => picked.numbers.includes(problem.number)) : problems;
 
   const active = problems.find((problem) => problem.number === activeNumber);
   const dirty = source !== null && source !== savedSource;
   const file = active?.file ?? '';
 
+  /**
+   * A link from the home search names its problem; otherwise pick up where he left
+   * off, but only if that problem is in this board. Anything else opens at the top.
+   */
   useEffect(() => {
-    const stored = window.localStorage.getItem(LAST_KEY);
-    if (!stored || !problems.some((problem) => problem.number === stored)) return;
+    if (visible.length === 0 || opened.current === boardId) return;
+    opened.current = boardId;
 
-    setActiveNumber(stored);
-    setMode(storedMode(stored));
-  }, [problems]);
+    const inBoard = (number: string | null) =>
+      Boolean(number) && visible.some((problem) => problem.number === number);
+    const wanted =
+      [search.get('p'), window.localStorage.getItem(LAST_KEY)].find(inBoard) ?? visible[0].number;
+
+    setActiveNumber(wanted);
+    setMode(storedMode(wanted));
+  }, [boardId, visible, search]);
 
   useEffect(() => {
     setBigO(window.localStorage.getItem(BIGO_KEY) !== 'off');
-
-    const storedCollection = window.localStorage.getItem(COLLECTION_KEY);
-    if (storedCollection) setCollectionId(storedCollection);
   }, []);
 
   useEffect(() => {
@@ -139,6 +162,7 @@ export function Studio({ problems, statuses: initialStatuses, collections }: Stu
     setActiveLine(null);
     setVariant(null);
     setCaseIndex(0);
+    setJumpLine(null);
     window.localStorage.setItem(LAST_KEY, activeNumber);
 
     const number = activeNumber;
@@ -305,13 +329,17 @@ export function Studio({ problems, statuses: initialStatuses, collections }: Stu
   };
 
   const handleTrace = async () => {
-    if (!active || !variant) {
-      toast.error('Run it once first, so the tracer knows which export to follow');
+    if (!active || !variant || busy.current) {
+      if (!variant) toast.error('Run it once first, so the tracer knows which export to follow');
       return;
     }
 
+    busy.current = true;
     setTracing(true);
     try {
+      const saved = dirty ? await persist() : true;
+      if (!saved) return;
+
       const answer = await request<{ trace: TraceResult }>('/api/trace', {
         method: 'POST',
         body: JSON.stringify({ number: active.number, variant, caseIndex, mode }),
@@ -321,7 +349,13 @@ export function Studio({ problems, statuses: initialStatuses, collections }: Stu
       toast.error(messageOf(error));
     } finally {
       setTracing(false);
+      busy.current = false;
     }
+  };
+
+  const handleLineClick = (line: number) => {
+    setPanel('trace');
+    setJumpLine({ line, at: Date.now() });
   };
 
   const handleRun = () => runWith(bigO);
@@ -357,10 +391,7 @@ ${line}
     toast.success('Added to the end of the file — save when you are ready');
   };
 
-  const handleCollectionChange = (id: string) => {
-    window.localStorage.setItem(COLLECTION_KEY, id);
-    setCollectionId(id);
-  };
+  const handleCollectionChange = (id: string) => router.push(`/c/${id}`);
 
   const handleHint = (level: number) => {
     if (!active) return;
@@ -502,22 +533,11 @@ ${line}
 
   if (!active) return null;
 
-  const allCollections: Collection[] = [
-    {
-      id: ALL_COLLECTION,
-      name: 'All',
-      description: 'Every problem in the workspace',
-      numbers: problems.map((problem) => problem.number),
-    },
-    ...collections,
-  ];
-  const picked = collections.find((entry) => entry.id === collectionId);
-  const visible = picked ? problems.filter((problem) => picked.numbers.includes(problem.number)) : problems;
-
-  const counts = Object.values(statuses).reduce(
-    (totals, status) => ({ ...totals, [status.state]: totals[status.state] + 1 }),
-    EMPTY_COUNTS,
-  );
+  /** The header reports this board, not the whole workspace. */
+  const counts = visible.reduce((totals, problem) => {
+    const state = statuses[problem.number]?.state ?? 'not-started';
+    return { ...totals, [state]: totals[state] + 1 };
+  }, EMPTY_COUNTS);
 
   return (
     <div className="flex h-dvh flex-col">
@@ -538,8 +558,9 @@ ${line}
       />
 
       <StudioHeader
+        boardName={board?.name ?? 'All Problems'}
         counts={counts}
-        total={problems.length}
+        total={visible.length}
         pending={pending}
         syncing={syncing}
         onSync={handleSync}
@@ -551,7 +572,7 @@ ${line}
             problems={visible}
             statuses={statuses}
             collections={allCollections}
-            collectionId={collectionId}
+            collectionId={boardId}
             onCollectionChange={handleCollectionChange}
             activeNumber={active.number}
             runningCategory={runningCategory}
@@ -589,7 +610,8 @@ ${line}
                 promoting={promoting}
                 bigO={bigO}
                 markers={markers}
-                activeLine={activeLine}
+                activeLine={panel === 'trace' ? activeLine : null}
+                onLineClick={handleLineClick}
                 checkingTypes={checkingTypes}
                 snapshots={snapshots.length}
                 onCompare={() => setDiffOpen(true)}
@@ -605,7 +627,11 @@ ${line}
             <ResizableHandle withHandle />
 
             <ResizablePanel defaultSize="38" minSize="15">
-              <Tabs defaultValue="verdict" className="flex h-full min-h-0 flex-col gap-0">
+              <Tabs
+                value={panel}
+                onValueChange={setPanel}
+                className="flex h-full min-h-0 flex-col gap-0"
+              >
                 <TabsList className="mx-3 mt-2 self-start">
                   <TabsTrigger value="verdict">Verdict</TabsTrigger>
                   <TabsTrigger value="trace">Simulation</TabsTrigger>
@@ -622,7 +648,7 @@ ${line}
                   />
                 </TabsContent>
 
-                <TabsContent value="trace" className="min-h-0 flex-1">
+                <TabsContent value="trace" forceMount className="min-h-0 flex-1 data-[state=inactive]:hidden">
                   <TracePanel
                     trace={trace}
                     tracing={tracing}
@@ -630,6 +656,7 @@ ${line}
                     cases={traceCases}
                     variant={variant}
                     caseIndex={caseIndex}
+                    jumpLine={jumpLine}
                     onPick={handlePick}
                     onTrace={handleTrace}
                     onStep={setActiveLine}

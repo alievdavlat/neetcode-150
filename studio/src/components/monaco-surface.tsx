@@ -12,21 +12,33 @@ interface MonacoSurfaceProps {
   value: string;
   markers: TypeMarker[];
   activeLine?: number | null;
+  onLineClick?: (line: number) => void;
   onChange: (value: string) => void;
   onSave: () => void;
   onRun: () => void;
 }
 
-export function MonacoSurface({ path, value, markers, activeLine, onChange, onSave, onRun }: MonacoSurfaceProps) {
+export function MonacoSurface({
+  path,
+  value,
+  markers,
+  activeLine,
+  onLineClick,
+  onChange,
+  onSave,
+  onRun,
+}: MonacoSurfaceProps) {
   const save = useRef(onSave);
   const run = useRef(onRun);
+  const lineClick = useRef(onLineClick);
   const monacoRef = useRef<Monaco | null>(null);
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
-  const decorationsRef = useRef<string[]>([]);
+  const decorationsRef = useRef<editor.IEditorDecorationsCollection | null>(null);
 
   useEffect(() => {
     save.current = onSave;
     run.current = onRun;
+    lineClick.current = onLineClick;
   });
 
   const handleBeforeMount: BeforeMount = (monaco) => {
@@ -76,6 +88,19 @@ export function MonacoSurface({ path, value, markers, activeLine, onChange, onSa
     editorRef.current = instance;
     instance.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => save.current());
     instance.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => run.current());
+
+    /** Clicking the gutter jumps the replay to the next time that line runs. */
+    const gutter = new Set([
+      monaco.editor.MouseTargetType.GUTTER_GLYPH_MARGIN,
+      monaco.editor.MouseTargetType.GUTTER_LINE_NUMBERS,
+      monaco.editor.MouseTargetType.GUTTER_LINE_DECORATIONS,
+    ]);
+
+    instance.onMouseDown((event) => {
+      const line = event.target.position?.lineNumber;
+      if (line && gutter.has(event.target.type)) lineClick.current?.(line);
+    });
+
     instance.focus();
   };
 
@@ -104,8 +129,9 @@ export function MonacoSurface({ path, value, markers, activeLine, onChange, onSa
     const monaco = monacoRef.current;
     if (!editor || !monaco) return;
 
-    decorationsRef.current = editor.deltaDecorations(
-      decorationsRef.current,
+    if (!decorationsRef.current) decorationsRef.current = editor.createDecorationsCollection();
+
+    decorationsRef.current.set(
       activeLine
         ? [
             {

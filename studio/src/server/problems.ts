@@ -41,6 +41,11 @@ type ResultStore = Record<string, StoredResult>;
 
 let problemsPromise: Promise<Problem[]> | null = null;
 
+/** Drop the cached list, so newly generated problems are picked up. */
+export function forgetProblems(): void {
+  problemsPromise = null;
+}
+
 export function getProblems(): Promise<Problem[]> {
   problemsPromise ??= runBridge<Problem[]>({ script: 'problems.mjs', timeoutMs: 30000 });
   return problemsPromise;

@@ -167,5 +167,37 @@ export function trap(height: number[]): number {
 }
 `,
     },
+    {
+      n: 154,
+      title: 'Sort Colors',
+      slug: 'sort-colors',
+      difficulty: 'Medium',
+      leetcode: 'sort-colors',
+      pattern: 'Dutch national flag: a low, a high and a cursor between them',
+      complexity: 'O(n) time, O(1) space',
+      statement: `
+nums holds only the values 0, 1 and 2. Rearrange it in place so every 0 comes first, then
+every 1, then every 2. Do it in a single pass without calling a library sort. The function
+returns nothing - change the array itself.
+`,
+      examples: [
+        `Input:  nums = [2, 0, 2, 1, 1, 0]
+Output: [0, 0, 1, 1, 2, 2]`,
+        `Input:  nums = [2, 0, 1]
+Output: [0, 1, 2]`,
+        `Input:  nums = [0]
+Output: [0]`,
+      ],
+      constraints: [
+        '1 <= nums.length <= 300',
+        'nums[i] is 0, 1 or 2',
+      ],
+      followUp: 'Counting each value and rewriting takes two passes. One pass needs three pointers.',
+      stub: `
+export function sortColors(nums: number[]): void {
+  throw new Error('Not implemented');
+}
+`,
+    },
   ],
 };

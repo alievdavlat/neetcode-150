@@ -59,14 +59,12 @@ function rootName(node) {
   return ts.isIdentifier(current) ? current.text : null;
 }
 
-const declaredName = (statement) => {
-  if (ts.isVariableStatement(statement)) {
-    const declaration = statement.declarationList.declarations[0];
-    return ts.isIdentifier(declaration.name) ? declaration.name.text : null;
-  }
+const isAssignToken = (kind) =>
+  kind >= ts.SyntaxKind.FirstAssignment && kind <= ts.SyntaxKind.LastAssignment;
 
-  const expression = statement.expression;
-  if (ts.isBinaryExpression(expression) && expression.operatorToken.kind === ts.SyntaxKind.EqualsToken) {
+/** The name an expression writes to. `total += 1` changes `total`, as `total = total + 1` would. */
+const targetName = (expression) => {
+  if (ts.isBinaryExpression(expression) && isAssignToken(expression.operatorToken.kind)) {
     return rootName(expression.left);
   }
   if (ts.isPostfixUnaryExpression(expression) || ts.isPrefixUnaryExpression(expression)) {
@@ -100,10 +98,7 @@ const isLeaf = (node) =>
  * left of an assignment, which will not parse. Assignment targets are visited
  * for their element accesses but never wrapped as leaves.
  */
-const isAssignment = (node) =>
-  ts.isBinaryExpression(node) &&
-  node.operatorToken.kind >= ts.SyntaxKind.FirstAssignment &&
-  node.operatorToken.kind <= ts.SyntaxKind.LastAssignment;
+const isAssignment = (node) => ts.isBinaryExpression(node) && isAssignToken(node.operatorToken.kind);
 
 /**
  * `nums.sort()` must not become `__t.l(id,0,nums.sort)()` - wrapping a callee
@@ -145,12 +140,13 @@ function wrapLeaves(context, id, root) {
       const name = rootName(node.expression);
       const write = isAssignTarget(node);
       if (name && context.oneLine(node.argumentExpression)) {
+        const from = JSON.stringify(context.textOf(node.argumentExpression));
         context.insert(
           node.argumentExpression.getStart(context.file),
           `globalThis.__t.x(${id},"${name}",`,
           3,
         );
-        context.insert(node.argumentExpression.getEnd(), `,${write})`, -3);
+        context.insert(node.argumentExpression.getEnd(), `,${write},${from})`, -3);
       }
     }
 
@@ -204,11 +200,34 @@ function wrapLeaves(context, id, root) {
  * return shows the same variable table a statement does - arguments evaluate
  * left to right, so the snapshot is taken after the expression itself.
  */
-function wrapValue(context, id, node, live) {
+function wrapValue(context, id, node, live, name) {
+  const tail = live ? `,{${live.join(',')}}${name ? `,"${name}"` : ''})` : ')';
   context.insert(node.getStart(context.file), `globalThis.__t.v(${id},`, 2);
-  context.insert(node.getEnd(), live ? `,{${live.join(',')}})` : ')', -2);
+  context.insert(node.getEnd(), tail, -2);
   wrapLeaves(context, id, node);
 }
+
+/**
+ * `i++` reports the value it leaves behind, not the one it read - so the counter
+ * is passed a second time and read after the update. A counter is only named
+ * when it is a plain identifier: `freq[k]++` writes into an array, and naming
+ * `freq` there would claim the whole array was the number that changed. The
+ * expression is parenthesised so that `i++, j--` stays one argument.
+ */
+function wrapUpdate(context, id, node, counter, live) {
+  const tail = live ? `,{${live.join(',')}})` : ')';
+  context.insert(node.getStart(context.file), `globalThis.__t.u(${id},(`, 2);
+  context.insert(node.getEnd(), `),${counter ?? 'undefined'}${tail}`, -2);
+}
+
+/** `i++` as a statement of its own, and as a `for` incrementor, are the same step. */
+const counterName = (node) =>
+  isUpdate(node) && ts.isIdentifier(node.operand) ? node.operand.text : null;
+
+const counterMeta = (node) => ({
+  op: node.operator === ts.SyntaxKind.MinusMinusToken ? '-' : '+',
+  pre: ts.isPrefixUnaryExpression(node),
+});
 
 function walk(context, fn) {
   const scope = fn.parameters.filter((p) => ts.isIdentifier(p.name)).map((p) => p.name.text);
@@ -217,27 +236,56 @@ function walk(context, fn) {
 
 const bodyOf = (statement) => (ts.isBlock(statement) ? statement : { statements: [statement] });
 
-function walkBlock(context, block, inherited) {
+/**
+ * `for (const n of nums) count(n);` has no braces to put a marker inside, so a
+ * trailing `__t.s(...)` would land after the loop and run once, out of scope.
+ * An unbraced body carries its scope on the value call instead, which sits
+ * inside the statement itself.
+ */
+const walkBody = (context, statement, live) =>
+  walkBlock(context, bodyOf(statement), live, ts.isBlock(statement));
+
+function walkBlock(context, block, inherited, braced = true) {
   let live = [...inherited];
 
   for (const statement of block.statements) {
     if (ts.isVariableStatement(statement)) {
-      const declaration = statement.declarationList.declarations[0];
-      const id = record(context, 'stmt', statement, { changed: declaredName(statement) });
-      if (declaration.initializer && context.oneLine(declaration.initializer)) {
-        context.meta[id].text = context.textOf(declaration.initializer);
-        wrapValue(context, id, declaration.initializer);
+      let last = null;
+
+      for (const declaration of statement.declarationList.declarations) {
+        const name = ts.isIdentifier(declaration.name) ? declaration.name.text : null;
+        last = record(context, 'stmt', statement, { changed: name });
+
+        if (declaration.initializer && context.oneLine(declaration.initializer)) {
+          context.meta[last].text = context.textOf(declaration.initializer);
+          wrapValue(context, last, declaration.initializer, live, name);
+        }
+
+        if (name) live = [...live, name];
       }
-      if (ts.isIdentifier(declaration.name)) live = [...live, declaration.name.text];
-      context.insert(statement.getEnd(), `;globalThis.__t.s(${id},{${live.join(',')}});`, 100);
+
+      if (braced && last !== null) {
+        context.insert(statement.getEnd(), `;globalThis.__t.s(${last},{${live.join(',')}});`, 100);
+      }
       continue;
     }
 
     if (ts.isExpressionStatement(statement)) {
-      const id = record(context, 'stmt', statement, { changed: declaredName(statement) });
-      context.meta[id].text = context.textOf(statement.expression);
-      if (context.oneLine(statement.expression)) wrapValue(context, id, statement.expression);
-      context.insert(statement.getEnd(), `;globalThis.__t.s(${id},{${live.join(',')}});`, 100);
+      const expression = statement.expression;
+      const counter = counterName(expression);
+      const id = record(context, 'stmt', statement, {
+        changed: targetName(expression),
+        ...(counter ? counterMeta(expression) : { op: null }),
+      });
+      context.meta[id].text = context.textOf(expression);
+
+      if (context.oneLine(expression)) {
+        const carried = braced ? null : live;
+        if (isUpdate(expression)) wrapUpdate(context, id, expression, counter, carried);
+        else wrapValue(context, id, expression, carried);
+      }
+
+      if (braced) context.insert(statement.getEnd(), `;globalThis.__t.s(${id},{${live.join(',')}});`, 100);
       continue;
     }
 
@@ -250,14 +298,14 @@ function walkControl(context, statement, live) {
     let inner = [...live];
 
     if (statement.initializer && ts.isVariableDeclarationList(statement.initializer)) {
-      const declaration = statement.initializer.declarations[0];
-      if (declaration.initializer) {
-        const id = record(context, 'loop-init', declaration.initializer, {
-          changed: ts.isIdentifier(declaration.name) ? declaration.name.text : null,
-        });
-        wrapValue(context, id, declaration.initializer, live);
+      for (const declaration of statement.initializer.declarations) {
+        const name = ts.isIdentifier(declaration.name) ? declaration.name.text : null;
+        if (declaration.initializer && context.oneLine(declaration.initializer)) {
+          const id = record(context, 'loop-init', declaration.initializer, { changed: name });
+          wrapValue(context, id, declaration.initializer, inner, name);
+        }
+        if (name) inner = [...inner, name];
       }
-      if (ts.isIdentifier(declaration.name)) inner = [...inner, declaration.name.text];
     }
 
     if (statement.condition) {
@@ -266,18 +314,15 @@ function walkControl(context, statement, live) {
     }
 
     if (statement.incrementor) {
-      const counter = rootName(
-        ts.isPostfixUnaryExpression(statement.incrementor) || ts.isPrefixUnaryExpression(statement.incrementor)
-          ? statement.incrementor.operand
-          : statement.incrementor,
-      );
-      const op = statement.incrementor.operator === ts.SyntaxKind.MinusMinusToken ? '-' : '+';
-      const id = record(context, 'loop-update', statement.incrementor, { changed: counter, op });
-      context.insert(statement.incrementor.getStart(context.file), `globalThis.__t.u(${id},`, 2);
-      context.insert(statement.incrementor.getEnd(), `,${counter},{${inner.join(',')}})`, -2);
+      const counter = counterName(statement.incrementor);
+      const id = record(context, 'loop-update', statement.incrementor, {
+        changed: counter ?? targetName(statement.incrementor),
+        ...(counter ? counterMeta(statement.incrementor) : { op: null }),
+      });
+      wrapUpdate(context, id, statement.incrementor, counter, inner);
     }
 
-    walkBlock(context, bodyOf(statement.statement), inner);
+    walkBody(context, statement.statement, inner);
     return;
   }
 
@@ -285,26 +330,30 @@ function walkControl(context, statement, live) {
     const declaration = statement.initializer.declarations?.[0];
     const bound = declaration && ts.isIdentifier(declaration.name) ? declaration.name.text : null;
     const id = record(context, 'loop-update', statement.expression, { changed: bound });
-    const seen = bound ? [...live, bound] : live;
+    if (bound) context.meta[id].text = `${bound} of ${context.textOf(statement.expression)}`;
     context.insert(statement.expression.getStart(context.file), `globalThis.__t.i(${id},`, 2);
-    context.insert(statement.expression.getEnd(), `,() => ({${seen.join(',')}}))`, -2);
+    context.insert(
+      statement.expression.getEnd(),
+      `,() => ({${live.join(',')}})${bound ? `,"${bound}"` : ''})`,
+      -2,
+    );
 
-    walkBlock(context, bodyOf(statement.statement), seen);
+    walkBody(context, statement.statement, bound ? [...live, bound] : live);
     return;
   }
 
   if (ts.isWhileStatement(statement) || ts.isDoStatement(statement)) {
     const id = record(context, 'loop-cond', statement.expression);
     wrapValue(context, id, statement.expression, live);
-    walkBlock(context, bodyOf(statement.statement), live);
+    walkBody(context, statement.statement, live);
     return;
   }
 
   if (ts.isIfStatement(statement)) {
     const id = record(context, 'cond', statement.expression);
     wrapValue(context, id, statement.expression, live);
-    walkBlock(context, bodyOf(statement.thenStatement), live);
-    if (statement.elseStatement) walkBlock(context, bodyOf(statement.elseStatement), live);
+    walkBody(context, statement.thenStatement, live);
+    if (statement.elseStatement) walkBody(context, statement.elseStatement, live);
     return;
   }
 

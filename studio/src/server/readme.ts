@@ -2,7 +2,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { WORKSPACE_ROOT } from './workspace';
 
-const LINK = /\]\(\.\/(\d{3})-/;
+const LINK = /\]\(\.\/(\d{3,4})-/;
 const MARKS = { done: '☑', open: '☐' };
 
 /**

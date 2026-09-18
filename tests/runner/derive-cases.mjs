@@ -5,13 +5,31 @@ import { readSignature } from './signature.mjs';
 
 const DATA_DIR = new URL('../../_gen/data/', import.meta.url);
 
-/** Drop `// ...` trailing notes from every line of an example fragment. */
-const stripComments = (text) =>
-  text
-    .split('\n')
-    .map((line) => line.replace(/\s*\/\/.*$/, ''))
-    .join('\n')
-    .trim();
+/**
+ * Drop `// ...` trailing notes from every line of an example fragment. A `//`
+ * inside a string is part of the value - a URL is the usual case - so quotes
+ * are tracked rather than pattern-matched.
+ */
+function dropNote(line) {
+  let quote = '';
+
+  for (let at = 0; at < line.length; at += 1) {
+    const char = line[at];
+
+    if (quote) {
+      if (char === '\\') at += 1;
+      else if (char === quote) quote = '';
+      continue;
+    }
+
+    if (char === '"' || char === "'" || char === '`') quote = char;
+    else if (char === '/' && line[at + 1] === '/') return line.slice(0, at).trimEnd();
+  }
+
+  return line;
+}
+
+const stripComments = (text) => text.split('\n').map(dropNote).join('\n').trim();
 
 /**
  * Evaluate a JS literal out of the authored examples. The data files are local

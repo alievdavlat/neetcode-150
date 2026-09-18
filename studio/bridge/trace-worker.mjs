@@ -1,5 +1,5 @@
 import { parentPort, workerData } from 'node:worker_threads';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { loadProblems } from '../../tests/runner/derive-cases.mjs';
 import { prepare } from '../../tests/runner/discover.mjs';
 import { instrument } from '../../tests/runner/trace/instrument.mjs';
@@ -138,6 +138,7 @@ if (!problem) {
         }
 
         delete globalThis.__t;
+        await rm(copy, { force: true });
 
         answer({
           number,

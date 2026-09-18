@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createRecorder, snapshot, TraceBudgetExceeded } from './recorder.mjs';
+import { createRecorder, show, snapshot, TraceBudgetExceeded } from './recorder.mjs';
 
 test('numbers and booleans are scalars', () => {
   assert.deepEqual(snapshot(3), { t: 'scalar', text: '3' });
@@ -95,9 +95,9 @@ test('an update records both sides', () => {
 
 test('element accesses land in touched', () => {
   const { api, steps } = createRecorder(META);
-  assert.equal(api.x(0, 'nums', 2, false), 2);
+  assert.equal(api.x(0, 'nums', 2, false, 'i'), 2);
   api.v(0, 4);
-  assert.deepEqual(steps[0].touched, [{ name: 'nums', key: 2, write: false }]);
+  assert.deepEqual(steps[0].touched, [{ name: 'nums', key: 2, write: false, from: 'i' }]);
 });
 
 test('the budget stops the run rather than the machine', () => {
@@ -105,4 +105,10 @@ test('the budget stops the run rather than the machine', () => {
   api.v(0, 1);
   api.v(0, 2);
   assert.throws(() => api.v(0, 3), TraceBudgetExceeded);
+});
+
+test('a map shows what is in it rather than an empty object', () => {
+  assert.equal(show(new Map([[1, 3], ['a', 2]])), "Map(2) {1 → 3, 'a' → 2}");
+  assert.equal(show(new Set([1, 2])), 'Set(2) {1, 2}');
+  assert.equal(show(new Map()), 'Map(0) {}');
 });

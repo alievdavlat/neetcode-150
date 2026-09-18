@@ -117,8 +117,30 @@ has few steps of its own.
 | `if` condition | `cond` | the boolean and its chain |
 | `return expr;` | `return` | the returned value's chain |
 
-`switch`, `try`/`catch` and labelled statements are not instrumented in this phase; they
-execute normally and contribute no steps.
+`switch`, `try`/`catch`, `for…in` and labelled statements are not instrumented in this
+phase; they execute normally and contribute no steps.
+
+### Statements that need more than one site
+
+A declaration list is several bindings, so it is several steps: `let l = 0, r = n - 1`
+records `l` and then `r`, each with its own chain, and both are in scope from that point
+on. The same holds in a `for` head.
+
+An incrementor only claims arithmetic when it moves one named counter. `i++` reads
+`i++ → 0 + 1 → 1`; `i++, j--`, `i += 2` and `freq[k]++` show only what ran, and the new
+values are read from the variable table, which is the half that is always true.
+
+A body without braces — `for (const n of nums) count(n);` — has nowhere to put a trailing
+marker, so those statements carry their scope on the value call instead. A marker appended
+after the statement would sit outside the loop and run once, in the wrong scope.
+
+A `for…of` binding is in its own dead zone while the head is evaluated, so the recorder is
+told the name and given the bound value directly rather than reading it out of a scope
+snapshot.
+
+Recursion means the same expression is part way through several evaluations at once. The
+recorder keeps one frame per evaluation, so an inner call cannot eat the substitution of
+the call that made it.
 
 ### Line numbers
 
@@ -160,7 +182,8 @@ declarations, and something most students have never seen.
 - `number`, `boolean`, `null`, `undefined` → `scalar`
 - `string` → `scalar`, quoted, truncated at 120 characters
 - `Array` and typed arrays → `array` of item texts, at most 200 items
-- `Map`, `Set` → `map` / `array`
+- `Map`, `Set` → `map` / `array` for the stage, and `Map(1) {1 → 3}` when they appear
+  inside a substitution chain, where `JSON.stringify` would print `{}`
 - plain object → `map`, at most 50 entries
 - anything else → `scalar` from `String(value)`, truncated
 
@@ -185,7 +208,7 @@ export interface TraceStep {
   chain: string[];
   vars: Record<string, TraceValue>;
   changed: string | null;
-  touched: { name: string; key: string | number; write: boolean }[];
+  touched: { name: string; key: string | number; write: boolean; from: string }[];
 }
 
 export type TraceStatus = 'ok' | 'unsupported' | 'uninstrumentable' | 'threw' | 'stalled' | 'crashed';
@@ -220,12 +243,41 @@ The simulation tab shows, per step: the step kind, the substitution chain, and a
 table with before → after values, the changed one emphasised. Arrays render as indexed
 cells with touched cells marked; objects and maps render as key → value rows.
 
-Transport: previous, play/pause, next, and a scrubber. The trace is recorded up front, so
-stepping backwards is free.
+Transport: first, previous, play/pause, next, last, and a scrubber, with the arrow keys
+stepping while the transport has focus. The trace is recorded up front, so stepping
+backwards is free.
 
 Which case is traced: the first worked example from the doc block by default. If the last
 run failed, the first failing case is selected instead — that is when a student most needs
-this. A picker allows any other case.
+this. Exports are chips, since there are rarely more than three; cases are a select, since
+a generator can add dozens, and a failing one says so in the list and in the trigger.
+
+Simulate saves first when the editor is dirty, so the replayed file and the highlighted
+lines are the same file.
+
+### Reading one step
+
+A step on its own says what ran; the panel adds what it meant.
+
+- **What changed.** The variable table is diffed against the step before, so a scalar reads
+  `0 → 5`, a changed cell keeps its old value struck through above it, and a name coming
+  into scope counts as changed - `const calc = …` is the moment `calc` takes its value.
+- **Where in the loop.** Loop passes are counted per entry into the loop, so a loop inside
+  a loop starts again at one. The exit test says `loop ends` rather than a pass number.
+- **What it means.** A true test reads `so the body runs again`, a false one
+  `so the loop ends here`, a return `the function ends here`.
+- **Which index.** `touched` carries the index as it was written, so a cell can be labelled
+  `i` beneath it. Only a plain identifier is drawn; `nums[i + 1]` would be a lie about what
+  the student named.
+- **Shape of the whole run.** A tick per step above the scrubber, coloured by kind, so the
+  rhythm of a loop is visible before stepping into it. The scrubber is the playhead over it.
+
+Navigation for a trace too long to step through: clicking a name in the variable table
+follows only the steps where it changed, clicking the gutter jumps to the next time that
+line runs, and playback runs at 0.5x to 4x.
+
+All of this is derived in the client from the trace already sent; only the index text in
+`touched` was added to the payload.
 
 ## Limits and failure handling
 
@@ -254,5 +306,7 @@ probe sizes. Tests keep running at full size on the untouched run path.
   solution files — those change as the student works, and a test that reads them would
   break for reasons that have nothing to do with the tracer. Two fixtures: a hash-map
   `twoSum` traced on `nums = [3,2,4], target = 6`, expected to produce 16 steps ending in
-  `["[i, obj[calc]]", "[2, obj[2]]", "[2, 1]"]`; and a counting `isAnagram` traced on
-  `"cat"` / `"act"`, expected to produce 17 steps ending in `true`.
+  `["[i, obj[calc]]", "[2, 1]"]`; and a counting `isAnagram` traced on `"cat"` / `"act"`,
+  expected to produce 17 steps ending in `true`. Four more fixtures cover the syntax that
+  has no site in those two: a `for…of`, a declaration list with a `while` loop, a `for`
+  head that moves two counters, and a recursive `fib`.

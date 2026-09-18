@@ -13,7 +13,7 @@ export const SCRATCH_PREFIX = 'studio/.studio/scratch';
 
 const BRIDGE_DIR = path.join(STUDIO_ROOT, 'bridge');
 const NODE_FLAGS = ['--experimental-strip-types', '--disable-warning=ExperimentalWarning'];
-const PROBLEM_FILE = /^\d{2}-[a-z0-9-]+\/\d{3}-[a-z0-9-]+\.ts$/;
+const PROBLEM_FILE = /^\d{2}-[a-z0-9-]+\/\d{3,4}-[a-z0-9-]+\.ts$/;
 
 /** The path the runner reads, relative to the workspace root. */
 export function problemPath(file: string, mode: SourceMode): string {

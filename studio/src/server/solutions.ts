@@ -7,7 +7,7 @@ const SOLUTIONS_DIR = path.join(STUDIO_ROOT, '.studio', 'solutions');
 const KEEP = 5;
 
 const dirFor = (number: string) => {
-  if (!/^\d{3}$/.test(number)) throw new Error(`not a problem number: ${number}`);
+  if (!/^\d{3,4}$/.test(number)) throw new Error(`not a problem number: ${number}`);
   return path.join(SOLUTIONS_DIR, number);
 };
 

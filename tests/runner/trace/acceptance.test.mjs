@@ -33,7 +33,7 @@ test('the hash map two sum produces sixteen steps and the right pair', async () 
 
   assert.deepEqual(result, [2, 1]);
   assert.equal(steps.length, 16);
-  assert.deepEqual(steps.at(-1).chain, ['[i, obj[calc]]', '[2, 1]', '[2,1]']);
+  assert.deepEqual(steps.at(-1).chain, ['[i, obj[calc]]', '[2, 1]']);
   assert.equal(steps.at(-1).kind, 'return');
 });
 
@@ -77,6 +77,101 @@ test('a touched cell is reported with its index', async () => {
 
   assert.deepEqual(
     first.touched.find((entry) => entry.name === 'nums'),
-    { name: 'nums', key: 0, write: false },
+    { name: 'nums', key: 0, write: false, from: 'i' },
+  );
+});
+
+test('a for…of names the value it bound this turn', async () => {
+  const { steps, result } = await trace('group-words.ts', 'groupWords', [['ab', 'cd']]);
+
+  assert.deepEqual(result, ['ab!', 'cd!']);
+
+  const bindings = steps.filter((step) => step.kind === 'loop-update');
+  assert.deepEqual(
+    bindings.map((step) => step.chain.at(-1)),
+    ["'ab'", "'cd'"],
+  );
+  assert.deepEqual(
+    bindings.map((step) => step.vars.word?.text),
+    ["'ab'", "'cd'"],
+  );
+});
+
+test('the second name in a declaration list is visible for the rest of the trace', async () => {
+  const { steps, result } = await trace('two-pointer.ts', 'pairSum', [[1, 2, 3, 4]]);
+
+  assert.equal(result, 10);
+
+  const born = steps.findIndex((step) => step.changed === 'right');
+  assert.equal(born > -1, true, 'the second declarator never got a step of its own');
+  assert.deepEqual(steps[born].chain, ['nums.length - 1', '4 - 1', '3']);
+  assert.equal(
+    steps.slice(born).every((step) => 'right' in step.vars),
+    true,
+  );
+});
+
+test('an update statement reports the value it leaves behind', async () => {
+  const { steps } = await trace('two-pointer.ts', 'pairSum', [[1, 2, 3, 4]]);
+  const bumps = steps.filter((step) => step.changed === 'left' && step.chain[0] === 'left++');
+
+  for (const step of bumps) assert.equal(step.chain.at(-1), step.vars.left.text);
+});
+
+test('a compound assignment names what it changed', async () => {
+  const { steps } = await trace('two-pointer.ts', 'pairSum', [[1, 2, 3, 4]]);
+  const sums = steps.filter((step) => step.chain[0].startsWith('total +='));
+
+  assert.equal(sums.length > 0, true);
+  for (const step of sums) assert.equal(step.changed, 'total');
+});
+
+test('an incrementor moving two counters claims no arithmetic and still shows both', async () => {
+  const { steps, result } = await trace('walk-pairs.ts', 'walkPairs', [[1, 2, 3, 4]]);
+
+  assert.equal(result, 10);
+  const updates = steps.filter((step) => step.kind === 'loop-update');
+  assert.equal(updates.length > 0, true);
+
+  for (const step of updates) {
+    assert.deepEqual(step.chain, ['i++, j--']);
+    assert.equal('i' in step.vars && 'j' in step.vars, true);
+  }
+});
+
+test('a recursive call does not eat the substitution of the call that made it', async () => {
+  const { steps, result } = await trace('fib.ts', 'fib', [4]);
+
+  assert.equal(result, 3);
+  const returns = steps.filter((step) => step.chain[0] === 'fib(n - 1) + fib(n - 2)');
+
+  assert.equal(returns.length > 0, true);
+  for (const step of returns) {
+    assert.equal(step.chain.length, 3, `half filled: ${JSON.stringify(step.chain)}`);
+    assert.match(step.chain[1], /^fib\(\d+ - 1\) \+ fib\(\d+ - 2\)$/);
+  }
+});
+
+test('a prefix update says what it read, not what it had just written', async () => {
+  const { steps, result } = await trace('prefix-count.ts', 'countUp', [[7, 8]]);
+
+  assert.equal(result, 2);
+
+  const bumps = steps.filter((step) => step.chain[0] === '++seen');
+  assert.deepEqual(
+    bumps.map((step) => step.chain),
+    [
+      ['++seen', '0 + 1', '1'],
+      ['++seen', '1 + 1', '2'],
+    ],
+  );
+
+  const counters = steps.filter((step) => step.kind === 'loop-update');
+  assert.deepEqual(
+    counters.map((step) => step.chain),
+    [
+      ['++i', '0 + 1', '1'],
+      ['++i', '1 + 1', '2'],
+    ],
   );
 });

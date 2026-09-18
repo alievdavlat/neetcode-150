@@ -6,7 +6,7 @@ const NOTES_DIR = path.join(STUDIO_ROOT, '.studio', 'notes');
 const MAX_NOTE_BYTES = 64 * 1024;
 
 const fileFor = (number: string) => {
-  if (!/^\d{3}$/.test(number)) throw new Error(`not a problem number: ${number}`);
+  if (!/^\d{3,4}$/.test(number)) throw new Error(`not a problem number: ${number}`);
   return path.join(NOTES_DIR, `${number}.md`);
 };
 

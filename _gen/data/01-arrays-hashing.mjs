@@ -289,5 +289,103 @@ export function longestConsecutive(nums: number[]): number {
 }
 `,
     },
+    {
+      n: 151,
+      title: 'Roman to Integer',
+      slug: 'roman-to-integer',
+      difficulty: 'Easy',
+      leetcode: 'roman-to-integer',
+      pattern: 'Scan once and subtract a letter that is smaller than the one after it',
+      complexity: 'O(n) time, O(1) space',
+      statement: `
+Roman numerals are written with the letters I, V, X, L, C, D and M, worth 1, 5, 10, 50,
+100, 500 and 1000. They are normally written largest to smallest and added up, but a
+smaller letter placed directly before a larger one is subtracted instead. Given a valid
+roman numeral, return the number it stands for.
+`,
+      examples: [
+        `Input:  s = "III"
+Output: 3`,
+        `Input:  s = "LVIII"
+Output: 58        // L = 50, V = 5, III = 3`,
+        `Input:  s = "MCMXCIV"
+Output: 1994      // M + CM + XC + IV`,
+      ],
+      constraints: [
+        '1 <= s.length <= 15',
+        's contains only the letters I, V, X, L, C, D, M',
+        's is a valid roman numeral in the range [1, 3999]',
+      ],
+      followUp: 'Only six pairs are ever subtracted. You do not need to special-case any of them.',
+      stub: `
+export function romanToInt(s: string): number {
+  throw new Error('Not implemented');
+}
+`,
+    },
+    {
+      n: 152,
+      title: 'Longest Common Prefix',
+      slug: 'longest-common-prefix',
+      difficulty: 'Easy',
+      leetcode: 'longest-common-prefix',
+      pattern: 'Walk the columns together and stop at the first disagreement',
+      complexity: 'O(total characters) time, O(1) extra space',
+      statement: `
+Return the longest string that every word in strs begins with. When the words share no
+opening character, return the empty string.
+`,
+      examples: [
+        `Input:  strs = ["flower", "flow", "flight"]
+Output: "fl"`,
+        `Input:  strs = ["dog", "racecar", "car"]
+Output: ""        // nothing in common`,
+        `Input:  strs = ["alone"]
+Output: "alone"`,
+      ],
+      constraints: [
+        '1 <= strs.length <= 200',
+        '0 <= strs[i].length <= 200',
+        'strs[i] consists of lowercase English letters',
+      ],
+      followUp: 'The shortest word caps the answer, which is worth knowing before you start scanning.',
+      stub: `
+export function longestCommonPrefix(strs: string[]): string {
+  throw new Error('Not implemented');
+}
+`,
+    },
+    {
+      n: 153,
+      title: 'Majority Element',
+      slug: 'majority-element',
+      difficulty: 'Easy',
+      leetcode: 'majority-element',
+      pattern: 'Boyer-Moore vote: hold one candidate and a running count',
+      complexity: 'O(n) time, O(1) space',
+      statement: `
+One value in nums appears more than half the time. Return it. You may assume such a value
+always exists, so you never have to report failure.
+`,
+      examples: [
+        `Input:  nums = [3, 2, 3]
+Output: 3`,
+        `Input:  nums = [2, 2, 1, 1, 1, 2, 2]
+Output: 2`,
+        `Input:  nums = [7]
+Output: 7`,
+      ],
+      constraints: [
+        '1 <= nums.length <= 5 * 10^4',
+        '-10^9 <= nums[i] <= 10^9',
+        'A majority element always exists',
+      ],
+      followUp: 'A hash map is the obvious answer. Getting to O(1) space is the interesting one.',
+      stub: `
+export function majorityElement(nums: number[]): number {
+  throw new Error('Not implemented');
+}
+`,
+    },
   ],
 };

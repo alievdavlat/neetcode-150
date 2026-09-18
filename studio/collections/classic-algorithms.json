@@ -1,0 +1,10 @@
+{
+  "id": "classic-algorithms",
+  "name": "Classic Algorithms",
+  "description": "The routines every other section quietly calls into, written out by hand with the boundary cases the library hides.",
+  "group": "From other sources",
+  "numbers": [
+    "158",
+    "159"
+  ]
+}

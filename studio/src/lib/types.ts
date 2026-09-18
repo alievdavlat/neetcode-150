@@ -46,6 +46,28 @@ export interface Collection {
   name: string;
   description: string;
   numbers: string[];
+  /** The home page section this list belongs under. */
+  group?: string;
+}
+
+/** How often a company asked each problem, as read from a published interview sheet. */
+export interface Company {
+  name: string;
+  numbers: string[];
+}
+
+/** A collection with the numbers already counted, which is what the home page draws. */
+export interface Board {
+  id: string;
+  name: string;
+  description: string;
+  group: string;
+  numbers: string[];
+  total: number;
+  easy: number;
+  medium: number;
+  hard: number;
+  solved: number;
 }
 
 export interface SolutionSnapshot {
@@ -165,7 +187,7 @@ export interface TraceStep {
   chain: string[];
   vars: Record<string, TraceValue>;
   changed: string | null;
-  touched: { name: string; key: string | number; write: boolean }[];
+  touched: { name: string; key: string | number; write: boolean; from: string }[];
 }
 
 export type TraceStatus = 'ok' | 'unsupported' | 'uninstrumentable' | 'threw' | 'stalled' | 'crashed';

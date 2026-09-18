@@ -8,7 +8,7 @@ import { runAll } from '../../tests/runner/schedule.mjs';
  */
 const TIMEOUT_MS = 10000;
 
-const wanted = new Set(process.argv.slice(2).filter((arg) => /^\d{3}$/.test(arg)));
+const wanted = new Set(process.argv.slice(2).filter((arg) => /^\d{3,4}$/.test(arg)));
 const problems = (await loadProblems()).filter((problem) => wanted.size === 0 || wanted.has(problem.number));
 
 const compact = (report) => {

@@ -86,9 +86,12 @@ const TAG_RULES: { tag: string; test: RegExp }[] = [
 ];
 
 export const tagsOf = (problem: Problem) => {
-  const haystack = `${problem.pattern} ${problem.category}`;
+  const haystack = `${problem.title} ${problem.pattern} ${problem.category}`;
   return TAG_RULES.filter((rule) => rule.test.test(haystack)).map((rule) => rule.tag);
 };
+
+/** The board every problem in the workspace belongs to, with no file behind it. */
+export const ALL_BOARD = 'all';
 
 export const DIFFICULTIES: Difficulty[] = ['Easy', 'Medium', 'Hard'];
 

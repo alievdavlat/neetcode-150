@@ -1,0 +1,24 @@
+/**
+ * 1855. Check for even parity of a given number   ·   Easy   ·   Everyday Functions
+ *
+ * Write a function to check for even parity of a given number.
+ *
+ * Example 1:
+ *   Input:  n = 10
+ *   Output: true
+ *
+ * Example 2:
+ *   Input:  n = 11
+ *   Output: false
+ *
+ * Example 3:
+ *   Input:  n = 18
+ *   Output: true
+ *
+ * Pattern:   One idea, written out directly
+ * Target:    Not stated for this set - aim for the obvious single pass
+ * Source:    MBPP · Google Research · Apache 2.0
+ */
+export function checkEvenParity(n: number): boolean {
+  throw new Error('Not implemented');
+}

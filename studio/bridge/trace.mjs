@@ -35,6 +35,11 @@ const outcome = await new Promise((resolve) => {
     clearTimeout(timer);
     resolve({ status: 'crashed', message: error.message });
   });
+
+  worker.on('exit', (code) => {
+    clearTimeout(timer);
+    resolve({ status: 'crashed', message: `the tracer exited with code ${code}` });
+  });
 });
 
 process.stdout.write(

@@ -11,7 +11,7 @@ export async function POST(request: Request) {
     mode?: string;
   } | null;
 
-  if (!body?.number || !/^\d{3}$/.test(body.number)) return fail('a three digit problem number is required');
+  if (!body?.number || !/^\d{3,4}$/.test(body.number)) return fail('a problem number is required');
   if (!body.variant || !/^[A-Za-z_$][\w$]*$/.test(body.variant)) return fail('a variant name is required');
 
   const index = Number.isInteger(body.caseIndex) && body.caseIndex! >= 0 ? body.caseIndex! : 0;

@@ -16,7 +16,7 @@ const code = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'NeetCode Problems',
+  title: 'Problems',
   description: '150 problems, one editor, real verdicts.',
 };
 

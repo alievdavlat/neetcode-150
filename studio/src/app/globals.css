@@ -218,5 +218,46 @@
 }
 
 .trace-active-line {
-  background: color-mix(in oklab, var(--primary) 14%, transparent);
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--primary) 20%, transparent),
+    color-mix(in oklab, var(--primary) 6%, transparent) 55%,
+    transparent
+  );
+  box-shadow: inset 2px 0 0 var(--primary);
+}
+
+/* A playhead dragged over the step ticks, rather than a track of its own. */
+.trace-timeline {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+}
+
+.trace-timeline::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 18px;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--primary);
+  box-shadow: 0 0 6px color-mix(in oklab, var(--primary) 60%, transparent);
+  cursor: pointer;
+}
+
+.trace-timeline::-moz-range-thumb {
+  height: 18px;
+  width: 3px;
+  border: none;
+  border-radius: 2px;
+  background: var(--primary);
+  box-shadow: 0 0 6px color-mix(in oklab, var(--primary) 60%, transparent);
+  cursor: pointer;
+}
+
+.trace-timeline:focus-visible {
+  border-radius: 4px;
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--ring) 40%, transparent);
 }

@@ -1,13 +1,16 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { Loader2, RefreshCw } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowLeft, Loader2, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Brand } from './brand';
 import { STATE_META } from '@/lib/meta';
 import type { ProblemState } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
 interface StudioHeaderProps {
+  boardName: string;
   counts: Record<ProblemState, number>;
   total: number;
   pending: number;
@@ -17,7 +20,7 @@ interface StudioHeaderProps {
 
 const TRACKED: ProblemState[] = ['solved', 'failing', 'attempted'];
 
-export function StudioHeader({ counts, total, pending, syncing, onSync }: StudioHeaderProps) {
+export function StudioHeader({ boardName, counts, total, pending, syncing, onSync }: StudioHeaderProps) {
   const percent = total === 0 ? 0 : Math.round((counts.solved / total) * 100);
 
   const renderCount = (state: ProblemState) => (
@@ -46,23 +49,22 @@ export function StudioHeader({ counts, total, pending, syncing, onSync }: Studio
   );
 
   return (
-    <header className="surface flex items-center gap-6 border-b border-line px-5 py-3">
+    <header className="surface flex items-center gap-4 border-b border-line px-5 py-3">
+      <Link
+        href="/"
+        aria-label="Back to all collections"
+        title="Back to all collections"
+        className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-line text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+      >
+        <ArrowLeft className="size-4" />
+      </Link>
+
       <motion.div
         initial={{ opacity: 0, x: -12 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
-        className="flex items-center gap-3"
       >
-        <span className="relative flex size-8 -skew-x-6 items-center justify-center rounded-lg bg-primary font-heading text-sm font-bold text-primary-foreground">
-          N
-          <span className="absolute -right-0.5 -bottom-0.5 size-1.5 rounded-full bg-hot" />
-        </span>
-        <div className="leading-tight">
-          <h1 className="font-heading text-sm font-semibold tracking-[0.14em] uppercase">
-            NeetCode <span className="text-primary">Problems</span>
-          </h1>
-          <p className="text-[11px] text-muted-foreground">150 problems</p>
-        </div>
+        <Brand subtitle={`${boardName} · ${total} problems`} />
       </motion.div>
 
       <div className="ml-auto flex items-center gap-4">

@@ -80,7 +80,7 @@ test('a for loop is three separate sites', () => {
   const update = meta.find((entry) => entry.kind === 'loop-update');
   assert.equal(update.text, 'i++');
   assert.equal(update.op, '+');
-  assert.match(code, new RegExp(`globalThis\\.__t\\.u\\(${update.id},i\\+\\+,i,\\{`));
+  assert.match(code, new RegExp(`globalThis\\.__t\\.u\\(${update.id},\\(i\\+\\+\\),i,\\{`));
 });
 
 test('an if condition and a return are their own sites', () => {
@@ -121,7 +121,7 @@ test('a for of loop wraps its iterable', () => {
   const { code, meta } = instrument(source, { functionName: 'join' });
   const bind = meta.find((entry) => entry.kind === 'loop-update');
 
-  assert.equal(bind.text, 'strs');
+  assert.equal(bind.text, 'word of strs');
   assert.equal(bind.changed, 'word');
   assert.match(code, new RegExp(`globalThis\\.__t\\.i\\(${bind.id},strs,\\(\\) =>`));
   assert.match(code, /globalThis\.__t\.s\(\d+,\{strs,out,word\}\)/);
@@ -147,7 +147,7 @@ test('an element access reports the array it touched', () => {
 test('a write is marked as a write', () => {
   const { code, meta } = instrument(SOURCE, { functionName: 'twoSum' });
   const write = meta.find((entry) => entry.text === 'obj[nums[i]] = i');
-  assert.match(code, new RegExp(`globalThis\\.__t\\.x\\(${write.id},"obj",.*,true\\)`));
+  assert.match(code, new RegExp(`globalThis\\.__t\\.x\\(${write.id},"obj",.*,true,"nums\\[i\\]"\\)`));
 });
 
 test('an assignment target is never wrapped as a leaf', () => {

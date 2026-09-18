@@ -98,8 +98,11 @@ const wrap = (text) => {
   return out;
 };
 
+/** Imported text can contain a comment terminator, which would end the block early. */
+const escapeComment = (line) => line.replaceAll('*/', '*\\/');
+
 const docBlock = (lines) =>
-  ['/**', ...lines.map((line) => (line === '' ? ' *' : ' * ' + line)), ' */'].join('\n');
+  ['/**', ...lines.map((line) => (line === '' ? ' *' : ' * ' + escapeComment(line))), ' */'].join('\n');
 
 const problemDoc = (problem, category) => {
   const chapter = chapterFor.get(problem.n);
@@ -123,8 +126,9 @@ const problemDoc = (problem, category) => {
   lines.push('');
   lines.push(`Pattern:   ${problem.pattern}`);
   lines.push(`Target:    ${problem.complexity}`);
-  lines.push(`LeetCode:  https://leetcode.com/problems/${problem.leetcode}/`);
-  lines.push(`Video:     ${VIDEO_URL}&t=${chapter.offset}s  (${chapter.stamp})`);
+  if (problem.leetcode) lines.push(`LeetCode:  https://leetcode.com/problems/${problem.leetcode}/`);
+  if (problem.source) lines.push(`Source:    ${problem.source}`);
+  if (chapter) lines.push(`Video:     ${VIDEO_URL}&t=${chapter.offset}s  (${chapter.stamp})`);
   return docBlock(lines);
 };
 
@@ -141,7 +145,13 @@ const categoryReadme = (module) => {
   const rows = module.problems.map((problem) => {
     const chapter = chapterFor.get(problem.n);
     const file = `${pad(problem.n)}-${problem.slug}.ts`;
-    const links = `[LC](https://leetcode.com/problems/${problem.leetcode}/) · [▶ ${chapter.stamp}](${VIDEO_URL}&t=${chapter.offset}s)`;
+    const links = [
+      problem.leetcode && `[LC](https://leetcode.com/problems/${problem.leetcode}/)`,
+      chapter && `[▶ ${chapter.stamp}](${VIDEO_URL}&t=${chapter.offset}s)`,
+      !problem.leetcode && !chapter && problem.source,
+    ]
+      .filter(Boolean)
+      .join(' · ');
     return `| ${problem.n} | ☐ | [${problem.title}](./${file}) | ${DIFFICULTY_ICON[problem.difficulty]} ${problem.difficulty} | ${problem.pattern} | ${links} |`;
   });
   return [

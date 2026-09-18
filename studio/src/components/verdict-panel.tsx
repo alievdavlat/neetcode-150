@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { ActivitySquare, AlertTriangle, Check, CircleSlash, Clock, SquareTerminal, Terminal, X } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { ComplexityChart, type ChartSeries } from './complexity-chart';
+import { PanelNotice } from './panel-notice';
 import { formatBytes, formatMs } from '@/lib/meta';
 import type { RunCase, RunFailure, RunReport, RunVariant } from '@/lib/types';
 import { cn } from '@/lib/utils';
@@ -27,13 +28,7 @@ const CARD = {
 
 export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure, onSnippet }: VerdictPanelProps) {
   const renderNotice = (icon: React.ReactNode, title: string, body: string, tone: string) => (
-    <div className="flex h-full items-center justify-center p-8">
-      <div className={cn('max-w-sm rounded-2xl border p-6 text-center', tone)}>
-        <div className="mb-3 flex justify-center">{icon}</div>
-        <p className="mb-1 font-heading text-sm font-semibold">{title}</p>
-        <p className="text-xs leading-relaxed text-muted-foreground">{body}</p>
-      </div>
-    </div>
+    <PanelNotice icon={icon} title={title} body={body} tone={tone} />
   );
 
   const renderCase = (item: RunCase, index: number) => (

@@ -43,6 +43,7 @@ interface SolutionEditorProps {
   bigO: boolean;
   markers: TypeMarker[];
   activeLine: number | null;
+  onLineClick: (line: number) => void;
   checkingTypes: boolean;
   snapshots: number;
   onChange: (value: string) => void;
@@ -70,6 +71,7 @@ export function SolutionEditor({
   bigO,
   markers,
   activeLine,
+  onLineClick,
   checkingTypes,
   snapshots,
   onChange,
@@ -245,6 +247,7 @@ export function SolutionEditor({
             value={source}
             markers={markers}
             activeLine={activeLine}
+            onLineClick={onLineClick}
             onChange={onChange}
             onSave={onSave}
             onRun={onRun}

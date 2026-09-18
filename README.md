@@ -41,39 +41,6 @@ console.log(containsDuplicate([1, 2, 3, 4])); // false
 
 Those lines are scratch work — delete them, or leave them as a record of what you checked.
 
-## Testing a solution
-
-`console.log` at the bottom of a file shows you *an* answer; it does not tell you
-whether the answer is right for every case. The runner in [`tests/`](./tests/) does:
-
-```bash
-npm test                  # every problem you have started
-npm test -- two-sum       # one problem, by slug, number or title
-npm run test:bigo         # time it at doubling sizes and fit a Big-O curve
-npm run test:mem          # heap growth per call
-```
-
-Cases come out of the examples already written in each problem's doc block, so
-most problems are covered with no setup. Every exported variant in a file is run
-against the same cases. See [`tests/README.md`](./tests/README.md) for adding your
-own cases and for what the complexity numbers can and cannot tell you.
-
-## Studio — the browser UI
-
-The same workspace with a LeetCode-shaped front end: problem list, the description,
-a Monaco editor wired to the real `.ts` file, and the runner's verdicts in a panel.
-
-```bash
-npm run studio        # http://localhost:3150
-```
-
-First run installs nothing extra at the root — the app lives in [`studio/`](./studio/)
-with its own dependencies (`cd studio && npm install` once).
-
-The editor edits the file on disk, not a copy: `Ctrl/Cmd + S` saves, `Ctrl/Cmd + Enter`
-saves and runs. Nothing is written until you save, so the terminal workflow above keeps
-working unchanged. See [`studio/README.md`](./studio/README.md).
-
 ## Type-checking
 
 ```bash
@@ -85,8 +52,8 @@ npm run check     # tsc --noEmit
 
 | Category | Problems | 🟢 Easy | 🟡 Medium | 🔴 Hard |
 | --- | --: | --: | --: | --: |
-| [Arrays & Hashing](./01-arrays-hashing/) | 9 | 3 | 6 | 0 |
-| [Two Pointers](./02-two-pointers/) | 5 | 1 | 3 | 1 |
+| [Arrays & Hashing](./01-arrays-hashing/) | 12 | 6 | 6 | 0 |
+| [Two Pointers](./02-two-pointers/) | 6 | 1 | 4 | 1 |
 | [Sliding Window](./03-sliding-window/) | 6 | 1 | 3 | 2 |
 | [Stack](./04-stack/) | 7 | 1 | 5 | 1 |
 | [Binary Search](./05-binary-search/) | 7 | 1 | 5 | 1 |
@@ -103,7 +70,11 @@ npm run check     # tsc --noEmit
 | [Intervals](./16-intervals/) | 6 | 1 | 4 | 1 |
 | [Math & Geometry](./17-math-geometry/) | 8 | 2 | 6 | 0 |
 | [Bit Manipulation](./18-bit-manipulation/) | 7 | 5 | 2 | 0 |
-| **Total** | **150** | **28** | **101** | **21** |
+| [Fundamentals](./19-fundamentals/) | 3 | 3 | 0 | 0 |
+| [Classic Algorithms](./20-classic-algorithms/) | 2 | 1 | 1 | 0 |
+| [Everyday Functions](./21-everyday-functions/) | 848 | 848 | 0 | 0 |
+| [Exercism](./22-exercism/) | 97 | 97 | 0 | 0 |
+| **Total** | **1104** | **980** | **103** | **21** |
 
 ## Suggested order
 
