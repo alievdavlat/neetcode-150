@@ -199,7 +199,9 @@ export type TraceKind = 'call' | 'stmt' | 'loop-init' | 'loop-cond' | 'loop-upda
 export type TraceValue =
   | { t: 'scalar'; text: string }
   | { t: 'array'; items: string[]; truncated: boolean }
-  | { t: 'map'; entries: [string, string][]; truncated: boolean };
+  | { t: 'map'; entries: [string, string][]; truncated: boolean }
+  | { t: 'list'; items: string[]; truncated: boolean; cyclic: boolean }
+  | { t: 'tree'; rows: (string | null)[][]; truncated: boolean };
 
 /** One chapter of a course video, exactly as its own chapter list names it. */
 export interface Lesson {
@@ -243,6 +245,19 @@ export interface TraceStep {
 }
 
 export type TraceStatus = 'ok' | 'unsupported' | 'uninstrumentable' | 'threw' | 'stalled' | 'crashed';
+
+/** Statements counted at doubling sizes: exact where a clock is not. */
+export interface OperationProbe {
+  number: string;
+  variant: string;
+  status: TraceStatus;
+  message: string | null;
+  points: { n: number; ops: number }[];
+  verdict: string | null;
+  deviation: number | null;
+  target: string | null;
+  comparison: 'match' | 'differs' | 'unknown' | null;
+}
 
 export interface TraceResult {
   number: string;

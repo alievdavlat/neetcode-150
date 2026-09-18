@@ -15,15 +15,24 @@ test('a function over numbers and arrays of them is traceable', () => {
   assert.deepEqual(traceSupport(signature), { ok: true, reason: null });
 });
 
-test('a node argument is refused by name', () => {
+test('a linked list is traceable, now that the stage draws one', () => {
   const signature = {
     kind: 'function',
     name: 'reverseList',
     params: [{ name: 'head', type: 'ListNode | null' }],
     returns: 'ListNode | null',
   };
-  assert.equal(traceSupport(signature).ok, false);
-  assert.match(traceSupport(signature).reason, /ListNode/);
+  assert.deepEqual(traceSupport(signature), { ok: true, reason: null });
+});
+
+test('a tree is traceable too', () => {
+  const signature = {
+    kind: 'function',
+    name: 'maxDepth',
+    params: [{ name: 'root', type: 'TreeNode | null' }],
+    returns: 'number',
+  };
+  assert.deepEqual(traceSupport(signature), { ok: true, reason: null });
 });
 
 test('a class problem is refused', () => {
@@ -34,10 +43,10 @@ test('a class problem is refused', () => {
 test('an unsupported return type is refused even when the parameters are fine', () => {
   const signature = {
     kind: 'function',
-    name: 'buildTree',
+    name: 'cloneGraph',
     params: [{ name: 'values', type: 'number[]' }],
-    returns: 'TreeNode | null',
+    returns: 'GraphNode | null',
   };
   assert.equal(traceSupport(signature).ok, false);
-  assert.match(traceSupport(signature).reason, /TreeNode/);
+  assert.match(traceSupport(signature).reason, /GraphNode/);
 });

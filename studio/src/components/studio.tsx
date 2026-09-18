@@ -23,6 +23,7 @@ import type {
   ProblemSource,
   ProblemState,
   ProblemStatus,
+  OperationProbe,
   RunReport,
   Settings,
   SolutionSnapshot,
@@ -120,6 +121,8 @@ export function Studio({
   const [report, setReport] = useState<RunReport | null>(null);
   const [trace, setTrace] = useState<TraceResult | null>(null);
   const [tracing, setTracing] = useState(false);
+  const [ops, setOps] = useState<OperationProbe | null>(null);
+  const [counting, setCounting] = useState(false);
   const [activeLine, setActiveLine] = useState<number | null>(null);
   const [variant, setVariant] = useState<string | null>(null);
   const [caseIndex, setCaseIndex] = useState(0);
@@ -216,6 +219,7 @@ export function Studio({
     setReport(null);
     setMarkers([]);
     setTrace(null);
+    setOps(null);
     setActiveLine(null);
     setVariant(null);
     setCaseIndex(0);
@@ -403,6 +407,24 @@ export function Studio({
     setCaseIndex(pickedCase);
     setTrace(null);
     setActiveLine(null);
+    if (pickedVariant !== variant) setOps(null);
+  };
+
+  const handleCount = () => {
+    if (!active || !variant || counting) {
+      if (!variant) toast.error('Run it once first, so the counter knows which export to follow');
+      return;
+    }
+
+    const number = active.number;
+    setCounting(true);
+    request<{ ops: OperationProbe }>('/api/ops', {
+      method: 'POST',
+      body: JSON.stringify({ number, variant, mode }),
+    })
+      .then((answer) => showing.current === number && setOps(answer.ops))
+      .catch((error: unknown) => toast.error(messageOf(error)))
+      .finally(() => setCounting(false));
   };
 
   const handleTrace = async (input?: unknown[]) => {
@@ -851,6 +873,8 @@ ${line}
                   <TracePanel
                     trace={trace}
                     tracing={tracing}
+                    ops={ops}
+                    counting={counting}
                     variants={traceVariants}
                     cases={traceCases}
                     variant={variant}
@@ -858,6 +882,7 @@ ${line}
                     jumpLine={jumpLine}
                     onPick={handlePick}
                     onTrace={handleTrace}
+                    onCount={handleCount}
                     onStep={setActiveLine}
                   />
                 </TabsContent>

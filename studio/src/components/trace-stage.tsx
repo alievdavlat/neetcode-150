@@ -16,15 +16,22 @@ interface TraceStageProps {
 /** Past this many entries a value is folded away unless this step is using it. */
 const LONG = 24;
 
-const sizeOf = (value: TraceValue) =>
-  value.t === 'array' ? value.items.length : value.t === 'map' ? value.entries.length : 0;
+const sizeOf = (value: TraceValue) => {
+  if (value.t === 'array' || value.t === 'list') return value.items.length;
+  if (value.t === 'map') return value.entries.length;
+  if (value.t === 'tree') return value.rows.flat().filter(Boolean).length;
 
-const preview = (value: TraceValue) =>
-  value.t === 'array'
-    ? value.items.slice(0, 12).join(', ')
-    : value.t === 'map'
-      ? value.entries.slice(0, 6).map(([key, item]) => `${key} → ${item}`).join(', ')
-      : '';
+  return 0;
+};
+
+const preview = (value: TraceValue) => {
+  if (value.t === 'array') return value.items.slice(0, 12).join(', ');
+  if (value.t === 'list') return value.items.slice(0, 12).join(' → ');
+  if (value.t === 'map') return value.entries.slice(0, 6).map(([key, item]) => `${key} → ${item}`).join(', ');
+  if (value.t === 'tree') return value.rows[0]?.filter(Boolean).join(', ') ?? '';
+
+  return '';
+};
 
 export function TraceStage({ step, changes, watching, onWatch }: TraceStageProps) {
   const [opened, setOpened] = useState<Record<string, boolean>>({});
@@ -157,6 +164,72 @@ export function TraceStage({ step, changes, watching, onWatch }: TraceStageProps
     );
   };
 
+  /** A chain, drawn as one: the arrows are the point, and a cycle is worth saying out loud. */
+  const renderList = (value: Extract<TraceValue, { t: 'list' }>) => {
+    if (value.items.length === 0) {
+      return <p className="font-mono text-[11px] text-muted-foreground">null</p>;
+    }
+
+    return (
+      <div className="flex flex-wrap items-center gap-1">
+        {value.items.map((item, index) => (
+          <div key={index} className="flex items-center gap-1">
+            <span
+              title={item}
+              className="flex min-w-10 items-center justify-center rounded-md border border-line px-2 py-1 font-mono text-[11px] text-foreground/90"
+            >
+              {item}
+            </span>
+            {(index < value.items.length - 1 || value.truncated || value.cyclic) && (
+              <span aria-hidden className="text-[11px] text-muted-foreground">
+                &rarr;
+              </span>
+            )}
+          </div>
+        ))}
+
+        {value.truncated && <span className="text-[11px] text-muted-foreground">&hellip;</span>}
+        {value.cyclic && (
+          <span className="rounded-full border border-medium/40 bg-medium/10 px-2 py-0.5 text-[10px] text-medium">
+            cycle
+          </span>
+        )}
+      </div>
+    );
+  };
+
+  /** Level order, holes kept, so a lopsided tree looks lopsided. */
+  const renderTree = (value: Extract<TraceValue, { t: 'tree' }>) => {
+    if (value.rows.length === 0) {
+      return <p className="font-mono text-[11px] text-muted-foreground">null</p>;
+    }
+
+    return (
+      <div className="space-y-1">
+        {value.rows.map((row, level) => (
+          <div key={level} className="flex justify-center gap-1">
+            {row.map((item, index) => (
+              <span
+                key={index}
+                title={item ?? 'empty'}
+                className={cn(
+                  'flex min-w-8 items-center justify-center rounded-md border px-1.5 py-0.5 font-mono text-[11px]',
+                  item === null
+                    ? 'border-dashed border-line/60 text-muted-foreground/40'
+                    : 'border-line text-foreground/90',
+                )}
+              >
+                {item ?? '·'}
+              </span>
+            ))}
+          </div>
+        ))}
+
+        {value.truncated && <p className="text-center text-[10px] text-muted-foreground">deeper levels not drawn</p>}
+      </div>
+    );
+  };
+
   const renderValue = (name: string, value: TraceValue, change: VarChange, folded: boolean) => {
     if (value.t === 'scalar') return null;
 
@@ -167,6 +240,9 @@ export function TraceStage({ step, changes, watching, onWatch }: TraceStageProps
         </p>
       );
     }
+
+    if (value.t === 'list') return renderList(value);
+    if (value.t === 'tree') return renderTree(value);
 
     return value.t === 'array' ? renderArray(name, value, change) : renderMap(name, value, change);
   };

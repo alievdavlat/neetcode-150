@@ -1,6 +1,7 @@
 import { mkdir, readFile, rename, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import type {
+  OperationProbe,
   Problem,
   ProblemHistory,
   ProblemSource,
@@ -260,6 +261,22 @@ export async function traceProblem(
   if (input !== null) args.push('--args', JSON.stringify(input));
 
   return runBridge<TraceResult>({ script: 'trace.mjs', args, timeoutMs: 30000 });
+}
+
+/** Count the statements one variant runs as the input doubles. */
+export async function countOperations(
+  number: string,
+  variant: string,
+  mode: SourceMode = 'file',
+): Promise<OperationProbe> {
+  const problems = await getProblems();
+  const problem = problems.find((entry) => entry.number === number);
+  if (!problem) throw new Error(`no problem numbered ${number}`);
+
+  const args = [number, variant];
+  if (mode === 'scratch') args.push('--file', problemPath(problem.file, 'scratch'));
+
+  return runBridge<OperationProbe>({ script: 'ops.mjs', args, timeoutMs: 90000 });
 }
 
 export async function runProblem(number: string, mode: SourceMode = 'file', bigO = false): Promise<RunReport> {

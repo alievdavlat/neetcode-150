@@ -14,6 +14,7 @@ import {
   Play,
   Pencil,
   Radar,
+  Sigma,
   SkipBack,
   SkipForward,
   X,
@@ -25,7 +26,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { PanelNotice } from './panel-notice';
 import { TraceExpression } from './trace-expression';
 import { TraceStage } from './trace-stage';
-import type { TraceKind, TraceResult } from '@/lib/types';
+import type { OperationProbe, TraceKind, TraceResult } from '@/lib/types';
 import { changesOf, passesOf, stepsChanging } from '@/lib/trace-view';
 import { cn } from '@/lib/utils';
 
@@ -37,6 +38,8 @@ interface TraceCase {
 interface TracePanelProps {
   trace: TraceResult | null;
   tracing: boolean;
+  ops: OperationProbe | null;
+  counting: boolean;
   variants: string[];
   cases: TraceCase[];
   variant: string | null;
@@ -44,6 +47,7 @@ interface TracePanelProps {
   jumpLine: { line: number; at: number } | null;
   onPick: (variant: string, caseIndex: number) => void;
   onTrace: (input?: unknown[]) => void;
+  onCount: () => void;
   onStep: (line: number | null) => void;
 }
 
@@ -69,6 +73,8 @@ const TICK: Record<TraceKind, string> = {
 export function TracePanel({
   trace,
   tracing,
+  ops,
+  counting,
   variants,
   cases,
   variant,
@@ -76,6 +82,7 @@ export function TracePanel({
   jumpLine,
   onPick,
   onTrace,
+  onCount,
   onStep,
 }: TracePanelProps) {
   const [index, setIndex] = useState(0);
@@ -260,6 +267,44 @@ export function TracePanel({
     </div>
   );
 
+  /**
+   * Counting is exact where the clock is not: the run probe cannot separate
+   * O(n) from O(n log n), and this can. It only sees the student's own
+   * statements, so work handed to a built-in is reported as exactly that.
+   */
+  const renderOps = () => {
+    if (!ops) return null;
+
+    const rows = ops.points.map((point) => `${point.n}: ${point.ops.toLocaleString()}`).join('  ·  ');
+
+    return (
+      <div className="space-y-1 rounded-lg border border-line bg-black/20 p-2">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
+            operations
+          </span>
+
+          {ops.verdict && (
+            <span className="rounded-full border border-hot/40 bg-hot/10 px-2 py-0.5 font-mono text-[10px] text-hot">
+              {ops.verdict}
+            </span>
+          )}
+
+          {ops.target && (
+            <span className="font-mono text-[10px] text-muted-foreground">
+              target {ops.target}
+              {ops.comparison === 'match' && <span className="ml-1 text-pass">matches</span>}
+              {ops.comparison === 'differs' && <span className="ml-1 text-fail">differs</span>}
+            </span>
+          )}
+        </div>
+
+        {ops.points.length > 0 && <p className="font-mono text-[10px] text-muted-foreground">{rows}</p>}
+        {ops.message && <p className="text-[11px] text-muted-foreground">{ops.message}</p>}
+      </div>
+    );
+  };
+
   const renderPickers = () => (
     <div className="space-y-1.5 border-b border-line px-3 py-2">
       <div className="flex items-center gap-2">
@@ -287,6 +332,18 @@ export function TracePanel({
         )}
 
         <Button
+          variant="outline"
+          size="xs"
+          onClick={onCount}
+          disabled={counting || !variant}
+          title="Count the statements this variant runs as the input doubles"
+          className="gap-1.5"
+        >
+          <Sigma className={cn(counting && 'animate-pulse')} />
+          {counting ? 'Counting' : 'Ops'}
+        </Button>
+
+        <Button
           size="xs"
           onClick={() => onTrace()}
           disabled={tracing || !variant}
@@ -298,6 +355,7 @@ export function TracePanel({
       </div>
 
       {editing && renderInput()}
+      {renderOps()}
 
       {variants.length > 1 && (
         <div role="group" aria-label="variant" className="flex flex-wrap gap-1">

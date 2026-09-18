@@ -14,6 +14,8 @@ const VALUE_TYPES = new Set([
   'number[][]',
   'string[][]',
   '[number, number]',
+  'ListNode',
+  'TreeNode',
 ]);
 
 /** `number[] | null` and `number | undefined` are the array type with a nullable tail. */

@@ -22,7 +22,10 @@ export const UNCHANGED: VarChange = { changed: false, before: null, cells: [], k
 function canon(value: TraceValue): string {
   if (value.t === 'scalar') return `scalar:${value.text}`;
   if (value.t === 'array') return `array:${JSON.stringify(value.items)}`;
-  return `map:${JSON.stringify(value.entries)}`;
+  if (value.t === 'map') return `map:${JSON.stringify(value.entries)}`;
+  if (value.t === 'list') return `list:${JSON.stringify(value.items)}:${value.cyclic}`;
+
+  return `tree:${JSON.stringify(value.rows)}`;
 }
 
 function changedCells(before: TraceValue | null, after: TraceValue): number[] {

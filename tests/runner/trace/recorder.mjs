@@ -25,6 +25,22 @@ export function show(value, depth = 0) {
     return cut(`Set(${value.size}) {${[...value].map((item) => show(item, depth + 1)).join(', ')}}`);
   }
 
+  if (isNode(value, 'next') && !isNode(value, 'left', 'right')) {
+    const items = [];
+    const seen = new Set();
+    let node = value;
+
+    while (node && items.length < 8 && !seen.has(node)) {
+      seen.add(node);
+      items.push(show(node.val, depth + 1));
+      node = node.next;
+    }
+
+    return cut(`${items.join(' → ')}${node ? ' → …' : ''}`);
+  }
+
+  if (isNode(value, 'left', 'right')) return cut(`TreeNode(${show(value.val, depth + 1)})`);
+
   if (typeof value === 'object') {
     try {
       return cut(JSON.stringify(value) ?? String(value));
@@ -36,6 +52,47 @@ export function show(value, depth = 0) {
 }
 
 const isIndexed = (value) => Array.isArray(value) || ArrayBuffer.isView(value);
+
+const MAX_NODES = 63;
+const MAX_LEVELS = 5;
+
+const isNode = (value, ...keys) =>
+  value !== null &&
+  typeof value === 'object' &&
+  'val' in value &&
+  keys.some((key) => key in value);
+
+/** A linked list, walked rather than stringified. A cycle stops the walk and says so. */
+function chainOf(head) {
+  const items = [];
+  const seen = new Set();
+  let node = head;
+
+  while (node && items.length < MAX_ITEMS) {
+    if (seen.has(node)) return { t: 'list', items, truncated: false, cyclic: true };
+
+    seen.add(node);
+    items.push(show(node.val));
+    node = node.next;
+  }
+
+  return { t: 'list', items, truncated: node !== null && node !== undefined, cyclic: false };
+}
+
+/** A tree in level order, holes kept, so the shape is the shape. */
+function treeOf(root) {
+  const rows = [];
+  let level = [root];
+  let drawn = 0;
+
+  while (level.some(Boolean) && rows.length < MAX_LEVELS && drawn < MAX_NODES) {
+    rows.push(level.map((node) => (node ? show(node.val) : null)));
+    drawn += level.length;
+    level = level.flatMap((node) => [node?.left ?? null, node?.right ?? null]);
+  }
+
+  return { t: 'tree', rows, truncated: level.some(Boolean) };
+}
 
 /**
  * The shape the stage draws. Taken eagerly, because the point of a trace is the
@@ -60,6 +117,9 @@ export function snapshot(value) {
     const all = [...value];
     return { t: 'array', items: all.slice(0, MAX_ITEMS).map(show), truncated: all.length > MAX_ITEMS };
   }
+
+  if (isNode(value, 'left', 'right')) return treeOf(value);
+  if (isNode(value, 'next')) return chainOf(value);
 
   if (value !== null && typeof value === 'object') {
     const all = Object.entries(value);
@@ -243,4 +303,41 @@ export function createRecorder(meta, { maxSteps = MAX_STEPS } = {}) {
   };
 
   return { api, steps };
+}
+
+/**
+ * The same contract as `createRecorder`, but it keeps nothing except a count of
+ * the statements that ran. Counting is exact where timing is not: the log factor
+ * that timing cannot see is plainly there in the numbers.
+ */
+export function createCounter() {
+  let ops = 0;
+
+  const api = {
+    l: (id, index, value) => value,
+    x: (id, name, key) => key,
+    v: (id, value) => {
+      ops += 1;
+      return value;
+    },
+    u: (id, before) => {
+      ops += 1;
+      return before;
+    },
+    s: () => {
+      ops += 1;
+    },
+    f: () => {
+      ops += 1;
+    },
+    g: () => {},
+    i: function* (id, iterable) {
+      for (const item of iterable) {
+        ops += 1;
+        yield item;
+      }
+    },
+  };
+
+  return { api, count: () => ops };
 }

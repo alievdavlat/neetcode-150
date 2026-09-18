@@ -13,8 +13,8 @@ const CURVES = [
 const MIN_POINTS = 4;
 
 /** Spread of the per-point constants; a true match keeps t(n)/f(n) flat. */
-const deviation = (points, curve) => {
-  const ratios = points.map(({ n, ms }) => ms / curve.of(n));
+const deviation = (points, curve, key = 'ms') => {
+  const ratios = points.map((point) => point[key] / curve.of(point.n));
   if (!ratios.every(Number.isFinite)) return Infinity;
 
   const mean = ratios.reduce((sum, value) => sum + value, 0) / ratios.length;
@@ -142,4 +142,28 @@ export function renderCurve(points, { width = 34 } = {}) {
       bar: '█'.repeat(filled),
     };
   });
+}
+
+/**
+ * Rank the curves against counted operations. No band here: a count has no
+ * noise, so n and n log n are told apart by the numbers themselves.
+ */
+export function fitOperations(points) {
+  if (points.length < MIN_POINTS) return { points, verdict: null, reason: 'too few usable sizes' };
+
+  const fitted = points.slice(1);
+  const ranked = CURVES.map((curve) => ({ name: curve.name, deviation: deviation(fitted, curve, 'ops') })).sort(
+    (left, right) => left.deviation - right.deviation,
+  );
+
+  const [best, runnerUp] = ranked;
+  if (!Number.isFinite(best.deviation)) return { points, verdict: null, reason: 'no curve fits' };
+
+  return {
+    points,
+    verdict: best.name,
+    deviation: best.deviation,
+    runnerUp: runnerUp ? { name: runnerUp.name, deviation: runnerUp.deviation } : null,
+    confident: best.deviation < 0.05,
+  };
 }
