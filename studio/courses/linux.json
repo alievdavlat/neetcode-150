@@ -1,0 +1,75 @@
+{
+  "id": "linux",
+  "track": "Systems",
+  "name": "Linux",
+  "blurb": "The shell, the file system and the permissions model, from a standing start.",
+  "video": "ROjZy1WbCIA",
+  "url": "https://www.youtube.com/watch?v=ROjZy1WbCIA",
+  "title": "Linux Operating System - Crash Course for Beginners",
+  "channel": "freeCodeCamp.org",
+  "seconds": 10075,
+  "lessons": [
+    {
+      "title": "Intro",
+      "at": 0,
+      "seconds": 489
+    },
+    {
+      "title": "Install Linux",
+      "at": 489,
+      "seconds": 1294
+    },
+    {
+      "title": "Desktop Environment",
+      "at": 1783,
+      "seconds": 695
+    },
+    {
+      "title": "Terminal",
+      "at": 2478,
+      "seconds": 487
+    },
+    {
+      "title": "Working with Directories",
+      "at": 2965,
+      "seconds": 1584
+    },
+    {
+      "title": "Working with Files",
+      "at": 4549,
+      "seconds": 1140
+    },
+    {
+      "title": "Working with File Content",
+      "at": 5689,
+      "seconds": 985
+    },
+    {
+      "title": "Linux File Structure",
+      "at": 6674,
+      "seconds": 1468
+    },
+    {
+      "title": "Networking",
+      "at": 8142,
+      "seconds": 268
+    },
+    {
+      "title": "Linux Package Manager",
+      "at": 8410,
+      "seconds": 840
+    },
+    {
+      "title": "Text Editor",
+      "at": 9250,
+      "seconds": 766
+    },
+    {
+      "title": "Outro",
+      "at": 10016,
+      "seconds": 59
+    }
+  ],
+  "from": "chapter panel",
+  "fetchedAt": "2026-09-18T11:26:50.627Z"
+}

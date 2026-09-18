@@ -1,0 +1,60 @@
+{
+  "id": "operating-systems",
+  "track": "Systems",
+  "name": "Operating systems",
+  "blurb": "Processes, threads, scheduling and memory — what the machine is doing under your program.",
+  "video": "yK1uBHPdp30",
+  "url": "https://www.youtube.com/watch?v=yK1uBHPdp30",
+  "title": "Operating Systems Course for Beginners",
+  "channel": "freeCodeCamp.org",
+  "seconds": 89516,
+  "lessons": [
+    {
+      "title": "Welcome to the Course",
+      "at": 0,
+      "seconds": 223
+    },
+    {
+      "title": "Introduction and Background",
+      "at": 223,
+      "seconds": 5113
+    },
+    {
+      "title": "Process Management",
+      "at": 5336,
+      "seconds": 4718
+    },
+    {
+      "title": "CPU Scheduling",
+      "at": 10054,
+      "seconds": 12289
+    },
+    {
+      "title": "Process Synchronization",
+      "at": 22343,
+      "seconds": 22791
+    },
+    {
+      "title": "Deadlock",
+      "at": 45134,
+      "seconds": 6495
+    },
+    {
+      "title": "Memory Management",
+      "at": 51629,
+      "seconds": 25199
+    },
+    {
+      "title": "File Management",
+      "at": 76828,
+      "seconds": 8568
+    },
+    {
+      "title": "Miscellaneous Topics",
+      "at": 85396,
+      "seconds": 4120
+    }
+  ],
+  "from": "description",
+  "fetchedAt": "2026-09-18T11:28:05.715Z"
+}

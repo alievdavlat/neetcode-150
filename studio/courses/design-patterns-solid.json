@@ -1,0 +1,280 @@
+{
+  "id": "design-patterns-solid",
+  "track": "Code craft",
+  "name": "Design patterns & SOLID in C#",
+  "blurb": "The long version: SOLID and the pattern catalogue worked through in C#, twelve hours of it.",
+  "video": "rylaiB2uH2A",
+  "url": "https://www.youtube.com/watch?v=rylaiB2uH2A",
+  "title": "Master Design Patterns & SOLID Principles in C# - Full OOP Course for Beginners",
+  "channel": "freeCodeCamp.org",
+  "seconds": 42413,
+  "lessons": [
+    {
+      "title": "Intro",
+      "at": 0,
+      "seconds": 33
+    },
+    {
+      "title": "Course contents",
+      "at": 33,
+      "seconds": 61
+    },
+    {
+      "title": "Gang of Four design patterns",
+      "at": 94,
+      "seconds": 65
+    },
+    {
+      "title": "What are design patterns & why learn them?",
+      "at": 159,
+      "seconds": 179
+    },
+    {
+      "title": "Course prerequisites",
+      "at": 338,
+      "seconds": 79
+    },
+    {
+      "title": "About me",
+      "at": 417,
+      "seconds": 35
+    },
+    {
+      "title": "Book version",
+      "at": 452,
+      "seconds": 47
+    },
+    {
+      "title": "Code repo",
+      "at": 499,
+      "seconds": 30
+    },
+    {
+      "title": "Setup",
+      "at": 529,
+      "seconds": 210
+    },
+    {
+      "title": "OOP concepts intro",
+      "at": 739,
+      "seconds": 23
+    },
+    {
+      "title": "Encapsulation - OOP",
+      "at": 762,
+      "seconds": 786
+    },
+    {
+      "title": "Abstraction - OOP",
+      "at": 1548,
+      "seconds": 304
+    },
+    {
+      "title": "Inheritance - OOP",
+      "at": 1852,
+      "seconds": 348
+    },
+    {
+      "title": "Polymorphism - OOP",
+      "at": 2200,
+      "seconds": 504
+    },
+    {
+      "title": "Coupling - OOP",
+      "at": 2704,
+      "seconds": 613
+    },
+    {
+      "title": "Composition - OOP",
+      "at": 3317,
+      "seconds": 174
+    },
+    {
+      "title": "Composition vs inheritance - OOP",
+      "at": 3491,
+      "seconds": 169
+    },
+    {
+      "title": "Fragile base class problem - OOP",
+      "at": 3660,
+      "seconds": 264
+    },
+    {
+      "title": "UML",
+      "at": 3924,
+      "seconds": 517
+    },
+    {
+      "title": "SOLID intro",
+      "at": 4441,
+      "seconds": 60
+    },
+    {
+      "title": "S - SOLID",
+      "at": 4501,
+      "seconds": 385
+    },
+    {
+      "title": "O - SOLID",
+      "at": 4886,
+      "seconds": 654
+    },
+    {
+      "title": "L - SOLID",
+      "at": 5540,
+      "seconds": 780
+    },
+    {
+      "title": "I - SOLID",
+      "at": 6320,
+      "seconds": 530
+    },
+    {
+      "title": "D - SOLID",
+      "at": 6850,
+      "seconds": 646
+    },
+    {
+      "title": "Design patterns intro",
+      "at": 7496,
+      "seconds": 39
+    },
+    {
+      "title": "Behavioural design patterns",
+      "at": 7535,
+      "seconds": 122
+    },
+    {
+      "title": "Memento pattern - behavioural",
+      "at": 7657,
+      "seconds": 1563
+    },
+    {
+      "title": "State pattern - behavioural",
+      "at": 9220,
+      "seconds": 1607
+    },
+    {
+      "title": "Strategy pattern - behavioural",
+      "at": 10827,
+      "seconds": 1580
+    },
+    {
+      "title": "Iterator pattern - behavioural",
+      "at": 12407,
+      "seconds": 1162
+    },
+    {
+      "title": "Command pattern - behavioural",
+      "at": 13569,
+      "seconds": 2288
+    },
+    {
+      "title": "Template method pattern - behavioural",
+      "at": 15857,
+      "seconds": 1953
+    },
+    {
+      "title": "Observer pattern - behavioural",
+      "at": 17810,
+      "seconds": 2070
+    },
+    {
+      "title": "Mediator pattern - behavioural",
+      "at": 19880,
+      "seconds": 2339
+    },
+    {
+      "title": "Chain of responsibility pattern - behavioural",
+      "at": 22219,
+      "seconds": 1956
+    },
+    {
+      "title": "Visitor pattern - behavioural",
+      "at": 24175,
+      "seconds": 1414
+    },
+    {
+      "title": "Interpreter pattern - behavioural",
+      "at": 25589,
+      "seconds": 1944
+    },
+    {
+      "title": "Structural design patterns intro",
+      "at": 27533,
+      "seconds": 99
+    },
+    {
+      "title": "Composite pattern - structural",
+      "at": 27632,
+      "seconds": 937
+    },
+    {
+      "title": "Adapter pattern - structural",
+      "at": 28569,
+      "seconds": 1037
+    },
+    {
+      "title": "Bridge pattern - structural",
+      "at": 29606,
+      "seconds": 1190
+    },
+    {
+      "title": "Proxy pattern - structural",
+      "at": 30796,
+      "seconds": 1097
+    },
+    {
+      "title": "Flyweight pattern - structural",
+      "at": 31893,
+      "seconds": 1432
+    },
+    {
+      "title": "Facade pattern - structural",
+      "at": 33325,
+      "seconds": 708
+    },
+    {
+      "title": "Decorator pattern - structural",
+      "at": 34033,
+      "seconds": 1683
+    },
+    {
+      "title": "Creational design patterns intro",
+      "at": 35716,
+      "seconds": 214
+    },
+    {
+      "title": "Prototype pattern - creational",
+      "at": 35930,
+      "seconds": 1223
+    },
+    {
+      "title": "Singleton pattern - creational",
+      "at": 37153,
+      "seconds": 1111
+    },
+    {
+      "title": "Factory method pattern - creational",
+      "at": 38264,
+      "seconds": 1039
+    },
+    {
+      "title": "Abstract factory pattern - creational",
+      "at": 39303,
+      "seconds": 1043
+    },
+    {
+      "title": "Builder pattern - creational",
+      "at": 40346,
+      "seconds": 2043
+    },
+    {
+      "title": "Course conclusion",
+      "at": 42389,
+      "seconds": 24
+    }
+  ],
+  "from": "chapter panel",
+  "fetchedAt": "2026-09-18T11:28:18.318Z"
+}

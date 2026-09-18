@@ -10,17 +10,24 @@ import ts from 'typescript';
  * before importing the copy - that way no import has to be injected into a file
  * whose first line is a doc comment.
  *
- * Only the named function's own body is instrumented. Callbacks passed to
+ * Only the named functions' own bodies are instrumented. Callbacks passed to
  * built-ins run normally and produce no steps of their own, so a solution that
- * hands its work to `sort()` honestly has little to show.
+ * hands its work to `sort()` honestly has little to show. `functionNames`
+ * instruments several at once - a problem whose exports only mean anything
+ * together is traced across all of them - and every step says which one it is
+ * in. The first name is the one being traced and must exist; the rest are
+ * taken if they are declared functions and skipped if they are not.
  */
-export function instrument(source, { functionName }) {
+export function instrument(source, { functionName, functionNames }) {
   const file = ts.createSourceFile('solution.ts', source, ts.ScriptTarget.ESNext, true, ts.ScriptKind.TS);
 
-  const fn = file.statements.find(
-    (node) => ts.isFunctionDeclaration(node) && node.name?.text === functionName,
+  const wanted = functionNames ?? [functionName];
+  const declared = new Map(
+    file.statements
+      .filter((node) => ts.isFunctionDeclaration(node) && node.name)
+      .map((node) => [node.name.text, node]),
   );
-  if (!fn) throw new Error(`no exported function named ${functionName} in this file`);
+  if (!declared.has(wanted[0])) throw new Error(`no exported function named ${wanted[0]} in this file`);
 
   const meta = [];
   const edits = [];
@@ -41,7 +48,13 @@ export function instrument(source, { functionName }) {
     },
   };
 
-  walk(context, fn);
+  for (const name of wanted) {
+    const declaration = declared.get(name);
+    if (!declaration) continue;
+
+    context.fn = name;
+    walk(context, declaration);
+  }
 
   let code = source;
   const ordered = [...edits].sort((a, b) => b.at - a.at || b.rank - a.rank || a.order - b.order);
@@ -81,6 +94,7 @@ function record(context, kind, node, extra = {}) {
   context.meta.push({
     id,
     kind,
+    fn: context.fn ?? null,
     line: context.lineOf(node.getStart(context.file)),
     text: context.textOf(node),
     changed: null,

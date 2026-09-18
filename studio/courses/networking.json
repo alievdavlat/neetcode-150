@@ -1,0 +1,210 @@
+{
+  "id": "networking",
+  "track": "Systems",
+  "name": "Networking & the OSI model",
+  "blurb": "Four hours down the seven layers, with the protocols and the hardware that sit on each one.",
+  "video": "IPvYjXCsTg8",
+  "url": "https://www.youtube.com/watch?v=IPvYjXCsTg8",
+  "title": "Computer Networking Full Course - OSI Model Deep Dive with Real Life Examples",
+  "channel": "Kunal Kushwaha",
+  "seconds": 14816,
+  "lessons": [
+    {
+      "title": "Introduction",
+      "at": 0,
+      "seconds": 290
+    },
+    {
+      "title": "How it all started?",
+      "at": 290,
+      "seconds": 768
+    },
+    {
+      "title": "Client-Server Architecture",
+      "at": 1058,
+      "seconds": 262
+    },
+    {
+      "title": "Protocols",
+      "at": 1320,
+      "seconds": 140
+    },
+    {
+      "title": "How Data is Transferred? IP Address",
+      "at": 1460,
+      "seconds": 603
+    },
+    {
+      "title": "Port Numbers",
+      "at": 2063,
+      "seconds": 482
+    },
+    {
+      "title": "Submarine Cables Map (Optical Fibre Cables)",
+      "at": 2545,
+      "seconds": 335
+    },
+    {
+      "title": "LAN, MAN, WAN",
+      "at": 2880,
+      "seconds": 260
+    },
+    {
+      "title": "MODEM, ROUTER",
+      "at": 3140,
+      "seconds": 207
+    },
+    {
+      "title": "Topologies (BUS, RING, STAR, TREE, MESH)",
+      "at": 3347,
+      "seconds": 347
+    },
+    {
+      "title": "Structure of the Network",
+      "at": 3694,
+      "seconds": 299
+    },
+    {
+      "title": "OSI Model (7 Layers)",
+      "at": 3993,
+      "seconds": 1347
+    },
+    {
+      "title": "TCP/IP Model (5 Layers)",
+      "at": 5340,
+      "seconds": 80
+    },
+    {
+      "title": "Client Server Architecture",
+      "at": 5420,
+      "seconds": 478
+    },
+    {
+      "title": "Peer to Peer Architecture",
+      "at": 5898,
+      "seconds": 94
+    },
+    {
+      "title": "Networking Devices (Download PDF)",
+      "at": 5992,
+      "seconds": 193
+    },
+    {
+      "title": "Protocols",
+      "at": 6185,
+      "seconds": 437
+    },
+    {
+      "title": "Sockets",
+      "at": 6622,
+      "seconds": 48
+    },
+    {
+      "title": "Ports",
+      "at": 6670,
+      "seconds": 122
+    },
+    {
+      "title": "HTTP",
+      "at": 6792,
+      "seconds": 408
+    },
+    {
+      "title": "HTTP(GET, POST, PUT, DELETE)",
+      "at": 7200,
+      "seconds": 284
+    },
+    {
+      "title": "Error/Status Codes",
+      "at": 7484,
+      "seconds": 106
+    },
+    {
+      "title": "Cookies",
+      "at": 7590,
+      "seconds": 270
+    },
+    {
+      "title": "How Email Works?",
+      "at": 7860,
+      "seconds": 480
+    },
+    {
+      "title": "DNS (Domain Name System)",
+      "at": 8340,
+      "seconds": 804
+    },
+    {
+      "title": "TCP/IP Model (Transport Layer)",
+      "at": 9144,
+      "seconds": 911
+    },
+    {
+      "title": "Checksum",
+      "at": 10055,
+      "seconds": 85
+    },
+    {
+      "title": "Timers",
+      "at": 10140,
+      "seconds": 300
+    },
+    {
+      "title": "UDP (User Datagram Protocol)",
+      "at": 10440,
+      "seconds": 485
+    },
+    {
+      "title": "TCP (Transmission Control Protocol)",
+      "at": 10925,
+      "seconds": 425
+    },
+    {
+      "title": "3-Way handshake",
+      "at": 11350,
+      "seconds": 270
+    },
+    {
+      "title": "TCP (Network Layer)",
+      "at": 11620,
+      "seconds": 490
+    },
+    {
+      "title": "Control Plane",
+      "at": 12110,
+      "seconds": 160
+    },
+    {
+      "title": "IP (Internet Protocol)",
+      "at": 12270,
+      "seconds": 855
+    },
+    {
+      "title": "Packets",
+      "at": 13125,
+      "seconds": 177
+    },
+    {
+      "title": "IPV4 vs IPV6",
+      "at": 13302,
+      "seconds": 488
+    },
+    {
+      "title": "Middle Boxes",
+      "at": 13790,
+      "seconds": 162
+    },
+    {
+      "title": "(NAT) Network Address Translation",
+      "at": 13952,
+      "seconds": 188
+    },
+    {
+      "title": "TCP (Data Link Layer)",
+      "at": 14140,
+      "seconds": 676
+    }
+  ],
+  "from": "chapter panel",
+  "fetchedAt": "2026-09-18T11:27:52.513Z"
+}

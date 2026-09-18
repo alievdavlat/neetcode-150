@@ -1,5 +1,5 @@
 import { fail, modeOf, ok } from '@/server/http';
-import { getStatus, readProblemSource, writeProblemSource } from '@/server/problems';
+import { getStatus, numberOfFile, readProblemSource, writeProblemSource } from '@/server/problems';
 
 export const dynamic = 'force-dynamic';
 
@@ -21,7 +21,7 @@ export async function PUT(request: Request) {
 
   try {
     await writeProblemSource(body.file, body.source, modeOf(body.mode));
-    return ok({ status: await getStatus(body.file.split('/')[1].slice(0, 3)) });
+    return ok({ status: await getStatus(numberOfFile(body.file)) });
   } catch (error) {
     return fail(error);
   }

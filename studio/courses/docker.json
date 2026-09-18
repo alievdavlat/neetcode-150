@@ -1,0 +1,220 @@
+{
+  "id": "docker",
+  "track": "Tools",
+  "name": "Docker",
+  "blurb": "Images, containers, volumes and compose, up to deploying a containerised app.",
+  "video": "rjjES5IsPdg",
+  "url": "https://www.youtube.com/watch?v=rjjES5IsPdg",
+  "title": "Learn Docker – Full DevOps Course for Deploying Containerized Apps",
+  "channel": "freeCodeCamp.org",
+  "seconds": 26988,
+  "lessons": [
+    {
+      "title": "Introduction to Containerization & Docker",
+      "at": 0,
+      "seconds": 101
+    },
+    {
+      "title": "Who is this course for?",
+      "at": 101,
+      "seconds": 24
+    },
+    {
+      "title": "Course Curriculum Overview",
+      "at": 125,
+      "seconds": 90
+    },
+    {
+      "title": "Instructor Introduction & Experience",
+      "at": 215,
+      "seconds": 87
+    },
+    {
+      "title": "Support & VIP Course Package",
+      "at": 302,
+      "seconds": 119
+    },
+    {
+      "title": "Detailed Topic Breakdown",
+      "at": 421,
+      "seconds": 200
+    },
+    {
+      "title": "Why Learn Docker? (Market Demand)",
+      "at": 621,
+      "seconds": 110
+    },
+    {
+      "title": "Top 4 Benefits: Reproducibility, Dependencies, Portability, Version Control",
+      "at": 731,
+      "seconds": 199
+    },
+    {
+      "title": "From Physical Servers to Virtualization",
+      "at": 930,
+      "seconds": 46
+    },
+    {
+      "title": "Computing Device Components",
+      "at": 976,
+      "seconds": 182
+    },
+    {
+      "title": "What is a Server?",
+      "at": 1158,
+      "seconds": 279
+    },
+    {
+      "title": "The Move from Virtual Machines to Containers",
+      "at": 1437,
+      "seconds": 607
+    },
+    {
+      "title": "What is a Software Process?",
+      "at": 2044,
+      "seconds": 230
+    },
+    {
+      "title": "Container Features vs. Virtual Machines",
+      "at": 2274,
+      "seconds": 253
+    },
+    {
+      "title": "Docker Architecture Explained",
+      "at": 2527,
+      "seconds": 660
+    },
+    {
+      "title": "Setting Up Docker on AWS (Free Tier)",
+      "at": 3187,
+      "seconds": 665
+    },
+    {
+      "title": "Alternatives: Docker Desktop & VirtualBox",
+      "at": 3852,
+      "seconds": 784
+    },
+    {
+      "title": "Connecting to EC2 Instance (Session Manager & SSH)",
+      "at": 4636,
+      "seconds": 827
+    },
+    {
+      "title": "Installing Docker on Ubuntu",
+      "at": 5463,
+      "seconds": 681
+    },
+    {
+      "title": "Basic Docker Commands (Pull, Run, Stop, Inspect)",
+      "at": 6144,
+      "seconds": 1574
+    },
+    {
+      "title": "Docker Networking Overview",
+      "at": 7718,
+      "seconds": 562
+    },
+    {
+      "title": "Docker Networking Modes/Drivers",
+      "at": 8280,
+      "seconds": 760
+    },
+    {
+      "title": "Docker Networking Labs (Bridge Mode)",
+      "at": 9040,
+      "seconds": 440
+    },
+    {
+      "title": "Data Persistence: Volumes & Bind Mounts",
+      "at": 9480,
+      "seconds": 1567
+    },
+    {
+      "title": "Docker Compose Introduction",
+      "at": 11047,
+      "seconds": 821
+    },
+    {
+      "title": "Docker Compose Workflow",
+      "at": 11868,
+      "seconds": 292
+    },
+    {
+      "title": "VS Code Setup & Docker Extension",
+      "at": 12160,
+      "seconds": 1040
+    },
+    {
+      "title": "Creating Custom Docker Files",
+      "at": 13200,
+      "seconds": 900
+    },
+    {
+      "title": "Understanding Image Layers",
+      "at": 14100,
+      "seconds": 580
+    },
+    {
+      "title": "CMD vs. RUN Instructions",
+      "at": 14680,
+      "seconds": 360
+    },
+    {
+      "title": "Expose and Copy Instructions",
+      "at": 15040,
+      "seconds": 1576
+    },
+    {
+      "title": "Docker Compose Configuration Lab",
+      "at": 16616,
+      "seconds": 1024
+    },
+    {
+      "title": "Docker Image Lifecycle & Registry (Push/Pull/Tag)",
+      "at": 17640,
+      "seconds": 1080
+    },
+    {
+      "title": "Docker Project: Containerizing a Website",
+      "at": 18720,
+      "seconds": 356
+    },
+    {
+      "title": "Project Build & Deployment on AWS",
+      "at": 19076,
+      "seconds": 544
+    },
+    {
+      "title": "Docker Project: Containerizing a Website",
+      "at": 19620,
+      "seconds": 788
+    },
+    {
+      "title": "Git Cloning & Preparing the Project",
+      "at": 20408,
+      "seconds": 232
+    },
+    {
+      "title": "Writing the Dockerfile for the Web Application",
+      "at": 20640,
+      "seconds": 600
+    },
+    {
+      "title": "Building and Testing the Web Image",
+      "at": 21240,
+      "seconds": 660
+    },
+    {
+      "title": "Tagging and Pushing Images to Docker Hub",
+      "at": 21900,
+      "seconds": 900
+    },
+    {
+      "title": "Verifying Image Deployment & Final Course Wrap-up",
+      "at": 22800,
+      "seconds": 4188
+    }
+  ],
+  "from": "chapter panel",
+  "fetchedAt": "2026-09-18T11:28:31.300Z"
+}

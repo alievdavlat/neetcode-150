@@ -46,6 +46,12 @@ export const NO_HISTORY: ProblemHistory = {
   dueInDays: null,
   hintLevel: 0,
   due: false,
+  reviews: 0,
+  lapses: 0,
+  ease: null,
+  lastReviewAt: null,
+  leech: false,
+  reviewMinutes: [],
 };
 
 export const UNKNOWN_STATUS: ProblemStatus = {
@@ -120,4 +126,20 @@ export const formatMs = (ms: number | null) => {
   if (ms < 1) return `${ms.toFixed(3)} ms`;
   if (ms < 1000) return `${ms.toFixed(2)} ms`;
   return `${(ms / 1000).toFixed(2)} s`;
+};
+
+/** A lesson is minutes, a course is hours: the same helper says both. */
+export const duration = (seconds: number) => {
+  const total = Math.round(seconds / 60);
+  if (total < 60) return `${total}m`;
+
+  return `${Math.floor(total / 60)}h ${String(total % 60).padStart(2, '0')}m`;
+};
+
+/** `1:04:22` next to the lesson, the way the video's own scrubber writes it. */
+export const stamp = (seconds: number) => {
+  const parts = [Math.floor(seconds / 3600), Math.floor((seconds % 3600) / 60), seconds % 60];
+  const [hours, ...rest] = parts;
+
+  return (hours > 0 ? parts : rest).map((part, index) => (index === 0 ? part : String(part).padStart(2, '0'))).join(':');
 };

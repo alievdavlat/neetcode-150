@@ -1,0 +1,90 @@
+{
+  "id": "cpp",
+  "track": "Low level",
+  "name": "C++",
+  "blurb": "Beginner to advanced C++, from syntax through classes, templates and the standard library.",
+  "video": "8jLOx1hD3_o",
+  "url": "https://www.youtube.com/watch?v=8jLOx1hD3_o",
+  "title": "C++ Programming Course - Beginner to Advanced",
+  "channel": "freeCodeCamp.org",
+  "seconds": 112049,
+  "lessons": [
+    {
+      "title": "Introduction",
+      "at": 0,
+      "seconds": 15
+    },
+    {
+      "title": "Course Overview",
+      "at": 15,
+      "seconds": 257
+    },
+    {
+      "title": "Development Tools",
+      "at": 272,
+      "seconds": 418
+    },
+    {
+      "title": "C compiler support",
+      "at": 690,
+      "seconds": 167
+    },
+    {
+      "title": "Installing the compilers",
+      "at": 857,
+      "seconds": 375
+    },
+    {
+      "title": "Installing Visual Studio",
+      "at": 1232,
+      "seconds": 247
+    },
+    {
+      "title": "Downloading Visual Studio Code",
+      "at": 1479,
+      "seconds": 239
+    },
+    {
+      "title": "Setting up a Template Project",
+      "at": 1718,
+      "seconds": 377
+    },
+    {
+      "title": "Running a task",
+      "at": 2095,
+      "seconds": 254
+    },
+    {
+      "title": "Modify taskjson file",
+      "at": 2349,
+      "seconds": 86
+    },
+    {
+      "title": "Remove mainexe file",
+      "at": 2435,
+      "seconds": 195
+    },
+    {
+      "title": "Use two compilers",
+      "at": 2630,
+      "seconds": 92
+    },
+    {
+      "title": "Configure compiler from Microsoft",
+      "at": 2722,
+      "seconds": 196
+    },
+    {
+      "title": "Change project location",
+      "at": 2918,
+      "seconds": 174
+    },
+    {
+      "title": "Build with MSVC",
+      "at": 3092,
+      "seconds": 108957
+    }
+  ],
+  "from": "chapter panel",
+  "fetchedAt": "2026-09-18T11:28:25.041Z"
+}

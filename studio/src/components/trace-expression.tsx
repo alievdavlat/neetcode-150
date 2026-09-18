@@ -79,6 +79,10 @@ export function TraceExpression({ step, pass, onJumpLine }: TraceExpressionProps
           {LABEL[step.kind]}
         </span>
 
+        {step.fn && (
+          <span className="font-mono text-[10px] text-muted-foreground/70">{step.fn}()</span>
+        )}
+
         <button
           type="button"
           onClick={() => onJumpLine(step.line)}

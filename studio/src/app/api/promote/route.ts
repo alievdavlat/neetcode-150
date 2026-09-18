@@ -1,5 +1,5 @@
 import { fail, ok } from '@/server/http';
-import { getStatus, promoteScratch } from '@/server/problems';
+import { getStatus, numberOfFile, promoteScratch } from '@/server/problems';
 
 export const dynamic = 'force-dynamic';
 
@@ -9,7 +9,7 @@ export async function POST(request: Request) {
 
   try {
     await promoteScratch(body.file);
-    return ok({ status: await getStatus(body.file.split('/')[1].slice(0, 3)) });
+    return ok({ status: await getStatus(numberOfFile(body.file)) });
   } catch (error) {
     return fail(error);
   }

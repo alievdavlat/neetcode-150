@@ -1,0 +1,90 @@
+{
+  "id": "system-design",
+  "track": "Design",
+  "name": "System design",
+  "blurb": "One server, then load balancers, caches, CDNs and the API choices that come with them.",
+  "video": "C842vFY5kRo",
+  "url": "https://www.youtube.com/watch?v=C842vFY5kRo",
+  "title": "System Design Course – APIs, Databases, Caching, CDNs, Load Balancing & Production Infra",
+  "channel": "freeCodeCamp.org",
+  "seconds": 7522,
+  "lessons": [
+    {
+      "title": "Introduction",
+      "at": 0,
+      "seconds": 185
+    },
+    {
+      "title": "Single Server Setup",
+      "at": 185,
+      "seconds": 247
+    },
+    {
+      "title": "Databases: SQL, NoSQL, Graph",
+      "at": 432,
+      "seconds": 380
+    },
+    {
+      "title": "Vertical vs Horizontal Scaling",
+      "at": 812,
+      "seconds": 170
+    },
+    {
+      "title": "Load Balancing",
+      "at": 982,
+      "seconds": 526
+    },
+    {
+      "title": "Health Checks",
+      "at": 1508,
+      "seconds": 172
+    },
+    {
+      "title": "Single Point of Failure (SPOF)",
+      "at": 1680,
+      "seconds": 181
+    },
+    {
+      "title": "API Design",
+      "at": 1861,
+      "seconds": 976
+    },
+    {
+      "title": "API Protocols",
+      "at": 2837,
+      "seconds": 713
+    },
+    {
+      "title": "Transport Layer: TCP, UDP",
+      "at": 3550,
+      "seconds": 312
+    },
+    {
+      "title": "RESTful APIs",
+      "at": 3862,
+      "seconds": 882
+    },
+    {
+      "title": "GraphQL",
+      "at": 4744,
+      "seconds": 348
+    },
+    {
+      "title": "Authentication",
+      "at": 5092,
+      "seconds": 1259
+    },
+    {
+      "title": "Authorization",
+      "at": 6351,
+      "seconds": 671
+    },
+    {
+      "title": "Security",
+      "at": 7022,
+      "seconds": 500
+    }
+  ],
+  "from": "chapter panel",
+  "fetchedAt": "2026-09-18T11:27:54.455Z"
+}

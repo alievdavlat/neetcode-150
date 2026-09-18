@@ -12,6 +12,29 @@ const show = (args) => args.map((arg) => JSON.stringify(arg) ?? String(arg)).joi
  * node classes the signature asks for, and the result is encoded back into the
  * array form the examples are written in.
  */
+export function caseArgs(testCase, prepared) {
+  return testCase.args.map((arg, index) => ((prepared.decoders ?? [])[index] ?? RAW).decode(clone(arg)));
+}
+
+/**
+ * Judge one produced value: encode it back into the form the examples are
+ * written in, fall back to the empty shape, then compare. The tracer judges the
+ * same way, against the instrumented module, so a simulation and a run can
+ * never disagree about whether a case passed.
+ */
+export function judgeCase({ produced, args, testCase, prepared, module = prepared.module }) {
+  const encoder = prepared.encoder ?? RAW;
+  const mutatesInPlace = prepared.signature?.returns === 'void';
+  const result = mutatesInPlace
+    ? ((prepared.decoders ?? [])[0] ?? RAW).encode(args[0])
+    : encoder.encode(produced);
+  const emptyShape = mutatesInPlace ? ((prepared.decoders ?? [])[0] ?? RAW).empty : encoder.empty;
+  const expect = testCase.expect === null && emptyShape !== undefined ? emptyShape : testCase.expect;
+  const verdict = judge({ result, testCase: { ...testCase, expect }, mode: prepared.mode, module });
+
+  return { result, expect, verdict };
+}
+
 export function runFunctionCases(variant, prepared) {
   const failures = [];
   const observed = [];
@@ -19,7 +42,7 @@ export function runFunctionCases(variant, prepared) {
 
   for (const testCase of prepared.cases) {
     const label = testCase.label ?? 'case';
-    const args = testCase.args.map((arg, index) => (prepared.decoders[index] ?? RAW).decode(clone(arg)));
+    const args = caseArgs(testCase, prepared);
 
     let produced;
     try {
@@ -30,20 +53,13 @@ export function runFunctionCases(variant, prepared) {
       continue;
     }
 
-    const encoder = prepared.encoder ?? RAW;
-    const mutatesInPlace = prepared.signature?.returns === 'void';
-    const result = mutatesInPlace
-      ? (prepared.decoders[0] ?? RAW).encode(args[0])
-      : encoder.encode(produced);
-    const emptyShape = mutatesInPlace ? (prepared.decoders[0] ?? RAW).empty : encoder.empty;
-    const expected = testCase.expect === null && emptyShape !== undefined ? emptyShape : testCase.expect;
-    const verdict = judge({ result, testCase: { ...testCase, expect: expected }, mode: prepared.mode, module: prepared.module });
+    const { result, expect, verdict } = judgeCase({ produced, args, testCase, prepared });
     observed.push({ label, args: testCase.args, result, passed: verdict.passed });
     if (verdict.passed) {
       passed += 1;
       continue;
     }
-    failures.push({ label, args: testCase.args, expect: expected, result, detail: verdict.detail });
+    failures.push({ label, args: testCase.args, expect, result, detail: verdict.detail });
   }
 
   return { passed, total: prepared.cases.length, failures, observed };

@@ -9,6 +9,7 @@ import { ProblemBrief } from './problem-brief';
 import { ProblemRail } from './problem-rail';
 import { SolutionEditor } from './solution-editor';
 import { StudioHeader } from './studio-header';
+import { ReviewBar, type ReviewSession } from './review-bar';
 import { TracePanel } from './trace-panel';
 import { VerdictPanel } from './verdict-panel';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -22,6 +23,7 @@ import type {
   ProblemState,
   ProblemStatus,
   RunReport,
+  Settings,
   SolutionSnapshot,
   SourceMode,
   TraceResult,
@@ -33,6 +35,7 @@ interface StudioProps {
   statuses: ProblemStatus[];
   collections: Collection[];
   boardId: string;
+  settings: Settings;
 }
 
 interface SaveResponse {
@@ -63,6 +66,7 @@ interface SnapshotResponse {
 const LAST_KEY = 'neetcode-studio:last-problem';
 const MODE_KEY = 'neetcode-studio:mode';
 const BIGO_KEY = 'neetcode-studio:big-o';
+const FOCUS_KEY = 'neetcode-studio:focus';
 
 const EMPTY_COUNTS: Record<ProblemState, number> = {
   solved: 0,
@@ -76,22 +80,23 @@ const messageOf = (error: unknown) => (error instanceof Error ? error.message : 
 const storedMode = (number: string): SourceMode =>
   window.localStorage.getItem(`${MODE_KEY}:${number}`) === 'scratch' ? 'scratch' : 'file';
 
-export function Studio({ problems, statuses: initialStatuses, collections, boardId }: StudioProps) {
+export function Studio({ problems, statuses: initialStatuses, collections, boardId, settings }: StudioProps) {
   const router = useRouter();
   const search = useSearchParams();
   const [statuses, setStatuses] = useState<Record<string, ProblemStatus>>(() =>
     Object.fromEntries(initialStatuses.map((status) => [status.number, status])),
   );
-  const [activeNumber, setActiveNumber] = useState(problems[0]?.number ?? '');
+  const [activeNumber, setActiveNumber] = useState('');
   const [mode, setMode] = useState<SourceMode>('file');
   const [source, setSource] = useState<string | null>(null);
-  const [savedSource, setSavedSource] = useState<string | null>(null);
+  const [dirty, setDirty] = useState(false);
   const [links, setLinks] = useState<Pick<ProblemSource, 'leetcode' | 'video'>>({ leetcode: null, video: null });
   const [saving, setSaving] = useState(false);
   const [running, setRunning] = useState(false);
   const [promoting, setPromoting] = useState(false);
   const [syncing, setSyncing] = useState(false);
   const [bigO, setBigO] = useState(true);
+  const [focus, setFocus] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [runningCategory, setRunningCategory] = useState<string | null>(null);
   const [markers, setMarkers] = useState<TypeMarker[]>([]);
@@ -107,8 +112,13 @@ export function Studio({ problems, statuses: initialStatuses, collections, board
   const [caseIndex, setCaseIndex] = useState(0);
   const [panel, setPanel] = useState('verdict');
   const [jumpLine, setJumpLine] = useState<{ line: number; at: number } | null>(null);
+  const [session, setSession] = useState<ReviewSession | null>(null);
+  const draft = useRef('');
+  const baseline = useRef('');
+  const showing = useRef('');
   const busy = useRef(false);
   const opened = useRef<string | null>(null);
+  const reviewStarted = useRef(false);
   const synced = useRef(false);
   const checking = useRef(false);
 
@@ -126,8 +136,25 @@ export function Studio({ problems, statuses: initialStatuses, collections, board
   const visible = picked ? problems.filter((problem) => picked.numbers.includes(problem.number)) : problems;
 
   const active = problems.find((problem) => problem.number === activeNumber);
-  const dirty = source !== null && source !== savedSource;
   const file = active?.file ?? '';
+
+  /** Hand a file to the editor: the live buffer, the baseline and the flag move together. */
+  const loadSource = (next: string | null) => {
+    draft.current = next ?? '';
+    baseline.current = next ?? '';
+    setSource(next);
+    setDirty(false);
+  };
+
+  /**
+   * Typing must not re-render the workspace — the rail alone is a thousand rows,
+   * and a render that lands a keystroke late used to throw the caret to the end
+   * of the file. The buffer lives in a ref; only the unsaved flag is state.
+   */
+  const handleChange = (next: string) => {
+    draft.current = next;
+    setDirty(next !== baseline.current);
+  };
 
   /**
    * A link from the home search names its problem; otherwise pick up where he left
@@ -148,14 +175,31 @@ export function Studio({ problems, statuses: initialStatuses, collections, board
 
   useEffect(() => {
     setBigO(window.localStorage.getItem(BIGO_KEY) !== 'off');
+    setFocus(window.localStorage.getItem(FOCUS_KEY) === 'on');
   }, []);
+
+  /**
+   * Which problem the screen is actually showing. Every answer that arrives
+   * later checks against this: switching problems while a request is in flight
+   * used to paint the old problem's snapshots, report and note onto the new one.
+   */
+  useEffect(() => {
+    showing.current = activeNumber;
+  });
+
+  /** A link from the review queue opens straight into a session. */
+  const asked = search.get('review');
+  useEffect(() => {
+    if (asked !== '1' || !active || session || reviewStarted.current) return;
+    reviewStarted.current = true;
+    startReview(active.number);
+  }, [asked, active, session]);
 
   useEffect(() => {
     if (file === '') return;
 
     const controller = new AbortController();
-    setSource(null);
-    setSavedSource(null);
+    loadSource(null);
     setReport(null);
     setMarkers([]);
     setTrace(null);
@@ -163,21 +207,26 @@ export function Studio({ problems, statuses: initialStatuses, collections, board
     setVariant(null);
     setCaseIndex(0);
     setJumpLine(null);
+    setNote('');
+    setSnapshots([]);
     window.localStorage.setItem(LAST_KEY, activeNumber);
 
     const number = activeNumber;
+    const mine = () => showing.current === number;
+
     request<{ recorded: boolean }>('/api/open', { method: 'POST', body: JSON.stringify({ number }) }).catch(() => null);
-    request<NoteResponse>(`/api/notes?number=${number}`).then((payload) => setNote(payload.note)).catch(() => setNote(''));
+    request<NoteResponse>(`/api/notes?number=${number}`)
+      .then((payload) => mine() && setNote(payload.note))
+      .catch(() => null);
     request<SnapshotResponse>(`/api/solutions?number=${number}`)
-      .then((payload) => setSnapshots(payload.snapshots))
-      .catch(() => setSnapshots([]));
+      .then((payload) => mine() && setSnapshots(payload.snapshots))
+      .catch(() => null);
 
     request<ProblemSource>(`/api/file?file=${encodeURIComponent(file)}&source=${mode}`, {
       signal: controller.signal,
     })
       .then((payload) => {
-        setSource(payload.source);
-        setSavedSource(payload.source);
+        loadSource(payload.source);
         setLinks({ leetcode: payload.leetcode, video: payload.video });
         checkTypes();
       })
@@ -228,11 +277,12 @@ export function Studio({ problems, statuses: initialStatuses, collections, board
     if (!active || mode === 'scratch' || checking.current) return;
 
     const target = active.file;
+    const number = active.number;
     checking.current = true;
     setCheckingTypes(true);
     request<TypecheckResponse>('/api/typecheck', { method: 'POST', body: JSON.stringify({ file: target }) })
-      .then((payload) => setMarkers(payload.markers))
-      .catch(() => setMarkers([]))
+      .then((payload) => showing.current === number && setMarkers(payload.markers))
+      .catch(() => null)
       .finally(() => {
         checking.current = false;
         setCheckingTypes(false);
@@ -242,14 +292,19 @@ export function Studio({ problems, statuses: initialStatuses, collections, board
   const persist = () => {
     if (!active || source === null) return Promise.resolve(false);
 
+    const sent = draft.current;
+    const number = active.number;
     setSaving(true);
     return request<SaveResponse>('/api/file', {
       method: 'PUT',
-      body: JSON.stringify({ file: active.file, source, mode }),
+      body: JSON.stringify({ file: active.file, source: sent, mode }),
     })
       .then((payload) => {
-        setSavedSource(source);
         setStatuses((current) => ({ ...current, [payload.status.number]: payload.status }));
+        if (showing.current !== number) return true;
+
+        baseline.current = sent;
+        setDirty(draft.current !== sent);
         checkTypes();
         return true;
       })
@@ -290,12 +345,21 @@ export function Studio({ problems, statuses: initialStatuses, collections, board
       })
       .then((payload) => {
         if (!payload) return;
+        setStatuses((current) => ({ ...current, [payload.status.number]: payload.status }));
+        if (showing.current !== number) return;
+
         setReport(payload.report);
         seedTrace(payload.report);
-        setStatuses((current) => ({ ...current, [payload.status.number]: payload.status }));
+
+        if (session) {
+          const ran = { ...session, runs: session.runs + 1 };
+          const green = payload.report.variants.some((entry) => entry.total > 0 && entry.passed === entry.total);
+          if (green) finishReview(ran, true);
+          else setSession(ran);
+        }
 
         return request<SnapshotResponse>(`/api/solutions?number=${number}`)
-          .then((fresh) => setSnapshots(fresh.snapshots))
+          .then((fresh) => showing.current === number && setSnapshots(fresh.snapshots))
           .catch(() => null);
       })
       .catch((error: unknown) => toast.error(messageOf(error)))
@@ -340,11 +404,12 @@ export function Studio({ problems, statuses: initialStatuses, collections, board
       const saved = dirty ? await persist() : true;
       if (!saved) return;
 
+      const number = active.number;
       const answer = await request<{ trace: TraceResult }>('/api/trace', {
         method: 'POST',
-        body: JSON.stringify({ number: active.number, variant, caseIndex, mode }),
+        body: JSON.stringify({ number, variant, caseIndex, mode }),
       });
-      setTrace(answer.trace);
+      if (showing.current === number) setTrace(answer.trace);
     } catch (error) {
       toast.error(messageOf(error));
     } finally {
@@ -353,9 +418,76 @@ export function Studio({ problems, statuses: initialStatuses, collections, board
     }
   };
 
+  const handleGiveUp = () => {
+    if (session) finishReview(session, false);
+  };
+
   const handleLineClick = (line: number) => {
     setPanel('trace');
     setJumpLine({ line, at: Date.now() });
+  };
+
+  const startReview = async (number: string) => {
+    const problem = problems.find((entry) => entry.number === number);
+    if (!problem) return;
+
+    try {
+      const answer = await request<{ source: string }>('/api/review/start', {
+        method: 'POST',
+        body: JSON.stringify({ number }),
+      });
+
+      setActiveNumber(number);
+      setMode('scratch');
+      loadSource(answer.source);
+      setSession({
+        number,
+        kind: 'solve',
+        startedAt: Date.now(),
+        runs: 0,
+        revealed: false,
+        baseline: statuses[number]?.history.solveMinutes ?? null,
+      });
+    } catch (error) {
+      toast.error(messageOf(error));
+    }
+  };
+
+  const finishReview = async (current: ReviewSession, passed: boolean) => {
+    setSession(null);
+
+    try {
+      const answer = await request<{ grade: number; status: ProblemStatus }>('/api/review', {
+        method: 'POST',
+        body: JSON.stringify({
+          number: current.number,
+          kind: 'solve',
+          passed,
+          revealed: current.revealed,
+          runs: current.runs,
+          hints: 0,
+          minutes: Math.max(1, Math.round((Date.now() - current.startedAt) / 60000)),
+          baseline: current.baseline,
+        }),
+      });
+
+      setStatuses((now) => ({ ...now, [answer.status.number]: answer.status }));
+
+      const next = answer.status.history.reviewDays;
+      if (answer.grade === 2) toast.success(`Clean recall — back in ${next} days`);
+      else if (answer.grade === 1) toast.message(`Got there — back in ${next} days`);
+      else toast.error('Marked for tomorrow');
+
+      if (passed && !current.revealed && snapshots.length > 0) setDiffOpen(true);
+    } catch (error) {
+      toast.error(messageOf(error));
+    }
+  };
+
+  const handleReveal = () => {
+    if (!session) return;
+    setSession({ ...session, revealed: true });
+    setMode('file');
   };
 
   const handleRun = () => runWith(bigO);
@@ -363,6 +495,12 @@ export function Studio({ problems, statuses: initialStatuses, collections, board
   const handleBigOChange = (next: boolean) => {
     window.localStorage.setItem(BIGO_KEY, next ? 'on' : 'off');
     setBigO(next);
+  };
+
+  /** Focus mode drops the list and the brief; the editor and its verdict are the work. */
+  const handleFocusChange = (next: boolean) => {
+    window.localStorage.setItem(FOCUS_KEY, next ? 'on' : 'off');
+    setFocus(next);
   };
 
   const handleMeasure = () => {
@@ -385,9 +523,12 @@ export function Studio({ problems, statuses: initialStatuses, collections, board
   const handleSnippet = (line: string) => {
     if (source === null) return;
 
-    setSource(`${source.replace(/\s*$/, '')}
+    const next = `${draft.current.replace(/\s*$/, '')}
 ${line}
-`);
+`;
+    draft.current = next;
+    setSource(next);
+    setDirty(next !== baseline.current);
     toast.success('Added to the end of the file — save when you are ready');
   };
 
@@ -497,6 +638,12 @@ ${line}
         return;
       }
 
+      if (event.key === '\\') {
+        event.preventDefault();
+        handleFocusChange(!focus);
+        return;
+      }
+
       if (event.key === 'ArrowDown') {
         event.preventDefault();
         step(1);
@@ -544,7 +691,7 @@ ${line}
       <SolutionDiff
         open={diffOpen}
         title={active.title}
-        current={source ?? ''}
+        current={draft.current}
         snapshots={snapshots}
         onOpenChange={setDiffOpen}
       />
@@ -558,51 +705,70 @@ ${line}
       />
 
       <StudioHeader
-        boardName={board?.name ?? 'All Problems'}
+        collections={allCollections}
+        boardId={boardId}
         counts={counts}
         total={visible.length}
         pending={pending}
         syncing={syncing}
+        focus={focus}
+        onCollectionChange={handleCollectionChange}
+        onFocusChange={handleFocusChange}
         onSync={handleSync}
       />
 
+      {session && (
+        <ReviewBar
+          session={session}
+          title={active.title}
+          onReveal={handleReveal}
+          onGiveUp={handleGiveUp}
+        />
+      )}
+
       <ResizablePanelGroup orientation="horizontal" className="min-h-0 flex-1">
-        <ResizablePanel defaultSize="19" minSize="13">
-          <ProblemRail
-            problems={visible}
-            statuses={statuses}
-            collections={allCollections}
-            collectionId={boardId}
-            onCollectionChange={handleCollectionChange}
-            activeNumber={active.number}
-            runningCategory={runningCategory}
-            onSelect={handleSelect}
-            onRunCategory={handleRunCategory}
-          />
-        </ResizablePanel>
+        {!focus && (
+          <ResizablePanel id="rail" defaultSize="19" minSize="13">
+            <ProblemRail
+              problems={visible}
+              statuses={statuses}
+              activeNumber={active.number}
+              locked={settings.strictMode && session !== null}
+              runningCategory={runningCategory}
+              onSelect={handleSelect}
+              onRunCategory={handleRunCategory}
+            />
+          </ResizablePanel>
+        )}
 
-        <ResizableHandle withHandle />
+        {!focus && <ResizableHandle withHandle />}
 
-        <ResizablePanel defaultSize="32" minSize="20">
+        {!focus && (
+        <ResizablePanel id="brief" defaultSize="32" minSize="20">
           <ProblemBrief
             problem={active}
             status={statuses[active.number] ?? UNKNOWN_STATUS}
             leetcode={links.leetcode ?? active.leetcode}
             video={links.video}
             note={note}
+            reviewing={session !== null}
+            repeating={settings.reviewEnabled}
+            onStartReview={() => startReview(active.number)}
             onHint={handleHint}
             onNoteSave={handleNoteSave}
           />
         </ResizablePanel>
+        )}
 
-        <ResizableHandle withHandle />
+        {!focus && <ResizableHandle withHandle />}
 
-        <ResizablePanel defaultSize="49" minSize="26">
+        <ResizablePanel id="editor" defaultSize="49" minSize="26">
           <ResizablePanelGroup orientation="vertical">
             <ResizablePanel defaultSize="62" minSize="25">
               <SolutionEditor
                 file={active.file}
                 mode={mode}
+                reviewing={session !== null}
                 source={source}
                 dirty={dirty}
                 saving={saving}
@@ -615,7 +781,7 @@ ${line}
                 checkingTypes={checkingTypes}
                 snapshots={snapshots.length}
                 onCompare={() => setDiffOpen(true)}
-                onChange={setSource}
+                onChange={handleChange}
                 onModeChange={handleModeChange}
                 onBigOChange={handleBigOChange}
                 onSave={handleSave}

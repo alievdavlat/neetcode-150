@@ -3,12 +3,13 @@
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'motion/react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Settings2 } from 'lucide-react';
 import { Brand } from './brand';
 import { BoardCard } from './board-card';
+import { ReviewQueue } from './review-queue';
 import { TagStrip, type Tag } from './tag-strip';
 import { ALL_BOARD, DIFFICULTY_META, STATE_META, tagsOf } from '@/lib/meta';
-import type { Board, Company, Problem, ProblemStatus } from '@/lib/types';
+import type { Board, Company, Problem, ProblemStatus, Settings } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
 interface HomeProps {
@@ -16,6 +17,7 @@ interface HomeProps {
   statuses: ProblemStatus[];
   boards: Board[];
   companies: Company[];
+  settings: Settings;
 }
 
 type Source = 'topics' | 'companies';
@@ -36,7 +38,7 @@ const ACCENTS = [
 
 const RESULT_LIMIT = 60;
 
-export function Home({ problems, statuses, boards, companies }: HomeProps) {
+export function Home({ problems, statuses, boards, companies, settings }: HomeProps) {
   const [source, setSource] = useState<Source>('topics');
   const [picked, setPicked] = useState<string | null>(null);
 
@@ -88,6 +90,15 @@ export function Home({ problems, statuses, boards, companies }: HomeProps) {
       <Brand subtitle={`${problems.length} problems in this workspace`} large />
 
       <div className="ml-auto flex items-center gap-3">
+        <Link
+          href="/settings"
+          aria-label="Settings"
+          title="Review, strict mode and how many problems a day"
+          className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-line text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+        >
+          <Settings2 className="size-4" />
+        </Link>
+
         <div className="h-1.5 w-40 overflow-hidden rounded-full bg-white/8">
           <div
             className="h-full rounded-full bg-gradient-to-r from-primary via-primary to-cool"
@@ -180,9 +191,6 @@ export function Home({ problems, statuses, boards, companies }: HomeProps) {
         <header className="flex items-center gap-4">
           <h2 className="font-heading text-sm font-semibold tracking-[0.14em] uppercase">{group}</h2>
           <span className="h-px flex-1 bg-line" />
-          <span className="font-mono text-[11px] text-muted-foreground">
-            {members.length} {members.length === 1 ? 'collection' : 'collections'}
-          </span>
         </header>
 
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -195,8 +203,17 @@ export function Home({ problems, statuses, boards, companies }: HomeProps) {
   };
 
   return (
-    <main className="mx-auto w-full max-w-6xl space-y-8 px-5 py-10">
+    <main className="mx-auto w-full max-w-7xl space-y-8 px-5 py-10">
       {renderHero()}
+
+      {settings.reviewEnabled && (
+        <ReviewQueue
+          problems={problems}
+          statuses={statuses}
+          tags={topics.map((tag) => tag.name)}
+          dailyCap={settings.dailyCap}
+        />
+      )}
 
       <TagStrip
         title={renderSources()}

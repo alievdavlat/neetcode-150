@@ -1,0 +1,105 @@
+{
+  "id": "assembly",
+  "track": "Low level",
+  "name": "Assembly (ARM)",
+  "blurb": "Registers, instructions and memory addressing on ARM — what your compiler actually emits.",
+  "video": "gfmRrPjnEw4",
+  "url": "https://www.youtube.com/watch?v=gfmRrPjnEw4",
+  "title": "Assembly Language Programming with ARM – Full Tutorial for Beginners",
+  "channel": "freeCodeCamp.org",
+  "seconds": 8971,
+  "lessons": [
+    {
+      "title": "Introduction",
+      "at": 0,
+      "seconds": 68
+    },
+    {
+      "title": "Intro and Setup",
+      "at": 68,
+      "seconds": 145
+    },
+    {
+      "title": "Emulation and Memory Layout",
+      "at": 213,
+      "seconds": 589
+    },
+    {
+      "title": "Your First Program",
+      "at": 802,
+      "seconds": 677
+    },
+    {
+      "title": "Addressing Modes",
+      "at": 1479,
+      "seconds": 751
+    },
+    {
+      "title": "Arithmetic and CPSR Flags",
+      "at": 2230,
+      "seconds": 688
+    },
+    {
+      "title": "Logical Operations",
+      "at": 2918,
+      "seconds": 385
+    },
+    {
+      "title": "Logical Shifts and Rotations Part 1",
+      "at": 3303,
+      "seconds": 440
+    },
+    {
+      "title": "Logical Shifts and Rotations Part 2",
+      "at": 3743,
+      "seconds": 403
+    },
+    {
+      "title": "Conditions and Branches",
+      "at": 4146,
+      "seconds": 631
+    },
+    {
+      "title": "Loops with Branches",
+      "at": 4777,
+      "seconds": 579
+    },
+    {
+      "title": "Conditional Instruction Execution",
+      "at": 5356,
+      "seconds": 320
+    },
+    {
+      "title": "Branch with link register and returns",
+      "at": 5676,
+      "seconds": 389
+    },
+    {
+      "title": "Preserving and Retrieving Data From Stack Memory",
+      "at": 6065,
+      "seconds": 524
+    },
+    {
+      "title": "Hardware Interactions",
+      "at": 6589,
+      "seconds": 498
+    },
+    {
+      "title": "Setting up Qemu for ARM",
+      "at": 7087,
+      "seconds": 585
+    },
+    {
+      "title": "Printing Strings to Terminal",
+      "at": 7672,
+      "seconds": 754
+    },
+    {
+      "title": "Debugging Arm Programs with Gdb",
+      "at": 8426,
+      "seconds": 545
+    }
+  ],
+  "from": "chapter panel",
+  "fetchedAt": "2026-09-18T11:28:27.270Z"
+}

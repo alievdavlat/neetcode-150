@@ -331,7 +331,7 @@ export function TracePanel({
   );
 
   const renderCall = (report: TraceResult) => {
-    const green = cases[report.caseIndex]?.passed ?? true;
+    const green = report.passed ?? cases[report.caseIndex]?.passed ?? true;
     const returns = report.result !== null && report.result !== 'undefined';
 
     return (
@@ -366,6 +366,9 @@ export function TracePanel({
             <p className="break-all text-muted-foreground">
               should be <span className="text-pass">{report.expect}</span>
             </p>
+          )}
+          {!green && report.detail !== null && (
+            <p className="break-all text-fail/90">{report.detail}</p>
           )}
           {!returns && <p className="text-muted-foreground">returns nothing; watch the arguments change</p>}
         </div>

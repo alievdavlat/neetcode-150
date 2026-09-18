@@ -28,6 +28,20 @@ export interface Problem {
 
 export type ProblemState = 'not-started' | 'attempted' | 'failing' | 'solved';
 
+export interface Settings {
+  /** Turn the whole review system off: no queue, no due badges, no strict gate. */
+  reviewEnabled: boolean;
+  /** While anything is due, nothing else in the app opens until it is re-solved. */
+  strictMode: boolean;
+  dailyCap: number;
+}
+
+/** 0 could not do it, 1 got there the hard way, 2 came back cleanly. */
+export type ReviewGrade = 0 | 1 | 2;
+
+/** A full re-solve, or the sixty-second question about which pattern it is. */
+export type ReviewKind = 'solve' | 'drill';
+
 export interface ProblemHistory {
   runs: number;
   runsToFirstPass: number | null;
@@ -39,6 +53,12 @@ export interface ProblemHistory {
   dueInDays: number | null;
   hintLevel: number;
   due: boolean;
+  reviews: number;
+  lapses: number;
+  ease: number | null;
+  lastReviewAt: string | null;
+  leech: boolean;
+  reviewMinutes: number[];
 }
 
 export interface Collection {
@@ -181,8 +201,38 @@ export type TraceValue =
   | { t: 'array'; items: string[]; truncated: boolean }
   | { t: 'map'; entries: [string, string][]; truncated: boolean };
 
+/** One chapter of a course video, exactly as its own chapter list names it. */
+export interface Lesson {
+  title: string;
+  /** Seconds into the video. Stable enough to key progress on. */
+  at: number;
+  seconds: number;
+}
+
+export interface Course {
+  id: string;
+  track: string;
+  name: string;
+  blurb: string;
+  video: string;
+  url: string;
+  title: string;
+  channel: string;
+  seconds: number;
+  lessons: Lesson[];
+  /** Where the chapter list came from, so the page can say so. */
+  from: string;
+  fetchedAt: string;
+}
+
+export interface CourseProgress {
+  watched: number[];
+}
+
 export interface TraceStep {
   line: number;
+  /** Which function the step is in; a case may run more than one. */
+  fn: string | null;
   kind: TraceKind;
   chain: string[];
   vars: Record<string, TraceValue>;
@@ -201,6 +251,9 @@ export interface TraceResult {
   args: string[];
   expect: string | null;
   result: string | null;
+  /** This replay's own verdict, judged exactly as a run judges it. */
+  passed: boolean | null;
+  detail: string | null;
   steps: TraceStep[];
   truncated: boolean;
   source: string;

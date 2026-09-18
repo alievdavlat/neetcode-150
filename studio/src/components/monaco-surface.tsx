@@ -34,6 +34,7 @@ export function MonacoSurface({
   const monacoRef = useRef<Monaco | null>(null);
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
   const decorationsRef = useRef<editor.IEditorDecorationsCollection | null>(null);
+  const buffer = useRef(value);
 
   useEffect(() => {
     save.current = onSave;
@@ -86,6 +87,7 @@ export function MonacoSurface({
   const handleMount: OnMount = (instance, monaco) => {
     monacoRef.current = monaco;
     editorRef.current = instance;
+    buffer.current = instance.getValue();
     instance.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => save.current());
     instance.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => run.current());
 
@@ -104,6 +106,32 @@ export function MonacoSurface({
     instance.focus();
   };
 
+  const handleChange = (next: string | undefined) => {
+    buffer.current = next ?? '';
+    onChange(buffer.current);
+  };
+
+  /**
+   * The model owns the text while he types. Handing the prop back to `value`
+   * would let @monaco-editor/react replace the whole document on any render
+   * that arrives a keystroke late, which drops the caret at the end of the
+   * file. Only changes made outside the editor are pushed in, and the caret
+   * is carried through them.
+   */
+  useEffect(() => {
+    const instance = editorRef.current;
+    const model = instance?.getModel();
+    if (!instance || !model || value === buffer.current) return;
+
+    buffer.current = value;
+    if (value === model.getValue()) return;
+
+    const selections = instance.getSelections();
+    model.pushStackElement();
+    model.pushEditOperations(selections, [{ range: model.getFullModelRange(), text: value }], () => selections);
+    model.pushStackElement();
+  }, [value]);
+
   useEffect(() => {
     const monaco = monacoRef.current;
     const model = editorRef.current?.getModel();
@@ -121,7 +149,7 @@ export function MonacoSurface({
         message: `${marker.code}: ${marker.message}`,
       })),
     );
-  }, [markers, path, value]);
+  }, [markers, path]);
 
   /** The replayed step highlights its line in the file the student is reading. */
   useEffect(() => {
@@ -148,12 +176,12 @@ export function MonacoSurface({
   return (
     <Editor
       path={path}
-      value={value}
+      defaultValue={value}
       defaultLanguage="typescript"
       theme="neetcode-night"
       beforeMount={handleBeforeMount}
       onMount={handleMount}
-      onChange={(next) => onChange(next ?? '')}
+      onChange={handleChange}
       loading={<span className="text-xs text-muted-foreground">loading editor…</span>}
       options={{
         fontFamily: 'var(--font-code), ui-monospace, monospace',

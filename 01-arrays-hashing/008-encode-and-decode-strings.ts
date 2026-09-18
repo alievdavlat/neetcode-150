@@ -37,14 +37,8 @@ export function encode(strs: string[]): string {
 
 export function decode(str: string): string[] {
   let res:string[] = [];
-  let i  = 0;
-  while(i < str.length) {
-    let pos = str.indexOf('#', i); //2#hello2#world
-    let length = Number(str.slice(i, pos)); //2
-    i = pos + 1;
-    const s = str.slice(i, i + length);
-    res.push(s);
-    i += length;
+  let i:number = 0;
+  for(let i = 0; i < str.length; i++) {
+        const position = str.indexOf('#', i)
   }
-  return res;
 }

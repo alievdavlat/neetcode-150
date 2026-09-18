@@ -147,6 +147,7 @@ export function createRecorder(meta, { maxSteps = MAX_STEPS } = {}) {
     lastId = id;
     return push({
       line: entry.line,
+      fn: entry.fn ?? null,
       kind: entry.kind,
       chain,
       vars: {},

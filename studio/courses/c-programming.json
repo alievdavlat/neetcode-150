@@ -1,0 +1,165 @@
+{
+  "id": "c-programming",
+  "track": "Low level",
+  "name": "C",
+  "blurb": "Pointers, memory and the standard library — the language the rest of the stack is written in.",
+  "video": "KJgsSFOSQv0",
+  "url": "https://www.youtube.com/watch?v=KJgsSFOSQv0",
+  "title": "C Programming Tutorial for Beginners",
+  "channel": "freeCodeCamp.org",
+  "seconds": 13573,
+  "lessons": [
+    {
+      "title": "Introduction",
+      "at": 0,
+      "seconds": 82
+    },
+    {
+      "title": "Windows Setup",
+      "at": 82,
+      "seconds": 220
+    },
+    {
+      "title": "Mac Setup",
+      "at": 302,
+      "seconds": 242
+    },
+    {
+      "title": "Hello World",
+      "at": 544,
+      "seconds": 227
+    },
+    {
+      "title": "Drawing a Shape",
+      "at": 771,
+      "seconds": 485
+    },
+    {
+      "title": "Variables",
+      "at": 1256,
+      "seconds": 689
+    },
+    {
+      "title": "Data Types",
+      "at": 1945,
+      "seconds": 367
+    },
+    {
+      "title": "Printf",
+      "at": 2312,
+      "seconds": 410
+    },
+    {
+      "title": "Working With Numbers",
+      "at": 2722,
+      "seconds": 418
+    },
+    {
+      "title": "Comments",
+      "at": 3140,
+      "seconds": 220
+    },
+    {
+      "title": "Constants",
+      "at": 3360,
+      "seconds": 253
+    },
+    {
+      "title": "Getting User Input",
+      "at": 3613,
+      "seconds": 715
+    },
+    {
+      "title": "Building a Basic Calculator",
+      "at": 4328,
+      "seconds": 335
+    },
+    {
+      "title": "Building a Mad Libs Game",
+      "at": 4663,
+      "seconds": 526
+    },
+    {
+      "title": "Arrays",
+      "at": 5189,
+      "seconds": 615
+    },
+    {
+      "title": "Functions",
+      "at": 5804,
+      "seconds": 533
+    },
+    {
+      "title": "Return Statement",
+      "at": 6337,
+      "seconds": 464
+    },
+    {
+      "title": "If Statements",
+      "at": 6801,
+      "seconds": 830
+    },
+    {
+      "title": "Building a Better Calculator",
+      "at": 7631,
+      "seconds": 460
+    },
+    {
+      "title": "Switch Statements",
+      "at": 8091,
+      "seconds": 396
+    },
+    {
+      "title": "Structs",
+      "at": 8487,
+      "seconds": 496
+    },
+    {
+      "title": "While Loops",
+      "at": 8983,
+      "seconds": 485
+    },
+    {
+      "title": "Building a Guessing Game",
+      "at": 9468,
+      "seconds": 743
+    },
+    {
+      "title": "For Loops",
+      "at": 10211,
+      "seconds": 534
+    },
+    {
+      "title": "2D Arrays & Nested Loops",
+      "at": 10745,
+      "seconds": 605
+    },
+    {
+      "title": "Memory Addresses",
+      "at": 11350,
+      "seconds": 490
+    },
+    {
+      "title": "Pointers",
+      "at": 11840,
+      "seconds": 621
+    },
+    {
+      "title": "Dereferencing Pointers",
+      "at": 12461,
+      "seconds": 296
+    },
+    {
+      "title": "Writing Files",
+      "at": 12757,
+      "seconds": 555
+    },
+    {
+      "title": "Reading Files",
+      "at": 13312,
+      "seconds": 261
+    }
+  ],
+  "from": "chapter panel",
+  "fetchedAt": "2026-09-18T11:28:20.484Z"
+}

@@ -1,0 +1,60 @@
+{
+  "id": "git",
+  "track": "Tools",
+  "name": "Git",
+  "blurb": "Commits, branches, merges and remotes, worked through rather than memorised as commands.",
+  "video": "zTjRZNkhiEU",
+  "url": "https://www.youtube.com/watch?v=zTjRZNkhiEU",
+  "title": "Learn Git – Full Course for Beginners",
+  "channel": "freeCodeCamp.org",
+  "seconds": 13414,
+  "lessons": [
+    {
+      "title": "Introduction to GIT series",
+      "at": 0,
+      "seconds": 354
+    },
+    {
+      "title": "Git init and hidden folder",
+      "at": 354,
+      "seconds": 1053
+    },
+    {
+      "title": "Git commits and logs",
+      "at": 1407,
+      "seconds": 995
+    },
+    {
+      "title": "Git internal working and configs",
+      "at": 2402,
+      "seconds": 1665
+    },
+    {
+      "title": "Git merge and git conflicts",
+      "at": 4067,
+      "seconds": 2374
+    },
+    {
+      "title": "Git Diff and stashing",
+      "at": 6441,
+      "seconds": 1701
+    },
+    {
+      "title": "Git rebase is not that scary",
+      "at": 8142,
+      "seconds": 1302
+    },
+    {
+      "title": "Insight of pushing code to github",
+      "at": 9444,
+      "seconds": 2454
+    },
+    {
+      "title": "How to make Pull Request and Open Source contribution",
+      "at": 11898,
+      "seconds": 1516
+    }
+  ],
+  "from": "chapter panel",
+  "fetchedAt": "2026-09-18T11:28:29.084Z"
+}

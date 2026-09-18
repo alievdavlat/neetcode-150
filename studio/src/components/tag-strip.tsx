@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, type ReactNode } from 'react';
-import { ArrowLeft, ArrowRight, Info, Search, X } from 'lucide-react';
+import { Info, Search, X } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 
@@ -19,18 +19,17 @@ interface TagStripProps {
   onPick: (tag: string | null) => void;
 }
 
-const PER_PAGE = 14;
+const SHOWN = 14;
 
 export function TagStrip({ title, hint, placeholder, tags, picked, onPick }: TagStripProps) {
   const [query, setQuery] = useState('');
-  const [page, setPage] = useState(0);
+  const [all, setAll] = useState(false);
 
   const matching = tags.filter((tag) => tag.name.toLowerCase().includes(query.trim().toLowerCase()));
-  const pages = Math.max(1, Math.ceil(matching.length / PER_PAGE));
-  const safePage = Math.min(page, pages - 1);
-  const shown = matching.slice(safePage * PER_PAGE, safePage * PER_PAGE + PER_PAGE);
+  const shown = all ? matching : matching.slice(0, SHOWN);
+  const rest = matching.length - shown.length;
 
-  useEffect(() => setPage(0), [query]);
+  useEffect(() => setAll(false), [query]);
 
   const renderTag = (tag: Tag) => (
     <button
@@ -72,9 +71,10 @@ export function TagStrip({ title, hint, placeholder, tags, picked, onPick }: Tag
 
       <div className="mt-2 flex items-center gap-3 border-t border-line pt-3">
         {title}
-        <p className="font-mono text-[11px] text-muted-foreground tabular-nums">
-          {safePage + 1} / {pages}
-        </p>
+        <span title={hint} aria-label={hint} className="text-muted-foreground/70">
+          <Info className="size-3.5 text-cool" />
+        </span>
+        <p className="font-mono text-[11px] text-muted-foreground tabular-nums">{matching.length}</p>
 
         {(picked || query) && (
           <button
@@ -90,38 +90,25 @@ export function TagStrip({ title, hint, placeholder, tags, picked, onPick }: Tag
           </button>
         )}
 
-        <div className="ml-auto flex items-center gap-1">
-          <button
-            type="button"
-            aria-label="previous page"
-            disabled={safePage === 0}
-            onClick={() => setPage(safePage - 1)}
-            className="rounded-md border border-line p-1.5 text-muted-foreground transition-colors hover:border-primary/30 hover:text-foreground disabled:opacity-40"
-          >
-            <ArrowLeft className="size-3.5" />
-          </button>
-          <button
-            type="button"
-            aria-label="next page"
-            disabled={safePage >= pages - 1}
-            onClick={() => setPage(safePage + 1)}
-            className="rounded-md border border-line p-1.5 text-muted-foreground transition-colors hover:border-primary/30 hover:text-foreground disabled:opacity-40"
-          >
-            <ArrowRight className="size-3.5" />
-          </button>
-        </div>
       </div>
 
       {shown.length === 0 ? (
         <p className="mt-3 text-xs text-muted-foreground">Nothing matches “{query}”.</p>
       ) : (
-        <div className="mt-3 flex flex-wrap gap-1.5">{shown.map(renderTag)}</div>
-      )}
+        <div className="mt-3 flex flex-wrap gap-1.5">
+          {shown.map(renderTag)}
 
-      <p className="mt-3 flex items-center gap-2 rounded-lg border border-line bg-black/20 px-3 py-2 text-xs text-muted-foreground">
-        <Info className="size-3.5 shrink-0 text-cool" />
-        {hint}
-      </p>
+          {(rest > 0 || all) && (
+            <button
+              type="button"
+              onClick={() => setAll(!all)}
+              className="rounded-lg border border-dashed border-line px-2.5 py-1.5 text-[13px] text-muted-foreground transition-colors hover:border-primary/30 hover:text-foreground"
+            >
+              {all ? 'show fewer' : `+${rest} more`}
+            </button>
+          )}
+        </div>
+      )}
     </section>
   );
 }

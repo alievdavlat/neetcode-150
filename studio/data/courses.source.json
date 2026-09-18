@@ -1,0 +1,89 @@
+{
+  "note": "Hand-picked free full-length courses. Nothing here is written by the app: `npm run courses` fetches each video's real title, channel, length and chapter list from YouTube and writes studio/courses/<id>.json. Only `name`, `track` and `blurb` are ours, and they describe what the video is, never what it says.",
+  "courses": [
+    {
+      "id": "networking",
+      "track": "Systems",
+      "name": "Networking & the OSI model",
+      "blurb": "Four hours down the seven layers, with the protocols and the hardware that sit on each one.",
+      "video": "IPvYjXCsTg8"
+    },
+    {
+      "id": "system-design",
+      "track": "Design",
+      "name": "System design",
+      "blurb": "One server, then load balancers, caches, CDNs and the API choices that come with them.",
+      "video": "C842vFY5kRo"
+    },
+    {
+      "id": "databases-sql",
+      "track": "Data",
+      "name": "Databases with SQL",
+      "blurb": "Relational modelling from tables and keys through joins, functions and triggers.",
+      "video": "HXV3zeQKqGY"
+    },
+    {
+      "id": "operating-systems",
+      "track": "Systems",
+      "name": "Operating systems",
+      "blurb": "Processes, threads, scheduling and memory — what the machine is doing under your program.",
+      "video": "yK1uBHPdp30"
+    },
+    {
+      "id": "linux",
+      "track": "Systems",
+      "name": "Linux",
+      "blurb": "The shell, the file system and the permissions model, from a standing start.",
+      "video": "ROjZy1WbCIA"
+    },
+    {
+      "id": "design-patterns",
+      "track": "Code craft",
+      "name": "Design patterns",
+      "blurb": "The classic patterns in plain English — what each one is for, in language-neutral terms.",
+      "video": "NU_1StN5Tkk"
+    },
+    {
+      "id": "design-patterns-solid",
+      "track": "Code craft",
+      "name": "Design patterns & SOLID in C#",
+      "blurb": "The long version: SOLID and the pattern catalogue worked through in C#, twelve hours of it.",
+      "video": "rylaiB2uH2A"
+    },
+    {
+      "id": "c-programming",
+      "track": "Low level",
+      "name": "C",
+      "blurb": "Pointers, memory and the standard library — the language the rest of the stack is written in.",
+      "video": "KJgsSFOSQv0"
+    },
+    {
+      "id": "cpp",
+      "track": "Low level",
+      "name": "C++",
+      "blurb": "Beginner to advanced C++, from syntax through classes, templates and the standard library.",
+      "video": "8jLOx1hD3_o"
+    },
+    {
+      "id": "assembly",
+      "track": "Low level",
+      "name": "Assembly (ARM)",
+      "blurb": "Registers, instructions and memory addressing on ARM — what your compiler actually emits.",
+      "video": "gfmRrPjnEw4"
+    },
+    {
+      "id": "git",
+      "track": "Tools",
+      "name": "Git",
+      "blurb": "Commits, branches, merges and remotes, worked through rather than memorised as commands.",
+      "video": "zTjRZNkhiEU"
+    },
+    {
+      "id": "docker",
+      "track": "Tools",
+      "name": "Docker",
+      "blurb": "Images, containers, volumes and compose, up to deploying a containerised app.",
+      "video": "rjjES5IsPdg"
+    }
+  ]
+}

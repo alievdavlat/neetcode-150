@@ -1,11 +1,13 @@
 import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import type { ProblemHistory, RunStatus, SourceMode } from '@/lib/types';
+import type { ProblemHistory, ReviewGrade, ReviewKind, RunStatus, SourceMode } from '@/lib/types';
+import { LEECH_LAPSES, replay, seedInterval } from './schedule';
 import { STUDIO_ROOT } from './workspace';
 
 const HISTORY_FILE = path.join(STUDIO_ROOT, '.studio', 'history.json');
 const KEEP_PER_PROBLEM = 60;
 const KEEP_OPENS = 40;
+const KEEP_REVIEWS = 60;
 
 interface RunRecord {
   at: string;
@@ -17,13 +19,24 @@ interface RunRecord {
   ok: boolean;
 }
 
+interface ReviewRecord {
+  at: string;
+  kind: ReviewKind;
+  grade: ReviewGrade;
+  minutes: number | null;
+  runs: number;
+  hints: number;
+  revealed: boolean;
+}
+
 interface HistoryFile {
   runs: Record<string, RunRecord[]>;
   hints: Record<string, number>;
   opens: Record<string, string[]>;
+  reviews: Record<string, ReviewRecord[]>;
 }
 
-const EMPTY: HistoryFile = { runs: {}, hints: {}, opens: {} };
+const EMPTY: HistoryFile = { runs: {}, hints: {}, opens: {}, reviews: {} };
 
 export const EMPTY_HISTORY: ProblemHistory = {
   runs: 0,
@@ -36,6 +49,12 @@ export const EMPTY_HISTORY: ProblemHistory = {
   dueInDays: null,
   hintLevel: 0,
   due: false,
+  reviews: 0,
+  lapses: 0,
+  ease: null,
+  lastReviewAt: null,
+  leech: false,
+  reviewMinutes: [],
 };
 
 async function read(): Promise<HistoryFile> {
@@ -44,7 +63,12 @@ async function read(): Promise<HistoryFile> {
 
   try {
     const parsed = JSON.parse(raw) as Partial<HistoryFile>;
-    return { runs: parsed.runs ?? {}, hints: parsed.hints ?? {}, opens: parsed.opens ?? {} };
+    return {
+      runs: parsed.runs ?? {},
+      hints: parsed.hints ?? {},
+      opens: parsed.opens ?? {},
+      reviews: parsed.reviews ?? {},
+    };
   } catch {
     return { ...EMPTY };
   }
@@ -62,19 +86,18 @@ async function write(history: HistoryFile): Promise<void> {
 const daysSince = (iso: string) => (Date.now() - new Date(iso).getTime()) / 86_400_000;
 
 /**
- * How long until this should come back. A first-try solve with no hints can wait
- * three weeks; one that took six runs and two hints comes back in three days.
+ * Attempts are what you typed. A bulk recheck proves the file still passes; it
+ * says nothing about whether you could write it again, so it is never an
+ * attempt, never a pass, and never advances the schedule.
  */
-const reviewInterval = (runsToFirstPass: number | null, hintLevel: number) => {
-  if (hintLevel >= 2 || (runsToFirstPass ?? 99) > 5) return 3;
-  if (hintLevel === 1 || (runsToFirstPass ?? 99) > 2) return 7;
-  return 21;
-};
-
-/** Attempts are what you typed; a bulk recheck is not an attempt and never counts as one. */
-function summarize(records: RunRecord[], hintLevel: number, opens: string[]): ProblemHistory {
+function summarize(
+  records: RunRecord[],
+  hintLevel: number,
+  opens: string[],
+  reviews: ReviewRecord[],
+): ProblemHistory {
   const attempts = records.filter((record) => record.kind === 'run');
-  const passes = records.filter((record) => record.ok);
+  const passes = attempts.filter((record) => record.ok);
   const firstPass = passes[0] ?? null;
   const lastPass = passes[passes.length - 1] ?? null;
   const last = records[records.length - 1] ?? null;
@@ -82,7 +105,14 @@ function summarize(records: RunRecord[], hintLevel: number, opens: string[]): Pr
 
   const runsToFirstPass = indexOfFirstPass === -1 ? null : indexOfFirstPass + 1;
   const started = firstPass ? opens.find((at) => at <= firstPass.at) : null;
-  const reviewDays = lastPass ? reviewInterval(runsToFirstPass, hintLevel) : null;
+
+  const solved = firstPass !== null;
+  const seed = seedInterval(runsToFirstPass, hintLevel);
+  const schedule = solved ? replay(seed, reviews) : null;
+
+  const lastReview = reviews[reviews.length - 1] ?? null;
+  const anchor = lastReview?.at ?? lastPass?.at ?? null;
+  const elapsed = anchor === null ? null : daysSince(anchor);
 
   return {
     runs: attempts.length,
@@ -94,10 +124,19 @@ function summarize(records: RunRecord[], hintLevel: number, opens: string[]): Pr
       firstPass && started
         ? Math.max(1, Math.round((new Date(firstPass.at).getTime() - new Date(started).getTime()) / 60000))
         : null,
-    reviewDays,
-    dueInDays: lastPass && reviewDays ? Math.ceil(reviewDays - daysSince(lastPass.at)) : null,
+    reviewDays: schedule?.interval ?? null,
+    dueInDays: schedule && elapsed !== null ? Math.ceil(schedule.interval - elapsed) : null,
     hintLevel,
-    due: lastPass !== null && reviewDays !== null && daysSince(lastPass.at) >= reviewDays,
+    due: schedule !== null && elapsed !== null && elapsed >= schedule.interval,
+    reviews: reviews.length,
+    lapses: schedule?.lapses ?? 0,
+    ease: schedule ? Math.round(schedule.ease * 100) / 100 : null,
+    lastReviewAt: lastReview?.at ?? null,
+    leech: (schedule?.streak ?? 0) >= LEECH_LAPSES,
+    reviewMinutes: reviews
+      .filter((review) => review.kind === 'solve' && !review.revealed && review.grade > 0)
+      .flatMap((review) => (review.minutes === null ? [] : [review.minutes]))
+      .slice(-12),
   };
 }
 
@@ -107,12 +146,18 @@ export async function getHistories(): Promise<Record<string, ProblemHistory>> {
     ...Object.keys(history.runs),
     ...Object.keys(history.hints),
     ...Object.keys(history.opens),
+    ...Object.keys(history.reviews),
   ]);
 
   return Object.fromEntries(
     [...numbers].map((number) => [
       number,
-      summarize(history.runs[number] ?? [], history.hints[number] ?? 0, history.opens[number] ?? []),
+      summarize(
+        history.runs[number] ?? [],
+        history.hints[number] ?? 0,
+        history.opens[number] ?? [],
+        history.reviews[number] ?? [],
+      ),
     ]),
   );
 }
@@ -151,5 +196,23 @@ export async function recordHint(number: string, level: number): Promise<void> {
   const history = await read();
 
   history.hints[number] = Math.max(history.hints[number] ?? 0, level);
+  await write(history);
+}
+
+export interface RecordReviewInput {
+  number: string;
+  kind: ReviewKind;
+  grade: ReviewGrade;
+  minutes: number | null;
+  runs: number;
+  hints: number;
+  revealed: boolean;
+}
+
+export async function recordReview({ number, ...rest }: RecordReviewInput): Promise<void> {
+  const history = await read();
+  const reviews = history.reviews[number] ?? [];
+
+  history.reviews[number] = [...reviews, { at: new Date().toISOString(), ...rest }].slice(-KEEP_REVIEWS);
   await write(history);
 }

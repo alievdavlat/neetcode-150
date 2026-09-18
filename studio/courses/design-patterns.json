@@ -1,0 +1,120 @@
+{
+  "id": "design-patterns",
+  "track": "Code craft",
+  "name": "Design patterns",
+  "blurb": "The classic patterns in plain English — what each one is for, in language-neutral terms.",
+  "video": "NU_1StN5Tkk",
+  "url": "https://www.youtube.com/watch?v=NU_1StN5Tkk",
+  "title": "Design Patterns in Plain English | Mosh Hamedani",
+  "channel": "Programming with Mosh",
+  "seconds": 4800,
+  "lessons": [
+    {
+      "title": "Introduction",
+      "at": 0,
+      "seconds": 100
+    },
+    {
+      "title": "What are Design Patterns?",
+      "at": 100,
+      "seconds": 155
+    },
+    {
+      "title": "How to Take This Course",
+      "at": 255,
+      "seconds": 95
+    },
+    {
+      "title": "The Essentials",
+      "at": 350,
+      "seconds": 63
+    },
+    {
+      "title": "Getting Started with Java",
+      "at": 413,
+      "seconds": 150
+    },
+    {
+      "title": "Classes",
+      "at": 563,
+      "seconds": 251
+    },
+    {
+      "title": "Coupling",
+      "at": 814,
+      "seconds": 120
+    },
+    {
+      "title": "Interfaces",
+      "at": 934,
+      "seconds": 343
+    },
+    {
+      "title": "Encapsulation",
+      "at": 1277,
+      "seconds": 308
+    },
+    {
+      "title": "Abstraction",
+      "at": 1585,
+      "seconds": 248
+    },
+    {
+      "title": "Inheritance",
+      "at": 1833,
+      "seconds": 142
+    },
+    {
+      "title": "Polymorphism",
+      "at": 1975,
+      "seconds": 227
+    },
+    {
+      "title": "UML",
+      "at": 2202,
+      "seconds": 250
+    },
+    {
+      "title": "Memento Pattern",
+      "at": 2452,
+      "seconds": 111
+    },
+    {
+      "title": "Solution",
+      "at": 2563,
+      "seconds": 348
+    },
+    {
+      "title": "Implementation",
+      "at": 2911,
+      "seconds": 351
+    },
+    {
+      "title": "State Pattern",
+      "at": 3262,
+      "seconds": 324
+    },
+    {
+      "title": "Solution",
+      "at": 3586,
+      "seconds": 193
+    },
+    {
+      "title": "Implementation",
+      "at": 3779,
+      "seconds": 392
+    },
+    {
+      "title": "Abusing the Design Patterns",
+      "at": 4171,
+      "seconds": 107
+    },
+    {
+      "title": "Abusing the State Pattern",
+      "at": 4278,
+      "seconds": 522
+    }
+  ],
+  "from": "chapter panel",
+  "fetchedAt": "2026-09-18T11:28:13.451Z"
+}

@@ -51,6 +51,8 @@ process.stdout.write(
     args: [],
     expect: null,
     result: null,
+    passed: null,
+    detail: null,
     steps: [],
     truncated: false,
     source: '',

@@ -3,7 +3,16 @@
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { motion } from 'motion/react';
-import { ActivitySquare, ArrowUpToLine, FileCode2, GitCompareArrows, Loader2, Play, Save } from 'lucide-react';
+import {
+  ActivitySquare,
+  ArrowUpToLine,
+  FileCode2,
+  GitCompareArrows,
+  Loader2,
+  MoreHorizontal,
+  Play,
+  Save,
+} from 'lucide-react';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -16,6 +25,7 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Skeleton } from '@/components/ui/skeleton';
 import type { SourceMode, TypeMarker } from '@/lib/types';
 import { cn } from '@/lib/utils';
@@ -35,6 +45,7 @@ const MonacoSurface = dynamic(() => import('./monaco-surface').then((module) => 
 interface SolutionEditorProps {
   file: string;
   mode: SourceMode;
+  reviewing: boolean;
   source: string | null;
   dirty: boolean;
   saving: boolean;
@@ -63,6 +74,7 @@ const MODES: { value: SourceMode; label: string; hint: string }[] = [
 export function SolutionEditor({
   file,
   mode,
+  reviewing,
   source,
   dirty,
   saving,
@@ -121,7 +133,7 @@ export function SolutionEditor({
       aria-pressed={bigO}
       title="Measure the curve whenever every case passes. A failing solution is never timed, so this costs nothing while you are still debugging."
       className={cn(
-        'flex items-center gap-1.5 rounded-lg border px-2 py-1 text-[11px] transition-colors',
+        'flex w-full items-center gap-1.5 rounded-lg border px-2 py-1.5 text-[11px] transition-colors',
         bigO
           ? 'border-hot/40 bg-hot/10 text-hot'
           : 'border-line text-muted-foreground hover:border-white/15 hover:text-foreground',
@@ -130,6 +142,46 @@ export function SolutionEditor({
       <ActivitySquare className="size-3.5" />
       Big-O
     </button>
+  );
+
+  const renderCompare = () => (
+    <button
+      type="button"
+      onClick={onCompare}
+      title="Compare what is in the editor with your last passing solve"
+      aria-label="Compare with your last passing solve"
+      className="flex w-full items-center gap-1.5 rounded-lg border border-line px-2 py-1.5 text-[11px] text-muted-foreground transition-colors hover:border-cool/40 hover:text-cool"
+    >
+      <GitCompareArrows className="size-3.5" />
+      Compare with your last solve
+    </button>
+  );
+
+  /** Save and Run are the work; everything else lives one click away. */
+  const renderMore = () => (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="ghost" size="sm" aria-label="More editor options" title="More editor options">
+          <MoreHorizontal className="size-4" />
+        </Button>
+      </PopoverTrigger>
+
+      <PopoverContent align="end" className="w-64 space-y-3">
+        {!reviewing && (
+          <div className="space-y-1.5">
+            <p className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">Source</p>
+            {renderModeToggle()}
+          </div>
+        )}
+
+        <div className="space-y-1.5">
+          <p className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">Measure</p>
+          {renderBigO()}
+        </div>
+
+        {snapshots > 0 && !reviewing && renderCompare()}
+      </PopoverContent>
+    </Popover>
   );
 
   const renderPromote = () => (
@@ -196,22 +248,8 @@ export function SolutionEditor({
         )}
 
         <div className="ml-auto flex items-center gap-2">
-          {renderModeToggle()}
-          {renderBigO()}
-
-          {snapshots > 0 && (
-            <button
-              type="button"
-              onClick={onCompare}
-              title="Compare what is in the editor with your last passing solve"
-              aria-label="Compare with your last passing solve"
-              className="flex items-center gap-1.5 rounded-lg border border-line px-2 py-1 text-[11px] text-muted-foreground transition-colors hover:border-cool/40 hover:text-cool"
-            >
-              <GitCompareArrows className="size-3.5" />
-              Compare
-            </button>
-          )}
-          {mode === 'scratch' && renderPromote()}
+          {mode === 'scratch' && !reviewing && renderPromote()}
+          {renderMore()}
 
           <Button variant="ghost" size="sm" onClick={onSave} disabled={!dirty || saving} aria-label="Save file">
             {saving ? <Loader2 className="size-3.5 animate-spin" /> : <Save className="size-3.5" />}

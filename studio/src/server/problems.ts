@@ -51,7 +51,10 @@ export function getProblems(): Promise<Problem[]> {
   return problemsPromise;
 }
 
-const numberOf = (file: string) => file.split('/')[1].slice(0, 3);
+/** `01-arrays-hashing/1004-slug.ts` -> `1004`. Numbers are three or four digits. */
+export const numberOfFile = (file: string) => /(\d{3,4})-/.exec(file.split('/')[1] ?? '')?.[1] ?? '';
+
+const numberOf = numberOfFile;
 
 async function problemFor(file: string): Promise<Problem> {
   const number = numberOf(file);
@@ -194,6 +197,16 @@ async function seedScratch(file: string, saved: string | null): Promise<string> 
   await writeFile(absolute, seed, 'utf8');
 
   return seed;
+}
+
+/**
+ * Throw away the practice copy and lay the stub down again. A review has to
+ * start from a blank page: reading your own solution feels like remembering and
+ * is not, so there has to be no solution to read.
+ */
+export async function resetScratch(file: string): Promise<string> {
+  const saved = await readFile(resolveProblemFile(file), 'utf8').catch(() => null);
+  return seedScratch(file, saved);
 }
 
 export async function readProblemSource(file: string, mode: SourceMode = 'file'): Promise<ProblemSource> {

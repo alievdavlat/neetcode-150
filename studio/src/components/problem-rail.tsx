@@ -2,24 +2,25 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
-import { Loader2, Play, RotateCcw, Search, X } from 'lucide-react';
+import { Loader2, Play, RotateCcw, Search, SlidersHorizontal, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { StatusDot } from './status-dot';
 import { DIFFICULTIES, DIFFICULTY_META, STATES, STATE_META, tagsOf, UNKNOWN_STATUS } from '@/lib/meta';
-import type { Collection, Difficulty, Problem, ProblemState, ProblemStatus } from '@/lib/types';
+import type { Difficulty, Problem, ProblemState, ProblemStatus } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
 interface ProblemRailProps {
   problems: Problem[];
   statuses: Record<string, ProblemStatus>;
-  collections: Collection[];
-  collectionId: string;
   activeNumber: string;
+  /** Strict mode: the open problem is the only one that opens. */
+  locked: boolean;
   runningCategory: string | null;
   onSelect: (number: string) => void;
   onRunCategory: (dir: string) => void;
-  onCollectionChange: (id: string) => void;
 }
 
 interface Group {
@@ -31,13 +32,11 @@ interface Group {
 export function ProblemRail({
   problems,
   statuses,
-  collections,
-  collectionId,
   activeNumber,
+  locked,
   runningCategory,
   onSelect,
   onRunCategory,
-  onCollectionChange,
 }: ProblemRailProps) {
   const [query, setQuery] = useState('');
   const [difficulty, setDifficulty] = useState<Difficulty | null>(null);
@@ -46,6 +45,7 @@ export function ProblemRail({
   const [tag, setTag] = useState<string | null>(null);
 
   const filtering = Boolean(query || difficulty || state || dueOnly || tag);
+  const picked = [difficulty, state, dueOnly || null, tag].filter(Boolean).length;
 
   const clearFilters = () => {
     setQuery('');
@@ -100,6 +100,78 @@ export function ProblemRail({
     </button>
   );
 
+  const renderLabel = (text: string) => (
+    <h2 className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">{text}</h2>
+  );
+
+  /** Four filter families behind one control: the list is what the rail is for. */
+  const renderFilters = () => (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline" size="sm" className="h-8 shrink-0 gap-1.5" aria-label="Filter the problem list">
+          <SlidersHorizontal className="size-3.5" />
+          Filters
+          {picked > 0 && (
+            <span className="rounded-full bg-primary/15 px-1.5 font-mono text-[10px] text-primary">{picked}</span>
+          )}
+        </Button>
+      </PopoverTrigger>
+
+      <PopoverContent align="end" className="w-80 space-y-2.5">
+        <div className="flex items-center justify-between gap-2">
+          {renderLabel('Difficulty')}
+          {filtering && (
+            <button
+              type="button"
+              onClick={clearFilters}
+              className="flex items-center gap-1 text-[11px] text-muted-foreground transition-colors hover:text-fail"
+            >
+              <X className="size-3" />
+              Clear all
+            </button>
+          )}
+        </div>
+        <div className="flex flex-wrap gap-1.5">
+          {DIFFICULTIES.map((entry) =>
+            renderChip(entry, difficulty === entry, DIFFICULTY_META[entry].dot, () =>
+              setDifficulty(difficulty === entry ? null : entry),
+            ),
+          )}
+        </div>
+
+        {renderLabel('Status')}
+        <div className="flex flex-wrap gap-1.5">
+          {STATES.map((entry) =>
+            renderChip(STATE_META[entry].label, state === entry, STATE_META[entry].dot, () =>
+              setState(state === entry ? null : entry),
+            ),
+          )}
+          {renderChip('Due', dueOnly, 'bg-medium', () => setDueOnly(!dueOnly))}
+        </div>
+
+        {tags.length > 0 && renderLabel('Topics')}
+        <div className="flex max-h-40 flex-wrap gap-1.5 overflow-y-auto">
+          {tags.map(([entry, count]) => (
+            <button
+              key={entry}
+              type="button"
+              onClick={() => setTag(tag === entry ? null : entry)}
+              aria-pressed={tag === entry}
+              className={cn(
+                'shrink-0 rounded-full border px-2 py-0.5 text-[10px] whitespace-nowrap transition-colors',
+                tag === entry
+                  ? 'border-hot/40 bg-hot/10 text-hot'
+                  : 'border-line text-muted-foreground hover:border-white/15 hover:text-foreground',
+              )}
+            >
+              {entry} <span className="opacity-50">{count}</span>
+            </button>
+          ))}
+        </div>
+      </PopoverContent>
+    </Popover>
+  );
+
   const activeRow = useRef<HTMLButtonElement | null>(null);
 
   /**
@@ -128,6 +200,8 @@ export function ProblemRail({
         key={problem.number}
         ref={active ? activeRow : undefined}
         type="button"
+        disabled={locked && !active}
+        title={locked && !active ? 'Strict mode: finish the problem that is open' : undefined}
         onClick={() => onSelect(problem.number)}
         aria-current={active ? 'true' : undefined}
         className={cn(
@@ -191,75 +265,19 @@ export function ProblemRail({
 
   return (
     <div className="flex h-full flex-col bg-sidebar/60">
-      <div className="space-y-3 border-b border-line p-3">
-        {collections.length > 1 && (
-          <div className="flex flex-wrap gap-1.5">
-            {collections.map((entry) =>
-              renderChip(
-                `${entry.name} · ${entry.numbers.length}`,
-                collectionId === entry.id,
-                'bg-cool',
-                () => onCollectionChange(entry.id),
-              ),
-            )}
-          </div>
-        )}
-
-        <div className="relative">
+      <div className="flex items-center gap-2 border-b border-line p-3">
+        <div className="relative min-w-0 flex-1">
           <Search className="pointer-events-none absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2 text-muted-foreground" />
           <Input
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search 150 problems"
+            placeholder={`Search ${problems.length} problems`}
             aria-label="Search problems"
             className="h-8 pl-8 text-[13px]"
           />
         </div>
-        <div className="flex flex-wrap gap-1.5">
-          {DIFFICULTIES.map((entry) =>
-            renderChip(entry, difficulty === entry, DIFFICULTY_META[entry].dot, () =>
-              setDifficulty(difficulty === entry ? null : entry),
-            ),
-          )}
-        </div>
-        <div className="flex flex-wrap items-center gap-1.5">
-          {STATES.map((entry) =>
-            renderChip(STATE_META[entry].label, state === entry, STATE_META[entry].dot, () =>
-              setState(state === entry ? null : entry),
-            ),
-          )}
-          {renderChip('Due', dueOnly, 'bg-medium', () => setDueOnly(!dueOnly))}
 
-          {filtering && (
-            <button
-              type="button"
-              onClick={clearFilters}
-              className="ml-auto flex items-center gap-1 rounded-full border border-line px-2 py-0.5 text-[11px] text-muted-foreground transition-colors hover:border-fail/40 hover:text-fail"
-            >
-              <X className="size-3" />
-              Clear
-            </button>
-          )}
-        </div>
-
-        <div className="-mx-1 flex gap-1.5 overflow-x-auto px-1 pb-1">
-          {tags.map(([entry, count]) => (
-            <button
-              key={entry}
-              type="button"
-              onClick={() => setTag(tag === entry ? null : entry)}
-              aria-pressed={tag === entry}
-              className={cn(
-                'shrink-0 rounded-full border px-2 py-0.5 text-[10px] whitespace-nowrap transition-colors',
-                tag === entry
-                  ? 'border-hot/40 bg-hot/10 text-hot'
-                  : 'border-line text-muted-foreground hover:border-white/15 hover:text-foreground',
-              )}
-            >
-              {entry} <span className="opacity-50">{count}</span>
-            </button>
-          ))}
-        </div>
+        {renderFilters()}
       </div>
 
       <ScrollArea className="min-h-0 flex-1">

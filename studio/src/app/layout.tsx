@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { JetBrains_Mono, Space_Grotesk } from 'next/font/google';
+import { AppSidebar } from '@/components/app-sidebar';
 import { Toaster } from '@/components/ui/sonner';
 import './globals.css';
 
@@ -24,7 +25,10 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="en" className={`dark ${display.variable} ${code.variable} h-full antialiased`}>
       <body className="grid-floor min-h-full">
-        {children}
+        <div className="flex min-h-dvh">
+          <AppSidebar />
+          <div className="min-w-0 flex-1">{children}</div>
+        </div>
         <Toaster position="bottom-right" />
       </body>
     </html>

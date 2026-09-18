@@ -2,6 +2,7 @@ import { parentPort, workerData } from 'node:worker_threads';
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { loadProblems } from '../../tests/runner/derive-cases.mjs';
 import { prepare } from '../../tests/runner/discover.mjs';
+import { caseArgs, judgeCase } from '../../tests/runner/execute.mjs';
 import { instrument } from '../../tests/runner/trace/instrument.mjs';
 import { createRecorder, show, TraceBudgetExceeded } from '../../tests/runner/trace/recorder.mjs';
 import { traceSupport } from '../../tests/runner/trace/supported.mjs';
@@ -22,6 +23,8 @@ const shell = (status, message, extra = {}) => ({
   args: [],
   expect: null,
   result: null,
+  passed: null,
+  detail: null,
   steps: [],
   truncated: false,
   source: '',
@@ -83,9 +86,19 @@ if (!problem) {
     } else if (!testCase) {
       answer(shell('unsupported', 'this problem has no runnable case to trace', { source }));
     } else {
+      /**
+       * Every exported function is instrumented, not only the one being called.
+       * A problem whose exports only work as a pair - encode and decode - fails
+       * inside the other half, and a replay that stops at the entry point shows
+       * a correct-looking run and no reason.
+       */
+      const exported = Object.keys(prepared.module ?? {}).filter(
+        (name) => typeof prepared.module[name] === 'function' && name !== variant,
+      );
+
       let instrumented = null;
       try {
-        instrumented = instrument(source, { functionName: variant });
+        instrumented = instrument(source, { functionNames: [variant, ...exported] });
       } catch (error) {
         answer(shell('uninstrumentable', error.message, { source }));
       }
@@ -98,13 +111,14 @@ if (!problem) {
 
         const { api, steps } = createRecorder(instrumented.meta);
 
-        const args = testCase.args.map((arg) =>
-          typeof arg === 'object' && arg !== null ? structuredClone(arg) : arg,
-        );
+        const args = caseArgs(testCase, prepared);
 
         let status = 'ok';
         let message = null;
         let result = null;
+        let expect = null;
+        let passed = null;
+        let detail = null;
         let truncated = false;
 
         globalThis.__t = idle;
@@ -120,17 +134,48 @@ if (!problem) {
           restore();
         }
 
+        let produced;
+        let called = false;
+
         if (module) {
           globalThis.__t = api;
           restore = quiet();
 
           try {
-            result = show(module[variant](...args));
+            produced = module[variant](...args);
+            called = true;
           } catch (error) {
             if (error instanceof TraceBudgetExceeded) truncated = true;
             else {
               status = 'threw';
               message = error.message;
+              passed = false;
+            }
+          } finally {
+            restore();
+          }
+        }
+
+        /**
+         * Judged against the instrumented module, so a case that checks one
+         * export against another records the second one's steps too, and the
+         * verdict is this replay's rather than the last run's.
+         */
+        if (called) {
+          restore = quiet();
+
+          try {
+            const judged = judgeCase({ produced, args, testCase, prepared, module });
+            result = show(judged.result);
+            expect = judged.expect === undefined ? null : show(judged.expect);
+            passed = judged.verdict.passed;
+            detail = judged.verdict.detail ?? null;
+          } catch (error) {
+            result = show(produced);
+            if (error instanceof TraceBudgetExceeded) truncated = true;
+            else {
+              passed = false;
+              detail = `the case check threw: ${error.message}`;
             }
           } finally {
             restore();
@@ -147,8 +192,10 @@ if (!problem) {
           status,
           message,
           args: args.map(show),
-          expect: testCase.expect === undefined ? null : show(testCase.expect),
+          expect,
           result,
+          passed,
+          detail,
           steps,
           truncated,
           source,
