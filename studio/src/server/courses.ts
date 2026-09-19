@@ -105,7 +105,7 @@ export async function setCourseNote(course: string, at: number, note: string): P
   if (Buffer.byteLength(note) > MAX_NOTE) throw new Error('that note is too long');
 
   return inTurn(async () => {
-  const all = await getCourseNotes();
+    const all = await getCourseNotes();
     const forCourse = { ...(all[course] ?? {}) };
 
     if (note.trim() === '') delete forCourse[String(at)];
@@ -115,8 +115,7 @@ export async function setCourseNote(course: string, at: number, note: string): P
 
     const temp = `${NOTES_FILE}.tmp`;
     await mkdir(path.dirname(NOTES_FILE), { recursive: true });
-    await writeFile(temp, `${JSON.stringify(all, null, 2)}
-  `);
+    await writeFile(temp, `${JSON.stringify(all, null, 2)}\n`);
     await rename(temp, NOTES_FILE);
 
     return note;
