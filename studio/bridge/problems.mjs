@@ -1,11 +1,14 @@
 import { loadProblems } from '../../tests/runner/derive-cases.mjs';
 import { chapterFor, VIDEO_URL } from '../../_gen/chapters.mjs';
+import { localize } from '../../_gen/i18n/index.mjs';
 
 /**
  * Print every problem as JSON for the studio UI. Reads only `_gen/data`, never a
  * solution file, so it stays fast and cannot be tripped by a loop in an attempt.
  */
-const problems = await loadProblems();
+/** The language is asked for here so the studio only ever holds one. */
+const [locale = 'en'] = process.argv.slice(2);
+const problems = await localize(await loadProblems(), locale);
 
 const payload = problems.map((problem) => {
   /** The lesson that teaches it, so the studio can line the two up. */

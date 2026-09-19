@@ -1,0 +1,85 @@
+{
+  "001": {
+    "title": "Takrorlanish bormi",
+    "pattern": "Hash to‘plam",
+    "statement": "nums butun sonlar massivi berilgan. Agar biror qiymat kamida ikki marta uchrasa true, har bir element farqli bo‘lsa false qaytaring.",
+    "constraints": ["1 <= nums.length <= 10^5", "-10^9 <= nums[i] <= 10^9"]
+  },
+  "002": {
+    "title": "Anagramma tekshiruvi",
+    "pattern": "Belgilar chastotasini sanash",
+    "statement": "s va t ikki satr berilgan. Agar t — s ning anagrammasi bo‘lsa true qaytaring: bir xil belgilar, bir xil sonda, faqat o‘rni almashgan.",
+    "followUp": "Kiruvchi ma’lumotlarda Unicode belgilar bo‘lsa nima o‘zgaradi?",
+    "constraints": ["1 <= s.length, t.length <= 5 * 10^4", "s va t kichik lotin harflaridan tuzilgan"]
+  },
+  "003": {
+    "title": "Ikki sonning yig‘indisi",
+    "pattern": "Qiymat -> indeks hash jadvali, bitta o‘tish",
+    "statement": "nums butun sonlar massivi va target butun soni berilgan. Yig‘indisi target ga teng bo‘lgan ikki sonning indekslarini qaytaring. Aynan bitta to‘g‘ri javob bor va bitta elementni ikki marta ishlatish mumkin emas. Qaytarilgan ikki indeksning tartibi muhim emas.",
+    "followUp": "Ikki o‘tish o‘rniga bitta o‘tishda bajara olasizmi?",
+    "constraints": ["2 <= nums.length <= 10^4", "-10^9 <= nums[i] <= 10^9", "-10^9 <= target <= 10^9", "Aynan bitta to‘g‘ri javob bor"]
+  },
+  "004": {
+    "title": "Anagrammalarni guruhlash",
+    "pattern": "So‘zning kanonik shakli bo‘yicha hash jadval",
+    "statement": "Satrlar massivi berilgan. Anagrammalarni birga guruhlang. Guruhlarni istalgan tartibda, har guruh ichidagi satrlarni ham istalgan tartibda qaytarish mumkin.",
+    "followUp": "Har so‘zni saralash so‘z boshiga O(k log k) turadi. Qanday kalit saralashdan qutqaradi?",
+    "constraints": ["1 <= strs.length <= 10^4", "0 <= strs[i].length <= 100", "strs[i] kichik lotin harflaridan tuzilgan"]
+  },
+  "005": {
+    "title": "Eng ko‘p uchraydigan K element",
+    "pattern": "Chastota jadvali + chelakli saralash (yoki k o‘lchamli heap)",
+    "statement": "nums butun sonlar massivi va k butun soni berilgan. Eng ko‘p uchraydigan k elementni qaytaring. Javobni istalgan tartibda qaytarish mumkin va u yagona ekani kafolatlangan.",
+    "followUp": "Kutilgan murakkablik O(n log n) dan yaxshiroq — to‘liq saralashsiz.",
+    "constraints": ["1 <= nums.length <= 10^5", "-10^4 <= nums[i] <= 10^4", "k [1, farqli elementlar soni] oralig‘ida", "Javob yagona ekani kafolatlangan"]
+  },
+  "006": {
+    "title": "O‘zidan boshqasining ko‘paytmasi",
+    "pattern": "Prefiks ko‘paytmalar o‘tishi + suffiks ko‘paytmalar o‘tishi",
+    "statement": "nums butun sonlar massivi berilgan. answer massivini qaytaring, bunda answer[i] — nums ning nums[i] dan boshqa hamma elementining ko‘paytmasi. Har bir ko‘paytma 32-bitli butun songa sig‘ishi kafolatlangan. Bo‘lishdan foydalanmasdan va O(n) vaqtda yechish kerak.",
+    "followUp": "Chiqish massivini bepul deb hisoblab, O(1) qo‘shimcha xotira bilan bajara olasizmi?",
+    "constraints": ["2 <= nums.length <= 10^5", "-30 <= nums[i] <= 30", "Har bir prefiks va suffiks ko‘paytma 32-bitli butun songa sig‘adi", "Bo‘lish amalini ishlatish mumkin emas"]
+  },
+  "007": {
+    "title": "Sudoku to‘g‘riligi",
+    "pattern": "Uch to‘plam hash to‘plamlari: qatorlar, ustunlar, 3x3 bloklar",
+    "statement": "9 x 9 sudoku doskasi berilgan. To‘ldirilgan kataklar to‘g‘rimi yoki yo‘qmi aniqlang. Faqat raqam turgan kataklarni tekshirish kerak va doskaning yechimi bo‘lishi shart emas. Doska to‘g‘ri deyiladi, agar har bir qatorda, har bir ustunda va to‘qqizta 3 x 3 blokning har birida 1-9 raqamlari takrorlanmasa. Bo‘sh kataklar '.' bilan yozilgan.",
+    "followUp": "Uchta shartni doska ustida bitta o‘tishda tekshira olasizmi?",
+    "constraints": ["board.length === 9 va board[i].length === 9", "board[i][j] — '1'-'9' raqami yoki '.'"]
+  },
+  "008": {
+    "title": "Satrlarni kodlash va dekodlash",
+    "pattern": "Uzunlik prefiksi bilan serializatsiya",
+    "statement": "Satrlar ro‘yxatini bitta satrga va qaytarib o‘giradigan algoritm tuzing. encode(strs) va decode(str) ni shunday yozing-ki, decode(encode(strs)) asl ro‘yxatni qaytarsin. Satrlarda istalgan belgi bo‘lishi mumkin, siz ajratgich qilib olishni xohlagan belgi ham — shuning uchun oddiy ajratgich bilan birlashtirish yetarli emas.",
+    "followUp": "Kodlash holatsiz bo‘lishi kerak: decode faqat kodlangan satrni oladi.",
+    "constraints": ["0 <= strs.length < 100", "0 <= strs[i].length < 200", "strs[i] da istalgan ASCII belgi bo‘lishi mumkin"]
+  },
+  "009": {
+    "title": "Eng uzun ketma-ket sonlar",
+    "pattern": "Hash to‘plam + faqat ketma-ketlik boshidan yurish",
+    "statement": "nums — saralanmagan butun sonlar massivi. Uning ichidagi eng uzun ketma-ket butun sonlar zanjirining uzunligini qaytaring. Elementlar massivda yonma-yon turishi shart emas. O(n) vaqtda yechish kerak, ya’ni saralash mumkin emas.",
+    "followUp": "Massivni ikki marta aylanmasdan, sonning zanjir boshi ekanini qanday bilasiz?",
+    "constraints": ["0 <= nums.length <= 10^5", "-10^9 <= nums[i] <= 10^9"]
+  },
+  "151": {
+    "title": "Rim raqamini butun songa",
+    "pattern": "Bitta o‘tish, keyingisidan kichik harfni ayirib",
+    "statement": "Rim raqamlari I, V, X, L, C, D va M harflari bilan yoziladi, ular 1, 5, 10, 50, 100, 500 va 1000 ga teng. Odatda kattadan kichikka yozilib qo‘shiladi, lekin kattadan bevosita oldin turgan kichik harf ayiriladi. To‘g‘ri rim raqami berilgan — u ifodalagan sonni qaytaring.",
+    "followUp": "Ayiriladigan juftlik jami oltita. Ularning birortasini alohida ishlash kerak emas.",
+    "constraints": ["1 <= s.length <= 15", "s faqat I, V, X, L, C, D, M harflaridan iborat", "s — [1, 3999] oralig‘idagi to‘g‘ri rim raqami"]
+  },
+  "152": {
+    "title": "Eng uzun umumiy prefiks",
+    "pattern": "Ustunlar bo‘ylab birga yurib, birinchi farqda to‘xtash",
+    "statement": "strs dagi har bir so‘z boshlanadigan eng uzun satrni qaytaring. So‘zlarning birinchi belgisi umumiy bo‘lmasa, bo‘sh satr qaytaring.",
+    "followUp": "Eng qisqa so‘z javobni cheklaydi — buni izlashni boshlashdan oldin bilish foydali.",
+    "constraints": ["1 <= strs.length <= 200", "0 <= strs[i].length <= 200", "strs[i] kichik lotin harflaridan tuzilgan"]
+  },
+  "153": {
+    "title": "Ko‘pchilik elementi",
+    "pattern": "Boyer-Moore ovozi: bitta nomzod va joriy hisob",
+    "statement": "nums dagi bitta qiymat yarmidan ko‘p marta uchraydi. Uni qaytaring. Bunday qiymat har doim bor deb hisoblashingiz mumkin, ya’ni xato haqida xabar berish kerak emas.",
+    "followUp": "Hash jadval — ko‘rinib turgan javob. Qiziq bo‘lgani — O(1) xotiraga yetib borish.",
+    "constraints": ["1 <= nums.length <= 5 * 10^4", "-10^9 <= nums[i] <= 10^9", "Ko‘pchilik elementi har doim mavjud"]
+  }
+}

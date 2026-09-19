@@ -11,6 +11,7 @@ import type {
   SourceMode,
   TraceResult,
 } from '@/lib/types';
+import { getLocale } from '@/i18n/server';
 import { EMPTY_HISTORY, getHistories, recordRun } from './history';
 import { syncCategoryReadme } from './readme';
 import { snapshotSolution } from './solutions';
@@ -40,16 +41,24 @@ interface SyncResult {
 
 type ResultStore = Record<string, StoredResult>;
 
-let problemsPromise: Promise<Problem[]> | null = null;
+/** One list per language, because the prose differs and the rest does not. */
+const problemsByLocale = new Map<string, Promise<Problem[]>>();
 
-/** Drop the cached list, so newly generated problems are picked up. */
+/** Drop the cached lists, so newly generated problems are picked up. */
 export function forgetProblems(): void {
-  problemsPromise = null;
+  problemsByLocale.clear();
 }
 
-export function getProblems(): Promise<Problem[]> {
-  problemsPromise ??= runBridge<Problem[]>({ script: 'problems.mjs', timeoutMs: 30000 });
-  return problemsPromise;
+export async function getProblems(): Promise<Problem[]> {
+  const locale = await getLocale();
+
+  const held = problemsByLocale.get(locale);
+  if (held) return held;
+
+  const loading = runBridge<Problem[]>({ script: 'problems.mjs', args: [locale], timeoutMs: 30000 });
+  problemsByLocale.set(locale, loading);
+
+  return loading;
 }
 
 /** `01-arrays-hashing/1004-slug.ts` -> `1004`. Numbers are three or four digits. */
