@@ -1,0 +1,22 @@
+{
+  "155": {
+    "title": "Raqamli ildiz",
+    "pattern": "Bitta raqam qolguncha raqamlarni qo‘shish yoki to‘qqiz bo‘yicha ayniyatdan foydalanish",
+    "statement": "Manfiy bo‘lmagan butun sonning raqamlarini qo‘shing. Natijada bir nechta raqam bo‘lsa, uning raqamlarini ham qo‘shing va bitta raqam qolguncha davom ettiring. O‘sha raqamni qaytaring.",
+    "followUp": "Siklsiz ishlaydigan yopiq formula bor. U to‘qqizga karrali sonlarda nima qilishini aniqlab oling.",
+    "constraints": ["0 <= n <= 10^9"]
+  },
+  "156": {
+    "title": "Uzun so‘zlarni teskari o‘girish",
+    "pattern": "Bo‘shliqlar bo‘yicha bo‘lib, uzun so‘zlarni teskari o‘girib, qayta yig‘ish",
+    "statement": "Bitta bo‘shliq bilan ajratilgan so‘zlardan tuzilgan gap berilgan. Uzunligi besh belgi yoki undan katta har bir so‘zning harflarini teskari o‘giring, qisqaroq so‘zlarni o‘z holida qoldiring. So‘zlar tartibi va bo‘shliqlar aynan o‘zgarmaydi.",
+    "constraints": ["0 <= sentence.length <= 10^4", "sentence faqat lotin harflari va bitta bo‘shliqlardan iborat"]
+  },
+  "157": {
+    "title": "Toq qatorning yig‘indisi",
+    "pattern": "Qatorning birinchi toq sonini topib, keyin arifmetik qatorni qo‘shish",
+    "statement": "Toq sonlar uchburchak shaklida joylashtirilgan: birinchi qatorda bitta, ikkinchisida ikkita, uchinchisida uchta va shu tarzda davom etadi. Birdan sanaladigan qator raqami berilgan — shu qatordagi sonlarning yig‘indisini qaytaring.",
+    "followUp": "Birinchi uch javobni hisoblang, va qonuniyat o‘zi bir qatorlik formulani berib qo‘yadi.",
+    "constraints": ["1 <= row <= 1000"]
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "046": {
+    "title": "Ikkilik daraxtni ko‘zgu qilish",
+    "pattern": "Bolalarni almashtirib, rekursiv tushish",
+    "statement": "Ikkilik daraxtning ildizi berilgan. Uni ko‘zgudagidek aks ettiring — har bir tugunning chap va o‘ng bolasini almashtiring — va ildizni qaytaring.",
+    "constraints": ["Daraxtda 0 dan 100 tagacha tugun", "-100 <= Node.val <= 100"]
+  },
+  "047": {
+    "title": "Ikkilik daraxtning eng katta chuqurligi",
+    "pattern": "1 + chap va o‘ng qism daraxt chuqurliklarining maksimumi",
+    "statement": "Ikkilik daraxtning eng katta chuqurligini qaytaring — ildizdan pastga, bargga boradigan eng uzun yo‘ldagi tugunlar soni.",
+    "followUp": "Avval rekursiv, keyin kenglik bo‘yicha aylanishning ochiq navbati bilan yozing.",
+    "constraints": ["Daraxtda 0 dan 10^4 tagacha tugun", "-100 <= Node.val <= 100"]
+  },
+  "048": {
+    "title": "Ikkilik daraxtning diametri",
+    "pattern": "Balandlikni yuqoriga qaytarib, tugun orqali o‘tgan eng yaxshi yo‘lni eslab qolish",
+    "statement": "Ikkilik daraxtning diametri — istalgan ikki tugun orasidagi eng uzun yo‘ldagi qirralar soni; bu yo‘l ildizdan o‘tishi shart emas. Diametrni qaytaring.",
+    "followUp": "Har tugun uchun alohida emas, bitta aylanish. Har chaqiruv nima qaytaradi va nimani yozib qo‘yadi?",
+    "constraints": ["Daraxtda 1 dan 10^4 tagacha tugun", "-100 <= Node.val <= 100"]
+  },
+  "049": {
+    "title": "Muvozanatli ikkilik daraxt",
+    "pattern": "Balandlikni qaytarib, muvozanat yo‘qligi belgisini yuqoriga uzatish",
+    "statement": "Ikkilik daraxt balandligi bo‘yicha muvozanatli deyiladi, agar har bir tugun uchun uning ikki qism daraxti balandliklari ko‘pi bilan 1 ga farq qilsa. Berilgan daraxt muvozanatli yoki yo‘qligini qaytaring.",
+    "followUp": "Har tugun uchun balandlik funksiyasini chaqirish kvadratik vaqt oladi. Tekshiruvni bitta aylanishga joylashtiring.",
+    "constraints": ["Daraxtda 0 dan 5000 tagacha tugun", "-10^4 <= Node.val <= 10^4"]
+  },
+  "050": {
+    "title": "Bir xil daraxtlar",
+    "pattern": "Ikkala daraxtni bir vaqtda aylanish",
+    "statement": "Ikki ikkilik daraxtning ildizlari berilgan. Ular tuzilishi bo‘yicha bir xil bo‘lsa va mos keluvchi har bir tugun jufti bir xil qiymat saqlasa true qaytaring.",
+    "constraints": ["Har daraxtda 0 dan 100 tagacha tugun", "-10^4 <= Node.val <= 10^4"]
+  },
+  "051": {
+    "title": "Boshqa daraxtning qism daraxti",
+    "pattern": "Har nomzod tugunda bir xillik tekshiruvi",
+    "statement": "Ikki ikkilik daraxtning ildizlari root va subRoot berilgan. root ning biror tuguni o‘zining barcha avlodlari bilan birga subRoot ga aynan teng bo‘lsa true qaytaring. Daraxt o‘zining qism daraxti hisoblanadi.",
+    "followUp": "Serializatsiya hiylasi masalani chiziqli vaqtga tushiradi. Sodda serializatsiyani nima buzadi?",
+    "constraints": ["root da 1 dan 2000 tagacha, subRoot da 1 dan 1000 tagacha tugun", "-10^4 <= Node.val <= 10^4"]
+  },
+  "052": {
+    "title": "Ikkilik qidiruv daraxtidagi eng kichik umumiy ajdod",
+    "pattern": "Ikki tugun bir tomonda turganda pastga tushish",
+    "statement": "Ikkilik qidiruv daraxti va unda mavjud bo‘lgan p va q ikki tuguni berilgan. Ularning eng kichik umumiy ajdodini qaytaring — ikkisi ham avlodi bo‘lgan eng chuqur tugunni. Tugun o‘zining avlodi bo‘lishi mumkin.",
+    "followUp": "Qidiruv daraxtidagi tartib ikkala qism daraxtni izlash hech qachon kerak emasligini bildiradi.",
+    "constraints": ["Daraxtda 2 dan 10^5 tagacha tugun", "-10^9 <= Node.val <= 10^9", "Hamma qiymat takrorlanmas; p va q farqli va ikkisi ham daraxtda bor"]
+  },
+  "053": {
+    "title": "Ikkilik daraxtni sathlar bo‘yicha aylanish",
+    "pattern": "Kenglik bo‘yicha aylanish, har sath uchun navbatni bir marta bo‘shatish",
+    "statement": "Ikkilik daraxt qiymatlarini sathlar bo‘yicha, chapdan o‘ngga, massivlar massivi sifatida qaytaring — har chuqurlik uchun bitta ichki massiv.",
+    "followUp": "Bo‘shatishdan oldin navbat uzunligini eslab qoling — bu sath chegarasi.",
+    "constraints": ["Daraxtda 0 dan 2000 tagacha tugun", "-1000 <= Node.val <= 1000"]
+  },
+  "054": {
+    "title": "Ikkilik daraxtga o‘ngdan qarash",
+    "pattern": "Kenglik bo‘yicha aylanib, har sathning oxirgi tugunini olish",
+    "statement": "Ikkilik daraxtning o‘ng tomonida turib, yuqoridan pastga ko‘rinadigan qiymatlarni qaytaring — har chuqurlikdagi eng o‘ngdagi tugunni.",
+    "followUp": "Avval o‘ngga boradigan chuqurlik bo‘yicha aylanish ham bajaradi — unga nimani kuzatish kerak?",
+    "constraints": ["Daraxtda 0 dan 100 tagacha tugun", "-100 <= Node.val <= 100"]
+  },
+  "055": {
+    "title": "Ikkilik daraxtdagi yaxshi tugunlarni sanash",
+    "pattern": "Yo‘lda ko‘rilgan maksimumni olib yuruvchi chuqurlik bo‘yicha aylanish",
+    "statement": "X tuguni yaxshi deyiladi, agar ildizdan X gacha boradigan yo‘ldagi hech bir tugun X dan katta qiymat saqlamasa. Daraxtdagi yaxshi tugunlar sonini qaytaring. Ildiz har doim yaxshi.",
+    "constraints": ["Daraxtda 1 dan 10^5 tagacha tugun", "-10^4 <= Node.val <= 10^4"]
+  },
+  "056": {
+    "title": "Ikkilik qidiruv daraxtini tekshirish",
+    "pattern": "Minimumdan maksimumgacha ochiq oraliqni olib yuruvchi aylanish",
+    "statement": "Ikkilik daraxt to‘g‘ri qidiruv daraxti yoki yo‘qligini qaytaring: chap qism daraxtdagi har bir tugun o‘z ajdodidan qat’iy kichik, o‘ng qism daraxtdagi har bir tugun qat’iy katta, va ikkala qism daraxtning o‘zi ham to‘g‘ri qidiruv daraxti.",
+    "followUp": "Tugunni faqat bevosita bolalari bilan solishtirish — klassik noto‘g‘ri javob.",
+    "constraints": ["Daraxtda 1 dan 10^4 tagacha tugun", "-2^31 <= Node.val <= 2^31 - 1"]
+  },
+  "057": {
+    "title": "Qidiruv daraxtidagi k-chi eng kichik element",
+    "pattern": "Sanagich bilan simmetrik aylanish (stekda, iterativ)",
+    "statement": "Ikkilik qidiruv daraxtining ildizi va k butun soni berilgan. Daraxtdagi o‘sish bo‘yicha k-chi qiymatni, birdan sanab, qaytaring.",
+    "followUp": "Agar daraxt tez-tez o‘zgarsa va k-chi element tez-tez so‘ralsa, har tugunda nimani saqlagan bo‘lardingiz?",
+    "constraints": ["Daraxtda n tugun, 1 <= k <= n <= 10^4", "0 <= Node.val <= 10^4"]
+  },
+  "058": {
+    "title": "Daraxtni to‘g‘ri va simmetrik aylanishlardan qurish",
+    "pattern": "To‘g‘ri aylanish ildizni, simmetrik aylanish bo‘linish nuqtasini beradi",
+    "statement": "Qiymatlari takrorlanmas ikkilik daraxtning to‘g‘ri va simmetrik aylanishlari berilgan. Daraxtni tiklab, ildizini qaytaring.",
+    "followUp": "Har chaqiruvda simmetrik aylanishdan ildizni izlash kvadratik vaqt oladi. Bitta jadval buni hal qiladi.",
+    "constraints": ["1 <= preorder.length === inorder.length <= 3000", "-3000 <= qiymatlar <= 3000", "Hamma qiymat takrorlanmas va inorder preorder ning o‘rin almashgan varianti"]
+  },
+  "059": {
+    "title": "Ikkilik daraxtdagi eng katta yo‘l yig‘indisi",
+    "pattern": "Bitta shoxning eng yaxshi foydasini qaytarib, ikkisining eng yaxshi birikmasini eslab qolish",
+    "statement": "Yo‘l — qirralar bilan bog‘langan, har tugunni ko‘pi bilan bir marta ziyorat qiladigan istalgan tugunlar ketma-ketligi, va u ildizdan o‘tishi shart emas. Daraxtdagi istalgan yo‘l bo‘ylab qiymatlarning eng katta yig‘indisini qaytaring. Qiymatlar manfiy bo‘lishi mumkin.",
+    "followUp": "Tugun ota-onasiga bitta shox qaytaradi, lekin ikkitasini ishlatishi mumkin. Bu ikki sonni ajratib turing.",
+    "constraints": ["Daraxtda 1 dan 3 * 10^4 tagacha tugun", "-1000 <= Node.val <= 1000"]
+  },
+  "060": {
+    "title": "Ikkilik daraxtni serializatsiya va deserializatsiya qilish",
+    "pattern": "Bo‘sh tugun belgilari bilan to‘g‘ri aylanish",
+    "statement": "Ikkilik daraxtni satrga o‘giradigan va o‘sha satrdan aynan shunday daraxtni tiklaydigan algoritm tuzing. Formatni o‘zingiz tanlaysiz; faqat to‘liq aylanish ishlashi kerak.",
+    "followUp": "Nega to‘g‘ri aylanish satriga bo‘sh tugun belgilari kerak, va nega sathlar bo‘yicha aylanishga ham kerak?",
+    "constraints": ["Daraxtda 0 dan 10^4 tagacha tugun", "-1000 <= Node.val <= 1000"]
+  }
+}

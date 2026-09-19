@@ -1,0 +1,63 @@
+{
+  "071": {
+    "title": "Qism to‘plamlar",
+    "pattern": "Har elementni olish yoki olmaslik",
+    "statement": "Takrorlanmas butun sonlar massivi berilgan. Barcha qism to‘plamlar to‘plamini qaytaring — har bir mumkin bo‘lgan qism to‘plamni. Hech bir qism to‘plam takrorlanmasligi kerak, tartibi muhim emas.",
+    "followUp": "Bit maskasi bilan, rekursiyasiz varianti ham bor.",
+    "constraints": ["1 <= nums.length <= 10", "-10 <= nums[i] <= 10", "Hamma qiymat takrorlanmas"]
+  },
+  "072": {
+    "title": "Kombinatsiyalar yig‘indisi",
+    "pattern": "Qayta ishlatish bilan orqaga qaytish — o‘sha indeksdan rekursiya",
+    "statement": "Farqli butun sonlardan tuzilgan candidates massivi va target qiymati berilgan. Yig‘indisi target ga teng bo‘lgan har bir takrorlanmas kombinatsiyani qaytaring. Bir xil sonni istalgan marta tanlash mumkin, va tanlangan sonlar to‘plami farq qilsa, ikki kombinatsiya farqli hisoblanadi. Har bir testda kombinatsiyalar soni 150 dan kam.",
+    "followUp": "[2,3,3] va [3,2,3] ikkisi birga chiqishiga nima to‘sqinlik qiladi?",
+    "constraints": ["1 <= candidates.length <= 30", "2 <= candidates[i] <= 40, hamma qiymat farqli", "1 <= target <= 40"]
+  },
+  "073": {
+    "title": "O‘rin almashtirishlar",
+    "pattern": "Joyida almashtirish yoki ishlatilganlar maskasi",
+    "statement": "Farqli butun sonlar massivi berilgan. Ularning barcha mumkin bo‘lgan tartiblanishlarini qaytaring. O‘rin almashtirishlarni istalgan tartibda qaytarish mumkin.",
+    "constraints": ["1 <= nums.length <= 6", "-10 <= nums[i] <= 10, hamma qiymat takrorlanmas"]
+  },
+  "074": {
+    "title": "Qism to‘plamlar II",
+    "pattern": "Saralab, keyin bir xil rekursiya sathida takrorni o‘tkazib yuborish",
+    "statement": "Takrorlar bo‘lishi mumkin bo‘lgan butun sonlar massivi berilgan. Barcha mumkin bo‘lgan qism to‘plamlarni qaytaring. Natijada takrorlanuvchi qism to‘plam bo‘lmasligi kerak, tartibi istalgancha.",
+    "followUp": "Takrorni o‘tkazib yuborish qoidasi bitta qator — va rekursiyadan keyin saralasangiz, u noto‘g‘ri bo‘ladi.",
+    "constraints": ["1 <= nums.length <= 10", "-10 <= nums[i] <= 10"]
+  },
+  "075": {
+    "title": "Kombinatsiyalar yig‘indisi II",
+    "pattern": "Saralash + takrorlarni o‘tkazish + har nomzod ko‘pi bilan bir marta",
+    "statement": "Takrorlar bo‘lishi mumkin bo‘lgan nomzod sonlar to‘plami va target qiymati berilgan. Yig‘indisi target ga teng barcha takrorlanmas kombinatsiyalarni toping. candidates dagi har bir sonni bitta kombinatsiyada ko‘pi bilan bir marta ishlatish mumkin, va natijada takrorlanuvchi kombinatsiya bo‘lmasligi kerak.",
+    "followUp": "Bir-biriga o‘xshash ikkita bir birlik tuzoq: indeks qo‘shuv bir va indeksning o‘zi, hamda i start dan katta va i noldan katta.",
+    "constraints": ["1 <= candidates.length <= 100", "1 <= candidates[i] <= 50", "1 <= target <= 30"]
+  },
+  "076": {
+    "title": "So‘z qidirish",
+    "pattern": "Panjarani chuqurlik bo‘yicha aylanish, ko‘rilganini joyida belgilab",
+    "statement": "m x n belgilar panjarasi va so‘z berilgan. Gorizontal yoki vertikal yonma-yon kataklar bo‘ylab yurib so‘zni yozish mumkin bo‘lsa true qaytaring. Bitta urinish ichida bir katakni bir martadan ko‘p ishlatish mumkin emas.",
+    "followUp": "Butun doskaning belgilar sanog‘iga tayanib, oldindan kesib tashlay olasizmi?",
+    "constraints": ["m === board.length, n === board[i].length", "1 <= m, n <= 6 va 1 <= word.length <= 15", "board va word lotin harflaridan iborat"]
+  },
+  "077": {
+    "title": "Palindromlarga bo‘lish",
+    "pattern": "Kesish nuqtalari bo‘ylab orqaga qaytish, har prefiksni tekshirish",
+    "statement": "s satri berilgan. Uni har bir qismi palindrom bo‘ladigan tarzda bo‘lib, barcha mumkin bo‘lgan bo‘linishlarni qaytaring.",
+    "followUp": "Palindrom jadvalini oldindan hisoblash tekshiruvni chiziqlidan konstantaga aylantiradi.",
+    "constraints": ["1 <= s.length <= 16", "s faqat kichik lotin harflaridan iborat"]
+  },
+  "078": {
+    "title": "Telefon raqamining harf kombinatsiyalari",
+    "pattern": "Raqamdan harflarga jadval bo‘ylab orqaga qaytish",
+    "statement": "2 dan 9 gacha raqamlardan tuzilgan satr berilgan. Bu raqam klassik telefon klaviaturasida yozishi mumkin bo‘lgan har bir harf kombinatsiyasini qaytaring (2 = abc, 3 = def, ..., 7 = pqrs, 8 = tuv, 9 = wxyz). Bo‘sh kirish bo‘sh ro‘yxat beradi; javoblar istalgan tartibda bo‘lishi mumkin.",
+    "constraints": ["0 <= digits.length <= 4", "digits[i] — 2 dan 9 gacha oraliqdagi belgi"]
+  },
+  "079": {
+    "title": "N qirolicha",
+    "pattern": "Qator bo‘yicha joylashtirish, band ustun va diagonallar to‘plamlari bilan",
+    "statement": "n x n doskaga n qirolichani hech biri boshqasiga hujum qilmaydigan tarzda joylashtiring va barcha farqli yechimlarni qaytaring. Har bir yechim n ta satrdan iborat ro‘yxat, unda Q qirolichani, nuqta esa bo‘sh katakni belgilaydi.",
+    "followUp": "Ikki qirolicha qator va ustun ayirmasi teng bo‘lganda bitta diagonalda, yig‘indisi teng bo‘lganda bitta qarama-qarshi diagonalda turadi. Ikkala tekshiruv ham konstanta.",
+    "constraints": ["1 <= n <= 9"]
+  }
+}
