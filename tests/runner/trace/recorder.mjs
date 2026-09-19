@@ -113,9 +113,19 @@ export function snapshot(value) {
     };
   }
 
+  /**
+   * A Set draws like an array but is not keyed like one: `set.has(99)` reaches it
+   * by value, where `nums[2]` reaches an array by position. The stage has to know
+   * which, or it would mark the wrong cell.
+   */
   if (value instanceof Set) {
     const all = [...value];
-    return { t: 'array', items: all.slice(0, MAX_ITEMS).map(show), truncated: all.length > MAX_ITEMS };
+    return {
+      t: 'array',
+      items: all.slice(0, MAX_ITEMS).map(show),
+      truncated: all.length > MAX_ITEMS,
+      set: true,
+    };
   }
 
   if (isNode(value, 'left', 'right')) return treeOf(value);

@@ -9,6 +9,10 @@ import { cn } from '@/lib/utils';
 interface TraceStageProps {
   step: TraceStep;
   changes: StepChanges;
+  /** How many times the run has reached each cell so far, by name and key. */
+  covered: Record<string, Record<string, number>>;
+  /** The same reaches in order, misses included, by name. */
+  asked: Record<string, { key: string; write: boolean }[]>;
   watching: string | null;
   onWatch: (name: string | null) => void;
 }
@@ -33,7 +37,7 @@ const preview = (value: TraceValue) => {
   return '';
 };
 
-export function TraceStage({ step, changes, watching, onWatch }: TraceStageProps) {
+export function TraceStage({ step, changes, covered, asked, watching, onWatch }: TraceStageProps) {
   const [opened, setOpened] = useState<Record<string, boolean>>({});
   const names = Object.keys(step.vars);
 
@@ -47,6 +51,16 @@ export function TraceStage({ step, changes, watching, onWatch }: TraceStageProps
 
   const touchOf = (name: string, key: string | number) =>
     step.touched.find((touch) => touch.name === name && String(touch.key) === String(key));
+
+  const coverOf = (name: string, key: string | number) => covered[name]?.[String(key)] ?? 0;
+
+  /**
+   * A Set is reached by value and an array by position, so a cell's key is not
+   * always its index. `show` quotes a string, and the key that reached it did
+   * not, so the quotes come back off before the two are compared.
+   */
+  const cellKey = (isSet: boolean | undefined, index: number, item: string) =>
+    isSet ? item.replace(/^'([\s\S]*)'$/, '$1') : String(index);
 
   /** Which of a value's cells an index the student named is pointing at. */
   const pointersOf = (name: string) => {
@@ -64,10 +78,16 @@ export function TraceStage({ step, changes, watching, onWatch }: TraceStageProps
     return out;
   };
 
-  const toneOf = (touch: ReturnType<typeof touchOf>, moved: boolean) => {
+  /**
+   * This step first, then the trail. A cell the run has already reached keeps a
+   * faint mark, so the ground covered so far is visible without stepping back
+   * through it - which is the whole shape of a two-pass or a walk-once solution.
+   */
+  const toneOf = (touch: ReturnType<typeof touchOf>, moved: boolean, seen = 0) => {
     if (moved) return 'border-primary/60 bg-primary/10 text-primary';
     if (touch?.write) return 'border-medium/60 bg-medium/15 text-medium';
     if (touch) return 'border-cool/60 bg-cool/15 text-cool';
+    if (seen > 0) return 'border-line bg-foreground/[0.06] text-foreground/90';
     return 'border-line text-foreground/90';
   };
 
@@ -82,17 +102,21 @@ export function TraceStage({ step, changes, watching, onWatch }: TraceStageProps
 
     return (
       <div className="flex flex-wrap gap-1">
-        {value.items.map((item, index) => (
+        {value.items.map((item, index) => {
+          const key = cellKey(value.set, index, item);
+          const seen = coverOf(name, key);
+
+          return (
           <div key={index} className="flex flex-col items-center">
             <span className="h-3 font-mono text-[9px] text-muted-foreground/70 line-through">
               {moved.has(index) ? (was?.[index] ?? '') : ''}
             </span>
 
             <div
-              title={item}
+              title={seen > 0 ? `${item} — reached ${seen} ${seen === 1 ? 'time' : 'times'}` : item}
               className={cn(
                 'flex min-w-10 max-w-28 flex-col items-center rounded-md border px-1.5 py-1 font-mono text-[11px] transition-colors',
-                toneOf(touchOf(name, index), moved.has(index)),
+                toneOf(touchOf(name, key), moved.has(index), seen),
               )}
             >
               <span className="w-full truncate text-center">{item}</span>
@@ -103,7 +127,8 @@ export function TraceStage({ step, changes, watching, onWatch }: TraceStageProps
               {pointers.get(String(index))?.join(' ') ?? ''}
             </span>
           </div>
-        ))}
+          );
+        })}
 
         {value.truncated && <span className="self-center text-[11px] text-muted-foreground">&hellip;</span>}
       </div>
@@ -120,13 +145,18 @@ export function TraceStage({ step, changes, watching, onWatch }: TraceStageProps
 
     return (
       <div className="space-y-0.5">
-        {value.entries.map(([key, item]) => (
+        {value.entries.map(([key, item]) => {
+          const seen = coverOf(name, key);
+          const quiet = !moved.has(key) && !touchOf(name, key) && seen === 0;
+
+          return (
           <div
             key={key}
+            title={seen > 0 ? `reached ${seen} ${seen === 1 ? 'time' : 'times'}` : undefined}
             className={cn(
               'flex items-center gap-2 rounded-md border px-2 py-0.5 font-mono text-[11px] transition-colors',
-              toneOf(touchOf(name, key), moved.has(key)),
-              !moved.has(key) && !touchOf(name, key) && 'border-transparent',
+              toneOf(touchOf(name, key), moved.has(key), seen),
+              quiet && 'border-transparent',
             )}
           >
             <span className="text-foreground/90">{key}</span>
@@ -138,7 +168,8 @@ export function TraceStage({ step, changes, watching, onWatch }: TraceStageProps
             )}
             <span className="break-all text-foreground/70">{item}</span>
           </div>
-        ))}
+          );
+        })}
         {value.truncated && <span className="text-[11px] text-muted-foreground">&hellip;</span>}
       </div>
     );
@@ -247,8 +278,62 @@ export function TraceStage({ step, changes, watching, onWatch }: TraceStageProps
     return value.t === 'array' ? renderArray(name, value, change) : renderMap(name, value, change);
   };
 
+  const STRIP = 28;
+
+  /**
+   * What was asked for, in order, hit or miss. Read left to right this is the
+   * decision the loop keeps making - for a run walk it reads miss, hit, hit,
+   * hit, miss, and that shape is the algorithm.
+   */
+  const renderAsked = (name: string, value: TraceValue) => {
+    const order = asked[name];
+    if (!order || order.length === 0) return null;
+
+    const present = new Set<string>(
+      value.t === 'array'
+        ? value.items.map((item) => item.replace(/^'([\s\S]*)'$/, '$1'))
+        : value.t === 'map'
+          ? value.entries.map(([key]) => key)
+          : [],
+    );
+
+    const shown = order.slice(-STRIP);
+
+    return (
+      <div className="mt-1 flex flex-wrap items-center gap-1">
+        <span className="font-mono text-[9px] tracking-wide text-muted-foreground/70 uppercase">
+          asked for
+        </span>
+
+        {order.length > STRIP && <span className="text-[9px] text-muted-foreground/60">&hellip;</span>}
+
+        {shown.map((one, position) => {
+          const hit = present.has(one.key);
+
+          return (
+            <span
+              key={`${one.key}-${position}`}
+              title={hit ? `${one.key} — found` : `${one.key} — not there`}
+              className={cn(
+                'rounded border px-1 font-mono text-[9px] tabular-nums',
+                one.write
+                  ? 'border-medium/50 bg-medium/10 text-medium'
+                  : hit
+                    ? 'border-cool/50 bg-cool/10 text-cool'
+                    : 'border-line text-muted-foreground/70 line-through',
+              )}
+            >
+              {one.key}
+            </span>
+          );
+        })}
+      </div>
+    );
+  };
+
   const renderLegend = () => {
-    if (step.touched.length === 0) return null;
+    const trail = Object.keys(covered).length > 0;
+    if (step.touched.length === 0 && !trail) return null;
 
     return (
       <p className="ml-auto flex items-center gap-2 text-[9px] text-muted-foreground">
@@ -260,6 +345,12 @@ export function TraceStage({ step, changes, watching, onWatch }: TraceStageProps
           <span className="size-2 rounded-sm border border-medium/60 bg-medium/15" />
           written
         </span>
+        {trail && (
+          <span className="flex items-center gap-1">
+            <span className="size-2 rounded-sm border border-line bg-foreground/[0.06]" />
+            reached already
+          </span>
+        )}
       </p>
     );
   };
@@ -308,7 +399,10 @@ export function TraceStage({ step, changes, watching, onWatch }: TraceStageProps
           <span className="ml-auto">{renderSummary(value, change)}</span>
         </dt>
 
-        <dd>{renderValue(name, value, change, folded)}</dd>
+        <dd>
+          {renderValue(name, value, change, folded)}
+          {!folded && renderAsked(name, value)}
+        </dd>
       </div>
     );
   };

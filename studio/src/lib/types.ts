@@ -201,7 +201,7 @@ export type TraceKind = 'call' | 'stmt' | 'loop-init' | 'loop-cond' | 'loop-upda
 
 export type TraceValue =
   | { t: 'scalar'; text: string }
-  | { t: 'array'; items: string[]; truncated: boolean }
+  | { t: 'array'; items: string[]; truncated: boolean; set?: boolean }
   | { t: 'map'; entries: [string, string][]; truncated: boolean }
   | { t: 'list'; items: string[]; truncated: boolean; cyclic: boolean }
   | { t: 'tree'; rows: (string | null)[][]; truncated: boolean };

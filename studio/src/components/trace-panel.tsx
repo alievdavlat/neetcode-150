@@ -235,6 +235,44 @@ export function TracePanel({
     event.preventDefault();
   };
 
+  /**
+   * Every cell the run has reached up to this step, and how often. The step says
+   * what is happening now; the trail says what has been covered, and that is
+   * where the shape of a solution shows - two passes filling an array from
+   * opposite ends, or a set whose every member is asked about exactly once.
+   */
+  const covered = useMemo(() => {
+    const seen: Record<string, Record<string, number>> = {};
+
+    for (const step of steps.slice(0, index + 1)) {
+      for (const touch of step.touched) {
+        const keys = (seen[touch.name] ??= {});
+        const key = String(touch.key);
+        keys[key] = (keys[key] ?? 0) + 1;
+      }
+    }
+
+    return seen;
+  }, [steps, index]);
+
+  /**
+   * The same reaches, in order and including the ones that found nothing. A
+   * miss leaves no cell to shade, and for a hash solution the misses are the
+   * decisions: `set.has(num - 1)` coming back empty is what makes num the start
+   * of a run. Marking only the hits would hide the half that matters.
+   */
+  const asked = useMemo(() => {
+    const order: Record<string, { key: string; write: boolean }[]> = {};
+
+    for (const step of steps.slice(0, index + 1)) {
+      for (const touch of step.touched) {
+        (order[touch.name] ??= []).push({ key: String(touch.key), write: touch.write });
+      }
+    }
+
+    return order;
+  }, [steps, index]);
+
   const ticks = useMemo(() => {
     if (steps.length === 0) return [];
 
@@ -714,7 +752,14 @@ export function TracePanel({
               {current && <TraceExpression step={current} pass={passes[index] ?? null} onJumpLine={jumpTo} />}
             </motion.div>
 
-            {current && <TraceStage step={current} changes={changes} watching={watching} onWatch={setWatching} />}
+            {current && <TraceStage
+              step={current}
+              changes={changes}
+              covered={covered}
+              asked={asked}
+              watching={watching}
+              onWatch={setWatching}
+            />}
           </div>
 
           {trace.status === 'threw' && (
