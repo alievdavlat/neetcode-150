@@ -4,7 +4,7 @@ import { loadProblems } from '../../tests/runner/derive-cases.mjs';
 import { prepare } from '../../tests/runner/discover.mjs';
 import { caseArgs, judgeCase } from '../../tests/runner/execute.mjs';
 import { instrument } from '../../tests/runner/trace/instrument.mjs';
-import { createRecorder, show, TraceBudgetExceeded } from '../../tests/runner/trace/recorder.mjs';
+import { createIdle, createRecorder, show, TraceBudgetExceeded } from '../../tests/runner/trace/recorder.mjs';
 import { traceSupport } from '../../tests/runner/trace/supported.mjs';
 
 /**
@@ -55,16 +55,7 @@ const answer = (payload) => {
  * throws everything away keeps the student's scratch calls out of the trace, so
  * what is replayed is the one case that was asked for.
  */
-const idle = {
-  l: (id, index, value) => value,
-  x: (id, name, key) => key,
-  v: (id, value) => value,
-  u: () => {},
-  s: () => {},
-  i: function* (id, iterable) {
-    yield* iterable;
-  },
-};
+const { api: idle } = createIdle();
 
 /** The same scratch calls print to stdout, where the JSON answer lives. */
 const quiet = () => {

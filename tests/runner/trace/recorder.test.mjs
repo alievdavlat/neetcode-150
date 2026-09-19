@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createRecorder, show, snapshot, TraceBudgetExceeded } from './recorder.mjs';
+import { createCounter, createIdle, createRecorder, show, snapshot, TraceBudgetExceeded } from './recorder.mjs';
 
 test('numbers and booleans are scalars', () => {
   assert.deepEqual(snapshot(3), { t: 'scalar', text: '3' });
@@ -111,4 +111,27 @@ test('a map shows what is in it rather than an empty object', () => {
   assert.equal(show(new Map([[1, 3], ['a', 2]])), "Map(2) {1 → 3, 'a' → 2}");
   assert.equal(show(new Set([1, 2])), 'Set(2) {1, 2}');
   assert.equal(show(new Map()), 'Map(0) {}');
+});
+
+/**
+ * The instrumenter calls whichever recorder is installed, so one that is short a
+ * call throws inside the student's own file. That is how `f` and `g` came to be
+ * missing from the idle recorder, where it read as "could not read your file".
+ */
+test('every recorder answers the same calls', () => {
+  const calls = (made) => Object.keys(made.api).sort();
+  const expected = calls(createRecorder(META));
+
+  assert.deepEqual(calls(createIdle()), expected);
+  assert.deepEqual(calls(createCounter()), expected);
+});
+
+test('the idle recorder hands every value straight back', () => {
+  const { api } = createIdle();
+
+  assert.equal(api.l(0, 0, 7), 7);
+  assert.equal(api.x(0, 'nums', 2, false, 'i'), 2);
+  assert.equal(api.v(0, 'kept'), 'kept');
+  assert.equal(api.u(0, 4, 5), 4);
+  assert.deepEqual([...api.i(0, [1, 2, 3])], [1, 2, 3]);
 });

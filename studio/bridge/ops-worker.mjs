@@ -5,7 +5,7 @@ import { prepare } from '../../tests/runner/discover.mjs';
 import { caseArgs } from '../../tests/runner/execute.mjs';
 import { compareToTarget, fitOperations, targetTimeComplexity } from '../../tests/runner/complexity.mjs';
 import { declaredFunctions, instrument } from '../../tests/runner/trace/instrument.mjs';
-import { createCounter } from '../../tests/runner/trace/recorder.mjs';
+import { createCounter, createIdle } from '../../tests/runner/trace/recorder.mjs';
 
 /**
  * Run one variant at doubling sizes under a recorder that only counts. The file
@@ -32,18 +32,8 @@ const quiet = () => {
   };
 };
 
-const idle = {
-  l: (id, index, value) => value,
-  x: (id, name, key) => key,
-  v: (id, value) => value,
-  u: () => {},
-  s: () => {},
-  f: () => {},
-  g: () => {},
-  i: function* (id, iterable) {
-    yield* iterable;
-  },
-};
+/** Scratch calls at the bottom of a solution file must not land in the count. */
+const { api: idle } = createIdle();
 
 const problem = (await loadProblems()).find((entry) => entry.number === number);
 

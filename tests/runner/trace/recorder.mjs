@@ -306,6 +306,33 @@ export function createRecorder(meta, { maxSteps = MAX_STEPS } = {}) {
 }
 
 /**
+ * A recorder that keeps nothing at all.
+ *
+ * A solution file often ends in a scratch call - `console.log(twoSum([3, 2, 4], 9))`
+ * - and the instrumented copy runs that too, the moment it is imported. Importing
+ * under this one keeps those calls out of the trace and out of the count, while
+ * still answering every call the instrumenter emits. It lives here beside the
+ * other two so that a new call cannot be added to one and forgotten in another,
+ * which is what left `f` and `g` missing once already.
+ */
+export function createIdle() {
+  const api = {
+    l: (id, index, value) => value,
+    x: (id, name, key) => key,
+    v: (id, value) => value,
+    u: (id, before) => before,
+    s: () => {},
+    f: () => {},
+    g: () => {},
+    i: function* (id, iterable) {
+      yield* iterable;
+    },
+  };
+
+  return { api };
+}
+
+/**
  * The same contract as `createRecorder`, but it keeps nothing except a count of
  * the statements that ran. Counting is exact where timing is not: the log factor
  * that timing cannot see is plainly there in the numbers.
