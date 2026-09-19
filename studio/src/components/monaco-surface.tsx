@@ -84,10 +84,44 @@ export function MonacoSurface({
     });
   };
 
+  /**
+   * The doc block repeats the brief sitting beside it, so the editor opens on the
+   * code and folds the header away. The file keeps it: the runner reads the
+   * LeetCode and Video lines out of it, a practice copy carries it so promoting
+   * back cannot lose it, and a regenerate writes it again. Folding ranges are
+   * computed a beat after the model lands, so this asks more than once and gives
+   * up quietly - a header left open is a small thing next to a thrown error.
+   */
+  const foldHeader = (instance: editor.IStandaloneCodeEditor) => {
+    if (!instance.getModel()?.getLineContent(1).trimStart().startsWith('/**')) return () => {};
+
+    const timers = [0, 120, 400].map((delay) =>
+      window.setTimeout(() => {
+        try {
+          instance.trigger('brief', 'editor.fold', { selectionLines: [1] });
+        } catch {
+          /* the folding model is not ready, and the next attempt may find it */
+        }
+      }, delay),
+    );
+
+    return () => timers.forEach(window.clearTimeout);
+  };
+
+  useEffect(() => {
+    const instance = editorRef.current;
+    if (!instance) return;
+
+    return foldHeader(instance);
+    /** A new file is a new header to fold; typing in one is not. */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [path]);
+
   const handleMount: OnMount = (instance, monaco) => {
     monacoRef.current = monaco;
     editorRef.current = instance;
     buffer.current = instance.getValue();
+    foldHeader(instance);
     instance.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => save.current());
     instance.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => run.current());
 
