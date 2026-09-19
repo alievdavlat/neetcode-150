@@ -1,0 +1,84 @@
+{
+  "099": {
+    "title": "Zinapoyaga ko‘tarilish",
+    "pattern": "Ikki sirpanuvchi o‘zgaruvchidagi Fibonachchi rekurrenti",
+    "statement": "Zinapoyaning tepasigacha n ta pog‘ona bor va har safar bir yoki ikki pog‘ona ko‘tarilasiz. Tepaga necha xil usulda yetib borish mumkin?",
+    "followUp": "Rekursiyadan boshlang, memoizatsiya qo‘shing, keyin uni siklga yoying.",
+    "constraints": ["1 <= n <= 45"]
+  },
+  "100": {
+    "title": "Zinapoyaga ko‘tarilishning eng kichik narxi",
+    "pattern": "dp[i] = cost[i] + dp[i+1] va dp[i+2] dan kichigi",
+    "statement": "cost[i] — i-pog‘onadan qadam tashlash narxi. To‘lab, bir yoki ikki pog‘ona ko‘tarilasiz. 0-indeksdan yoki 1-indeksdan boshlash mumkin. Oxirgi indeksdan keyin turgan tepaga ko‘tarilishning eng kichik narxini qaytaring.",
+    "constraints": ["2 <= cost.length <= 1000", "0 <= cost[i] <= 999"]
+  },
+  "101": {
+    "title": "Uy o‘g‘risi",
+    "pattern": "Har uy uchun: uni tashlab ketish yoki olib, ikki qadam orqadagi eng yaxshisiga qo‘shish",
+    "statement": "Ko‘chadagi har bir uyda qandaydir pul bor, lekin bir kechada yonma-yon ikki uyni talash signalni ishga tushiradi. Hech qachon ikki qo‘shnini talamasdan olish mumkin bo‘lgan eng katta summani qaytaring.",
+    "followUp": "Ikkita o‘zgaruvchi yetarli. Ularni rob1 va rob2 emas, ma’nosiga qarab nomlang.",
+    "constraints": ["1 <= nums.length <= 100", "0 <= nums[i] <= 400"]
+  },
+  "102": {
+    "title": "Uy o‘g‘risi II",
+    "pattern": "Oldingi masalani ikki ochiq kesmada ikki marta ishga tushirish",
+    "statement": "Qoidalar oldingi masaladagidek, faqat uylar doira bo‘ylab joylashgan: birinchi va oxirgi uy qo‘shni. Olish mumkin bo‘lgan eng katta summani qaytaring.",
+    "followUp": "Yagona uy holatiga e’tibor bering — u yerda ikkala kesma ham bo‘sh.",
+    "constraints": ["1 <= nums.length <= 100", "0 <= nums[i] <= 1000"]
+  },
+  "103": {
+    "title": "Eng uzun palindrom qism satr",
+    "pattern": "Har bir markaz atrofida kengaytirish (jami 2n - 1 markaz)",
+    "statement": "s satri berilgan. Uning eng uzun palindrom qism satrini qaytaring. Bunday satr bir nechta va uzunligi bir xil bo‘lsa, istalgani qabul qilinadi.",
+    "followUp": "Manaxer algoritmi buni chiziqli vaqtda yechadi — uni yodlash emas, bir marta o‘qib chiqish foydali.",
+    "constraints": ["1 <= s.length <= 1000", "s raqamlar va lotin harflaridan iborat"]
+  },
+  "104": {
+    "title": "Palindrom qism satrlar",
+    "pattern": "O‘sha markaz atrofida kengaytirish, lekin o‘lchash emas, sanash bilan",
+    "statement": "s satrining palindrom qism satrlarini sanang. Turli o‘rinlardagi qism satrlar, hatto bir xil belgilardan iborat bo‘lsa ham, alohida sanaladi.",
+    "constraints": ["1 <= s.length <= 1000", "s kichik lotin harflaridan iborat"]
+  },
+  "105": {
+    "title": "Dekodlash usullari",
+    "pattern": "dp[i] bitta raqamni o‘qish va ikkitasini o‘qishdan yig‘iladi",
+    "statement": "Xabar A = 1 ... Z = 26 qoidasi bo‘yicha kodlangan va ajratgichlari olib tashlangan. Raqamlardan iborat satr berilgan — uni necha xil usulda dekodlash mumkinligini qaytaring. Boshidagi nol hech qachon to‘g‘ri harf bermaydi, shuning uchun 06 — bu F emas.",
+    "followUp": "Satrdagi har bir nol — shunchaki raqam emas, cheklov.",
+    "constraints": ["1 <= s.length <= 100", "s faqat raqamlardan iborat"]
+  },
+  "106": {
+    "title": "Tangalarni maydalash",
+    "pattern": "Summalar bo‘yicha cheklanmagan ryukzak, tangalar sonini minimallashtirish",
+    "statement": "Tangalar nominallari va maqsad summa berilgan. Shu summani beradigan eng kam tangalar sonini, uni yig‘ish imkoni bo‘lmasa -1 qaytaring. Har bir nominaldagi tangalar cheksiz ko‘p.",
+    "followUp": "Ochko‘zlik bu yerda ishlamaydi — uni buzadigan tangalar to‘plamini toping.",
+    "constraints": ["1 <= coins.length <= 12", "1 <= coins[i] <= 2^31 - 1", "0 <= amount <= 10^4"]
+  },
+  "107": {
+    "title": "Eng katta ko‘paytmali qism massiv",
+    "pattern": "Joriy maksimum va joriy minimumni bir vaqtda yuritish",
+    "statement": "Butun sonlardan iborat nums massivi berilgan. Ketma-ket keladigan istalgan bo‘sh bo‘lmagan qism massivning eng katta ko‘paytmasini qaytaring. Har bir prefiks va suffiks ko‘paytmasi 32 bitli butun songa sig‘adi.",
+    "followUp": "Manfiy son sizning ikki joriy qiymatingizni o‘rin almashtiradi.",
+    "constraints": ["1 <= nums.length <= 2 * 10^4", "-10 <= nums[i] <= 10"]
+  },
+  "108": {
+    "title": "Satrni so‘zlarga ajratish",
+    "pattern": "dp[i] rost bo‘ladi, qachonki i da so‘z tugasa va uning boshiga yetib borilgan bo‘lsa",
+    "statement": "s satri va wordDict lug‘ati berilgan. s ni lug‘atdagi so‘zlar ketma-ketligiga kesish mumkin bo‘lsa true qaytaring. So‘zlarni istalgancha marta ishlatish mumkin.",
+    "followUp": "Oddiy rekursiya aaaa...ab ko‘rinishidagi satrlarda portlaydi. Boshlanish indeksi bo‘yicha memoizatsiya qiling.",
+    "constraints": ["1 <= s.length <= 300 va 1 <= wordDict.length <= 1000", "1 <= wordDict[i].length <= 20", "Lug‘atdagi hamma so‘z takrorlanmas va kichik harflar bilan yozilgan"]
+  },
+  "109": {
+    "title": "Eng uzun o‘suvchi qism ketma-ketlik",
+    "pattern": "Kvadratik dinamika yoki binar qidiruv bilan uyumlarga taqsimlash",
+    "statement": "Butun sonlardan iborat nums massivi berilgan. Uning eng uzun qat’iy o‘suvchi qism ketma-ketligi uzunligini qaytaring. Qism ketma-ketlik asl tartibni saqlaydi, lekin ketma-ket kelishi shart emas.",
+    "followUp": "O(n log n) yechimdagi dumlar massivi kirishning qism ketma-ketligi emas — javobni undan o‘qib olishga urinmang.",
+    "constraints": ["1 <= nums.length <= 2500", "-10^4 <= nums[i] <= 10^4"]
+  },
+  "110": {
+    "title": "Yig‘indisi teng ikki qism to‘plamga ajratish",
+    "pattern": "Qism to‘plam yig‘indilari bo‘yicha ryukzak",
+    "statement": "Musbat butun sonlardan iborat massiv berilgan. Uni yig‘indilari teng ikki qism to‘plamga ajratish mumkinmi yoki yo‘qmi aniqlang.",
+    "followUp": "Masalani umumiy yig‘indining yarmi haqidagi bitta savolga keltiring — va o‘sha yarim butun ekanini tekshiring.",
+    "constraints": ["1 <= nums.length <= 200", "1 <= nums[i] <= 100"]
+  }
+}

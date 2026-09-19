@@ -1,0 +1,51 @@
+{
+  "158": {
+    "title": "Birlashtirib saralash",
+    "pattern": "Ikkiga bo‘lish, har yarmini saralash, ikki ko‘rsatgich bilan birlashtirish",
+    "statement": "Butun sonlar massivini o‘suvchi tartibda saralang: uni ikkiga bo‘lib, har yarmini xuddi shu yo‘l bilan saralab, saralangan ikki yarmini birlashtiring. Yangi massiv qaytaring va kirishga tegmang. O‘rnatilgan saralashni chaqirmang.",
+    "followUp": "Barqarorlikni saqlang: ikki qiymat teng bo‘lsa, avval turgani avvalda qolishi kerak.",
+    "constraints": ["0 <= nums.length <= 5 * 10^4", "-10^5 <= nums[i] <= 10^5"]
+  },
+  "159": {
+    "title": "Butun sonli kvadrat ildiz",
+    "pattern": "Kirishni emas, javobni ikkilik qidirish",
+    "statement": "Manfiy bo‘lmagan n butun soni berilgan — r * r qiymati n dan katta bo‘lmaydigan eng katta r butun sonini qaytaring. Boshqacha aytganda, pastga yumaloqlangan kvadrat ildiz. Buni Math.sqrt siz bajaring.",
+    "followUp": "Javob hech qachon n / 2 + 1 dan katta bo‘lmaydi, bu esa qidirish uchun torroq yuqori chegara.",
+    "constraints": ["0 <= n <= 2^31 - 1"]
+  },
+  "160": {
+    "title": "Kesishuvchi oraliqni nusxalash",
+    "pattern": "Nusxalash yo‘nalishini kesishuvga qarab tanlash",
+    "statement": "data ning count elementini from indeksidan boshlab to indeksiga nusxalang. Oraliqlar kesishishi mumkin, va natija oraliq bufer orqali nusxalashda chiqadigan natija bilan bir xil bo‘lishi shart — ya’ni oldinga oddiy aylanish o‘zi allaqachon yozib qo‘ygan qiymatni o‘qib olishi mumkin. data ni joyida o‘zgartirib, uni qaytaring. Bu memmove, va bu yerda xato qilish C dagi klassik xatolik.",
+    "followUp": "Manzil manbadan keyin turganda qaysi tomonga yurasiz, va u manbadan oldin turganda nega boshqa tomonga?",
+    "constraints": ["0 <= data.length <= 10^5", "0 <= to, from <= data.length", "0 <= count <= data.length - max(to, from)"]
+  },
+  "161": {
+    "title": "Joyida aylantirish",
+    "pattern": "Butunini teskari o‘girib, keyin har bir bo‘lagini teskari o‘girish",
+    "statement": "nums ni qo‘shimcha massiv ishlatmasdan o‘ngga k qadam aylantiring. k uzunlikdan katta bo‘lishi mumkin. nums ni joyida o‘zgartirib, uni qaytaring.",
+    "followUp": "Uch marta teskari o‘girish har bir elementga ikki marta tegadi. Sikllar bo‘ylab yuruvchi versiya har biriga bir marta tegadi — uni yoza olasizmi?",
+    "constraints": ["1 <= nums.length <= 10^5", "0 <= k <= 10^9"]
+  },
+  "162": {
+    "title": "Baytlar tartibini almashtirish",
+    "pattern": "Bir vaqtda bitta baytni niqoblab, uni joyiga surish",
+    "statement": "value ni 32-bitli ishorasiz butun son sifatida o‘qing va uni to‘rt bayti teskari tartibda turgan holda qaytaring. Boshqa baytlar tartibiga ega mashina yozgan sonni o‘qiganda mashina aynan shuni qiladi.",
+    "followUp": "JavaScript ning bit operatorlari ishorali 32-bitli butun sonlar bilan ishlaydi, shuning uchun oxirgi qadamda ishorasiz surish kerak bo‘ladi. Qaysi biri va nega?",
+    "constraints": ["0 <= value <= 2^32 - 1"]
+  },
+  "163": {
+    "title": "Yuqoriga tekislash",
+    "pattern": "Ikkining darajasi o‘zidan pastdagi bitlarni niqoblaydi",
+    "statement": "offset dan kichik bo‘lmagan, alignment ga karrali eng kichik sonni qaytaring. alignment har doim ikkining darajasi. Har qanday xotira taqsimlovchi shundan boshlanadi: qiymat o‘z turi o‘qilishi mumkin bo‘lgan manzilda turishi shart.",
+    "followUp": "Bo‘lishsiz va shoxlanishsiz, faqat alignment - 1 bilan ishlaydigan versiya bor. Uni toping.",
+    "constraints": ["0 <= offset <= 2^31 - 1", "alignment ikkining darajasi, 1 <= alignment <= 2^16"]
+  },
+  "164": {
+    "title": "Kursorli xotira taqsimlovchi",
+    "pattern": "Bitta kursor, har bir berishdan oldin tekislanadi",
+    "statement": "sizes dagi so‘rovlarga capacity baytni tartib bilan taqsimlab bering. Har bir blok alignment ga tekislangan navbatdagi offsetdan boshlanadi, va kursor hozir berilgan blokning oxiriga ko‘chadi. capacity dan chiqib ketadigan so‘rov -1 oladi va kursorni o‘z joyida qoldiradi, shunda keyinroq keladigan kichikroq so‘rovga xizmat qilish mumkin bo‘ladi. Har bir so‘rovga berilgan offsetni qaytaring.",
+    "followUp": "Bu taqsimlovchi bitta blokni hech qachon bo‘shata olmaydi. Buni qila olish uchun nimani yozib qo‘yish kerak bo‘lardi?",
+    "constraints": ["0 <= capacity <= 2^31 - 1", "0 <= sizes.length <= 10^4", "0 <= sizes[i] <= capacity", "alignment ikkining darajasi, 1 <= alignment <= 4096"]
+  }
+}

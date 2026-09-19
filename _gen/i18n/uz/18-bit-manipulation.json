@@ -1,0 +1,51 @@
+{
+  "144": {
+    "title": "Juftsiz son",
+    "pattern": "XOR har bir juftni yo‘q qiladi",
+    "statement": "nums ning har bir elementi ikki marta uchraydi, bittasidan tashqari — u bir marta uchraydi. O‘sha elementni chiziqli vaqtda, faqat o‘zgarmas qo‘shimcha xotira ishlatib qaytaring.",
+    "followUp": "Bu yerda butun ishni XOR ning ikki xossasi bajaradi. Ularni ayting.",
+    "constraints": ["1 <= nums.length <= 3 * 10^4", "-3 * 10^4 <= nums[i] <= 3 * 10^4", "Har bir element ikki marta uchraydi, bittasidan tashqari"]
+  },
+  "145": {
+    "title": "Birlik bitlar soni",
+    "pattern": "n & (n - 1) eng kichik o‘rnatilgan bitni tozalaydi",
+    "statement": "32-bitli ishorasiz butun sonning ikkilik yozuvidagi o‘rnatilgan bitlar sonini — uning Hamming og‘irligini qaytaring.",
+    "followUp": "32 marta aylanish har doim ishlaydi. Har bir o‘rnatilgan bit uchun bir marta aylanish yaxshiroq — qanday?",
+    "constraints": ["1 <= n <= 2^31 - 1"]
+  },
+  "146": {
+    "title": "Bitlarni sanash",
+    "pattern": "dp[i] = dp[i >> 1] + (i & 1)",
+    "statement": "n butun soni berilgan — uzunligi n + 1 bo‘lgan massiv qaytaring, unda i-chi element i dagi o‘rnatilgan bitlar soniga teng.",
+    "followUp": "Har bir son uchun alohida popcount chaqirmasdan, bitta o‘tishda bajara olasizmi?",
+    "constraints": ["0 <= n <= 10^5"]
+  },
+  "147": {
+    "title": "Bitlarni teskari o‘girish",
+    "pattern": "Kirishdan bitni chiqarib, natijaga kiritish, 32 marta",
+    "statement": "Berilgan 32-bitli ishorasiz butun sonning bitlarini teskari o‘giring va natijani ishorasiz qiymat sifatida qaytaring.",
+    "followUp": "JavaScript da natijani >>> 0 bilan qaytadan ishorasizga keltirish kerak, aks holda manfiy son chiqadi.",
+    "constraints": ["Kirish — 32-bitli ishorasiz butun son"]
+  },
+  "148": {
+    "title": "Yetishmayotgan son",
+    "pattern": "Indekslar va qiymatlarning XOR i (yoki Gauss yig‘indisi)",
+    "statement": "nums [0, n] oralig‘idan olingan n ta farqli sonni saqlaydi. Shu oraliqdagi yetishmayotgan yakka sonni qaytaring.",
+    "followUp": "O(n) vaqt va O(1) xotira bilan ikkita javob bor. Ulardan biri toshib keta olmaydi — qaysi biri?",
+    "constraints": ["n === nums.length va 1 <= n <= 10^4", "0 <= nums[i] <= n, hamma qiymat farqli"]
+  },
+  "149": {
+    "title": "Ikki butun sonning yig‘indisi",
+    "pattern": "XOR — o‘tkazmasiz yig‘indi; AND << 1 — o‘tkazmaning o‘zi",
+    "statement": "Ikki butun son a va b ning yig‘indisini + va - operatorlaridan foydalanmasdan qaytaring.",
+    "followUp": "O‘tkazma nolga aylanguncha davom ettiring. Ikkining to‘ldiruvchisi kodida manfiy sonlar o‘z-o‘zidan ishlaydi.",
+    "constraints": ["-1000 <= a, b <= 1000"]
+  },
+  "150": {
+    "title": "Butun sonni teskari o‘girish",
+    "pattern": "Oxirgi raqamni olib tashlash, uni qo‘shish, qo‘shishdan oldin 32-bitli chegarani tekshirish",
+    "statement": "Ishorali 32-bitli butun sonning raqamlarini ishorasini saqlagan holda teskari o‘giring. Teskari o‘girilgan qiymat ishorali 32-bitli oraliqdan chiqib ketsa 0 qaytaring. Muhit 64-bitli butun sonlarni saqlay olmaydi deb hisoblang.",
+    "followUp": "Toshib ketishni tekshirish ko‘paytirishdan keyin emas, undan oldin bo‘lishi shart — aks holda siz allaqachon yo‘qotib qo‘ygan qiymatni tekshirasiz.",
+    "constraints": ["-2^31 <= x <= 2^31 - 1"]
+  }
+}

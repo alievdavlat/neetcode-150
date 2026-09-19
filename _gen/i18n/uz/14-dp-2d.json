@@ -1,0 +1,79 @@
+{
+  "111": {
+    "title": "Takrorlanmas yo‘llar",
+    "pattern": "dp[r][c] = dp[r-1][c] + dp[r][c-1]",
+    "statement": "Robot m x n panjaraning chap yuqori katagida turadi va faqat o‘ngga yoki pastga yura oladi. U o‘ng pastki katakka necha xil yo‘l bilan bora olishini qaytaring.",
+    "followUp": "Masalaning binomial koeffitsiyent orqali yopiq ko‘rinishdagi javobi bor. Uni keltirib chiqaring, keyin dinamikaga ishoning.",
+    "constraints": ["1 <= m, n <= 100"]
+  },
+  "112": {
+    "title": "Eng uzun umumiy qism ketma-ketlik",
+    "pattern": "Ikki ketma-ketlik uchun klassik panjara dinamikasi",
+    "statement": "Ikki satr berilgan — ularning eng uzun umumiy qism ketma-ketligining uzunligini qaytaring: ikkalasida ham tartibi saqlangan holda uchraydigan, ketma-ket turishi shart bo‘lmagan eng uzun belgilar ketma-ketligi. Bunday ketma-ketlik bo‘lmasa 0 qaytaring.",
+    "followUp": "Jadvalning faqat oldingi qatori o‘qiladi. Jadvalni ikki qatorgacha qisqartiring.",
+    "constraints": ["1 <= text1.length, text2.length <= 1000", "Ikkala satr ham kichik lotin harflaridan tuzilgan"]
+  },
+  "113": {
+    "title": "Aksiyani sotib olish va sotishning eng yaxshi payti, kutish kuni bilan",
+    "pattern": "Holatlar avtomati: aksiya qo‘lda / sotib olish mumkin / kutish kuni",
+    "statement": "Xohlagancha bitim tuzish mumkin, lekin bir vaqtda bittadan ortiq aksiyani ushlab turib bo‘lmaydi, va sotgandan keyin navbatdagi xaridgacha to‘liq bir kun kutish kerak. Kunlik narxlar berilgan — eng katta foydani qaytaring.",
+    "followUp": "O‘tishlarni yozishdan oldin holatlarni nomlang. Uchtasi yetarli.",
+    "constraints": ["1 <= prices.length <= 5000", "0 <= prices[i] <= 1000"]
+  },
+  "114": {
+    "title": "Tangalarni maydalash II",
+    "pattern": "Kombinatsiyalarni sanaydigan cheklanmagan ryukzak",
+    "statement": "Tanga nominallari va summa berilgan — o‘sha summani necha xil tanga kombinatsiyasi bilan yig‘ish mumkinligini qaytaring. Tartib muhim emas, shuning uchun 1 + 2 va 2 + 1 bitta kombinatsiya deb sanaladi. Har nominaldagi tanga cheksiz ko‘p, va javob 32 bitli ishorali butun songa sig‘adi.",
+    "followUp": "Tashqi tsikl tangalar, ichkisi summalar bo‘yicha bo‘lsa kombinatsiyalar sanaladi; teskari tartib o‘rin almashtirishlarni sanaydi. Qaysi tsikl joylashuvini yozganingizni biling.",
+    "constraints": ["1 <= coins.length <= 300, nominallar farqli", "1 <= coins[i] <= 5000", "0 <= amount <= 5000"]
+  },
+  "115": {
+    "title": "Maqsadli summa",
+    "pattern": "(indeks, joriy summa) juftligi bo‘yicha memoizatsiya yoki qism to‘plam summasiga keltirish",
+    "statement": "nums dagi har bir son oldiga plyus yoki minus qo‘yib, hammasini bitta ifodaga birlashtiring. target qiymatini beradigan ishora joylashuvlari necha xil bo‘lishini qaytaring.",
+    "followUp": "Ishoralarni tanlash musbat bo‘ladigan P qism to‘plamini tanlash bilan bir xil. Unda sum(P) nimaga teng bo‘lishi kerak?",
+    "constraints": ["1 <= nums.length <= 20", "0 <= nums[i] <= 1000 va 0 <= sum(nums) <= 1000", "-1000 <= target <= 1000"]
+  },
+  "116": {
+    "title": "Satrlarni aralashtirish",
+    "pattern": "s1 va s2 ning ishlatilgan prefikslari bo‘yicha panjara dinamikasi",
+    "statement": "s3 ni s1 va s2 ni aralashtirib hosil qilish mumkin bo‘lsa true qaytaring — ikki satrdan belgilarni istalgan navbat bilan olib, lekin har birining ichki tartibini saqlab.",
+    "followUp": "Avval uzunliklarni tekshiring — bitta satr kod yaroqsiz kirishlarning ko‘pini rad etadi.",
+    "constraints": ["0 <= s1.length, s2.length <= 100 va 0 <= s3.length <= 200", "Hamma satr kichik lotin harflaridan tuzilgan"]
+  },
+  "117": {
+    "title": "Matritsadagi eng uzun o‘suvchi yo‘l",
+    "pattern": "Har katakda memoizatsiya bilan chuqurlik bo‘yicha aylanish (panjara — siklsiz graf)",
+    "statement": "m x n butun sonli matritsa berilgan — eng uzun qat’iy o‘suvchi yo‘lning uzunligini qaytaring. Yuqoriga, pastga, chapga va o‘ngga yurish mumkin, lekin hech qachon diagonal bo‘ylab va hech qachon panjaradan tashqariga emas.",
+    "followUp": "Nega qat’iy o‘sish ko‘rilganlar to‘plamini butunlay keraksiz qiladi?",
+    "constraints": ["m === matrix.length, n === matrix[i].length", "1 <= m, n <= 200", "0 <= matrix[i][j] <= 2^31 - 1"]
+  },
+  "118": {
+    "title": "Turli qism ketma-ketliklar",
+    "pattern": "Mosliklarni sanaydigan panjara dinamikasi: belgilar teng bo‘lsa tashlab ketish yoki olish",
+    "statement": "s va t satrlari berilgan — s ning t ga teng bo‘lgan turli qism ketma-ketliklari nechta ekanini qaytaring. Javob 32 bitli ishorali butun songa sig‘adi.",
+    "followUp": "Belgilar mos kelganda tanlov bitta emas, ikkita. Ikkala sanoqni qo‘shing.",
+    "constraints": ["1 <= s.length, t.length <= 1000", "Ikkala satr ham lotin harflaridan tuzilgan"]
+  },
+  "119": {
+    "title": "Tahrirlash masofasi",
+    "pattern": "Levenshteyn panjarasi: qo‘shish, o‘chirish, almashtirish",
+    "statement": "Ikki so‘z berilgan — birinchisini ikkinchisiga aylantirish uchun zarur bo‘lgan bitta belgini qo‘shish, o‘chirish va almashtirish amallarining eng kichik sonini qaytaring.",
+    "followUp": "Boshlang‘ich qator va ustun nollardan iborat emas. Unda ular nimadan iborat, va nega?",
+    "constraints": ["0 <= word1.length, word2.length <= 500", "Ikkala so‘z ham kichik lotin harflaridan tuzilgan"]
+  },
+  "120": {
+    "title": "Sharlarni yorish",
+    "pattern": "Har oraliqda ENG OXIRI yorilgan shar bo‘yicha oraliq dinamikasi",
+    "statement": "Har bir sharda bitta son yozilgan. i sharini yorish nums[left] * nums[i] * nums[right] tanga keltiradi, bunda left va right — uning joriy qo‘shnilari; qo‘shni bo‘lmasa 1 deb sanaladi. Shar yorilgandan keyin uning qo‘shnilari yonma-yon bo‘lib qoladi. Hamma sharni yorib olinadigan eng katta tanga sonini qaytaring.",
+    "followUp": "Birinchi yorilgan shar haqida o‘ylash ishlamaydi, chunki qo‘shnilar doim o‘zgarib turadi. Uning o‘rniga oraliqda qaysi shar oxirgi yorilishini so‘rang.",
+    "constraints": ["n === nums.length va 1 <= n <= 300", "0 <= nums[i] <= 100"]
+  },
+  "121": {
+    "title": "Regulyar ifoda bilan moslashtirish",
+    "pattern": "x* uchun alohida holati bor panjara dinamikasi",
+    "statement": "Moslashtirishni amalga oshiring: nuqta istalgan bitta belgiga, yulduzcha esa oldingi elementning nol yoki undan ko‘p takroriga mos keladi. Moslik kirish satrining faqat bir qismini emas, butunini qoplashi kerak. p dagi har bir yulduzchadan oldin to‘g‘ri belgi turadi.",
+    "followUp": "x* holati ikkiga bo‘linadi: nol takror olish yoki bitta belgini yeb, joyida qolish.",
+    "constraints": ["1 <= s.length <= 20 va 1 <= p.length <= 30", "s faqat kichik harflardan iborat", "p kichik harflar, shuningdek nuqta va yulduzchadan iborat"]
+  }
+}
