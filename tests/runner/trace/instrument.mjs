@@ -150,6 +150,21 @@ const isCallee = (node) => {
   );
 };
 
+/**
+ * A Set and a Map are reached through calls, not through brackets, so without
+ * these a hash solution records no `touched` at all - and the one thing a
+ * student needs to see there is which key was asked about. The flag says whether
+ * the call puts something in or only looks.
+ */
+const COLLECTION_CALLS = new Map([
+  ['has', false],
+  ['get', false],
+  ['includes', false],
+  ['add', true],
+  ['set', true],
+  ['delete', true],
+]);
+
 /** `freq[k]++` writes through its operand exactly as `freq[k] = freq[k] + 1` would. */
 const isUpdate = (node) =>
   (ts.isPostfixUnaryExpression(node) || ts.isPrefixUnaryExpression(node)) &&
@@ -172,9 +187,13 @@ function wrapLeaves(context, id, root) {
   const entry = context.meta[id];
   const base = root.getStart(context.file);
 
-  const visit = (node, insideLeaf, insideTarget) => {
-    if (ts.isFunctionExpression(node) || ts.isArrowFunction(node)) return;
-
+  /**
+   * Which container was reached, and at which key. `visit` only ever walks the
+   * root's children, so the root is marked here too - `if (seen.has(num))` is a
+   * condition whose whole expression is the call, and it would otherwise be the
+   * one access nobody records.
+   */
+  const mark = (node) => {
     if (ts.isElementAccessExpression(node)) {
       const name = rootName(node.expression);
       const write = isAssignTarget(node);
@@ -187,7 +206,27 @@ function wrapLeaves(context, id, root) {
         );
         context.insert(node.argumentExpression.getEnd(), `,${write},${from})`, -3);
       }
+      return;
     }
+
+    /** `set.has(num)` touches `set` at `num`, the same as `freq[num]` would. */
+    if (ts.isCallExpression(node) && ts.isPropertyAccessExpression(node.expression)) {
+      const write = COLLECTION_CALLS.get(node.expression.name.text);
+      const name = rootName(node.expression.expression);
+      const key = node.arguments[0];
+
+      if (write !== undefined && name && key && context.oneLine(key)) {
+        const from = JSON.stringify(context.textOf(key));
+        context.insert(key.getStart(context.file), `globalThis.__t.x(${id},"${name}",`, 3);
+        context.insert(key.getEnd(), `,${write},${from})`, -3);
+      }
+    }
+  };
+
+  const visit = (node, insideLeaf, insideTarget) => {
+    if (ts.isFunctionExpression(node) || ts.isArrowFunction(node)) return;
+
+    mark(node);
 
     if (!insideLeaf && !insideTarget && !isCallee(node) && !isName(node) && isLeaf(node) && node !== root) {
       const index = entry.leaves.length;
@@ -218,6 +257,8 @@ function wrapLeaves(context, id, root) {
 
     node.forEachChild((child) => visit(child, insideLeaf, insideTarget));
   };
+
+  mark(root);
 
   if (isAssignment(root)) {
     visit(root.left, false, true);

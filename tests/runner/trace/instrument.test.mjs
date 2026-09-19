@@ -169,3 +169,43 @@ test('a counter target is never wrapped as a leaf either', () => {
   assert.equal(/globalThis\.__t\.l\([^)]*\)\s*=[^=]/.test(code), false);
   assert.match(code, /=\s*globalThis\.__t\.l\(\d+,\d+,total\)/);
 });
+
+/**
+ * A hash solution reaches its Set and its Map through calls. Without these the
+ * stage has nothing to mark, which is exactly where the shape of the algorithm
+ * lives: which key was asked about, and whether the answer went in or came out.
+ */
+const HASHED = `export function longest(nums: number[]): number {
+  const seen = new Set(nums);
+  const runs = new Map<number, number>();
+  let best = 0;
+
+  for (const num of nums) {
+    if (seen.has(num - 1)) continue;
+    runs.set(num, 1);
+    best = Math.max(best, runs.get(num) ?? 0);
+  }
+
+  return best;
+}
+`;
+
+test('a collection reached through a call still lands in touched', () => {
+  const { code } = instrument(HASHED, { functionName: 'longest' });
+
+  assert.match(code, /__t\.x\(\d+,"seen",/);
+  assert.match(code, /__t\.x\(\d+,"runs",/);
+});
+
+test('a call that stores is marked a write and a lookup is not', () => {
+  const { code } = instrument(HASHED, { functionName: 'longest' });
+
+  /** `seen.has(...)` only looks; `runs.set(...)` puts something in. */
+  assert.match(code, /__t\.x\(\d+,"seen",[\s\S]*?,false,"num - 1"\)/);
+  assert.match(code, /__t\.x\(\d+,"runs",[\s\S]*?,true,"num"\)/);
+});
+
+test('the line count still never moves once calls are wrapped', () => {
+  const { code } = instrument(HASHED, { functionName: 'longest' });
+  assert.equal(lines(code), lines(HASHED));
+});
