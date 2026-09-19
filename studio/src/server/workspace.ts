@@ -26,7 +26,7 @@ function mirrorIntoTmp(): string {
 
   const problems = readdirSync(BUNDLE_ROOT).filter((name) => /^\d{2}-/.test(name));
   for (const entry of [...problems, ...MIRRORED]) {
-    const from = path.join(BUNDLE_ROOT, entry);
+    const from = path.join(/*turbopackIgnore: true*/ BUNDLE_ROOT, entry);
     if (existsSync(from)) cpSync(from, path.join(SERVERLESS_ROOT, entry), { recursive: true });
   }
 
