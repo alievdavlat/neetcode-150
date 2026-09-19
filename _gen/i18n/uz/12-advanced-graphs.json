@@ -1,0 +1,44 @@
+{
+  "093": {
+    "title": "Marshrutni tiklash",
+    "pattern": "Hierholzer bo‘yicha Eyler yo‘li, qo‘shnilar lug‘at tartibida",
+    "statement": "[qayerdan, qayerga] ko‘rinishidagi aviachiptalar ro‘yxati berilgan. Har bir chiptani aynan bir marta ishlatadigan va JFK dan boshlanadigan marshrutni tiklang. Kamida bitta to‘g‘ri marshrut mavjud; bir nechtasi bo‘lsa, bitta ro‘yxat sifatida o‘qilganda lug‘at tartibida eng kichigini qaytaring.",
+    "followUp": "Oddiy ochko‘z chuqurlik bo‘yicha aylanish boshi berk joyda qolib ketishi mumkin. Orqaga qaytishda qo‘shish buni to‘g‘rilaydi — nega?",
+    "constraints": ["1 <= tickets.length <= 300", "Aeroport kodlari — uchta katta harf", "Har chiptada jo‘nash va yetib borish joylari farqli"]
+  },
+  "094": {
+    "title": "Hamma nuqtani ulashning eng kichik narxi",
+    "pattern": "To‘liq grafda Prim bo‘yicha minimal qamrovchi daraxt",
+    "statement": "Tekislikda n nuqta berilgan. Ularning hammasini istalgan ikkitasi orasida aynan bitta yo‘l bo‘ladigan tarzda ulang. Qirraning narxi — uning uchlari orasidagi Manxetten masofasi. Eng kichik umumiy narxni qaytaring.",
+    "followUp": "Graf to‘liq, shuning uchun bu yerda Prim Kruskaldan ustun. Nega?",
+    "constraints": ["1 <= points.length <= 1000", "-10^6 <= xi, yi <= 10^6", "Hamma nuqta farqli"]
+  },
+  "095": {
+    "title": "Tarmoqdagi kechikish vaqti",
+    "pattern": "Bitta manbadan Dijkstra bo‘yicha eng qisqa yo‘llar",
+    "statement": "times[i] = [u, v, w] — u tugunidan v tuguniga w vaqtda o‘tiladigan yo‘naltirilgan qirra. Signal k tugunidan yuboriladi; uni n tugunning hammasi olishi uchun ketadigan vaqtni, biror tugun hech qachon olmasa -1 qaytaring.",
+    "followUp": "Javob — eng qisqa masofalarning maksimumi, ularning yig‘indisi emas.",
+    "constraints": ["1 <= k <= n <= 100 va 1 <= times.length <= 6000", "1 <= ui, vi <= n va ui vi dan farqli", "0 <= wi <= 100, hamma (ui, vi) jufti takrorlanmas"]
+  },
+  "096": {
+    "title": "Ko‘tarilayotgan suvda suzish",
+    "pattern": "Eng katta qirra bo‘yicha Dijkstra (yoki binar qidiruv va to‘ldirish)",
+    "statement": "grid[i][j] — katakning balandligi. t vaqtida suv chuqurligi hamma joyda t ga teng, va to‘rt tomondan yonma-yon katakka faqat ikkala balandlik t dan oshmaganda suzib o‘tish mumkin. Suzish bir lahzada bo‘ladi. Chap yuqori burchakdan o‘ng pastki burchakka yetib borish uchun eng kichik vaqtni qaytaring.",
+    "followUp": "Yo‘lning narxi — undagi eng baland katak, yig‘indi emas. Qayta hisoblash shartini moslang.",
+    "constraints": ["n === grid.length === grid[i].length va 1 <= n <= 50", "grid[i][j] — 0 dan n^2 - 1 gacha sonlarning o‘rin almashgan varianti"]
+  },
+  "097": {
+    "title": "Begona til lug‘ati",
+    "pattern": "Yonma-yon so‘z juftlaridan qirralarni chiqarib, keyin topologik saralash",
+    "statement": "So‘zlar ro‘yxati oddiy kichik harflardan foydalanadigan, lekin noma’lum alifbo bo‘yicha saralangan. Saralashga mos keladigan harflar tartibini chiqarib, uni satr sifatida qaytaring. Kirish qarama-qarshi bo‘lsa bo‘sh satr qaytaring; bir nechta tartib to‘g‘ri bo‘lsa, istalgani qabul qilinadi.",
+    "followUp": "Tuzoq prefiks holatida: abc, keyin ab ko‘rinishidagi kirish — noto‘g‘ri kirish, yetishmayotgan qirra emas.",
+    "constraints": ["1 <= words.length <= 100 va 1 <= words[i].length <= 100", "words[i] kichik lotin harflaridan iborat"]
+  },
+  "098": {
+    "title": "K ta to‘xtash bilan eng arzon parvoz",
+    "pattern": "k + 1 bosqichga cheklangan Bellman-Ford",
+    "statement": "flights[i] = [qayerdan, qayerga, narx] yo‘naltirilgan parvozni tasvirlaydi. src dan dst gacha ko‘pi bilan k to‘xtash bilan boradigan eng arzon narxni, bunday yo‘l bo‘lmasa -1 qaytaring.",
+    "followUp": "Joyida qayta hisoblash bitta bosqichga o‘sha bosqichda qo‘shilgan qirralarni ishlatishga imkon beradi. Masofalarning nusxasini olib turing.",
+    "constraints": ["1 <= n <= 100 va 0 <= flights.length <= n * (n - 1) / 2", "0 <= src, dst, k < n, va src dst dan farqli", "1 <= price <= 10^4, takroriy parvoz yo‘q"]
+  }
+}

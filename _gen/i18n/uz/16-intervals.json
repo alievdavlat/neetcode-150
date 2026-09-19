@@ -1,0 +1,42 @@
+{
+  "130": {
+    "title": "Oraliq qo‘shish",
+    "pattern": "Uch bosqich: oldin, kesishuvchi (birlashtirish), keyin",
+    "statement": "intervals boshlanishi bo‘yicha saralangan va kesishuvlari yo‘q. newInterval ni qo‘shing, kesishgan joyda birlashtirib, va natijani hamon saralangan va kesishuvsiz holda qaytaring.",
+    "followUp": "Saralash kerak emas — kirish allaqachon tartiblangan. Bitta o‘tish yetarli.",
+    "constraints": ["0 <= intervals.length <= 10^4", "0 <= start <= end <= 10^5", "intervals boshlanishi bo‘yicha saralangan va kesishmaydi"]
+  },
+  "131": {
+    "title": "Oraliqlarni birlashtirish",
+    "pattern": "Boshlanishi bo‘yicha saralab, kesishib turgan ekan oxirgi oraliqni cho‘zish",
+    "statement": "Oraliqlar ro‘yxati berilgan. Kesishuvchi har bir guruhni birlashtirib, aynan o‘sha diapazonlarni qoplaydigan kesishmaydigan oraliqlarni qaytaring.",
+    "constraints": ["1 <= intervals.length <= 10^4", "0 <= start <= end <= 10^4"]
+  },
+  "132": {
+    "title": "Kesishmaydigan oraliqlar",
+    "pattern": "Mashg‘ulot tanlash — oxiri bo‘yicha saralab, eng erta tugaganini qoldirish",
+    "statement": "Qolganlari kesishmasligi uchun olib tashlash kerak bo‘lgan oraliqlarning eng kichik sonini qaytaring. Faqat bitta nuqtada tegib turgan oraliqlar kesishgan hisoblanmaydi.",
+    "followUp": "Boshlanishi bo‘yicha saralash ham ishlaydi, lekin boshqa qoldirish yoki tashlash qoidasini talab qiladi. Ikkisini ham sinab ko‘ring.",
+    "constraints": ["1 <= intervals.length <= 10^5", "-5 * 10^4 <= start < end <= 5 * 10^4"]
+  },
+  "133": {
+    "title": "Yig‘ilish xonalari",
+    "pattern": "Boshlanishi bo‘yicha saralab, har boshlanishni oldingi oxir bilan solishtirish",
+    "statement": "Yig‘ilishlar vaqt oraliqlari berilgan. Bitta odam ularning hammasiga bora olarmidi — ya’ni biror ikki yig‘ilish kesishadimi yoki yo‘qmi — qaytaring. Boshqasi boshlanadigan paytda aynan tugaydigan yig‘ilish mumkin.",
+    "constraints": ["0 <= intervals.length <= 10^4", "0 <= start < end <= 10^6"]
+  },
+  "134": {
+    "title": "Yig‘ilish xonalari II",
+    "pattern": "Ajratilgan boshlanish va oxirlar bo‘ylab supurish chizig‘i (yoki oxirlarning min-heapi)",
+    "statement": "Yig‘ilishlar vaqt oraliqlari berilgan. Ularning hammasini o‘tkazish uchun kerak bo‘ladigan eng kichik xonalar sonini qaytaring.",
+    "followUp": "Boshlanish va oxirlarni ikki alohida massivga ajratsangiz, masala joriy sanagichga aylanadi. Javob — uning cho‘qqisi.",
+    "constraints": ["0 <= intervals.length <= 10^4", "0 <= start < end <= 10^6"]
+  },
+  "135": {
+    "title": "Har so‘rov uchun eng kichik oraliq",
+    "pattern": "So‘rovlarni saralab, oraliqlarni yo‘l-yo‘lakay kiritib, oraliq o‘lchami bo‘yicha min-heap",
+    "statement": "Oraliqlar va so‘rovlar ro‘yxati berilgan. Har so‘rovga uni o‘z ichiga olgan eng kichik oraliqning o‘lchami bilan javob bering, bunda o‘lcham end - start + 1 ga teng. So‘rovni hech bir oraliq o‘z ichiga olmasa -1 qaytaring. Javoblar so‘rovlarning asl tartibida qaytarilishi kerak.",
+    "followUp": "So‘rovlarni saralangan tartibda qayta ishlash heapni to‘g‘ri qiladigan narsa. Oxirida asl tartibni tiklashni esdan chiqarmang.",
+    "constraints": ["1 <= intervals.length, queries.length <= 10^5", "1 <= start <= end <= 10^7 va 1 <= query <= 10^7"]
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "080": {
+    "title": "Orollar soni",
+    "pattern": "Har bir ko‘rilmagan quruqlik katagidan to‘ldirish",
+    "statement": "Birlar (quruqlik) va nollardan (suv) tuzilgan m x n panjara berilgan. Orollarni sanang. Orol — gorizontal yoki vertikal bog‘langan quruqlik, va panjara to‘rt tomondan suv bilan o‘ralgan.",
+    "followUp": "Panjaraning o‘zini o‘zgartirib, ko‘rilganlar massivisiz bajara olasizmi — va shunday qilish kerakmi?",
+    "constraints": ["m === grid.length, n === grid[i].length", "1 <= m, n <= 300", "grid[i][j] nol yoki bir"]
+  },
+  "081": {
+    "title": "Grafni nusxalash",
+    "pattern": "Asl va nusxa jadvali bilan chuqurlik yoki kenglik bo‘yicha aylanish",
+    "statement": "Bog‘langan yo‘naltirilmagan grafning bir tuguniga havola berilgan. Butun grafning chuqur nusxasini qaytaring. Har bir tugun qiymat va qo‘shnilar ro‘yxatini saqlaydi; nusxa asl graf bilan bitta ham tugunni bo‘lishmasligi kerak. Bo‘sh kirish bo‘sh natija beradi.",
+    "followUp": "Jadvalga yozish rekursiyadan oldin bo‘lishi kerak, keyin emas. Nega?",
+    "constraints": ["Grafda 0 dan 100 tagacha tugun", "1 <= Node.val <= 100, qiymatlar takrorlanmas", "Graf bog‘langan, yo‘naltirilmagan, halqa va takroriy qirrasi yo‘q"]
+  },
+  "082": {
+    "title": "Orolning eng katta yuzasi",
+    "pattern": "Har komponentaning o‘lchamini qaytaruvchi to‘ldirish",
+    "statement": "Bir — quruqlik, nol — suv bo‘lgan ikkilik panjara berilgan. Eng katta orolning yuzasini qaytaring — gorizontal yoki vertikal bog‘langan birlar sonining eng kattasini. Orol bo‘lmasa 0 qaytaring.",
+    "constraints": ["m === grid.length, n === grid[i].length", "1 <= m, n <= 50", "grid[i][j] nol yoki bir"]
+  },
+  "083": {
+    "title": "Suvning ikki okeanga oqishi",
+    "pattern": "Ikki qirg‘oqdan quruqlik ichiga teskari aylanish",
+    "statement": "heights — kataklar balandligining m x n panjarasi. Tinch okean yuqori va chap qirralarga, Atlantika pastki va o‘ng qirralarga tegadi. Suv katakdan balandligi teng yoki kichik qo‘shniga oqadi. Suv ikkala okeanga ham yetib boradigan barcha kataklarning koordinatalarini qaytaring.",
+    "followUp": "Har katakdan qidirish kataklar sonining kvadrati bo‘ladi. Okeanlardan boshlab, qiyalik bo‘ylab yuqoriga yuring.",
+    "constraints": ["m === heights.length, n === heights[i].length", "1 <= m, n <= 200", "0 <= heights[i][j] <= 10^5"]
+  },
+  "084": {
+    "title": "O‘ralgan hududlar",
+    "pattern": "Avval chegara bilan bog‘langan hududlarni belgilab, qolganini almashtirish",
+    "statement": "X va O belgilaridan tuzilgan m x n doska berilgan. To‘liq X bilan o‘ralgan har bir O hududini o‘sha kataklarni X ga almashtirib qo‘lga oling. Hudud gorizontal yoki vertikal bog‘langan, va chegaraga tegib turgan hudud hech qachon qo‘lga olinmaydi. Doskani joyida o‘zgartiring.",
+    "followUp": "Masalaning to‘ldiruvchisini yeching — uni aytish ancha oson.",
+    "constraints": ["m === board.length, n === board[i].length", "1 <= m, n <= 200, va board[i][j] X yoki O"]
+  },
+  "085": {
+    "title": "Chiriyotgan apelsinlar",
+    "pattern": "Bosqichlarni sanaydigan, ko‘p manbali kenglik bo‘yicha aylanish",
+    "statement": "Panjarada nol — bo‘sh, bir — yangi apelsin, ikki — chirigan. Har daqiqada chirigan bilan to‘rt tomondan yonma-yon turgan yangi apelsin ham chiriydi. Yangi apelsin qolmaydigan daqiqalar sonini, bu hech qachon sodir bo‘lmasa -1 qaytaring.",
+    "followUp": "Hamma chirigan katak navbatga birga tushadi — sanoqni vaqtga aylantirgan narsa aynan shu.",
+    "constraints": ["m === grid.length, n === grid[i].length", "1 <= m, n <= 10", "grid[i][j] nol, bir yoki ikki"]
+  },
+  "086": {
+    "title": "Devorlar va eshiklar",
+    "pattern": "Hamma eshikdan bir vaqtda kenglik bo‘yicha aylanish",
+    "statement": "Panjarada -1 devorni, nol eshikni, 2147483647 esa (cheksizlik deb qaraladi) bo‘sh xonani bildiradi. Har bir bo‘sh xonani eng yaqin eshikkacha masofa bilan to‘ldiring, hech bir eshikdan yetib bo‘lmaydigan xonalarni o‘z holida qoldiring. Panjarani joyida o‘zgartiring.",
+    "followUp": "Har xonadan aylanish kataklar sonining kvadrati bo‘ladi. Hamma eshikdan birdaniga bitta aylanish chiziqli.",
+    "constraints": ["m === rooms.length, n === rooms[i].length", "1 <= m, n <= 250", "rooms[i][j] -1, nol yoki 2147483647"]
+  },
+  "087": {
+    "title": "Kurslar jadvali",
+    "pattern": "Yo‘naltirilgan grafda sikl izlash (chuqurlik bo‘yicha ranglar yoki Kan algoritmi)",
+    "statement": "0 dan numCourses - 1 gacha raqamlangan numCourses kurs bor, va prerequisites[i] = [a, b] b kursini a kursidan oldin o‘tash kerakligini bildiradi. Hamma kursni tugatish mumkinmi yoki yo‘qmi qaytaring.",
+    "followUp": "Holat ikkita emas, uchta: ko‘rilmagan, joriy yo‘lda, to‘liq tugagan.",
+    "constraints": ["1 <= numCourses <= 2000", "0 <= prerequisites.length <= 5000", "Hamma shart juftligi takrorlanmas"]
+  },
+  "088": {
+    "title": "Kurslar jadvali II",
+    "pattern": "Topologik saralash",
+    "statement": "Shart oldingi masala bilan bir xil, lekin endi hamma kursni o‘tash mumkin bo‘lgan to‘g‘ri tartibni qaytaring. Istalgan to‘g‘ri tartib qabul qilinadi; tartib mavjud bo‘lmasa bo‘sh massiv qaytaring.",
+    "followUp": "Kan algoritmi tartibni darhol beradi; chuqurlik bo‘yicha aylanish uni teskari beradi. Qaysi birini yozganingizni biling.",
+    "constraints": ["1 <= numCourses <= 2000", "0 <= prerequisites.length <= numCourses * (numCourses - 1)", "Hamma shart juftligi farqli"]
+  },
+  "089": {
+    "title": "Ortiqcha bog‘lanish",
+    "pattern": "Kesishmaydigan to‘plamlar — allaqachon bog‘langan tugunlarni qo‘shuvchi birinchi qirra",
+    "statement": "n tugunli daraxtga bitta ortiqcha qirra qo‘shilgan, natijada aynan bitta sikli bor graf paydo bo‘lgan. Qirralar ro‘yxati berilgan — qaytadan daraxt bo‘lishi uchun olib tashlash mumkin bo‘lgan qirrani qaytaring. Bir nechta javob mos kelsa, kirishda oxirgi turganini qaytaring.",
+    "followUp": "Qirralarni tartib bilan qayta ishlash javobning shunchaki birinchi muvaffaqiyatsiz birlashtirish ekanini bildiradi.",
+    "constraints": ["n === edges.length va 3 <= n <= 1000", "1 <= ai < bi <= n, takroriy qirra va halqa yo‘q", "Graf bog‘langan"]
+  },
+  "090": {
+    "title": "Yo‘naltirilmagan grafdagi bog‘lanish komponentalari soni",
+    "pattern": "Komponenta sanagichi bilan kesishmaydigan to‘plamlar (yoki har tugundan aylanish)",
+    "statement": "0 dan n - 1 gacha raqamlangan n tugun va yo‘naltirilmagan qirralar ro‘yxati berilgan. Grafdagi bog‘lanish komponentalari sonini qaytaring.",
+    "followUp": "n komponentadan boshlab, har muvaffaqiyatli birlashtirish uchun bittadan ayiring.",
+    "constraints": ["1 <= n <= 2000", "1 <= edges.length <= 5000", "Takroriy qirra va halqa yo‘q"]
+  },
+  "091": {
+    "title": "Graf daraxtmi",
+    "pattern": "Aynan n - 1 qirra, to‘liq bog‘lanish, siklsizlik",
+    "statement": "0 dan n - 1 gacha raqamlangan n tugun va yo‘naltirilmagan qirralar ro‘yxati berilgan. Graf to‘g‘ri daraxt bo‘lsa — bog‘langan va siklsiz bo‘lsa — true qaytaring.",
+    "followUp": "Ikkita arzon tekshiruv hech narsani aylanmasdan ishni hal qiladi. Ular qanday tekshiruvlar?",
+    "constraints": ["1 <= n <= 2000", "0 <= edges.length <= 5000", "Halqa va takroriy qirra yo‘q"]
+  },
+  "092": {
+    "title": "So‘zlar zinapoyasi",
+    "pattern": "So‘zlar bo‘ylab kenglik bo‘yicha aylanish, qo‘shnilar shablonlar orqali hosil qilinadi",
+    "statement": "beginWord, endWord va wordList lug‘ati berilgan. O‘zgartirishlar ketma-ketligi har qadamda bitta harfni almashtiradi, va har bir oraliq so‘z wordList da bo‘lishi shart. beginWord dan endWord gacha eng qisqa shunday ketma-ketlikdagi so‘zlar sonini, ikki chetini ham sanab, mavjud bo‘lmasa 0 qaytaring. beginWord wordList da bo‘lishi shart emas.",
+    "followUp": "Har so‘z juftini solishtirish kvadratik vaqt oladi. Uning o‘rniga h*t ko‘rinishidagi shablonlar bo‘yicha chelaklarga taqsimlang.",
+    "constraints": ["1 <= beginWord.length <= 10 va endWord.length === beginWord.length", "1 <= wordList.length <= 5000", "Hamma so‘z kichik harfda, bir xil uzunlikda va takrorlanmas"]
+  }
+}
