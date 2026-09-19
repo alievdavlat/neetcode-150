@@ -1,0 +1,57 @@
+{
+  "122": {
+    "title": "Maksimal qism massiv",
+    "pattern": "Kadane: prefiks manfiyga aylangan zahoti uni tashlab yuborish",
+    "statement": "nums butun sonlar massivi berilgan. Ketma-ket turgan istalgan bo‘sh bo‘lmagan qism massivning eng katta yig‘indisini qaytaring.",
+    "followUp": "Bo‘lib tashlab yechish usulida O(n log n) yechim ham bor — uni bir marta sinab ko‘ring.",
+    "constraints": ["1 <= nums.length <= 10^5", "-10^4 <= nums[i] <= 10^4"]
+  },
+  "123": {
+    "title": "Sakrash o‘yini",
+    "pattern": "Eng uzoq yetib boriladigan indeksni kuzatish (yoki maqsadni orqaga yurgizish)",
+    "statement": "nums[i] — i indeksidan sakrashning eng katta uzunligi. 0 indeksidan boshlab, oxirgi indeksga yetib bora olasizmi yoki yo‘qmi qaytaring.",
+    "followUp": "Maqsadni chapga surish — bosim ostida esingizda qoladigan versiya aynan shu.",
+    "constraints": ["1 <= nums.length <= 10^4", "0 <= nums[i] <= 10^5"]
+  },
+  "124": {
+    "title": "Sakrash o‘yini II",
+    "pattern": "Indeks diapazonlari bo‘ylab kenglik bo‘yicha bosqichma-bosqich kengayish",
+    "statement": "Sakrash qoidalari o‘sha-o‘sha, lekin endi oxirgi indeksga har doim yetib borish mumkin. Unga yetib borish uchun kerak bo‘ladigan eng kichik sakrashlar sonini qaytaring.",
+    "followUp": "Har bir sakrashlar sonini indekslarning ketma-ket oynasini qoplaydigan kenglik bosqichi deb qarang.",
+    "constraints": ["1 <= nums.length <= 10^4", "0 <= nums[i] <= 1000", "Oxirgi indeksga har doim yetib borish mumkin"]
+  },
+  "125": {
+    "title": "Yoqilg‘i shoxobchasi",
+    "pattern": "Umumiy bajarilish tekshiruvi + kamomad bo‘lganda startni qaytadan belgilash",
+    "statement": "Aylanma yo‘lda n ta yoqilg‘i shoxobchasi bor; i shoxobchasida gas[i] yoqilg‘i bor, va i shoxobchasidan keyingisiga borish cost[i] turadi. Bakni bo‘sh holda boshlab, butun aylanani bosib o‘tish mumkin bo‘lgan yagona shoxobchaning indeksini, mos keladigani bo‘lmasa -1 qaytaring.",
+    "followUp": "Bakdagi joriy qoldiq j shoxobchasida manfiyga tushsa, eski start bilan j orasidagi hech bir shoxobcha ham mos kelmaydi. Buni isbotlang — shunda sikl bitta o‘tishga aylanadi.",
+    "constraints": ["n === gas.length === cost.length va 1 <= n <= 10^5", "0 <= gas[i], cost[i] <= 10^4", "Javob, mavjud bo‘lganda, yagona"]
+  },
+  "126": {
+    "title": "Ketma-ket kartalar guruhlari",
+    "pattern": "Sanoq jadvali, guruhni har doim eng kichik qolgan kartadan boshlash",
+    "statement": "Butun sonli kartalar qo‘li va guruh o‘lchami berilgan. Qo‘lni to‘liq, aynan groupSize ta ketma-ket kartadan iborat guruhlarga bo‘lish mumkinmi yoki yo‘qmi aniqlang.",
+    "followUp": "Eng kichik qolgan kartaning qaysi guruhga qo‘shilishida tanlov yo‘q.",
+    "constraints": ["1 <= hand.length <= 10^4", "0 <= hand[i] <= 10^9", "1 <= groupSize <= hand.length"]
+  },
+  "127": {
+    "title": "Uchliklarni birlashtirib maqsad uchlikni hosil qilish",
+    "pattern": "Maqsaddan oshib ketgan uchlikni e’tiborga olmay, keyin qoplanishni tekshirish",
+    "statement": "Birlashtirish ikki uchlikni ularning elementma-element maksimumiga almashtiradi. Uchliklar ro‘yxati va maqsad uchlik berilgan — takroriy birlashtirishlar maqsadni hosil qila oladimi yoki yo‘qmi qaytaring. Birlashtirish majburiy emas va istalgan uchliklarga istalgancha marta qo‘llanishi mumkin.",
+    "followUp": "Biror qiymati maqsaddan katta bo‘lgan uchlik hech qachon ishlatilmaydi. Nimani tekshirish qoladi?",
+    "constraints": ["1 <= triplets.length <= 10^5", "1 <= uchliklar qiymatlari va target qiymatlari <= 1000"]
+  },
+  "128": {
+    "title": "Satrni harflar bo‘yicha bo‘lish",
+    "pattern": "Oxirgi indekslar jadvali + joriy bo‘lakning oxirini cho‘zish",
+    "statement": "Satrni har bir harf ko‘pi bilan bitta bo‘lakda uchraydigan qilib, imkon qadar ko‘p bo‘lakka bo‘ling. Bo‘laklarni tartib bilan ulash asl satrni qaytadan hosil qilishi kerak. Bo‘laklarning o‘lchamlarini qaytaring.",
+    "constraints": ["1 <= s.length <= 500", "s kichik lotin harflaridan iborat"]
+  },
+  "129": {
+    "title": "To‘g‘ri qavsli satr",
+    "pattern": "Yetib boriladigan [minOpen, maxOpen] diapazonini kuzatish",
+    "statement": "Satr ( ) va * belgilaridan iborat, bunda * ochuvchi qavs, yopuvchi qavs yoki bo‘sh satr vazifasini bajarishi mumkin. Biror talqin satrni to‘g‘ri qavslar ketma-ketligiga aylantiradimi yoki yo‘qmi qaytaring.",
+    "followUp": "Bitta ochiq qavslar sanagichi o‘rniga hali ham mumkin bo‘lgan eng kichik va eng katta ochiq qavslar sonini olib yuring.",
+    "constraints": ["1 <= s.length <= 100", "s faqat ( ) va * belgilaridan iborat"]
+  }
+}
