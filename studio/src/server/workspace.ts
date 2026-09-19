@@ -9,7 +9,7 @@ const BUNDLE_ROOT = path.resolve(process.cwd(), '..');
 const SERVERLESS_ROOT = '/tmp/neetcode-workspace';
 
 /** Everything a request may read or write, beside the numbered problem folders. */
-const MIRRORED = ['shared', 'tests', '_gen', 'package.json', 'studio/bridge', 'studio/collections'];
+const MIRRORED = ['shared', 'tests', '_gen', 'package.json', 'tsconfig.json', 'studio/bridge', 'studio/collections'];
 
 /**
  * A serverless filesystem is read-only outside /tmp, so saving a solution,
@@ -31,6 +31,15 @@ function mirrorIntoTmp(): string {
   }
 
   mkdirSync(path.join(SERVERLESS_ROOT, 'studio', '.studio'), { recursive: true });
+
+  // The workspace tsconfig asks for the node types, and tsc looks for them in a
+  // node_modules beside the config it reads - which is this copy, not the one
+  // the studio was installed with.
+  const nodeTypes = path.join(process.cwd(), 'node_modules', '@types', 'node');
+  if (existsSync(nodeTypes)) {
+    cpSync(nodeTypes, path.join(SERVERLESS_ROOT, 'node_modules', '@types', 'node'), { recursive: true });
+  }
+
   writeFileSync(marker, '');
   return SERVERLESS_ROOT;
 }

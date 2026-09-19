@@ -1,9 +1,16 @@
 import { spawn } from 'node:child_process';
+import { existsSync } from 'node:fs';
 import path from 'node:path';
 import type { TypeMarker } from '@/lib/types';
 import { WORKSPACE_ROOT } from './workspace';
 
-const TSC = path.join(WORKSPACE_ROOT, 'node_modules', 'typescript', 'bin', 'tsc');
+const tscIn = (root: string) => path.join(root, 'node_modules', 'typescript', 'bin', 'tsc');
+
+/**
+ * The compiler comes from the workspace when its dev dependencies are installed
+ * and from the studio's own otherwise - a deployment installs only the studio's.
+ */
+const TSC = [tscIn(WORKSPACE_ROOT), tscIn(process.cwd())].find(existsSync) ?? tscIn(WORKSPACE_ROOT);
 const LINE = /^(.+?)\((\d+),(\d+)\): error (TS\d+): (.*)$/;
 const TIMEOUT_MS = 60000;
 

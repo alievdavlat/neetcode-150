@@ -13,8 +13,13 @@ const WORKSPACE = [
   '../tests/**',
   '../_gen/**',
   '../package.json',
+  '../tsconfig.json',
   './bridge/**',
   './collections/**',
+  // The typecheck endpoint shells out to tsc, which no import reaches either.
+  './node_modules/typescript/bin/**',
+  './node_modules/typescript/lib/**',
+  './node_modules/@types/node/**',
 ];
 
 const nextConfig: NextConfig = {
