@@ -23,6 +23,7 @@ import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { PanelNotice } from './panel-notice';
 import { TraceExpression } from './trace-expression';
 import { TraceStage } from './trace-stage';
@@ -52,9 +53,12 @@ interface TracePanelProps {
 }
 
 const PLAY_MS = 700;
-const SPEEDS = [1, 2, 4, 0.5];
+const SPEEDS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2, 4];
 const SPEED_KEY = 'neetcode-studio:play-speed';
 const COLUMNS = 240;
+
+/** `1` is the speed the replay was written at, so it reads as a word, not a number. */
+const speedLabel = (value: number) => (value === 1 ? 'Normal' : `${value}×`);
 
 const CHIP = 'rounded-full border px-2 py-0.5 font-mono text-[10px] transition-colors';
 
@@ -89,6 +93,7 @@ export function TracePanel({
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [speed, setSpeed] = useState(1);
+  const [speedOpen, setSpeedOpen] = useState(false);
   const [watching, setWatching] = useState<string | null>(null);
   const [only, setOnly] = useState<string | null>(null);
   const [editing, setEditing] = useState(false);
@@ -180,10 +185,10 @@ export function TracePanel({
     if (SPEEDS.includes(stored)) setSpeed(stored);
   }, []);
 
-  const cycleSpeed = () => {
-    const next = SPEEDS[(SPEEDS.indexOf(speed) + 1) % SPEEDS.length];
+  const pickSpeed = (next: number) => {
     window.localStorage.setItem(SPEED_KEY, String(next));
     setSpeed(next);
+    setSpeedOpen(false);
   };
 
   useEffect(() => {
@@ -214,7 +219,14 @@ export function TracePanel({
     if (jumpLine) jumpTo(jumpLine.line);
   }, [jumpLine, jumpTo]);
 
+  /**
+   * The speed menu is portalled, but a portal still bubbles through the React
+   * tree, so its own space and arrow keys would reach the transport and step the
+   * replay behind the open menu.
+   */
   const handleKeys = (event: React.KeyboardEvent) => {
+    if (speedOpen) return;
+
     if (event.key === 'ArrowLeft') setIndex(seek(index, -1));
     else if (event.key === 'ArrowRight') setIndex(seek(index, 1));
     else if (event.key === ' ') setPlaying((on) => !on);
@@ -512,16 +524,41 @@ export function TracePanel({
         </span>
       )}
 
-      <Button
-        variant="ghost"
-        size="xs"
-        aria-label={`playback speed ${speed} times`}
-        title={`Playback speed ${speed}× - click to cycle`}
-        onClick={cycleSpeed}
-        className="font-mono text-[10px] text-muted-foreground"
-      >
-        {speed}&times;
-      </Button>
+      <Popover open={speedOpen} onOpenChange={setSpeedOpen}>
+        <PopoverTrigger asChild>
+          <Button
+            variant="ghost"
+            size="xs"
+            aria-label={`playback speed, ${speedLabel(speed)}`}
+            title="Playback speed"
+            className="font-mono text-[10px] text-muted-foreground"
+          >
+            {speed}&times;
+          </Button>
+        </PopoverTrigger>
+
+        <PopoverContent side="top" align="end" className="w-28 p-1">
+          <p className="px-2 pb-1 pt-0.5 text-[10px] uppercase tracking-wide text-muted-foreground">Speed</p>
+
+          {SPEEDS.map((value) => (
+            <button
+              key={value}
+              type="button"
+              aria-current={value === speed}
+              onClick={() => pickSpeed(value)}
+              className={cn(
+                'flex w-full items-center gap-1.5 rounded-lg px-2 py-1 text-left font-mono text-[11px] transition-colors',
+                value === speed
+                  ? 'bg-primary/10 text-primary'
+                  : 'text-muted-foreground hover:bg-line/50 hover:text-foreground',
+              )}
+            >
+              <Check className={cn('size-3 shrink-0', value === speed ? 'opacity-100' : 'opacity-0')} />
+              {speedLabel(value)}
+            </button>
+          ))}
+        </PopoverContent>
+      </Popover>
 
       {watching && (
         <button
