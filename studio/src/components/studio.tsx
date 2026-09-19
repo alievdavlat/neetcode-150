@@ -917,6 +917,7 @@ ${line}
               statuses={statuses}
               activeNumber={active.number}
               locked={settings.strictMode && session !== null}
+              initialTag={search.get('tag')}
               runningCategory={runningCategory}
               onSelect={handleSelect}
               onRunCategory={handleRunCategory}

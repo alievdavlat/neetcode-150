@@ -18,6 +18,8 @@ interface ProblemRailProps {
   activeNumber: string;
   /** Strict mode: the open problem is the only one that opens. */
   locked: boolean;
+  /** A topic the board was opened on, so a pick made on the home page survives. */
+  initialTag?: string | null;
   runningCategory: string | null;
   onSelect: (number: string) => void;
   onRunCategory: (dir: string) => void;
@@ -41,6 +43,7 @@ export function ProblemRail({
   statuses,
   activeNumber,
   locked,
+  initialTag = null,
   runningCategory,
   onSelect,
   onRunCategory,
@@ -49,7 +52,7 @@ export function ProblemRail({
   const [difficulty, setDifficulty] = useState<Difficulty | null>(null);
   const [state, setState] = useState<ProblemState | null>(null);
   const [dueOnly, setDueOnly] = useState(false);
-  const [tag, setTag] = useState<string | null>(null);
+  const [tag, setTag] = useState<string | null>(initialTag);
   const [shown, setShown] = useState(PAGE);
 
   const filtering = Boolean(query || difficulty || state || dueOnly || tag);

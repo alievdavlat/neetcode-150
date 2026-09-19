@@ -195,7 +195,17 @@ export function Home({ problems, statuses, boards, companies, courses, activity,
 
       {results.length > RESULT_LIMIT && (
         <p className="px-3 pt-2 text-[11px] text-muted-foreground">
-          and {results.length - RESULT_LIMIT} more — open the board to see them all
+          and {results.length - RESULT_LIMIT} more —{' '}
+          {source === 'topics' ? (
+            <Link
+              href={`/c/${ALL_BOARD}?tag=${encodeURIComponent(picked ?? '')}`}
+              className="text-foreground underline decoration-line underline-offset-2 transition-colors hover:decoration-primary"
+            >
+              open the board filtered to {picked}
+            </Link>
+          ) : (
+            'open the board to see them all'
+          )}
         </p>
       )}
     </section>
