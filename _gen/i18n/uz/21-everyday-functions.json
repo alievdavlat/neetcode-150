@@ -1,11 +1,11 @@
 {
   "1001": {
-    "title": "Minimal narxli yo‘lni topish",
+    "title": "(0, 0) dan (m, n) ga minimal narxli yo‘lni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan narxlar matritsasi cost[][] va cost[][] dagi (m, n) pozitsiyasi uchun (0, 0) dan (m, n) ga minimal narxli yo‘lni topadigan funksiya yozing."
   },
   "1002": {
-    "title": "Bir xil elementlarni topish",
+    "title": "Berilgan ikki kortejlar ro‘yxatidan bir xil elementlarni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ikki kortejlar ro‘yxatidan bir xil elementlarni topadigan funksiya yozing."
   },
@@ -15,27 +15,27 @@
     "statement": "Tub bo‘lmagan sonlarni aniqlaydigan funksiya yozing."
   },
   "1004": {
-    "title": "Berilgan ro‘yxatdagi eng katta butun sonlarni topish",
+    "title": "Berilgan sonlar ro‘yxatidan eng katta butun sonlarni uyum navbati algoritmi yordamida topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonlar ro‘yxatidan eng katta butun sonlarni uyum navbati algoritmi yordamida topadigan funksiya yozing."
   },
   "1005": {
-    "title": "To‘ldirish usullari soni",
+    "title": "Berilgan 3 x n taxtani 2 x 1 domino toshlari bilan to‘ldirish usullari soni",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan 3 x n taxtani 2 x 1 domino toshlari bilan to‘ldirish usullari sonini topadigan funksiya yozing."
   },
   "1006": {
-    "title": "Ikki son farq qilishini tekshirish",
+    "title": "Ikki son faqat bitta bit pozitsiyasida farq qilishini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ikki son faqat bitta bit pozitsiyasida farq qilishini tekshiradigan funksiya yozing."
   },
   "1007": {
-    "title": "Barcha so‘zlarni topish",
+    "title": "Satrdagi kamida 4 belgili barcha so‘zlarni regulyar ifoda yordamida topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Satrda kamida 4 belgidan iborat barcha so‘zlarni regulyar ifoda yordamida topadigan funksiya yozing."
   },
   "1009": {
-    "title": "Minimal siklik siljishlar soni",
+    "title": "Xuddi shu satrni olish uchun kerak bo‘lgan minimal siklik siljishlar soni",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Xuddi shu satrni olish uchun kerak bo‘lgan minimal siklik siljishlar sonini topadigan funksiya yozing."
   },
@@ -45,12 +45,12 @@
     "statement": "Ma’lumotlar to‘plamidan n ta eng kichik elementni oladigan funksiya yozing."
   },
   "1011": {
-    "title": "Birinchi va oxirgi uchrashni olib tashlash",
+    "title": "Satrdan berilgan belgining birinchi va oxirgi uchrashini olib tashlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Satrdan berilgan belgining birinchi va oxirgi uchrashini olib tashlaydigan funksiya yozing."
   },
   "1012": {
-    "title": "Berilgan matritsani o‘sish tartibida saralash",
+    "title": "Berilgan matritsani satrlari yig‘indisi bo‘yicha o‘sish tartibida saralash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan matritsani satrlari yig‘indisi bo‘yicha o‘sish tartibida saralaydigan funksiya yozing."
   },
@@ -65,7 +65,7 @@
     "statement": "Satrni kichik harflar bo‘yicha bo‘ladigan funksiya yozing."
   },
   "1016": {
-    "title": "Kichik harflar ketma-ketliklarini topish",
+    "title": "Pastki chiziq bilan birlashtirilgan kichik harflar ketma-ketliklarini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Pastki chiziq bilan birlashtirilgan kichik harflar ketma-ketliklarini topadigan funksiya yozing."
   },
@@ -75,7 +75,7 @@
     "statement": "Kvadrat perimetrini topadigan funksiya yozing."
   },
   "1018": {
-    "title": "Birinchi satrdan belgilarni olib tashlash",
+    "title": "Birinchi satrdan ikkinchi satrda mavjud belgilarni olib tashlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Birinchi satrdan ikkinchi satrda mavjud bo‘lgan belgilarni olib tashlaydigan funksiya yozing."
   },
@@ -90,22 +90,22 @@
     "statement": "n sonining m ta karralisini topadigan funksiya yozing."
   },
   "1023": {
-    "title": "Ro‘yxat elementlarining maksimal yig‘indisi",
+    "title": "Ro‘yxatlar ro‘yxatidagi ro‘yxat elementlarining maksimal yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ro‘yxatlar ro‘yxatidagi ro‘yxat elementlarining maksimal yig‘indisini topadigan funksiya yozing."
   },
   "1024": {
-    "title": "Berilgan ikkilik sonni o‘girish",
+    "title": "Berilgan ikkilik sonni o‘nlik ekvivalentiga o‘girish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ikkilik sonni o‘nlik ekvivalentiga o‘giradigan funksiya yozing."
   },
   "1025": {
-    "title": "Takrorlanmaydigan elementlar ko‘paytmasi",
+    "title": "Berilgan massivdagi takrorlanmaydigan elementlar ko‘paytmasi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivdagi takrorlanmaydigan elementlarning ko‘paytmasini topadigan funksiya yozing."
   },
   "1026": {
-    "title": "Berilgan kortejlar ro‘yxatini tekshirish",
+    "title": "Berilgan kortejlar ro‘yxatida barcha k element borligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejlar ro‘yxati barcha k elementni saqlashini tekshiradigan funksiya yozing."
   },
@@ -125,17 +125,17 @@
     "statement": "Toq marta uchraydigan elementni topadigan funksiya yozing."
   },
   "1030": {
-    "title": "Barcha qism satrlarni sanash",
+    "title": "Bir xil belgilar bilan boshlanadigan va tugaydigan barcha qism satrlarni sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Bir xil belgilar bilan boshlanadigan va tugaydigan barcha qism satrlarni sanaydigan funksiya yozing."
   },
   "1031": {
-    "title": "Eng ko‘p uchraydigan k butun sonni topish",
+    "title": "Berilgan ro‘yxatlardan eng ko‘p uchraydigan k butun sonni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan saralangan va takrorlanmas butun sonlar ro‘yxatlaridan eng ko‘p uchraydigan k butun sonni uyum navbati algoritmi yordamida topadigan funksiya yozing."
   },
   "1032": {
-    "title": "Eng katta tub bo‘luvchi",
+    "title": "Berilgan sonning eng katta tub bo‘luvchisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonning eng katta tub bo‘luvchisini topadigan funksiya yozing."
   },
@@ -155,17 +155,17 @@
     "statement": "n-chi to‘rtburchakli sonni topadigan funksiya yozing."
   },
   "1036": {
-    "title": "To‘g‘ri kasrning n-chi raqami",
+    "title": "Berilgan ikki sonning to‘g‘ri kasridagi n-chi raqam",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ikki sonning to‘g‘ri kasridagi n-chi raqamni topadigan funksiya yozing."
   },
   "1038": {
-    "title": "Birinchi juft va toqni bo‘lish",
+    "title": "Berilgan ro‘yxatning birinchi juft va birinchi toq sonini bo‘lish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatning birinchi juft va birinchi toq sonini bo‘lish natijasini topadigan funksiya yozing."
   },
   "1039": {
-    "title": "Berilgan satr harflarini tekshirish",
+    "title": "Satr harflarini qo‘shnilari bir xil bo‘lmaydigan qilib qayta joylash mumkinligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satr harflarini har qanday ikki qo‘shni belgi turlicha bo‘ladigan tarzda qayta joylash mumkinligini tekshiradigan funksiya yozing."
   },
@@ -175,17 +175,17 @@
     "statement": "Juft sonlarni lambda funksiya yordamida filtrlaydigan funksiya yozing."
   },
   "1042": {
-    "title": "Takrorlanadigan elementlar yig‘indisi",
+    "title": "Berilgan massivdagi takrorlanadigan elementlar yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivdagi takrorlanadigan elementlarning yig‘indisini topadigan funksiya yozing."
   },
   "1043": {
-    "title": "Kichik harflar ketma-ketliklarini topish",
+    "title": "Pastki chiziq bilan birlashtirilgan kichik harflar ketma-ketliklarini regulyar ifoda yordamida topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Pastki chiziq bilan birlashtirilgan kichik harflar ketma-ketliklarini regulyar ifoda yordamida topadigan funksiya yozing."
   },
   "1044": {
-    "title": "Boshida so‘zni moslashtirish",
+    "title": "Satr boshida so‘zni moslashtirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Satr boshida so‘zni moslashtiradigan funksiya yozing."
   },
@@ -195,12 +195,12 @@
     "statement": "Berilgan massiv elementlarining eng katta umumiy bo‘luvchisini topadigan funksiya yozing."
   },
   "1046": {
-    "title": "Barcha sonlar turlicha ekanini tekshirish",
+    "title": "Barcha sonlar bir-biridan farq qilishini aniqlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Barcha sonlar bir-biridan farq qilishini aniqlaydigan funksiya yozing."
   },
   "1047": {
-    "title": "Oxirgi raqam",
+    "title": "b faktoriali a faktorialiga bo‘linganda oxirgi raqam",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "b faktorialini a faktorialiga bo‘lish natijasining oxirgi raqamini topadigan funksiya yozing."
   },
@@ -210,7 +210,7 @@
     "statement": "Berilgan sonning barcha toq bitlarini o‘rnatadigan funksiya yozing."
   },
   "1049": {
-    "title": "Har bir birinchi yoki ko‘rsatilgan elementni ajratib olish",
+    "title": "Berilgan ikki o‘lchovli ro‘yxatdan har bir birinchi yoki ko‘rsatilgan elementni ajratib olish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ikki o‘lchovli ro‘yxatdan har bir birinchi yoki ko‘rsatilgan elementni ajratib oladigan funksiya yozing."
   },
@@ -225,7 +225,7 @@
     "statement": "Parallelogramm yuzasini hisoblaydigan funksiya yozing."
   },
   "1053": {
-    "title": "Birinchi va oxirgi belgilarni tekshirish",
+    "title": "Berilgan satrning birinchi va oxirgi belgilari tengligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrning birinchi va oxirgi belgilari teng ekanini tekshiradigan funksiya yozing."
   },
@@ -240,17 +240,17 @@
     "statement": "Geometrik progressiyaning n-chi hadini topadigan funksiya yozing."
   },
   "1056": {
-    "title": "Berilgan sonni tekshirish",
+    "title": "Berilgan son teskari yozilganining ikki barobaridan bir kam ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan son teskari yozilgan sonining ikki barobaridan bir kam ekanini tekshiradigan funksiya yozing."
   },
   "1057": {
-    "title": "Tuzish mumkin bo‘lgan eng katta son",
+    "title": "Berilgan raqamlardan tuzish mumkin bo‘lgan eng katta son",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan raqamlardan tuzish mumkin bo‘lgan eng katta sonni topadigan funksiya yozing."
   },
   "1058": {
-    "title": "Berilgan ikki butun sonni tekshirish",
+    "title": "Berilgan ikki butun son qarama-qarshi ishorali ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ikki butun son qarama-qarshi ishorali ekanini tekshiradigan funksiya yozing."
   },
@@ -260,12 +260,12 @@
     "statement": "n-chi sakkizburchakli sonni topadigan funksiya yozing."
   },
   "1060": {
-    "title": "Qism ketma-ketlikning maksimal uzunligi",
+    "title": "Qo‘shni elementlari orasida farq bo‘lgan eng uzun qism ketma-ketlikni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massiv uchun qo‘shni elementlar orasidagi farqi bo‘lgan qism ketma-ketlikning maksimal uzunligini topadigan funksiya yozing."
   },
   "1061": {
-    "title": "Qism satrlarni sanash",
+    "title": "Raqamlari yig‘indisi uzunligiga teng qism satrlar sonini sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Raqamlari yig‘indisi uzunligiga teng bo‘lgan qism satrlar sonini sanaydigan funksiya yozing."
   },
@@ -275,7 +275,7 @@
     "statement": "Ro‘yxatdagi eng kichik sonni topadigan funksiya yozing."
   },
   "1063": {
-    "title": "Mavjud juftliklar orasidagi maksimal farq",
+    "title": "Berilgan kortejlar ro‘yxatidagi mavjud juftliklar orasidagi maksimal farq",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejlar ro‘yxatidagi mavjud juftliklar orasidagi maksimal farqni topadigan funksiya yozing."
   },
@@ -285,7 +285,7 @@
     "statement": "Ro‘yxatdagi musbat sonlarni sanaydigan funksiya yozing."
   },
   "1067": {
-    "title": "Bo‘lish usullari soni",
+    "title": "To‘plamni bo‘lish usullari soni (Bell sonlari)",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "To‘plamni bo‘lish usullari sonini (Bell sonlari) topadigan funksiya yozing."
   },
@@ -300,7 +300,7 @@
     "statement": "Ro‘yxat berilgan qism ro‘yxatni saqlashini tekshiradigan funksiya yozing."
   },
   "1070": {
-    "title": "Barcha berilgan kortejlarni tekshirish",
+    "title": "Barcha berilgan kortejlar bir xil uzunlikka ega ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Barcha berilgan kortejlar bir xil uzunlikka ega ekanini aniqlaydigan funksiya yozing."
   },
@@ -310,22 +310,22 @@
     "statement": "Elementlar ro‘yxatini taroqli saralash usulida saralaydigan funksiya yozing."
   },
   "1072": {
-    "title": "Berilgan sonni ifodalash mumkinligini tekshirish",
+    "title": "Berilgan sonni ikki kvadrat ayirmasi sifatida ifodalash mumkinligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonni ikki kvadratning ayirmasi sifatida ifodalash mumkinligini tekshiradigan funksiya yozing."
   },
   "1073": {
-    "title": "Berilgan satrni bir nechta ajratuvchi bo‘yicha bo‘lish",
+    "title": "Berilgan satrni bir nechta ajratuvchi bo‘yicha regulyar ifoda yordamida bo‘lish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrni bir nechta ajratuvchi bo‘yicha regulyar ifoda yordamida bo‘ladigan funksiya yozing."
   },
   "1074": {
-    "title": "Ketma-ketlikka mos kelishini tekshirish",
+    "title": "patterns massivida berilgan ketma-ketlikka mos kelishini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "patterns massivida berilgan ketma-ketlikka mos kelishini tekshiradigan funksiya yozing."
   },
   "1075": {
-    "title": "Bo‘linadigan elementli kortejlarni topish",
+    "title": "Berilgan kortejlar ro‘yxatidan barcha elementlari k ga bo‘linadigan kortejlarni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejlar ro‘yxatidan barcha elementlari k ga bo‘linadigan kortejlarni topadigan funksiya yozing."
   },
@@ -335,17 +335,17 @@
     "statement": "To‘rtburchak ichidagi kvadratlar sonini sanaydigan funksiya yozing."
   },
   "1077": {
-    "title": "Yig‘indilar ayirmasi",
+    "title": "Juft va toq raqamlar yig‘indilari ayirmasi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Juft va toq raqamlar yig‘indilari orasidagi ayirmani topadigan funksiya yozing."
   },
   "1078": {
-    "title": "Butun sonlar soni",
+    "title": "Toq sonda o‘rnatilgan bitga ega butun sonlar soni",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Toq sonda o‘rnatilgan bitga ega butun sonlar sonini topadigan funksiya yozing."
   },
   "1079": {
-    "title": "So‘z uzunligini tekshirish",
+    "title": "So‘z uzunligi toq ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "So‘z uzunligi toq ekanini tekshiradigan funksiya yozing."
   },
@@ -365,7 +365,7 @@
     "statement": "Shar hajmini topadigan funksiya yozing."
   },
   "1083": {
-    "title": "Qo‘shish natijasida olingan belgi",
+    "title": "Berilgan satrning barcha belgilarini qo‘shish natijasida olingan belgi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrning barcha belgilarini qo‘shish natijasida olingan belgini topadigan funksiya yozing."
   },
@@ -400,7 +400,7 @@
     "statement": "Eng uzun so‘zning uzunligini topadigan funksiya yozing."
   },
   "1091": {
-    "title": "Qism satr mavjudligini tekshirish",
+    "title": "Berilgan satr qiymatlari ro‘yxatida qism satr mavjudligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satr qiymatlari ro‘yxatida qism satr mavjudligini tekshiradigan funksiya yozing."
   },
@@ -410,7 +410,7 @@
     "statement": "Berilgan son to‘lqinsimon ekanini tekshiradigan funksiya yozing."
   },
   "1093": {
-    "title": "'a' ni darajaga ko‘tarish",
+    "title": "'a' ning 'b' darajasidagi qiymatini hisoblash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "'a' ni 'b' darajasiga ko‘tarib qiymatini hisoblaydigan funksiya yozing."
   },
@@ -420,7 +420,7 @@
     "statement": "Qism ro‘yxatning minimal uzunligini topadigan funksiya yozing."
   },
   "1096": {
-    "title": "Bo‘luvchilar soni",
+    "title": "Berilgan butun sonning bo‘luvchilari soni",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan butun sonning bo‘luvchilari sonini topadigan funksiya yozing."
   },
@@ -430,17 +430,17 @@
     "statement": "Ro‘yxatlar ro‘yxatidagi uchrash chastotasini topadigan funksiya yozing."
   },
   "1098": {
-    "title": "Ro‘yxatdagi barcha sonlarni ko‘paytirish",
+    "title": "Ro‘yxatdagi barcha sonlarni ko‘paytirib, ro‘yxat uzunligiga bo‘lish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ro‘yxatdagi barcha sonlarni ko‘paytirib, natijani ro‘yxat uzunligiga bo‘ladigan funksiya yozing."
   },
   "1099": {
-    "title": "Berilgan o‘nlik sonni o‘girish",
+    "title": "Berilgan o‘nlik sonni ikkilik ekvivalentiga o‘girish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan o‘nlik sonni ikkilik ekvivalentiga o‘giradigan funksiya yozing."
   },
   "1100": {
-    "title": "Keyingi eng kichik palindrom",
+    "title": "Ko‘rsatilgan sonning keyingi eng kichik palindromi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ko‘rsatilgan son uchun keyingi eng kichik palindromni topadigan funksiya yozing."
   },
@@ -455,7 +455,7 @@
     "statement": "Eyler soni a(n, m) ni topadigan funksiya yozing."
   },
   "1104": {
-    "title": "Har bir satrlar qism ro‘yxatini saralash",
+    "title": "Berilgan ro‘yxatlar ro‘yxatidagi har bir satrlar qism ro‘yxatini lambda funksiya yordamida saralash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatlar ro‘yxatidagi har bir satrlar qism ro‘yxatini lambda funksiya yordamida saralaydigan funksiya yozing."
   },
@@ -475,22 +475,22 @@
     "statement": "Berilgan oraliqdagi o‘n oltilik sonlarni sanaydigan funksiya yozing."
   },
   "1108": {
-    "title": "Bir nechta saralangan kirishni birlashtirish",
+    "title": "Bir nechta saralangan kirishni uyum navbati algoritmi yordamida bitta saralangan iteratorga birlashtirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Bir nechta saralangan kirishni uyum navbati algoritmi yordamida bitta saralangan iteratorga birlashtiradigan funksiya yozing."
   },
   "1109": {
-    "title": "Siklik siljishlar soni",
+    "title": "Toq qiymatli ikkilik satrning siklik siljishlari soni",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Toq qiymatga ega ikkilik satrning siklik siljishlari sonini topadigan funksiya yozing."
   },
   "1110": {
-    "title": "Yetishmayotgan oraliqlarni ajratib olish",
+    "title": "Berilgan ro‘yxatda yetishmayotgan oraliqlarni ajratib olish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan boshlanish va tugash oralig‘i qiymatlari bilan berilgan ro‘yxatda yetishmayotgan oraliqlarni ajratib oladigan funksiya yozing."
   },
   "1111": {
-    "title": "Ichma-ich ro‘yxatlardagi umumiy elementlarni topish",
+    "title": "Berilgan ichma-ich ro‘yxatlardagi umumiy elementlarni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ichma-ich ro‘yxatlardagi umumiy elementlarni topadigan funksiya yozing."
   },
@@ -505,37 +505,37 @@
     "statement": "Satr butun sonni ifodalashini tekshiradigan funksiya yozing."
   },
   "1114": {
-    "title": "Har bir kortejga chastota berish",
+    "title": "Berilgan kortejlar ro‘yxatidagi har bir kortejga chastota berish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejlar ro‘yxatidagi har bir kortejga chastota beradigan funksiya yozing."
   },
   "1116": {
-    "title": "Berilgan musbat butun sonlar kortejini o‘girish",
+    "title": "Berilgan musbat butun sonlar kortejini butun songa o‘girish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan musbat butun sonlar kortejini butun songa o‘giradigan funksiya yozing."
   },
   "1117": {
-    "title": "Ro‘yxatdagi barcha o‘girish mumkin bo‘lgan elementlarni o‘girish",
+    "title": "Ro‘yxatdagi o‘girish mumkin bo‘lgan barcha elementlarni suzuvchi nuqtali songa o‘girish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ro‘yxatdagi o‘girish mumkin bo‘lgan barcha elementlarni suzuvchi nuqtali songa o‘giradigan funksiya yozing."
   },
   "1118": {
-    "title": "Funksiya",
+    "title": "Satrni ro‘yxatga o‘girish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Satrni ro‘yxatga o‘giradigan funksiya yozing."
   },
   "1119": {
-    "title": "Faqat bir marta uchraydigan elementni topish",
+    "title": "Saralangan massivda faqat bir marta uchraydigan elementni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Saralangan massivda faqat bir marta uchraydigan elementni topadigan funksiya yozing."
   },
   "1120": {
-    "title": "Juftliklardan eng katta ko‘paytmani topish",
+    "title": "Berilgan ro‘yxatdagi kortejlar juftliklaridan eng katta ko‘paytmani topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatdagi kortejlar juftliklaridan eng katta ko‘paytmani topadigan funksiya yozing."
   },
   "1121": {
-    "title": "Yig‘indiga ega uchlikni topish",
+    "title": "Berilgan massivda yig‘indiga ega uchlikni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivda yig‘indiga ega uchlikni topadigan funksiya yozing."
   },
@@ -545,27 +545,27 @@
     "statement": "n-chi aqlli sonni topadigan funksiya yozing."
   },
   "1123": {
-    "title": "Barcha do‘stona sonlar yig‘indisi",
+    "title": "1 dan ko‘rsatilgan songa qadar barcha do‘stona sonlar yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "1 dan ko‘rsatilgan songa qadar barcha do‘stona sonlarni yig‘adigan funksiya yozing."
   },
   "1125": {
-    "title": "Eng katta ayirmani topish",
+    "title": "Nollar soni va birlar soni orasidagi eng katta ayirmani topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ikkilik satrning har qanday qism satrida nollar soni va birlar soni orasidagi eng katta ayirmani topadigan funksiya yozing."
   },
   "1126": {
-    "title": "Umumiy bo‘luvchilar yig‘indisini topish",
+    "title": "Ikki berilgan sonning umumiy bo‘luvchilari yig‘indisini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ikki berilgan sonning umumiy bo‘luvchilari yig‘indisini topadigan funksiya yozing."
   },
   "1127": {
-    "title": "Ikki butun sonni * operatorisiz ko‘paytirish",
+    "title": "TypeScript-da * operatorisiz ikki butun sonni ko‘paytirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "TypeScript-da * operatoridan foydalanmasdan ikki butun sonni ko‘paytiradigan funksiya yozing."
   },
   "1128": {
-    "title": "n dan uzun so‘zlarni tanlash",
+    "title": "Berilgan so‘zlar ro‘yxatidan n dan uzun so‘zlarni tanlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan so‘zlar ro‘yxatidan n dan uzun so‘zlarni tanlab oladigan funksiya yozing."
   },
@@ -575,7 +575,7 @@
     "statement": "Magik kvadratni hisoblaydigan funksiya yozing."
   },
   "1130": {
-    "title": "Eng katta chastotali elementni topish",
+    "title": "Berilgan ro‘yxatda eng katta chastotali elementni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatda eng katta chastotali elementni topadigan funksiya yozing."
   },
@@ -590,12 +590,12 @@
     "statement": "Kortejni satrga o‘giradigan funksiya yozing."
   },
   "1133": {
-    "title": "Manfiy sonlar yig‘indisini hisoblash",
+    "title": "Berilgan sonlar ro‘yxatidagi manfiy sonlar yig‘indisini hisoblash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Lambda funksiya yordamida berilgan sonlar ro‘yxatidagi manfiy sonlar yig‘indisini hisoblaydigan funksiya yozing."
   },
   "1134": {
-    "title": "Berilgan massivning oxirgi elementini tekshirish",
+    "title": "Berilgan massivning oxirgi elementi juft yoki toq ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Operatsiya p marta bajarilgandan keyin berilgan massivning oxirgi elementi juft yoki toq ekanini tekshiradigan funksiya yozing."
   },
@@ -610,12 +610,12 @@
     "statement": "Elektr to‘lovini hisoblaydigan funksiya yozing."
   },
   "1137": {
-    "title": "Massivdagi nollar ulushini topish",
+    "title": "Butun sonlar massividagi nollar ulushini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Butun sonlar massividagi nollar ulushini topadigan funksiya yozing."
   },
   "1138": {
-    "title": "Berilgan sonni ifodalash mumkinligini tekshirish",
+    "title": "Berilgan sonni ikkining darajalari yig‘indisi sifatida ifodalash mumkinligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonni 2 ning nolga teng bo‘lmagan darajalari yig‘indisi sifatida ifodalash mumkinligini tekshiradigan funksiya yozing."
   },
@@ -625,7 +625,7 @@
     "statement": "Aylananing uzunligini topadigan funksiya yozing."
   },
   "1140": {
-    "title": "Bir marta uchraydigan elementlarni ajratib olish",
+    "title": "Berilgan kortejlar ro‘yxatidan bir marta uchraydigan elementlarni ajratib olish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejlar ro‘yxatidan bir marta uchraydigan elementlarni ajratib oladigan funksiya yozing."
   },
@@ -640,47 +640,47 @@
     "statement": "Uchta berilgan ro‘yxatdagi bir xil juftliklarni sanaydigan funksiya yozing."
   },
   "1143": {
-    "title": "Ro‘yxatlar sonini topish",
+    "title": "Berilgan kortejdagi ro‘yxatlar sonini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejdagi ro‘yxatlar sonini topadigan funksiya yozing."
   },
   "1144": {
-    "title": "Absolyut ayirmalar yig‘indisini topish",
+    "title": "Berilgan massivning barcha juftliklaridagi absolyut ayirmalar yig‘indisini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivning barcha juftliklaridagi absolyut ayirmalar yig‘indisini topadigan funksiya yozing."
   },
   "1145": {
-    "title": "Har qanday ikki element orasidagi eng katta ayirmani topish",
+    "title": "Berilgan massivdagi har qanday ikki element orasidagi eng katta ayirmani topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivdagi har qanday ikki element orasidagi eng katta ayirmani topadigan funksiya yozing."
   },
   "1146": {
-    "title": "Barcha belgilarning ascii qiymatini topish",
+    "title": "Satrdagi barcha belgilarning ascii qiymatini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Satrdagi barcha belgilarning ascii qiymatini topadigan funksiya yozing."
   },
   "1147": {
-    "title": "Yo‘lning eng katta yig‘indisini topish",
+    "title": "Berilgan uchburchakda yo‘lning eng katta yig‘indisini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan uchburchakda yo‘lning eng katta yig‘indisini topadigan funksiya yozing."
   },
   "1148": {
-    "title": "Sonni ikki qismga bo‘lish",
+    "title": "Sonni raqamlari yig‘indisi eng katta bo‘ladigan ikki qismga bo‘lish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Sonni raqamlari yig‘indisi eng katta bo‘ladigan tarzda ikki qismga bo‘ladigan funksiya yozing."
   },
   "1149": {
-    "title": "Eng uzun qism ketma-ketlikni topish",
+    "title": "Qo‘shni elementlari farqi bir bo‘lgan eng uzun qism ketma-ketlikni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massiv uchun qo‘shni elementlari orasidagi ayirma birga teng bo‘lgan eng uzun qism ketma-ketlikni topadigan funksiya yozing."
   },
   "1150": {
-    "title": "Berilgan sonning mavjudligini tekshirish",
+    "title": "Berilgan sonning cheksiz ketma-ketlikda mavjudligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan son cheksiz ketma-ketlikda mavjudligini tekshiradigan funksiya yozing."
   },
   "1151": {
-    "title": "Sonning o‘zaro tub ekanini tekshirish",
+    "title": "Berilgan sonning o‘zaro tub ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan son o‘zaro tub ekanini tekshiradigan funksiya yozing."
   },
@@ -695,7 +695,7 @@
     "statement": "Parabolaning uchini topadigan funksiya yozing."
   },
   "1154": {
-    "title": "Har bir ko‘rsatilgan elementni ajratib olish",
+    "title": "Berilgan ikki o‘lchovli ro‘yxatdan har bir ko‘rsatilgan elementni ajratib olish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ikki o‘lchovli ro‘yxatdan har bir ko‘rsatilgan elementni ajratib oladigan funksiya yozing."
   },
@@ -705,27 +705,27 @@
     "statement": "Berilgan sonning barcha juft bitlarini almashtiradigan funksiya yozing."
   },
   "1156": {
-    "title": "Satr qiymatlari kortejini o‘girish",
+    "title": "Satr qiymatlari kortejini butun sonlar kortejiga o‘girish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Satr qiymatlari kortejini butun sonlar kortejiga o‘giradigan funksiya yozing."
   },
   "1158": {
-    "title": "Kerak bo‘ladigan k operatsiya sonini topish",
+    "title": "Barcha elementlarni teng qilish uchun kerak bo‘ladigan k operatsiya sonini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Barcha elementlarni teng qilish uchun kerak bo‘ladigan k operatsiya sonini topadigan funksiya yozing."
   },
   "1159": {
-    "title": "Berilgan oy uchun faslni chiqarish",
+    "title": "Berilgan oy va kun uchun faslni chiqarish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan oy va kun uchun faslni chiqaradigan funksiya yozing."
   },
   "1161": {
-    "title": "Berilgan ro‘yxatdan barcha elementlarni olib tashlash",
+    "title": "Berilgan ro‘yxatdan boshqa ro‘yxatda mavjud barcha elementlarni olib tashlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatdan boshqa ro‘yxatda mavjud bo‘lgan barcha elementlarni olib tashlaydigan funksiya yozing."
   },
   "1162": {
-    "title": "Musbat butun sonlar yig‘indisini hisoblash",
+    "title": "Musbat butun sonlar n+(n-2)+(n-4)... yig‘indisini hisoblash (n-x =< 0 bo‘lguncha)",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "n+(n-2)+(n-4)... musbat butun sonlari yig‘indisini hisoblaydigan funksiya yozing (n-x =< 0 bo‘lguncha)."
   },
@@ -740,22 +740,22 @@
     "statement": "Bo‘luvchilar yig‘indisi bir xil ekanini tekshiradigan funksiya yozing."
   },
   "1165": {
-    "title": "Bir xil o‘rindagi belgilarni sanash",
+    "title": "Satrda ingliz alifbosidagi bilan bir xil o‘rinda turgan belgilarni sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrda (kichik va katta belgilar) ingliz alifbosidagi bilan bir xil o‘rinda turgan belgilarni sanaydigan funksiya yozing."
   },
   "1166": {
-    "title": "Juft xor qiymatli juftliklarni sanash",
+    "title": "Xor qiymati juft son bo‘lgan juftliklarni sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Xor natijasi juft son bo‘lgan juftliklarni sanaydigan funksiya yozing."
   },
   "1167": {
-    "title": "2 ning eng kichik darajasini topish",
+    "title": "2 ning n dan katta yoki teng eng kichik darajasini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "n dan katta yoki teng bo‘lgan 2 ning eng kichik darajasini topadigan funksiya yozing."
   },
   "1168": {
-    "title": "Sonning chastotasini topish",
+    "title": "Berilgan massivda sonning uchrash chastotasini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivda sonning uchrash chastotasini topadigan funksiya yozing."
   },
@@ -765,7 +765,7 @@
     "statement": "n-chi Pell sonini hisoblaydigan funksiya yozing."
   },
   "1170": {
-    "title": "Ro‘yxatdagi sonlar yig‘indisini topish",
+    "title": "Ro‘yxatda ko‘rsatilgan diapazon indekslari orasidagi sonlar yig‘indisini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ro‘yxatda ko‘rsatilgan diapazon indekslari orasidagi sonlar yig‘indisini topadigan funksiya yozing."
   },
@@ -775,7 +775,7 @@
     "statement": "Beshburchakning perimetrini topadigan funksiya yozing."
   },
   "1172": {
-    "title": "'std' belgilarining uchrashini topish",
+    "title": "Berilgan satrda 'std' belgilarining uchrashini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrda 'std' belgilarining uchrashini topadigan funksiya yozing."
   },
@@ -795,7 +795,7 @@
     "statement": "Uchburchakning perimetrini topadigan funksiya yozing."
   },
   "1177": {
-    "title": "Ikki turli sonni topish",
+    "title": "Eng kichik umumiy karralisi berilgan diapazonga tushadigan ikki turli sonni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Eng kichik umumiy karralisi berilgan diapazonga tushadigan ikki turli sonni topadigan funksiya yozing."
   },
@@ -805,32 +805,32 @@
     "statement": "Satrda bir nechta literal satrni qidiradigan funksiya yozing."
   },
   "1179": {
-    "title": "Sonning Keyt soni ekanini tekshirish",
+    "title": "Berilgan sonning Keyt soni ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan son Keyt soni ekanini aniqlaydigan funksiya yozing."
   },
   "1180": {
-    "title": "Ikki nuqta orasidagi masofani geografik kenglik bo‘yicha hisoblash",
+    "title": "Ikki nuqta orasidagi masofani geografik kenglik va uzunlik bo‘yicha hisoblash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ikki nuqta orasidagi masofani geografik kenglik va uzunlik bo‘yicha hisoblaydigan funksiya yozing."
   },
   "1181": {
-    "title": "Eng uzun umumiy prefiksni topish",
+    "title": "Berilgan satrlar to‘plamidagi eng uzun umumiy prefiksni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrlar to‘plamidagi eng uzun umumiy prefiksni topadigan funksiya yozing."
   },
   "1182": {
-    "title": "Katta, kichik, maxsus belgilar va sonli qiymatlarni topish",
+    "title": "Katta, kichik, maxsus belgilar va sonli qiymatlarni regulyar ifoda yordamida topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Katta va kichik harflarni, maxsus belgilarni va sonli qiymatlarni regulyar ifoda yordamida topadigan funksiya yozing."
   },
   "1183": {
-    "title": "Barcha turli juftliklarni sanash",
+    "title": "Massivda ayirmasi k ga teng barcha turli juftliklarni sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Massivda ayirmasi k ga teng bo‘lgan barcha turli juftliklarni sanaydigan funksiya yozing."
   },
   "1184": {
-    "title": "Ro‘yxatdagi barcha qiymatlarni topish",
+    "title": "Ro‘yxatda ko‘rsatilgan sondan katta barcha qiymatlarni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ro‘yxatda ko‘rsatilgan sondan katta bo‘lgan barcha qiymatlarni topadigan funksiya yozing."
   },
@@ -840,17 +840,17 @@
     "statement": "Parabolaning fokusini topadigan funksiya yozing."
   },
   "1186": {
-    "title": "Satrda literal satrlarni regulyar ifoda bilan qidirish",
+    "title": "Satrda literal satrlarni regulyar ifoda yordamida qidirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Satrda bir nechta literal satrni regulyar ifoda yordamida qidiradigan funksiya yozing."
   },
   "1187": {
-    "title": "Eng uzun umumiy qism ketma-ketlikni topish",
+    "title": "Berilgan ikki ketma-ketlik uchun eng uzun umumiy qism ketma-ketlikni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ikki ketma-ketlik uchun eng uzun umumiy qism ketma-ketlikni topadigan funksiya yozing."
   },
   "1188": {
-    "title": "Berilgan sonni ifodalash mumkinligini tekshirish",
+    "title": "Berilgan sonni ikki kvadrat ko‘paytmasi sifatida ifodalash mumkinligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonni ikki kvadrat ko‘paytmasi sifatida ifodalash mumkinligini tekshiradigan funksiya yozing."
   },
@@ -860,17 +860,17 @@
     "statement": "Birinchi yetishmayotgan musbat sonni topadigan funksiya yozing."
   },
   "1190": {
-    "title": "Butun sonli koordinatalarni sanash",
+    "title": "Kvadrat ichida yotgan butun sonli koordinatalar sonini sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Kvadrat ichida yotgan butun sonli koordinatalar sonini sanaydigan funksiya yozing."
   },
   "1191": {
-    "title": "Berilgan oy nomini tekshirish",
+    "title": "Berilgan oy nomi 30 kunni o‘z ichiga olishini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan oy nomi 30 kunni o‘z ichiga oladimi yoki yo‘qmi ekanini tekshiradigan funksiya yozing."
   },
   "1192": {
-    "title": "Satrda kamida bitta harf borligini tekshirish",
+    "title": "Satrda kamida bitta harf va bitta son borligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Satrda kamida bitta harf va bitta son borligini tekshiradigan funksiya yozing."
   },
@@ -885,7 +885,7 @@
     "statement": "Sakkizlik sonni o‘nlik songa o‘giradigan funksiya yozing."
   },
   "1195": {
-    "title": "Elementning birinchi o‘rnini topish",
+    "title": "Saralangan massivda elementning birinchi o‘rnini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Saralangan massivda elementning birinchi o‘rnini topadigan funksiya yozing."
   },
@@ -900,22 +900,22 @@
     "statement": "Berilgan ikki kortejni darajaga ko‘taradigan funksiya yozing."
   },
   "1198": {
-    "title": "Ichki chizilgan eng katta uchburchakni topish",
+    "title": "Ellipsga ichki chizish mumkin bo‘lgan eng katta uchburchakni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ellipsga ichki chizish mumkin bo‘lgan eng katta uchburchakni topadigan funksiya yozing."
   },
   "1199": {
-    "title": "2 ning eng katta darajasini topish",
+    "title": "Berilgan sondan kichik yoki teng bo‘lgan 2 ning eng katta darajasini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sondan kichik yoki teng bo‘lgan 2 ning eng katta darajasini topadigan funksiya yozing."
   },
   "1200": {
-    "title": "Eng katta qiymatlarning barcha indekslarini topish",
+    "title": "Berilgan ro‘yxatda eng katta qiymatlarning barcha indekslarini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatda eng katta qiymatlarning barcha indekslarini topadigan funksiya yozing."
   },
   "1201": {
-    "title": "Ro‘yxat elementlarini tekshirish",
+    "title": "Ro‘yxatdagi elementlar bir xil ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ro‘yxatdagi elementlar bir xil ekanini tekshiradigan funksiya yozing."
   },
@@ -930,47 +930,47 @@
     "statement": "Berilgan ikki butun son orasidagi Xemming masofasini topadigan funksiya yozing."
   },
   "1204": {
-    "title": "Berilgan belgining uchrashlarini sanash",
+    "title": "Satrda berilgan belgining uchrashlarini sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Satrda berilgan belgining uchrashlarini sanaydigan funksiya yozing."
   },
   "1205": {
-    "title": "Kortej elementlarining inversiyalarini topish",
+    "title": "Berilgan kortejlar ro‘yxatida kortej elementlarining inversiyalarini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejlar ro‘yxatida kortej elementlarining inversiyalarini topadigan funksiya yozing."
   },
   "1206": {
-    "title": "Qo‘shni elementlarni ulash",
+    "title": "Berilgan kortejlarda qo‘shni elementlarni ulash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejlarda qo‘shni elementlarni ulaydigan funksiya yozing."
   },
   "1207": {
-    "title": "Eng uzun takrorlanuvchi qism ketma-ketliklarni sanash",
+    "title": "Bir o‘rinda umumiy belgisi yo‘q eng uzun takrorlanuvchi qism ketma-ketliklarni sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ikki qism ketma-ketlik bir xil o‘rinlarda bir xil belgilarga ega bo‘lmasligi shartida eng uzun takrorlanuvchi qism ketma-ketliklarni sanaydigan funksiya yozing."
   },
   "1208": {
-    "title": "Berilgan o‘nlik sonni tekshirish",
+    "title": "Berilgan o‘nlik sonni 2 xonali aniqlik bilan regulyar ifoda yordamida tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan o‘nlik sonni 2 xonali aniqlik bilan regulyar ifoda yordamida tekshiradigan funksiya yozing."
   },
   "1209": {
-    "title": "Berilgan uyumdan eng kichik elementni olib tashlash",
+    "title": "Berilgan uyumdan eng kichik elementni olib tashlash va yangi element qo‘shish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan uyumdan eng kichik elementni olib tashlab, so‘ng yangi element qo‘shadigan funksiya yozing."
   },
   "1210": {
-    "title": "Berilgan satr tarkibini tekshirish",
+    "title": "Berilgan satr faqat ma’lum belgilar to‘plamidan iboratligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satr faqat ma’lum belgilar to‘plamidan (bu holda a-z, a-z va 0-9) iborat ekanini regulyar ifoda yordamida tekshiradigan funksiya yozing."
   },
   "1211": {
-    "title": "Sonlarni oth va nth bitlari bo‘yicha sanash",
+    "title": "O‘rnatilgan oth va nth bitlariga ega sonlarni sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "oth va nth bitlari o‘rnatilgan sonlarni sanaydigan funksiya yozing."
   },
   "1212": {
-    "title": "To‘rtinchi darajalar yig‘indisini topish",
+    "title": "Dastlabki n natural sonning to‘rtinchi darajalari yig‘indisini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Dastlabki n natural sonning to‘rtinchi darajalari yig‘indisini topadigan funksiya yozing."
   },
@@ -985,32 +985,32 @@
     "statement": "Radianlarni gradusga o‘giradigan funksiya yozing."
   },
   "1217": {
-    "title": "Birinchi takrorlanuvchi belgini topish",
+    "title": "Berilgan satrda birinchi takrorlanuvchi belgini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrda birinchi takrorlanuvchi belgini topadigan funksiya yozing."
   },
   "1218": {
-    "title": "Eng kam operatsiyalar sonini topish",
+    "title": "Ikki sonni teng qilish uchun kerak bo‘ladigan eng kam operatsiyalar sonini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ikki sonni teng qilish uchun kerak bo‘ladigan eng kam operatsiyalar sonini topadigan funksiya yozing."
   },
   "1219": {
-    "title": "Eng katta va eng kichik k elementni ajratib olish",
+    "title": "Berilgan kortejdan eng katta va eng kichik k elementni ajratib olish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejdan eng katta va eng kichik k elementni ajratib oladigan funksiya yozing."
   },
   "1220": {
-    "title": "Bo‘shliqlar va vergullarning ko‘pi bilan n ta uchrashini almashtirish",
+    "title": "Bo‘shliqlar, vergullar yoki nuqtalarning ko‘pi bilan n ta uchrashini ikki nuqtaga almashtirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Bo‘shliqlar, vergullar yoki nuqtalarning ko‘pi bilan n ta uchrashini ikki nuqtaga almashtiradigan funksiya yozing."
   },
   "1221": {
-    "title": "Birinchi juft sonni topish",
+    "title": "Berilgan sonlar ro‘yxatida birinchi juft sonni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonlar ro‘yxatida birinchi juft sonni topadigan funksiya yozing."
   },
   "1223": {
-    "title": "Ko‘pchilik elementning borligini tekshirish",
+    "title": "Berilgan saralangan massivda ko‘pchilik elementning borligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan saralangan massivda ko‘pchilik elementning borligini tekshiradigan funksiya yozing."
   },
@@ -1020,12 +1020,12 @@
     "statement": "Berilgan sonning o‘rnatilgan bitlarini sanaydigan funksiya yozing."
   },
   "1225": {
-    "title": "Saralangan massivda eng kichik elementni topish",
+    "title": "Saralangan va aylantirilgan massivda eng kichik elementni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Saralangan va aylantirilgan massivda eng kichik elementni topadigan funksiya yozing."
   },
   "1226": {
-    "title": "Toq indeksli belgilarni olib tashlash",
+    "title": "Berilgan satrdan toq indeksli belgilarni olib tashlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrdan toq indeksli belgilarni olib tashlaydigan funksiya yozing."
   },
@@ -1035,22 +1035,22 @@
     "statement": "Uchta sonning eng kichigini topadigan funksiya yozing."
   },
   "1228": {
-    "title": "Barcha bitlar tozalanganini tekshirish",
+    "title": "Berilgan diapazondagi barcha bitlar tozalanganini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan diapazondagi barcha bitlar tozalangan ekanini tekshiradigan funksiya yozing."
   },
   "1229": {
-    "title": "Berilgan massiv elementlarini qayta joylash",
+    "title": "Massivni manfiy elementlar musbatlardan oldin keladigan qilib qayta joylash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massiv elementlarini barcha manfiy elementlar musbatlaridan oldin turadigan tarzda qayta joylaydigan funksiya yozing."
   },
   "1230": {
-    "title": "Bo‘shliqlarni har qanday belgiga almashtirish",
+    "title": "Satrdagi bo‘shliqlarni har qanday belgiga almashtirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Satrdagi bo‘shliqlarni har qanday belgiga almashtiradigan funksiya yozing."
   },
   "1231": {
-    "title": "Eng katta yig‘indini topish",
+    "title": "Berilgan sonlardan tuzilgan to‘g‘ri burchakli uchburchakda eng katta yig‘indini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonlardan tuzilgan to‘g‘ri burchakli uchburchakda eng katta yig‘indini topadigan funksiya yozing."
   },
@@ -1080,17 +1080,17 @@
     "statement": "Berilgan teng tomonli uchburchak ichida hosil qilish mumkin bo‘lgan teng tomonli uchburchaklarning maksimal sonini sanaydigan funksiya yozing."
   },
   "1238": {
-    "title": "Bo‘sh bo‘lmagan qism satrlar sonini sanash",
+    "title": "Berilgan satrning bo‘sh bo‘lmagan qism satrlari sonini sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrning bo‘sh bo‘lmagan qism satrlari sonini sanaydigan funksiya yozing."
   },
   "1239": {
-    "title": "Mumkin bo‘lgan ketma-ketliklar sonini topish",
+    "title": "Har bir elementi kamida ikkilanadigan uzunligi n ketma-ketliklar sonini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Har bir keyingi element oldingisining ikki barobaridan katta yoki teng, lekin m dan katta bo‘lmagan, uzunligi n bo‘lgan mumkin bo‘lgan ketma-ketliklar sonini topadigan funksiya yozing."
   },
   "1241": {
-    "title": "Uch o‘lchamli massiv yaratish",
+    "title": "Har bir elementi '*' bo‘lgan uch o‘lchamli massiv yaratish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Har bir elementi '*' bo‘lgan uch o‘lchamli massiv yaratadigan funksiya yozing."
   },
@@ -1100,22 +1100,22 @@
     "statement": "Satrdagi belgilarning umumiy sonini sanaydigan funksiya yozing."
   },
   "1244": {
-    "title": "Keyingi to‘liq kvadratni topish",
+    "title": "Berilgan sondan katta keyingi to‘liq kvadratni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sondan katta keyingi to‘liq kvadratni topadigan funksiya yozing."
   },
   "1245": {
-    "title": "Bitonik qism ketma-ketlikning maksimal yig‘indisini topish",
+    "title": "Berilgan massiv uchun bitonik qism ketma-ketlikning maksimal yig‘indisini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massiv uchun bitonik qism ketma-ketlikning maksimal yig‘indisini topadigan funksiya yozing."
   },
   "1246": {
-    "title": "Kvadrat ildizni hisoblash",
+    "title": "Bobil usuli bilan kvadrat ildizni hisoblash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Bobil usuli bilan kvadrat ildizni hisoblaydigan funksiya yozing."
   },
   "1247": {
-    "title": "Eng uzun palindrom qism ketma-ketlikni topish",
+    "title": "Berilgan satrdagi eng uzun palindrom qism ketma-ketlikni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrdagi eng uzun palindrom qism ketma-ketlikni topadigan funksiya yozing."
   },
@@ -1125,17 +1125,17 @@
     "statement": "n-1 ning garmonik yig‘indisini hisoblaydigan funksiya yozing."
   },
   "1249": {
-    "title": "Ikki massiv kesishmasini topish",
+    "title": "Lambda funksiya yordamida ikki massiv kesishmasini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Lambda funksiya yordamida ikki massiv kesishmasini topadigan funksiya yozing."
   },
   "1250": {
-    "title": "Element uchrashlarini sanash",
+    "title": "Kortejda element uchrashlarini sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Kortejda elementning uchrashlari sonini sanaydigan funksiya yozing."
   },
   "1251": {
-    "title": "Har bir elementdan oldin element qo‘shish",
+    "title": "Ro‘yxatning har bir elementidan oldin element qo‘shish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ro‘yxatning har bir elementidan oldin element qo‘shadigan funksiya yozing."
   },
@@ -1145,17 +1145,17 @@
     "statement": "Kompleks sonlarni polyar koordinatalarga o‘giradigan funksiya yozing."
   },
   "1254": {
-    "title": "'a' yoki 'e' bilan boshlanadigan so‘zlarni topish",
+    "title": "Berilgan satrda 'a' yoki 'e' bilan boshlanadigan barcha so‘zlarni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrda 'a' yoki 'e' bilan boshlanadigan barcha so‘zlarni topadigan funksiya yozing."
   },
   "1255": {
-    "title": "Ko‘rsatilgan sondagi ranglarni tanlash",
+    "title": "Uchta turli rangdan ko‘rsatilgan sondagi ranglarni tanlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Uchta turli rangdan ko‘rsatilgan sondagi ranglarni tanlab, takrorlanishli barcha kombinatsiyalarni hosil qiladigan funksiya yozing."
   },
   "1256": {
-    "title": "Tub sonlar sonini sanash",
+    "title": "Berilgan manfiy bo‘lmagan sondan kichik tub sonlar sonini sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan manfiy bo‘lmagan sondan kichik tub sonlar sonini sanaydigan funksiya yozing."
   },
@@ -1165,7 +1165,7 @@
     "statement": "Ikki sonning o‘rnini almashtiradigan funksiya yozing."
   },
   "1258": {
-    "title": "Toq elementlar sonini topish",
+    "title": "Berilgan ro‘yxatdagi toq elementlar sonini lambda funksiya yordamida topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatdagi toq elementlar sonini lambda funksiya yordamida topadigan funksiya yozing."
   },
@@ -1200,7 +1200,7 @@
     "statement": "Kubning yon sirt yuzasini topadigan funksiya yozing."
   },
   "1267": {
-    "title": "Kvadratlar yig‘indisi",
+    "title": "Dastlabki n toq natural sonning kvadratlari yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Dastlabki n toq natural sonning kvadratlari yig‘indisini topadigan funksiya yozing."
   },
@@ -1215,17 +1215,17 @@
     "statement": "Belgining ascii qiymatini topadigan funksiya yozing."
   },
   "1270": {
-    "title": "Juft sonlar yig‘indisi",
+    "title": "Juft pozitsiyalardagi juft sonlar yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Juft pozitsiyalardagi juft sonlar yig‘indisini topadigan funksiya yozing."
   },
   "1271": {
-    "title": "Beshinchi darajalar yig‘indisi",
+    "title": "Dastlabki n juft natural sonning beshinchi darajalari yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Dastlabki n juft natural sonning beshinchi darajalari yig‘indisini topadigan funksiya yozing."
   },
   "1273": {
-    "title": "Bir kortej tarkibini ayirish",
+    "title": "Bir kortej tarkibini boshqa kortejning mos indeksidagi elementlaridan ayirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Bir kortej tarkibini boshqa kortejning mos indeksidagi elementlaridan ayiradigan funksiya yozing."
   },
@@ -1235,7 +1235,7 @@
     "statement": "Juft indeksli binomial koeffitsiyentlar yig‘indisini topadigan funksiya yozing."
   },
   "1275": {
-    "title": "Oxirgi olib tashlangan elementning o‘rnini topish",
+    "title": "Berilgan massivdan oxirgi olib tashlangan elementning o‘rnini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivdan oxirgi olib tashlangan elementning o‘rnini topadigan funksiya yozing."
   },
@@ -1255,7 +1255,7 @@
     "statement": "n-chi o‘nburchakli sonni topadigan funksiya yozing."
   },
   "1281": {
-    "title": "Berilgan ro‘yxat elementlarini tekshirish",
+    "title": "Berilgan ro‘yxat elementlari takrorlanmas ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxat elementlari takrorlanmas ekanini tekshiradigan funksiya yozing."
   },
@@ -1265,37 +1265,37 @@
     "statement": "Ikki ro‘yxatni map va lambda funksiya yordamida ayiradigan funksiya yozing."
   },
   "1283": {
-    "title": "Har bir raqamning chastotasini tekshirish",
+    "title": "Har bir raqamning chastotasi raqamning o‘zidan katta emasligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Har bir raqamning chastotasi raqamning o‘zidan katta emasligini tekshiradigan funksiya yozing."
   },
   "1285": {
-    "title": "Ichida a bo‘lgan satrga moslik",
+    "title": "a dan keyin ikkitadan uchtagacha 'b' keladigan satrga moslik",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "a dan keyin ikkitadan uchtagacha 'b' keladigan satrga mos keladigan funksiya yozing."
   },
   "1286": {
-    "title": "Uzluksiz massivning eng katta yig‘indisi",
+    "title": "O‘zgartirilgan massivdagi uzluksiz massivning eng katta yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivni k marta takrorlab hosil qilingan o‘zgartirilgan massivda uzluksiz massivning eng katta yig‘indisini topadigan funksiya yozing."
   },
   "1287": {
-    "title": "Kvadratlar yig‘indisi",
+    "title": "Dastlabki n juft natural sonning kvadratlari yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Dastlabki n juft natural sonning kvadratlari yig‘indisini topadigan funksiya yozing."
   },
   "1288": {
-    "title": "Modul bo‘yicha teskarisi bo‘lgan massiv elementlarini sanash",
+    "title": "Tub p bo‘yicha teskarisi o‘ziga teng bo‘lgan massiv elementlarini sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan p tub soni bo‘yicha teskari elementi o‘ziga teng bo‘lgan massiv elementlarini sanaydigan funksiya yozing."
   },
   "1289": {
-    "title": "Toq kunlar sonini hisoblash",
+    "title": "Berilgan yildagi toq kunlar sonini hisoblash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan yildagi toq kunlar sonini hisoblaydigan funksiya yozing."
   },
   "1291": {
-    "title": "Bo‘yash usullari sonini topish",
+    "title": "Ko‘pi bilan 2 qo‘shni ustuni bir xil bo‘lgan panjarani bo‘yash usullari sonini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "n ustunli va k rangli berilgan panjarani ko‘pi bilan 2 qo‘shni ustun bir xil rangda bo‘ladigan tarzda bo‘yash usullari sonini topadigan funksiya yozing."
   },
@@ -1305,12 +1305,12 @@
     "statement": "Ikki sonning bo‘linmasini topadigan funksiya yozing."
   },
   "1293": {
-    "title": "Uchinchi tomonni topish",
+    "title": "To‘g‘ri burchakli uchburchakning uchinchi tomonini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "To‘g‘ri burchakli uchburchakning uchinchi tomonini topadigan funksiya yozing."
   },
   "1295": {
-    "title": "Barcha bo‘luvchilar yig‘indisi",
+    "title": "Sonning barcha bo‘luvchilari yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Sonning barcha bo‘luvchilari yig‘indisini qaytaradigan funksiya yozing."
   },
@@ -1320,7 +1320,7 @@
     "statement": "Massivdagi inversiyalarni sanaydigan funksiya yozing."
   },
   "1300": {
-    "title": "Barcha ikkilik ketma-ketliklar sonini topish",
+    "title": "Dastlabki va oxirgi n biti yig‘indisi teng bo‘lgan uzunligi 2n ikkilik ketma-ketliklarni sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Dastlabki n bitning yig‘indisi oxirgi n bitning yig‘indisiga teng bo‘lgan, uzunligi 2n bo‘lgan barcha ikkilik ketma-ketliklar sonini topadigan funksiya yozing."
   },
@@ -1330,22 +1330,22 @@
     "statement": "Lug‘at chuqurligini topadigan funksiya yozing."
   },
   "1302": {
-    "title": "Eng katta ahamiyatli bitni topish",
+    "title": "O‘rnatilgan bo‘lgan eng katta ahamiyatli bitni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Bir vaqtda o‘rnatilgan bo‘lgan eng katta ahamiyatli bit raqamini topadigan funksiya yozing."
   },
   "1303": {
-    "title": "Inversiyalar sonini tekshirish",
+    "title": "Ikki turdagi inversiyalar soni bir xil ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ikki turdagi inversiyalar soni bir xil ekanini tekshiradigan funksiya yozing."
   },
   "1304": {
-    "title": "Berilgan indeksdagi elementni topish",
+    "title": "Bir necha aylantirishdan keyin berilgan indeksdagi elementni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Bir necha aylantirishdan keyin berilgan indeksdagi elementni topadigan funksiya yozing."
   },
   "1305": {
-    "title": "So‘zlar ro‘yxatidan ikki so‘zga moslik",
+    "title": "'p' harfi bilan boshlanadigan so‘zlar ro‘yxatidan ikki so‘zga moslik",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "'p' harfi bilan boshlanadigan so‘zlar ro‘yxatidan ikki so‘zga mos keladigan funksiya yozing."
   },
@@ -1355,7 +1355,7 @@
     "statement": "Boshidan i indeksigacha bo‘lgan o‘suvchi qism ketma-ketlikning maksimal yig‘indisini, i dan keyin keladigan berilgan k-chi elementni ham qo‘shib, ya’ni k > i bo‘lganda topadigan funksiya yozing."
   },
   "1308": {
-    "title": "Ko‘rsatilgan sondagi eng katta ko‘paytmalarni topish",
+    "title": "Berilgan ikki ro‘yxatdan ko‘rsatilgan sondagi eng katta ko‘paytmalarni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ikki ro‘yxatdan ko‘rsatilgan sondagi eng katta ko‘paytmalarni topadigan funksiya yozing."
   },
@@ -1380,7 +1380,7 @@
     "statement": "Konus hajmini topadigan funksiya yozing."
   },
   "1314": {
-    "title": "Maksimal yig‘indini topish",
+    "title": "Tanlangan hech qanday ikki son qo‘shni bo‘lmagan holdagi maksimal yig‘indini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "O‘lchami 2 x n bo‘lgan berilgan to‘rtburchakli panjara uchun tanlangan hech qanday ikki son qo‘shni bo‘lmagan holdagi maksimal yig‘indini topadigan funksiya yozing."
   },
@@ -1390,22 +1390,22 @@
     "statement": "Juft so‘zning birinchi maksimal uzunligini topadigan funksiya yozing."
   },
   "1316": {
-    "title": "Oxirgi uchrash indeksini topish",
+    "title": "Saralangan massivda berilgan sonning oxirgi uchrash indeksini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Saralangan massivda berilgan sonning oxirgi uchrash indeksini topadigan funksiya yozing."
   },
   "1318": {
-    "title": "Parallelepipedning maksimal hajmini topish",
+    "title": "Tomonlari yig‘indisi berilgan parallelepipedning maksimal hajmini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Tomonlari yig‘indisi berilgan parallelepipedning maksimal hajmini topadigan funksiya yozing."
   },
   "1319": {
-    "title": "Besh belgili barcha so‘zlarni topish",
+    "title": "Berilgan satrdagi besh belgili barcha so‘zlarni regulyar ifoda yordamida topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrdagi besh belgili barcha so‘zlarni regulyar ifoda yordamida topadigan funksiya yozing."
   },
   "1320": {
-    "title": "Yig‘indi kvadrati bilan farqni hisoblash",
+    "title": "Yig‘indi kvadrati bilan kvadratlar yig‘indisi orasidagi farqni hisoblash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Dastlabki n natural sonning yig‘indisi kvadrati bilan dastlabki n natural sonning kvadratlari yig‘indisi orasidagi farqni hisoblaydigan funksiya yozing."
   },
@@ -1415,12 +1415,12 @@
     "statement": "Berilgan son uchun Demlo sonini topadigan funksiya yozing."
   },
   "1322": {
-    "title": "Minimal qiymatlarning barcha indekslarini topish",
+    "title": "Berilgan ro‘yxatdagi minimal qiymatlarning barcha indekslarini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatdagi minimal qiymatlarning barcha indekslarini topadigan funksiya yozing."
   },
   "1323": {
-    "title": "Berilgan massivni navbatlashtirib qayta tartiblash",
+    "title": "Berilgan massivni musbat va manfiy elementlar navbatlashib keladigan tarzda qayta tartiblash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivni musbat va manfiy elementlar navbatlashib keladigan tarzda qayta tartiblaydigan funksiya yozing."
   },
@@ -1430,12 +1430,12 @@
     "statement": "Kortejlarning navbatlashuvchi zanjirlari yig‘indisini ajratib oladigan funksiya yozing."
   },
   "1325": {
-    "title": "Kvadratlarning minimal sonini topish",
+    "title": "Yig‘indisi berilgan songa teng bo‘lgan kvadratlarning minimal sonini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Yig‘indisi berilgan songa teng bo‘lgan kvadratlarning minimal sonini topadigan funksiya yozing."
   },
   "1326": {
-    "title": "Eng ko‘p uchraydigan so‘zni topish",
+    "title": "Berilgan satrlar ro‘yxatida eng ko‘p uchraydigan so‘zni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrlar ro‘yxatida eng ko‘p uchraydigan so‘zni topadigan funksiya yozing."
   },
@@ -1445,7 +1445,7 @@
     "statement": "Uchburchak teng yonli ekanini tekshirib, natijani chiqaradigan funksiya yozing."
   },
   "1328": {
-    "title": "Berilgan ro‘yxatni aylantirish",
+    "title": "Berilgan ro‘yxatni ko‘rsatilgan sondagi elementga chapga aylantirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatni ko‘rsatilgan sondagi elementga chapga aylantiradigan funksiya yozing."
   },
@@ -1455,7 +1455,7 @@
     "statement": "Ro‘yxatdagi manfiy sonlarni sanaydigan funksiya yozing."
   },
   "1330": {
-    "title": "Uch, to‘rt va besh belgili barcha so‘zlarni topish",
+    "title": "Berilgan satrdagi uch, to‘rt va besh belgili barcha so‘zlarni regulyar ifoda yordamida topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrdagi uch, to‘rt va besh belgili barcha so‘zlarni regulyar ifoda yordamida topadigan funksiya yozing."
   },
@@ -1470,7 +1470,7 @@
     "statement": "Berilgan satrdagi belgilar chastotasini sanaydigan funksiya yozing."
   },
   "1334": {
-    "title": "Uchburchak to‘g‘ri ekanini tekshirish",
+    "title": "Tomonlari berilganda uchburchak mavjudligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Tomonlari berilganda uchburchak mavjud bo‘lishi mumkinligini tekshiradigan funksiya yozing."
   },
@@ -1480,17 +1480,17 @@
     "statement": "Arifmetik progressiya yig‘indisini topadigan funksiya yozing."
   },
   "1336": {
-    "title": "Berilgan oy nomini tekshirish",
+    "title": "Berilgan oyda 28 kun bor-yo‘qligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan oyda 28 kun bor-yo‘qligini tekshiradigan funksiya yozing."
   },
   "1337": {
-    "title": "Oxiridagi so‘zga moslik",
+    "title": "Satr oxiridagi so‘zga, ixtiyoriy tinish belgisi bilan moslik",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Satr oxiridagi so‘zga, ixtiyoriy tinish belgisi bilan mos keladigan funksiya yozing."
   },
   "1338": {
-    "title": "Qism satrlar sonini sanash",
+    "title": "Birinchi va oxirgi belgilari bir xil bo‘lgan qism satrlar sonini sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Birinchi va oxirgi belgilari bir xil bo‘lgan qism satrlar sonini sanaydigan funksiya yozing."
   },
@@ -1500,27 +1500,27 @@
     "statement": "Intervalda eng ko‘p uchraydigan bo‘luvchini topadigan funksiya yozing."
   },
   "1340": {
-    "title": "Eng kichik uchtasining yig‘indisi",
+    "title": "Berilgan sonlar ro‘yxatidan eng kichik uchta musbat sonning yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonlar ro‘yxatidan eng kichik uchta musbat sonning yig‘indisini topadigan funksiya yozing."
   },
   "1342": {
-    "title": "Eng kichik diapazonni topish",
+    "title": "Kamida bitta elementni o‘z ichiga oladigan eng kichik diapazonni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivlarning har biridan kamida bitta elementni o‘z ichiga oladigan eng kichik diapazonni topadigan funksiya yozing."
   },
   "1343": {
-    "title": "Raqamlar va harflar sonini hisoblash",
+    "title": "Satrdagi raqamlar va harflar sonini hisoblash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Satrdagi raqamlar va harflar sonini hisoblaydigan funksiya yozing."
   },
   "1344": {
-    "title": "Toq bo‘luvchili elementlar sonini topish",
+    "title": "Berilgan diapazondagi toq bo‘luvchili elementlar sonini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan diapazondagi toq bo‘luvchili elementlar sonini topadigan funksiya yozing."
   },
   "1345": {
-    "title": "Ikki ketma-ket sonning ayirmasini topish",
+    "title": "Berilgan ro‘yxatdagi ikki ketma-ket sonning ayirmasini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatdagi ikki ketma-ket sonning ayirmasini topadigan funksiya yozing."
   },
@@ -1535,32 +1535,32 @@
     "statement": "To‘rtburchakdagi kvadratlar sonini sanaydigan funksiya yozing."
   },
   "1348": {
-    "title": "Berilgan uzunlikdagi ketma-ketliklarni sanash",
+    "title": "Prefiks yig‘indilari manfiy bo‘lmagan berilgan uzunlikdagi ketma-ketliklarni sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan qiymatlardan hosil qilish mumkin bo‘lgan, prefiks yig‘indilari manfiy bo‘lmagan berilgan uzunlikdagi ketma-ketliklarni sanaydigan funksiya yozing."
   },
   "1349": {
-    "title": "Berilgan satrni tekshirish",
+    "title": "Berilgan satr ikkilik satr ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satr ikkilik satr ekanini tekshiradigan funksiya yozing."
   },
   "1350": {
-    "title": "Satr uzunligini minimallashtirish",
+    "title": "Faqat bitta belgining uchrashlarini olib tashlab, satr uzunligini minimallashtirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Faqat bitta belgining uchrashlarini olib tashlab, satr uzunligini minimallashtiradigan funksiya yozing."
   },
   "1351": {
-    "title": "k marta uchraydigan birinchi elementni topish",
+    "title": "Berilgan massivda k marta uchraydigan birinchi elementni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivda k marta uchraydigan birinchi elementni topadigan funksiya yozing."
   },
   "1352": {
-    "title": "Barcha belgilarni tekshirish",
+    "title": "Berilgan satrdagi barcha belgilar takrorlanmas ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrdagi barcha belgilar takrorlanmas ekanini tekshiradigan funksiya yozing."
   },
   "1353": {
-    "title": "Ko‘rsatilgan ustunni olib tashlash",
+    "title": "Berilgan ichma-ich ro‘yxatdan ko‘rsatilgan ustunni olib tashlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ichma-ich ro‘yxatdan ko‘rsatilgan ustunni olib tashlaydigan funksiya yozing."
   },
@@ -1570,27 +1570,27 @@
     "statement": "Arifmetik progressiyaning n-chi hadini topadigan funksiya yozing."
   },
   "1355": {
-    "title": "Aylanadagi to‘rtburchaklar sonini sanash",
+    "title": "Radiusi r bo‘lgan aylanadagi to‘rtburchaklar sonini sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Radiusi r bo‘lgan aylanadagi to‘rtburchaklar sonini sanaydigan funksiya yozing."
   },
   "1356": {
-    "title": "Uchburchakning uchinchi burchagini topish",
+    "title": "Uchburchakning uchinchi burchagini ikki burchak bo‘yicha topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Uchburchakning uchinchi burchagini ikki burchak bo‘yicha topadigan funksiya yozing."
   },
   "1357": {
-    "title": "Maksimal elementni topish",
+    "title": "Berilgan barcha kortej yozuvlari orasidan maksimal elementni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan barcha kortej yozuvlari orasidan maksimal elementni topadigan funksiya yozing."
   },
   "1358": {
-    "title": "Ikki ro‘yxatni modul bo‘yicha bo‘lish",
+    "title": "Ikki ro‘yxatning modul bo‘yicha bo‘linishini map va lambda funksiya yordamida topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ikki ro‘yxatning modul bo‘yicha bo‘linishini map va lambda funksiya yordamida topadigan funksiya yozing."
   },
   "1359": {
-    "title": "Kvadrat tenglamaning bitta ildizini tekshirish",
+    "title": "Kvadrat tenglamaning bir ildizi ikkinchisidan ikki baravar katta ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Kvadrat tenglamaning bitta ildizi ikkinchisidan ikki baravar katta ekanini tekshiradigan funksiya yozing."
   },
@@ -1600,7 +1600,7 @@
     "statement": "n-chi Kerol sonini topadigan funksiya yozing."
   },
   "1363": {
-    "title": "Har bir elementga k elementni qo‘shish",
+    "title": "Kortejdagi har bir elementga k elementni qo‘shish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Kortejdagi har bir elementga k elementni qo‘shadigan funksiya yozing."
   },
@@ -1610,12 +1610,12 @@
     "statement": "Berilgan ikkilik satrni almashinib keladigan belgilar ketma-ketligiga aylantirish uchun zarur o‘zgartirishlar sonini topadigan funksiya yozing."
   },
   "1365": {
-    "title": "Raqamlar sonini sanash",
+    "title": "Berilgan sonning raqamlari sonini sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonning raqamlari sonini sanaydigan funksiya yozing."
   },
   "1366": {
-    "title": "Juftlikning eng katta ko‘paytmasini topish",
+    "title": "Qo‘shni elementlar juftligining eng katta ko‘paytmasini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan butun sonlar ro‘yxatidagi qo‘shni elementlar juftligining eng katta ko‘paytmasini topadigan funksiya yozing."
   },
@@ -1635,12 +1635,12 @@
     "statement": "Kortejni uning haqiqiy sonli elementi bo‘yicha saralaydigan funksiya yozing."
   },
   "1371": {
-    "title": "Eng kichik yetishmayotgan elementni topish",
+    "title": "Saralangan massivdagi eng kichik yetishmayotgan elementni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Saralangan massivdagi eng kichik yetishmayotgan elementni topadigan funksiya yozing."
   },
   "1372": {
-    "title": "Berilgan elementlar ro‘yxatini saralash",
+    "title": "Berilgan elementlar ro‘yxatini uyum navbati algoritmi yordamida o‘sish tartibida saralash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan elementlar ro‘yxatini uyum navbati algoritmi yordamida o‘sish tartibida saralaydigan funksiya yozing."
   },
@@ -1650,22 +1650,22 @@
     "statement": "To‘g‘ri burchakli parallelepiped hajmini topadigan funksiya yozing."
   },
   "1374": {
-    "title": "Berilgan satrning barcha o‘rin almashtirishlarini chiqarish",
+    "title": "Berilgan satrning barcha o‘rin almashtirishlarini, takrorlanadiganlari bilan birga, chiqarish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrning barcha o‘rin almashtirishlarini, takrorlanadiganlari bilan birga, chiqaradigan funksiya yozing."
   },
   "1375": {
-    "title": "Berilgan sonni eng yaqin karraliga yaxlitlash",
+    "title": "Berilgan sonni ko‘rsatilgan sonning eng yaqin karrasiga yaxlitlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonni ko‘rsatilgan sonning eng yaqin karrasiga yaxlitlaydigan funksiya yozing."
   },
   "1377": {
-    "title": "Belgining barcha uchrashlarini olib tashlash",
+    "title": "Berilgan satrdagi belgining barcha uchrashlarini olib tashlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrdagi belgining barcha uchrashlarini olib tashlaydigan funksiya yozing."
   },
   "1378": {
-    "title": "Oxirgi elementni birinchi o‘ringa ko‘chirish",
+    "title": "Berilgan ro‘yxatda oxirgi elementni birinchi o‘ringa ko‘chirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatda oxirgi elementni birinchi o‘ringa ko‘chiradigan funksiya yozing."
   },
@@ -1680,7 +1680,7 @@
     "statement": "Ikki o‘lchovli massiv yaratadigan funksiya yozing."
   },
   "1382": {
-    "title": "Aylanishlar sonini topish",
+    "title": "Aylanma saralangan massivdagi aylanishlar sonini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Aylanma saralangan massivdagi aylanishlar sonini topadigan funksiya yozing."
   },
@@ -1690,7 +1690,7 @@
     "statement": "Berilgan sonning barcha toq bitlarini teskarilaydigan funksiya yozing."
   },
   "1384": {
-    "title": "Eng kichik qiymatning chastotasini topish",
+    "title": "Berilgan massivdagi eng kichik qiymatning chastotasini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivdagi eng kichik qiymatning chastotasini topadigan funksiya yozing."
   },
@@ -1700,17 +1700,17 @@
     "statement": "Rekursiya yordamida n-chi Perren sonini topadigan funksiya yozing."
   },
   "1386": {
-    "title": "Kerakli o‘rin almashtirishlarning eng kichik sonini topish",
+    "title": "Berilgan satrda qavslarni muvozanatlash uchun zarur o‘rin almashtirishlarning eng kichik sonini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrda qavslarni muvozanatlash uchun zarur o‘rin almashtirishlarning eng kichik sonini topadigan funksiya yozing."
   },
   "1387": {
-    "title": "On oltilik sonning juft ekanini tekshirish",
+    "title": "On oltilik sonning juft yoki toq ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "On oltilik sonning juft yoki toq ekanini tekshiradigan funksiya yozing."
   },
   "1388": {
-    "title": "2 ning eng katta darajasini topish",
+    "title": "n dan kichik yoki unga teng bo‘lgan 2 ning eng katta darajasini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "n dan kichik yoki unga teng bo‘lgan 2 ning eng katta darajasini topadigan funksiya yozing."
   },
@@ -1730,7 +1730,7 @@
     "statement": "Berilgan kortej elementlarining takrorlanmas ekanini tekshiradigan funksiya yozing."
   },
   "1396": {
-    "title": "Berilgan satrning boshi va oxirini tekshirish",
+    "title": "Berilgan satrning bir xil belgi bilan boshlanib tugashini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Regulyar ifoda yordamida berilgan satrning bir xil belgi bilan boshlanib tugaganini tekshiradigan funksiya yozing."
   },
@@ -1740,17 +1740,17 @@
     "statement": "Uchta aniq sonning medianasini topadigan funksiya yozing."
   },
   "1399": {
-    "title": "Bitli xor amalini bajarish",
+    "title": "Berilgan kortejlar ustida matematik bitli xor amalini bajarish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejlar ustida matematik bitli xor amalini bajaradigan funksiya yozing."
   },
   "1400": {
-    "title": "Takrorlanmas kortejlar chastotasini ajratib olish",
+    "title": "Berilgan ro‘yxatdagi takrorlanmas kortejlar chastotasini tartibdan qat’i nazar ajratib olish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatdagi takrorlanmas kortejlar chastotasini, elementlar tartibidan qat’i nazar, ajratib oladigan funksiya yozing."
   },
   "1401": {
-    "title": "Kortej elementlarini indeks bo‘yicha qo‘shish",
+    "title": "Berilgan ikki ichma-ich kortejda kortej elementlarini indeks bo‘yicha qo‘shish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ikki ichma-ich kortejda kortej elementlarini indeks bo‘yicha qo‘shadigan funksiya yozing."
   },
@@ -1760,7 +1760,7 @@
     "statement": "ncr%p qiymatini hisoblaydigan funksiya yozing."
   },
   "1403": {
-    "title": "url ning to‘g‘riligini tekshirish",
+    "title": "Regulyar ifoda yordamida url ning to‘g‘riligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Regulyar ifoda yordamida url ning to‘g‘riligini tekshiradigan funksiya yozing."
   },
@@ -1775,17 +1775,17 @@
     "statement": "Berilgan sonning juftligini topadigan funksiya yozing."
   },
   "1408": {
-    "title": "k juftlikni topish",
+    "title": "Tarkibida birinchi massivdan bitta element bo‘lgan k juftlikni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Birinchi massivdan bitta element va ikkinchi massivdan bitta elementdan tashkil topgan k juftlikni topadigan funksiya yozing."
   },
   "1409": {
-    "title": "Juftliklar orasidan eng kichik ko‘paytmani topish",
+    "title": "Berilgan ro‘yxatdagi kortej juftliklari orasidan eng kichik ko‘paytmani topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatdagi kortej juftliklari orasidan eng kichik ko‘paytmani topadigan funksiya yozing."
   },
   "1411": {
-    "title": "Berilgan snake case satrini o‘girish",
+    "title": "Regulyar ifoda yordamida berilgan snake case satrini camel case satriga o‘girish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Regulyar ifoda yordamida berilgan snake case satrini camel case satriga o‘giradigan funksiya yozing."
   },
@@ -1800,32 +1800,32 @@
     "statement": "Qiymatning ketma-ketlikda borligini tekshiradigan funksiya yozing."
   },
   "1415": {
-    "title": "Eng katta ko‘paytmali juftlikni topish",
+    "title": "Berilgan butun sonlar massividan eng katta ko‘paytmali juftlikni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan butun sonlar massividan eng katta ko‘paytmali juftlikni topadigan funksiya yozing."
   },
   "1416": {
-    "title": "Erishish mumkin bo‘lgan eng katta yig‘indini topish",
+    "title": "Sonni bo‘lish orqali erishiladigan eng katta yig‘indini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonni rekursiv ravishda uch qismga bo‘lib, ularni qo‘shish orqali erishish mumkin bo‘lgan eng katta yig‘indini topadigan funksiya yozing."
   },
   "1417": {
-    "title": "Umumiy birinchi elementni topish",
+    "title": "Berilgan kortejlar ro‘yxatidan umumiy birinchi elementni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejlar ro‘yxatidan umumiy birinchi elementni topadigan funksiya yozing."
   },
   "1419": {
-    "title": "Berilgan ro‘yxatdagi har bir sonni yaxlitlash",
+    "title": "Berilgan sonlar ro‘yxatidagi har bir sonni yaxlitlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonlar ro‘yxatidagi har bir sonni yaxlitlab, umumiy yig‘indini ro‘yxat uzunligiga ko‘paytirib chiqaradigan funksiya yozing."
   },
   "1420": {
-    "title": "Dastlabki n juft sonning kublari yig‘indisi",
+    "title": "Dastlabki n juft natural sonning kublari yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Dastlabki n juft natural sonning kublari yig‘indisini topadigan funksiya yozing."
   },
   "1422": {
-    "title": "Dastlabki n sonning kublari o‘rtacha qiymati",
+    "title": "Dastlabki n natural sonning kublari o‘rtacha qiymati",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Dastlabki n natural sonning kublari o‘rtacha qiymatini topadigan funksiya yozing."
   },
@@ -1835,7 +1835,7 @@
     "statement": "Oltin koni masalasini yechadigan funksiya yozing."
   },
   "1424": {
-    "title": "Faqat oxirgi indeksdagi elementni ajratib olish",
+    "title": "Berilgan kortejdagi har bir satrning faqat oxirgi indeksdagi belgisini ajratib olish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejdagi har bir satrning faqat oxirgi indeksdagi belgisini ajratib oladigan funksiya yozing."
   },
@@ -1845,7 +1845,7 @@
     "statement": "lambda funksiya yordamida toq sonlarni filtrlaydigan funksiya yozing."
   },
   "1427": {
-    "title": "Sanani yyyy-mm-dd formatidan dd-mm-yyyy ga o‘girish",
+    "title": "Regulyar ifoda yordamida sanani yyyy-mm-dd formatidan dd-mm-yyyy formatiga o‘girish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Regulyar ifoda yordamida sanani yyyy-mm-dd formatidan dd-mm-yyyy formatiga o‘giradigan funksiya yozing."
   },
@@ -1855,7 +1855,7 @@
     "statement": "Berilgan massivni Shell saralash usuli bilan saralaydigan funksiya yozing."
   },
   "1429": {
-    "title": "Kortejlar uchun elementlar bo‘yicha and amali",
+    "title": "Berilgan ikki kortejdan elementlar bo‘yicha and amali natijasini ajratib olish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ikki kortej uchun elementlar bo‘yicha and amali natijasini ajratib oladigan funksiya yozing."
   },
@@ -1870,12 +1870,12 @@
     "statement": "Trapetsiyaning o‘rta chizig‘ini topadigan funksiya yozing."
   },
   "1433": {
-    "title": "Kiritilgan sonning kattaroq ekanini tekshirish",
+    "title": "Kiritilgan son berilgan massiv elementlaridan katta ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Kiritilgan son berilgan massiv elementlaridan katta ekanini tekshiradigan funksiya yozing."
   },
   "1434": {
-    "title": "Ichida a bo‘lgan satrni moslashtirish",
+    "title": "a dan keyin bir yoki bir nechta b belgisi keladigan satrni moslashtirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "a dan keyin bir yoki bir nechta b belgisi keladigan satrni moslashtiradigan funksiya yozing."
   },
@@ -1895,7 +1895,7 @@
     "statement": "Ikki tomonlama kortej juftliklarini sanaydigan funksiya yozing."
   },
   "1439": {
-    "title": "Bir nechta butun sondan iborat ro‘yxatni o‘girish",
+    "title": "Bir nechta butun sondan iborat ro‘yxatni bitta butun songa o‘girish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Bir nechta butun sondan iborat ro‘yxatni bitta butun songa o‘giradigan funksiya yozing."
   },
@@ -1905,22 +1905,22 @@
     "statement": "Kubning sirt yuzasini topadigan funksiya yozing."
   },
   "1442": {
-    "title": "Musbat sonlar nisbatini topish",
+    "title": "Butun sonlar massividagi musbat sonlar nisbatini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Butun sonlar massividagi musbat sonlar nisbatini topadigan funksiya yozing."
   },
   "1443": {
-    "title": "Eng katta manfiy sonni topish",
+    "title": "Berilgan ro‘yxatdan eng katta manfiy sonni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatdan eng katta manfiy sonni topadigan funksiya yozing."
   },
   "1444": {
-    "title": "Har bir kortejni k ga qisqartirish",
+    "title": "Berilgan kortejlar ro‘yxatida har bir kortejni k ga qisqartirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejlar ro‘yxatida har bir kortejni k ga qisqartiradigan funksiya yozing."
   },
   "1445": {
-    "title": "Kortej elementlarini indeks bo‘yicha ko‘paytirish",
+    "title": "Berilgan ikki kortejda kortej elementlarini indeks bo‘yicha ko‘paytirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ikki kortejda kortej elementlarini indeks bo‘yicha ko‘paytiradigan funksiya yozing."
   },
@@ -1930,22 +1930,22 @@
     "statement": "Perren sonlari yig‘indisini hisoblaydigan funksiya yozing."
   },
   "1449": {
-    "title": "Uchburchakning mavjudligini tekshirish",
+    "title": "3 nuqta berilganda uchburchak mavjudligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "3 nuqta berilganda uchburchak mavjudligini tekshiradigan funksiya yozing."
   },
   "1450": {
-    "title": "Ko‘rsatilgan uzunlikdagi satrlarni ajratib olish",
+    "title": "Berilgan satrli qiymatlar ro‘yxatidan ko‘rsatilgan uzunlikdagi satrlarni ajratib olish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrli qiymatlar ro‘yxatidan ko‘rsatilgan uzunlikdagi satrlarni ajratib oladigan funksiya yozing."
   },
   "1451": {
-    "title": "Berilgan satrdan barcha bo‘sh joylarni olib tashlash",
+    "title": "Regulyar ifoda yordamida berilgan satrdan barcha bo‘sh joylarni olib tashlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Regulyar ifoda yordamida berilgan satrdan barcha bo‘sh joylarni olib tashlaydigan funksiya yozing."
   },
   "1453": {
-    "title": "Juft bo‘luvchilar yig‘indisi",
+    "title": "Sonning juft bo‘luvchilari yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Sonning juft bo‘luvchilari yig‘indisini topadigan funksiya yozing."
   },
@@ -1955,12 +1955,12 @@
     "statement": "Ichida 'z' bo‘lgan so‘zni moslashtiradigan funksiya yozing."
   },
   "1455": {
-    "title": "Berilgan oy raqamini tekshirish",
+    "title": "Berilgan oy raqamida 31 kun borligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan oy raqamida 31 kun borligini tekshiradigan funksiya yozing."
   },
   "1456": {
-    "title": "Berilgan ro‘yxatdagi satrlarni teskari o‘girish",
+    "title": "Berilgan satrli qiymatlar ro‘yxatidagi satrlarni teskari o‘girish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrli qiymatlar ro‘yxatidagi satrlarni teskari o‘giradigan funksiya yozing."
   },
@@ -1970,7 +1970,7 @@
     "statement": "To‘g‘ri to‘rtburchakning yuzasini topadigan funksiya yozing."
   },
   "1459": {
-    "title": "Berilgan satrdan bosh harfli qism satrlarni olib tashlash",
+    "title": "Regulyar ifoda yordamida berilgan satrdan bosh harfli qism satrlarni olib tashlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Regulyar ifoda yordamida berilgan satrdan bosh harfli qism satrlarni olib tashlaydigan funksiya yozing."
   },
@@ -1980,22 +1980,22 @@
     "statement": "Har bir ichki ro‘yxatning birinchi elementini oladigan funksiya yozing."
   },
   "1461": {
-    "title": "Bosh harfli belgilarni sanash",
+    "title": "Berilgan satrdagi bosh harfli belgilarni sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrdagi bosh harfli belgilarni sanaydigan funksiya yozing."
   },
   "1462": {
-    "title": "Elementlarning barcha mumkin bo‘lgan kombinatsiyalarini topish",
+    "title": "Berilgan ro‘yxat elementlarining barcha mumkin bo‘lgan kombinatsiyalarini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxat elementlarining barcha mumkin bo‘lgan kombinatsiyalarini topadigan funksiya yozing."
   },
   "1463": {
-    "title": "Eng katta ko‘paytmali qism massivni topish",
+    "title": "Berilgan massivdagi eng katta ko‘paytmali qism massivni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivdagi eng katta ko‘paytmali qism massivni topadigan funksiya yozing."
   },
   "1464": {
-    "title": "Barcha qiymatlar bir xil ekanini tekshirish",
+    "title": "Lug‘atdagi barcha qiymatlar bir xil ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Lug‘atdagi barcha qiymatlar bir xil ekanini tekshiradigan funksiya yozing."
   },
@@ -2020,12 +2020,12 @@
     "statement": "Shu massivning o‘suvchi qism ketma-ketligidagi sonlarni ko‘paytirishdan olinadigan eng katta ko‘paytmani topadigan funksiya yozing."
   },
   "1469": {
-    "title": "Olinadigan eng katta foydani topish",
+    "title": "Ko‘pi bilan k ta aksiya bitimidan olinadigan eng katta foydani topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ko‘pi bilan k ta aksiya bitimidan olinadigan eng katta foydani topadigan funksiya yozing."
   },
   "1470": {
-    "title": "Elementlarni juft-juft qo‘shish",
+    "title": "Berilgan kortejlar elementlarini juft-juft qo‘shish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejlar elementlarini juft-juft qo‘shadigan funksiya yozing."
   },
@@ -2045,7 +2045,7 @@
     "statement": "Satrdagi belgilarni almashtiradigan funksiya yozing."
   },
   "1476": {
-    "title": "Eng kattasi va eng kichigining yig‘indisi",
+    "title": "Berilgan massivdagi eng katta va eng kichik qiymatning yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivdagi eng katta va eng kichik qiymatning yig‘indisini topadigan funksiya yozing."
   },
@@ -2065,37 +2065,37 @@
     "statement": "Berilgan sonning birinchi raqamini topadigan funksiya yozing."
   },
   "1480": {
-    "title": "Eng ko‘p uchraydigan belgini topish",
+    "title": "Berilgan satrdagi eng ko‘p uchraydigan belgini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrdagi eng ko‘p uchraydigan belgini topadigan funksiya yozing."
   },
   "1481": {
-    "title": "Qism to‘plam borligini aniqlash",
+    "title": "Berilgan to‘plamda yig‘indisi berilgan yig‘indiga teng qism to‘plam borligini aniqlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan to‘plamning yig‘indisi berilgan yig‘indiga teng qism to‘plami bor-yo‘qligini aniqlaydigan funksiya yozing."
   },
   "1482": {
-    "title": "Bitta bosh harfli ketma-ketliklarni topish",
+    "title": "Bitta bosh harf va undan keyin keladigan kichik harflardan iborat ketma-ketliklarni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Regulyar ifoda yordamida berilgan satrda bitta bosh harf va undan keyin keladigan kichik harflardan iborat ketma-ketliklarni topadigan funksiya yozing."
   },
   "1483": {
-    "title": "Birinchi natural sonni topish",
+    "title": "Faktoriali x ga bo‘linadigan birinchi natural sonni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Faktoriali x ga bo‘linadigan birinchi natural sonni topadigan funksiya yozing."
   },
   "1484": {
-    "title": "Mos keladigan kortejlarni olib tashlash",
+    "title": "Berilgan ikki kortejdan mos keladigan kortejlarni olib tashlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ikki kortejdan mos keladigan kortejlarni olib tashlaydigan funksiya yozing."
   },
   "1485": {
-    "title": "Eng katta palindrom sonni topish",
+    "title": "Berilgan massivdagi eng katta palindrom sonni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivdagi eng katta palindrom sonni topadigan funksiya yozing."
   },
   "1487": {
-    "title": "Kortejlar ro‘yxatini o‘sish tartibida saralash",
+    "title": "Kortejlar ro‘yxatini har bir kortejning oxirgi elementi bo‘yicha o‘sish tartibida saralash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Kortejlar ro‘yxatini har bir kortejning oxirgi elementi bo‘yicha o‘sish tartibida saralaydigan funksiya yozing."
   },
@@ -2105,7 +2105,7 @@
     "statement": "Beshburchakning yuzasini topadigan funksiya yozing."
   },
   "1489": {
-    "title": "Eng katta qiymatning chastotasini topish",
+    "title": "Berilgan massivdagi eng katta qiymatning chastotasini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivdagi eng katta qiymatning chastotasini topadigan funksiya yozing."
   },
@@ -2115,12 +2115,12 @@
     "statement": "Geometrik progressiya qatorining yig‘indisini topadigan funksiya yozing."
   },
   "1492": {
-    "title": "Berilgan massivda elementni qidirish",
+    "title": "Berilgan massivda elementni ikkilik qidiruv yordamida qidirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivda elementni ikkilik qidiruv yordamida qidiradigan funksiya yozing."
   },
   "1493": {
-    "title": "Olti burchak koordinatalari to‘rini hisoblash",
+    "title": "Ro‘yxat qaytaradigan olti burchak koordinatalari to‘rini hisoblash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Olti burchak koordinatalari to‘rini hisoblaydigan va x, y nuqta koordinatalarining 6 kortejini o‘z ichiga olgan ro‘yxatlar ro‘yxatini qaytaradigan funksiya yozing."
   },
@@ -2130,12 +2130,12 @@
     "statement": "Berilgan ikkilik kortejni butun songa o‘giradigan funksiya yozing."
   },
   "1495": {
-    "title": "Berilgan satrdan kichik harfli qism satrlarni olib tashlash",
+    "title": "Berilgan satrdan kichik harfli qism satrlarni regulyar ifoda yordamida olib tashlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrdan kichik harfli qism satrlarni regulyar ifoda yordamida olib tashlaydigan funksiya yozing."
   },
   "1496": {
-    "title": "Berilgan ro‘yxatdan eng kichik butun sonlarni topish",
+    "title": "Berilgan sonlar ro‘yxatidan eng kichik butun sonlarni uyum navbati algoritmi yordamida topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonlar ro‘yxatidan eng kichik butun sonlarni uyum navbati algoritmi yordamida topadigan funksiya yozing."
   },
@@ -2155,12 +2155,12 @@
     "statement": "Aylananing diametrini topadigan funksiya yozing."
   },
   "1500": {
-    "title": "Berilgan ro‘yxatning barcha elementlarini birlashtirish",
+    "title": "Berilgan ro‘yxatning barcha elementlarini bitta satrga birlashtirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatning barcha elementlarini bitta satrga birlashtiradigan funksiya yozing."
   },
   "1501": {
-    "title": "Ikki son orasidagi umumiy bo‘luvchini topish",
+    "title": "Berilgan juftlikdagi ikki sonning umumiy bo‘luvchisini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan juftlikdagi ikki sonning umumiy bo‘luvchisini topadigan funksiya yozing."
   },
@@ -2175,12 +2175,12 @@
     "statement": "Berilgan ro‘yxatning ketma-ket sonlarini qo‘shadigan funksiya yozing."
   },
   "1504": {
-    "title": "Dastlabki n ning kublari yig‘indisi",
+    "title": "Dastlabki n natural sonning kublari yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Dastlabki n natural sonning kublari yig‘indisini topadigan funksiya yozing."
   },
   "1505": {
-    "title": "Barcha nollarni oxiriga ko‘chirish",
+    "title": "Barcha nollarni berilgan massivning oxiriga ko‘chirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Barcha nollarni berilgan massivning oxiriga ko‘chiradigan funksiya yozing."
   },
@@ -2195,32 +2195,32 @@
     "statement": "Berilgan ro‘yxatdan muayyan so‘zlarni olib tashlaydigan funksiya yozing."
   },
   "1508": {
-    "title": "Umumiy elementlarni tekshirish",
+    "title": "Ikki berilgan ro‘yxatdagi umumiy elementlar bir xil tartibda ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ikki berilgan ro‘yxatdagi umumiy elementlar bir xil tartibda joylashganini tekshiradigan funksiya yozing."
   },
   "1509": {
-    "title": "Toq sonlarning o‘rtacha qiymati",
+    "title": "Berilgan toq songa qadar toq sonlarning o‘rtacha qiymati",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan toq songa qadar toq sonlarning o‘rtacha qiymatini topadigan funksiya yozing."
   },
   "1510": {
-    "title": "Qism ketma-ketliklar soni",
+    "title": "Ko‘paytmasi k dan kichik bo‘lgan qism ketma-ketliklar soni",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan nomanfiy massiv uchun ko‘paytmasi k dan kichik bo‘lgan qism ketma-ketliklar sonini topadigan funksiya yozing."
   },
   "1511": {
-    "title": "Ko‘paytuvchilarning minimal yig‘indisi",
+    "title": "Berilgan sonning ko‘paytuvchilari minimal yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonning ko‘paytuvchilari minimal yig‘indisini topadigan funksiya yozing."
   },
   "1514": {
-    "title": "Kortej elementlari yig‘indisi",
+    "title": "Berilgan kortejlar ro‘yxatidagi kortej elementlari yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejlar ro‘yxatidagi kortej elementlarining yig‘indisini topadigan funksiya yozing."
   },
   "1515": {
-    "title": "Yig‘indili qism to‘plam mavjudligini tekshirish",
+    "title": "Yig‘indisi m ga bo‘linadigan qism to‘plam mavjudligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Yig‘indisi m ga bo‘linadigan qism to‘plam mavjudligini tekshiradigan funksiya yozing."
   },
@@ -2230,7 +2230,7 @@
     "statement": "Elementlar ro‘yxatini razryadli saralash yordamida saralaydigan funksiya yozing."
   },
   "1517": {
-    "title": "Eng katta musbat sonni topish",
+    "title": "Berilgan ro‘yxatdan eng katta musbat sonni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatdan eng katta musbat sonni topadigan funksiya yozing."
   },
@@ -2255,17 +2255,17 @@
     "statement": "Uchburchak turli tomonli ekanini tekshirib, natijani chiqaradigan funksiya yozing."
   },
   "1522": {
-    "title": "Eng uzun bitonik qism ketma-ketlikni topish",
+    "title": "Berilgan massivning eng uzun bitonik qism ketma-ketligini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivning eng uzun bitonik qism ketma-ketligini topadigan funksiya yozing."
   },
   "1523": {
-    "title": "Berilgan satrni tekshirish",
+    "title": "Berilgan satrda bosh harf va kichik harf borligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrda bosh harf, kichik harf va raqam bor-yo‘qligini hamda uzunligi ko‘rsatilganga tengligini lambda funksiya yordamida tekshiradigan funksiya yozing."
   },
   "1524": {
-    "title": "Maksimal o‘suvchi qism ketma-ketlik yig‘indisi",
+    "title": "Berilgan massivning maksimal o‘suvchi qism ketma-ketligi yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivning maksimal o‘suvchi qism ketma-ketligi yig‘indisini topadigan funksiya yozing."
   },
@@ -2275,12 +2275,12 @@
     "statement": "Ikki berilgan to‘g‘ri chiziq parallel ekanini tekshiradigan funksiya yozing."
   },
   "1526": {
-    "title": "Har bir so‘zning birinchi va oxirgi harfini bosh harfga o‘girish",
+    "title": "Berilgan satrdagi har bir so‘zning birinchi va oxirgi harfini bosh harfga o‘girish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrdagi har bir so‘zning birinchi va oxirgi harfini bosh harfga o‘giradigan funksiya yozing."
   },
   "1527": {
-    "title": "Butun sonlar massividagi barcha juftliklarni topish",
+    "title": "Butun sonlar massivida yig‘indisi berilgan songa teng barcha juftliklarni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Butun sonlar massivida yig‘indisi berilgan songa teng bo‘lgan barcha juftliklarni topadigan funksiya yozing."
   },
@@ -2290,17 +2290,17 @@
     "statement": "n-chi Jacobsthal-Lucas sonini topadigan funksiya yozing."
   },
   "1530": {
-    "title": "Manfiy sonlar nisbatini topish",
+    "title": "Butun sonlar massividagi manfiy sonlar nisbatini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Butun sonlar massividagi manfiy sonlar nisbatini topadigan funksiya yozing."
   },
   "1531": {
-    "title": "Tangalarning minimal sonini topish",
+    "title": "Berilgan qiymatni tashkil qiladigan tangalarning minimal sonini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan qiymatni tashkil qiladigan tangalarning minimal sonini topadigan funksiya yozing."
   },
   "1532": {
-    "title": "Ikki berilgan satr o‘rin almashtirishlar ekanini tekshirish",
+    "title": "Ikki berilgan satr bir-birining o‘rin almashtirishi ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ikki berilgan satr bir-birining o‘rin almashtirishi ekanini tekshiradigan funksiya yozing."
   },
@@ -2310,7 +2310,7 @@
     "statement": "Satr ichidan literal satrni qidiradigan va shablon uchragan o‘rinni asl satrda topadigan funksiya yozing."
   },
   "1535": {
-    "title": "Yuqori yoki pastki sirt yuzasini topish",
+    "title": "Silindrning yuqori yoki pastki sirt yuzasini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Silindrning yuqori yoki pastki sirt yuzasini topadigan funksiya yozing."
   },
@@ -2320,7 +2320,7 @@
     "statement": "Ro‘yxatning n-chi elementlarini tanlaydigan funksiya yozing."
   },
   "1537": {
-    "title": "Birinchi takrorlanuvchi so‘zni topish",
+    "title": "Berilgan satrdagi birinchi takrorlanuvchi so‘zni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrdagi birinchi takrorlanuvchi so‘zni topadigan funksiya yozing."
   },
@@ -2330,12 +2330,12 @@
     "statement": "Berilgan satrlar ro‘yxatini kortejga o‘giradigan funksiya yozing."
   },
   "1539": {
-    "title": "Darajalarni o‘z ichiga olgan ro‘yxat tuzish",
+    "title": "Mos indeksdagi songa ko‘tarilgan asoslar ro‘yxatini tuzish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "map funksiyasi yordamida har bir asos indeksdagi mos songa teng darajaga ko‘tarilgan ro‘yxat tuzadigan funksiya yozing."
   },
   "1540": {
-    "title": "Eng katta va eng kichik chastotalar ayirmasi",
+    "title": "Berilgan massivdagi eng katta va eng kichik chastotalar ayirmasi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivdagi eng katta va eng kichik chastotalar ayirmasini topadigan funksiya yozing."
   },
@@ -2345,12 +2345,12 @@
     "statement": "Berilgan son ortiqcha son ekanini tekshiradigan funksiya yozing."
   },
   "1542": {
-    "title": "Bo‘shliq, vergul va nuqtalarning barcha uchrashini almashtirish",
+    "title": "Bo‘shliq, vergul va nuqtalarning barcha uchrashini ikki nuqtaga almashtirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrdagi bo‘shliq, vergul va nuqtalarning barcha uchrashini regulyar ifoda yordamida ikki nuqtaga almashtiradigan funksiya yozing."
   },
   "1543": {
-    "title": "Ikki sonni qo‘shish va raqamlar sonini chiqarish",
+    "title": "Ikki sonni qo‘shish va yig‘indidagi raqamlar sonini chiqarish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ikki sonni qo‘shadigan va yig‘indidagi raqamlar sonini chiqaradigan funksiya yozing."
   },
@@ -2360,32 +2360,32 @@
     "statement": "Kortejlar ro‘yxatini bitta satrga yoyadigan funksiya yozing."
   },
   "1545": {
-    "title": "Faqat birinchi va oxirgi bitlarni almashtirish",
+    "title": "Berilgan sonning faqat birinchi va oxirgi bitlarini almashtirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonning faqat birinchi va oxirgi bitlarini almashtiradigan funksiya yozing."
   },
   "1547": {
-    "title": "Hamming masofalari yig‘indisi",
+    "title": "0 dan n gacha barcha ketma-ket sonlarning Hamming masofalari yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "0 dan n gacha barcha ketma-ket sonlar uchun Hamming masofalari yig‘indisini topadigan funksiya yozing."
   },
   "1548": {
-    "title": "Eng uzun o‘suvchi qism ketma-ketlik uzunligi",
+    "title": "Berilgan ketma-ketlikning eng uzun o‘suvchi qism ketma-ketligi uzunligi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ketma-ketlikning eng uzun o‘suvchi qism ketma-ketligi uzunligini topadigan funksiya yozing."
   },
   "1549": {
-    "title": "Beshinchi darajalar yig‘indisi",
+    "title": "Dastlabki n toq natural sonning beshinchi darajalari yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Dastlabki n toq natural sonning beshinchi darajalari yig‘indisini topadigan funksiya yozing."
   },
   "1550": {
-    "title": "Maksimal elementni topish",
+    "title": "Saralangan va aylantirilgan massivdagi maksimal elementni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Saralangan va aylantirilgan massivdagi maksimal elementni topadigan funksiya yozing."
   },
   "1551": {
-    "title": "Ko‘rsatilgan ustunni ajratib olish",
+    "title": "Berilgan ichma-ich ro‘yxatdan ko‘rsatilgan ustunni ajratib olish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ichma-ich ro‘yxatdan ko‘rsatilgan ustunni ajratib oladigan funksiya yozing."
   },
@@ -2405,12 +2405,12 @@
     "statement": "Aralash ro‘yxatdan toq sonlarni topadigan funksiya yozing."
   },
   "1555": {
-    "title": "Kublar yig‘indisining ayirmasi",
+    "title": "Dastlabki n natural sonning kublari yig‘indisi ayirmasi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Dastlabki n natural sonning kublari yig‘indisi va dastlabki n natural son yig‘indisi ayirmasini topadigan funksiya yozing."
   },
   "1556": {
-    "title": "xor bo‘yicha juftliklarni sanash",
+    "title": "xor natijasi toq son bo‘lgan juftliklarni sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "xor natijasi toq son bo‘lgan juftliklarni sanaydigan funksiya yozing."
   },
@@ -2425,17 +2425,17 @@
     "statement": "Ikki butun son orasidagi raqamli masofani topadigan funksiya yozing."
   },
   "1559": {
-    "title": "Uzluksiz qism massivning eng katta yig‘indisi",
+    "title": "Berilgan massivdagi uzluksiz qism massivning eng katta yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivdagi uzluksiz qism massivning eng katta yig‘indisini topadigan funksiya yozing."
   },
   "1560": {
-    "title": "Elementlar birlashmasini topish",
+    "title": "Berilgan kortejlar elementlarining birlashmasini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejlar elementlarining birlashmasini topadigan funksiya yozing."
   },
   "1561": {
-    "title": "Har bir elementga uning juftlik elementlarini biriktirish",
+    "title": "Har bir elementga boshqa shunga o‘xshash juftliklardagi juftlik elementlarini biriktirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejdagi boshqa shunga o‘xshash juftliklardan har bir elementga uning juftlik elementlarini biriktiradigan funksiya yozing."
   },
@@ -2470,27 +2470,27 @@
     "statement": "Ko‘rsatilgan ro‘yxat saralanganini tekshiradigan funksiya yozing."
   },
   "1569": {
-    "title": "Har bir satrlar qism ro‘yxatini saralash",
+    "title": "Berilgan ro‘yxatlar ro‘yxatidagi har bir satrlar qism ro‘yxatini saralash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatlar ro‘yxatidagi har bir satrlar qism ro‘yxatini saralaydigan funksiya yozing."
   },
   "1570": {
-    "title": "Berilgan satrlar ro‘yxatidan so‘zlarni olib tashlash",
+    "title": "Berilgan satrlar ro‘yxatidan belgi yoki satrni o‘z ichiga olgan so‘zlarni olib tashlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrlar ro‘yxatidan ko‘rsatilgan belgi yoki satrni o‘z ichiga olgan so‘zlarni olib tashlaydigan funksiya yozing."
   },
   "1571": {
-    "title": "Kesishmaydigan juftliklarning maksimal mumkin bo‘lgan yig‘indisi",
+    "title": "Berilgan massiv uchun kesishmaydigan juftliklarning maksimal mumkin bo‘lgan yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan butun sonlar massivi va k soni uchun kesishmaydigan juftliklarning maksimal mumkin bo‘lgan yig‘indisini topadigan funksiya yozing."
   },
   "1572": {
-    "title": "Ikki takroriy sonni olib tashlash",
+    "title": "Berilgan sondagi ro‘yxatlardan ikki takroriy sonni olib tashlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sondagi ro‘yxatlardan ikki takroriy sonni olib tashlaydigan funksiya yozing."
   },
   "1573": {
-    "title": "Takrorlanmas sonlar ko‘paytmasini hisoblash",
+    "title": "Berilgan ro‘yxatdagi takrorlanmas sonlar ko‘paytmasini hisoblash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatdagi takrorlanmas sonlar ko‘paytmasini hisoblaydigan funksiya yozing."
   },
@@ -2500,7 +2500,7 @@
     "statement": "Silindrning sirt yuzasini topadigan funksiya yozing."
   },
   "1575": {
-    "title": "Ketma-ketlikdagi n-chi sonni topish",
+    "title": "Ketma-ketlikda berilgan songa karrali bo‘lmagan n-chi sonni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ketma-ketlikda berilgan songa karrali bo‘lmagan n-chi sonni topadigan funksiya yozing."
   },
@@ -2510,7 +2510,7 @@
     "statement": "Massiv boshqa massivning qism massivi ekanini tekshiradigan funksiya yozing."
   },
   "1577": {
-    "title": "Faktorialning oxirgi raqamini topish",
+    "title": "Berilgan son faktorialining oxirgi raqamini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonning faktorialidagi oxirgi raqamni topadigan funksiya yozing."
   },
@@ -2520,7 +2520,7 @@
     "statement": "Bir xil uzunlikdagi ro‘yxatlarni navbatlashtiradigan funksiya yozing."
   },
   "1579": {
-    "title": "Mos kelmaydigan elementlarni topish",
+    "title": "Ikki berilgan kortejdagi mos kelmaydigan elementlarni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ikki berilgan kortejdagi mos kelmaydigan elementlarni topadigan funksiya yozing."
   },
@@ -2535,12 +2535,12 @@
     "statement": "n-chi Katalan sonini topadigan funksiya yozing."
   },
   "1584": {
-    "title": "Barcha ravishlar va ularning o‘rinlarini topish",
+    "title": "Berilgan gapdagi barcha ravishlar va ularning o‘rinlarini regulyar ifoda yordamida topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan gapdagi barcha ravishlar va ularning o‘rinlarini regulyar ifoda yordamida topadigan funksiya yozing."
   },
   "1586": {
-    "title": "Massivni bo‘lish va birinchi qismini qo‘shish",
+    "title": "Massivni bo‘lib, birinchi qismini oxiriga qo‘shish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Massivni bo‘lib, birinchi qismini oxiriga qo‘shadigan funksiya yozing."
   },
@@ -2550,7 +2550,7 @@
     "statement": "Ro‘yxatni kortejga o‘giradigan funksiya yozing."
   },
   "1588": {
-    "title": "Eng katta va eng kichik qiymat ayirmasi",
+    "title": "Berilgan massivdagi eng katta va eng kichik qiymat ayirmasi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivdagi eng katta va eng kichik qiymat ayirmasini topadigan funksiya yozing."
   },
@@ -2560,7 +2560,7 @@
     "statement": "Ikki berilgan son orasidagi to‘liq kvadratlarni topadigan funksiya yozing."
   },
   "1591": {
-    "title": "Birinchi va oxirgi elementlarning o‘rnini almashtirish",
+    "title": "Ro‘yxatdagi birinchi va oxirgi elementlarning o‘rnini almashtirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ro‘yxatdagi birinchi va oxirgi elementlarning o‘rnini almashtiradigan funksiya yozing."
   },
@@ -2575,12 +2575,12 @@
     "statement": "ip manzildan boshidagi nollarni olib tashlaydigan funksiya yozing."
   },
   "1594": {
-    "title": "Birinchi juft va toq ayirmasi",
+    "title": "Berilgan ro‘yxatdagi birinchi juft va birinchi toq sonning ayirmasi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatdagi birinchi juft va birinchi toq sonning ayirmasini topadigan funksiya yozing."
   },
   "1597": {
-    "title": "k-chi elementni topish",
+    "title": "Ikki berilgan saralangan massivdan k-chi elementni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ikki berilgan saralangan massivdan k-chi elementni topadigan funksiya yozing."
   },
@@ -2590,22 +2590,22 @@
     "statement": "Berilgan son Armstrong soni ekanini tekshiradigan funksiya yozing."
   },
   "1599": {
-    "title": "Dastlabki n ning yig‘indisi va o‘rtachasi",
+    "title": "Dastlabki n natural sonning yig‘indisi va o‘rtacha qiymati",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Dastlabki n natural sonning yig‘indisi va o‘rtacha qiymatini topadigan funksiya yozing."
   },
   "1600": {
-    "title": "Berilgan son juft ekanini tekshirish",
+    "title": "Berilgan son juft ekanini bitli operator yordamida tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan son juft ekanini bitli operator yordamida tekshiradigan funksiya yozing."
   },
   "1602": {
-    "title": "Birinchi takrorlanuvchi belgini topish",
+    "title": "Berilgan satrdagi birinchi takrorlanuvchi belgini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrdagi birinchi takrorlanuvchi belgini topadigan funksiya yozing."
   },
   "1603": {
-    "title": "Lucid sonni olish",
+    "title": "n dan kichik yoki unga teng lucid sonni olish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "n dan kichik yoki unga teng lucid sonni topadigan funksiya yozing."
   },
@@ -2630,7 +2630,7 @@
     "statement": "n-chi Bell sonini topadigan funksiya yozing."
   },
   "1609": {
-    "title": "Minimal mumkin bo‘lgan qiymatni topish",
+    "title": "Berilgan davriy funksiyaning minimal mumkin bo‘lgan qiymatini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan davriy funksiyaning minimal mumkin bo‘lgan qiymatini topadigan funksiya yozing."
   },
@@ -2640,27 +2640,27 @@
     "statement": "Berilgan ro‘yxatdan k-chi elementni olib tashlaydigan funksiya yozing."
   },
   "1611": {
-    "title": "n-chi ustunning maksimumini topish",
+    "title": "Berilgan kortejlar ro‘yxatidagi n-chi ustunning maksimumini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejlar ro‘yxatidagi n-chi ustunning maksimumini topadigan funksiya yozing."
   },
   "1614": {
-    "title": "Barcha qiymatlarning jamlanma yig‘indisi",
+    "title": "Berilgan kortejlar ro‘yxatidagi barcha qiymatlarning jamlanma yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejlar ro‘yxatidagi barcha qiymatlarning jamlanma yig‘indisini topadigan funksiya yozing."
   },
   "1615": {
-    "title": "Sonlarning o‘rtacha qiymati",
+    "title": "Berilgan kortejlar kortejidagi sonlarning o‘rtacha qiymati",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejlar kortejidagi sonlarning o‘rtacha qiymatini topadigan funksiya yozing."
   },
   "1616": {
-    "title": "Kortej elementlarining qoldig‘ini olish",
+    "title": "Berilgan ikki kortej elementlarining qoldig‘ini olish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ikki kortej elementlarining bo‘linish qoldig‘ini hisoblaydigan funksiya yozing."
   },
   "1617": {
-    "title": "Kerakli sakrashlar sonini tekshirish",
+    "title": "Nuqtaga yetib borish uchun berilgan uzunlikdagi sakrashlar sonini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Tekislikda koordinata boshidan (d, 0) ko‘rinishidagi nuqtaga yetib borish uchun kerak bo‘ladigan berilgan uzunlikdagi sakrashlar sonini tekshiradigan funksiya yozing."
   },
@@ -2670,22 +2670,22 @@
     "statement": "map va lambda funksiyalari yordamida ikki ro‘yxatni bo‘ladigan funksiya yozing."
   },
   "1619": {
-    "title": "Barcha sonlarni ko‘chirish",
+    "title": "Berilgan satrdagi barcha sonlarni ko‘chirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrdagi barcha sonlarni uning oxiriga ko‘chiradigan funksiya yozing."
   },
   "1620": {
-    "title": "Eng katta qism to‘plam",
+    "title": "Har bir juftligi bo‘linadigan eng katta qism to‘plam",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Har bir juftligi bir-biriga bo‘linadigan eng katta qism to‘plamni topadigan funksiya yozing."
   },
   "1621": {
-    "title": "Berilgan satrlardagi sonli qiymatlarni oshirish",
+    "title": "Berilgan satrlardagi sonli qiymatlarni k ga oshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrlardagi sonli qiymatlarni k ga oshiradigan funksiya yozing."
   },
   "1622": {
-    "title": "Ikki saralangan massivning medianasi",
+    "title": "Bir xil o‘lchamli ikki saralangan massivning medianasi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Bir xil o‘lchamli ikki saralangan massivning medianasini topadigan funksiya yozing."
   },
@@ -2695,24 +2695,24 @@
     "statement": "Berilgan satrni yuqori registrga o‘giradigan funksiya yozing."
   },
   "1625": {
-    "title": "Birinchi va oxirgi elementlarni almashtirish",
+    "title": "Berilgan ro‘yxatning birinchi va oxirgi elementlarini almashtirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatning birinchi va oxirgi elementlarini o‘rnini almashtiradigan funksiya yozing."
   },
   "1626": {
-    "title": "Ichki chizilgan eng katta uchburchak",
+    "title": "Yarim doiraga ichki chizilgan eng katta uchburchak",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Yarim doiraga ichki chizish mumkin bo‘lgan eng katta uchburchakni topadigan funksiya yozing."
   },
   "1627": {
-    "title": "Eng kichik yetishmayotgan son",
+    "title": "Berilgan massivdagi eng kichik yetishmayotgan son",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivdagi eng kichik yetishmayotgan sonni topadigan funksiya yozing."
   },
   "1628": {
-    "title": "Satrdagi barcha bo‘shliqlarni almashtirish",
+    "title": "Berilgan satrdagi barcha bo‘shliqlarni '%20' belgisi bilan almashtirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
-    "statement": "Berilgan satrdagi barcha bo‘shliqlarni '%20' bilan almashtiradigan funksiya yozing."
+    "statement": "Berilgan satrdagi barcha bo‘shliqlarni '%20' belgisi bilan almashtiradigan funksiya yozing."
   },
   "1629": {
     "title": "Aralash ro‘yxatdan juft sonlarni topish",
@@ -2720,42 +2720,42 @@
     "statement": "Aralash ro‘yxatdan juft sonlarni topadigan funksiya yozing."
   },
   "1630": {
-    "title": "Barcha qo‘shni koordinatalarni ajratib olish",
+    "title": "Berilgan koordinata kortejining barcha qo‘shni koordinatalarini ajratib olish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan koordinata kortejining barcha qo‘shni koordinatalarini ajratib oladigan funksiya yozing."
   },
   "1631": {
-    "title": "Bo‘shliqlarni pastki chiziq bilan va teskarisiga almashtirish",
+    "title": "Berilgan satrda bo‘shliqlarni pastki chiziq bilan va teskarisiga almashtirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Muntazam ifodalar yordamida berilgan satrda bo‘shliqlarni pastki chiziqqa va teskarisiga almashtiradigan funksiya yozing."
   },
   "1632": {
-    "title": "Barcha nollarni oxiriga ko‘chirish",
+    "title": "Barcha nollarni berilgan ro‘yxat oxiriga ko‘chirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatdagi barcha nollarni oxiriga ko‘chiradigan funksiya yozing."
   },
   "1633": {
-    "title": "Barcha juftliklar xor yig‘indisi",
+    "title": "Berilgan massivdagi barcha son juftliklarining xor yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivdagi barcha son juftliklarining xor yig‘indisini topadigan funksiya yozing."
   },
   "1634": {
-    "title": "To‘rtinchi darajalar yig‘indisi",
+    "title": "Dastlabki n juft natural sonning to‘rtinchi darajalari yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Dastlabki n juft natural sonning to‘rtinchi darajalari yig‘indisini topadigan funksiya yozing."
   },
   "1635": {
-    "title": "Barcha qiymatlarni uyumga qo‘shish",
+    "title": "Barcha qiymatlarni uyumga qo‘shib, eng kichiklarini birma-bir chiqarish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Barcha qiymatlarni uyumga qo‘shib, so‘ng eng kichik qiymatlarni birma-bir chiqaradigan funksiya yozing."
   },
   "1636": {
-    "title": "Kvadrat tenglama ildizlarini tekshirish",
+    "title": "Kvadrat tenglama ildizlari bir-biriga teskari ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Kvadrat tenglama ildizlari bir-biriga teskari ekanini tekshiradigan funksiya yozing."
   },
   "1637": {
-    "title": "Berilgan summa foyda keltirmasligini tekshirish",
+    "title": "Berilgan summa na foyda, na zarar keltirmasligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan summa na foyda, na zarar keltirmasligini tekshiradigan funksiya yozing."
   },
@@ -2765,7 +2765,7 @@
     "statement": "Shamol sovutish indeksini hisoblaydigan funksiya yozing."
   },
   "1639": {
-    "title": "Ismlar uzunliklari yig‘indisi",
+    "title": "Berilgan ismlar ro‘yxatidagi ismlar uzunliklari yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Kichik harf bilan boshlanadigan ismlarni olib tashlagandan keyin berilgan ro‘yxatdagi ismlar uzunliklari yig‘indisini topadigan funksiya yozing."
   },
@@ -2780,7 +2780,7 @@
     "statement": "n-chi to‘qqizburchakli sonni topadigan funksiya yozing."
   },
   "1643": {
-    "title": "'z' harfi bor so‘zni topish",
+    "title": "So‘z boshida ham, oxirida ham bo‘lmagan 'z' harfi bor so‘zni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "So‘zning boshida ham, oxirida ham bo‘lmagan 'z' harfi bor so‘zni topadigan funksiya yozing."
   },
@@ -2790,12 +2790,12 @@
     "statement": "Massivni berilgan pozitsiyagacha teskari o‘giradigan funksiya yozing."
   },
   "1645": {
-    "title": "k-indeksli elementlar ko‘paytmasi",
+    "title": "Berilgan kortejlardagi k-indeksli elementlar ko‘paytmasi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejlardagi k-indeksli elementlar ko‘paytmasini topadigan funksiya yozing."
   },
   "1646": {
-    "title": "k o‘lchamli kublarni sanash",
+    "title": "n o‘lchamli kubdagi k o‘lchamli kublarni sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "n o‘lchamli kubdagi k o‘lchamli kublar sonini sanaydigan funksiya yozing."
   },
@@ -2805,27 +2805,27 @@
     "statement": "Satrni bosh harflar bo‘yicha bo‘ladigan funksiya yozing."
   },
   "1648": {
-    "title": "Har bir n-chi qiymat o‘rnini almashtirish",
+    "title": "Har bir n-chi qiymatni (n+1)-chi bilan almashtirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatda har bir n-chi qiymatni (n+1)-chi bilan, (n+1)-chi qiymatni n-chi bilan o‘rnini almashtiradigan funksiya yozing."
   },
   "1649": {
-    "title": "Sonlar yig‘indisi",
+    "title": "Ro‘yxatda berilgan diapazon indekslari orasidagi sonlar yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ro‘yxatda berilgan diapazon indekslari orasidagi sonlar yig‘indisini hisoblaydigan funksiya yozing."
   },
   "1650": {
-    "title": "Ikki massivning tengligini tekshirish",
+    "title": "Berilgan ikki massivning tengligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ikki massiv teng ekanini tekshiradigan funksiya yozing."
   },
   "1651": {
-    "title": "Kortej qism to‘plam ekanini tekshirish",
+    "title": "Bir kortej boshqa kortejning qism to‘plami ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Bir kortej boshqa kortejning qism to‘plami ekanini tekshiradigan funksiya yozing."
   },
   "1652": {
-    "title": "Kortejlar matritsasini yassilash",
+    "title": "Berilgan kortejlar matritsasini kortejlar ro‘yxatiga yassilash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejlar matritsasini har bir korteji bitta ustunni ifodalaydigan kortejlar ro‘yxatiga aylantiradigan funksiya yozing."
   },
@@ -2840,17 +2840,17 @@
     "statement": "n natural sonning beshinchi darajalari yig‘indisini topadigan funksiya yozing."
   },
   "1656": {
-    "title": "Absolyut ayirmalarning minimal yig‘indisi",
+    "title": "Ikki massiv absolyut ayirmalarining minimal yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ikki massiv absolyut ayirmalarining minimal yig‘indisini topadigan funksiya yozing."
   },
   "1657": {
-    "title": "Faktorialning birinchi raqami",
+    "title": "Berilgan son faktorialining birinchi raqami",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonning faktorialidagi birinchi raqamni topadigan funksiya yozing."
   },
   "1658": {
-    "title": "Eng ko‘p uchraydigan element",
+    "title": "Berilgan ro‘yxatda eng ko‘p uchraydigan element",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatda eng ko‘p uchraydigan elementni topadigan funksiya yozing."
   },
@@ -2860,7 +2860,7 @@
     "statement": "Butun sonlar ro‘yxatidan takrorlanadigan elementlarni chiqaradigan funksiya yozing."
   },
   "1660": {
-    "title": "Ikki diapazondan nuqtalar tanlash",
+    "title": "Ikki diapazondan umumiy bo‘lmagan nuqtalarni tanlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Hech bir nuqta ikki diapazonda ham yotmaydigan tarzda ikki diapazondan nuqtalar tanlaydigan funksiya yozing."
   },
@@ -2875,17 +2875,17 @@
     "statement": "Lug‘atdagi ro‘yxatni saralaydigan funksiya yozing."
   },
   "1663": {
-    "title": "k ning eng katta mumkin bo‘lgan qiymati",
+    "title": "k ning x ga bo‘lgandagi qoldig‘i y bo‘ladigan eng katta qiymati",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "k ning x ga bo‘lgandagi qoldig‘i y bo‘ladigan eng katta mumkin qiymatini topadigan funksiya yozing."
   },
   "1664": {
-    "title": "Juft sonlarning o‘rtachasi",
+    "title": "Berilgan juft songa qadar juft sonlarning o‘rtachasi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan juft songa qadar juft sonlarning o‘rtachasini topadigan funksiya yozing."
   },
   "1665": {
-    "title": "Birinchi elementni oxiriga ko‘chirish",
+    "title": "Birinchi elementni berilgan ro‘yxat oxiriga ko‘chirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatning birinchi elementini oxiriga ko‘chiradigan funksiya yozing."
   },
@@ -2905,12 +2905,12 @@
     "statement": "Belgining ketma-ket bir necha uchrashini bittaga almashtiradigan funksiya yozing."
   },
   "1669": {
-    "title": "ip manzilning to‘g‘riligini tekshirish",
+    "title": "Muntazam ifodalar yordamida berilgan ip manzilning to‘g‘riligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Muntazam ifodalar yordamida berilgan ip manzil to‘g‘ri ekanini tekshiradigan funksiya yozing."
   },
   "1670": {
-    "title": "Sonlar ketma-ketligining kamayishini tekshirish",
+    "title": "Sonlar ketma-ketligida kamayish tendensiyasini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Sonlar ketma-ketligi kamayish tendensiyasiga ega ekanini tekshiradigan funksiya yozing."
   },
@@ -2925,22 +2925,22 @@
     "statement": "Uch sonning eng kattasini topadigan funksiya yozing."
   },
   "1673": {
-    "title": "Butun sonlar ro‘yxatini o‘girish",
+    "title": "Butun sonlar ro‘yxatini bitta butun songa o‘girish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Bir necha butun sondan iborat ro‘yxatni bitta butun songa o‘giradigan funksiya yozing."
   },
   "1674": {
-    "title": "Satrdan takrorlanuvchi so‘zlarni olib tashlash",
+    "title": "collections moduli yordamida satrdan takrorlanuvchi so‘zlarni olib tashlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "collections moduli yordamida berilgan satrdan takrorlanuvchi so‘zlarni olib tashlaydigan funksiya yozing."
   },
   "1675": {
-    "title": "Ikki butun sonni qo‘shish",
+    "title": "Ikki butun sonni qo‘shish va diapazonga tushganda 20 qaytarish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ikki butun sonni qo‘shadigan, lekin yig‘indi berilgan diapazonga tushsa 20 qaytaradigan funksiya yozing."
   },
   "1676": {
-    "title": "Harf va raqamlardan boshqa hamma belgini olib tashlash",
+    "title": "Berilgan satrdan harf va raqamlardan boshqa hammasini olib tashlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Muntazam ifodalar yordamida berilgan satrdan harf va raqamlardan boshqa hamma narsani olib tashlaydigan funksiya yozing."
   },
@@ -2960,7 +2960,7 @@
     "statement": "Lug‘at kaliti elementiga indeks bo‘yicha murojaat qiladigan funksiya yozing."
   },
   "1680": {
-    "title": "Sonlar ketma-ketligining o‘sishini tekshirish",
+    "title": "Sonlar ketma-ketligida o‘sish tendensiyasini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Sonlar ketma-ketligi o‘sish tendensiyasiga ega ekanini tekshiradigan funksiya yozing."
   },
@@ -2975,27 +2975,27 @@
     "statement": "map va lambda funksiyalari yordamida ikki ro‘yxatni ko‘paytiradigan funksiya yozing."
   },
   "1683": {
-    "title": "Sonning ifodalanishini tekshirish",
+    "title": "Sonni ikki kvadrat yig‘indisi sifatida ifodalash mumkinligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonni ikki kvadrat yig‘indisi sifatida ifodalash mumkinligini tekshiradigan funksiya yozing."
   },
   "1684": {
-    "title": "Belgining uchrashini sanash",
+    "title": "Takrorlanadigan satrda belgining uchrashini sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Takrorlanadigan satrda belgining uchrash sonini sanaydigan funksiya yozing."
   },
   "1685": {
-    "title": "Tub sonlar yig‘indisi",
+    "title": "1 dan n gacha tub sonlar yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "1 dan n gacha tub sonlar yig‘indisini topadigan funksiya yozing."
   },
   "1686": {
-    "title": "Har bir elementning chastotasi",
+    "title": "Berilgan ro‘yxatdagi har bir elementning chastotasi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatdagi har bir elementning uchrash chastotasini topadigan funksiya yozing."
   },
   "1687": {
-    "title": "Eng katta umumiy bo‘luvchi (gcd)",
+    "title": "Rekursiya yordamida ikki butun sonning eng katta umumiy bo‘luvchisi (gcd)",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Rekursiya yordamida ikki butun sonning eng katta umumiy bo‘luvchisini (gcd) topadigan funksiya yozing."
   },
@@ -3005,7 +3005,7 @@
     "statement": "Kompleks sonning modulini topadigan funksiya yozing."
   },
   "1689": {
-    "title": "Minimumni topish",
+    "title": "Massiv oxiriga yetish uchun minimal sakrashlar soni",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Har bir elementi shu elementdan oldinga qilinadigan maksimal qadamlar sonini bildiradigan berilgan butun sonlar massivi uchun massiv oxiriga yetib borish uchun kerak bo‘ladigan minimal sakrashlar sonini topadigan funksiya yozing."
   },
@@ -3015,17 +3015,17 @@
     "statement": "Berilgan ro‘yxatdagi ketma-ket sonlarni ko‘paytiradigan funksiya yozing."
   },
   "1691": {
-    "title": "Birinchi elementlarni guruhlash",
+    "title": "Berilgan kortejlar ro‘yxatida birinchi elementlarni ikkinchilari bo‘yicha guruhlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejlar ro‘yxatida birinchi elementlarni ikkinchi elementlar asosida guruhlaydigan funksiya yozing."
   },
   "1692": {
-    "title": "Faktorialning oxirgi ikki raqami",
+    "title": "Berilgan son faktorialining oxirgi ikki raqami",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonning faktorialidagi oxirgi ikki raqamni topadigan funksiya yozing."
   },
   "1693": {
-    "title": "Satrdagi ortiqcha bo‘shliqlarni olib tashlash",
+    "title": "Muntazam ifodalar yordamida satrdagi ortiqcha bo‘shliqlarni olib tashlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Muntazam ifodalar yordamida satrdagi ortiqcha bo‘shliqlarni olib tashlaydigan funksiya yozing."
   },
@@ -3035,12 +3035,12 @@
     "statement": "Berilgan lug‘at qiymatlaridan takrorlanmas qiymatlarni ajratib oladigan funksiya yozing."
   },
   "1695": {
-    "title": "Ikkinchi kortejning har bir elementini tekshirish",
+    "title": "Ikkinchi kortejning har bir elementi birinchidagi indeksidan katta ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ikkinchi kortejning har bir elementi birinchi kortejdagi mos indeksli elementdan katta ekanini tekshiradigan funksiya yozing."
   },
   "1697": {
-    "title": "Juft elementlar soni",
+    "title": "lambda funksiya yordamida berilgan ro‘yxatdagi juft elementlar soni",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "lambda funksiya yordamida berilgan ro‘yxatdagi juft elementlar sonini topadigan funksiya yozing."
   },
@@ -3050,12 +3050,12 @@
     "statement": "Berilgan massivning muvozanat indeksini topadigan funksiya yozing."
   },
   "1702": {
-    "title": "Elementlarning minimal soni",
+    "title": "amax-amin<=k bo‘lishi uchun olib tashlanadigan elementlarning minimal soni",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "amax-amin<=k sharti bajarilishi uchun olib tashlash kerak bo‘lgan elementlarning minimal sonini topadigan funksiya yozing."
   },
   "1703": {
-    "title": "Berilgan kalitning borligini tekshirish",
+    "title": "Berilgan kalitning lug‘atda borligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kalit lug‘atda bor ekanini tekshiradigan funksiya yozing."
   },
@@ -3065,12 +3065,12 @@
     "statement": "n-1 uchun garmonik yig‘indini hisoblaydigan funksiya yozing."
   },
   "1706": {
-    "title": "Massiv boshqasining qism to‘plami ekanini tekshirish",
+    "title": "Massivning boshqa massiv qism to‘plami ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Bir massiv boshqa massivning qism to‘plami ekanini aniqlaydigan funksiya yozing."
   },
   "1707": {
-    "title": "O‘rnatilgan bitlarni sanash",
+    "title": "1 dan n gacha o‘rnatilgan bitlarning umumiy sonini sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "1 dan n gacha sonlardagi o‘rnatilgan bitlarning umumiy sonini sanaydigan funksiya yozing."
   },
@@ -3080,32 +3080,32 @@
     "statement": "Satrni ro‘yxatga o‘giradigan funksiya yozing."
   },
   "1709": {
-    "title": "Har bir qiymat uchun takrorlanmas kalitlarni sanash",
+    "title": "Kortejdagi har bir qiymat uchun takrorlanmas kalitlarni sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Kortejdagi har bir qiymat uchun takrorlanmas kalitlar sonini sanaydigan funksiya yozing."
   },
   "1710": {
-    "title": "Boshlang‘ich va oxirgi ma’lumotlarga murojaat",
+    "title": "Berilgan kortej yozuvining boshlang‘ich va oxirgi ma’lumotlariga murojaat",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortej yozuvining boshlang‘ich va oxirgi ma’lumotlariga murojaat qiladigan funksiya yozing."
   },
   "1711": {
-    "title": "Raqamlar ko‘paytmasini tekshirish",
+    "title": "Juft va toq o‘rinlardagi raqamlar ko‘paytmasi teng ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Sonning juft va toq o‘rinlaridagi raqamlar ko‘paytmasi teng ekanini tekshiradigan funksiya yozing."
   },
   "1713": {
-    "title": "Kortejning to‘g‘riligini tekshirish",
+    "title": "Berilgan kortej faqat to‘g‘ri qiymatlardan iborat ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortej faqat to‘g‘ri qiymatlardan iborat ekanini tekshiradigan funksiya yozing."
   },
   "1714": {
-    "title": "Tub sonning turli darajalarini sanash",
+    "title": "Berilgan sonning tub ko‘paytuvchisi turli darajalarini sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonning tub ko‘paytuvchisi turli darajalari sonini sanaydigan funksiya yozing."
   },
   "1715": {
-    "title": "Butun sonlar satrini o‘girish",
+    "title": "Berilgan butun sonlar satrini kortejga o‘girish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan butun sonlar satrini kortejga o‘giradigan funksiya yozing."
   },
@@ -3120,32 +3120,32 @@
     "statement": "Standart chetlanishni hisoblaydigan funksiya yozing."
   },
   "1719": {
-    "title": "a harfi bor satrni topish",
+    "title": "a harfidan keyin nol yoki bir necha b keladigan satrni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "a harfidan keyin nol yoki bir necha b keladigan satrni topadigan funksiya yozing."
   },
   "1721": {
-    "title": "Maksimal o‘rtachali yo‘l",
+    "title": "Barcha mavjud yo‘llar orasidan maksimal o‘rtachaga ega yo‘l",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan n*n o‘lchamli kvadrat matritsa uchun barcha mavjud yo‘llar orasidan maksimal o‘rtachaga ega yo‘lni topadigan funksiya yozing."
   },
   "1722": {
-    "title": "O‘quvchilarning bo‘yi va kengligini filtrlash",
+    "title": "Lug‘atda saqlanadigan o‘quvchilarning bo‘yi va kengligini filtrlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Lug‘atda saqlanadigan o‘quvchilarning bo‘yi va kengligini filtrlaydigan funksiya yozing."
   },
   "1723": {
-    "title": "Ikki ro‘yxatdagi bir xil juftliklarni sanash",
+    "title": "map funksiyasi yordamida ikki ro‘yxatdagi bir xil juftliklarni sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "map funksiyasi yordamida berilgan ikki ro‘yxatdagi bir xil juftliklarni sanaydigan funksiya yozing."
   },
   "1724": {
-    "title": "Barcha raqamlar yig‘indisi",
+    "title": "Asosning ko‘rsatilgan darajadagi barcha raqamlari yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Asosni ko‘rsatilgan darajaga oshirgandagi barcha raqamlar yig‘indisini hisoblaydigan funksiya yozing."
   },
   "1725": {
-    "title": "Qo‘shtirnoq ichidagi qiymatlarni ajratib olish",
+    "title": "Muntazam ifodalar yordamida berilgan satrdan qo‘shtirnoq ichidagi qiymatlarni ajratib olish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Muntazam ifodalar yordamida berilgan satrdan qo‘shtirnoq ichidagi qiymatlarni ajratib oladigan funksiya yozing."
   },
@@ -3155,7 +3155,7 @@
     "statement": "Berilgan kortejning qo‘shni elementlarini ko‘paytiradigan funksiya yozing."
   },
   "1727": {
-    "title": "Harf va raqamlardan boshqa barcha belgilarni olib tashlash",
+    "title": "Muntazam ifodalar yordamida harf va raqamlardan boshqa barcha belgilarni olib tashlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Muntazam ifodalar yordamida harf va raqamlardan boshqa barcha belgilarni olib tashlaydigan funksiya yozing."
   },
@@ -3175,12 +3175,12 @@
     "statement": "Konusning yon sirt yuzasini topadigan funksiya yozing."
   },
   "1732": {
-    "title": "Barcha bo‘shliq, vergul va nuqtalarni almashtirish",
+    "title": "Barcha bo‘shliq, vergul va nuqtalarni ikki nuqta bilan almashtirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Barcha bo‘shliq, vergul va nuqtalarni ikki nuqta bilan almashtiradigan funksiya yozing."
   },
   "1733": {
-    "title": "Birinchi uchrash indeksi",
+    "title": "Saralangan massivda berilgan sonning birinchi uchrash indeksi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Saralangan massivda berilgan sonning birinchi uchrash indeksini topadigan funksiya yozing."
   },
@@ -3190,17 +3190,17 @@
     "statement": "Barcha mumkin bo‘lgan qism massivlar ko‘paytmalarining yig‘indisini topadigan funksiya yozing."
   },
   "1735": {
-    "title": "Birinchisidan tashqari bitlarni almashtirish",
+    "title": "Sonning birinchi va oxirgi bitidan tashqari bitlarni almashtirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Sonning birinchi va oxirgi bitidan tashqari barcha bitlarini teskarisiga almashtiradigan funksiya yozing."
   },
   "1736": {
-    "title": "Chap qo‘shish nuqtasi",
+    "title": "Saralangan tartibda ko‘rsatilgan qiymat uchun chap qo‘shish nuqtasi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Saralangan tartibda ko‘rsatilgan qiymat uchun chap qo‘shish nuqtasini topadigan funksiya yozing."
   },
   "1737": {
-    "title": "Berilgan satrning boshlanishini tekshirish",
+    "title": "Berilgan satr unli harf bilan boshlanishini regulyar ifoda yordamida tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satr unli harf bilan boshlanishini regulyar ifoda yordamida tekshiradigan funksiya yozing."
   },
@@ -3210,12 +3210,12 @@
     "statement": "n-1 uchun geometrik yig‘indini hisoblaydigan funksiya yozing."
   },
   "1739": {
-    "title": "Eng kichik uchburchakli son indeksi",
+    "title": "n raqamli eng kichik uchburchakli son indeksi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "n raqamli eng kichik uchburchakli sonning indeksini topadigan funksiya yozing."
   },
   "1740": {
-    "title": "Berilgan kortejni kalit-qiymat lug‘atiga o‘girish",
+    "title": "Berilgan kortejni qo‘shni elementlar yordamida kalit-qiymat lug‘atiga o‘girish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejni qo‘shni elementlar yordamida kalit-qiymat lug‘atiga o‘giradigan funksiya yozing."
   },
@@ -3230,27 +3230,27 @@
     "statement": "Tetraedrning yuzasini hisoblaydigan funksiya yozing."
   },
   "1743": {
-    "title": "Berilgan ro‘yxatni ko‘rsatilgan songa aylantirish",
+    "title": "Berilgan ro‘yxatni ko‘rsatilgan element soniga o‘ngga aylantirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatni ko‘rsatilgan element soniga o‘ngga aylantiradigan funksiya yozing."
   },
   "1745": {
-    "title": "Berilgan oraliqdagi sonlarni topish",
+    "title": "O‘z raqamlarining har biriga bo‘linadigan sonlarni oraliqdan topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan oraliqda o‘zining har bir raqamiga bo‘linadigan sonlarni topadigan funksiya yozing."
   },
   "1747": {
-    "title": "Eng uzun umumiy qism ketma-ketlik",
+    "title": "Berilgan uchta satr ketma-ketligining eng uzun umumiy qism ketma-ketligi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan uchta satr ketma-ketligi uchun eng uzun umumiy qism ketma-ketlikni topadigan funksiya yozing."
   },
   "1748": {
-    "title": "Bosh harf bilan boshlanadigan so‘zlar orasiga bo‘shliq qo‘shish",
+    "title": "Berilgan satrda bosh harf bilan boshlanadigan so‘zlar orasiga bo‘shliq qo‘shish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrda bosh harf bilan boshlanadigan so‘zlar orasiga regulyar ifoda yordamida bo‘shliq qo‘shadigan funksiya yozing."
   },
   "1749": {
-    "title": "Sonli satrlar ro‘yxatini saralash",
+    "title": "Berilgan sonli satrlar ro‘yxatini son qiymati bo‘yicha saralash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonli satrlar ro‘yxatini son qiymati bo‘yicha saralaydigan funksiya yozing."
   },
@@ -3260,7 +3260,7 @@
     "statement": "Berilgan kortejni berilgan ro‘yxatga qo‘shadigan funksiya yozing."
   },
   "1751": {
-    "title": "Massiv min-uyum ekanini tekshirish",
+    "title": "Berilgan massiv min-uyum ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massiv min-uyum ekanini tekshiradigan funksiya yozing."
   },
@@ -3275,12 +3275,12 @@
     "statement": "Uchta ro‘yxatdan umumiy indeksli elementlarni topadigan funksiya yozing."
   },
   "1756": {
-    "title": "Ichida a bo‘lgan satrni moslash",
+    "title": "a dan keyin nol yoki bitta 'b' keladigan satrni moslash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "a dan keyin nol yoki bitta 'b' keladigan satrni moslaydigan funksiya yozing."
   },
   "1757": {
-    "title": "Teskari satrlar juftliklarini sanash",
+    "title": "Berilgan satrlar ro‘yxatida teskari satrlar juftliklarini sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrlar ro‘yxatida teskari satrlar juftliklarini sanaydigan funksiya yozing."
   },
@@ -3290,17 +3290,17 @@
     "statement": "Aniqligi 2 bo‘lgan o‘nli sonni tekshiradigan funksiya yozing."
   },
   "1760": {
-    "title": "Massivda faqat bitta farqlisi borligini tekshirish",
+    "title": "Massivda faqat bitta farqli element borligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Massivda faqat bitta farqli element borligini tekshiradigan funksiya yozing."
   },
   "1762": {
-    "title": "Berilgan oy raqamini 30 ga tekshirish",
+    "title": "Berilgan oy raqami 30 kunni o‘z ichiga olishini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan oy raqami 30 kunni o‘z ichiga olishini tekshiradigan funksiya yozing."
   },
   "1763": {
-    "title": "Ixtiyoriy ikki element orasidagi eng kichik ayirma",
+    "title": "Berilgan massivda ixtiyoriy ikki element orasidagi eng kichik ayirma",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivda ixtiyoriy ikki element orasidagi eng kichik ayirmani topadigan funksiya yozing."
   },
@@ -3315,12 +3315,12 @@
     "statement": "n-chi muloyim sonni topadigan funksiya yozing."
   },
   "1766": {
-    "title": "Barcha ketma-ket element juftliklarini aylanib chiqish",
+    "title": "Berilgan ro‘yxatdagi barcha ketma-ket element juftliklarini aylanib chiqish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatdagi barcha ketma-ket element juftliklarini aylanib chiqadigan funksiya yozing."
   },
   "1767": {
-    "title": "Juftliklar sonini sanash",
+    "title": "Yig‘indisi sum ga teng bo‘lgan juftliklar sonini sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Yig‘indisi sum ga teng bo‘lgan juftliklar sonini sanaydigan funksiya yozing."
   },
@@ -3335,47 +3335,47 @@
     "statement": "Ikki ro‘yxat orasidagi ayirmani topadigan funksiya yozing."
   },
   "1770": {
-    "title": "To‘rtinchi darajalar yig‘indisi",
+    "title": "Dastlabki n toq natural sonning to‘rtinchi darajalari yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Dastlabki n toq natural sonning to‘rtinchi darajalari yig‘indisini topadigan funksiya yozing."
   },
   "1771": {
-    "title": "Berilgan ifoda balanslanganini tekshirish",
+    "title": "Berilgan ifoda balanslangan ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ifoda balanslangan ekanini tekshiradigan funksiya yozing."
   },
   "1772": {
-    "title": "Uzunligi k bo‘lgan barcha so‘zlarni olib tashlash",
+    "title": "Berilgan satrdan uzunligi k bo‘lgan barcha so‘zlarni olib tashlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrdan uzunligi k bo‘lgan barcha so‘zlarni olib tashlaydigan funksiya yozing."
   },
   "1774": {
-    "title": "Elektron pochta to‘g‘riligini tekshirish",
+    "title": "Satr to‘g‘ri elektron pochta manzili ekanini regulyar ifoda yordamida tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Satr to‘g‘ri elektron pochta manzili ekanini regulyar ifoda yordamida tekshiradigan funksiya yozing."
   },
   "1775": {
-    "title": "Har bir toq indeksda toq son turganini tekshirish",
+    "title": "Berilgan ro‘yxatning har bir toq indeksida toq son turganini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatning har bir toq indeksida toq son turganini tekshiradigan funksiya yozing."
   },
   "1776": {
-    "title": "Unli harflari bor belgilarni sanash",
+    "title": "Berilgan satrda qo‘shnilari unli harf bo‘lgan belgilarni sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrda qo‘shnilari unli harf bo‘lgan belgilarni sanaydigan funksiya yozing."
   },
   "1777": {
-    "title": "Takrorlanmaydigan elementlar yig‘indisi",
+    "title": "Berilgan massivdagi takrorlanmaydigan elementlar yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivdagi takrorlanmaydigan elementlar yig‘indisini topadigan funksiya yozing."
   },
   "1780": {
-    "title": "Kortejlar bilan yig‘indilar kombinatsiyalari",
+    "title": "Berilgan kortejlar ro‘yxatida kortejlar bilan yig‘indilar kombinatsiyalari",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejlar ro‘yxatida kortejlar bilan yig‘indilar kombinatsiyalarini topadigan funksiya yozing."
   },
   "1781": {
-    "title": "Bo‘luvchilar soni juft ekanini tekshirish",
+    "title": "Bo‘luvchilar soni juft yoki toq ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Bo‘luvchilar soni juft yoki toq ekanini tekshiradigan funksiya yozing."
   },
@@ -3390,7 +3390,7 @@
     "statement": "rgb rangni hsv rangga o‘giradigan funksiya yozing."
   },
   "1784": {
-    "title": "Birinchi juft va birinchi toqning ko‘paytmasi",
+    "title": "Berilgan ro‘yxatdagi birinchi juft va birinchi toq sonning ko‘paytmasi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatdagi birinchi juft va birinchi toq sonning ko‘paytmasini topadigan funksiya yozing."
   },
@@ -3400,17 +3400,17 @@
     "statement": "Kortej satrini butun sonlar kortejiga o‘giradigan funksiya yozing."
   },
   "1786": {
-    "title": "O‘ng qo‘shish nuqtasi",
+    "title": "Saralangan tartibda ko‘rsatilgan qiymat uchun o‘ng qo‘shish nuqtasi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Saralangan tartibda ko‘rsatilgan qiymat uchun o‘ng qo‘shish nuqtasini topadigan funksiya yozing."
   },
   "1787": {
-    "title": "Ichida a bo‘lgan satrni moslash",
+    "title": "a dan keyin uchta 'b' keladigan satrni moslash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "a dan keyin uchta 'b' keladigan satrni moslaydigan funksiya yozing."
   },
   "1788": {
-    "title": "Berilgan satrdan yangi kortej yaratish",
+    "title": "Berilgan satr va ro‘yxatdan yangi kortej yaratish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satr va ro‘yxatdan yangi kortej yaratadigan funksiya yozing."
   },
@@ -3420,32 +3420,32 @@
     "statement": "Muntazam ko‘pburchakning perimetrini hisoblaydigan funksiya yozing."
   },
   "1790": {
-    "title": "Har bir juft indeksda juft son turganini tekshirish",
+    "title": "Berilgan ro‘yxatning har bir juft indeksida juft son turganini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatning har bir juft indeksida juft son turganini tekshiradigan funksiya yozing."
   },
   "1792": {
-    "title": "Ro‘yxatlar sonini sanash",
+    "title": "Berilgan ro‘yxatlar to‘plamidagi ro‘yxatlar sonini sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatlar to‘plamidagi ro‘yxatlar sonini sanaydigan funksiya yozing."
   },
   "1793": {
-    "title": "Elementning oxirgi o‘rni",
+    "title": "Saralangan massivda elementning oxirgi o‘rni",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Saralangan massivda elementning oxirgi o‘rnini topadigan funksiya yozing."
   },
   "1794": {
-    "title": "Ichida 'a' bo‘lgan satrni moslash",
+    "title": "'a' dan keyin har qanday belgilar kelib, oxiri 'b' bilan tugaydigan satrni moslash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "'a' dan keyin har qanday belgilar kelib, oxiri 'b' bilan tugaydigan satrni moslaydigan funksiya yozing."
   },
   "1796": {
-    "title": "Yig‘indini topish",
+    "title": "Berilgan lug‘atdagi barcha elementlar yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan lug‘atdagi barcha elementlar yig‘indisini topadigan funksiya yozing."
   },
   "1797": {
-    "title": "Barcha toq natural sonlar yig‘indisi",
+    "title": "l va r oralig‘idagi barcha toq natural sonlar yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "l va r oralig‘idagi barcha toq natural sonlar yig‘indisini topadigan funksiya yozing."
   },
@@ -3465,17 +3465,17 @@
     "statement": "Satrdan barcha bo‘shliqlarni olib tashlaydigan funksiya yozing."
   },
   "1801": {
-    "title": "Uchta orasidan teng sonlarni sanash",
+    "title": "Berilgan uchta butun son orasidan teng sonlarni sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan uchta butun son orasidan teng sonlar sonini sanaydigan funksiya yozing."
   },
   "1802": {
-    "title": "Kerakli aylanishlar sonini sanash",
+    "title": "Saralangan massivni olish uchun kerakli aylanishlar sonini sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Saralangan massivni olish uchun kerak bo‘ladigan aylanishlar sonini sanaydigan funksiya yozing."
   },
   "1803": {
-    "title": "Berilgan sonni tekshirish",
+    "title": "Berilgan son to‘liq kvadrat ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan son to‘liq kvadrat ekanini tekshiradigan funksiya yozing."
   },
@@ -3485,17 +3485,17 @@
     "statement": "Sonlar ko‘paytmasi juft ekanini tekshiradigan funksiya yozing."
   },
   "1805": {
-    "title": "Ro‘yxatlar ro‘yxatidan ro‘yxat topish",
+    "title": "Ro‘yxatlar ro‘yxatidan elementlari yig‘indisi eng katta ro‘yxatni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ro‘yxatlar ro‘yxatidan elementlari yig‘indisi eng katta bo‘lgan ro‘yxatni topadigan funksiya yozing."
   },
   "1806": {
-    "title": "Bosh harflarning eng uzun ketma-ketligi",
+    "title": "Berilgan satrda bosh harflarning eng uzun ketma-ketligi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrda bosh harflarning eng uzun ketma-ketligini topadigan funksiya yozing."
   },
   "1807": {
-    "title": "Birinchi toq son",
+    "title": "Berilgan sonlar ro‘yxatidagi birinchi toq son",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonlar ro‘yxatidan birinchi toq sonni topadigan funksiya yozing."
   },
@@ -3505,17 +3505,17 @@
     "statement": "Berilgan kortejlarda k borligini tekshiradigan funksiya yozing."
   },
   "1809": {
-    "title": "Ikkinchi kortejning har bir elementini tekshirish",
+    "title": "Ikkinchi kortejning har bir elementi birinchidagi indeksidan kichik ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ikkinchi kortejning har bir elementi birinchi kortejdagi mos indeksdagi elementdan kichik ekanini tekshiradigan funksiya yozing."
   },
   "1810": {
-    "title": "Har birini takrorlab elementlarni aylanib chiqish",
+    "title": "Har bir elementni o‘z soniga teng marta takrorlab aylanib chiqish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Elementlarni har birini o‘z soniga teng marta takrorlab aylanib chiqadigan funksiya yozing."
   },
   "1811": {
-    "title": "Ikki kortejlar ro‘yxati bir xil ekanini tekshirish",
+    "title": "Ikkita kortejlar ro‘yxati bir xil ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ikkita kortejlar ro‘yxati bir xil ekanini tekshiradigan funksiya yozing."
   },
@@ -3535,7 +3535,7 @@
     "statement": "Rombning yuzasini topadigan funksiya yozing."
   },
   "1815": {
-    "title": "Berilgan massivni saralash",
+    "title": "0, 1 va 2 dan iborat massivni saralash algoritmini ishlatmasdan tartiblash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivni hech qanday saralash algoritmidan foydalanmasdan saralaydigan funksiya yozing. Berilgan massiv faqat 0, 1 va 2 dan tashkil topgan."
   },
@@ -3545,7 +3545,7 @@
     "statement": "Berilgan kortejlarning qiymatlarini tozalaydigan funksiya yozing."
   },
   "1817": {
-    "title": "m yoki n ga bo‘linadigan sonlar",
+    "title": "Sonlar ro‘yxatidan m yoki n ga bo‘linadigan sonlarni lambda funksiyasi yordamida topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Sonlar ro‘yxatidan m yoki n ga bo‘linadigan sonlarni lambda funksiya yordamida topadigan funksiya yozing."
   },
@@ -3555,12 +3555,12 @@
     "statement": "Berilgan satrdagi kichik harflarni sanaydigan funksiya yozing."
   },
   "1819": {
-    "title": "Ketma-ket takrorlanadigan elementlar chastotasini sanash",
+    "title": "Berilgan sonlar ro‘yxatida ketma-ket takrorlanadigan elementlar chastotasini sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonlar ro‘yxatida ketma-ket takrorlanadigan elementlar chastotasini sanaydigan funksiya yozing."
   },
   "1820": {
-    "title": "Berilgan oy raqamini 28 ga tekshirish",
+    "title": "Berilgan oy raqami 28 kunni o‘z ichiga olishini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan oy raqami 28 kunni o‘z ichiga olishini tekshiradigan funksiya yozing."
   },
@@ -3575,7 +3575,7 @@
     "statement": "Parol to‘g‘ri bo‘lsa true qaytaradigan funksiya yozing."
   },
   "1823": {
-    "title": "Berilgan satr boshlanishini tekshirish",
+    "title": "Berilgan satr qism satr bilan boshlanishini regulyar ifoda yordamida tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satr qism satr bilan boshlanishini regulyar ifoda yordamida tekshiradigan funksiya yozing."
   },
@@ -3585,27 +3585,27 @@
     "statement": "Berilgan ro‘yxatdan juft sonlarni olib tashlaydigan funksiya yozing."
   },
   "1825": {
-    "title": "Ko‘rsatilgan indekslardagi bir nechta elementga murojaat",
+    "title": "Berilgan ro‘yxatdan ko‘rsatilgan indeksdagi bir nechta elementga murojaat",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatdagi ko‘rsatilgan indekslardagi bir nechta elementga murojaat qiladigan funksiya yozing."
   },
   "1826": {
-    "title": "Uchburchak turi",
+    "title": "Berilgan tomonlar bo‘yicha uchburchak turi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan tomonlar bo‘yicha uchburchak turini topadigan funksiya yozing."
   },
   "1827": {
-    "title": "Ro‘yxatning ma’lum ustuni yig‘indisi",
+    "title": "Berilgan ro‘yxatlar ro‘yxatida ma’lum bir ustun yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatlar ro‘yxatida ma’lum bir ustunning yig‘indisini topadigan funksiya yozing."
   },
   "1828": {
-    "title": "Harflar, raqamlar va maxsus belgilarni sanash",
+    "title": "Berilgan satrdagi harflar, raqamlar va maxsus belgilarni sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrdagi harflar, raqamlar va maxsus belgilarni sanaydigan funksiya yozing."
   },
   "1829": {
-    "title": "Chastota bo‘yicha ikkinchi satr",
+    "title": "Berilgan ketma-ketlikda chastota bo‘yicha ikkinchi o‘rindagi satr",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ketma-ketlikda chastota bo‘yicha ikkinchi o‘rindagi satrni topadigan funksiya yozing."
   },
@@ -3620,7 +3620,7 @@
     "statement": "Berilgan massivdagi teng element juftliklarini sanaydigan funksiya yozing."
   },
   "1832": {
-    "title": "Satrdan eng katta sonli qiymatni ajratib olish",
+    "title": "Satrdan eng katta sonli qiymatni regulyar ifoda yordamida ajratib olish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Satrdan eng katta sonli qiymatni regulyar ifoda yordamida ajratib oladigan funksiya yozing."
   },
@@ -3630,7 +3630,7 @@
     "statement": "Lug‘at kalitlarini ro‘yxat sifatida qaytaradigan funksiya yozing."
   },
   "1834": {
-    "title": "Elementlar bilan to‘ldirilgan kvadrat matritsa yasash",
+    "title": "1 dan n kvadratigacha sonlar bilan spiral tartibda to‘ldirilgan kvadrat matritsa yasash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "1 dan n ning 2-darajasigacha bo‘lgan elementlar bilan spiral tartibda to‘ldirilgan kvadrat matritsa yasaydigan funksiya yozing."
   },
@@ -3645,47 +3645,47 @@
     "statement": "Eng katta yig‘indiga ega qism massivning uzunligini topadigan funksiya yozing."
   },
   "1837": {
-    "title": "Dastlabki n toqning kublari yig‘indisi",
+    "title": "Dastlabki n toq natural sonning kublari yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Dastlabki n toq natural sonning kublari yig‘indisini topadigan funksiya yozing."
   },
   "1838": {
-    "title": "Eng kichik almashtirishlar soni",
+    "title": "Ikkita ikkilik satrni teng qilish uchun kerakli eng kichik almashtirishlar soni",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ikkita ikkilik satrni teng qilish uchun kerak bo‘ladigan eng kichik almashtirishlar sonini topadigan funksiya yozing."
   },
   "1840": {
-    "title": "Kvadrat tenglama ildizlarini tekshirish",
+    "title": "Kvadrat tenglama ildizlari son jihatdan teng, ishorasi qarama-qarshi ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Kvadrat tenglama ildizlari son jihatidan teng, lekin ishorasi qarama-qarshi ekanini tekshiradigan funksiya yozing."
   },
   "1841": {
-    "title": "Inversiyalar sonini sanash",
+    "title": "Berilgan massivdagi inversiyalar sonini sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivdagi inversiyalar sonini sanaydigan funksiya yozing."
   },
   "1842": {
-    "title": "Toq chastotali son",
+    "title": "Berilgan massivda toq marta uchraydigan son",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivda toq marta uchraydigan sonni topadigan funksiya yozing."
   },
   "1843": {
-    "title": "n-chi super xunuk son",
+    "title": "O‘lchami k bo‘lgan berilgan tub sonlar ro‘yxati bo‘yicha n-chi super xunuk son",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "O‘lchami k bo‘lgan berilgan tub sonlar ro‘yxati bo‘yicha n-chi super xunuk sonni uyum navbati algoritmi yordamida topadigan funksiya yozing."
   },
   "1844": {
-    "title": "Massivning k-chi elementi",
+    "title": "Avval toq, keyin juft elementlar joylashgan massivning k-chi elementi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Avval toq, keyin juft elementlar joylashgan massivning k-chi elementini topadigan funksiya yozing."
   },
   "1845": {
-    "title": "Faktorialdagi raqamlarni sanash",
+    "title": "Berilgan sonning faktorialidagi raqamlar sonini sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonning faktorialidagi raqamlar sonini sanaydigan funksiya yozing."
   },
   "1846": {
-    "title": "Platformalarning eng kichik soni",
+    "title": "Temir yo‘l yoki avtobus bekati uchun platformalarning eng kichik soni",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Temir yo‘l yoki avtobus bekati uchun kerak bo‘ladigan platformalarning eng kichik sonini topadigan funksiya yozing."
   },
@@ -3700,12 +3700,12 @@
     "statement": "Trapetsiyaning yuzasini topadigan funksiya yozing."
   },
   "1849": {
-    "title": "Barcha tub bo‘luvchilar yig‘indisi",
+    "title": "Berilgan sonning barcha tub bo‘luvchilari yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonning barcha tub bo‘luvchilari yig‘indisini topadigan funksiya yozing."
   },
   "1850": {
-    "title": "Musbat yuzali uchburchakni tekshirish",
+    "title": "Berilgan burchaklar bilan musbat yuzali uchburchak yasash mumkinligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan burchaklar bilan musbat yuzali uchburchak yasash mumkinligini tekshiradigan funksiya yozing."
   },
@@ -3725,7 +3725,7 @@
     "statement": "Sonning toq bo‘luvchilari yig‘indisini topadigan funksiya yozing."
   },
   "1854": {
-    "title": "Ixtiyoriy ro‘yxatni qabul qilish va o‘girish",
+    "title": "Ixtiyoriy ro‘yxatni uyum navbati algoritmi yordamida uyumga o‘girish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ixtiyoriy ro‘yxatni qabul qilib, uni uyum navbati algoritmi yordamida uyumga o‘giradigan funksiya yozing."
   },
@@ -3735,32 +3735,32 @@
     "statement": "Berilgan sonning juft paritetini tekshiradigan funksiya yozing."
   },
   "1856": {
-    "title": "Saralash uchun zarur qo‘shni almashtirishlarning eng kichik soni",
+    "title": "Ikkilik massivni saralash uchun zarur qo‘shni almashtirishlarning eng kichik soni",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ikkilik massivni saralash uchun zarur bo‘lgan qo‘shni almashtirishlarning eng kichik sonini topadigan funksiya yozing."
   },
   "1857": {
-    "title": "Berilgan satrlar ro‘yxatini alohida-alohida chiqarish",
+    "title": "Berilgan satrlar ro‘yxatini map funksiyasi yordamida alohida-alohida chiqarish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrlar ro‘yxatini map funksiyasi yordamida alohida-alohida chiqaradigan funksiya yozing."
   },
   "1860": {
-    "title": "Berilgan satrning tugashini tekshirish",
+    "title": "Berilgan satr faqat harf va raqam bilan tugashini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satr faqat harf va raqamlardan iborat belgilar bilan tugashini regulyar ifoda yordamida tekshiradigan funksiya yozing."
   },
   "1861": {
-    "title": "Satrning barcha anagrammalari",
+    "title": "Berilgan satrlar ro‘yxatida satrning barcha anagrammalarini lambda funksiya yordamida topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrlar ro‘yxatida satrning barcha anagrammalarini lambda funksiya yordamida topadigan funksiya yozing."
   },
   "1863": {
-    "title": "Eng uzun qism ketma-ketlikning uzunligi",
+    "title": "Ketma-ket butun sonlardan iborat eng uzun qism ketma-ketlik uzunligini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Elementlari ketma-ket butun sonlar bo‘lgan eng uzun qism ketma-ketlikning uzunligini topadigan funksiya yozing."
   },
   "1864": {
-    "title": "Berilgan satrlar ro‘yxatida palindromlarni topish",
+    "title": "Berilgan satrlar ro‘yxatida palindromlarni lambda funksiya yordamida topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrlar ro‘yxatida palindromlarni lambda funksiya yordamida topadigan funksiya yozing."
   },
@@ -3770,32 +3770,32 @@
     "statement": "Ro‘yxatni map funksiyasi yordamida n marta chiqaradigan funksiya yozing."
   },
   "1866": {
-    "title": "Berilgan oy nomini tekshirish",
+    "title": "Berilgan nomdagi oy 31 kundan iborat ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan nomdagi oy 31 kundan iborat ekanini tekshiradigan funksiya yozing."
   },
   "1867": {
-    "title": "Eng kichik sonni qo‘shish",
+    "title": "Massiv yig‘indisi juft bo‘lishi uchun eng kichik sonni qo‘shish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Massiv yig‘indisi juft bo‘lishi uchun eng kichik sonni qo‘shadigan funksiya yozing."
   },
   "1868": {
-    "title": "Oxirgi so‘zning uzunligi",
+    "title": "Berilgan satrdagi oxirgi so‘zning uzunligi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrdagi oxirgi so‘zning uzunligini topadigan funksiya yozing."
   },
   "1869": {
-    "title": "Berilgan ro‘yxatlar ro‘yxatidan qism ro‘yxatlarni olib tashlash",
+    "title": "Berilgan ro‘yxatlar ro‘yxatidan berilgan oraliqdan tashqaridagi qism ro‘yxatlarni olib tashlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatlar ro‘yxatidan berilgan oraliqdan tashqarida joylashgan qism ro‘yxatlarni olib tashlaydigan funksiya yozing."
   },
   "1870": {
-    "title": "Musbat sonlar yig‘indisini hisoblash",
+    "title": "Berilgan sonlar ro‘yxatidagi musbat sonlar yig‘indisini hisoblash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan sonlar ro‘yxatidagi musbat sonlar yig‘indisini lambda funksiya yordamida hisoblaydigan funksiya yozing."
   },
   "1871": {
-    "title": "Berilgan satrlar siklik siljish ekanini tekshirish",
+    "title": "Berilgan satrlar bir-birining siklik siljishi ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrlar bir-birining siklik siljishi ekanini tekshiradigan funksiya yozing."
   },
@@ -3805,12 +3805,12 @@
     "statement": "Fibonachchi ketma-ketligi masalasini rekursiya yordamida yechadigan funksiya yozing."
   },
   "1874": {
-    "title": "Satr konkatenatsiya ekanini tekshirish",
+    "title": "Satr boshqa satrning konkatenatsiyasi ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Satr boshqa satrning konkatenatsiyasi ekanini tekshiradigan funksiya yozing."
   },
   "1875": {
-    "title": "Kortej juftliklaridagi eng kichik ayirma",
+    "title": "Berilgan kortejlarning juftliklaridagi eng kichik ayirma",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejlarning juftliklaridagi eng kichik ayirmani topadigan funksiya yozing."
   },
@@ -3825,12 +3825,12 @@
     "statement": "Berilgan satrni saralaydigan funksiya yozing."
   },
   "1878": {
-    "title": "Berilgan kortejni tekshirish",
+    "title": "Berilgan kortej faqat k elementdan iborat ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortej faqat k elementdan iborat ekanini tekshiradigan funksiya yozing."
   },
   "1879": {
-    "title": "'a' belgisi bor satrni moslashtirish",
+    "title": "'a' belgisidan keyin xohlagan narsa keladigan va 'b' bilan tugaydigan satrni regulyar ifoda yordamida moslashtirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "'a' belgisidan keyin xohlagan narsa keladigan va 'b' bilan tugaydigan satrni regulyar ifoda yordamida moslashtiradigan funksiya yozing."
   },
@@ -3840,7 +3840,7 @@
     "statement": "Kvadrat tenglama yechimlari sonini topadigan funksiya yozing."
   },
   "1881": {
-    "title": "Dastlabki juft va toq yig‘indisi",
+    "title": "Berilgan ro‘yxatdagi dastlabki juft va dastlabki toq sonning yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatdagi dastlabki juft va dastlabki toq sonning yig‘indisini topadigan funksiya yozing."
   },
@@ -3850,27 +3850,27 @@
     "statement": "Parallelogramm perimetrini hisoblaydigan funksiya yozing."
   },
   "1883": {
-    "title": "m va n ga bo‘linadigan sonlarni topish",
+    "title": "Sonlar ro‘yxatidan m va n ga bo‘linadigan sonlarni lambda funksiya yordamida topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Sonlar ro‘yxatidan m va n ga bo‘linadigan sonlarni lambda funksiya yordamida topadigan funksiya yozing."
   },
   "1884": {
-    "title": "Barcha bitlarni tekshirish",
+    "title": "Barcha bitlar berilgan oraliqda ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Barcha bitlar berilgan oraliqda ekanini tekshiradigan funksiya yozing."
   },
   "1885": {
-    "title": "Ikki berilgan satr izomorf ekanini tekshirish",
+    "title": "Ikki berilgan satr bir-biriga izomorf ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ikki berilgan satr bir-biriga izomorf ekanini tekshiradigan funksiya yozing."
   },
   "1886": {
-    "title": "Ro‘yxatdagi barcha sonlarni qo‘shish",
+    "title": "Ro‘yxatdagi barcha sonlarni qo‘shib, natijani ro‘yxat uzunligiga bo‘lish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ro‘yxatdagi barcha sonlarni qo‘shib, natijani ro‘yxat uzunligiga bo‘ladigan funksiya yozing."
   },
   "1887": {
-    "title": "Berilgan son toq ekanini tekshirish",
+    "title": "Berilgan son toq ekanini bit amali yordamida tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan son toq ekanini bit amali yordamida tekshiradigan funksiya yozing."
   },
@@ -3880,17 +3880,17 @@
     "statement": "Berilgan ichma-ich kortejlarning elementlarini ayiradigan funksiya yozing."
   },
   "1889": {
-    "title": "Berilgan ro‘yxatdagi har bir ro‘yxatni teskari o‘girish",
+    "title": "Berilgan ro‘yxatlar ro‘yxatidagi har bir ro‘yxatni teskari o‘girish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatlar ro‘yxatidagi har bir ro‘yxatni teskari o‘giradigan funksiya yozing."
   },
   "1890": {
-    "title": "Ortiqcha elementning indeksi",
+    "title": "Saralangan massivlardan birida mavjud ortiqcha elementning indeksi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Saralangan massivlardan birida mavjud bo‘lgan ortiqcha elementning indeksini topadigan funksiya yozing."
   },
   "1891": {
-    "title": "Ikki berilgan sonni tekshirish",
+    "title": "Ikki berilgan sonda raqamlar soni bir xil ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ikki berilgan sonda raqamlar soni bir xil ekanini tekshiradigan funksiya yozing."
   },
@@ -3900,52 +3900,52 @@
     "statement": "Satrdagi takroriy bo‘shliqlarni olib tashlaydigan funksiya yozing."
   },
   "1894": {
-    "title": "Berilgan float turidagi satrni o‘girish",
+    "title": "Berilgan float turidagi satrni kortejga o‘girish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan float turidagi satrni kortejga o‘giradigan funksiya yozing."
   },
   "1895": {
-    "title": "Qism ketma-ketliklarning eng katta yig‘indisi",
+    "title": "Berilgan massivning qo‘shni elementlari bo‘lmagan qism ketma-ketliklarining eng katta yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivning qo‘shni elementlari bo‘lmagan qism ketma-ketliklarining eng katta yig‘indisini topadigan funksiya yozing."
   },
   "1896": {
-    "title": "Ro‘yxatni o‘sish tartibida saralash",
+    "title": "Har bir kortejning oxirgi elementi bo‘yicha ro‘yxatni o‘sish tartibida saralash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan bo‘sh bo‘lmagan kortejlar ro‘yxatidagi har bir kortejning oxirgi elementi bo‘yicha ro‘yxatni o‘sish tartibida saralaydigan funksiya yozing."
   },
   "1897": {
-    "title": "So‘zning mavjudligini tekshirish",
+    "title": "So‘z berilgan gapda mavjudligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "So‘z berilgan gapda mavjudligini tekshiradigan funksiya yozing."
   },
   "1898": {
-    "title": "Ko‘rsatilgan sondagi elementlarni ajratib olish",
+    "title": "Berilgan ro‘yxatdan ko‘rsatilgan sondagi elementlarni ajratib olish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan ro‘yxatdan uzluksiz ketma-ket keladigan ko‘rsatilgan sondagi elementlarni ajratib oladigan funksiya yozing."
   },
   "1899": {
-    "title": "Massivni saralash mumkinligini tekshirish",
+    "title": "Faqat chetdagi elementlarni tanlab massivni saralash mumkinligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Faqat chetdagi elementlarni tanlab massivni saralash mumkinligini tekshiradigan funksiya yozing."
   },
   "1900": {
-    "title": "Satrning boshlanishi",
+    "title": "Satrning ma’lum bir son bilan boshlanishi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Satr ma’lum bir son bilan boshlanadigan funksiya yozing."
   },
   "1901": {
-    "title": "Dastlabki n ning eng kichik karralisi",
+    "title": "Dastlabki n sonning eng kichik karralisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Dastlabki n sonning eng kichik karralisini topadigan funksiya yozing."
   },
   "1903": {
-    "title": "Barcha nol bitlarni sanash",
+    "title": "1 dan n gacha bo‘lgan nol bitlarning umumiy sonini sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "1 dan n gacha bo‘lgan nol bitlarning umumiy sonini sanaydigan funksiya yozing."
   },
   "1904": {
-    "title": "Berilgan sonning juftligi",
+    "title": "Berilgan son juft bo‘lsa true, aks holda false qaytarish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan son juft bo‘lsa true, aks holda false qaytaradigan funksiya yozing."
   },
@@ -3955,7 +3955,7 @@
     "statement": "Binomial koeffitsiyentlar kvadratlarining yig‘indisini topadigan funksiya yozing."
   },
   "1906": {
-    "title": "URL dan yil, oy va kunni ajratib olish",
+    "title": "URL dan yil, oy va kunni regulyar ifoda yordamida ajratib olish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "URL dan yil, oy va kunni regulyar ifoda yordamida ajratib oladigan funksiya yozing."
   },
@@ -3975,32 +3975,32 @@
     "statement": "Ko‘rsatilgan sonning oldingi palindromini topadigan funksiya yozing."
   },
   "1911": {
-    "title": "Uch sonning eng katta ko‘paytmasini hisoblash",
+    "title": "Berilgan butun sonlar massividagi uch sonning eng katta ko‘paytmasini hisoblash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan butun sonlar massividagi uch sonning eng katta ko‘paytmasini uyum navbati algoritmi yordamida hisoblaydigan funksiya yozing."
   },
   "1913": {
-    "title": "Oxirida son borligini tekshirish",
+    "title": "Satr oxirida son borligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Satr oxirida son borligini tekshiradigan funksiya yozing."
   },
   "1914": {
-    "title": "Berilgan satrning tarkibini tekshirish",
+    "title": "Berilgan satr ikki navbatlashuvchi belgidan tuzilganini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satr ikki navbatlashuvchi belgidan tuzilganini tekshiradigan funksiya yozing."
   },
   "1915": {
-    "title": "Musbat va manfiy sonlarni qayta joylashtirish",
+    "title": "Berilgan massivdagi musbat va manfiy sonlarni lambda funksiya yordamida qayta joylashtirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan massivdagi musbat va manfiy sonlarni lambda funksiya yordamida qayta joylashtiradigan funksiya yozing."
   },
   "1916": {
-    "title": "Uchlik mavjudligini topish",
+    "title": "Massivda yig‘indisi berilgan qiymatga teng uchlik borligini topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Massivda yig‘indisi berilgan qiymatga teng uchlik bor-yo‘qligini topadigan funksiya yozing."
   },
   "1917": {
-    "title": "Bitta bosh harfli ketma-ketliklarni topish",
+    "title": "Bitta bosh harf va undan keyin keladigan kichik harflardan iborat ketma-ketliklarni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Bitta bosh harf va undan keyin keladigan kichik harflardan iborat ketma-ketliklarni topadigan funksiya yozing."
   },
@@ -4020,12 +4020,12 @@
     "statement": "Kortejlarni har biri n o‘lchamli bo‘laklarga bo‘ladigan funksiya yozing."
   },
   "1922": {
-    "title": "Eng katta ko‘paytmali juftlikni topish",
+    "title": "Berilgan butun sonlar massividan eng katta ko‘paytmali juftlikni topish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan butun sonlar massividan eng katta ko‘paytmali juftlikni topadigan funksiya yozing."
   },
   "1923": {
-    "title": "Eng qisqa satrning uzunligi",
+    "title": "str1 va str2 ni qism ketma-ketlik sifatida o‘z ichiga olgan eng qisqa satrning uzunligi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "str1 va str2 ni qism ketma-ketlik sifatida o‘z ichiga olgan eng qisqa satrning uzunligini topadigan funksiya yozing."
   },
@@ -4035,7 +4035,7 @@
     "statement": "Ikki sondan kattasini topadigan funksiya yozing."
   },
   "1925": {
-    "title": "Barcha sonlarning ko‘paytmasini hisoblash",
+    "title": "Berilgan kortejdagi barcha sonlarning ko‘paytmasini hisoblash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejdagi barcha sonlarning ko‘paytmasini hisoblaydigan funksiya yozing."
   },
@@ -4045,7 +4045,7 @@
     "statement": "n-chi rencontres sonini topadigan funksiya yozing."
   },
   "1928": {
-    "title": "yyyy-mm-dd formatidagi sanani dd-mm-yyyy ga o‘girish",
+    "title": "yyyy-mm-dd formatidagi sanani dd-mm-yyyy formatiga o‘girish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "yyyy-mm-dd formatidagi sanani dd-mm-yyyy formatiga o‘giradigan funksiya yozing."
   },
@@ -4055,7 +4055,7 @@
     "statement": "Kortejning takrorlanuvchi elementlarini sanaydigan funksiya yozing."
   },
   "1930": {
-    "title": "a belgisi bor satrni moslashtirish",
+    "title": "a belgisidan keyin nol yoki undan ko‘p b keladigan satrni regulyar ifoda yordamida moslashtirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "a belgisidan keyin nol yoki undan ko‘p b belgisi keladigan satrni regulyar ifoda yordamida moslashtiradigan funksiya yozing."
   },
@@ -4065,12 +4065,12 @@
     "statement": "1³+2³+3³+….+n³ qatorining yig‘indisini hisoblaydigan funksiya yozing."
   },
   "1932": {
-    "title": "Berilgan ro‘yxatdan takrorlanuvchi so‘zlarni olib tashlash",
+    "title": "Berilgan satrlar ro‘yxatidan takrorlanuvchi so‘zlarni olib tashlash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrlar ro‘yxatidan takrorlanuvchi so‘zlarni olib tashlaydigan funksiya yozing."
   },
   "1933": {
-    "title": "camel case satrni snake case ga o‘girish",
+    "title": "camel case satrni regulyar ifoda yordamida snake case ga o‘girish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "camel case satrni regulyar ifoda yordamida snake case ga o‘giradigan funksiya yozing."
   },
@@ -4085,12 +4085,12 @@
     "statement": "1²+2²+3²+….+n² qatorining yig‘indisini hisoblaydigan funksiya yozing."
   },
   "1936": {
-    "title": "Berilgan kortejlarni qayta joylashtirish",
+    "title": "Berilgan kortejlarni berilgan tartiblangan ro‘yxatga muvofiq qayta joylashtirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejlarni berilgan tartiblangan ro‘yxatga muvofiq qayta joylashtiradigan funksiya yozing."
   },
   "1937": {
-    "title": "Eng ko‘p uchraydigan belgini sanash",
+    "title": "Berilgan satrdagi eng ko‘p uchraydigan belgini sanash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrdagi eng ko‘p uchraydigan belgini sanaydigan funksiya yozing."
   },
@@ -4105,7 +4105,7 @@
     "statement": "Berilgan massivni uyumli saralash yordamida saralaydigan funksiya yozing."
   },
   "1942": {
-    "title": "Ro‘yxatning biror elementi mavjudligini tekshirish",
+    "title": "Ro‘yxatning biror elementi berilgan ro‘yxatda mavjudligini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ro‘yxatning biror elementi berilgan ro‘yxatda mavjudligini tekshiradigan funksiya yozing."
   },
@@ -4115,7 +4115,7 @@
     "statement": "Ikki berilgan saralangan ro‘yxatni heapq moduli yordamida birlashtiradigan funksiya yozing."
   },
   "1944": {
-    "title": "Sonlarni va ularning o‘rnini ajratib chiqarish",
+    "title": "Berilgan satrdagi sonlarni va ularning o‘rnini ajratib chiqarish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrdagi sonlarni va ularning o‘rnini ajratib chiqaradigan funksiya yozing."
   },
@@ -4125,17 +4125,17 @@
     "statement": "Eng qisqa so‘zning uzunligini topadigan funksiya yozing."
   },
   "1949": {
-    "title": "Berilgan kortejlar ro‘yxatini saralash",
+    "title": "Berilgan kortejlar ro‘yxatini kortejdagi raqamlarning umumiy soni bo‘yicha saralash",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan kortejlar ro‘yxatini kortejdagi raqamlarning umumiy soni bo‘yicha saralaydigan funksiya yozing."
   },
   "1950": {
-    "title": "Xitoy zodiak belgisini ko‘rsatish",
+    "title": "Berilgan yil uchun Xitoy zodiak belgisini ko‘rsatish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan yil uchun Xitoy zodiak belgisini ko‘rsatadigan funksiya yozing."
   },
   "1951": {
-    "title": "Mos indekslar bo‘yicha eng katta qiymat",
+    "title": "Ikki kortejlar ro‘yxatida mos indekslar bo‘yicha eng katta qiymat",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ikki kortejlar ro‘yxatida mos indekslar bo‘yicha eng katta qiymatni topadigan funksiya yozing."
   },
@@ -4145,7 +4145,7 @@
     "statement": "ncr mod p qiymatini hisoblaydigan funksiya yozing."
   },
   "1953": {
-    "title": "Qism to‘plamlarning eng kichik soni",
+    "title": "Elementlari har xil bo‘lgan qism to‘plamlarning eng kichik soni",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Elementlari har xil bo‘lgan qism to‘plamlarning eng kichik sonini topadigan funksiya yozing."
   },
@@ -4155,7 +4155,7 @@
     "statement": "Berilgan son ortiqcha son ekanini aniqlaydigan funksiya yozing."
   },
   "1956": {
-    "title": "Berilgan satrni bosh harflar bo‘yicha bo‘lish",
+    "title": "Berilgan satrni regulyar ifoda yordamida bosh harflar bo‘yicha bo‘lish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan satrni regulyar ifoda yordamida bosh harflar bo‘yicha bo‘ladigan funksiya yozing."
   },
@@ -4185,12 +4185,12 @@
     "statement": "Rim raqamini butun songa o‘giradigan funksiya yozing."
   },
   "1962": {
-    "title": "Barcha juft natural sonlar yig‘indisi",
+    "title": "l va r oralig‘idagi barcha juft natural sonlar yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "l va r oralig‘idagi barcha juft natural sonlar yig‘indisini topadigan funksiya yozing."
   },
   "1964": {
-    "title": "So‘z uzunligini tekshirish",
+    "title": "So‘z uzunligi juft ekanini tekshirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "So‘z uzunligi juft ekanini tekshiradigan funksiya yozing."
   },
@@ -4205,12 +4205,12 @@
     "statement": "Barcha unlilarni o‘z ichiga olgan satrlarni qabul qiladigan funksiya yozing."
   },
   "1968": {
-    "title": "Eng katta mumkin bo‘lgan qiymat",
+    "title": "Berilgan davriy funksiyaning eng katta mumkin bo‘lgan qiymati",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan davriy funksiyaning eng katta mumkin bo‘lgan qiymatini topadigan funksiya yozing."
   },
   "1969": {
-    "title": "Boshlanishi bir xil kortejlarni birlashtirish",
+    "title": "Dastlabki elementlari bir xil bo‘lgan kortejlarni birlashtirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Dastlabki elementlari bir xil bo‘lsa kortejlarni birlashtiradigan funksiya yozing."
   },
@@ -4220,12 +4220,12 @@
     "statement": "Ikki sondan kichigini topadigan funksiya yozing."
   },
   "1971": {
-    "title": "Kesmalarning eng katta soni",
+    "title": "n dan tuzish mumkin bo‘lgan a, b va c uzunlikdagi kesmalarning eng katta soni",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "n dan tuzish mumkin bo‘lgan a, b va c uzunlikdagi kesmalarning eng katta sonini topadigan funksiya yozing."
   },
   "1972": {
-    "title": "Ikki berilgan kortejni birlashtirish",
+    "title": "Ikki berilgan kortejni ichma-ich kortejga birlashtirish",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Ikki berilgan kortejni ichma-ich kortejga birlashtiradigan funksiya yozing."
   },
@@ -4235,7 +4235,7 @@
     "statement": "Satrni chapga siklik siljitadigan funksiya yozing."
   },
   "1974": {
-    "title": "Yo‘lning eng kichik umumiy yig‘indisi",
+    "title": "Berilgan uchburchakda yo‘lning eng kichik umumiy yig‘indisi",
     "pattern": "Bitta fikr, to‘g‘ridan-to‘g‘ri yozilgan",
     "statement": "Berilgan uchburchakda yo‘lning eng kichik umumiy yig‘indisini topadigan funksiya yozing."
   }

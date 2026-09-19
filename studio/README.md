@@ -1,7 +1,7 @@
 # Studio
 
-A LeetCode-shaped browser UI over this workspace. Same 150 problems, same files on
-disk, same test runner — only the surface is different.
+A LeetCode-shaped browser UI over this workspace. Same 1109 problems across 22
+categories, same files on disk, same test runner — only the surface is different.
 
 ```bash
 npm install     # once, inside studio/
@@ -82,7 +82,21 @@ view, not a copy.
 
 Below the filters is a row of technique tags (`hash map`, `sliding window`, `dfs`, …).
 They are derived from each problem's own pattern line: every problem carries a unique
-sentence there, so grouping by it would give 150 groups of one. Twenty tags cover all 150.
+sentence there, so grouping by it would give one group per problem. Twenty-one tag
+rules in `src/lib/meta.ts` cover the whole workspace instead.
+
+## Languages
+
+The interface and every problem's prose are available in English, Russian and Uzbek.
+The picker is in Settings; the choice is a cookie, so there is no locale in the URL.
+
+Only the active language is ever sent to the browser: `src/i18n/server.ts` imports one
+dictionary on the server and hands it to the provider. Problem prose lives outside the
+app, in `_gen/i18n/<locale>/<category>.json`, and is merged over the English by
+`_gen/i18n/index.mjs` — field by field, so a missing translation falls back rather than
+blanking. Only `title`, `statement`, `pattern`, `followUp` and `constraints` are
+translated; `examples` are never touched, because the test runner parses its cases out
+of them.
 
 ## Notes
 
@@ -124,9 +138,10 @@ Anything your file logs at import time is shown back under **your console output
 ## Type errors
 
 Monaco cannot resolve `../shared/types.ts` in a browser, so its own checker is off. Instead
-the real compiler runs (`tsc --noEmit`, about 0.7s for the whole workspace) when a file is
-opened and after every save; anything it reports for the open file is underlined in the
-editor and counted in the toolbar.
+the real compiler runs when a file is opened and after every save; anything it reports for
+the open file is underlined in the editor and counted in the toolbar. It builds a
+single-file program in process (`src/server/typecheck.ts`) rather than shelling out to
+`tsc` over the workspace, which is what keeps it fast enough to run on every save.
 
 ## Keyboard
 
@@ -179,7 +194,7 @@ Next.js never imports the runner or a solution file. Two small scripts in `bridg
 are spawned as their own Node process and print JSON:
 
 ```bash
-node --experimental-strip-types bridge/problems.mjs                    # the 150 problems
+node --experimental-strip-types bridge/problems.mjs                    # every problem
 node --experimental-strip-types bridge/run.mjs 003                     # one report
 node --experimental-strip-types bridge/run.mjs 003 --file <path>       # ... from another file
 node --experimental-strip-types bridge/run.mjs 003 --big-o             # ... with the complexity probe

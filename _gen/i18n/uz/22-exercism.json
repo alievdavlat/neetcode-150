@@ -482,6 +482,6 @@
   "3097": {
     "title": "Yaxta",
     "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
-    "statement": "Beshta zar va kategoriya berilgan. Tanlangan kategoriya bo‘yicha bu zarlarning ochkolarini hisoblang. Zarlar doim beshta, har birining qiymati birdan oltigacha, tartibi esa har qanday bo‘lishi mumkin. Ones, Twos, Threes, Fours, Fives va Sixes kategoriyalari kategoriya qiymatini shu qiymatli zarlar soniga ko‘paytirib beradi. Full House uchta bir xil va boshqa ikkita bir xil zar bo‘lganda barcha zarlar yig‘indisini beradi. Four of a Kind to‘rtta yoki undan ko‘p zar bir xil qiymatni ko‘rsatganda shu to‘rttasining yig‘indisini beradi. Little Straight 30 ochko beradi."
+    "statement": "Beshta zar va kategoriya berilgan. Tanlangan kategoriya bo‘yicha bu zarlarning ochkolarini hisoblang. Zarlar doim beshta, har birining qiymati birdan oltigacha, tartibi esa har qanday bo‘lishi mumkin. Ones, Twos, Threes, Fours, Fives va Sixes kategoriyalari kategoriya qiymatini shu qiymatli zarlar soniga ko‘paytirib beradi. Full House uchta bir xil va boshqa ikkita bir xil zar bo‘lganda barcha zarlar yig‘indisini beradi. Four of a Kind to‘rtta yoki undan ko‘p zar bir xil qiymatni ko‘rsatganda shu to‘rttasining yig‘indisini beradi. Little Straight 1-2-3-4-5 bo‘lganda 30 ochko, Big Straight esa 2-3-4-5-6 bo‘lganda 30 ochko beradi. Choice har qanday kombinatsiyada barcha zarlar yig‘indisini beradi. Yacht beshala zar bir xil qiymatni ko‘rsatganda 50 ochko beradi."
   }
 }

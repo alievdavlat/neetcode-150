@@ -435,7 +435,7 @@ export default {
     },
     {
       n: 1039,
-      title: "Check if the letters of a given string can be rearranged so",
+      title: "Check if a string can be rearranged so no two adjacent letters match",
       slug: "check-if-the-letters-of-a-given-string-39",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -682,7 +682,7 @@ export default {
     },
     {
       n: 1060,
-      title: "Find the maximum length of the subsequence with difference",
+      title: "Find the longest subsequence with a difference between adjacent elements",
       slug: "find-the-maximum-length-of-the-subsequence-with-60",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1605,7 +1605,7 @@ export default {
     },
     {
       n: 1138,
-      title: "Check whether the given number can be represented as sum",
+      title: "Check whether the given number can be represented as a sum of powers of 2",
       slug: "check-whether-the-given-number-can-be-represented-138",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1748,7 +1748,7 @@ export default {
     },
     {
       n: 1149,
-      title: "Find the longest subsequence such that the difference",
+      title: "Find the longest subsequence where the difference between adjacents is one",
       slug: "find-the-longest-subsequence-such-that-the-difference-149",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1930,7 +1930,7 @@ export default {
     },
     {
       n: 1165,
-      title: "Count characters at same position in a given string (lower",
+      title: "Count characters at the same position in a string as in the english alphabet",
       slug: "count-characters-at-same-position-in-a-given-165",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2463,7 +2463,7 @@ export default {
     },
     {
       n: 1207,
-      title: "Count the longest repeating subsequences such",
+      title: "Count the longest repeating subsequences with no character shared at a position",
       slug: "count-the-longest-repeating-subsequences-such-that-the-207",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2502,7 +2502,7 @@ export default {
     },
     {
       n: 1210,
-      title: "Check that the given string contains only a certain set",
+      title: "Check that the given string contains only a certain set of characters",
       slug: "check-that-the-given-string-contains-only-a-210",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2710,7 +2710,7 @@ export default {
     },
     {
       n: 1229,
-      title: "Re-arrange the elements of the given array so",
+      title: "Re-arrange the array so all negative elements appear before the positive ones",
       slug: "re-arrange-the-elements-of-the-given-array-229",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2827,7 +2827,7 @@ export default {
     },
     {
       n: 1239,
-      title: "Find the number of possible sequences of length n such",
+      title: "Find the number of sequences of length n where each element at least doubles",
       slug: "find-the-number-of-possible-sequences-of-length-239",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3347,7 +3347,7 @@ export default {
     },
     {
       n: 1288,
-      title: "Count array elements having modular inverse under given prime number p equal",
+      title: "Count array elements whose modular inverse under a prime p equals itself",
       slug: "count-array-elements-having-modular-inverse-under-given-288",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3373,7 +3373,7 @@ export default {
     },
     {
       n: 1291,
-      title: "Find out the number of ways of painting the fence such",
+      title: "Find the number of ways of painting the fence with at most 2 adjacent posts alike",
       slug: "find-out-the-number-of-ways-of-painting-291",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3438,7 +3438,7 @@ export default {
     },
     {
       n: 1300,
-      title: "Find the count of all binary sequences of length 2n such that sum",
+      title: "Count binary sequences of length 2n whose first and last n bits sum alike",
       slug: "find-the-count-of-all-binary-sequences-of-300",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3659,7 +3659,7 @@ export default {
     },
     {
       n: 1320,
-      title: "Calculate the difference between the squared sum",
+      title: "Calculate the difference between the squared sum and the sum of squares",
       slug: "calculate-the-difference-between-the-squared-sum-of-320",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6064,7 +6064,7 @@ export default {
     },
     {
       n: 1539,
-      title: "Create a list containing the power of said number in bases raised",
+      title: "Create a list of bases raised to the number at the matching index",
       slug: "create-a-list-containing-the-power-of-said-539",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6948,7 +6948,7 @@ export default {
     },
     {
       n: 1619,
-      title: "Move all the numbers in it to the given string",
+      title: "Move all the numbers in the given string",
       slug: "move-all-the-numbers-in-it-to-the-619",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7897,7 +7897,7 @@ export default {
     },
     {
       n: 1695,
-      title: "Check if each element of the second tuple is greater",
+      title: "Check if each element of the second tuple is greater than its index in the first",
       slug: "check-if-each-element-of-the-second-tuple-695",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8040,7 +8040,7 @@ export default {
     },
     {
       n: 1711,
-      title: "Check whether the product of digits of a number at even",
+      title: "Check whether the product of digits at even and odd places is equal",
       slug: "check-whether-the-product-of-digits-of-a-711",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8417,7 +8417,7 @@ export default {
     },
     {
       n: 1745,
-      title: "Find numbers within a given range where every number is divisible",
+      title: "Find numbers in a range that are divisible by every digit they contain",
       slug: "find-numbers-within-a-given-range-where-every-745",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9119,7 +9119,7 @@ export default {
     },
     {
       n: 1809,
-      title: "Check if each element of second tuple is smaller",
+      title: "Check if each element of the second tuple is smaller than its index in the first",
       slug: "check-if-each-element-of-second-tuple-is-809",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9197,7 +9197,7 @@ export default {
     },
     {
       n: 1815,
-      title: "Sort the given array without",
+      title: "Sort the given array of 0, 1 and 2 without using any sorting algorithm",
       slug: "sort-the-given-array-without-using-any-sorting-815",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9444,7 +9444,7 @@ export default {
     },
     {
       n: 1834,
-      title: "Generate a square matrix filled with elements from 1 to n raised",
+      title: "Generate a square matrix filled with elements from 1 to n squared in spiral order",
       slug: "generate-a-square-matrix-filled-with-elements-from-834",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9509,7 +9509,7 @@ export default {
     },
     {
       n: 1840,
-      title: "Check whether the roots",
+      title: "Check whether the roots of a quadratic equation are equal but opposite in sign",
       slug: "check-whether-the-roots-of-a-quadratic-equation-840",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9743,7 +9743,7 @@ export default {
     },
     {
       n: 1860,
-      title: "Check whether the given string is ending",
+      title: "Check whether the given string ends with only alphanumeric characters",
       slug: "check-whether-the-given-string-is-ending-with-860",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9769,7 +9769,7 @@ export default {
     },
     {
       n: 1863,
-      title: "Find the length of the longest sub-sequence such that elements",
+      title: "Find the length of the longest sub-sequence of consecutive integers",
       slug: "find-the-length-of-the-longest-sub-sequence-863",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
