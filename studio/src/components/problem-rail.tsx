@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
-import { Loader2, Play, RotateCcw, Search, SlidersHorizontal, X } from 'lucide-react';
+import { Loader2, PanelLeftClose, PanelLeftOpen, Play, RotateCcw, Search, SlidersHorizontal, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
@@ -20,6 +20,9 @@ interface ProblemRailProps {
   locked: boolean;
   /** A topic the board was opened on, so a pick made on the home page survives. */
   initialTag?: string | null;
+  /** Folded away to a strip, so the editor can have the width. */
+  collapsed?: boolean;
+  onCollapsedChange?: (collapsed: boolean) => void;
   runningCategory: string | null;
   onSelect: (number: string) => void;
   onRunCategory: (dir: string) => void;
@@ -44,6 +47,8 @@ export function ProblemRail({
   activeNumber,
   locked,
   initialTag = null,
+  collapsed = false,
+  onCollapsedChange,
   runningCategory,
   onSelect,
   onRunCategory,
@@ -75,6 +80,7 @@ export function ProblemRail({
 
   const statusOf = (problem: Problem) => statuses[problem.number] ?? UNKNOWN_STATUS;
   const needle = query.trim().toLowerCase();
+  const solvedCount = problems.filter((problem) => statusOf(problem).state === 'solved').length;
 
   const counts = new Map<string, number>();
   for (const problem of problems) {
@@ -302,6 +308,31 @@ export function ProblemRail({
     );
   };
 
+  /**
+   * Folded, the list is a strip with the way back out and the score, because a
+   * panel with no handle of its own is a panel you cannot reopen.
+   */
+  if (collapsed) {
+    return (
+      <div className="flex h-full flex-col items-center gap-3 border-r border-line bg-sidebar/60 py-3">
+        <button
+          type="button"
+          onClick={() => onCollapsedChange?.(false)}
+          aria-label="Expand the problem list"
+          title="Expand the problem list"
+          className="flex size-7 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-white/[0.04] hover:text-foreground"
+        >
+          <PanelLeftOpen className="size-4" />
+        </button>
+
+        <p className="font-mono text-[10px] text-muted-foreground tabular-nums">
+          <span className="text-pass">{solvedCount}</span>
+        </p>
+        <p className="font-mono text-[10px] text-muted-foreground tabular-nums">{problems.length}</p>
+      </div>
+    );
+  }
+
   return (
     <div className="flex h-full flex-col bg-sidebar/60">
       <div className="flex items-center gap-2 border-b border-line p-3">
@@ -317,6 +348,16 @@ export function ProblemRail({
         </div>
 
         {renderFilters()}
+
+        <button
+          type="button"
+          onClick={() => onCollapsedChange?.(true)}
+          aria-label="Collapse the problem list"
+          title="Collapse the problem list"
+          className="flex size-8 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-white/[0.04] hover:text-foreground"
+        >
+          <PanelLeftClose className="size-4" />
+        </button>
       </div>
 
       <ScrollArea className="min-h-0 flex-1">

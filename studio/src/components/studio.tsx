@@ -3,7 +3,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
 import { PanelBottom, PanelLeft, PanelRight } from 'lucide-react';
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+  type PanelImperativeHandle,
+} from '@/components/ui/resizable';
 import { CommandPalette } from './command-palette';
 import { SolutionDiff } from './solution-diff';
 import { ProblemBrief } from './problem-brief';
@@ -75,6 +80,10 @@ const MODE_KEY = 'neetcode-studio:mode';
 const BIGO_KEY = 'neetcode-studio:big-o';
 const FOCUS_KEY = 'neetcode-studio:focus';
 const DOCK_KEY = 'neetcode-studio:dock';
+const RAIL_KEY = 'neetcode-studio:rail';
+
+/** Wide enough for the way back out and the score, and no wider. */
+const RAIL_STRIP = '52px';
 
 /** Where the verdict and the simulation sit against the editor. */
 type Dock = 'bottom' | 'right' | 'left';
@@ -130,6 +139,7 @@ export function Studio({
   const [bigO, setBigO] = useState(true);
   const [focus, setFocus] = useState(false);
   const [dock, setDock] = useState<Dock>('bottom');
+  const [railCollapsed, setRailCollapsed] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [runningCategory, setRunningCategory] = useState<string | null>(null);
   const [runningBoard, setRunningBoard] = useState(false);
@@ -159,6 +169,7 @@ export function Studio({
   const reviewStarted = useRef(false);
   const synced = useRef(false);
   const checking = useRef(false);
+  const rail = useRef<PanelImperativeHandle | null>(null);
 
   const allCollections: Collection[] = [
     {
@@ -217,6 +228,21 @@ export function Studio({
 
     const side = window.localStorage.getItem(DOCK_KEY);
     if (side === 'right' || side === 'left' || side === 'bottom') setDock(side);
+
+  }, []);
+
+  /**
+   * The panel itself is the one truth about whether the list is folded, and
+   * `onResize` is how it says so - setting the flag here as well would race it
+   * and leave a strip with no list or a list with no strip. Storage only records
+   * the intent, and the fold waits a frame for the group to lay out, because a
+   * collapse asked for before that is dropped.
+   */
+  useEffect(() => {
+    if (window.localStorage.getItem(RAIL_KEY) !== 'collapsed') return;
+
+    const frame = requestAnimationFrame(() => rail.current?.collapse());
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   /**
@@ -577,6 +603,12 @@ export function Studio({
     setDock(next);
   };
 
+  const handleRailCollapsed = (next: boolean) => {
+    window.localStorage.setItem(RAIL_KEY, next ? 'collapsed' : 'open');
+    if (next) rail.current?.collapse();
+    else rail.current?.expand();
+  };
+
   /** Focus mode drops the list and the brief; the editor and its verdict are the work. */
   const handleFocusChange = (next: boolean) => {
     window.localStorage.setItem(FOCUS_KEY, next ? 'on' : 'off');
@@ -911,13 +943,24 @@ ${line}
 
       <ResizablePanelGroup orientation="horizontal" className="min-h-0 flex-1">
         {!focus && (
-          <ResizablePanel id="rail" defaultSize="19" minSize="13">
+          <ResizablePanel
+            id="rail"
+            defaultSize="19"
+            minSize="13"
+            collapsible
+            collapsedSize={RAIL_STRIP}
+            panelRef={rail}
+            /** Dragging the handle shut is the same fold, so the strip follows it. */
+            onResize={() => setRailCollapsed(rail.current?.isCollapsed() ?? false)}
+          >
             <ProblemRail
               problems={visible}
               statuses={statuses}
               activeNumber={active.number}
               locked={settings.strictMode && session !== null}
               initialTag={search.get('tag')}
+              collapsed={railCollapsed}
+              onCollapsedChange={handleRailCollapsed}
               runningCategory={runningCategory}
               onSelect={handleSelect}
               onRunCategory={handleRunCategory}

@@ -85,7 +85,12 @@ export function AppSidebar() {
         wide ? 'w-52' : 'w-14',
       )}
     >
-      <div className="flex items-center gap-2 px-1 py-2">
+      {/**
+       * Narrow, the badge and the toggle cannot sit side by side - together they
+       * are wider than the rail - and the toggle used to overflow under the page
+       * beside it, where a click could not reach it. Stacked, both fit.
+       */}
+      <div className={cn('flex gap-2 px-1 py-2', wide ? 'items-center' : 'flex-col items-center')}>
         <span className="relative flex size-8 shrink-0 -skew-x-6 items-center justify-center rounded-lg bg-primary font-heading text-sm font-bold text-primary-foreground">
           P
           <span className="absolute -right-0.5 -bottom-0.5 size-1.5 rounded-full bg-hot" />
