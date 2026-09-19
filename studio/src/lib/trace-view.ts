@@ -187,3 +187,40 @@ export function stepsChanging(steps: TraceStep[], name: string): boolean[] {
 
 /** An index worth drawing under a cell: a name the student wrote, not an expression. */
 export const shortIndex = (from: string) => (/^[A-Za-z_$][\w$]*$/.test(from) ? from : null);
+
+/** `show` quotes a string; the key that reached it did not. */
+const unquote = (text: string) => text.replace(/^'([\s\S]*)'$/, '$1');
+
+/**
+ * Whether a key the run asked for is actually in the value it asked.
+ *
+ * What counts as "in" depends on how the thing is keyed, and the three cases
+ * really differ: an array answers to a position, a Set answers to a value, a
+ * Map and a plain object answer to their own keys. Getting this wrong marks
+ * every ordinary index as a miss, which is worse than saying nothing.
+ */
+export function reachedIn(value: TraceValue): (key: string) => boolean {
+  if (value.t === 'array' && value.set) {
+    const items = new Set(value.items.map(unquote));
+    return (key) => items.has(key);
+  }
+
+  if (value.t === 'array') {
+    const count = value.items.length;
+    return (key) => {
+      const index = Number(key);
+      return Number.isInteger(index) && index >= 0 && index < count;
+    };
+  }
+
+  if (value.t === 'map') {
+    const keys = new Set(value.entries.map(([key]) => key));
+    return (key) => keys.has(key);
+  }
+
+  /** A list or a tree is not reached by key at all, so nothing is a miss. */
+  return () => true;
+}
+
+/** A miss only means something where a lookup can actually fail. */
+export const canMiss = (value: TraceValue) => value.t === 'map' || (value.t === 'array' && value.set === true);

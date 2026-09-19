@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronRight, Eye } from 'lucide-react';
 import type { TraceStep, TraceValue } from '@/lib/types';
-import { shortIndex, UNCHANGED, type StepChanges, type VarChange } from '@/lib/trace-view';
+import { canMiss, reachedIn, shortIndex, UNCHANGED, type StepChanges, type VarChange } from '@/lib/trace-view';
 import { cn } from '@/lib/utils';
 
 interface TraceStageProps {
@@ -289,14 +289,8 @@ export function TraceStage({ step, changes, covered, asked, watching, onWatch }:
     const order = asked[name];
     if (!order || order.length === 0) return null;
 
-    const present = new Set<string>(
-      value.t === 'array'
-        ? value.items.map((item) => item.replace(/^'([\s\S]*)'$/, '$1'))
-        : value.t === 'map'
-          ? value.entries.map(([key]) => key)
-          : [],
-    );
-
+    const reached = reachedIn(value);
+    const missable = canMiss(value);
     const shown = order.slice(-STRIP);
 
     return (
@@ -308,7 +302,7 @@ export function TraceStage({ step, changes, covered, asked, watching, onWatch }:
         {order.length > STRIP && <span className="text-[9px] text-muted-foreground/60">&hellip;</span>}
 
         {shown.map((one, position) => {
-          const hit = present.has(one.key);
+          const hit = reached(one.key);
 
           return (
             <span
@@ -318,7 +312,7 @@ export function TraceStage({ step, changes, covered, asked, watching, onWatch }:
                 'rounded border px-1 font-mono text-[9px] tabular-nums',
                 one.write
                   ? 'border-medium/50 bg-medium/10 text-medium'
-                  : hit
+                  : hit || !missable
                     ? 'border-cool/50 bg-cool/10 text-cool'
                     : 'border-line text-muted-foreground/70 line-through',
               )}
