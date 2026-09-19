@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
+import { PanelBottom, PanelLeft, PanelRight } from 'lucide-react';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 import { CommandPalette } from './command-palette';
 import { SolutionDiff } from './solution-diff';
@@ -16,6 +17,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ALL_BOARD, UNKNOWN_STATUS } from '@/lib/meta';
 import { request } from '@/lib/api';
+import { cn } from '@/lib/utils';
 import type {
   Collection,
   Course,
@@ -72,6 +74,23 @@ const LAST_KEY = 'neetcode-studio:last-problem';
 const MODE_KEY = 'neetcode-studio:mode';
 const BIGO_KEY = 'neetcode-studio:big-o';
 const FOCUS_KEY = 'neetcode-studio:focus';
+const DOCK_KEY = 'neetcode-studio:dock';
+
+/** Where the verdict and the simulation sit against the editor. */
+type Dock = 'bottom' | 'right' | 'left';
+
+const DOCKS: { side: Dock; icon: typeof PanelBottom; label: string }[] = [
+  { side: 'left', icon: PanelLeft, label: 'Dock to the left' },
+  { side: 'bottom', icon: PanelBottom, label: 'Dock to the bottom' },
+  { side: 'right', icon: PanelRight, label: 'Dock to the right' },
+];
+
+/** A replay reads down the page; beside the editor it has the height for it. */
+const DOCK_SIZE: Record<Dock, { editor: string; panel: string; min: string }> = {
+  bottom: { editor: '62', panel: '38', min: '15' },
+  right: { editor: '56', panel: '44', min: '22' },
+  left: { editor: '56', panel: '44', min: '22' },
+};
 
 const EMPTY_COUNTS: Record<ProblemState, number> = {
   solved: 0,
@@ -110,6 +129,7 @@ export function Studio({
   const [syncing, setSyncing] = useState(false);
   const [bigO, setBigO] = useState(true);
   const [focus, setFocus] = useState(false);
+  const [dock, setDock] = useState<Dock>('bottom');
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [runningCategory, setRunningCategory] = useState<string | null>(null);
   const [runningBoard, setRunningBoard] = useState(false);
@@ -194,6 +214,9 @@ export function Studio({
   useEffect(() => {
     setBigO(window.localStorage.getItem(BIGO_KEY) !== 'off');
     setFocus(window.localStorage.getItem(FOCUS_KEY) === 'on');
+
+    const side = window.localStorage.getItem(DOCK_KEY);
+    if (side === 'right' || side === 'left' || side === 'bottom') setDock(side);
   }, []);
 
   /**
@@ -549,6 +572,11 @@ export function Studio({
     setBigO(next);
   };
 
+  const handleDockChange = (next: Dock) => {
+    window.localStorage.setItem(DOCK_KEY, next);
+    setDock(next);
+  };
+
   /** Focus mode drops the list and the brief; the editor and its verdict are the work. */
   const handleFocusChange = (next: boolean) => {
     window.localStorage.setItem(FOCUS_KEY, next ? 'on' : 'off');
@@ -754,6 +782,73 @@ ${line}
     return { ...totals, [state]: totals[state] + 1 };
   }, EMPTY_COUNTS);
 
+  /**
+   * Written once and placed on whichever side is docked, so the verdict and the
+   * simulation are the same panel wherever they sit.
+   */
+  const verdictAndSimulation = (
+    <ResizablePanel defaultSize={DOCK_SIZE[dock].panel} minSize={DOCK_SIZE[dock].min}>
+      <Tabs value={panel} onValueChange={setPanel} className="flex h-full min-h-0 flex-col gap-0">
+        <div className="mx-3 mt-2 flex items-center gap-2">
+          <TabsList className="self-start">
+            <TabsTrigger value="verdict">Verdict</TabsTrigger>
+            <TabsTrigger value="trace">Simulation</TabsTrigger>
+          </TabsList>
+
+          <div role="group" aria-label="panel position" className="ml-auto flex items-center gap-0.5">
+            {DOCKS.map(({ side, icon: Icon, label }) => (
+              <button
+                key={side}
+                type="button"
+                aria-label={label}
+                aria-pressed={dock === side}
+                title={label}
+                onClick={() => handleDockChange(side)}
+                className={cn(
+                  'flex size-6 items-center justify-center rounded-md border transition-colors',
+                  dock === side
+                    ? 'border-primary/40 bg-primary/10 text-primary'
+                    : 'border-transparent text-muted-foreground hover:border-line hover:text-foreground',
+                )}
+              >
+                <Icon className="size-3.5" />
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <TabsContent value="verdict" className="min-h-0 flex-1">
+          <VerdictPanel
+            report={report}
+            running={running}
+            bigO={bigO}
+            problemTitle={active.title}
+            onMeasure={handleMeasure}
+            onSnippet={handleSnippet}
+          />
+        </TabsContent>
+
+        <TabsContent value="trace" forceMount className="min-h-0 flex-1 data-[state=inactive]:hidden">
+          <TracePanel
+            trace={trace}
+            tracing={tracing}
+            ops={ops}
+            counting={counting}
+            variants={traceVariants}
+            cases={traceCases}
+            variant={variant}
+            caseIndex={caseIndex}
+            jumpLine={jumpLine}
+            onPick={handlePick}
+            onTrace={handleTrace}
+            onCount={handleCount}
+            onStep={setActiveLine}
+          />
+        </TabsContent>
+      </Tabs>
+    </ResizablePanel>
+  );
+
   return (
     <div className="flex h-dvh flex-col">
       <SolutionDiff
@@ -835,8 +930,22 @@ ${line}
         {!focus && <ResizableHandle withHandle />}
 
         <ResizablePanel id="editor" defaultSize="49" minSize="26">
-          <ResizablePanelGroup orientation="vertical">
-            <ResizablePanel defaultSize="62" minSize="25">
+          {/**
+           * The verdict and the simulation dock against the editor on whichever
+           * side suits the work, the way a browser's inspector does. Changing
+           * side rebuilds the group - the recorded trace is held up here and
+           * survives, only the step the replay was paused on goes back to the
+           * first.
+           */}
+          <ResizablePanelGroup key={dock} orientation={dock === 'bottom' ? 'vertical' : 'horizontal'}>
+            {dock === 'left' && (
+              <>
+                {verdictAndSimulation}
+                <ResizableHandle withHandle />
+              </>
+            )}
+
+            <ResizablePanel defaultSize={DOCK_SIZE[dock].editor} minSize="25">
               <SolutionEditor
                 file={active.file}
                 mode={mode}
@@ -862,49 +971,12 @@ ${line}
               />
             </ResizablePanel>
 
-            <ResizableHandle withHandle />
-
-            <ResizablePanel defaultSize="38" minSize="15">
-              <Tabs
-                value={panel}
-                onValueChange={setPanel}
-                className="flex h-full min-h-0 flex-col gap-0"
-              >
-                <TabsList className="mx-3 mt-2 self-start">
-                  <TabsTrigger value="verdict">Verdict</TabsTrigger>
-                  <TabsTrigger value="trace">Simulation</TabsTrigger>
-                </TabsList>
-
-                <TabsContent value="verdict" className="min-h-0 flex-1">
-                  <VerdictPanel
-                    report={report}
-                    running={running}
-                    bigO={bigO}
-                    problemTitle={active.title}
-                    onMeasure={handleMeasure}
-                    onSnippet={handleSnippet}
-                  />
-                </TabsContent>
-
-                <TabsContent value="trace" forceMount className="min-h-0 flex-1 data-[state=inactive]:hidden">
-                  <TracePanel
-                    trace={trace}
-                    tracing={tracing}
-                    ops={ops}
-                    counting={counting}
-                    variants={traceVariants}
-                    cases={traceCases}
-                    variant={variant}
-                    caseIndex={caseIndex}
-                    jumpLine={jumpLine}
-                    onPick={handlePick}
-                    onTrace={handleTrace}
-                    onCount={handleCount}
-                    onStep={setActiveLine}
-                  />
-                </TabsContent>
-              </Tabs>
-            </ResizablePanel>
+            {dock !== 'left' && (
+              <>
+                <ResizableHandle withHandle />
+                {verdictAndSimulation}
+              </>
+            )}
           </ResizablePanelGroup>
         </ResizablePanel>
       </ResizablePanelGroup>
