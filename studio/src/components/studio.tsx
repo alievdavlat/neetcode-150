@@ -20,7 +20,7 @@ import { TracePanel } from './trace-panel';
 import { VerdictPanel } from './verdict-panel';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { ALL_BOARD, UNKNOWN_STATUS } from '@/lib/meta';
+import { ALL_BOARD, SHORTCUT_KEY, UNKNOWN_STATUS } from '@/lib/meta';
 import { request } from '@/lib/api';
 import { cn } from '@/lib/utils';
 import type {
@@ -758,49 +758,25 @@ ${line}
   };
 
   useEffect(() => {
+    /** Bound from the one table the settings page also prints. */
+    const actions: Record<string, () => void> = {
+      [SHORTCUT_KEY.palette!]: () => setPaletteOpen((open) => !open),
+      [SHORTCUT_KEY.focus!]: () => handleFocusChange(!focus),
+      [SHORTCUT_KEY.next!]: () => step(1),
+      [SHORTCUT_KEY.previous!]: () => step(-1),
+      [SHORTCUT_KEY.unsolved!]: () => jumpToUnsolved(),
+      [SHORTCUT_KEY.save!]: () => handleSave(),
+      [SHORTCUT_KEY.run!]: () => handleRun(),
+    };
+
     const handleKey = (event: KeyboardEvent) => {
       if (!(event.metaKey || event.ctrlKey)) return;
 
-      if (event.key.toLowerCase() === 'k') {
-        event.preventDefault();
-        setPaletteOpen((open) => !open);
-        return;
-      }
+      const act = actions[event.key] ?? actions[event.key.toLowerCase()];
+      if (!act) return;
 
-      if (event.key === '\\') {
-        event.preventDefault();
-        handleFocusChange(!focus);
-        return;
-      }
-
-      if (event.key === 'ArrowDown') {
-        event.preventDefault();
-        step(1);
-        return;
-      }
-
-      if (event.key === 'ArrowUp') {
-        event.preventDefault();
-        step(-1);
-        return;
-      }
-
-      if (event.key === 'ArrowRight') {
-        event.preventDefault();
-        jumpToUnsolved();
-        return;
-      }
-
-      if (event.key.toLowerCase() === 's') {
-        event.preventDefault();
-        handleSave();
-        return;
-      }
-
-      if (event.key === 'Enter') {
-        event.preventDefault();
-        handleRun();
-      }
+      event.preventDefault();
+      act();
     };
 
     window.addEventListener('keydown', handleKey);

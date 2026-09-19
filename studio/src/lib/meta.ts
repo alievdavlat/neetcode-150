@@ -166,3 +166,36 @@ export function accentFor(id: string): string {
 
   return ACCENTS[Math.abs(hash) % ACCENTS.length];
 }
+
+export interface Shortcut {
+  id: string;
+  /** How it is written for a reader. */
+  keys: string;
+  /** The `event.key` it binds to, when the studio itself binds it. */
+  key: string | null;
+  what: string;
+  /** Where it works: anywhere in the board, or only with the replay focused. */
+  scope: 'board' | 'replay';
+}
+
+/**
+ * Every shortcut, written once. The studio binds its handler from the `key`
+ * fields here and the settings page prints the same rows, so the list a reader
+ * sees cannot drift away from the list that actually fires.
+ */
+export const SHORTCUTS: Shortcut[] = [
+  { id: 'palette', keys: 'Ctrl/Cmd + K', key: 'k', scope: 'board', what: 'Jump to any problem by number, title, category or pattern' },
+  { id: 'save', keys: 'Ctrl/Cmd + S', key: 's', scope: 'board', what: 'Save the file' },
+  { id: 'run', keys: 'Ctrl/Cmd + Enter', key: 'Enter', scope: 'board', what: 'Save if needed, then run the tests' },
+  { id: 'next', keys: 'Ctrl/Cmd + ↓', key: 'ArrowDown', scope: 'board', what: 'Next problem in this list' },
+  { id: 'previous', keys: 'Ctrl/Cmd + ↑', key: 'ArrowUp', scope: 'board', what: 'Previous problem in this list' },
+  { id: 'unsolved', keys: 'Ctrl/Cmd + →', key: 'ArrowRight', scope: 'board', what: 'Next problem that is not solved yet' },
+  { id: 'focus', keys: 'Ctrl/Cmd + ' + String.fromCharCode(92), key: String.fromCharCode(92), scope: 'board', what: 'Focus mode: the editor alone, without the list and the brief' },
+  { id: 'step', keys: '← / →', key: null, scope: 'replay', what: 'One step back or forward through the replay' },
+  { id: 'play', keys: 'Space', key: null, scope: 'replay', what: 'Play or pause the replay' },
+];
+
+/** The `event.key` each shortcut binds to, for the handler that fires them. */
+export const SHORTCUT_KEY = Object.fromEntries(
+  SHORTCUTS.map((shortcut) => [shortcut.id, shortcut.key]),
+) as Record<string, string | null>;
