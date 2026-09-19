@@ -1,56 +1,53 @@
-import { spawn } from 'node:child_process';
 import path from 'node:path';
+import ts from 'typescript';
 import type { TypeMarker } from '@/lib/types';
-import { WORKSPACE_ROOT } from './workspace';
+import { resolveProblemFile, WORKSPACE_ROOT } from './workspace';
 
-const TSC = path.join(WORKSPACE_ROOT, 'node_modules', 'typescript', 'bin', 'tsc');
-const LINE = /^(.+?)\((\d+),(\d+)\): error (TS\d+): (.*)$/;
-const TIMEOUT_MS = 60000;
+const MAX_MARKERS = 50;
 
-/** `tsc --noEmit` over the workspace; it exits non-zero when it finds something, which is not a failure here. */
-function compile(): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const child = spawn(process.execPath, [TSC, '--noEmit', '--pretty', 'false'], {
-      cwd: WORKSPACE_ROOT,
-      windowsHide: true,
-    });
+/** The workspace tsconfig supplies the options; the file being checked is the root. */
+function compilerOptions(): ts.CompilerOptions {
+  const configFile = path.join(WORKSPACE_ROOT, 'tsconfig.json');
+  const read = ts.readConfigFile(configFile, ts.sys.readFile);
+  if (read.error) throw new Error(ts.flattenDiagnosticMessageText(read.error.messageText, ' '));
 
-    let out = '';
-    let err = '';
-    const timer = setTimeout(() => {
-      child.kill();
-      reject(new Error(`tsc did not answer within ${TIMEOUT_MS}ms`));
-    }, TIMEOUT_MS);
-
-    child.stdout.on('data', (chunk) => (out += chunk));
-    child.stderr.on('data', (chunk) => (err += chunk));
-    child.on('error', (error) => {
-      clearTimeout(timer);
-      reject(error);
-    });
-
-    child.on('close', () => {
-      clearTimeout(timer);
-      if (out.trim() === '' && err.trim() !== '') return reject(new Error(err.trim().slice(0, 200)));
-      resolve(out);
-    });
-  });
+  return ts.parseJsonConfigFileContent(read.config, ts.sys, WORKSPACE_ROOT).options;
 }
 
-/** Every diagnostic the compiler reports for one problem file. */
+const markerFor = (source: ts.SourceFile, diagnostic: ts.Diagnostic): TypeMarker[] => {
+  if (diagnostic.start === undefined) return [];
+  const { line, character } = source.getLineAndCharacterOfPosition(diagnostic.start);
+
+  return [
+    {
+      line: line + 1,
+      column: character + 1,
+      code: `TS${diagnostic.code}`,
+      message: ts.flattenDiagnosticMessageText(diagnostic.messageText, ' '),
+    },
+  ];
+};
+
+/**
+ * Every diagnostic the compiler reports for one problem file.
+ *
+ * Only the open file's markers ever reach the editor, so the program is rooted
+ * at that file rather than at the whole workspace: compiling all 1104 problems
+ * to report on one of them cost seconds on every save, and 1103 files of that
+ * work was thrown away. Whatever the file imports still comes along, so the
+ * shared node types are checked as before - verified against the old
+ * whole-workspace compile, which reports the same diagnostics.
+ *
+ * The compiler only reads and types the source; it never runs it, so this
+ * belongs in process rather than behind the bridge.
+ */
 export async function typecheckFile(file: string): Promise<TypeMarker[]> {
-  const output = await compile();
+  const absolute = resolveProblemFile(file);
+  const program = ts.createProgram({ rootNames: [absolute], options: compilerOptions() });
+  const source = program.getSourceFile(absolute);
+  if (!source) throw new Error(`could not read ${file}`);
 
-  return output
-    .split('\n')
-    .flatMap((line) => {
-      const match = line.trim().match(LINE);
-      if (!match) return [];
-
-      const [, reported, row, column, code, message] = match;
-      if (reported.replace(/\\/g, '/') !== file) return [];
-
-      return [{ line: Number(row), column: Number(column), code, message }];
-    })
-    .slice(0, 50);
+  return [...program.getSyntacticDiagnostics(source), ...program.getSemanticDiagnostics(source)]
+    .flatMap((diagnostic) => markerFor(source, diagnostic))
+    .slice(0, MAX_MARKERS);
 }
