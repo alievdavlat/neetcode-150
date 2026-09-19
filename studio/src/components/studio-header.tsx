@@ -2,7 +2,18 @@
 
 import { motion } from 'motion/react';
 import Link from 'next/link';
-import { ArrowLeft, Loader2, Maximize2, Minimize2, Play, RefreshCw, Settings2 } from 'lucide-react';
+import {
+  ArrowLeft,
+  ChevronLeft,
+  ChevronRight,
+  Loader2,
+  Maximize2,
+  Minimize2,
+  Play,
+  RefreshCw,
+  Settings2,
+  SkipForward,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Brand } from './brand';
@@ -19,6 +30,10 @@ interface StudioHeaderProps {
   focus: boolean;
   runningBoard: boolean;
   onRunBoard: () => void;
+  /** Where the open problem sits in this list, counted from one. */
+  place: { index: number; total: number };
+  onStep: (delta: number) => void;
+  onNextUnsolved: () => void;
   onCollectionChange: (id: string) => void;
   onFocusChange: (focus: boolean) => void;
   onSync: () => void;
@@ -36,6 +51,9 @@ export function StudioHeader({
   focus,
   runningBoard,
   onRunBoard,
+  place,
+  onStep,
+  onNextUnsolved,
   onCollectionChange,
   onFocusChange,
   onSync,
@@ -44,6 +62,51 @@ export function StudioHeader({
 
   /** The three counts are one sentence, not three badges competing with the bar. */
   const summary = TRACKED.map((state) => `${counts[state]} ${STATE_META[state].label.toLowerCase()}`).join(' · ');
+
+  /**
+   * Moving through the list without the list. Folding the rail away should not
+   * cost the one thing it was open for, and these are the same three moves the
+   * Ctrl+arrow shortcuts make.
+   */
+  const renderWalk = () => (
+    <div role="group" aria-label="Move through this list" className="flex items-center gap-0.5">
+      <Button
+        variant="ghost"
+        size="icon-xs"
+        aria-label="Previous problem"
+        title="Previous problem (Ctrl+Up)"
+        disabled={place.index <= 1}
+        onClick={() => onStep(-1)}
+      >
+        <ChevronLeft className="size-4" />
+      </Button>
+
+      <span className="min-w-14 text-center font-mono text-[11px] text-muted-foreground tabular-nums">
+        {place.index}/{place.total}
+      </span>
+
+      <Button
+        variant="ghost"
+        size="icon-xs"
+        aria-label="Next problem"
+        title="Next problem (Ctrl+Down)"
+        disabled={place.index >= place.total}
+        onClick={() => onStep(1)}
+      >
+        <ChevronRight className="size-4" />
+      </Button>
+
+      <Button
+        variant="ghost"
+        size="icon-xs"
+        aria-label="Next problem that is not solved"
+        title="Next unsolved problem (Ctrl+Right)"
+        onClick={onNextUnsolved}
+      >
+        <SkipForward className="size-3.5" />
+      </Button>
+    </div>
+  );
 
   const renderBoards = () => (
     <Select value={boardId} onValueChange={onCollectionChange}>
@@ -136,6 +199,8 @@ export function StudioHeader({
       </motion.div>
 
       {renderBoards()}
+
+      {renderWalk()}
 
       <div className="ml-auto flex items-center gap-2">
         {renderRunBoard()}

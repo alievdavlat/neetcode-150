@@ -743,15 +743,16 @@ ${line}
     apply();
   };
 
+  /** Walking the list means the list on screen, not every problem in the workspace. */
   const step = (delta: number) => {
-    const index = problems.findIndex((problem) => problem.number === activeNumber);
-    const next = problems[index + delta];
+    const index = visible.findIndex((problem) => problem.number === activeNumber);
+    const next = visible[index + delta];
     if (next) handleSelect(next.number);
   };
 
   const jumpToUnsolved = () => {
-    const index = problems.findIndex((problem) => problem.number === activeNumber);
-    const ordered = [...problems.slice(index + 1), ...problems.slice(0, index)];
+    const index = visible.findIndex((problem) => problem.number === activeNumber);
+    const ordered = [...visible.slice(index + 1), ...visible.slice(0, index)];
     const next = ordered.find((problem) => (statuses[problem.number]?.state ?? 'not-started') !== 'solved');
     if (next) handleSelect(next.number);
   };
@@ -927,6 +928,9 @@ ${line}
         focus={focus}
         runningBoard={runningBoard}
         onRunBoard={handleRunBoard}
+        place={{ index: visible.findIndex((problem) => problem.number === activeNumber) + 1, total: visible.length }}
+        onStep={step}
+        onNextUnsolved={jumpToUnsolved}
         onCollectionChange={handleCollectionChange}
         onFocusChange={handleFocusChange}
         onSync={handleSync}
