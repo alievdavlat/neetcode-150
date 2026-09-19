@@ -12,7 +12,7 @@ import { CommandPalette } from './command-palette';
 import { ContinueCard } from './continue-card';
 import { ReviewQueue } from './review-queue';
 import { TagStrip, type Tag } from './tag-strip';
-import { ALL_BOARD, DIFFICULTY_META, STATE_META, tagsOf } from '@/lib/meta';
+import { accentFor, ALL_BOARD, DIFFICULTY_META, STATE_META, tagsOf } from '@/lib/meta';
 import type { ActivityDay } from '@/server/history';
 import type { Board, Company, Course, Problem, ProblemStatus, Settings } from '@/lib/types';
 import { cn } from '@/lib/utils';
@@ -33,15 +33,6 @@ const HINT: Record<Source, string> = {
   topics: 'Topics are read from the pattern each problem teaches, so the counts are the real spread of this workspace.',
   companies: 'Counts are how many problems in this workspace that company is on record asking, not how often.',
 };
-
-const ACCENTS = [
-  'from-violet-600 to-indigo-800',
-  'from-rose-600 to-red-900',
-  'from-sky-500 to-blue-800',
-  'from-emerald-500 to-teal-800',
-  'from-amber-500 to-orange-800',
-  'from-fuchsia-600 to-purple-900',
-];
 
 const RESULT_LIMIT = 60;
 
@@ -221,8 +212,8 @@ export function Home({ problems, statuses, boards, companies, courses, activity,
         </header>
 
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {members.map((board, index) => (
-            <BoardCard key={board.id} board={board} accent={ACCENTS[index % ACCENTS.length]} />
+          {members.map((board) => (
+            <BoardCard key={board.id} board={board} accent={accentFor(board.id)} />
           ))}
         </div>
       </section>

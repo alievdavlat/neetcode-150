@@ -1,23 +1,40 @@
 'use client';
 
-import { useMemo, useState, type ReactNode } from 'react';
+import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { Search, X } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-import { duration, stamp } from '@/lib/meta';
+import { CourseCard } from './course-card';
+import { accentFor, duration, stamp } from '@/lib/meta';
 import type { Course } from '@/lib/types';
+import { cn } from '@/lib/utils';
 
 interface CourseSearchProps {
   courses: Course[];
-  /** The normal catalogue, shown whenever nothing is being searched for. */
-  children: ReactNode;
+  /** Which lesson start times have been marked watched, per course. */
+  watched: Record<string, number[]>;
 }
 
 const LIMIT = 40;
 
-export function CourseSearch({ courses, children }: CourseSearchProps) {
+/**
+ * Search and the catalogue live together because they are two views of one
+ * list: the tracks narrow it, a query replaces it, and only one of them can be
+ * on screen at a time.
+ */
+export function CourseSearch({ courses, watched }: CourseSearchProps) {
   const [query, setQuery] = useState('');
+  const [track, setTrack] = useState<string | null>(null);
   const needle = query.trim().toLowerCase();
+
+  const tracks = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const course of courses) counts.set(course.track, (counts.get(course.track) ?? 0) + 1);
+
+    return [...counts].sort((left, right) => left[0].localeCompare(right[0]));
+  }, [courses]);
+
+  const shown = track === null ? courses : courses.filter((course) => course.track === track);
 
   const hits = useMemo(() => {
     if (needle === '') return [];
@@ -53,6 +70,50 @@ export function CourseSearch({ courses, children }: CourseSearchProps) {
     </li>
   );
 
+  const renderTrackChip = (label: string, value: string | null, count: number) => (
+    <button
+      key={label}
+      type="button"
+      aria-pressed={track === value}
+      onClick={() => setTrack(value)}
+      className={cn(
+        'flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs transition-colors',
+        track === value
+          ? 'border-primary/40 bg-primary/10 text-primary'
+          : 'border-line text-muted-foreground hover:border-primary/30 hover:text-foreground',
+      )}
+    >
+      {label}
+      <span className="font-mono text-[10px] tabular-nums opacity-70">{count}</span>
+    </button>
+  );
+
+  const renderCatalogue = () => (
+    <div className="space-y-8">
+      {[...new Set(shown.map((course) => course.track))].map((name) => (
+        <section key={name} className="space-y-3">
+          <header className="flex items-center gap-4">
+            <h2 className="font-heading text-sm font-semibold tracking-[0.14em] uppercase">{name}</h2>
+            <span className="h-px flex-1 bg-line" />
+          </header>
+
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {shown
+              .filter((course) => course.track === name)
+              .map((course) => (
+                <CourseCard
+                  key={course.id}
+                  course={course}
+                  watched={watched[course.id] ?? []}
+                  accent={accentFor(course.id)}
+                />
+              ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  );
+
   return (
     <div className="space-y-6">
       <div className="relative">
@@ -77,7 +138,14 @@ export function CourseSearch({ courses, children }: CourseSearchProps) {
         )}
       </div>
 
-      {needle === '' && children}
+      {needle === '' && (
+        <div className="flex flex-wrap items-center gap-1.5">
+          {renderTrackChip('All', null, courses.length)}
+          {tracks.map(([name, count]) => renderTrackChip(name, name, count))}
+        </div>
+      )}
+
+      {needle === '' && renderCatalogue()}
 
       {needle !== '' && (
         <div className="space-y-6">

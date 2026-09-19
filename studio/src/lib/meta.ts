@@ -145,3 +145,24 @@ export const stamp = (seconds: number) => {
 
   return (hours > 0 ? parts : rest).map((part, index) => (index === 0 ? part : String(part).padStart(2, '0'))).join(':');
 };
+
+const ACCENTS = [
+  'from-violet-600 to-indigo-800',
+  'from-rose-600 to-red-900',
+  'from-sky-500 to-blue-800',
+  'from-emerald-500 to-teal-800',
+  'from-amber-500 to-orange-800',
+  'from-fuchsia-600 to-purple-900',
+];
+
+/**
+ * A card keeps its colour for as long as it keeps its id. Picking by position
+ * meant one new course repainted every card after it, and a grid this size is
+ * scanned by colour before it is read.
+ */
+export function accentFor(id: string): string {
+  let hash = 0;
+  for (let index = 0; index < id.length; index += 1) hash = (hash * 31 + id.charCodeAt(index)) | 0;
+
+  return ACCENTS[Math.abs(hash) % ACCENTS.length];
+}

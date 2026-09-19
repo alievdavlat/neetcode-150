@@ -7,12 +7,18 @@ import { cn } from '@/lib/utils';
 
 interface CourseCardProps {
   course: Course;
-  watched: number;
+  watched: number[];
   accent: string;
 }
 
 export function CourseCard({ course, watched, accent }: CourseCardProps) {
-  const percent = course.lessons.length === 0 ? 0 : Math.round((watched / course.lessons.length) * 100);
+  const seen = new Set(watched);
+  const percent = course.lessons.length === 0 ? 0 : Math.round((seen.size / course.lessons.length) * 100);
+
+  /** What is left to watch is the number that decides whether to start today. */
+  const left = course.lessons
+    .filter((lesson) => !seen.has(lesson.at))
+    .reduce((total, lesson) => total + lesson.seconds, 0);
 
   return (
     <Link
@@ -25,7 +31,7 @@ export function CourseCard({ course, watched, accent }: CourseCardProps) {
           {course.name}
         </p>
         <p className="absolute top-3 right-3 font-mono text-[11px] text-white/85 tabular-nums">
-          {duration(course.seconds)}
+          {left === 0 ? duration(course.seconds) : `${duration(left)} left`}
         </p>
       </div>
 
@@ -37,7 +43,7 @@ export function CourseCard({ course, watched, accent }: CourseCardProps) {
             <PlayCircle className="size-3 text-cool" />
             <span>{course.channel}</span>
             <span className="ml-auto tabular-nums">
-              {watched}/{course.lessons.length}
+              {seen.size}/{course.lessons.length}
             </span>
           </div>
 

@@ -1,4 +1,3 @@
-import { CourseCard } from '@/components/course-card';
 import { CourseSearch } from '@/components/course-search';
 import { StrictGate } from '@/components/strict-gate';
 import { getCourses, getWatched } from '@/server/courses';
@@ -7,15 +6,6 @@ import { dueQueue } from '@/server/review';
 import { getSettings } from '@/server/settings';
 
 export const dynamic = 'force-dynamic';
-
-const ACCENTS = [
-  'from-sky-500 to-blue-800',
-  'from-emerald-500 to-teal-800',
-  'from-amber-500 to-orange-800',
-  'from-violet-600 to-indigo-800',
-  'from-rose-600 to-red-900',
-  'from-fuchsia-600 to-purple-900',
-];
 
 export default async function CoursesPage() {
   const [courses, watched, statuses, settings] = await Promise.all([
@@ -32,31 +22,8 @@ export default async function CoursesPage() {
     if (locked) return <StrictGate problem={locked} status={waiting[0]} waiting={waiting.length} />;
   }
 
-  const tracks = [...new Set(courses.map((course) => course.track))];
   const lessons = courses.reduce((total, course) => total + course.lessons.length, 0);
   const seen = courses.reduce((total, course) => total + (watched[course.id]?.length ?? 0), 0);
-
-  const renderTrack = (track: string) => (
-    <section key={track} className="space-y-3">
-      <header className="flex items-center gap-4">
-        <h2 className="font-heading text-sm font-semibold tracking-[0.14em] uppercase">{track}</h2>
-        <span className="h-px flex-1 bg-line" />
-      </header>
-
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {courses
-          .filter((course) => course.track === track)
-          .map((course, index) => (
-            <CourseCard
-              key={course.id}
-              course={course}
-              watched={watched[course.id]?.length ?? 0}
-              accent={ACCENTS[index % ACCENTS.length]}
-            />
-          ))}
-      </div>
-    </section>
-  );
 
   return (
     <main className="mx-auto w-full max-w-7xl space-y-8 px-5 py-10">
@@ -78,9 +45,7 @@ export default async function CoursesPage() {
           <span className="font-mono">npm run courses</span>.
         </p>
       ) : (
-        <CourseSearch courses={courses}>
-          <div className="space-y-8">{tracks.map(renderTrack)}</div>
-        </CourseSearch>
+        <CourseSearch courses={courses} watched={watched} />
       )}
     </main>
   );
