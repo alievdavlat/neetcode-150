@@ -1,0 +1,23 @@
+{
+  "061": {
+    "title": "Prefiks daraxtini amalga oshirish",
+    "pattern": "Belgilar bo‘yicha shoxlanuvchi daraxt va so‘z oxiri belgisi",
+    "statement": "Uchta amalga ega prefiks daraxtini yozing: insert(word) so‘zni saqlaydi, search(word) aynan o‘sha so‘z qo‘shilgan bo‘lsa true qaytaradi, startsWith(prefix) esa saqlangan biror so‘z shu prefiks bilan boshlansa true qaytaradi.",
+    "followUp": "Qaysi bitta maydon “bu yerda so‘z tugaydi” ni “bu yerdan so‘z o‘tib ketadi” dan ajratadi?",
+    "constraints": ["1 <= word.length, prefix.length <= 2000", "Kirish faqat kichik lotin harflaridan iborat", "Jami ko‘pi bilan 3 * 10^4 chaqiruv"]
+  },
+  "062": {
+    "title": "So‘z qo‘shish va qidirish tuzilmasi",
+    "pattern": "Prefiks daraxti + nuqta belgisida shoxlanuvchi chuqurlik bo‘yicha qidiruv",
+    "statement": "addWord(word) va search(word) amallariga ega lug‘at loyihalang, bunda qidirilayotgan so‘zda nuqta bo‘lishi mumkin va u istalgan bitta harfga mos keladi. search kamida bitta saqlangan so‘z mos kelsa true qaytaradi.",
+    "followUp": "Nuqta belgisi yurishni qidiruvga aylantiradi. Rekursiya aynan qayerda shoxlanadi?",
+    "constraints": ["1 <= word.length <= 25", "addWord faqat kichik lotin harflarini oladi", "search kichik harflar va nuqtalarni oladi, ko‘pi bilan ikki nuqta", "Jami ko‘pi bilan 10^4 chaqiruv"]
+  },
+  "063": {
+    "title": "So‘z qidirish II",
+    "pattern": "Lug‘atdan prefiks daraxti yasab, doskani bir marta orqaga qaytish bilan aylanish",
+    "statement": "m x n belgilar doskasi va so‘zlar ro‘yxati berilgan. Doska bo‘ylab yurib yozish mumkin bo‘lgan barcha so‘zlarni qaytaring. So‘z gorizontal yoki vertikal yonma-yon kataklardagi harflardan tuziladi, va bitta so‘z ichida katakni ikki marta ishlatish mumkin emas. Har bir javob bir marta, istalgan tartibda chiqadi.",
+    "followUp": "Har so‘z uchun qidiruvni alohida yugurtirish juda sekin. So‘zlar topilgan sari daraxtni kesib boring.",
+    "constraints": ["m === board.length, n === board[i].length, 1 <= m, n <= 12", "board[i][j] — kichik lotin harfi", "1 <= words.length <= 3 * 10^4 va 1 <= words[i].length <= 10", "Hamma so‘z takrorlanmas"]
+  }
+}

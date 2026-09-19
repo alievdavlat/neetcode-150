@@ -1,0 +1,79 @@
+{
+  "035": {
+    "title": "Bog‘langan ro‘yxatni teskari o‘girish",
+    "pattern": "prev / curr / next ni qayta ulash",
+    "statement": "Bir tomonlama bog‘langan ro‘yxatning boshi berilgan. Uni teskari o‘girib, yangi boshini qaytaring.",
+    "followUp": "Ikki xil yozib ko‘ring: iterativ va rekursiv.",
+    "constraints": ["Ro‘yxatda 0 dan 5000 tagacha tugun", "-5000 <= Node.val <= 5000"]
+  },
+  "036": {
+    "title": "Ikki saralangan ro‘yxatni birlashtirish",
+    "pattern": "Soxta bosh + kichik tugunni ulash",
+    "statement": "Ikki saralangan bog‘langan ro‘yxatning boshlari berilgan. Ularni asl tugunlardan yasalgan bitta saralangan ro‘yxatga tikib, uning boshini qaytaring.",
+    "followUp": "Mavjud tugunlardan foydalaning — yangi tugun yaratmang.",
+    "constraints": ["Har ro‘yxatda 0 dan 50 tagacha tugun", "-100 <= Node.val <= 100", "Ikkala ro‘yxat kamaymaydigan tartibda saralangan"]
+  },
+  "037": {
+    "title": "Ro‘yxatni qayta tartiblash",
+    "pattern": "O‘rtani topish, ikkinchi yarmini teskari o‘girish, oralatib qo‘shish",
+    "statement": "L0 -> L1 -> ... -> Ln-1 -> Ln ro‘yxatining boshi berilgan. Uni joyida L0 -> Ln -> L1 -> Ln-1 -> L2 -> Ln-2 -> ... tartibiga keltiring. Tugun qiymatlarini o‘zgartirish mumkin emas, faqat bog‘lanishlarni. Funksiya hech nima qaytarmaydi — ro‘yxatning o‘zini o‘zgartiring.",
+    "followUp": "Ketma-ket uchta tanish qismmasala. Kod yozishdan oldin ularni nomlab oling.",
+    "constraints": ["Ro‘yxatda 1 dan 5 * 10^4 tagacha tugun", "1 <= Node.val <= 1000"]
+  },
+  "038": {
+    "title": "Oxiridan n-chi tugunni o‘chirish",
+    "pattern": "n masofada turgan ikki ko‘rsatgich + soxta bosh",
+    "statement": "Bog‘langan ro‘yxatning boshi berilgan. Oxiridan sanaganda n-chi tugunni o‘chirib, o‘zgargan ro‘yxatning boshini qaytaring.",
+    "followUp": "Bitta o‘tishda bajara olasizmi?",
+    "constraints": ["Ro‘yxatda sz tugun, 1 <= sz <= 30", "0 <= Node.val <= 100", "1 <= n <= sz"]
+  },
+  "039": {
+    "title": "Tasodifiy ko‘rsatgichli ro‘yxatni nusxalash",
+    "pattern": "Asl -> nusxa jadvali, keyin ikkinchi o‘tishda ko‘rsatgichlarni ulash",
+    "statement": "Ro‘yxatning har bir tugunida next ko‘rsatgichi va random ko‘rsatgichi bor, random ro‘yxatning istalgan tuguniga yoki null ga ishora qilishi mumkin. Chuqur nusxa yasang: qiymatlari mos, next va random ko‘rsatgichlari asl tuzilmani takrorlaydigan n ta butunlay yangi tugun, va nusxadagi hech bir ko‘rsatgich asl ro‘yxatning tuguniga ishora qilmasin.",
+    "followUp": "Hash jadval — ko‘rinib turgan javob. O(1) qo‘shimcha xotirada bajara olasizmi?",
+    "constraints": ["0 <= n <= 1000", "-10^4 <= Node.val <= 10^4", "Node.random null yoki ro‘yxatdagi tugunga ishora qiladi"]
+  },
+  "040": {
+    "title": "Ikki sonni qo‘shish",
+    "pattern": "Xona bo‘yicha qo‘shish va o‘tkazma",
+    "statement": "Ikki manfiy bo‘lmagan butun son bog‘langan ro‘yxat sifatida saqlanadi, raqamlari teskari tartibda, har tugunda bitta raqam. Ularni qo‘shib, yig‘indini xuddi shu formatdagi bog‘langan ro‘yxat sifatida qaytaring. Hech bir sonning boshida nol yo‘q, 0 sonining o‘zidan boshqa.",
+    "followUp": "Songa o‘girmang — ro‘yxatlar Number sig‘diradiganidan uzun.",
+    "constraints": ["Har ro‘yxatda 1 dan 100 tagacha tugun", "0 <= Node.val <= 9", "Sonlarning boshida nol yo‘q"]
+  },
+  "041": {
+    "title": "Bog‘langan ro‘yxatdagi sikl",
+    "pattern": "Floydning sekin va tez ko‘rsatgichlari",
+    "statement": "Bog‘langan ro‘yxatda sikl bo‘lsa true qaytaring — ya’ni next ko‘rsatgichlari bo‘ylab yurib biror tugunga qaytib kelish mumkin bo‘lsa.",
+    "followUp": "Ko‘rilganlar to‘plami o‘rniga O(1) xotira bilan bajara olasizmi?",
+    "constraints": ["Ro‘yxatda 0 dan 10^4 tagacha tugun", "-10^5 <= Node.val <= 10^5"]
+  },
+  "042": {
+    "title": "Takrorlanuvchi sonni topish",
+    "pattern": "Massivni bog‘langan ro‘yxat deb, Floyd bilan sikl izlash",
+    "statement": "n + 1 butun sondan iborat nums massivida [1, n] oralig‘idagi qiymatlar turadi, ya’ni kamida bitta qiymat takrorlanadi. Takrorlanuvchi sonni qaytaring. Massivni o‘zgartirish mumkin emas va qo‘shimcha xotira faqat konstanta bo‘lishi kerak.",
+    "followUp": "i -> nums[i] ni next ko‘rsatgichi deb o‘qing. Siklga kirish nuqtasi qayerda bo‘lishi shart?",
+    "constraints": ["1 <= n <= 10^5 va nums.length === n + 1", "1 <= nums[i] <= n", "Aynan bitta qiymat takrorlanadi, ehtimol ko‘p marta", "Massiv faqat o‘qish uchun, qo‘shimcha xotira faqat O(1)"]
+  },
+  "043": {
+    "title": "LRU kesh",
+    "pattern": "Hash jadval + ikki tomonlama bog‘langan ro‘yxat (yoki JS Map tartibi)",
+    "statement": "Qat’iy sig‘imli, eng uzoq vaqt ishlatilmagan kalitni chiqarib tashlaydigan kesh loyihalang. get(key) qiymatni, kalit bo‘lmasa -1 qaytaradi; put(key, value) kalitni qo‘yadi yoki yangilaydi va sig‘im oshib ketganda eng uzoq ishlatilmagan yozuvni chiqarib tashlaydi. Ikkala amal ham o‘rtacha O(1) da ishlashi kerak, va ikkisi ham o‘sha kalitning ishlatilishi hisoblanadi.",
+    "followUp": "Map ga tayanishdan oldin ikki tomonlama ro‘yxatni kamida bir marta qo‘lda yasab ko‘ring.",
+    "constraints": ["1 <= capacity <= 3000", "0 <= key <= 10^4 va 0 <= value <= 10^5", "get va put ga jami ko‘pi bilan 2 * 10^5 chaqiruv"]
+  },
+  "044": {
+    "title": "k saralangan ro‘yxatni birlashtirish",
+    "pattern": "Bosqichlarda juft-juft birlashtirish (yoki boshlarning min-heapi)",
+    "statement": "k ta saralangan bog‘langan ro‘yxatdan tuzilgan massiv berilgan. Ularni bitta saralangan ro‘yxatga birlashtirib, boshini qaytaring.",
+    "followUp": "Bittalab birlashtirish O(kn) turadi. Har bosqichda ro‘yxatlar sonini ikkiga bo‘lish esa yo‘q.",
+    "constraints": ["0 <= k <= 10^4", "Har ro‘yxatda o‘suvchi tartibda saralangan 0 dan 500 tagacha tugun", "-10^4 <= Node.val <= 10^4", "Hamma ro‘yxatdagi tugunlarning umumiy soni 10^4 dan oshmaydi"]
+  },
+  "045": {
+    "title": "Tugunlarni k talab teskari o‘girish",
+    "pattern": "Chegaralangan oynani teskari o‘girib, guruh chegaralarini qayta ulash",
+    "statement": "Bog‘langan ro‘yxat tugunlarini k talab teskari o‘girib, o‘zgargan ro‘yxatni qaytaring. Qolgan tugunlar soni k dan kam bo‘lsa, o‘sha dumni o‘z holida qoldiring. Tugun qiymatlarini o‘zgartirish mumkin emas — faqat bog‘lanishlarni.",
+    "followUp": "O(1) qo‘shimcha xotira bilan — rekursiya steksiz — bajara olasizmi?",
+    "constraints": ["Ro‘yxatda n tugun, 1 <= k <= n <= 5000", "0 <= Node.val <= 1000"]
+  }
+}

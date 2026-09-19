@@ -1,0 +1,50 @@
+{
+  "064": {
+    "title": "Oqimdagi k-chi eng katta element",
+    "pattern": "k o‘lchamiga cheklangan min-heap",
+    "statement": "Oqimda shu paytgacha ko‘rilganlar orasidan k-chi eng katta qiymatni aytib beradigan klass loyihalang — saralangan tartibdagi k-chi, k-chi farqli qiymat emas. Konstruktor k va boshlang‘ich massivni oladi; add(val) qiymatni qo‘shib, joriy k-chi eng kattasini qaytaradi. add qaytganda elementlar soni har doim kamida k ekani kafolatlangan.",
+    "followUp": "Nega hamma narsaning max-heapi emas, k o‘lchamli min-heap?",
+    "constraints": ["1 <= k <= 10^4 va 0 <= nums.length <= 10^4", "-10^4 <= nums[i], val <= 10^4", "add ga ko‘pi bilan 10^4 chaqiruv"]
+  },
+  "065": {
+    "title": "Oxirgi toshning vazni",
+    "pattern": "Max-heap, eng og‘ir ikkitasini qayta-qayta urish",
+    "statement": "Har yurishda eng og‘ir ikki tosh bir-biriga uriladi. Vaznlari teng bo‘lsa, ikkisi ham yo‘qoladi; aks holda yengilrog‘i yo‘qoladi va og‘irrog‘idan farq qoladi. Oxirgi qolgan toshning vaznini, tosh qolmasa 0 qaytaring.",
+    "constraints": ["1 <= stones.length <= 30", "1 <= stones[i] <= 1000"]
+  },
+  "066": {
+    "title": "Koordinata boshiga eng yaqin K nuqta",
+    "pattern": "Masofa kvadrati bo‘yicha k o‘lchamli max-heap (yoki tez tanlash)",
+    "statement": "Tekislikdagi nuqtalar massivi va k butun soni berilgan. Evklid masofasi bo‘yicha koordinata boshiga eng yaqin k nuqtani qaytaring. Javobni istalgan tartibda qaytarish mumkin, va tartibdan qat’i nazar u yagona.",
+    "followUp": "Kvadrat ildiz hech qachon kerak emas. Tez tanlash o‘rtacha holatni O(n) ga tushiradi.",
+    "constraints": ["1 <= k <= points.length <= 10^4", "-10^4 <= xi, yi <= 10^4"]
+  },
+  "067": {
+    "title": "Massivdagi k-chi eng katta element",
+    "pattern": "Tez tanlash (yoki k o‘lchamli min-heap)",
+    "statement": "Saralanmagan massivning k-chi eng katta elementini qaytaring, farqli qiymatlar emas, saralangan tartib bo‘yicha sanab. Butun massivni saralamasdan yeching.",
+    "followUp": "Qanday kirishda sodda tayanch tanlash kvadratik vaqtga aylanib ketadi?",
+    "constraints": ["1 <= k <= nums.length <= 10^5", "-10^4 <= nums[i] <= 10^4"]
+  },
+  "068": {
+    "title": "Vazifalar rejalashtiruvchisi",
+    "pattern": "Eng ko‘p uchraydigan vazifa bo‘yicha ochko‘zlik (heap + sovish navbati)",
+    "statement": "Har vazifa protsessorning bitta oralig‘ini oladi, va bir xil vazifaning ikki bajarilishi orasida kamida n oraliq bo‘lishi kerak, bu vaqtda protsessor boshqa vazifani bajarishi yoki bo‘sh turishi mumkin. Vazifalar ro‘yxati va sovish vaqti n berilgan — hamma vazifani tugatish uchun kerak bo‘ladigan eng kichik oraliqlar sonini qaytaring.",
+    "followUp": "Faqat eng ko‘p uchraydigan vazifaga bog‘liq yopiq formula bor. Uni chiqarib, keyin heap simulyatsiyasi bilan solishtiring.",
+    "constraints": ["1 <= tasks.length <= 10^4", "tasks[i] — katta lotin harfi", "0 <= n <= 100"]
+  },
+  "069": {
+    "title": "Twitter loyihalash",
+    "pattern": "Har foydalanuvchi uchun tvitlar ro‘yxati + lenta uchun k yo‘lli birlashtirish",
+    "statement": "To‘rt amalga ega soddalashtirilgan Twitter loyihalang: postTweet(userId, tweetId) tvit e’lon qiladi; getNewsFeed(userId) foydalanuvchining o‘zi yoki u kuzatayotgan kishilar e’lon qilgan eng yangi 10 tvit identifikatorini, yangisidan boshlab qaytaradi; follow(followerId, followeeId) va unfollow(followerId, followeeId) kuzatish grafini boshqaradi. Foydalanuvchi o‘zini o‘zi kuzatgan hisoblanadi.",
+    "followUp": "Tvit identifikatorlari monoton o‘smasa, sizga qanday vaqt belgisi kerak bo‘ladi?",
+    "constraints": ["1 <= userId, followerId, followeeId <= 500", "0 <= tweetId <= 10^4", "Hamma tvit identifikatori takrorlanmas", "Jami ko‘pi bilan 3 * 10^4 chaqiruv"]
+  },
+  "070": {
+    "title": "Ma’lumot oqimidan mediana",
+    "pattern": "Ikki heap: pastki yarmining max-heapi, yuqori yarmining min-heapi",
+    "statement": "Oqimdan qiymat beruvchi addNum(num) va shu paytgacha qo‘shilganlarning medianasini qaytaruvchi findMedian() amallariga ega tuzilma loyihalang. Elementlar soni juft bo‘lsa, mediana o‘rtadagi ikki qiymatning o‘rtacha arifmetigi. Haqiqiy medianadan 1e-5 dan ko‘p farq qilmagan javoblar qabul qilinadi.",
+    "followUp": "Agar hamma son 0 dan 100 gacha oraliqda bo‘lsa, konstanta vaqtda javob bera olarmidingiz? Ularning 99 foizi shunday bo‘lsa-chi?",
+    "constraints": ["-10^5 <= num <= 10^5", "findMedian faqat kamida bitta addNum dan keyin chaqiriladi", "Jami ko‘pi bilan 5 * 10^4 chaqiruv"]
+  }
+}
