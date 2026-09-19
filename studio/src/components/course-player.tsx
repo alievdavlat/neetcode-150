@@ -123,7 +123,7 @@ export function CoursePlayer({ course, watched, practice, notes, start }: Course
   const renderPractice = () => {
     if (!lesson) return null;
 
-    const { named, related, tags } = practiceFor(lesson.title, practice);
+    const { named, related, tags } = practiceFor(lesson.title, practice, lesson.at);
     const shown = [...named, ...related];
     if (shown.length === 0) return null;
 

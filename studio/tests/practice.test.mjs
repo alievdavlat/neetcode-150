@@ -49,3 +49,33 @@ test('the limit caps how much practice one lesson offers', () => {
 
   assert.equal(practiceFor('Hashmap', many).related.length, 8);
 });
+
+/**
+ * The walkthrough's problem files carry the timestamp of the lesson that teaches
+ * them, so that pairing is a join rather than a read of the title.
+ */
+test('a lesson pairs with the problems whose file points at it', () => {
+  const taught = [
+    { number: '001', title: 'Contains Duplicate', difficulty: 'Easy', tags: [], lessonAt: 129 },
+    { number: '002', title: 'Valid Anagram', difficulty: 'Easy', tags: [], lessonAt: 129 },
+    { number: '003', title: 'Two Sum', difficulty: 'Easy', tags: [], lessonAt: 1110 },
+  ];
+
+  const { named } = practiceFor('A title that names nothing', taught, 129);
+  assert.deepEqual(named.map((problem) => problem.number), ['001', '002']);
+});
+
+test('a title match still counts when the lesson time misses it', () => {
+  const taught = [
+    { number: '001', title: 'Contains Duplicate', difficulty: 'Easy', tags: [], lessonAt: 129 },
+    { number: '010', title: 'Valid Palindrome', difficulty: 'Easy', tags: [], lessonAt: null },
+  ];
+
+  const { named } = practiceFor('Valid Palindrome', taught, 129);
+  assert.deepEqual(named.map((problem) => problem.number), ['001', '010']);
+});
+
+test('no lesson time falls back to the title alone', () => {
+  const { named } = practiceFor('1 Contains Duplicate, 2 Valid Anagram', PROBLEMS);
+  assert.deepEqual(named.map((problem) => problem.number), ['001', '002']);
+});

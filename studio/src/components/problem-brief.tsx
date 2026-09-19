@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { motion } from 'motion/react';
 import {
   ChevronRight,
@@ -25,6 +26,8 @@ interface ProblemBriefProps {
   status: ProblemStatus;
   leetcode: string | null;
   video: string | null;
+  /** The same walkthrough, as a lesson this studio already has. */
+  lesson: { href: string; label: string } | null;
   note: string;
   reviewing: boolean;
   repeating: boolean;
@@ -58,6 +61,7 @@ export function ProblemBrief({
   status,
   leetcode,
   video,
+  lesson,
   note,
   reviewing,
   repeating,
@@ -378,7 +382,17 @@ export function ProblemBrief({
           {leetcode && renderLink(leetcode, 'LeetCode', <ExternalLink className="size-3.5" />)}
           {video &&
             (history.hintLevel >= 3 ? (
-              renderLink(video, 'Walkthrough', <PlayCircle className="size-3.5" />)
+              lesson ? (
+                <Link
+                  href={lesson.href}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-line bg-white/[0.02] px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+                >
+                  <PlayCircle className="size-3.5" />
+                  {lesson.label}
+                </Link>
+              ) : (
+                renderLink(video, 'Walkthrough', <PlayCircle className="size-3.5" />)
+              )
             ) : (
               <button
                 type="button"

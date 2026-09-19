@@ -24,6 +24,9 @@ export interface Problem {
   stub: string;
   kind: ProblemKind;
   caseCount: number;
+  /** The course walkthrough for this problem, and where in it. */
+  video: string | null;
+  lessonAt: number | null;
 }
 
 export type ProblemState = 'not-started' | 'attempted' | 'failing' | 'solved';

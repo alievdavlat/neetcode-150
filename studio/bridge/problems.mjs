@@ -1,4 +1,5 @@
 import { loadProblems } from '../../tests/runner/derive-cases.mjs';
+import { chapterFor, VIDEO_URL } from '../../_gen/chapters.mjs';
 
 /**
  * Print every problem as JSON for the studio UI. Reads only `_gen/data`, never a
@@ -6,7 +7,11 @@ import { loadProblems } from '../../tests/runner/derive-cases.mjs';
  */
 const problems = await loadProblems();
 
-const payload = problems.map((problem) => ({
+const payload = problems.map((problem) => {
+  /** The lesson that teaches it, so the studio can line the two up. */
+  const chapter = chapterFor.get(Number(problem.number));
+
+  return {
   number: problem.number,
   title: problem.title,
   slug: problem.slug,
@@ -25,6 +30,9 @@ const payload = problems.map((problem) => ({
   stub: problem.stub.trim(),
   kind: problem.signature.kind,
   caseCount: problem.cases.cases.length,
-}));
+  video: chapter ? `${VIDEO_URL}&t=${chapter.offset}s` : null,
+  lessonAt: chapter ? chapter.offset : null,
+  };
+});
 
 process.stdout.write(JSON.stringify(payload));

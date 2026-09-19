@@ -783,6 +783,22 @@ ${line}
   }, EMPTY_COUNTS);
 
   /**
+   * The walkthrough for this problem is a lesson of a course this studio already
+   * holds, matched on the timestamp both sides carry. Keeping the link inside
+   * means the lesson can be marked watched rather than silently played away on
+   * another site.
+   */
+  const walkthrough = (() => {
+    if (active.lessonAt === null || active.video === null) return null;
+
+    const course = courses.find((entry) => active.video?.includes(entry.video));
+    if (!course) return null;
+
+    const index = course.lessons.findIndex((entry) => entry.at === active.lessonAt);
+    return { href: `/courses/${course.id}?at=${active.lessonAt}`, label: index === -1 ? 'Walkthrough' : `Lesson ${index + 1}` };
+  })();
+
+  /**
    * Written once and placed on whichever side is docked, so the verdict and the
    * simulation are the same panel wherever they sit.
    */
@@ -917,6 +933,7 @@ ${line}
             status={statuses[active.number] ?? UNKNOWN_STATUS}
             leetcode={links.leetcode ?? active.leetcode}
             video={links.video}
+            lesson={walkthrough}
             note={note}
             reviewing={session !== null}
             repeating={settings.reviewEnabled}

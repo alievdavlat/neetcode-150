@@ -40,7 +40,7 @@ export default async function CoursePage({
   /** Only what a lesson needs to name a problem, so this page stays small. */
   const practice: PracticeProblem[] = (await getProblems()).flatMap((problem) => {
     const tags = tagsOf(problem);
-    return [{ number: problem.number, title: problem.title, difficulty: problem.difficulty, tags }];
+    return [{ number: problem.number, title: problem.title, difficulty: problem.difficulty, tags, lessonAt: problem.lessonAt }];
   });
 
   return (
