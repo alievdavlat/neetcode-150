@@ -90,8 +90,8 @@ export function StudioHeader({
       size="sm"
       onClick={onRunBoard}
       disabled={runningBoard}
-      title="Run every started problem on this board"
-      aria-label="Run every started problem on this board"
+      title="Run every started problem on this board, including the ones already passing"
+      aria-label="Run every started problem on this board, including the ones already passing"
     >
       {runningBoard ? <Loader2 className="size-3.5 animate-spin" /> : <Play className="size-3.5" />}
       {runningBoard ? 'Running' : 'Run board'}
@@ -104,8 +104,8 @@ export function StudioHeader({
       size="sm"
       onClick={onSync}
       disabled={syncing}
-      title="Run every started problem and refresh the statuses"
-      aria-label="Refresh statuses by running every started problem"
+      title="Run only the problems whose verdict is missing or out of date"
+      aria-label="Run only the problems whose verdict is missing or out of date"
     >
       {syncing ? <Loader2 className="size-3.5 animate-spin" /> : <RefreshCw className="size-3.5" />}
       {syncing ? 'Checking' : 'Recheck'}
