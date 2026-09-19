@@ -1,0 +1,487 @@
+{
+  "3001": {
+    "title": "Akronim",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Uzun iborani uning akronimiga o‘giring."
+  },
+  "3002": {
+    "title": "Affin shifri",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Affin shifrini — Yaqin Sharqdan kelgan qadimiy shifrlash algoritmini amalga oshiring."
+  },
+  "3003": {
+    "title": "Barcha asoslar",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Bir sanoq sistemasida yozilgan sonning raqamlar ketma-ketligini boshqa sanoq sistemasidagi shu sonning raqamlar ketma-ketligiga o‘giring. O‘girishni tayyor vositalarga topshirmasdan, o‘zingiz bajaring. Pozitsion yozuvda asosi b bo‘lgan son b darajalarining chiziqli kombinatsiyasi bo‘ladi. Asosi 10 bo‘lgan 42 soni 4 ni 10^1 ga, 2 ni 10^0 ga ko‘paytirib qo‘shishni bildiradi. Asosi 2 bo‘lgan 101010 va asosi 3 bo‘lgan 1120 sonlari ham xuddi shu qiymatni beradi."
+  },
+  "3004": {
+    "title": "Allergiyalar",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Odamning allergiya bali berilgan. Berilgan narsaga allergiyasi bor-yo‘qligini aniqlang va allergiyalarining to‘liq ro‘yxatini tuzing."
+  },
+  "3005": {
+    "title": "Anagramma",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Maqsadli so‘z va bir yoki bir nechta nomzod so‘z berilgan. Nomzodlar orasidan maqsadli so‘zning anagrammalarini toping. Anagramma — harflarni qayta joylash bilan olinadigan yangi so‘z: owns so‘zi snow ning anagrammasi. So‘z o‘zining anagrammasi emas. So‘zlar lotin harflaridan tuzilgan, taqqoslashda harf registri hisobga olinmaydi, lekin topilgan so‘zlar nomzodlar ro‘yxatidagi ko‘rinishida qaytariladi. stone maqsadi va stone, tones, banana, tons, notes, Seton nomzodlari uchun javob — tones, notes va Seton."
+  },
+  "3006": {
+    "title": "Armstrong sonlari",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Son Armstrong soni ekanini aniqlang."
+  },
+  "3007": {
+    "title": "Atbash shifri",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Atbash shifrini — Yaqin Sharqda o‘ylab topilgan qadimiy shifrlash tizimini amalga oshiring."
+  },
+  "3008": {
+    "title": "Hayratlanarli tug‘ilgan kunlar",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Tug‘ilgan kunlar paradoksining ehtimolliklarini baholang. Buning uchun tasodifiy tug‘ilgan sanalarni hosil qiling, ular orasida kamida ikkitasining tug‘ilgan kuni bir xil ekanini tekshiring va turli o‘lchamdagi guruhlar uchun mos kelish ehtimolligini baholang. Tug‘ilgan sana yil, oy va kunni, tug‘ilgan kun esa faqat oy va kunni o‘z ichiga oladi. Kabisa yillarini hisobga olmasdan, 365 ta mumkin bo‘lgan tug‘ilgan kun bor va ularning barchasi teng ehtimolli deb hisoblang."
+  },
+  "3009": {
+    "title": "Pivo qo‘shig‘i",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Yo‘lda aytiladigan mashhur 99 Bottles of Beer on the Wall qo‘shig‘ining matnini hosil qiling."
+  },
+  "3010": {
+    "title": "Ikkilik son",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "101010 ko‘rinishidagi satr bilan berilgan ikkilik sonni asosiy qoidalarga tayanib o‘nlik songa o‘giring."
+  },
+  "3011": {
+    "title": "Ikkilik qidiruv",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Ikkilik qidiruvni amalga oshiring. Algoritm ro‘yxatni har qadamda ikkiga bo‘lib, izlanayotgan element bo‘lishi mumkin bo‘lgan yarmini qoldirib, elementni topadi. U faqat saralangan ro‘yxatda ishlaydi. Izlanayotgan qiymatni o‘rta element bilan solishtiring: teng bo‘lsa qidiruv tugadi, kattaroq bo‘lsa o‘rta elementni chap yarmi bilan birga tashlab yuboring, kichikroq bo‘lsa o‘ng yarmi bilan birga. Element topilmaguncha yoki hammasi tashlanmaguncha qolgan qismda takrorlang."
+  },
+  "3012": {
+    "title": "Bob",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Bob unga aytilgan gapga nima deb javob berishini aniqlang. Bob besh iboradan birini aytadi. Sure. — unga savol berilganda, ya’ni satr savol belgisi bilan tugaganda. Whoa, chill out! — unga baqirilganda, ya’ni matn bosh harflar bilan yozilganda. Calm down, I know what I'm doing! — savol baqirib berilganda. Fine. Be that way! — javoban sukunat bo‘lganda, ya’ni satr bo‘sh yoki faqat bo‘shliq belgilaridan iborat bo‘lganda. Whatever. — qolgan barcha hollarda."
+  },
+  "3013": {
+    "title": "Kitob do‘koni",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Besh kitobdan iborat mashhur turkumdagi turli kitoblarning savdosini oshirish uchun kitob do‘koni bir vaqtda bir nechta kitob xarid qilishga chegirmalar joriy qildi."
+  },
+  "3014": {
+    "title": "Butilkalar qo‘shig‘i",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Takrorlarga qurilgan mashhur Ten Green Bottles bolalar qo‘shig‘ining matnini hosil qiling."
+  },
+  "3015": {
+    "title": "Bouling",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Bouling o‘yinining ochkolarini hisoblang."
+  },
+  "3016": {
+    "title": "Qaytim",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Xaridorga beriladigan tangalarning eng kichik sonini aniqlang, shunda ularning qiymatlari yig‘indisi kerakli qaytimga teng bo‘lsin. 1, 5, 10, 25, 100 tangalari bilan 15 summasi uchun javob — 5 va 10 tangalari. Xuddi shu tangalar bilan 40 summasi uchun javob — 5, 10 va 25 tangalari."
+  },
+  "3017": {
+    "title": "Soat",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Sanasiz vaqt bilan ishlaydigan soat yarating."
+  },
+  "3018": {
+    "title": "Collatz farazi",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Musbat butun son berilgan. Collatz farazi qoidalari bo‘yicha u 1 ga yetib boradigan qadamlar sonini qaytaring."
+  },
+  "3019": {
+    "title": "Kompleks sonlar",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Kompleks sonlarni amalga oshiring."
+  },
+  "3020": {
+    "title": "Bog‘lanish",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Hex, ya’ni Polygon o‘yinining natijasini aniqlang."
+  },
+  "3021": {
+    "title": "Kvadrat shifr",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Yashirin xabarlar tuzishning klassik usulini — kvadrat kodni amalga oshiring."
+  },
+  "3022": {
+    "title": "Maxsus to‘plam",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "O‘zingizning to‘plam turini yarating."
+  },
+  "3023": {
+    "title": "Darts",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Darts o‘yinidagi bitta uloqtirish uchun ochkolarni hisoblang."
+  },
+  "3024": {
+    "title": "Romb",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Harf berilgan. A dan boshlanadigan va eng keng joyida berilgan harf turadigan romb chizib chiqaring."
+  },
+  "3025": {
+    "title": "Kvadratlar ayirmasi",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Dastlabki N natural sonning yig‘indisi kvadrati va kvadratlari yig‘indisi orasidagi ayirmani toping."
+  },
+  "3026": {
+    "title": "D&D qahramoni",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Dungeons & Dragons o‘yinida har bir o‘yinchi avval qahramon yaratadi. Qahramonning oltita qobiliyati bor: kuch, chaqqonlik, jussa, aql, donolik va jozibadorlik. Har birining qiymati tasodifiy aniqlanadi: to‘rtta oltiyoqli zar tashlang va eng katta uchtasini qo‘shing. Buni har bir qobiliyat uchun bir marta, jami olti marta bajaring. Boshlang‘ich sog‘liq ochkolari 10 ga jussa modifikatorini qo‘shgandan chiqadi, modifikator esa jussadan 10 ni ayirib, 2 ga bo‘lib, pastga yaxlitlash bilan topiladi. Shu qoidalar bo‘yicha tasodifiy qahramon generatorini yozing."
+  },
+  "3027": {
+    "title": "Domino",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Domino zanjirini tuzing. Berilgan toshlar to‘plamini qo‘shni toshlarning yonma-yon yarmlaridagi nuqtalar soni mos keladigan tarzda joylashtiring, qo‘shnisi yo‘q birinchi va oxirgi toshlarning yarmlari esa bir-biriga mos kelsin. Masalan, 2|1, 2|3 va 1|3 toshlaridan 1|2 2|3 3|1 zanjiri chiqadi. 1|2, 4|1 va 2|3 toshlaridan to‘g‘ri zanjir chiqmaydi. Yechimda bir xil toshlar uchrashi mumkin — bir nechta to‘plam ishlatilmoqda deb hisoblang."
+  },
+  "3028": {
+    "title": "Eliudning tuxumlari",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Sonning ikkilik yozuvidagi bir bitlarining sonini sanang. Standart kutubxonadagi tayyor bit sanash funksiyasidan foydalanmang — masalani tilning asosiy vositalari bilan yechib chiqing."
+  },
+  "3029": {
+    "title": "Gul maydoni",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Tayyor gul maydonining bo‘sh kataklariga gullar sonini yozib chiqing. Maydon — har bir katagi yo bo‘sh, yo gulli bo‘lgan to‘rtburchak doska. Har bir bo‘sh katak uchun gorizontal, vertikal va diagonal qo‘shni kataklardagi gullarni sanang. Qo‘shni gullar bo‘lmasa, katakni bo‘sh qoldiring, aks holda unga qo‘shni gullar sonini yozing."
+  },
+  "3030": {
+    "title": "Ozuqa zanjiri",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "I Know an Old Lady Who Swallowed a Fly qo‘shig‘ining matnini hosil qiling."
+  },
+  "3031": {
+    "title": "Forth",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Forth tilining juda oddiy qismi uchun hisoblagich yozing."
+  },
+  "3032": {
+    "title": "Hayot o‘yini",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Kataklar gorizontal, vertikal va diagonal joylashgan sakkiz qo‘shnisi bilan ta’sirlashadi. Har qadamda ikki yoki uch tirik qo‘shnisi bor tirik katak tirik qoladi, roppa-rosa uch tirik qo‘shnisi bor o‘lik katak tiriladi, qolgan barcha kataklar o‘ladi yoki o‘lik qolaveradi. Birlar va nollardan — tirik va o‘lik kataklardan — tuzilgan matritsa berilgan. Qoidalarni har bir katakka qo‘llab, keyingi avlodni qaytaring."
+  },
+  "3033": {
+    "title": "Gigasekund",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Berilgan paytdan bir gigasekund keyingi sana va vaqtni aniqlang. Gigasekund — bir milliard sekund, ya’ni to‘qqiz nolli bir. 2015-yil 24-yanvar, 22:00 da tug‘ilgan odam uchun gigasekund 2046-yil 2-oktabr, 23:46:40 da to‘ladi."
+  },
+  "3034": {
+    "title": "Donlar",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Shaxmat doskasidagi bug‘doy donlarini sanang. Doskada 64 katak bor: birinchisida bitta don, ikkinchisida ikkita, uchinchisida to‘rtta, keyin har safar ikki barobar ko‘p. Berilgan katakdagi donlar sonini va doskadagi donlarning umumiy sonini qaytaring."
+  },
+  "3035": {
+    "title": "grep",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Fayllarda izlanayotgan matnni o‘z ichiga olgan qatorlarni toping va ularni qaytaring. Doimiy satrlarni izlaydigan soddalashtirilgan grep buyrug‘ini amalga oshiring. Buyruq izlanayotgan satrni, nol yoki bir nechta bayroqni va bir yoki bir nechta faylni oladi. U fayllarni berilgan tartibda o‘qiydi va mos qatorlarni uchragan tartibida qaytaradi; bir nechta faylda izlanganda har bir qator oldiga fayl nomi va ikki nuqta qo‘yiladi. -n bayrog‘i fayl nomidan keyin qator raqamini va ikki nuqtani qo‘shadi, -l faqat mos qatori bor fayl nomlarini chiqaradi, -i registrni hisobga olmay solishtiradi, -v mos kelmagan qatorlarni yig‘adi, -x esa faqat butunlay mos keladigan qatorlarni izlaydi."
+  },
+  "3036": {
+    "title": "Hamming",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Ikki DNK zanjiri orasidagi Hamming masofasini hisoblang. DNK C, A, G va T harflari bilan yoziladi. Hamming masofasi — zanjirlar farq qiladigan pozitsiyalar soni. U faqat teng uzunlikdagi zanjirlar uchun aniqlangan, shuning uchun uzunliklari har xil zanjirlar uchun hisoblash xato bilan tugashi kerak."
+  },
+  "3037": {
+    "title": "Uy",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "This is the House that Jack Built bolalar she’rining matnini chiqaring."
+  },
+  "3038": {
+    "title": "Galaktikalararo uzatish",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Uzatish ketma-ketligini hisoblaydigan uzatgichni va uni ochadigan qabul qilgichni amalga oshiring. Juftlik biti — uzatish xatosini aniqlashning oddiy usuli. Uzatgich va qabul qilgich juftlik biti bilan birga qat’iy sakkiz bitni bir vaqtda uzatadi va qabul qiladi, bu bit esa o‘ngdan birinchi turadi. U uzatishdagi birlar soni juft bo‘ladigan qilib tanlanadi, shuning uchun birlari toq bo‘lgan uzatish xatoni bildiradi. Uzun xabarlar ketma-ketlik bilan uzatiladi: har yetti bit ma’lumotdan keyin juftlik biti qo‘yiladi."
+  },
+  "3039": {
+    "title": "ISBN tekshiruvi",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Berilgan satr to‘g‘ri ISBN-10 raqami ekanini tekshiring."
+  },
+  "3040": {
+    "title": "Izogramma",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Ibora izogramma — harflari takrorlanmaydigan so‘z ekanini aniqlang."
+  },
+  "3041": {
+    "title": "Killer Sudoku yordamchisi",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Killer Sudoku yechishni osonlashtiradigan vosita yozing."
+  },
+  "3042": {
+    "title": "Bolalar bog‘chasi polizi",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Ekish chizmasi bo‘yicha bolalar bog‘chasi guruhidagi har bir bola qaysi o‘simliklarga javobgar ekanini aniqlang. Guruhda 12 bola bor: Alice, Bob, Charlie, David, Eve, Fred, Ginny, Harriet, Ileana, Joseph, Kincaid va Larry. To‘rt xil urug‘ ekilgan, chizmada ular harflar bilan belgilangan: G — o‘t, C — sebarga, R — turp, V — binafsha. Har bir bolaga to‘rtta stakancha, har qatorda ikkitasi tegadi; stakanchalar alifbo tartibida taqsimlanadi, shuning uchun birinchilari Alice ga, oxirgilari Larry ga tegadi. O‘simliklar deraza yonidagi qatordan boshlab, chapdan o‘ngga sanab o‘tiladi."
+  },
+  "3043": {
+    "title": "Eng katta seriya ko‘paytmasi",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Shifrlangan signalning uzun raqamlar ketma-ketligidagi qonuniyatlarni toping. Seriya — kirish ketma-ketligi ichidagi yonma-yon raqamlar, qamrov — seriyaning uzunligi, ko‘paytma — uning raqamlarini ko‘paytirish natijasi. 63915 kirishi va 3 qamrovi uchun 639, 391 va 915 seriyalari bo‘lib, ularning ko‘paytmalari 162, 27 va 45. Eng katta seriya ko‘paytmasi 162 ga teng."
+  },
+  "3044": {
+    "title": "Kabisa yili",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Berilgan yil kabisa yili ekanini aniqlang."
+  },
+  "3045": {
+    "title": "Navbat",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Ism va son berilgan. Shu ism va shu sonni tartib son ko‘rinishida ishlatib ibora tuzing. Sonlar 1 dan 999 gacha olinadi. 1 bilan tugagan sonlar, 11 bilan tugaganlaridan tashqari, st qo‘shimchasini oladi; 2 bilan tugaganlar, 12 dan tashqari, nd ni; 3 bilan tugaganlar, 13 dan tashqari, rd ni; qolganlari esa th ni oladi. Masalan, Mary va 1 uchun son 1st, John va 12 uchun 12th, Dahir va 162 uchun 162nd deb yoziladi."
+  },
+  "3046": {
+    "title": "Ro‘yxat amallari",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Ro‘yxat ustidagi asosiy amallarni amalga oshiring."
+  },
+  "3047": {
+    "title": "Luhn formulasi",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Raqamning Luhn formulasi bo‘yicha to‘g‘riligini aniqlang. Raqam satr sifatida beriladi. Uzunligi 1 va undan kichik satrlar to‘g‘ri emas. Kirishda bo‘shliqlarga yo‘l qo‘yiladi, lekin tekshirishdan oldin ular olib tashlanadi; boshqa raqam bo‘lmagan belgilar taqiqlangan. Raqamning oxiridan boshlab, chapga yurib, har ikkinchi raqamni ikkilantiring. Ikkilangandan keyin 9 dan katta chiqsa, 9 ni ayiring. Barcha raqamlarni qo‘shing: yig‘indi 10 ga bo‘linsa, raqam to‘g‘ri. Shunday qilib 4539 3195 0343 6467 raqami 80 yig‘indisini beradi va to‘g‘ri, 066 123 478 raqami esa 36 ni beradi va to‘g‘ri emas."
+  },
+  "3048": {
+    "title": "Markdown",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Markdown parserining tuzilishini yaxshilang."
+  },
+  "3049": {
+    "title": "Juft qavslar",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Kvadrat, figurali va oddiy qavslar har qanday aralashmada bo‘lgan satr berilgan. Barcha juftliklar yopilgan va to‘g‘ri ichma-ich joylashganini tekshiring; qolgan belgilar hisobga olinmaydi. Masalan, {what is (42)}? yozuvi muvozanatli, [text} esa emas."
+  },
+  "3050": {
+    "title": "Matritsa",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Sonlar matritsasini beruvchi satr berilgan. Shu matritsaning qatorlari va ustunlarini qaytaring."
+  },
+  "3051": {
+    "title": "Uchrashuv",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Oy, yil, hafta kuni va hafta raqami bo‘yicha uchrashuvning aniq sanasini toping. Hafta raqami oltita: birinchi, ikkinchi, uchinchi, to‘rtinchi, oxirgi va o‘smirlik. O‘smirlik haftasi — oyning 13-kunidan 19-kunigacha bo‘lgan yetti kun. Masalan, 2018-yil yanvarining birinchi dushanbasi — 1-yanvar, 2019-yil avgustining uchinchi seshanbasi — 20-avgust, 2020-yil mayining o‘smirlik chorshanbasi — 13-may, 2022-yil noyabrining oxirgi payshanbasi — 24-noyabr."
+  },
+  "3052": {
+    "title": "Mikroblog",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Kirish satri berilgan. Uni 5 belgigacha qisqartiring."
+  },
+  "3053": {
+    "title": "Mina qidiruvchi",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Tayyor mina maydonining bo‘sh kataklariga minalar sonini yozib chiqing. Maydon — har bir katagi yo bo‘sh, yo minali bo‘lgan to‘rtburchak. Har bir bo‘sh katak uchun gorizontal, vertikal va diagonal qo‘shni kataklardagi minalarni sanang. Qo‘shni minalar bo‘lmasa, katakni bo‘sh qoldiring, aks holda unga qo‘shni minalar sonini yozing."
+  },
+  "3054": {
+    "title": "n-chi tub son",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "n soni bo‘yicha n-chi tub sonni aniqlang."
+  },
+  "3055": {
+    "title": "OCR raqamlari",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Optik belgi tanish matn tasvirini mashina o‘qiydigan matnga aylantiradi. Raqamlarni tasvirlaydigan belgilar panjarasi berilgan; uni raqamlar satriga o‘giring. Panjara bir yoki bir nechta katak qatoridan tuzilgan, har bir katak uch ustun va to‘rt qatorni egallaydi va bitta raqamni vertikal chiziq, tag chiziq va bo‘shliq bilan tasvirlaydi. Katak qatorlari bir nechta bo‘lsa, natija qismlari vergul bilan ajratiladi. Kirishning o‘lchami noto‘g‘ri bo‘lsa, xato haqida xabar bering, tanilmagan katakni esa savol belgisi bilan almashtiring."
+  },
+  "3056": {
+    "title": "Pangramma",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Gap pangramma ekanini aniqlang. Pangramma — alifboning har bir harfi kamida bir marta uchraydigan gap, harf registri esa ahamiyatsiz. Bu masalada gap ingliz alifbosining barcha 26 harfini o‘z ichiga olsa, pangramma hisoblanadi."
+  },
+  "3057": {
+    "title": "Pascal uchburchagi",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Pascal uchburchagining dastlabki N qatorini chiqaring. Pascal uchburchagi — natural sonlarning uchburchak massivi, unda qatordagi qiymatlar soni birdan boshlab sanalgan qator raqamiga teng. Yuqori qatorda bitta qiymat, 1 turadi. Keyingi har bir qiymat oldingi qatorda uning o‘rnidan chap va o‘ngda turgan ikki sonning yig‘indisiga teng; bunday son bo‘lmasa, u nol deb olinadi. Shu sababli har qatorning chekka qiymatlari 1 ga teng, beshinchi qatorning o‘rta qiymati esa 6 ga teng, chunki uning ustida 3 va 3 turadi."
+  },
+  "3058": {
+    "title": "Mukammal sonlar",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Sonning mukammal, ortiqcha yoki kamchil ekanini Nikomax taklif qilgan musbat butun sonlar tasnifi bo‘yicha aniqlang."
+  },
+  "3059": {
+    "title": "Telefon raqami",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Telefon raqamlarini SMS yuborishga yaroqli ko‘rinishga keltiring. Shimoliy Amerika raqamlash rejasidan Shimoliy Amerikaning ko‘p davlati foydalanadi va ularning barchasida davlat kodi bir xil, 1. Raqam o‘n xonadan tuzilgan: uch xonali hudud kodi, uch xonali stansiya kodi va to‘rt xonali abonent raqami. Raqamdan tinish belgilarini va davlat kodi bo‘lsa uni olib tashlang. Shunday qilib +1 (613)-995-0253, 613-995-0253, 1 613 995 0253 va 613.995.0253 ko‘rinishidagi kirishlar 6139950253 ni berishi kerak. To‘g‘ri davlat kodi sifatida faqat 1 qabul qilinadi."
+  },
+  "3060": {
+    "title": "Pig Latin",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Matnni ingliz tilidan Pig Latin ga o‘giring. O‘girish so‘z boshidagi unli va undosh harflarga qaraydigan to‘rt qoida bilan berilgan: unlilar — a, e, i, o va u, undoshlar — ingliz alifbosining qolgan 21 harfi. So‘z unli bilan yoki xr yoxud yt bilan boshlansa, oxiriga ay qo‘shing: apple dan appleay chiqadi. So‘z bir yoki bir nechta undosh bilan boshlansa, ularni oxiriga ko‘chirib, ay qo‘shing: pig dan igpay, chair dan airchay chiqadi. Undoshlardan keyin qu kelsa, undoshlarni qu bilan birga ko‘chiring: quick dan ickquay, square dan aresquay chiqadi. Bir yoki bir nechta undoshdan keyin y kelsa, y dan oldingi undoshlarni ko‘chiring."
+  },
+  "3061": {
+    "title": "Poker",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Poker qo‘llari ro‘yxatidan eng yaxshi qo‘lni yoki bir nechta eng yaxshi qo‘lni tanlang."
+  },
+  "3062": {
+    "title": "Tub ko‘paytuvchilar",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Berilgan natural sonning tub ko‘paytuvchilarini hisoblang."
+  },
+  "3063": {
+    "title": "Protein translatsiyasi",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "RNK ketma-ketliklarini proteinlarga o‘giring."
+  },
+  "3064": {
+    "title": "Maqol",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Taqa mixi yetmagani uchun podshohlik boy berildi — maqol shunday deydi. Shu she’riy hikmatning to‘liq matnini chiqaring."
+  },
+  "3065": {
+    "title": "Pifagor uchligi",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Pifagor uchligi — a^2 + b^2 = c^2 va a < b < c shartlarini qanoatlantiruvchi a, b va c natural sonlari. Butun N soni bo‘yicha a + b + c = N bo‘lgan barcha Pifagor uchliklarini toping. Masalan, N = 1000 uchun aynan bitta shunday uchlik bor: 200, 375 va 425."
+  },
+  "3066": {
+    "title": "Rail Fence shifri",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Rail Fence shifri uchun kodlash va dekodlashni amalga oshiring."
+  },
+  "3067": {
+    "title": "Yomg‘ir tomchilari",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Sonni unga mos tomchi tovushlariga o‘giring. Son 3 ga bo‘linsa, natijaga Pling qo‘shing; 5 ga bo‘linsa — Plang; 7 ga bo‘linsa — Plong. Son 3 ga ham, 5 ga ham, 7 ga ham bo‘linmasa, natija sonning o‘zi satr sifatida bo‘ladi. Shunday qilib 28 dan Plong, 30 dan PlingPlang, 34 dan esa 34 chiqadi. Bo‘linish odatda qoldiqni nol bilan solishtirib tekshiriladi."
+  },
+  "3068": {
+    "title": "Ratsional sonlar",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Ratsional sonlarni amalga oshiring."
+  },
+  "3069": {
+    "title": "To‘rtburchaklar",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "ASCII belgilaridan tuzilgan diagrammadagi to‘rtburchaklarni sanang."
+  },
+  "3070": {
+    "title": "Qarindoshlik masofasi",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Oila daraxtidagi ikki odam orasidagi qarindoshlik darajasini aniqlang. Kirishda barcha ota-onalar va ularning farzandlari berilgan; ismlar takrorlanmas, bolaning bir yoki ikki ota-onasi bo‘ladi. Qarindoshlik darajasi — bir odamdan ikkinchisiga boradigan bog‘lanishlarning eng kichik soni. Odamlar bog‘lanmagan bo‘lsa, ma’lum qarindoshlik yo‘qligini bildiruvchi qiymat qaytaring. Masalan, Tariq va Uma orasidagi daraja Isla orqali 2 ga, Uma va Isla orasidagi daraja 1 ga teng, Isla va Kevin orasida esa ma’lum qarindoshlik yo‘q. Aka-uka va opa-singillar orasidagi masofa 1 ga teng."
+  },
+  "3071": {
+    "title": "Rezistor rangi",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Rezistor chizig‘ining rangini uning sonli qiymatiga o‘giring."
+  },
+  "3072": {
+    "title": "Rezistorning ikki rangi",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Rezistorlarda ishlatiladigan rang kodlarini sonli qiymatga o‘giring."
+  },
+  "3073": {
+    "title": "Satrni teskari o‘girish",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Berilgan satrni teskari o‘giring. Masalan, stressed dan desserts, strops dan sports chiqadi, racecar esa racecar bo‘lib qoladi."
+  },
+  "3074": {
+    "title": "RNK transkripsiyasi",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Berilgan DNK ketma-ketligi uchun komplementar RNK ni aniqlang. Ikkala zanjir ham nukleotidlar ketma-ketligi. DNK da to‘rt nukleotid bor: adenin A, sitozin C, guanin G va timin T. RNK da timin o‘rniga uratsil U turadi. Transkripsiya qilingan RNK zanjiri har bir nukleotidni komplementariga almashtirish bilan olinadi: G ni C ga, C ni G ga, T ni A ga, A ni U ga."
+  },
+  "3075": {
+    "title": "Rim raqamlari",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Sonni arab raqamlaridan Rim raqamlariga o‘giring. Bu masalada faqat an’anaviy Rim raqamlari qaraladi, ularda eng katta son MMMCMXCIX, ya’ni 3999. Rim yozuvini o‘zlashtirish uchun avval sodda yondashuvdan boshlang, keyin tezroq usullarni izlang."
+  },
+  "3076": {
+    "title": "Surish shifri",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Sezar shifri ham deb ataladigan surish shifrini amalga oshiring."
+  },
+  "3077": {
+    "title": "Seriya uzunligi bo‘yicha kodlash",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Seriya uzunligi bo‘yicha kodlash va dekodlashni amalga oshiring."
+  },
+  "3078": {
+    "title": "Sonni so‘z bilan aytish",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Son berilgan. Uni ovoz chiqarib aytilgandek, ingliz so‘zlari bilan yozing. Sonlar 0 dan 999 999 999 999 gacha olinadi. Masalan, 0 dan zero, 1 dan one, 12 dan twelve, 123 dan one hundred twenty-three, 1234 dan esa one thousand two hundred thirty-four chiqadi."
+  },
+  "3079": {
+    "title": "Gamma generatori",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Boshlang‘ich nota va intervallar to‘plami bo‘yicha musiqa gammalarini tuzing."
+  },
+  "3080": {
+    "title": "Scrabble ochkolari",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Scrabble da so‘zning ochkolarini harflari qiymatlarining yig‘indisi sifatida hisoblang. A, E, I, O, U, L, N, R, S va T harflari 1 ochko, D va G — 2, B, C, M va P — 3, F, H, V, W va Y — 4, K — 5, J va X — 8, Q va Z — 10 ochko turadi. Masalan, cabbage so‘zi 14 ochko turadi."
+  },
+  "3081": {
+    "title": "Yashirin qo‘l siqish",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "1 dan 31 gacha bo‘lgan sonni yashirin qo‘l siqish harakatlari ketma-ketligiga o‘giring. Harakatlar sonning ikkilik yozuvidagi o‘ngdagi besh xona bo‘yicha, eng o‘ngdan boshlab chapga yurib tanlanadi; har bir xonaga o‘z harakati to‘g‘ri keladi, eng katta xona esa harakatlar tartibini teskarisiga o‘zgartiradi. Masalan, 9 ikkilikda 1001 bo‘ladi: o‘ngdagi 1 ko‘z qisishni beradi, ikki nol hech nima bermaydi, keyingi bir esa sakrashni beradi. 26, ya’ni 11010 uchun ikki marta ko‘z pirpiratish, sakrash va harakatlarning teskari tartibi chiqadi."
+  },
+  "3082": {
+    "title": "Seriyalar",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Raqamlardan tuzilgan satr berilgan. Shu satrdagi uzunligi n bo‘lgan barcha ketma-ket qism satrlarni chiqaring."
+  },
+  "3083": {
+    "title": "G‘alvir",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Berilgan sondan oshmaydigan barcha tub sonlarni topish uchun Eratosfen g‘alvirini amalga oshiring. Tub son 1 dan katta bo‘lib, faqat 1 ga va o‘ziga bo‘linadi. 2 dan berilgan songa qadar hamma sonni yozib chiqing, keyin ikki qadamni takrorlang: keyingi belgilanmagan sonni toping — u tub — va uning barcha karralilarini tub emas deb belgilang. Hamma son o‘tilgach, belgilanmaganlari tub bo‘ladi. Karralilar har bir sonning bo‘linishini tekshirish bilan emas, qo‘shish yoki ko‘paytirish bilan belgilanadi."
+  },
+  "3084": {
+    "title": "Kosmik yosh",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Sekundlardagi yosh bo‘yicha odam Quyosh sistemasining sayyorasida necha yoshda bo‘lishini hisoblang. Yer yili 365.25 Yer kuniga, ya’ni 31 557 600 sekundga teng, shuning uchun 1 000 000 000 sekundlik yosh 31.69 Yer yiliga to‘g‘ri keladi. Qolgan sayyoralar uchun aylanish davrini Yer yillarida hisobga oling: Merkuriy 0.2408467, Venera 0.61519726, Yer 1.0, Mars 1.8808158, Yupiter 11.862615, Saturn 29.447498, Uran 84.016846, Neptun 164.79132."
+  },
+  "3085": {
+    "title": "Spiral matritsa",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Berilgan o‘lchamdagi kvadrat matritsani natural sonlar bilan to‘ldirib qaytaring. To‘ldirish chap yuqori burchakdagi 1 dan boshlanadi va soat yo‘nalishi bo‘yicha ichkariga qarab spiral bo‘ylab davom etadi."
+  },
+  "3086": {
+    "title": "Kvadrat ildiz",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Tilning matematik kutubxonalaridan foydalanmasdan, berilgan sonning kvadrat ildizini hisoblang. Kirishda musbat butun son beriladi va faqat natijasi musbat butun son bo‘lgan hollarni qarash kerak. Kvadrati kirishga teng bo‘lgan sonni chiziqli yoki ikkilik qidiruv bilan izlash, Nyuton yoki Geron usuli bilan ketma-ket yaqinlashtirish, shuningdek bittalab raqam yoki bittalab bit hisoblash usullari to‘g‘ri keladi."
+  },
+  "3087": {
+    "title": "Tic-Tac-Toe o‘yinining holati",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Tic-Tac-Toe o‘yinining holatini aniqlang."
+  },
+  "3088": {
+    "title": "Qism ro‘yxat",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Bir ro‘yxat boshqasining qism ro‘yxati ekanini aniqlang."
+  },
+  "3089": {
+    "title": "Karralilar yig‘indisi",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "O‘yinchi bosib o‘tgan darajaga beriladigan energiya ochkolarini hisoblang. Ochkolar daraja raqamiga va shu darajada yig‘ilgan sehrli buyumlarning asosiy qiymatlariga bog‘liq. Har bir buyum uchun uning asosiy qiymatining daraja raqamidan kichik barcha karralilarini oling, to‘plamlarni birlashtiring, takrorlarni olib tashlang va qolgan sonlarni qo‘shing. Masalan, 20-darajada qiymatlari 3 va 5 bo‘lgan buyumlar uchun 3 ning karralilari — 3, 6, 9, 12, 15, 18, 5 ning karralilari — 5, 10, 15, takrorlanmas karralilarning yig‘indisi esa 78 ga teng."
+  },
+  "3090": {
+    "title": "Tezkor rejalashtirish",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Yetkazib berish muddati tavsiflarini uchrashuv boshlangan paytdan hisoblab, haqiqiy sanalarga o‘giring. Tavsiflar doimiy va o‘zgaruvchan bo‘ladi. Doimiylari uchta: NOW uchrashuv boshlanganidan ikki soat keyinni bildiradi; ASAP uchrashuv 13:00 dan oldin boshlangan bo‘lsa bugun 17:00 ni, aks holda ertaga 13:00 ni bildiradi; EOW uchrashuv dushanbadan chorshanbagacha bo‘lgan bo‘lsa juma 17:00 ni, payshanba yoki jumada bo‘lgan bo‘lsa yakshanba 20:00 ni bildiradi. O‘zgaruvchan namunalari ikkita: N soni va M harfidan tuzilgan yozuv N-chi oyni, Q harfi va N sonidan tuzilgan yozuv esa N-chi chorakni beradi."
+  },
+  "3091": {
+    "title": "Turnir",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Kichik futbol turnirining natijalarini yakunlang."
+  },
+  "3092": {
+    "title": "Transponirlash",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Kirish matnini olib, uni transponirlangan holda chiqaring."
+  },
+  "3093": {
+    "title": "Uchburchak",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Uchburchakning teng tomonli, teng yonli yoki turli tomonli ekanini aniqlang."
+  },
+  "3094": {
+    "title": "O‘n ikki kun",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "The Twelve Days of Christmas qo‘shig‘ining matnini chiqaring."
+  },
+  "3095": {
+    "title": "O‘zgaruvchan uzunlikdagi qiymat",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "O‘zgaruvchan uzunlikdagi qiymatni kodlash va dekodlashni amalga oshiring."
+  },
+  "3096": {
+    "title": "So‘z bilan berilgan masalalar",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "So‘z bilan yozilgan oddiy matematik masalalarni ajratib olib hisoblang va javobni butun son sifatida qaytaring."
+  },
+  "3097": {
+    "title": "Yaxta",
+    "pattern": "Qoidani diqqat bilan o‘qib, keyin uni yozib chiqing",
+    "statement": "Beshta zar va kategoriya berilgan. Tanlangan kategoriya bo‘yicha bu zarlarning ochkolarini hisoblang. Zarlar doim beshta, har birining qiymati birdan oltigacha, tartibi esa har qanday bo‘lishi mumkin. Ones, Twos, Threes, Fours, Fives va Sixes kategoriyalari kategoriya qiymatini shu qiymatli zarlar soniga ko‘paytirib beradi. Full House uchta bir xil va boshqa ikkita bir xil zar bo‘lganda barcha zarlar yig‘indisini beradi. Four of a Kind to‘rtta yoki undan ko‘p zar bir xil qiymatni ko‘rsatganda shu to‘rttasining yig‘indisini beradi. Little Straight 30 ochko beradi."
+  }
+}
