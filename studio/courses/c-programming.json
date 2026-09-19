@@ -3,6 +3,7 @@
   "track": "Low level",
   "name": "C",
   "blurb": "Pointers, memory and the standard library — the language the rest of the stack is written in.",
+  "order": 1,
   "video": "KJgsSFOSQv0",
   "url": "https://www.youtube.com/watch?v=KJgsSFOSQv0",
   "title": "C Programming Tutorial for Beginners",

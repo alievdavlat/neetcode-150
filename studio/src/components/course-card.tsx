@@ -9,9 +9,11 @@ interface CourseCardProps {
   course: Course;
   watched: number[];
   accent: string;
+  /** First in a track that has an order, so a newcomer knows where to begin. */
+  start?: boolean;
 }
 
-export function CourseCard({ course, watched, accent }: CourseCardProps) {
+export function CourseCard({ course, watched, accent, start = false }: CourseCardProps) {
   const seen = new Set(watched);
   const percent = course.lessons.length === 0 ? 0 : Math.round((seen.size / course.lessons.length) * 100);
 
@@ -27,9 +29,14 @@ export function CourseCard({ course, watched, accent }: CourseCardProps) {
     >
       <div className={cn('relative flex h-16 items-end overflow-hidden bg-linear-to-br p-3', accent)}>
         <span aria-hidden className="grid-floor absolute inset-0 opacity-50" />
-        <p className="relative font-heading text-base leading-tight font-bold text-white drop-shadow-md">
-          {course.name}
-        </p>
+        <div className="relative min-w-0">
+          <p className="font-heading text-base leading-tight font-bold text-white drop-shadow-md">
+            {course.name}
+          </p>
+          {start && (
+            <p className="mt-0.5 font-mono text-[10px] tracking-wide text-white/80 uppercase">Start here</p>
+          )}
+        </div>
         <p className="absolute top-3 right-3 font-mono text-[11px] text-white/85 tabular-nums">
           {left === 0 ? duration(course.seconds) : `${duration(left)} left`}
         </p>

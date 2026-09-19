@@ -3,6 +3,7 @@
   "track": "Low level",
   "name": "Assembly (ARM)",
   "blurb": "Registers, instructions and memory addressing on ARM — what your compiler actually emits.",
+  "order": 3,
   "video": "gfmRrPjnEw4",
   "url": "https://www.youtube.com/watch?v=gfmRrPjnEw4",
   "title": "Assembly Language Programming with ARM – Full Tutorial for Beginners",

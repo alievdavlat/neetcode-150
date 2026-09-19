@@ -3,6 +3,7 @@
   "track": "Data",
   "name": "Databases with SQL",
   "blurb": "Relational modelling from tables and keys through joins, functions and triggers.",
+  "order": null,
   "video": "HXV3zeQKqGY",
   "url": "https://www.youtube.com/watch?v=HXV3zeQKqGY",
   "title": "SQL Tutorial - Full Database Course for Beginners",

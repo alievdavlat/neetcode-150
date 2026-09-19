@@ -3,6 +3,7 @@
   "track": "Design",
   "name": "System design",
   "blurb": "One server, then load balancers, caches, CDNs and the API choices that come with them.",
+  "order": null,
   "video": "C842vFY5kRo",
   "url": "https://www.youtube.com/watch?v=C842vFY5kRo",
   "title": "System Design Course – APIs, Databases, Caching, CDNs, Load Balancing & Production Infra",

@@ -3,6 +3,7 @@
   "track": "Low level",
   "name": "C++",
   "blurb": "Beginner to advanced C++, from syntax through classes, templates and the standard library.",
+  "order": 2,
   "video": "8jLOx1hD3_o",
   "url": "https://www.youtube.com/watch?v=8jLOx1hD3_o",
   "title": "C++ Programming Course - Beginner to Advanced",

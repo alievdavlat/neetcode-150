@@ -88,29 +88,53 @@ export function CourseSearch({ courses, watched }: CourseSearchProps) {
     </button>
   );
 
+  /**
+   * A track with an order is a path, so it is read in that order and the first
+   * one says so. A track without one keeps the order it came in, because an
+   * invented sequence would be a claim nobody made.
+   */
+  const inTrack = (name: string) => {
+    const members = shown.filter((course) => course.track === name);
+    const ordered = members.some((course) => typeof course.order === 'number');
+    if (!ordered) return { members, ordered };
+
+    return {
+      ordered,
+      members: [...members].sort(
+        (left, right) => (left.order ?? Infinity) - (right.order ?? Infinity) || left.name.localeCompare(right.name),
+      ),
+    };
+  };
+
   const renderCatalogue = () => (
     <div className="space-y-8">
-      {[...new Set(shown.map((course) => course.track))].map((name) => (
-        <section key={name} className="space-y-3">
-          <header className="flex items-center gap-4">
-            <h2 className="font-heading text-sm font-semibold tracking-[0.14em] uppercase">{name}</h2>
-            <span className="h-px flex-1 bg-line" />
-          </header>
+      {[...new Set(shown.map((course) => course.track))].map((name) => {
+        const { members, ordered } = inTrack(name);
 
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {shown
-              .filter((course) => course.track === name)
-              .map((course) => (
+        return (
+          <section key={name} className="space-y-3">
+            <header className="flex items-center gap-4">
+              <h2 className="font-heading text-sm font-semibold tracking-[0.14em] uppercase">{name}</h2>
+              {ordered && (
+                <span className="shrink-0 font-mono text-[10px] text-muted-foreground">in order</span>
+              )}
+              <span className="h-px flex-1 bg-line" />
+            </header>
+
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {members.map((course, index) => (
                 <CourseCard
                   key={course.id}
                   course={course}
                   watched={watched[course.id] ?? []}
                   accent={accentFor(course.id)}
+                  start={ordered && index === 0}
                 />
               ))}
-          </div>
-        </section>
-      ))}
+            </div>
+          </section>
+        );
+      })}
     </div>
   );
 

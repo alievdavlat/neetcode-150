@@ -3,6 +3,7 @@
   "track": "Systems",
   "name": "Operating systems",
   "blurb": "Processes, threads, scheduling and memory — what the machine is doing under your program.",
+  "order": 1,
   "video": "yK1uBHPdp30",
   "url": "https://www.youtube.com/watch?v=yK1uBHPdp30",
   "title": "Operating Systems Course for Beginners",

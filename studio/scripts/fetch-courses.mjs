@@ -169,6 +169,7 @@ async function fetchPlaylist(entry) {
     track: entry.track,
     name: entry.name,
     blurb: entry.blurb,
+    order: entry.order ?? null,
     playlist: entry.playlist,
     video: lessons[0]?.video ?? '',
     url,
@@ -215,6 +216,7 @@ async function fetchCourse(entry) {
     track: entry.track,
     name: entry.name,
     blurb: entry.blurb,
+    order: entry.order ?? null,
     video: entry.video,
     url,
     title: details.title,
@@ -242,7 +244,7 @@ for (const entry of source.courses) {
 
     const same = entry.playlist ? existing?.playlist === entry.playlist : existing?.video === entry.video;
     if (same && existing.lessons?.length > 0) {
-      const merged = { ...existing, track: entry.track, name: entry.name, blurb: entry.blurb };
+      const merged = { ...existing, track: entry.track, name: entry.name, blurb: entry.blurb, order: entry.order ?? null };
       await writeFile(target, `${JSON.stringify(merged, null, 2)}
 `);
       console.log(`${entry.id}: already imported (${existing.lessons.length} lessons) — --force to refresh`);

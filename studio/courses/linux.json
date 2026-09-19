@@ -3,6 +3,7 @@
   "track": "Systems",
   "name": "Linux",
   "blurb": "The shell, the file system and the permissions model, from a standing start.",
+  "order": 2,
   "video": "ROjZy1WbCIA",
   "url": "https://www.youtube.com/watch?v=ROjZy1WbCIA",
   "title": "Linux Operating System - Crash Course for Beginners",

@@ -3,6 +3,7 @@
   "track": "Tools",
   "name": "Git",
   "blurb": "Commits, branches, merges and remotes, worked through rather than memorised as commands.",
+  "order": null,
   "video": "zTjRZNkhiEU",
   "url": "https://www.youtube.com/watch?v=zTjRZNkhiEU",
   "title": "Learn Git – Full Course for Beginners",

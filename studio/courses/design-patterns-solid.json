@@ -3,6 +3,7 @@
   "track": "Code craft",
   "name": "Design patterns & SOLID in C#",
   "blurb": "The long version: SOLID and the pattern catalogue worked through in C#, twelve hours of it.",
+  "order": 2,
   "video": "rylaiB2uH2A",
   "url": "https://www.youtube.com/watch?v=rylaiB2uH2A",
   "title": "Master Design Patterns & SOLID Principles in C# - Full OOP Course for Beginners",

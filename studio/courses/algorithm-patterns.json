@@ -3,6 +3,7 @@
   "track": "Algorithms",
   "name": "Interview patterns",
   "blurb": "The handful of shapes most interview problems reduce to, one after another.",
+  "order": 2,
   "video": "Z_c4byLrNBU",
   "url": "https://www.youtube.com/watch?v=Z_c4byLrNBU",
   "title": "Data Structure and Algorithm Patterns for LeetCode Interviews – Tutorial",

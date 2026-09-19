@@ -3,6 +3,7 @@
   "track": "Algorithms",
   "name": "Data structures",
   "blurb": "Arrays through heaps, tries and union-find, with the implementation shown each time.",
+  "order": 1,
   "video": "RBSGKlAvoiM",
   "url": "https://www.youtube.com/watch?v=RBSGKlAvoiM",
   "title": "Data Structures Easy to Advanced Course - Full Tutorial from a Google Engineer",

@@ -6,7 +6,8 @@
       "track": "Systems",
       "name": "Networking & the OSI model",
       "blurb": "Four hours down the seven layers, with the protocols and the hardware that sit on each one.",
-      "video": "IPvYjXCsTg8"
+      "video": "IPvYjXCsTg8",
+      "order": 3
     },
     {
       "id": "system-design",
@@ -27,49 +28,56 @@
       "track": "Systems",
       "name": "Operating systems",
       "blurb": "Processes, threads, scheduling and memory — what the machine is doing under your program.",
-      "video": "yK1uBHPdp30"
+      "video": "yK1uBHPdp30",
+      "order": 1
     },
     {
       "id": "linux",
       "track": "Systems",
       "name": "Linux",
       "blurb": "The shell, the file system and the permissions model, from a standing start.",
-      "video": "ROjZy1WbCIA"
+      "video": "ROjZy1WbCIA",
+      "order": 2
     },
     {
       "id": "design-patterns",
       "track": "Code craft",
       "name": "Design patterns",
       "blurb": "The classic patterns in plain English — what each one is for, in language-neutral terms.",
-      "video": "NU_1StN5Tkk"
+      "video": "NU_1StN5Tkk",
+      "order": 1
     },
     {
       "id": "design-patterns-solid",
       "track": "Code craft",
       "name": "Design patterns & SOLID in C#",
       "blurb": "The long version: SOLID and the pattern catalogue worked through in C#, twelve hours of it.",
-      "video": "rylaiB2uH2A"
+      "video": "rylaiB2uH2A",
+      "order": 2
     },
     {
       "id": "c-programming",
       "track": "Low level",
       "name": "C",
       "blurb": "Pointers, memory and the standard library — the language the rest of the stack is written in.",
-      "video": "KJgsSFOSQv0"
+      "video": "KJgsSFOSQv0",
+      "order": 1
     },
     {
       "id": "cpp",
       "track": "Low level",
       "name": "C++",
       "blurb": "Beginner to advanced C++, from syntax through classes, templates and the standard library.",
-      "video": "8jLOx1hD3_o"
+      "video": "8jLOx1hD3_o",
+      "order": 2
     },
     {
       "id": "assembly",
       "track": "Low level",
       "name": "Assembly (ARM)",
       "blurb": "Registers, instructions and memory addressing on ARM — what your compiler actually emits.",
-      "video": "gfmRrPjnEw4"
+      "video": "gfmRrPjnEw4",
+      "order": 3
     },
     {
       "id": "git",
@@ -90,21 +98,24 @@
       "track": "Algorithms",
       "name": "Interview patterns",
       "blurb": "The handful of shapes most interview problems reduce to, one after another.",
-      "video": "Z_c4byLrNBU"
+      "video": "Z_c4byLrNBU",
+      "order": 2
     },
     {
       "id": "data-structures",
       "track": "Algorithms",
       "name": "Data structures",
       "blurb": "Arrays through heaps, tries and union-find, with the implementation shown each time.",
-      "video": "RBSGKlAvoiM"
+      "video": "RBSGKlAvoiM",
+      "order": 1
     },
     {
       "id": "neetcode-150-course",
       "track": "Algorithms",
       "name": "NeetCode 150 walkthrough",
       "blurb": "The course this workspace was generated from: every problem in the list, solved on video.",
-      "video": "T0u5nwSA0w0"
+      "video": "T0u5nwSA0w0",
+      "order": 3
     }
   ]
 }

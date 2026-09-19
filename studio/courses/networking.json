@@ -3,6 +3,7 @@
   "track": "Systems",
   "name": "Networking & the OSI model",
   "blurb": "Four hours down the seven layers, with the protocols and the hardware that sit on each one.",
+  "order": 3,
   "video": "IPvYjXCsTg8",
   "url": "https://www.youtube.com/watch?v=IPvYjXCsTg8",
   "title": "Computer Networking Full Course - OSI Model Deep Dive with Real Life Examples",

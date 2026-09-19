@@ -3,6 +3,7 @@
   "track": "Code craft",
   "name": "Design patterns",
   "blurb": "The classic patterns in plain English — what each one is for, in language-neutral terms.",
+  "order": 1,
   "video": "NU_1StN5Tkk",
   "url": "https://www.youtube.com/watch?v=NU_1StN5Tkk",
   "title": "Design Patterns in Plain English | Mosh Hamedani",

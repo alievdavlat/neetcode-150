@@ -225,6 +225,8 @@ export interface Course {
   channel: string;
   seconds: number;
   lessons: Lesson[];
+  /** Where this sits in its track, when the track has an order worth keeping. */
+  order?: number | null;
   /** Where the chapter list came from, so the page can say so. */
   from: string;
   fetchedAt: string;

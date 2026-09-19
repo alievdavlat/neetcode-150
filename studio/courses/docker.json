@@ -3,6 +3,7 @@
   "track": "Tools",
   "name": "Docker",
   "blurb": "Images, containers, volumes and compose, up to deploying a containerised app.",
+  "order": null,
   "video": "rjjES5IsPdg",
   "url": "https://www.youtube.com/watch?v=rjjES5IsPdg",
   "title": "Learn Docker – Full DevOps Course for Deploying Containerized Apps",
