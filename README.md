@@ -71,10 +71,10 @@ npm run check     # tsc --noEmit
 | [Math & Geometry](./17-math-geometry/) | 8 | 2 | 6 | 0 |
 | [Bit Manipulation](./18-bit-manipulation/) | 7 | 5 | 2 | 0 |
 | [Fundamentals](./19-fundamentals/) | 3 | 3 | 0 | 0 |
-| [Classic Algorithms](./20-classic-algorithms/) | 2 | 1 | 1 | 0 |
+| [Classic Algorithms](./20-classic-algorithms/) | 7 | 3 | 4 | 0 |
 | [Everyday Functions](./21-everyday-functions/) | 848 | 848 | 0 | 0 |
 | [Exercism](./22-exercism/) | 97 | 97 | 0 | 0 |
-| **Total** | **1104** | **980** | **103** | **21** |
+| **Total** | **1109** | **982** | **106** | **21** |
 
 ## Suggested order
 
