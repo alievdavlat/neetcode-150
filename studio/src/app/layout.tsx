@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 import { AppSidebar } from '@/components/app-sidebar';
 import { Toaster } from '@/components/ui/sonner';
+import { translator } from '@/i18n/lookup';
 import { I18nProvider } from '@/i18n/provider';
 import { getDictionary, getLocale } from '@/i18n/server';
 import './globals.css';
@@ -19,10 +20,20 @@ const code = JetBrains_Mono({
   weight: ['400', '500', '700'],
 });
 
-export const metadata: Metadata = {
-  title: 'Problems',
-  description: '150 problems, one editor, real verdicts.',
-};
+/**
+ * The tab title and the description are prose, so they come out of the
+ * dictionary too. Metadata is resolved before the tree renders, which is why
+ * this reads the locale for itself rather than sharing the layout's copy.
+ */
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const t = translator(await getDictionary(locale), locale);
+
+  return {
+    title: t('nav.problems'),
+    description: t('common.appDescription'),
+  };
+}
 
 export default async function RootLayout({ children }: LayoutProps<'/'>) {
   const locale = await getLocale();

@@ -1,5 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 import { PlayCircle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Progress } from '@/components/ui/progress';
 import { duration } from '@/lib/meta';
 import type { Course } from '@/lib/types';
@@ -14,6 +17,7 @@ interface CourseCardProps {
 }
 
 export function CourseCard({ course, watched, accent, start = false }: CourseCardProps) {
+  const { t } = useTranslation();
   const seen = new Set(watched);
   const percent = course.lessons.length === 0 ? 0 : Math.round((seen.size / course.lessons.length) * 100);
 
@@ -34,11 +38,13 @@ export function CourseCard({ course, watched, accent, start = false }: CourseCar
             {course.name}
           </p>
           {start && (
-            <p className="mt-0.5 font-mono text-[10px] tracking-wide text-white/80 uppercase">Start here</p>
+            <p className="mt-0.5 font-mono text-[10px] tracking-wide text-white/80 uppercase">
+              {t('courses.startHere')}
+            </p>
           )}
         </div>
         <p className="absolute top-3 right-3 font-mono text-[11px] text-white/85 tabular-nums">
-          {left === 0 ? duration(course.seconds) : `${duration(left)} left`}
+          {left === 0 ? duration(t, course.seconds) : t('courses.timeLeft', { time: duration(t, left) })}
         </p>
       </div>
 

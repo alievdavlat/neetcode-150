@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
+import { Trans, useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import {
   ActivitySquare,
@@ -66,9 +67,10 @@ interface SolutionEditorProps {
   onPromote: () => void;
 }
 
+/** Dictionary keys, looked up where they are drawn. */
 const MODES: { value: SourceMode; label: string; hint: string }[] = [
-  { value: 'file', label: 'My file', hint: 'Edit the solution saved in the workspace' },
-  { value: 'scratch', label: 'Fresh', hint: 'Start from the stub in a practice copy; your solution is not read or written' },
+  { value: 'file', label: 'editor.modeFile', hint: 'editor.modeFileHint' },
+  { value: 'scratch', label: 'editor.modeScratch', hint: 'editor.modeScratchHint' },
 ];
 
 export function SolutionEditor({
@@ -94,6 +96,7 @@ export function SolutionEditor({
   onRun,
   onPromote,
 }: SolutionEditorProps) {
+  const { t } = useTranslation();
   const [modifier, setModifier] = useState('Ctrl');
 
   useEffect(() => {
@@ -107,12 +110,12 @@ export function SolutionEditor({
   );
 
   const renderModeToggle = () => (
-    <div role="group" aria-label="Editor source" className="flex items-center rounded-lg border border-line bg-black/20 p-0.5">
+    <div role="group" aria-label={t('editor.sourceGroup')} className="flex items-center rounded-lg border border-line bg-black/20 p-0.5">
       {MODES.map((entry) => (
         <button
           key={entry.value}
           type="button"
-          title={entry.hint}
+          title={t(entry.hint)}
           aria-pressed={mode === entry.value}
           onClick={() => onModeChange(entry.value)}
           className={cn(
@@ -120,7 +123,7 @@ export function SolutionEditor({
             mode === entry.value ? 'bg-primary/15 text-primary' : 'text-muted-foreground hover:text-foreground',
           )}
         >
-          {entry.label}
+          {t(entry.label)}
         </button>
       ))}
     </div>
@@ -131,7 +134,7 @@ export function SolutionEditor({
       type="button"
       onClick={() => onBigOChange(!bigO)}
       aria-pressed={bigO}
-      title="Measure the curve whenever every case passes. A failing solution is never timed, so this costs nothing while you are still debugging."
+      title={t('editor.bigOHint')}
       className={cn(
         'flex w-full items-center gap-1.5 rounded-lg border px-2 py-1.5 text-[11px] transition-colors',
         bigO
@@ -148,12 +151,12 @@ export function SolutionEditor({
     <button
       type="button"
       onClick={onCompare}
-      title="Compare what is in the editor with your last passing solve"
-      aria-label="Compare with your last passing solve"
+      title={t('editor.compareHint')}
+      aria-label={t('editor.compareLabel')}
       className="flex w-full items-center gap-1.5 rounded-lg border border-line px-2 py-1.5 text-[11px] text-muted-foreground transition-colors hover:border-cool/40 hover:text-cool"
     >
       <GitCompareArrows className="size-3.5" />
-      Compare with your last solve
+      {t('editor.compare')}
     </button>
   );
 
@@ -161,7 +164,7 @@ export function SolutionEditor({
   const renderMore = () => (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="ghost" size="sm" aria-label="More editor options" title="More editor options">
+        <Button variant="ghost" size="sm" aria-label={t('editor.more')} title={t('editor.more')}>
           <MoreHorizontal className="size-4" />
         </Button>
       </PopoverTrigger>
@@ -169,13 +172,17 @@ export function SolutionEditor({
       <PopoverContent align="end" className="w-64 space-y-3">
         {!reviewing && (
           <div className="space-y-1.5">
-            <p className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">Source</p>
+            <p className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
+              {t('editor.source')}
+            </p>
             {renderModeToggle()}
           </div>
         )}
 
         <div className="space-y-1.5">
-          <p className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">Measure</p>
+          <p className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
+            {t('editor.measure')}
+          </p>
           {renderBigO()}
         </div>
 
@@ -187,22 +194,25 @@ export function SolutionEditor({
   const renderPromote = () => (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="outline" size="sm" disabled={promoting} aria-label="Copy the practice copy into your file">
+        <Button variant="outline" size="sm" disabled={promoting} aria-label={t('editor.promoteLabel')}>
           {promoting ? <Loader2 className="size-3.5 animate-spin" /> : <ArrowUpToLine className="size-3.5" />}
-          Copy to my file
+          {t('editor.promote')}
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Replace your saved solution?</AlertDialogTitle>
+          <AlertDialogTitle>{t('editor.overwriteTitle')}</AlertDialogTitle>
           <AlertDialogDescription>
-            The practice copy is written over <span className="font-mono">{file}</span>. Whatever is in that file now is
-            gone unless it is already committed.
+            <Trans
+              i18nKey="editor.overwriteBody"
+              values={{ file }}
+              components={{ mono: <span className="font-mono" /> }}
+            />
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={onPromote}>Overwrite my file</AlertDialogAction>
+          <AlertDialogCancel>{t('editor.cancel')}</AlertDialogCancel>
+          <AlertDialogAction onClick={onPromote}>{t('editor.overwriteConfirm')}</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
@@ -216,22 +226,24 @@ export function SolutionEditor({
 
         {mode === 'scratch' && (
           <span className="rounded-full border border-cool/30 bg-cool/10 px-2 py-0.5 text-[10px] text-cool">
-            practice copy
+            {t('editor.practiceCopy')}
           </span>
         )}
 
         {checkingTypes ? (
           <span className="flex items-center gap-1.5 rounded-full border border-line px-2 py-0.5 text-[10px] text-muted-foreground">
             <Loader2 className="size-2.5 animate-spin" />
-            types
+            {t('editor.types')}
           </span>
         ) : (
           markers.length > 0 && (
             <span
-              title={markers.map((marker) => `line ${marker.line}: ${marker.message}`).join('\n')}
+              title={markers
+                .map((marker) => t('editor.typeErrorLine', { line: marker.line, message: marker.message }))
+                .join('\n')}
               className="rounded-full border border-fail/30 bg-fail/10 px-2 py-0.5 text-[10px] text-fail"
             >
-              {markers.length} type {markers.length === 1 ? 'error' : 'errors'}
+              {t('editor.typeErrors', { count: markers.length })}
             </span>
           )
         )}
@@ -243,7 +255,7 @@ export function SolutionEditor({
             className="flex items-center gap-1.5 rounded-full border border-medium/30 bg-medium/10 px-2 py-0.5 text-[10px] text-medium"
           >
             <span className="size-1.5 rounded-full bg-medium" />
-            unsaved
+            {t('editor.unsaved')}
           </motion.span>
         )}
 
@@ -251,9 +263,9 @@ export function SolutionEditor({
           {mode === 'scratch' && !reviewing && renderPromote()}
           {renderMore()}
 
-          <Button variant="ghost" size="sm" onClick={onSave} disabled={!dirty || saving} aria-label="Save file">
+          <Button variant="ghost" size="sm" onClick={onSave} disabled={!dirty || saving} aria-label={t('editor.saveLabel')}>
             {saving ? <Loader2 className="size-3.5 animate-spin" /> : <Save className="size-3.5" />}
-            Save
+            {t('editor.save')}
             {renderShortcut('S')}
           </Button>
 
@@ -261,11 +273,11 @@ export function SolutionEditor({
             size="sm"
             onClick={onRun}
             disabled={running || source === null}
-            aria-label="Run tests for this problem"
+            aria-label={t('editor.runLabel')}
             className={cn('relative overflow-hidden', running && 'pointer-events-none')}
           >
             {running ? <Loader2 className="size-3.5 animate-spin" /> : <Play className="size-3.5" />}
-            {running ? 'Running' : 'Run'}
+            {running ? t('editor.running') : t('editor.run')}
             {!running && renderShortcut('Enter')}
             {running && <span className="sweep absolute inset-0" />}
           </Button>

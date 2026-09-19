@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, type ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Info, Search, X } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
@@ -22,6 +23,7 @@ interface TagStripProps {
 const SHOWN = 14;
 
 export function TagStrip({ title, hint, placeholder, tags, picked, onPick }: TagStripProps) {
+  const { t } = useTranslation();
   const [query, setQuery] = useState('');
   const [all, setAll] = useState(false);
 
@@ -86,14 +88,14 @@ export function TagStrip({ title, hint, placeholder, tags, picked, onPick }: Tag
             className="flex items-center gap-1 rounded-full border border-line px-2 py-0.5 text-[11px] text-muted-foreground transition-colors hover:border-fail/40 hover:text-fail"
           >
             <X className="size-3" />
-            Clear
+            {t('rail.tags.clear')}
           </button>
         )}
 
       </div>
 
       {shown.length === 0 ? (
-        <p className="mt-3 text-xs text-muted-foreground">Nothing matches “{query}”.</p>
+        <p className="mt-3 text-xs text-muted-foreground">{t('rail.tags.empty', { query })}</p>
       ) : (
         <div className="mt-3 flex flex-wrap gap-1.5">
           {shown.map(renderTag)}
@@ -104,7 +106,7 @@ export function TagStrip({ title, hint, placeholder, tags, picked, onPick }: Tag
               onClick={() => setAll(!all)}
               className="rounded-lg border border-dashed border-line px-2.5 py-1.5 text-[13px] text-muted-foreground transition-colors hover:border-primary/30 hover:text-foreground"
             >
-              {all ? 'show fewer' : `+${rest} more`}
+              {all ? t('rail.tags.showFewer') : t('rail.tags.more', { value: rest })}
             </button>
           )}
         </div>

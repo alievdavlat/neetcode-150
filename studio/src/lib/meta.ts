@@ -1,6 +1,7 @@
 import type { Difficulty, Problem, ProblemHistory, ProblemState, ProblemStatus } from './types';
 
 interface Facet {
+  /** A dictionary key, not prose: resolve it with `t()` where it is drawn. */
   label: string;
   dot: string;
   text: string;
@@ -8,31 +9,31 @@ interface Facet {
 }
 
 export const DIFFICULTY_META: Record<Difficulty, Facet> = {
-  Easy: { label: 'Easy', dot: 'bg-easy', text: 'text-easy', chip: 'bg-easy/10 text-easy border-easy/25' },
+  Easy: { label: 'meta.easy', dot: 'bg-easy', text: 'text-easy', chip: 'bg-easy/10 text-easy border-easy/25' },
   Medium: {
-    label: 'Medium',
+    label: 'meta.medium',
     dot: 'bg-medium',
     text: 'text-medium',
     chip: 'bg-medium/10 text-medium border-medium/25',
   },
-  Hard: { label: 'Hard', dot: 'bg-hard', text: 'text-hard', chip: 'bg-hard/10 text-hard border-hard/25' },
+  Hard: { label: 'meta.hard', dot: 'bg-hard', text: 'text-hard', chip: 'bg-hard/10 text-hard border-hard/25' },
 };
 
 export const STATE_META: Record<ProblemState, Facet> = {
   'not-started': {
-    label: 'Not started',
+    label: 'meta.notStarted',
     dot: 'bg-muted-foreground/35',
     text: 'text-muted-foreground',
     chip: 'bg-muted/40 text-muted-foreground border-line',
   },
   attempted: {
-    label: 'In progress',
+    label: 'meta.attempted',
     dot: 'bg-cool',
     text: 'text-cool',
     chip: 'bg-cool/10 text-cool border-cool/25',
   },
-  failing: { label: 'Failing', dot: 'bg-fail', text: 'text-fail', chip: 'bg-fail/10 text-fail border-fail/25' },
-  solved: { label: 'Solved', dot: 'bg-pass', text: 'text-pass', chip: 'bg-pass/10 text-pass border-pass/25' },
+  failing: { label: 'meta.failing', dot: 'bg-fail', text: 'text-fail', chip: 'bg-fail/10 text-fail border-fail/25' },
+  solved: { label: 'meta.solved', dot: 'bg-pass', text: 'text-pass', chip: 'bg-pass/10 text-pass border-pass/25' },
 };
 
 export const NO_HISTORY: ProblemHistory = {
@@ -112,14 +113,20 @@ export const formatBytes = (bytes: number | null) => {
   return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
 };
 
-export const relativeTime = (iso: string | null) => {
-  if (!iso) return 'never';
+/**
+ * Both the client hook and the server `translator()` satisfy this, so these
+ * helpers read the same on either side of the boundary.
+ */
+export type Translate = (key: string, values?: Record<string, string | number>) => string;
+
+export const relativeTime = (t: Translate, iso: string | null) => {
+  if (!iso) return t('meta.never');
 
   const minutes = Math.round((Date.now() - new Date(iso).getTime()) / 60000);
-  if (minutes < 1) return 'just now';
-  if (minutes < 60) return `${minutes}m ago`;
-  if (minutes < 1440) return `${Math.round(minutes / 60)}h ago`;
-  return `${Math.round(minutes / 1440)}d ago`;
+  if (minutes < 1) return t('meta.justNow');
+  if (minutes < 60) return t('meta.minutesAgo', { count: minutes });
+  if (minutes < 1440) return t('meta.hoursAgo', { count: Math.round(minutes / 60) });
+  return t('meta.daysAgo', { count: Math.round(minutes / 1440) });
 };
 
 export const formatMs = (ms: number | null) => {
@@ -131,11 +138,11 @@ export const formatMs = (ms: number | null) => {
 };
 
 /** A lesson is minutes, a course is hours: the same helper says both. */
-export const duration = (seconds: number) => {
+export const duration = (t: Translate, seconds: number) => {
   const total = Math.round(seconds / 60);
-  if (total < 60) return `${total}m`;
+  if (total < 60) return t('meta.minutesShort', { minutes: total });
 
-  return `${Math.floor(total / 60)}h ${String(total % 60).padStart(2, '0')}m`;
+  return t('meta.hoursShort', { hours: Math.floor(total / 60), minutes: String(total % 60).padStart(2, '0') });
 };
 
 /** `1:04:22` next to the lesson, the way the video's own scrubber writes it. */

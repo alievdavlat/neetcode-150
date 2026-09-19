@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 import {
   ArrowLeft,
   ChevronLeft,
@@ -58,10 +59,11 @@ export function StudioHeader({
   onFocusChange,
   onSync,
 }: StudioHeaderProps) {
+  const { t } = useTranslation();
   const percent = total === 0 ? 0 : Math.round((counts.solved / total) * 100);
 
   /** The three counts are one sentence, not three badges competing with the bar. */
-  const summary = TRACKED.map((state) => `${counts[state]} ${STATE_META[state].label.toLowerCase()}`).join(' · ');
+  const summary = TRACKED.map((state) => `${counts[state]} ${t(STATE_META[state].label).toLowerCase()}`).join(' · ');
 
   /**
    * Moving through the list without the list. Folding the rail away should not
@@ -69,12 +71,12 @@ export function StudioHeader({
    * Ctrl+arrow shortcuts make.
    */
   const renderWalk = () => (
-    <div role="group" aria-label="Move through this list" className="flex items-center gap-0.5">
+    <div role="group" aria-label={t('studio.walk')} className="flex items-center gap-0.5">
       <Button
         variant="ghost"
         size="icon-xs"
-        aria-label="Previous problem"
-        title="Previous problem (Ctrl+Up)"
+        aria-label={t('studio.previousProblem')}
+        title={`${t('studio.previousProblem')} (Ctrl+Up)`}
         disabled={place.index <= 1}
         onClick={() => onStep(-1)}
       >
@@ -88,8 +90,8 @@ export function StudioHeader({
       <Button
         variant="ghost"
         size="icon-xs"
-        aria-label="Next problem"
-        title="Next problem (Ctrl+Down)"
+        aria-label={t('studio.nextProblem')}
+        title={`${t('studio.nextProblem')} (Ctrl+Down)`}
         disabled={place.index >= place.total}
         onClick={() => onStep(1)}
       >
@@ -99,8 +101,8 @@ export function StudioHeader({
       <Button
         variant="ghost"
         size="icon-xs"
-        aria-label="Next problem that is not solved"
-        title="Next unsolved problem (Ctrl+Right)"
+        aria-label={t('studio.nextUnsolved')}
+        title={`${t('studio.nextUnsolvedTitle')} (Ctrl+Right)`}
         onClick={onNextUnsolved}
       >
         <SkipForward className="size-3.5" />
@@ -110,7 +112,7 @@ export function StudioHeader({
 
   const renderBoards = () => (
     <Select value={boardId} onValueChange={onCollectionChange}>
-      <SelectTrigger aria-label="Switch list" className="h-8 w-44">
+      <SelectTrigger aria-label={t('studio.switchList')} className="h-8 w-44">
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
@@ -128,8 +130,8 @@ export function StudioHeader({
       type="button"
       onClick={() => onFocusChange(!focus)}
       aria-pressed={focus}
-      aria-label={focus ? 'Show the list and the brief' : 'Hide the list and the brief'}
-      title={`${focus ? 'Show the list and the brief' : 'Focus mode: editor only'} (Ctrl+\)`}
+      aria-label={focus ? t('studio.showPanels') : t('studio.hidePanels')}
+      title={`${focus ? t('studio.showPanels') : t('studio.focusMode')} (Ctrl+\)`}
       className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-line text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
     >
       {focus ? <Minimize2 className="size-4" /> : <Maximize2 className="size-4" />}
@@ -139,8 +141,8 @@ export function StudioHeader({
   const renderSettings = () => (
     <Link
       href="/settings"
-      aria-label="Settings"
-      title="Review, strict mode and how many problems a day"
+      aria-label={t('nav.settings')}
+      title={t('studio.settingsHint')}
       className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-line text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
     >
       <Settings2 className="size-4" />
@@ -153,11 +155,11 @@ export function StudioHeader({
       size="sm"
       onClick={onRunBoard}
       disabled={runningBoard}
-      title="Run every started problem on this board, including the ones already passing"
-      aria-label="Run every started problem on this board, including the ones already passing"
+      title={t('studio.runBoardHint')}
+      aria-label={t('studio.runBoardHint')}
     >
       {runningBoard ? <Loader2 className="size-3.5 animate-spin" /> : <Play className="size-3.5" />}
-      {runningBoard ? 'Running' : 'Run board'}
+      {runningBoard ? t('studio.running') : t('studio.runBoard')}
     </Button>
   );
 
@@ -167,11 +169,11 @@ export function StudioHeader({
       size="sm"
       onClick={onSync}
       disabled={syncing}
-      title="Run only the problems whose verdict is missing or out of date"
-      aria-label="Run only the problems whose verdict is missing or out of date"
+      title={t('studio.recheckHint')}
+      aria-label={t('studio.recheckHint')}
     >
       {syncing ? <Loader2 className="size-3.5 animate-spin" /> : <RefreshCw className="size-3.5" />}
-      {syncing ? 'Checking' : 'Recheck'}
+      {syncing ? t('studio.checking') : t('studio.recheck')}
       {!syncing && pending > 0 && (
         <span className="ml-1 rounded-full bg-medium/15 px-1.5 font-mono text-[10px] text-medium">{pending}</span>
       )}
@@ -182,8 +184,8 @@ export function StudioHeader({
     <header className="surface flex items-center gap-4 border-b border-line px-5 py-3">
       <Link
         href="/"
-        aria-label="Back to all collections"
-        title="Back to all collections"
+        aria-label={t('studio.backToCollections')}
+        title={t('studio.backToCollections')}
         className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-line text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
       >
         <ArrowLeft className="size-4" />
@@ -195,7 +197,7 @@ export function StudioHeader({
         transition={{ duration: 0.5, ease: 'easeOut' }}
         className="hidden sm:block"
       >
-        <Brand subtitle={`${total} problems`} />
+        <Brand subtitle={t('studio.problemCount', { count: total })} />
       </motion.div>
 
       {renderBoards()}

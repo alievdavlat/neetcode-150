@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { Search, X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Input } from '@/components/ui/input';
 import { CourseCard } from './course-card';
 import { accentFor, duration, stamp } from '@/lib/meta';
@@ -23,6 +24,7 @@ const LIMIT = 40;
  * on screen at a time.
  */
 export function CourseSearch({ courses, watched }: CourseSearchProps) {
+  const { t } = useTranslation();
   const [query, setQuery] = useState('');
   const [track, setTrack] = useState<string | null>(null);
   const needle = query.trim().toLowerCase();
@@ -64,7 +66,7 @@ export function CourseSearch({ courses, watched }: CourseSearchProps) {
           {stamp(lesson.at)}
         </span>
         <span className="w-12 shrink-0 text-right font-mono text-[10px] text-muted-foreground tabular-nums">
-          {duration(lesson.seconds)}
+          {duration(t, lesson.seconds)}
         </span>
       </Link>
     </li>
@@ -116,7 +118,9 @@ export function CourseSearch({ courses, watched }: CourseSearchProps) {
             <header className="flex items-center gap-4">
               <h2 className="font-heading text-sm font-semibold tracking-[0.14em] uppercase">{name}</h2>
               {ordered && (
-                <span className="shrink-0 font-mono text-[10px] text-muted-foreground">in order</span>
+                <span className="shrink-0 font-mono text-[10px] text-muted-foreground">
+                  {t('courses.inOrder')}
+                </span>
               )}
               <span className="h-px flex-1 bg-line" />
             </header>
@@ -145,26 +149,26 @@ export function CourseSearch({ courses, watched }: CourseSearchProps) {
         <Input
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-          placeholder="Search lessons and courses"
-          aria-label="Search lessons and courses"
+          placeholder={t('courses.searchPlaceholder')}
+          aria-label={t('courses.searchPlaceholder')}
           className="h-10 pl-10 text-sm"
         />
         {query !== '' && (
           <button
             type="button"
             onClick={() => setQuery('')}
-            aria-label="Clear the search"
+            aria-label={t('courses.clearSearch')}
             className="absolute top-1/2 right-3 flex -translate-y-1/2 items-center gap-1 text-[11px] text-muted-foreground transition-colors hover:text-fail"
           >
             <X className="size-3" />
-            Clear
+            {t('common.clear')}
           </button>
         )}
       </div>
 
       {needle === '' && (
         <div className="flex flex-wrap items-center gap-1.5">
-          {renderTrackChip('All', null, courses.length)}
+          {renderTrackChip(t('common.all'), null, courses.length)}
           {tracks.map(([name, count]) => renderTrackChip(name, name, count))}
         </div>
       )}
@@ -175,7 +179,9 @@ export function CourseSearch({ courses, watched }: CourseSearchProps) {
         <div className="space-y-6">
           {matching.length > 0 && (
             <section className="space-y-2">
-              <h2 className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">Courses</h2>
+              <h2 className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
+                {t('nav.courses')}
+              </h2>
               <ul className="rounded-2xl border border-line bg-panel/60 p-2">
                 {matching.map((course) => (
                   <li key={course.id}>
@@ -186,7 +192,7 @@ export function CourseSearch({ courses, watched }: CourseSearchProps) {
                       <span className="min-w-0 flex-1 truncate text-[13px]">{course.name}</span>
                       <span className="truncate text-[11px] text-muted-foreground">{course.channel}</span>
                       <span className="w-16 shrink-0 text-right font-mono text-[10px] text-muted-foreground tabular-nums">
-                        {duration(course.seconds)}
+                        {duration(t, course.seconds)}
                       </span>
                     </Link>
                   </li>
@@ -197,13 +203,13 @@ export function CourseSearch({ courses, watched }: CourseSearchProps) {
 
           <section className="space-y-2">
             <h2 className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
-              Lessons
+              {t('courses.lessons')}
               <span className="ml-2 font-mono text-[10px] tracking-normal normal-case">{hits.length}</span>
             </h2>
 
             {hits.length === 0 ? (
               <p className="rounded-2xl border border-line bg-panel/60 p-4 text-sm text-muted-foreground">
-                Nothing matches “{query}”.
+                {t('courses.noMatches', { query })}
               </p>
             ) : (
               <ul className="rounded-2xl border border-line bg-panel/60 p-2">{hits.map(renderHit)}</ul>

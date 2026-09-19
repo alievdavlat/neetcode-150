@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
+import { useTranslation } from 'react-i18next';
 import type { DiffOnMount } from '@monaco-editor/react';
 import type { editor } from 'monaco-editor';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -9,9 +10,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { relativeTime } from '@/lib/meta';
 import type { SolutionSnapshot } from '@/lib/types';
 
+function DiffLoading() {
+  const { t } = useTranslation();
+
+  return <p className="p-6 text-xs text-muted-foreground">{t('editor.loadingDiff')}</p>;
+}
+
 const DiffEditor = dynamic(() => import('@monaco-editor/react').then((module) => module.DiffEditor), {
   ssr: false,
-  loading: () => <p className="p-6 text-xs text-muted-foreground">loading diff…</p>,
+  loading: () => <DiffLoading />,
 });
 
 interface SolutionDiffProps {
@@ -79,6 +86,7 @@ function DiffSurface({ original, modified }: DiffSurfaceProps) {
 }
 
 export function SolutionDiff({ open, title, current, snapshots, onOpenChange }: SolutionDiffProps) {
+  const { t } = useTranslation();
   const [pick, setPick] = useState(0);
 
   /** Reopening for another problem must not keep the last one's chosen snapshot. */
@@ -92,23 +100,24 @@ export function SolutionDiff({ open, title, current, snapshots, onOpenChange }: 
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="w-[calc(100%-2rem)] sm:max-w-6xl">
         <DialogHeader>
-          <DialogTitle>{title} — your last solve vs now</DialogTitle>
+          <DialogTitle>{t('editor.diffTitle', { title })}</DialogTitle>
           <DialogDescription>
             {chosen
-              ? `Snapshot taken ${relativeTime(readableStamp(chosen.at))}. Left is what passed then, right is the editor now.`
-              : 'No passing solve has been recorded for this problem yet.'}
+              ? t('editor.diffTaken', { when: relativeTime(t, readableStamp(chosen.at)) })
+              : t('editor.diffNone')}
           </DialogDescription>
         </DialogHeader>
 
         {snapshots.length > 1 && (
           <Select value={String(pick)} onValueChange={(next) => setPick(Number(next))}>
-            <SelectTrigger aria-label="Which passing solve to compare against" className="h-8 w-64">
+            <SelectTrigger aria-label={t('editor.diffPick')} className="h-8 w-64">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
               {snapshots.map((entry, index) => (
                 <SelectItem key={entry.at} value={String(index)}>
-                  {index === 0 ? 'Latest' : `${index + 1} solves ago`} · {relativeTime(readableStamp(entry.at))}
+                  {index === 0 ? t('editor.diffLatest') : t('editor.diffAgo', { count: index + 1 })} ·{' '}
+                  {relativeTime(t, readableStamp(entry.at))}
                 </SelectItem>
               ))}
             </SelectContent>

@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 import { cn } from '@/lib/utils';
 
 interface BrandProps {
@@ -8,8 +11,10 @@ interface BrandProps {
 
 /** The mark, shared by the home hero and the board header so they stay one product. */
 export function Brand({ subtitle, large = false }: BrandProps) {
+  const { t } = useTranslation();
+
   return (
-    <Link href="/" className="flex items-center gap-3" aria-label="Problems home">
+    <Link href="/" className="flex items-center gap-3" aria-label={t('studio.brandHome')}>
       <span
         className={cn(
           'relative flex -skew-x-6 items-center justify-center rounded-lg bg-primary font-heading font-bold text-primary-foreground',
@@ -27,7 +32,7 @@ export function Brand({ subtitle, large = false }: BrandProps) {
             large ? 'text-lg' : 'text-sm',
           )}
         >
-          <span className="text-primary">Problems</span>
+          <span className="text-primary">{t('nav.problems')}</span>
         </h1>
         <p className={cn('text-muted-foreground', large ? 'text-xs' : 'text-[11px]')}>{subtitle}</p>
       </div>

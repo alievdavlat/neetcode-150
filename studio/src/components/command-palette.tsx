@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslation } from 'react-i18next';
 import {
   Command,
   CommandDialog,
@@ -32,6 +33,8 @@ export function CommandPalette({
   onSelect,
   onCourse,
 }: CommandPaletteProps) {
+  const { t } = useTranslation();
+
   const handleSelect = (number: string) => {
     onSelect(number);
     onOpenChange(false);
@@ -52,7 +55,7 @@ export function CommandPalette({
       <span className="size-1.5 shrink-0 rounded-full bg-cool" />
       <span className="flex-1 truncate">{course.name}</span>
       <span className="truncate text-[11px] opacity-60">{course.channel}</span>
-      <span className="font-mono text-[10px] opacity-60">{duration(course.seconds)}</span>
+      <span className="font-mono text-[10px] opacity-60">{duration(t, course.seconds)}</span>
     </CommandItem>
   );
 
@@ -69,8 +72,8 @@ export function CommandPalette({
         <span className={cn('size-1.5 shrink-0 rounded-full', STATE_META[status.state].dot)} />
         <span className="font-mono text-[11px] opacity-60">{problem.number}</span>
         <span className="flex-1 truncate">{problem.title}</span>
-        {status.history.due && <span className="text-[10px] text-medium">due</span>}
-        <span className={cn('text-[10px]', DIFFICULTY_META[problem.difficulty].text)}>{problem.difficulty}</span>
+        {status.history.due && <span className="text-[10px] text-medium">{t('palette.due')}</span>}
+        <span className={cn('text-[10px]', DIFFICULTY_META[problem.difficulty].text)}>{t(DIFFICULTY_META[problem.difficulty].label)}</span>
       </CommandItem>
     );
   };
@@ -79,15 +82,17 @@ export function CommandPalette({
     <CommandDialog
       open={open}
       onOpenChange={onOpenChange}
-      title="Jump to a problem or a course"
-      description="Search by number, title, category, pattern or course"
+      title={t('palette.title')}
+      description={t('palette.description')}
     >
       <Command key={open ? 'open' : 'closed'}>
-        <CommandInput placeholder="Jump to a problem…" />
+        <CommandInput placeholder={t('palette.placeholder')} />
         <CommandList className="max-h-[60vh]">
-          <CommandEmpty>Nothing matches that.</CommandEmpty>
-          <CommandGroup heading="Problems">{problems.map(renderItem)}</CommandGroup>
-          {courses.length > 0 && <CommandGroup heading="Courses">{courses.map(renderCourse)}</CommandGroup>}
+          <CommandEmpty>{t('palette.empty')}</CommandEmpty>
+          <CommandGroup heading={t('nav.problems')}>{problems.map(renderItem)}</CommandGroup>
+          {courses.length > 0 && (
+            <CommandGroup heading={t('nav.courses')}>{courses.map(renderCourse)}</CommandGroup>
+          )}
         </CommandList>
       </Command>
     </CommandDialog>

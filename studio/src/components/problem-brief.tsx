@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import {
   ChevronRight,
@@ -50,10 +51,11 @@ const FOLDS = ['constraints', 'follow-up', 'trend', 'note'] as const;
 
 type Fold = (typeof FOLDS)[number];
 
+/** Dictionary keys, looked up where the locked hint is drawn. */
 const HINT_LABEL: Record<number, string> = {
-  1: 'Show the pattern',
-  2: 'Show the target complexity',
-  3: 'Open the walkthrough',
+  1: 'brief.hintPattern',
+  2: 'brief.hintComplexity',
+  3: 'brief.hintWalkthrough',
 };
 
 export function ProblemBrief({
@@ -69,6 +71,7 @@ export function ProblemBrief({
   onHint,
   onNoteSave,
 }: ProblemBriefProps) {
+  const { t } = useTranslation();
   const [draft, setDraft] = useState(note);
   const [open, setOpen] = useState<Record<Fold, boolean>>({
     constraints: false,
@@ -105,7 +108,9 @@ export function ProblemBrief({
       <div className="rounded-xl border border-line bg-white/[0.02] p-3">
           {times.length < 3 ? (
             <p className="text-[13px] text-foreground/85">
-              Re-solved {times.length === 1 ? 'once' : 'twice'}: {times.join('m, then ')}m.
+              {times.length === 1
+                ? t('brief.resolvedOnce', { minutes: times[0] })
+                : t('brief.resolvedTwice', { first: times[0], second: times[1] })}
             </p>
           ) : (
             <div className="flex h-16 items-end gap-1">
@@ -113,7 +118,7 @@ export function ProblemBrief({
                 <span key={index} className="flex min-w-0 flex-1 flex-col items-center gap-1">
                   <span className="font-mono text-[10px] text-muted-foreground tabular-nums">{minutes}</span>
                   <span
-                    title={`${minutes} min`}
+                    title={t('brief.minutes', { value: minutes })}
                     style={{ height: `${Math.max(3, Math.round((minutes / peak) * BAR_HEIGHT))}px` }}
                     className="w-full rounded-sm bg-cool/50"
                   />
@@ -122,10 +127,10 @@ export function ProblemBrief({
             </div>
           )}
         <p className="mt-2 text-[11px] text-muted-foreground">
-          {history.reviews} {history.reviews === 1 ? 'review' : 'reviews'}
-          {times.length > 2 && ' · minutes per re-solve'}
-          {history.solveMinutes !== null && ` · first solve took ${history.solveMinutes}m`}
-          {history.ease !== null && ` · ease ${history.ease}`}
+          {t('brief.reviews', { count: history.reviews })}
+          {times.length > 2 && ` · ${t('brief.minutesPerResolve')}`}
+          {history.solveMinutes !== null && ` · ${t('brief.firstSolveTook', { value: history.solveMinutes })}`}
+          {history.ease !== null && ` · ${t('brief.ease', { value: history.ease })}`}
         </p>
       </div>
     );
@@ -184,13 +189,13 @@ export function ProblemBrief({
       className="flex w-full items-center justify-center gap-1.5 rounded-lg border border-dashed border-line px-2 py-2 text-[11px] text-muted-foreground transition-colors hover:border-medium/40 hover:text-medium"
     >
       <Eye className="size-3.5" />
-      {HINT_LABEL[level]}
+      {t(HINT_LABEL[level])}
     </button>
   );
 
   const renderExamples = () => (
     <motion.section variants={SECTION}>
-      {renderHeading('Examples')}
+      {renderHeading(t('brief.examples'))}
       <div className="space-y-2">
         {problem.examples.map((example, index) => (
           <pre
@@ -222,27 +227,31 @@ export function ProblemBrief({
     >
       <History className="size-3.5" />
       <span>
-        <span className="font-mono text-foreground/80">{history.runs}</span> {history.runs === 1 ? 'run' : 'runs'}
+        <span className="font-mono text-foreground/80">{history.runs}</span>{' '}
+        {t('brief.runs', { count: history.runs })}
       </span>
       {history.runsToFirstPass !== null && (
         <span>
-          first pass on run <span className="font-mono text-pass">{history.runsToFirstPass}</span>
+          {t('brief.firstPassOnRun')} <span className="font-mono text-pass">{history.runsToFirstPass}</span>
         </span>
       )}
       {history.solveMinutes !== null && (
         <span>
-          solved in <span className="font-mono text-foreground/80">{history.solveMinutes}m</span>
+          {t('brief.solvedIn')}{' '}
+          <span className="font-mono text-foreground/80">
+            {t('brief.minutesShort', { value: history.solveMinutes })}
+          </span>
         </span>
       )}
       {/* Relative to now, so the server's minute and the client's need not agree. */}
-      <span suppressHydrationWarning>last run {relativeTime(history.lastRunAt)}</span>
+      <span suppressHydrationWarning>
+        {t('brief.lastRun')} {relativeTime(t, history.lastRunAt)}
+      </span>
       {history.dueInDays !== null && !history.due && (
-        <span>review in {history.dueInDays === 1 ? 'a day' : `${history.dueInDays} days`}</span>
+        <span>{t('brief.reviewIn', { count: history.dueInDays })}</span>
       )}
       {history.hintLevel > 0 && (
-        <span className="text-medium">
-          {history.hintLevel} {history.hintLevel === 1 ? 'hint' : 'hints'} used
-        </span>
+        <span className="text-medium">{t('brief.hints', { count: history.hintLevel })}</span>
       )}
     </motion.section>
   );
@@ -260,20 +269,20 @@ export function ProblemBrief({
           <div className="flex flex-wrap items-center gap-2">
             <span className="font-mono text-xs text-muted-foreground/70">#{problem.number}</span>
             <span className={cn('rounded-full border px-2 py-0.5 text-[10px] font-medium', difficulty.chip)}>
-              {difficulty.label}
+              {t(difficulty.label)}
             </span>
             <span className={cn('rounded-full border px-2 py-0.5 text-[10px] font-medium', state.chip)}>
-              {state.label}
-              {status.stale && ' · stale'}
+              {t(state.label)}
+              {status.stale && ` · ${t('brief.stale')}`}
             </span>
             {history.due && repeating && (
               <span className="rounded-full border border-medium/30 bg-medium/10 px-2 py-0.5 text-[10px] text-medium">
-                due for review
+                {t('brief.dueForReview')}
               </span>
             )}
             {history.leech && repeating && (
               <span className="rounded-full border border-fail/30 bg-fail/10 px-2 py-0.5 text-[10px] text-fail">
-                stuck · {history.lapses} lapses
+                {t('brief.stuck', { count: history.lapses })}
               </span>
             )}
             {history.firstPassAt !== null && !reviewing && repeating && (
@@ -284,7 +293,7 @@ export function ProblemBrief({
                 className="ml-auto gap-1.5"
               >
                 <RotateCw />
-                Review
+                {t('brief.review')}
               </Button>
             )}
           </div>
@@ -307,7 +316,7 @@ export function ProblemBrief({
         {problem.constraints.length > 0 &&
           renderFold(
             'constraints',
-            'Constraints',
+            t('brief.constraints'),
             renderConstraints(),
             `${problem.constraints.length}`,
           )}
@@ -315,7 +324,7 @@ export function ProblemBrief({
         {problem.followUp &&
           renderFold(
             'follow-up',
-            'Follow-up',
+            t('brief.followUp'),
             <p className="rounded-xl border border-cool/20 bg-cool/[0.06] p-3 text-[13px] text-foreground/85">
               {problem.followUp}
             </p>,
@@ -325,7 +334,7 @@ export function ProblemBrief({
           <div className="rounded-xl border border-line bg-white/[0.02] p-3">
             <div className="mb-1 flex items-center gap-1.5 text-[10px] tracking-[0.18em] text-muted-foreground uppercase">
               <Route className="size-3" />
-              Pattern
+              {t('brief.pattern')}
             </div>
             {history.hintLevel >= 1 ? (
               <p className="text-[13px] text-foreground/85">{problem.pattern}</p>
@@ -336,7 +345,7 @@ export function ProblemBrief({
           <div className="rounded-xl border border-line bg-white/[0.02] p-3">
             <div className="mb-1 flex items-center gap-1.5 text-[10px] tracking-[0.18em] text-muted-foreground uppercase">
               <Gauge className="size-3" />
-              Target
+              {t('brief.target')}
             </div>
             {history.hintLevel >= 2 ? (
               <p className="font-mono text-[13px] text-foreground/85">{problem.complexity}</p>
@@ -346,36 +355,36 @@ export function ProblemBrief({
           </div>
         </motion.section>
 
-        {history.reviewMinutes.length > 0 && renderFold('trend', 'Re-solve time', renderTrend())}
+        {history.reviewMinutes.length > 0 && renderFold('trend', t('brief.resolveTime'), renderTrend())}
 
         {reviewing
           ? renderFold(
               'note',
-              'Your note',
+              t('brief.yourNote'),
               <p className="rounded-xl border border-line bg-white/[0.02] p-3 text-xs text-muted-foreground">
-                Hidden until this review ends — it is the answer in one sentence.
+                {t('brief.noteHidden')}
               </p>,
-              'hidden',
+              t('brief.foldHidden'),
             )
           : renderFold(
               'note',
-              'Your note',
+              t('brief.yourNote'),
               <>
                 <Textarea
                   value={draft}
                   onChange={(event) => setDraft(event.target.value)}
-                  placeholder="What tripped you up? What is the one idea to remember?"
-                  aria-label="Note for this problem"
+                  placeholder={t('brief.notePlaceholder')}
+                  aria-label={t('brief.noteLabel')}
                   className="min-h-20 bg-white/[0.02] text-[13px]"
                 />
                 {draft !== note && (
                   <Button size="sm" variant="outline" className="mt-2" onClick={() => onNoteSave(draft)}>
                     <NotebookPen className="size-3.5" />
-                    Save note
+                    {t('brief.saveNote')}
                   </Button>
                 )}
               </>,
-              note ? 'written' : 'empty',
+              note ? t('brief.foldWritten') : t('brief.foldEmpty'),
             )}
 
         <motion.section variants={SECTION} className="flex flex-wrap gap-2 pb-4">
@@ -391,7 +400,7 @@ export function ProblemBrief({
                   {lesson.label}
                 </Link>
               ) : (
-                renderLink(video, 'Walkthrough', <PlayCircle className="size-3.5" />)
+                renderLink(video, t('brief.walkthrough'), <PlayCircle className="size-3.5" />)
               )
             ) : (
               <button
@@ -400,7 +409,7 @@ export function ProblemBrief({
                 className="inline-flex items-center gap-1.5 rounded-lg border border-dashed border-line px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:border-medium/40 hover:text-medium"
               >
                 <Eye className="size-3.5" />
-                {HINT_LABEL[3]}
+                {t(HINT_LABEL[3])}
               </button>
             ))}
         </motion.section>

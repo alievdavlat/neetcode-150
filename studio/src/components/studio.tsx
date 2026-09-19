@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 import { PanelBottom, PanelLeft, PanelRight } from 'lucide-react';
 import {
@@ -88,10 +89,11 @@ const RAIL_STRIP = '52px';
 /** Where the verdict and the simulation sit against the editor. */
 type Dock = 'bottom' | 'right' | 'left';
 
+/** `label` is a dictionary key, looked up where the button is drawn. */
 const DOCKS: { side: Dock; icon: typeof PanelBottom; label: string }[] = [
-  { side: 'left', icon: PanelLeft, label: 'Dock to the left' },
-  { side: 'bottom', icon: PanelBottom, label: 'Dock to the bottom' },
-  { side: 'right', icon: PanelRight, label: 'Dock to the right' },
+  { side: 'left', icon: PanelLeft, label: 'studio.dockLeft' },
+  { side: 'bottom', icon: PanelBottom, label: 'studio.dockBottom' },
+  { side: 'right', icon: PanelRight, label: 'studio.dockRight' },
 ];
 
 /** A replay reads down the page; beside the editor it has the height for it. */
@@ -122,6 +124,7 @@ export function Studio({
   initialNumber,
   settings,
 }: StudioProps) {
+  const { t } = useTranslation();
   const router = useRouter();
   const search = useSearchParams();
   const [statuses, setStatuses] = useState<Record<string, ProblemStatus>>(() =>
@@ -174,8 +177,8 @@ export function Studio({
   const allCollections: Collection[] = [
     {
       id: ALL_BOARD,
-      name: 'All Problems',
-      description: 'Everything in this workspace',
+      name: t('studio.allProblems'),
+      description: t('studio.allProblemsNote'),
       numbers: problems.map((problem) => problem.number),
     },
     ...collections,
@@ -331,7 +334,9 @@ export function Studio({
     const checking = pending;
     sync().then((ok) => {
       if (ok === null) return;
-      toast.success(checking === 0 ? 'Everything was already checked' : `Rechecked ${checking} problems`);
+      toast.success(
+        checking === 0 ? t('studio.alreadyChecked') : t('studio.rechecked', { count: checking }),
+      );
     });
   };
 
@@ -389,7 +394,7 @@ export function Studio({
 
     busy.current = true;
     persist()
-      .then((ok) => ok && toast.success(mode === 'scratch' ? 'Saved to the practice copy' : 'Saved to disk'))
+      .then((ok) => ok && toast.success(mode === 'scratch' ? t('studio.savedScratch') : t('studio.savedDisk')))
       .finally(() => {
         busy.current = false;
       });
@@ -464,7 +469,7 @@ export function Studio({
 
   const handleCount = () => {
     if (!active || !variant || counting) {
-      if (!variant) toast.error('Run it once first, so the counter knows which export to follow');
+      if (!variant) toast.error(t('studio.runFirstCounter'));
       return;
     }
 
@@ -484,7 +489,7 @@ export function Studio({
 
   const handleTrace = async (input?: unknown[]) => {
     if (!active || !variant || busy.current) {
-      if (!variant) toast.error('Run it once first, so the tracer knows which export to follow');
+      if (!variant) toast.error(t('studio.runFirstTracer'));
       return;
     }
 
@@ -575,9 +580,9 @@ export function Studio({
       setStatuses((now) => ({ ...now, [answer.status.number]: answer.status }));
 
       const next = answer.status.history.reviewDays;
-      if (answer.grade === 2) toast.success(`Clean recall — back in ${next} days`);
-      else if (answer.grade === 1) toast.message(`Got there — back in ${next} days`);
-      else toast.error('Marked for tomorrow');
+      if (answer.grade === 2) toast.success(t('studio.cleanRecall', { count: next ?? 0 }));
+      else if (answer.grade === 1) toast.message(t('studio.gotThere', { count: next ?? 0 }));
+      else toast.error(t('studio.markedTomorrow'));
 
       if (passed && !current.revealed && snapshots.length > 0) handleCompare();
     } catch (error) {
@@ -627,7 +632,7 @@ export function Studio({
     request<{ saved: boolean }>('/api/notes', { method: 'PUT', body: JSON.stringify({ number, note: next }) })
       .then(() => {
         setNote(next);
-        toast.success('Note saved');
+        toast.success(t('studio.noteSaved'));
       })
       .catch((error: unknown) => toast.error(messageOf(error)));
   };
@@ -641,7 +646,7 @@ ${line}
     draft.current = next;
     setSource(next);
     setDirty(next !== baseline.current);
-    toast.success('Added to the end of the file — save when you are ready');
+    toast.success(t('studio.snippetAdded'));
   };
 
   const handleCollectionChange = (id: string) => router.push(`/c/${id}`);
@@ -665,7 +670,7 @@ ${line}
     })
       .then((payload) => {
         setStatuses(Object.fromEntries(payload.statuses.map((status) => [status.number, status])));
-        toast.success(`Ran ${board?.name ?? 'this board'}`);
+        toast.success(t('studio.ranBoard', { name: board?.name ?? t('studio.thisBoard') }));
       })
       .catch((error: unknown) => toast.error(messageOf(error)))
       .finally(() => setRunningBoard(false));
@@ -678,7 +683,7 @@ ${line}
     request<SyncResponse>('/api/run-category', { method: 'POST', body: JSON.stringify({ dir }) })
       .then((payload) => {
         setStatuses(Object.fromEntries(payload.statuses.map((status) => [status.number, status])));
-        toast.success(`Ran ${dir}`);
+        toast.success(t('studio.ranBoard', { name: dir }));
       })
       .catch((error: unknown) => toast.error(messageOf(error)))
       .finally(() => setRunningCategory(null));
@@ -703,7 +708,7 @@ ${line}
         setStatuses((current) => ({ ...current, [payload.status.number]: payload.status }));
         window.localStorage.setItem(`${MODE_KEY}:${activeNumber}`, 'file');
         setMode('file');
-        toast.success('Practice copy is now your solution');
+        toast.success(t('studio.promoted'));
       })
       .catch((error: unknown) => toast.error(messageOf(error)))
       .finally(() => {
@@ -718,9 +723,9 @@ ${line}
   };
 
   const warnUnsaved = (discard: () => void) =>
-    toast('Unsaved changes', {
-      description: `${file} has edits that were never saved.`,
-      action: { label: 'Discard', onClick: discard },
+    toast(t('studio.unsaved'), {
+      description: t('studio.unsavedNote', { file }),
+      action: { label: t('studio.discard'), onClick: discard },
     });
 
   const handleSelect = (number: string) => {
@@ -804,7 +809,10 @@ ${line}
     if (!course) return null;
 
     const index = course.lessons.findIndex((entry) => entry.at === active.lessonAt);
-    return { href: `/courses/${course.id}?at=${active.lessonAt}`, label: index === -1 ? 'Walkthrough' : `Lesson ${index + 1}` };
+    return {
+      href: `/courses/${course.id}?at=${active.lessonAt}`,
+      label: index === -1 ? t('brief.walkthrough') : t('studio.lesson', { number: index + 1 }),
+    };
   })();
 
   /**
@@ -816,18 +824,18 @@ ${line}
       <Tabs value={panel} onValueChange={setPanel} className="flex h-full min-h-0 flex-col gap-0">
         <div className="mx-3 mt-2 flex items-center gap-2">
           <TabsList className="self-start">
-            <TabsTrigger value="verdict">Verdict</TabsTrigger>
-            <TabsTrigger value="trace">Simulation</TabsTrigger>
+            <TabsTrigger value="verdict">{t('studio.verdict')}</TabsTrigger>
+            <TabsTrigger value="trace">{t('studio.simulation')}</TabsTrigger>
           </TabsList>
 
-          <div role="group" aria-label="panel position" className="ml-auto flex items-center gap-0.5">
+          <div role="group" aria-label={t('studio.panelPosition')} className="ml-auto flex items-center gap-0.5">
             {DOCKS.map(({ side, icon: Icon, label }) => (
               <button
                 key={side}
                 type="button"
-                aria-label={label}
+                aria-label={t(label)}
                 aria-pressed={dock === side}
-                title={label}
+                title={t(label)}
                 onClick={() => handleDockChange(side)}
                 className={cn(
                   'flex size-6 items-center justify-center rounded-md border transition-colors',

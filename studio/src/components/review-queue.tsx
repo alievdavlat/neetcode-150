@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { AlarmClock, Check, Flame, Zap } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { RecallDrill } from './recall-drill';
 import { ALL_BOARD, DIFFICULTY_META } from '@/lib/meta';
@@ -43,6 +44,7 @@ function interleave(entries: { problem: Problem; overdue: number }[]) {
 }
 
 export function ReviewQueue({ problems, statuses, tags, dailyCap }: ReviewQueueProps) {
+  const { t } = useTranslation();
   const [done, setDone] = useState<Record<string, boolean>>({});
   const [drilling, setDrilling] = useState<string | null>(null);
 
@@ -100,10 +102,10 @@ export function ReviewQueue({ problems, statuses, tags, dailyCap }: ReviewQueueP
         <span className="min-w-0 flex-1 truncate text-[13px]">{problem.title}</span>
 
         <span className={cn('hidden w-12 text-right text-[11px] sm:inline', DIFFICULTY_META[problem.difficulty].text)}>
-          {problem.difficulty}
+          {t(DIFFICULTY_META[problem.difficulty].label)}
         </span>
         <span className="w-20 text-right font-mono text-[10px] text-muted-foreground">
-          {overdue <= 0 ? 'due now' : `${overdue}d late`}
+          {overdue <= 0 ? t('review.dueNow') : t('review.daysLate', { days: overdue })}
         </span>
 
         {!finished && (
@@ -112,14 +114,14 @@ export function ReviewQueue({ problems, statuses, tags, dailyCap }: ReviewQueueP
               size="xs"
               variant="ghost"
               onClick={() => setDrilling(problem.number)}
-              title="Sixty seconds: which pattern, and why"
+              title={t('review.drillHint')}
               className="gap-1"
             >
               <Zap />
-              Drill
+              {t('review.drill')}
             </Button>
             <Button size="xs" variant="outline" asChild>
-              <Link href={`/c/${ALL_BOARD}?p=${problem.number}&review=1`}>Re-solve</Link>
+              <Link href={`/c/${ALL_BOARD}?p=${problem.number}&review=1`}>{t('review.resolve')}</Link>
             </Button>
           </span>
         )}
@@ -131,12 +133,16 @@ export function ReviewQueue({ problems, statuses, tags, dailyCap }: ReviewQueueP
     <section className="space-y-3 rounded-2xl border border-medium/25 bg-medium/[0.04] p-4">
       <header className="flex flex-wrap items-center gap-3">
         <AlarmClock className="size-4 text-medium" />
-        <h2 className="font-heading text-sm font-semibold tracking-[0.14em] uppercase">Due today</h2>
+        <h2 className="font-heading text-sm font-semibold tracking-[0.14em] uppercase">
+          {t('review.dueToday')}
+        </h2>
         <span className="font-mono text-[11px] text-muted-foreground tabular-nums">
-          {left.length} of {waiting}
+          {t('review.progress', { left: left.length, total: waiting })}
         </span>
         {waiting > dailyCap && (
-          <span className="text-[11px] text-muted-foreground">and {waiting - dailyCap} more waiting</span>
+          <span className="text-[11px] text-muted-foreground">
+            {t('review.moreWaiting', { more: waiting - dailyCap })}
+          </span>
         )}
       </header>
 
@@ -155,14 +161,14 @@ export function ReviewQueue({ problems, statuses, tags, dailyCap }: ReviewQueueP
       )}
 
       {left.length === 0 && queue.length > 0 && (
-        <p className="px-3 text-[11px] text-pass">That is the queue cleared for today.</p>
+        <p className="px-3 text-[11px] text-pass">{t('review.cleared')}</p>
       )}
 
       {stuck.length > 0 && (
         <div className="border-t border-line pt-3">
           <p className="mb-2 flex items-center gap-1.5 px-3 text-[10px] font-semibold tracking-[0.18em] text-fail uppercase">
             <Flame className="size-3" />
-            stuck
+            {t('review.stuck')}
           </p>
           <ul className="space-y-px">
             {stuck.map(({ problem, lapses }) => (
@@ -174,14 +180,11 @@ export function ReviewQueue({ problems, statuses, tags, dailyCap }: ReviewQueueP
                 >
                   {problem.title}
                 </Link>
-                <span className="text-[11px] text-fail">{lapses} lapses</span>
+                <span className="text-[11px] text-fail">{t('review.lapses', { count: lapses })}</span>
               </li>
             ))}
           </ul>
-          <p className="px-3 pt-2 text-[11px] text-muted-foreground">
-            Out of the daily queue until the note is rewritten. Repeating a problem that is not
-            landing costs the rest of the queue.
-          </p>
+          <p className="px-3 pt-2 text-[11px] text-muted-foreground">{t('review.stuckNote')}</p>
         </div>
       )}
     </section>

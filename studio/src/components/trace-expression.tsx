@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import { ChevronsRight } from 'lucide-react';
 import type { TraceKind, TraceStep } from '@/lib/types';
@@ -12,14 +13,15 @@ interface TraceExpressionProps {
   onJumpLine: (line: number) => void;
 }
 
+/** Dictionary keys, looked up where they are drawn. */
 const LABEL: Record<TraceKind, string> = {
-  call: 'call',
-  stmt: 'statement',
-  'loop-init': 'loop start',
-  'loop-cond': 'loop test',
-  'loop-update': 'loop step',
-  cond: 'test',
-  return: 'return',
+  call: 'trace.kindCall',
+  stmt: 'trace.kindStmt',
+  'loop-init': 'trace.kindLoopInit',
+  'loop-cond': 'trace.kindLoopCond',
+  'loop-update': 'trace.kindLoopUpdate',
+  cond: 'trace.kindCond',
+  return: 'trace.kindReturn',
 };
 
 const TONE: Record<TraceKind, string> = {
@@ -33,6 +35,7 @@ const TONE: Record<TraceKind, string> = {
 };
 
 export function TraceExpression({ step, pass, onJumpLine }: TraceExpressionProps) {
+  const { t } = useTranslation();
   const consequence = consequenceOf(step);
 
   const renderRow = (entry: string, index: number) => {
@@ -64,7 +67,7 @@ export function TraceExpression({ step, pass, onJumpLine }: TraceExpressionProps
 
     return (
       <span className="rounded-full border border-line px-2 py-0.5 font-mono text-[10px] text-muted-foreground">
-        {pass.ending ? 'loop ends' : `pass ${pass.pass} of ${pass.total}`}
+        {pass.ending ? t('trace.loopEnds') : t('trace.loopPass', { pass: pass.pass, total: pass.total })}
       </span>
     );
   };
@@ -78,7 +81,7 @@ export function TraceExpression({ step, pass, onJumpLine }: TraceExpressionProps
             TONE[step.kind],
           )}
         >
-          {LABEL[step.kind]}
+          {t(LABEL[step.kind])}
         </span>
 
         {step.fn && (
@@ -87,20 +90,20 @@ export function TraceExpression({ step, pass, onJumpLine }: TraceExpressionProps
 
         {step.depth > 1 && (
           <span
-            title="How many calls deep this step is"
+            title={t('trace.depthHint')}
             className="rounded-full border border-line px-2 py-0.5 font-mono text-[10px] text-muted-foreground"
           >
-            depth {step.depth}
+            {t('trace.depth', { depth: step.depth })}
           </span>
         )}
 
         <button
           type="button"
           onClick={() => onJumpLine(step.line)}
-          title={`Jump to the next time line ${step.line} runs`}
+          title={t('trace.jumpLine', { line: step.line })}
           className="flex items-center gap-1 font-mono text-[10px] text-muted-foreground transition-colors hover:text-primary"
         >
-          line {step.line}
+          {t('trace.line', { line: step.line })}
           <ChevronsRight className="size-3" />
         </button>
 
@@ -108,7 +111,7 @@ export function TraceExpression({ step, pass, onJumpLine }: TraceExpressionProps
 
         {step.changed && (
           <span className="ml-auto font-mono text-[10px] text-muted-foreground">
-            sets <span className="text-foreground/80">{step.changed}</span>
+            {t('trace.sets')} <span className="text-foreground/80">{step.changed}</span>
           </span>
         )}
       </header>

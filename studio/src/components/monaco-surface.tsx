@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import Editor, { loader, type BeforeMount, type Monaco, type OnMount } from '@monaco-editor/react';
 import type { editor } from 'monaco-editor';
 import type { TypeMarker } from '@/lib/types';
@@ -28,6 +29,7 @@ export function MonacoSurface({
   onSave,
   onRun,
 }: MonacoSurfaceProps) {
+  const { t } = useTranslation();
   const save = useRef(onSave);
   const run = useRef(onRun);
   const lineClick = useRef(onLineClick);
@@ -216,7 +218,7 @@ export function MonacoSurface({
       beforeMount={handleBeforeMount}
       onMount={handleMount}
       onChange={handleChange}
-      loading={<span className="text-xs text-muted-foreground">loading editor…</span>}
+      loading={<span className="text-xs text-muted-foreground">{t('editor.loading')}</span>}
       options={{
         fontFamily: 'var(--font-code), ui-monospace, monospace',
         fontSize: 13.5,

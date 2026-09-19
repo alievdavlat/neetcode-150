@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Check, Loader2, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -16,10 +17,11 @@ interface RecallDrillProps {
   onSkip: () => void;
 }
 
+/** `label` is a dictionary key, looked up where the button is drawn. */
 const VERDICTS: { grade: ReviewGrade; label: string; tone: string }[] = [
-  { grade: 2, label: 'I had it', tone: 'border-pass/40 text-pass hover:bg-pass/10' },
-  { grade: 1, label: 'Close', tone: 'border-medium/40 text-medium hover:bg-medium/10' },
-  { grade: 0, label: 'No idea', tone: 'border-fail/40 text-fail hover:bg-fail/10' },
+  { grade: 2, label: 'recall.hadIt', tone: 'border-pass/40 text-pass hover:bg-pass/10' },
+  { grade: 1, label: 'recall.close', tone: 'border-medium/40 text-medium hover:bg-medium/10' },
+  { grade: 0, label: 'recall.noIdea', tone: 'border-fail/40 text-fail hover:bg-fail/10' },
 ];
 
 /**
@@ -28,6 +30,7 @@ const VERDICTS: { grade: ReviewGrade; label: string; tone: string }[] = [
  * nothing else, so a due queue can be cleared on a day with no hour to spare.
  */
 export function RecallDrill({ problem, tags, onDone, onSkip }: RecallDrillProps) {
+  const { t } = useTranslation();
   const [picked, setPicked] = useState<string | null>(null);
   const [idea, setIdea] = useState('');
   const [shown, setShown] = useState(false);
@@ -95,7 +98,7 @@ export function RecallDrill({ problem, tags, onDone, onSkip }: RecallDrillProps)
         <span className="font-mono text-[11px] text-muted-foreground">#{problem.number}</span>
         <h3 className="font-heading text-sm font-semibold">{problem.title}</h3>
         <Button variant="ghost" size="xs" onClick={onSkip} className="ml-auto text-muted-foreground">
-          Skip
+          {t('recall.skip')}
         </Button>
       </header>
 
@@ -111,39 +114,43 @@ export function RecallDrill({ problem, tags, onDone, onSkip }: RecallDrillProps)
         <>
           <div>
             <p className="mb-2 text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
-              which pattern
+              {t('recall.whichPattern')}
             </p>
             <div className="flex flex-wrap gap-1.5">{tags.map(renderTag)}</div>
           </div>
 
           <div>
             <p className="mb-2 text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
-              the one idea
+              {t('recall.oneIdea')}
             </p>
             <Textarea
               value={idea}
               onChange={(event) => setIdea(event.target.value)}
-              placeholder="In one sentence, what makes it work?"
-              aria-label="The one idea"
+              placeholder={t('recall.ideaPlaceholder')}
+              aria-label={t('recall.ideaLabel')}
               className="min-h-16 bg-white/[0.02] text-[13px]"
             />
           </div>
 
           <Button size="sm" onClick={reveal} disabled={!picked && idea.trim() === ''}>
-            Show the answer
+            {t('recall.showAnswer')}
           </Button>
         </>
       ) : (
         <>
           <div className="grid gap-3 sm:grid-cols-2">
             <div className="rounded-xl border border-line bg-white/[0.02] p-3">
-              <p className="mb-1 text-[10px] tracking-[0.18em] text-muted-foreground uppercase">you said</p>
+              <p className="mb-1 text-[10px] tracking-[0.18em] text-muted-foreground uppercase">
+                {t('recall.youSaid')}
+              </p>
               <p className="font-mono text-[11px] text-foreground/80">{picked ?? '—'}</p>
               <p className="mt-1 text-[12px] text-foreground/70">{idea.trim() || '—'}</p>
             </div>
 
             <div className="rounded-xl border border-primary/25 bg-primary/[0.05] p-3">
-              <p className="mb-1 text-[10px] tracking-[0.18em] text-muted-foreground uppercase">it was</p>
+              <p className="mb-1 text-[10px] tracking-[0.18em] text-muted-foreground uppercase">
+                {t('recall.itWas')}
+              </p>
               <p className="flex flex-wrap gap-1 font-mono text-[11px] text-primary">
                 {answer.length > 0 ? answer.join(', ') : problem.pattern}
               </p>
@@ -171,7 +178,7 @@ export function RecallDrill({ problem, tags, onDone, onSkip }: RecallDrillProps)
                 )}
               >
                 {verdict.grade === 0 ? <X className="size-3.5" /> : <Check className="size-3.5" />}
-                {verdict.label}
+                {t(verdict.label)}
               </button>
             ))}
           </div>

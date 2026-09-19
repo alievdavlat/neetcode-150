@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import { CoursePlayer } from '@/components/course-player';
 import { StrictGate } from '@/components/strict-gate';
+import { translator } from '@/i18n/lookup';
+import { getDictionary, getLocale } from '@/i18n/server';
 import { getCourse, getCourseNotes, getWatched } from '@/server/courses';
 import { getProblems, getStatuses } from '@/server/problems';
 import { dueQueue } from '@/server/review';
@@ -19,14 +21,15 @@ export default async function CoursePage({
   params: Promise<{ id: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  const [{ id }, query] = await Promise.all([params, searchParams]);
+  const [{ id }, query, locale] = await Promise.all([params, searchParams, getLocale()]);
   const asked = typeof query.at === 'string' ? Number(query.at) : Number.NaN;
-  const [course, watched, notes, statuses, settings] = await Promise.all([
+  const [course, watched, notes, statuses, settings, dictionary] = await Promise.all([
     getCourse(id),
     getWatched(),
     getCourseNotes(),
     getStatuses(),
     getSettings(),
+    getDictionary(locale),
   ]);
 
   const waiting = settings.reviewEnabled ? dueQueue(statuses) : [];
@@ -43,12 +46,16 @@ export default async function CoursePage({
     return [{ number: problem.number, title: problem.title, difficulty: problem.difficulty, tags, lessonAt: problem.lessonAt }];
   });
 
+  const t = translator(dictionary, locale);
+
+  /** The server dictionary is a plain lookup, so a count is put in place here. */
+
   return (
     <main className="mx-auto w-full max-w-7xl space-y-5 px-5 py-8">
       <header className="flex flex-wrap items-center gap-3">
         <Link
           href="/courses"
-          aria-label="Back to courses"
+          aria-label={t('courses.backToCourses')}
           className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-line text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
         >
           <ArrowLeft className="size-4" />
@@ -57,8 +64,9 @@ export default async function CoursePage({
         <div className="min-w-0">
           <h1 className="truncate font-heading text-xl font-semibold tracking-tight">{course.name}</h1>
           <p className="truncate text-xs text-muted-foreground">
-            {course.channel} · {duration(course.seconds)} · {course.lessons.length} lessons · chapters from the{' '}
-            {course.from}
+            {course.channel} · {duration(t, course.seconds)} ·{' '}
+            {t('courses.countLessons', { count: course.lessons.length })} ·{' '}
+            {t('courses.chaptersFrom', { source: course.from })}
           </p>
         </div>
       </header>

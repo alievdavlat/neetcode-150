@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import { Loader2, PanelLeftClose, PanelLeftOpen, Play, RotateCcw, Search, SlidersHorizontal, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -53,6 +54,7 @@ export function ProblemRail({
   onSelect,
   onRunCategory,
 }: ProblemRailProps) {
+  const { t } = useTranslation();
   const [query, setQuery] = useState('');
   const [difficulty, setDifficulty] = useState<Difficulty | null>(null);
   const [state, setState] = useState<ProblemState | null>(null);
@@ -153,9 +155,9 @@ export function ProblemRail({
   const renderFilters = () => (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline" size="sm" className="h-8 shrink-0 gap-1.5" aria-label="Filter the problem list">
+        <Button variant="outline" size="sm" className="h-8 shrink-0 gap-1.5" aria-label={t('rail.filter')}>
           <SlidersHorizontal className="size-3.5" />
-          Filters
+          {t('rail.filters')}
           {picked > 0 && (
             <span className="rounded-full bg-primary/15 px-1.5 font-mono text-[10px] text-primary">{picked}</span>
           )}
@@ -164,7 +166,7 @@ export function ProblemRail({
 
       <PopoverContent align="end" className="w-80 space-y-2.5">
         <div className="flex items-center justify-between gap-2">
-          {renderLabel('Difficulty')}
+          {renderLabel(t('rail.difficulty'))}
           {filtering && (
             <button
               type="button"
@@ -172,7 +174,7 @@ export function ProblemRail({
               className="flex items-center gap-1 text-[11px] text-muted-foreground transition-colors hover:text-fail"
             >
               <X className="size-3" />
-              Clear all
+              {t('rail.clearAll')}
             </button>
           )}
         </div>
@@ -184,17 +186,17 @@ export function ProblemRail({
           )}
         </div>
 
-        {renderLabel('Status')}
+        {renderLabel(t('rail.status'))}
         <div className="flex flex-wrap gap-1.5">
           {STATES.map((entry) =>
-            renderChip(STATE_META[entry].label, state === entry, STATE_META[entry].dot, () =>
+            renderChip(t(STATE_META[entry].label), state === entry, STATE_META[entry].dot, () =>
               narrow(() => setState(state === entry ? null : entry)),
             ),
           )}
-          {renderChip('Due', dueOnly, 'bg-medium', () => narrow(() => setDueOnly(!dueOnly)))}
+          {renderChip(t('rail.due'), dueOnly, 'bg-medium', () => narrow(() => setDueOnly(!dueOnly)))}
         </div>
 
-        {tags.length > 0 && renderLabel('Topics')}
+        {tags.length > 0 && renderLabel(t('rail.topics'))}
         <div className="flex max-h-40 flex-wrap gap-1.5 overflow-y-auto">
           {tags.map(([entry, count]) => (
             <button
@@ -246,7 +248,7 @@ export function ProblemRail({
         ref={active ? activeRow : undefined}
         type="button"
         disabled={locked && !active}
-        title={locked && !active ? 'Strict mode: finish the problem that is open' : undefined}
+        title={locked && !active ? t('rail.locked') : undefined}
         onClick={() => onSelect(problem.number)}
         aria-current={active ? 'true' : undefined}
         className={cn(
@@ -265,13 +267,13 @@ export function ProblemRail({
         <span className="relative font-mono text-[11px] tabular-nums opacity-50">{problem.number}</span>
         <span className="relative flex-1 truncate text-[13px]">{problem.title}</span>
         {status.history.due && (
-          <RotateCcw className="relative size-3 shrink-0 text-medium" aria-label="due for review" />
+          <RotateCcw className="relative size-3 shrink-0 text-medium" aria-label={t('rail.dueForReview')} />
         )}
         <span
           className={cn('relative size-1.5 shrink-0 rounded-full', DIFFICULTY_META[problem.difficulty].dot)}
-          title={problem.difficulty}
+          title={t(DIFFICULTY_META[problem.difficulty].label)}
         >
-          <span className="sr-only">{problem.difficulty}</span>
+          <span className="sr-only">{t(DIFFICULTY_META[problem.difficulty].label)}</span>
         </span>
       </button>
     );
@@ -295,8 +297,8 @@ export function ProblemRail({
               type="button"
               onClick={() => onRunCategory(group.dir)}
               disabled={runningCategory !== null}
-              title={`Run every started problem in ${group.category}`}
-              aria-label={`Run every started problem in ${group.category}`}
+              title={t('rail.runCategory', { category: group.category })}
+              aria-label={t('rail.runCategory', { category: group.category })}
               className="rounded p-0.5 text-muted-foreground transition-colors hover:text-primary disabled:opacity-40"
             >
               {busy ? <Loader2 className="size-3 animate-spin" /> : <Play className="size-3" />}
@@ -318,8 +320,8 @@ export function ProblemRail({
         <button
           type="button"
           onClick={() => onCollapsedChange?.(false)}
-          aria-label="Expand the problem list"
-          title="Expand the problem list"
+          aria-label={t('rail.expand')}
+          title={t('rail.expand')}
           className="flex size-7 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-white/[0.04] hover:text-foreground"
         >
           <PanelLeftOpen className="size-4" />
@@ -341,8 +343,8 @@ export function ProblemRail({
           <Input
             value={query}
             onChange={(event) => narrow(() => setQuery(event.target.value))}
-            placeholder={`Search ${problems.length} problems`}
-            aria-label="Search problems"
+            placeholder={t('rail.search', { count: problems.length })}
+            aria-label={t('rail.searchLabel')}
             className="h-8 pl-8 text-[13px]"
           />
         </div>
@@ -352,8 +354,8 @@ export function ProblemRail({
         <button
           type="button"
           onClick={() => onCollapsedChange?.(true)}
-          aria-label="Collapse the problem list"
-          title="Collapse the problem list"
+          aria-label={t('rail.collapse')}
+          title={t('rail.collapse')}
           className="flex size-8 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-white/[0.04] hover:text-foreground"
         >
           <PanelLeftClose className="size-4" />
@@ -364,14 +366,14 @@ export function ProblemRail({
         <div className="py-2">
           {groups.length === 0 ? (
             <div className="px-4 py-10 text-center">
-              <p className="text-sm text-muted-foreground">Nothing matches that filter.</p>
+              <p className="text-sm text-muted-foreground">{t('rail.empty')}</p>
               {filtering && (
                 <button
                   type="button"
                   onClick={clearFilters}
                   className="mt-2 text-[11px] text-primary transition-colors hover:underline"
                 >
-                  Clear the filters
+                  {t('rail.clearFilters')}
                 </button>
               )}
             </div>
@@ -381,7 +383,7 @@ export function ProblemRail({
 
               {waiting > 0 && (
                 <div ref={more} className="px-4 py-3 text-center text-[11px] text-muted-foreground">
-                  {waiting} more below
+                  {t('rail.more', { count: waiting })}
                 </div>
               )}
             </>

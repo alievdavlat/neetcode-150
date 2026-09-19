@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { motion } from 'motion/react';
 import { ArrowRight, Settings2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Brand } from './brand';
 import { BoardCard } from './board-card';
 import { ActivityGrid } from './activity-grid';
@@ -29,14 +30,16 @@ interface HomeProps {
 
 type Source = 'topics' | 'companies';
 
+/** The key of the line under the strip, which explains where the counts come from. */
 const HINT: Record<Source, string> = {
-  topics: 'Topics are read from the pattern each problem teaches, so the counts are the real spread of this workspace.',
-  companies: 'Counts are how many problems in this workspace that company is on record asking, not how often.',
+  topics: 'home.hintTopics',
+  companies: 'home.hintCompanies',
 };
 
 const RESULT_LIMIT = 60;
 
 export function Home({ problems, statuses, boards, companies, courses, activity, settings }: HomeProps) {
+  const { t } = useTranslation();
   const router = useRouter();
   const [source, setSource] = useState<Source>('topics');
   const [picked, setPicked] = useState<string | null>(null);
@@ -105,13 +108,13 @@ export function Home({ problems, statuses, boards, companies, courses, activity,
 
   const renderHero = () => (
     <header className="flex flex-wrap items-end gap-6">
-      <Brand subtitle={`${problems.length} problems in this workspace`} large />
+      <Brand subtitle={t('home.subtitle', { count: problems.length })} large />
 
       <div className="ml-auto flex items-center gap-3">
         <Link
           href="/settings"
-          aria-label="Settings"
-          title="Review, strict mode and how many problems a day"
+          aria-label={t('nav.settings')}
+          title={t('home.settingsHint')}
           className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-line text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
         >
           <Settings2 className="size-4" />
@@ -132,7 +135,7 @@ export function Home({ problems, statuses, boards, companies, courses, activity,
   );
 
   const renderSources = () => (
-    <div role="group" aria-label="tag source" className="flex items-center gap-1">
+    <div role="group" aria-label={t('home.tagSource')} className="flex items-center gap-1">
       {(['topics', 'companies'] as Source[]).map((entry) => (
         <button
           key={entry}
@@ -145,7 +148,7 @@ export function Home({ problems, statuses, boards, companies, courses, activity,
             source === entry ? 'text-foreground' : 'text-muted-foreground hover:text-foreground',
           )}
         >
-          {entry}
+          {t(`home.source.${entry}`)}
         </button>
       ))}
     </div>
@@ -167,7 +170,7 @@ export function Home({ problems, statuses, boards, companies, courses, activity,
         <span className="min-w-0 flex-1 truncate text-[13px]">{problem.title}</span>
         <span className="hidden text-[11px] text-muted-foreground sm:inline">{problem.category}</span>
         <span className={cn('w-12 text-right text-[11px]', DIFFICULTY_META[problem.difficulty].text)}>
-          {problem.difficulty}
+          {t(DIFFICULTY_META[problem.difficulty].label)}
         </span>
       </Link>
     </motion.li>
@@ -179,14 +182,16 @@ export function Home({ problems, statuses, boards, companies, courses, activity,
         <p className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
           {picked}
         </p>
-        <p className="font-mono text-[11px] text-muted-foreground tabular-nums">{results.length} problems</p>
+        <p className="font-mono text-[11px] text-muted-foreground tabular-nums">
+          {t('home.problemCount', { count: results.length })}
+        </p>
 
         <button
           type="button"
           onClick={() => setPicked(null)}
           className="ml-auto flex items-center gap-1 text-[11px] text-muted-foreground transition-colors hover:text-foreground"
         >
-          all collections
+          {t('home.allCollections')}
           <ArrowRight className="size-3" />
         </button>
       </header>
@@ -195,16 +200,16 @@ export function Home({ problems, statuses, boards, companies, courses, activity,
 
       {results.length > RESULT_LIMIT && (
         <p className="px-3 pt-2 text-[11px] text-muted-foreground">
-          and {results.length - RESULT_LIMIT} more —{' '}
+          {t('home.andMore', { more: results.length - RESULT_LIMIT })}{' '}
           {source === 'topics' ? (
             <Link
               href={`/c/${ALL_BOARD}?tag=${encodeURIComponent(picked ?? '')}`}
               className="text-foreground underline decoration-line underline-offset-2 transition-colors hover:decoration-primary"
             >
-              open the board filtered to {picked}
+              {t('home.openFiltered', { tag: picked ?? '' })}
             </Link>
           ) : (
-            'open the board to see them all'
+            t('home.openBoardAll')
           )}
         </p>
       )}
@@ -259,8 +264,8 @@ export function Home({ problems, statuses, boards, companies, courses, activity,
 
       <TagStrip
         title={renderSources()}
-        hint={HINT[source]}
-        placeholder={source === 'topics' ? 'Search topics' : 'Search companies'}
+        hint={t(HINT[source])}
+        placeholder={source === 'topics' ? t('home.searchTopics') : t('home.searchCompanies')}
         tags={tags}
         picked={picked}
         onPick={setPicked}

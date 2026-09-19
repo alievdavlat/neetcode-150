@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslation } from 'react-i18next';
 import { AnimatePresence, motion } from 'motion/react';
 import { ActivitySquare, AlertTriangle, Check, CircleSlash, Clock, SquareTerminal, Terminal, X } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -27,6 +28,8 @@ const CARD = {
 };
 
 export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure, onSnippet }: VerdictPanelProps) {
+  const { t } = useTranslation();
+
   const renderNotice = (icon: React.ReactNode, title: string, body: string, tone: string) => (
     <PanelNotice icon={icon} title={title} body={body} tone={tone} />
   );
@@ -40,9 +43,9 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure, o
       className="flex items-start gap-2 rounded-lg px-2 py-1.5 hover:bg-white/[0.03]"
     >
       {item.passed ? (
-        <Check className="mt-0.5 size-3 shrink-0 text-pass" aria-label="passed" />
+        <Check className="mt-0.5 size-3 shrink-0 text-pass" aria-label={t('verdict.passed')} />
       ) : (
-        <X className="mt-0.5 size-3 shrink-0 text-fail" aria-label="failed" />
+        <X className="mt-0.5 size-3 shrink-0 text-fail" aria-label={t('verdict.failed')} />
       )}
       <span className="w-40 shrink-0 truncate text-[11px] text-muted-foreground">{item.label}</span>
       {item.trace ? (
@@ -73,29 +76,29 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure, o
           }
           className="ml-auto rounded-md border border-line px-1.5 py-0.5 text-[10px] text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
         >
-          add console.log
+          {t('verdict.addLog')}
         </button>
       </div>
 
       <dl className="space-y-1.5 font-mono text-[11px]">
         <div className="flex gap-2">
-          <dt className="w-28 shrink-0 text-muted-foreground">Input</dt>
+          <dt className="w-28 shrink-0 text-muted-foreground">{t('verdict.input')}</dt>
           <dd className="break-all text-foreground/80">{failure.input}</dd>
         </div>
         {failure.thrown ? (
           <div className="flex gap-2">
-            <dt className="w-28 shrink-0 text-muted-foreground">It threw</dt>
+            <dt className="w-28 shrink-0 text-muted-foreground">{t('verdict.threw')}</dt>
             <dd className="break-all text-fail">{failure.thrown}</dd>
           </div>
         ) : (
           <>
             <div className="flex gap-2">
-              <dt className="w-28 shrink-0 text-fail/80">Your output</dt>
+              <dt className="w-28 shrink-0 text-fail/80">{t('verdict.yourOutput')}</dt>
               <dd className="break-all font-medium text-fail">{failure.got}</dd>
             </div>
             {failure.expected !== null && (
               <div className="flex gap-2">
-                <dt className="w-28 shrink-0 text-pass/80">Output should be</dt>
+                <dt className="w-28 shrink-0 text-pass/80">{t('verdict.shouldBe')}</dt>
                 <dd className="break-all font-medium text-pass">{failure.expected}</dd>
               </div>
             )}
@@ -103,7 +106,7 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure, o
         )}
         {failure.detail && (
           <div className="flex gap-2">
-            <dt className="w-28 shrink-0 text-muted-foreground">Note</dt>
+            <dt className="w-28 shrink-0 text-muted-foreground">{t('verdict.note')}</dt>
             <dd className="break-all text-muted-foreground">{failure.detail}</dd>
           </div>
         )}
@@ -115,7 +118,7 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure, o
     if (!green) {
       return (
         <p className="rounded-xl border border-line bg-black/20 px-3 py-2 text-[11px] text-muted-foreground">
-          Big-O is measured only once every case passes.
+          {t('verdict.bigOLocked')}
         </p>
       );
     }
@@ -127,7 +130,7 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure, o
         className="flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-line px-3 py-2 text-[11px] text-muted-foreground transition-colors hover:border-hot/40 hover:text-hot"
       >
         <ActivitySquare className="size-3.5" />
-        Measure Big-O — time it at doubling input sizes and draw the curve
+        {t('verdict.measure')}
       </button>
     );
   };
@@ -151,17 +154,19 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure, o
               green ? 'border-pass/30 bg-pass/10 text-pass' : 'border-fail/30 bg-fail/10 text-fail',
             )}
           >
-            {green ? 'PASS' : 'FAIL'} {variant.passed}/{variant.total}
+            {green ? t('verdict.pass') : t('verdict.fail')} {variant.passed}/{variant.total}
           </span>
           {fastest === variant.name && (
             <span className="rounded-full border border-cool/30 bg-cool/10 px-2 py-0.5 text-[10px] text-cool">
-              fastest
+              {t('verdict.fastest')}
             </span>
           )}
           <span className="ml-auto flex items-center gap-3 font-mono text-[11px] text-muted-foreground">
-            <span title="time for one call">{formatMs(variant.ms)}</span>
-            <span title="heap growth across one call">{formatBytes(variant.heap)}</span>
-            {variant.target && <span className="text-muted-foreground/70">target {variant.target}</span>}
+            <span title={t('verdict.msHint')}>{formatMs(variant.ms)}</span>
+            <span title={t('verdict.heapHint')}>{formatBytes(variant.heap)}</span>
+            {variant.target && (
+              <span className="text-muted-foreground/70">{t('verdict.target', { target: variant.target })}</span>
+            )}
           </span>
         </header>
 
@@ -170,7 +175,7 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure, o
             {variant.failures.slice(0, FAILURE_LIMIT).map(renderFailure(variant.name))}
             {variant.failures.length > FAILURE_LIMIT && (
               <p className="px-1 text-[11px] text-muted-foreground">
-                and {variant.failures.length - FAILURE_LIMIT} more failing cases
+                {t('verdict.moreFailing', { count: variant.failures.length - FAILURE_LIMIT })}
               </p>
             )}
           </div>
@@ -179,7 +184,7 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure, o
         <ul className="space-y-0.5">{passing.slice(0, PASSED_LIMIT).map(renderCase)}</ul>
         {passing.length > PASSED_LIMIT && (
           <p className="px-2 pt-1.5 text-[11px] text-muted-foreground">
-            and {passing.length - PASSED_LIMIT} more cases passed
+            {t('verdict.morePassed', { count: passing.length - PASSED_LIMIT })}
           </p>
         )}
       </motion.section>
@@ -190,8 +195,8 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure, o
     if (current.status === 'not-started') {
       return renderNotice(
         <CircleSlash className="size-6 text-muted-foreground" />,
-        'Still a stub',
-        'Every export throws "Not implemented". Write an attempt, save, then run.',
+        t('verdict.stubTitle'),
+        t('verdict.stubBody'),
         'border-line bg-panel/60',
       );
     }
@@ -199,8 +204,8 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure, o
     if (current.status === 'no-cases') {
       return renderNotice(
         <AlertTriangle className="size-6 text-medium" />,
-        'No runnable cases',
-        `Add tests/cases/${current.dir}/${current.number}-${current.slug}.cases.mjs to test this one.`,
+        t('verdict.noCasesTitle'),
+        t('verdict.noCasesBody', { dir: current.dir, number: current.number, slug: current.slug }),
         'border-medium/25 bg-medium/[0.05]',
       );
     }
@@ -208,8 +213,8 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure, o
     if (current.status === 'missing') {
       return renderNotice(
         <CircleSlash className="size-6 text-muted-foreground" />,
-        'Nothing to run',
-        'The file the runner was pointed at does not exist yet. Save once, then run.',
+        t('verdict.missingTitle'),
+        t('verdict.missingBody'),
         'border-line bg-panel/60',
       );
     }
@@ -217,8 +222,8 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure, o
     if (current.status === 'load-error') {
       return renderNotice(
         <AlertTriangle className="size-6 text-fail" />,
-        'Your file did not load',
-        current.message ?? 'The file could not be imported. Look for a syntax error - a stray bracket, or two exports sharing a name.',
+        t('verdict.loadErrorTitle'),
+        current.message ?? t('verdict.loadErrorBody'),
         'border-fail/30 bg-fail/[0.05]',
       );
     }
@@ -226,8 +231,8 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure, o
     if (current.status === 'stalled') {
       return renderNotice(
         <Clock className="size-6 text-fail" />,
-        'Timed out',
-        `No answer after ${Math.round((current.timeoutMs ?? 0) / 1000)}s. A loop is not ending - check the condition that should stop it.`,
+        t('verdict.stalledTitle'),
+        t('verdict.stalledBody', { seconds: Math.round((current.timeoutMs ?? 0) / 1000) }),
         'border-fail/30 bg-fail/[0.05]',
       );
     }
@@ -235,8 +240,8 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure, o
     if (current.status !== 'attempted') {
       return renderNotice(
         <AlertTriangle className="size-6 text-fail" />,
-        'The run crashed',
-        current.message ?? 'The runner died before it could report.',
+        t('verdict.crashedTitle'),
+        current.message ?? t('verdict.crashedBody'),
         'border-fail/30 bg-fail/[0.05]',
       );
     }
@@ -279,10 +284,10 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure, o
             </span>
             <div>
               <p className="font-heading text-sm font-semibold">
-                {green ? 'All cases pass' : `${total - passed} of ${total} cases fail`}
+                {green ? t('verdict.allPass') : t('verdict.someFail', { failed: total - passed, total })}
               </p>
               <p className="text-[11px] text-muted-foreground">
-                {current.variants.length} variant{current.variants.length === 1 ? '' : 's'} &middot; {problemTitle}
+                {t('verdict.variants', { count: current.variants.length })} &middot; {problemTitle}
               </p>
             </div>
           </motion.div>
@@ -295,7 +300,7 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure, o
             <motion.section variants={CARD} className="rounded-2xl border border-line bg-black/30 p-4">
               <p className="mb-2 flex items-center gap-1.5 text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
                 <SquareTerminal className="size-3" />
-                your console output
+                {t('verdict.consoleOutput')}
               </p>
               <pre className="overflow-x-auto font-mono text-[11px] leading-relaxed text-foreground/80">
                 {current.scratch}
@@ -312,10 +317,8 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure, o
   if (running) {
     return renderNotice(
       <Terminal className="size-6 animate-pulse text-primary" />,
-      bigO ? 'Measuring your solution' : 'Running your solution',
-      bigO
-        ? 'Each export is tested, then timed at doubling input sizes to fit a curve. This takes a few seconds.'
-        : 'Each export is tested against the worked examples and any hand-written cases.',
+      bigO ? t('verdict.measuringTitle') : t('verdict.runningTitle'),
+      bigO ? t('verdict.measuringBody') : t('verdict.runningBody'),
       'border-primary/25 bg-primary/[0.04]',
     );
   }
@@ -333,8 +336,8 @@ export function VerdictPanel({ report, running, bigO, problemTitle, onMeasure, o
           ? renderReport(report)
           : renderNotice(
               <Terminal className="size-6 text-muted-foreground" />,
-              'No run yet',
-              'Save your attempt and run it. Cases come from the worked examples plus anything in tests/cases.',
+              t('verdict.noRunTitle'),
+              t('verdict.noRunBody'),
               'border-line bg-panel/60',
             )}
       </motion.div>

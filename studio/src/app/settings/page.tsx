@@ -25,7 +25,7 @@ export default async function SettingsPage() {
     getDictionary(locale),
   ]);
   const due = statuses.filter((status) => status.history.due && !status.history.leech).length;
-  const t = translator(dictionary);
+  const t = translator(dictionary, locale);
 
   return (
     <main className="mx-auto w-full max-w-2xl space-y-8 px-5 py-10">

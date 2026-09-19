@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 import { Progress } from '@/components/ui/progress';
 import type { Board } from '@/lib/types';
 import { cn } from '@/lib/utils';
@@ -9,12 +12,13 @@ interface BoardCardProps {
 }
 
 const SPLIT = [
-  { key: 'easy', label: 'Easy', tone: 'text-easy', bar: 'bg-easy' },
-  { key: 'medium', label: 'Med.', tone: 'text-medium', bar: 'bg-medium' },
-  { key: 'hard', label: 'Hard', tone: 'text-hard', bar: 'bg-hard' },
+  { key: 'easy', label: 'board.easy', tone: 'text-easy', bar: 'bg-easy' },
+  { key: 'medium', label: 'board.medium', tone: 'text-medium', bar: 'bg-medium' },
+  { key: 'hard', label: 'board.hard', tone: 'text-hard', bar: 'bg-hard' },
 ] as const;
 
 export function BoardCard({ board, accent }: BoardCardProps) {
+  const { t } = useTranslation();
   const percent = board.total === 0 ? 0 : Math.round((board.solved / board.total) * 100);
 
   const renderSplit = () => (
@@ -23,7 +27,7 @@ export function BoardCard({ board, accent }: BoardCardProps) {
         <span key={entry.key} className="flex items-center gap-1 font-mono text-[10px]">
           <span className={cn('size-1.5 rounded-full', entry.bar)} />
           <span className={entry.tone}>{board[entry.key]}</span>
-          <span className="text-muted-foreground">{entry.label}</span>
+          <span className="text-muted-foreground">{t(entry.label)}</span>
         </span>
       ))}
     </div>

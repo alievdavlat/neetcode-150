@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslation } from 'react-i18next';
 import { formatMs } from '@/lib/meta';
 import type { RunComplexity } from '@/lib/types';
 import { cn } from '@/lib/utils';
@@ -34,21 +35,23 @@ const CURVES: { name: string; of: (n: number) => number }[] = [
   { name: 'O(n²)', of: (n) => n ** 2 },
 ];
 
+/** Dictionary keys, looked up where they are drawn. */
 const RELATION_NOTE: Record<RunComplexity['relation'], string> = {
-  match: 'matches target',
-  differs: 'differs from target',
-  unknown: 'target not comparable',
+  match: 'verdict.chartMatch',
+  differs: 'verdict.chartDiffers',
+  unknown: 'verdict.chartUnknown',
 };
 
 const compactN = (n: number) => (n >= 1000 ? `${Math.round(n / 1000)}k` : String(n));
 
 export function ComplexityChart({ series }: ComplexityChartProps) {
+  const { t } = useTranslation();
   const usable = series.filter((entry) => entry.complexity.points.length >= 2);
 
   if (usable.length === 0) {
     return (
       <p className="rounded-xl border border-line bg-black/20 p-3 text-[11px] text-muted-foreground">
-        {series[0]?.complexity.reason ?? 'Not enough sizes were measured to fit a curve.'}
+        {series[0]?.complexity.reason ?? t('verdict.chartThin')}
       </p>
     );
   }
@@ -95,7 +98,9 @@ export function ComplexityChart({ series }: ComplexityChartProps) {
 
   const ticks = [...new Set(sizes)].sort((left, right) => left - right);
   const summary = usable
-    .map((entry) => `${entry.name} fits ${entry.complexity.verdict ?? 'nothing'}`)
+    .map((entry) =>
+      t('verdict.chartFits', { name: entry.name, verdict: entry.complexity.verdict ?? t('verdict.chartNothing') }),
+    )
     .join('; ');
 
   const renderReference = (reference: Reference) => (
@@ -142,10 +147,12 @@ export function ComplexityChart({ series }: ComplexityChartProps) {
       <span className="h-0.5 w-4 rounded-full" style={{ background: SERIES_COLORS[index % SERIES_COLORS.length] }} />
       <span className="font-mono">{entry.name}</span>
       <span className="rounded-md border border-hot/30 bg-hot/10 px-1.5 py-0.5 font-mono text-hot">
-        {entry.complexity.verdict ?? 'no fit'}
+        {entry.complexity.verdict ?? t('verdict.chartNoFit')}
       </span>
       {entry.complexity.deviation !== null && (
-        <span className="text-muted-foreground">spread {(entry.complexity.deviation * 100).toFixed(1)}%</span>
+        <span className="text-muted-foreground">
+          {t('verdict.chartSpread', { percent: (entry.complexity.deviation * 100).toFixed(1) })}
+        </span>
       )}
       {entry.complexity.target && (
         <span
@@ -155,10 +162,10 @@ export function ComplexityChart({ series }: ComplexityChartProps) {
             entry.complexity.relation === 'unknown' && 'text-muted-foreground',
           )}
         >
-          {RELATION_NOTE[entry.complexity.relation]}
+          {t(RELATION_NOTE[entry.complexity.relation])}
         </span>
       )}
-      {entry.complexity.band && <span className="text-muted-foreground/70">· timing cannot separate the pair</span>}
+      {entry.complexity.band && <span className="text-muted-foreground/70">· {t('verdict.chartBand')}</span>}
     </div>
   );
 
@@ -168,7 +175,7 @@ export function ComplexityChart({ series }: ComplexityChartProps) {
         viewBox={`0 0 ${VIEW.width} ${VIEW.height}`}
         className="h-auto w-full"
         role="img"
-        aria-label={`Measured time at growing input sizes. ${summary}.`}
+        aria-label={t('verdict.chartLabel', { summary })}
       >
         <line x1={PAD.left} y1={PAD.top} x2={PAD.left} y2={PAD.top + innerHeight} stroke="rgba(255,255,255,0.18)" />
         <line

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ChevronDown, ChevronRight, Eye } from 'lucide-react';
 import type { TraceStep, TraceValue } from '@/lib/types';
 import { canMiss, reachedIn, shortIndex, UNCHANGED, type StepChanges, type VarChange } from '@/lib/trace-view';
@@ -39,13 +40,14 @@ const preview = (value: TraceValue) => {
 };
 
 export function TraceStage({ step, changes, covered, asked, watching, onWatch }: TraceStageProps) {
+  const { t } = useTranslation();
   const [opened, setOpened] = useState<Record<string, boolean>>({});
   const names = Object.keys(step.vars);
 
   if (names.length === 0) {
     return (
       <section className="rounded-2xl border border-line bg-panel/60 p-3">
-        <p className="text-[11px] text-muted-foreground">Nothing is in scope at this point.</p>
+        <p className="text-[11px] text-muted-foreground">{t('trace.nothingInScope')}</p>
       </section>
     );
   }
@@ -98,7 +100,7 @@ export function TraceStage({ step, changes, covered, asked, watching, onWatch }:
     const was = change.before?.t === 'array' ? change.before.items : null;
 
     if (value.items.length === 0) {
-      return <p className="font-mono text-[11px] text-muted-foreground">empty</p>;
+      return <p className="font-mono text-[11px] text-muted-foreground">{t('trace.empty')}</p>;
     }
 
     return (
@@ -121,8 +123,8 @@ export function TraceStage({ step, changes, covered, asked, watching, onWatch }:
               }
               title={
                 seen > 0
-                  ? `${item} — reached ${seen} ${seen === 1 ? 'time' : 'times'}. Click to follow only those steps.`
-                  : `${item} — click to follow only the steps that reach it`
+                  ? t('trace.cellReached', { item, count: seen })
+                  : t('trace.cellFollow', { item })
               }
               className={cn(
                 'flex min-w-10 max-w-28 flex-col items-center rounded-md border px-1.5 py-1 font-mono text-[11px] transition-colors',
@@ -148,7 +150,7 @@ export function TraceStage({ step, changes, covered, asked, watching, onWatch }:
 
   const renderMap = (name: string, value: Extract<TraceValue, { t: 'map' }>, change: VarChange) => {
     if (value.entries.length === 0) {
-      return <p className="font-mono text-[11px] text-muted-foreground">empty</p>;
+      return <p className="font-mono text-[11px] text-muted-foreground">{t('trace.empty')}</p>;
     }
 
     const moved = new Set(change.keys);
@@ -166,11 +168,7 @@ export function TraceStage({ step, changes, covered, asked, watching, onWatch }:
             type="button"
             aria-pressed={watching?.name === name && watching.key === key}
             onClick={() => onWatch(watching?.name === name && watching.key === key ? null : { name, key })}
-            title={
-              seen > 0
-                ? `reached ${seen} ${seen === 1 ? 'time' : 'times'}. Click to follow only those steps.`
-                : 'Click to follow only the steps that reach it'
-            }
+            title={seen > 0 ? t('trace.keyReached', { count: seen }) : t('trace.keyFollow')}
             className={cn(
               'flex w-full items-center gap-2 rounded-md border px-2 py-0.5 text-left font-mono text-[11px] transition-colors',
               toneOf(touchOf(name, key), moved.has(key), seen),
@@ -196,7 +194,11 @@ export function TraceStage({ step, changes, covered, asked, watching, onWatch }:
 
   const renderSummary = (value: TraceValue, change: VarChange) => {
     if (value.t !== 'scalar') {
-      return <span className="font-mono text-[10px] text-muted-foreground">{sizeOf(value)} items</span>;
+      return (
+        <span className="font-mono text-[10px] text-muted-foreground">
+          {t('trace.items', { count: sizeOf(value) })}
+        </span>
+      );
     }
 
     return (
@@ -241,7 +243,7 @@ export function TraceStage({ step, changes, covered, asked, watching, onWatch }:
         {value.truncated && <span className="text-[11px] text-muted-foreground">&hellip;</span>}
         {value.cyclic && (
           <span className="rounded-full border border-medium/40 bg-medium/10 px-2 py-0.5 text-[10px] text-medium">
-            cycle
+            {t('trace.cycle')}
           </span>
         )}
       </div>
@@ -261,7 +263,7 @@ export function TraceStage({ step, changes, covered, asked, watching, onWatch }:
             {row.map((item, index) => (
               <span
                 key={index}
-                title={item ?? 'empty'}
+                title={item ?? t('trace.empty')}
                 className={cn(
                   'flex min-w-8 items-center justify-center rounded-md border px-1.5 py-0.5 font-mono text-[11px]',
                   item === null
@@ -275,7 +277,9 @@ export function TraceStage({ step, changes, covered, asked, watching, onWatch }:
           </div>
         ))}
 
-        {value.truncated && <p className="text-center text-[10px] text-muted-foreground">deeper levels not drawn</p>}
+        {value.truncated && (
+          <p className="text-center text-[10px] text-muted-foreground">{t('trace.deeper')}</p>
+        )}
       </div>
     );
   };
@@ -315,7 +319,7 @@ export function TraceStage({ step, changes, covered, asked, watching, onWatch }:
     return (
       <div className="mt-1 flex flex-wrap items-center gap-1">
         <span className="font-mono text-[9px] tracking-wide text-muted-foreground/70 uppercase">
-          asked for
+          {t('trace.askedFor')}
         </span>
 
         {order.length > STRIP && <span className="text-[9px] text-muted-foreground/60">&hellip;</span>}
@@ -326,7 +330,7 @@ export function TraceStage({ step, changes, covered, asked, watching, onWatch }:
           return (
             <span
               key={`${one.key}-${position}`}
-              title={hit ? `${one.key} — found` : `${one.key} — not there`}
+              title={hit ? t('trace.found', { key: one.key }) : t('trace.notThere', { key: one.key })}
               className={cn(
                 'rounded border px-1 font-mono text-[9px] tabular-nums',
                 one.write
@@ -352,16 +356,16 @@ export function TraceStage({ step, changes, covered, asked, watching, onWatch }:
       <p className="ml-auto flex items-center gap-2 text-[9px] text-muted-foreground">
         <span className="flex items-center gap-1">
           <span className="size-2 rounded-sm border border-cool/60 bg-cool/15" />
-          read
+          {t('trace.legendRead')}
         </span>
         <span className="flex items-center gap-1">
           <span className="size-2 rounded-sm border border-medium/60 bg-medium/15" />
-          written
+          {t('trace.legendWritten')}
         </span>
         {trail && (
           <span className="flex items-center gap-1">
             <span className="size-2 rounded-sm border border-line bg-foreground/[0.06]" />
-            reached already
+            {t('trace.legendReached')}
           </span>
         )}
       </p>
@@ -388,7 +392,11 @@ export function TraceStage({ step, changes, covered, asked, watching, onWatch }:
           <button
             type="button"
             onClick={() => onWatch(watching?.name === name && watching.key === null ? null : { name, key: null })}
-            title={watching?.name === name && watching.key === null ? `Stop watching ${name}` : `Step only where ${name} changes`}
+            title={
+              watching?.name === name && watching.key === null
+                ? t('trace.stopWatching', { name })
+                : t('trace.watchChanges', { name })
+            }
             className={cn(
               'flex items-center gap-1 rounded font-mono text-[10px] tracking-wide transition-colors',
               watching?.name === name && watching.key === null ? 'text-primary' : 'text-muted-foreground hover:text-foreground',
@@ -401,7 +409,7 @@ export function TraceStage({ step, changes, covered, asked, watching, onWatch }:
           {long && (
             <button
               type="button"
-              aria-label={folded ? `expand ${name}` : `collapse ${name}`}
+              aria-label={folded ? t('trace.expand', { name }) : t('trace.collapse', { name })}
               onClick={() => setOpened((current) => ({ ...current, [name]: folded }))}
               className="text-muted-foreground/60 transition-colors hover:text-foreground"
             >
@@ -423,7 +431,9 @@ export function TraceStage({ step, changes, covered, asked, watching, onWatch }:
   return (
     <section className="rounded-2xl border border-line bg-panel/60 p-3">
       <div className="mb-2 flex items-center gap-2">
-        <p className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">in scope here</p>
+        <p className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
+          {t('trace.inScope')}
+        </p>
         {renderLegend()}
       </div>
 

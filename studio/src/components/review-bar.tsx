@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Eye, Flag, Timer } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -30,6 +31,7 @@ const clock = (seconds: number) =>
  * is made of.
  */
 export function ReviewBar({ session, title, onReveal, onGiveUp }: ReviewBarProps) {
+  const { t } = useTranslation();
   const [confirming, setConfirming] = useState(false);
   const [now, setNow] = useState(() => Date.now());
 
@@ -44,7 +46,7 @@ export function ReviewBar({ session, title, onReveal, onGiveUp }: ReviewBarProps
   return (
     <div className="flex flex-wrap items-center gap-3 border-b border-primary/25 bg-primary/[0.05] px-5 py-2">
       <span className="rounded-full border border-primary/40 bg-primary/10 px-2 py-0.5 text-[10px] font-semibold tracking-wide text-primary">
-        REVIEW
+        {t('review.badge')}
       </span>
 
       <span className="text-[13px] font-medium">{title}</span>
@@ -54,28 +56,28 @@ export function ReviewBar({ session, title, onReveal, onGiveUp }: ReviewBarProps
         <span className={cn('tabular-nums', overBaseline ? 'text-medium' : 'text-foreground/80')}>
           {clock(seconds)}
         </span>
-        {session.baseline !== null && <span>of {session.baseline}m</span>}
+        {session.baseline !== null && <span>{t('review.ofBaseline', { minutes: session.baseline })}</span>}
       </span>
 
       <span className="font-mono text-[11px] text-muted-foreground tabular-nums">
-        {session.runs} {session.runs === 1 ? 'run' : 'runs'}
+        {t('review.runs', { count: session.runs })}
       </span>
 
       {session.revealed && (
         <span className="rounded-full border border-fail/40 bg-fail/10 px-2 py-0.5 text-[10px] text-fail">
-          answer revealed
+          {t('review.revealed')}
         </span>
       )}
 
       <span className="ml-auto flex items-center gap-1.5">
         <Button variant="ghost" size="xs" onClick={onReveal} disabled={session.revealed} className="gap-1.5">
           <Eye />
-          Reveal
+          {t('review.reveal')}
         </Button>
         {confirming ? (
           <Button variant="destructive" size="xs" onClick={onGiveUp} className="gap-1.5">
             <Flag />
-            Yes, take the lapse
+            {t('review.confirmGiveUp')}
           </Button>
         ) : (
           <Button
@@ -85,7 +87,7 @@ export function ReviewBar({ session, title, onReveal, onGiveUp }: ReviewBarProps
             className="gap-1.5 text-muted-foreground"
           >
             <Flag />
-            Give up
+            {t('review.giveUp')}
           </Button>
         )}
       </span>

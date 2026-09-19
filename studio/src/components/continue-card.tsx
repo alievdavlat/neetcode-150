@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { GraduationCap, ListChecks } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { ALL_BOARD, stamp } from '@/lib/meta';
 import type { Course, Problem } from '@/lib/types';
 
@@ -17,6 +18,7 @@ const LESSON = 'neetcode-studio:lesson';
 
 /** Where you were, read from this browser: the app never guesses it on the server. */
 export function ContinueCard({ problems, courses }: ContinueCardProps) {
+  const { t } = useTranslation();
   const [problem, setProblem] = useState<Problem | null>(null);
   const [course, setCourse] = useState<Course | null>(null);
   const [lesson, setLesson] = useState(0);
@@ -45,7 +47,9 @@ export function ContinueCard({ problems, courses }: ContinueCardProps) {
         >
           <ListChecks className="size-4 shrink-0 text-primary" />
           <span className="min-w-0 flex-1">
-            <span className="block text-[10px] tracking-[0.18em] text-muted-foreground uppercase">Carry on</span>
+            <span className="block text-[10px] tracking-[0.18em] text-muted-foreground uppercase">
+              {t('home.carryOn')}
+            </span>
             <span className="block truncate text-[13px]">
               {problem.number} · {problem.title}
             </span>

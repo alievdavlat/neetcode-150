@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import {
   AlertTriangle,
@@ -57,9 +58,6 @@ const SPEEDS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2, 4];
 const SPEED_KEY = 'neetcode-studio:play-speed';
 const COLUMNS = 240;
 
-/** `1` is the speed the replay was written at, so it reads as a word, not a number. */
-const speedLabel = (value: number) => (value === 1 ? 'Normal' : `${value}×`);
-
 /** A name on its own, or one cell of it. */
 export interface Watched {
   name: string;
@@ -98,6 +96,11 @@ export function TracePanel({
   onCount,
   onStep,
 }: TracePanelProps) {
+  const { t } = useTranslation();
+
+  /** `1` is the speed the replay was written at, so it reads as a word, not a number. */
+  const speedLabel = (value: number) => (value === 1 ? t('trace.speedNormal') : `${value}×`);
+
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [speed, setSpeed] = useState(1);
@@ -298,7 +301,7 @@ export function TracePanel({
   const handleCustom = () => {
     try {
       const parsed = JSON.parse(input) as unknown;
-      if (!Array.isArray(parsed)) throw new Error('the input is the argument list, so it must be an array');
+      if (!Array.isArray(parsed)) throw new Error(t('trace.inputNotArray'));
 
       setBadInput(null);
       onTrace(parsed);
@@ -317,7 +320,7 @@ export function TracePanel({
         value={input}
         onChange={(event) => setInput(event.target.value)}
         spellCheck={false}
-        aria-label="Arguments as JSON"
+        aria-label={t('trace.inputLabel')}
         className="min-h-14 bg-transparent font-mono text-[11px]"
       />
 
@@ -326,7 +329,7 @@ export function TracePanel({
       <div className="flex items-center gap-2">
         <Button size="xs" onClick={handleCustom} disabled={tracing || !variant} className="gap-1.5">
           <Radar className={cn(tracing && 'animate-pulse')} />
-          Simulate this
+          {t('trace.simulateThis')}
         </Button>
 
         <button
@@ -338,10 +341,10 @@ export function TracePanel({
           }}
           className="text-[11px] text-muted-foreground transition-colors hover:text-foreground"
         >
-          back to the case
+          {t('trace.backToCase')}
         </button>
 
-        <span className="ml-auto font-mono text-[10px] text-muted-foreground">the argument list, as JSON</span>
+        <span className="ml-auto font-mono text-[10px] text-muted-foreground">{t('trace.inputNote')}</span>
       </div>
     </div>
   );
@@ -360,7 +363,7 @@ export function TracePanel({
       <div className="space-y-1 rounded-lg border border-line bg-black/20 p-2">
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
-            operations
+            {t('trace.operations')}
           </span>
 
           {ops.verdict && (
@@ -371,9 +374,9 @@ export function TracePanel({
 
           {ops.target && (
             <span className="font-mono text-[10px] text-muted-foreground">
-              target {ops.target}
-              {ops.comparison === 'match' && <span className="ml-1 text-pass">matches</span>}
-              {ops.comparison === 'differs' && <span className="ml-1 text-fail">differs</span>}
+              {t('trace.opsTarget', { target: ops.target })}
+              {ops.comparison === 'match' && <span className="ml-1 text-pass">{t('trace.opsMatches')}</span>}
+              {ops.comparison === 'differs' && <span className="ml-1 text-fail">{t('trace.opsDiffers')}</span>}
             </span>
           )}
         </div>
@@ -388,12 +391,12 @@ export function TracePanel({
     <div className="space-y-1.5 border-b border-line px-3 py-2">
       <div className="flex items-center gap-2">
         <p className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
-          simulation
+          {t('trace.simulation')}
         </p>
 
         {trace?.custom && (
           <span className="rounded-full border border-cool/40 bg-cool/10 px-2 py-0.5 text-[10px] text-cool">
-            your input · not judged
+            {t('trace.customBadge')}
           </span>
         )}
 
@@ -402,11 +405,11 @@ export function TracePanel({
             type="button"
             onClick={() => setEditing(!editing)}
             aria-pressed={editing}
-            title="Run this variant on an input you type"
+            title={t('trace.inputToggleHint')}
             className={cn('ml-auto flex items-center gap-1.5 rounded-lg border px-2 py-1 text-[11px] transition-colors', editing ? 'border-cool/40 bg-cool/10 text-cool' : 'border-line text-muted-foreground hover:border-cool/40 hover:text-foreground')}
           >
             <Pencil className="size-3" />
-            Input
+            {t('trace.input')}
           </button>
         )}
 
@@ -415,11 +418,11 @@ export function TracePanel({
           size="xs"
           onClick={onCount}
           disabled={counting || !variant}
-          title="Count the statements this variant runs as the input doubles"
+          title={t('trace.opsHint')}
           className="gap-1.5"
         >
           <Sigma className={cn(counting && 'animate-pulse')} />
-          {counting ? 'Counting' : 'Ops'}
+          {counting ? t('trace.counting') : t('trace.ops')}
         </Button>
 
         <Button
@@ -429,7 +432,7 @@ export function TracePanel({
           className={cn('gap-1.5', !trace && 'ml-auto')}
         >
           <Radar className={cn(tracing && 'animate-pulse')} />
-          {tracing ? 'Recording' : 'Simulate'}
+          {tracing ? t('trace.recording') : t('trace.simulate')}
         </Button>
       </div>
 
@@ -437,7 +440,7 @@ export function TracePanel({
       {renderOps()}
 
       {variants.length > 1 && (
-        <div role="group" aria-label="variant" className="flex flex-wrap gap-1">
+        <div role="group" aria-label={t('trace.variantGroup')} className="flex flex-wrap gap-1">
           {variants.map((name) => (
             <button
               key={name}
@@ -455,7 +458,7 @@ export function TracePanel({
       {cases.length > 1 && variant && (
         <Select value={String(caseIndex)} onValueChange={(next) => onPick(variant, Number(next))}>
           <SelectTrigger
-            aria-label="case"
+            aria-label={t('trace.caseGroup')}
             className={cn(cases[caseIndex]?.passed === false && 'border-fail/40 text-fail')}
           >
             <SelectValue />
@@ -463,7 +466,7 @@ export function TracePanel({
           <SelectContent>
             {cases.map((item, position) => (
               <SelectItem key={`${item.label}-${position}`} value={String(position)}>
-                {item.passed ? item.label : `failing · ${item.label}`}
+                {item.passed ? item.label : t('trace.failingCase', { label: item.label })}
               </SelectItem>
             ))}
           </SelectContent>
@@ -498,8 +501,8 @@ export function TracePanel({
         min={0}
         max={Math.max(last, 0)}
         value={index}
-        aria-label="step"
-        aria-valuetext={`step ${index + 1} of ${steps.length}`}
+        aria-label={t('trace.step')}
+        aria-valuetext={t('trace.stepOf', { index: index + 1, total: steps.length })}
         onChange={(event) => move(Number(event.target.value))}
         className="trace-timeline absolute inset-x-3 top-2 h-4"
       />
@@ -509,17 +512,23 @@ export function TracePanel({
   const renderTransport = () => (
     <div
       role="group"
-      aria-label="playback"
+      aria-label={t('trace.playback')}
       onKeyDown={handleKeys}
       className="flex items-center gap-1 border-b border-line px-3 py-1.5"
     >
-      <Button variant="ghost" size="icon-xs" aria-label="first step" disabled={index === 0} onClick={() => move(0)}>
+      <Button
+        variant="ghost"
+        size="icon-xs"
+        aria-label={t('trace.firstStep')}
+        disabled={index === 0}
+        onClick={() => move(0)}
+      >
         <SkipBack />
       </Button>
       <Button
         variant="ghost"
         size="icon-xs"
-        aria-label="previous step"
+        aria-label={t('trace.previousStep')}
         disabled={index === 0}
         onClick={() => setIndex(seek(index, -1))}
       >
@@ -528,7 +537,7 @@ export function TracePanel({
       <Button
         variant="ghost"
         size="icon-xs"
-        aria-label={playing ? 'pause' : 'play'}
+        aria-label={playing ? t('trace.pause') : t('trace.play')}
         onClick={() => setPlaying((on) => !on)}
       >
         {playing ? <Pause /> : <Play />}
@@ -536,7 +545,7 @@ export function TracePanel({
       <Button
         variant="ghost"
         size="icon-xs"
-        aria-label="next step"
+        aria-label={t('trace.nextStep')}
         disabled={index === last}
         onClick={() => setIndex(seek(index, 1))}
       >
@@ -545,7 +554,7 @@ export function TracePanel({
       <Button
         variant="ghost"
         size="icon-xs"
-        aria-label="last step"
+        aria-label={t('trace.lastStep')}
         disabled={index === last}
         onClick={() => move(last)}
       >
@@ -553,14 +562,14 @@ export function TracePanel({
       </Button>
 
       {walked.length > 1 && (
-        <span role="group" aria-label="follow one function" className="ml-2 flex items-center gap-1">
+        <span role="group" aria-label={t('trace.followGroup')} className="ml-2 flex items-center gap-1">
           {walked.map((name) => (
             <button
               key={name}
               type="button"
               aria-pressed={only === name}
               onClick={() => setOnly(only === name ? null : name)}
-              title={only === name ? `Step through every function again` : `Step only through ${name}`}
+              title={only === name ? t('trace.followAll') : t('trace.followOne', { name })}
               className={cn(
                 'rounded-full border px-2 py-0.5 font-mono text-[10px] transition-colors',
                 only === name
@@ -579,8 +588,8 @@ export function TracePanel({
           <Button
             variant="ghost"
             size="xs"
-            aria-label={`playback speed, ${speedLabel(speed)}`}
-            title="Playback speed"
+            aria-label={t('trace.speedLabel', { speed: speedLabel(speed) })}
+            title={t('trace.speedHint')}
             className="font-mono text-[10px] text-muted-foreground"
           >
             {speed}&times;
@@ -588,7 +597,9 @@ export function TracePanel({
         </PopoverTrigger>
 
         <PopoverContent side="top" align="end" className="w-28 p-1">
-          <p className="px-2 pb-1 pt-0.5 text-[10px] uppercase tracking-wide text-muted-foreground">Speed</p>
+          <p className="px-2 pb-1 pt-0.5 text-[10px] uppercase tracking-wide text-muted-foreground">
+            {t('trace.speed')}
+          </p>
 
           {SPEEDS.map((value) => (
             <button
@@ -614,7 +625,7 @@ export function TracePanel({
         <button
           type="button"
           onClick={() => setWatching(null)}
-          title={`Stop following ${labelOf(watching)}`}
+          title={t('trace.stopFollowing', { name: labelOf(watching) })}
           className={cn(CHIP, 'flex items-center gap-1 border-primary/40 bg-primary/10 text-primary')}
         >
           <Eye className="size-2.5" />
@@ -624,7 +635,7 @@ export function TracePanel({
       )}
 
       <span className="ml-auto hidden font-mono text-[10px] text-muted-foreground/60 @min-[30rem]/panel:inline">
-        &larr;/&rarr; step &middot; space play
+        &larr;/&rarr; {t('trace.step')} &middot; {t('trace.hintPlay')}
       </span>
 
       <span className="shrink-0 pl-2 font-mono text-[11px] tabular-nums text-muted-foreground">
@@ -667,13 +678,13 @@ export function TracePanel({
           </p>
           {!green && report.expect !== null && (
             <p className="break-all text-muted-foreground">
-              should be <span className="text-pass">{report.expect}</span>
+              {t('trace.shouldBe')} <span className="text-pass">{report.expect}</span>
             </p>
           )}
           {!green && report.detail !== null && (
             <p className="break-all text-fail/90">{report.detail}</p>
           )}
-          {!returns && <p className="text-muted-foreground">returns nothing; watch the arguments change</p>}
+          {!returns && <p className="text-muted-foreground">{t('trace.returnsNothing')}</p>}
         </div>
       </section>
     );
@@ -682,8 +693,8 @@ export function TracePanel({
   if (tracing) {
     return renderNotice(
       <Radar className="size-6 animate-pulse text-primary" />,
-      'Recording',
-      'Running your solution one step at a time, on a single worked example.',
+      t('trace.recording'),
+      t('trace.recordingBody'),
       'border-primary/25 bg-primary/[0.04]',
     );
   }
@@ -691,10 +702,8 @@ export function TracePanel({
   if (!trace) {
     return renderNotice(
       <Radar className="size-6 text-muted-foreground" />,
-      variants.length === 0 ? 'No run yet' : 'Ready when you are',
-      variants.length === 0
-        ? 'Run it once first, so the tracer knows which export to follow.'
-        : 'Press Simulate to watch every line run, with every variable as it was at that moment.',
+      variants.length === 0 ? t('trace.noRunTitle') : t('trace.readyTitle'),
+      variants.length === 0 ? t('trace.noRunBody') : t('trace.readyBody'),
       'border-line bg-panel/60',
     );
   }
@@ -702,7 +711,7 @@ export function TracePanel({
   if (trace.status === 'unsupported') {
     return renderNotice(
       <CircleSlash className="size-6 text-muted-foreground" />,
-      'Not traceable yet',
+      t('trace.unsupportedTitle'),
       trace.message ?? '',
       'border-line bg-panel/60',
     );
@@ -711,7 +720,7 @@ export function TracePanel({
   if (trace.status === 'uninstrumentable') {
     return renderNotice(
       <AlertTriangle className="size-6 text-fail" />,
-      'Could not read your file',
+      t('trace.unreadableTitle'),
       trace.message ?? '',
       'border-fail/30 bg-fail/[0.05]',
     );
@@ -720,8 +729,8 @@ export function TracePanel({
   if (trace.status === 'stalled') {
     return renderNotice(
       <Clock className="size-6 text-fail" />,
-      'Timed out',
-      trace.message ?? 'A loop is not ending - check the condition that should stop it.',
+      t('trace.stalledTitle'),
+      trace.message ?? t('trace.stalledBody'),
       'border-fail/30 bg-fail/[0.05]',
     );
   }
@@ -729,7 +738,7 @@ export function TracePanel({
   if (trace.status === 'crashed') {
     return renderNotice(
       <AlertTriangle className="size-6 text-fail" />,
-      'The tracer crashed',
+      t('trace.crashedTitle'),
       trace.message ?? '',
       'border-fail/30 bg-fail/[0.05]',
     );
@@ -738,8 +747,8 @@ export function TracePanel({
   if (steps.length === 0) {
     return renderNotice(
       <CircleSlash className="size-6 text-muted-foreground" />,
-      'Nothing to show',
-      trace.message ?? 'This solution hands its work to built-ins, so it has no steps of its own to replay.',
+      t('trace.emptyTitle'),
+      trace.message ?? t('trace.emptyBody'),
       'border-line bg-panel/60',
     );
   }
@@ -776,12 +785,12 @@ export function TracePanel({
 
           {trace.status === 'threw' && (
             <p className="rounded-xl border border-fail/30 bg-fail/[0.05] p-3 text-[11px] text-fail">
-              It threw after the last step: {trace.message}
+              {t('trace.threwAfter', { message: trace.message })}
             </p>
           )}
           {trace.truncated && (
             <p className="rounded-xl border border-medium/25 bg-medium/[0.05] p-3 text-[11px] text-medium">
-              The trace hit its step budget, so the rest was cut.
+              {t('trace.truncated')}
             </p>
           )}
         </div>

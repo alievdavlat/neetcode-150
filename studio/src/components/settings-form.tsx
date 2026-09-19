@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { AlertTriangle, Check, Loader2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { request } from '@/lib/api';
@@ -14,6 +15,7 @@ interface SettingsFormProps {
 }
 
 export function SettingsForm({ settings, due }: SettingsFormProps) {
+  const { t } = useTranslation();
   const [draft, setDraft] = useState(settings);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -81,16 +83,12 @@ export function SettingsForm({ settings, due }: SettingsFormProps) {
 
   return (
     <div className="space-y-4">
-      {renderToggle(
-        'reviewEnabled',
-        'Repeat solved problems',
-        'Schedules every problem you solve to come back, and shows the due queue on the home page. Turn it off and the queue, the due badges and the Review buttons all disappear; the schedule keeps running underneath and picks up where it left off.',
-      )}
+      {renderToggle('reviewEnabled', t('review.repeatSolved'), t('review.repeatSolvedNote'))}
 
       {renderToggle(
         'strictMode',
-        'Strict mode',
-        'While anything is due, nothing else opens. The home page, the collections and the other problems are all closed until the due problem passes its tests again. Reveal still works, but it does not open the gate — only a passing run does.',
+        t('review.strict'),
+        t('review.strictNote'),
         !draft.reviewEnabled,
       )}
 
@@ -98,9 +96,8 @@ export function SettingsForm({ settings, due }: SettingsFormProps) {
         <p className="flex items-start gap-2 rounded-xl border border-medium/30 bg-medium/[0.06] p-3 text-xs leading-relaxed text-medium">
           <AlertTriangle className="mt-0.5 size-4 shrink-0" />
           <span>
-            This page stays reachable while the gate is up, so you can always turn it off. Each due
-            problem also has a <strong>Defer</strong> that pushes it to tomorrow and counts as a
-            lapse — the way out is deliberate, not free.
+            {t('review.strictWarnLead')} <strong>{t('review.defer')}</strong>{' '}
+            {t('review.strictWarnTail')}
           </span>
         </p>
       )}
@@ -112,11 +109,10 @@ export function SettingsForm({ settings, due }: SettingsFormProps) {
         )}
       >
         <label htmlFor="daily-cap" className="block text-[13px] font-medium">
-          Problems per day
+          {t('review.dailyCap')}
         </label>
         <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
-          How many due problems the queue offers at once. The rest wait; a backlog you cannot see
-          is a backlog you will not abandon.
+          {t('review.dailyCapNote')}
         </p>
         <Input
           id="daily-cap"
@@ -133,12 +129,10 @@ export function SettingsForm({ settings, due }: SettingsFormProps) {
       <div className="flex items-center gap-3">
         <Button onClick={save} disabled={!dirty || saving}>
           {saving ? <Loader2 className="animate-spin" /> : saved ? <Check /> : null}
-          Save
+          {t('common.save')}
         </Button>
         {due > 0 && (
-          <p className="text-xs text-muted-foreground">
-            {due} {due === 1 ? 'problem is' : 'problems are'} due right now.
-          </p>
+          <p className="text-xs text-muted-foreground">{t('review.dueRightNow', { count: due })}</p>
         )}
       </div>
     </div>

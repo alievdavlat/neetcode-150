@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { ArrowUpRight, Check, ExternalLink, NotebookPen, Play } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -31,6 +32,7 @@ const LAST_COURSE_KEY = 'neetcode-studio:last-course';
 const messageOf = (error: unknown) => (error instanceof Error ? error.message : String(error));
 
 export function CoursePlayer({ course, watched, practice, notes, start }: CoursePlayerProps) {
+  const { t } = useTranslation();
   const [seen, setSeen] = useState<number[]>(watched);
   const [current, setCurrent] = useState(() => {
     const asked = course.lessons.findIndex((entry) => entry.at === start);
@@ -63,7 +65,7 @@ export function CoursePlayer({ course, watched, practice, notes, start }: Course
     })
       .then((payload) => {
         setWritten((current) => ({ ...current, [at]: payload.note }));
-        toast.success('Note saved');
+        toast.success(t('courses.noteSaved'));
       })
       .catch((error: unknown) => toast.error(messageOf(error)));
   };
@@ -98,21 +100,21 @@ export function CoursePlayer({ course, watched, practice, notes, start }: Course
     return (
       <section className="space-y-2 rounded-2xl border border-line bg-panel/60 p-3">
         <h2 className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
-          Note for this lesson
+          {t('courses.lessonNote')}
         </h2>
 
         <Textarea
           value={draft}
           onChange={(event) => setDraft(event.target.value)}
-          placeholder="The one idea from this lesson worth keeping."
-          aria-label="Note for this lesson"
+          placeholder={t('courses.notePlaceholder')}
+          aria-label={t('courses.lessonNote')}
           className="min-h-16 bg-white/[0.02] text-[13px]"
         />
 
         {draft !== stored && (
           <Button size="sm" variant="outline" onClick={handleNote} className="gap-1.5">
             <NotebookPen className="size-3.5" />
-            Save note
+            {t('courses.saveNote')}
           </Button>
         )}
       </section>
@@ -131,11 +133,11 @@ export function CoursePlayer({ course, watched, practice, notes, start }: Course
       <section className="space-y-2 rounded-2xl border border-line bg-panel/60 p-3">
         <header className="flex flex-wrap items-center gap-2">
           <h2 className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
-            Practice this
+            {t('courses.practice')}
           </h2>
           {named.length > 0 && (
             <span className="rounded-full border border-primary/40 bg-primary/10 px-2 py-0.5 text-[10px] text-primary">
-              named in this lesson
+              {t('courses.namedInLesson')}
             </span>
           )}
           {tags.map((tag) => (
@@ -155,7 +157,7 @@ export function CoursePlayer({ course, watched, practice, notes, start }: Course
                 <span className="font-mono text-[10px] text-muted-foreground tabular-nums">{problem.number}</span>
                 <span className="min-w-0 flex-1 truncate text-[13px]">{problem.title}</span>
                 <span className={cn('text-[10px]', DIFFICULTY_META[problem.difficulty].text)}>
-                  {problem.difficulty}
+                  {t(DIFFICULTY_META[problem.difficulty].label)}
                 </span>
                 <ArrowUpRight className="size-3 shrink-0 text-muted-foreground" />
               </Link>
@@ -176,7 +178,11 @@ export function CoursePlayer({ course, watched, practice, notes, start }: Course
           onClick={() => handleWatched(entry.at)}
           disabled={saving === entry.at}
           aria-pressed={done.has(entry.at)}
-          aria-label={done.has(entry.at) ? `Mark ${entry.title} unwatched` : `Mark ${entry.title} watched`}
+          aria-label={
+            done.has(entry.at)
+              ? t('courses.markTitleUnwatched', { title: entry.title })
+              : t('courses.markTitleWatched', { title: entry.title })
+          }
           className={cn(
             'flex size-5 shrink-0 items-center justify-center rounded-md border transition-colors',
             done.has(entry.at)
@@ -200,7 +206,7 @@ export function CoursePlayer({ course, watched, practice, notes, start }: Course
           <span className="min-w-0 flex-1 truncate text-[13px]">{entry.title}</span>
           <span className="shrink-0 font-mono text-[10px] text-muted-foreground tabular-nums">{stamp(entry.at)}</span>
           <span className="w-12 shrink-0 text-right font-mono text-[10px] text-muted-foreground tabular-nums">
-            {duration(entry.seconds)}
+            {duration(t, entry.seconds)}
           </span>
         </button>
       </li>
@@ -226,7 +232,7 @@ export function CoursePlayer({ course, watched, practice, notes, start }: Course
             {current + 1}. {lesson?.title}
           </h2>
           <span className="font-mono text-[11px] text-muted-foreground">
-            {stamp(lesson?.at ?? 0)} · {duration(lesson?.seconds ?? 0)}
+            {stamp(lesson?.at ?? 0)} · {duration(t, lesson?.seconds ?? 0)}
           </span>
 
           <button
@@ -240,7 +246,7 @@ export function CoursePlayer({ course, watched, practice, notes, start }: Course
             )}
           >
             <Check className="size-3.5" />
-            {done.has(lesson?.at ?? -1) ? 'Watched' : 'Mark watched'}
+            {done.has(lesson?.at ?? -1) ? t('courses.watched') : t('courses.markWatched')}
           </button>
 
           {current + 1 < course.lessons.length && (
@@ -250,7 +256,7 @@ export function CoursePlayer({ course, watched, practice, notes, start }: Course
               className="flex items-center gap-1.5 rounded-lg border border-line px-2.5 py-1 text-[11px] text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
             >
               <Play className="size-3.5" />
-              Next lesson
+              {t('courses.nextLesson')}
             </button>
           )}
         </div>
@@ -262,7 +268,9 @@ export function CoursePlayer({ course, watched, practice, notes, start }: Course
       <aside className="flex min-h-0 flex-col rounded-2xl border border-line bg-panel/60">
         <header className="space-y-2 border-b border-line p-3">
           <div className="flex items-center gap-2">
-            <h2 className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">Lessons</h2>
+            <h2 className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
+              {t('courses.lessons')}
+            </h2>
             <span className="font-mono text-[11px] text-muted-foreground tabular-nums">
               {seen.length}/{course.lessons.length}
             </span>
