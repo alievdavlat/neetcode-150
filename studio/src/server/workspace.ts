@@ -1,10 +1,54 @@
 import { spawn } from 'node:child_process';
+import { cpSync, existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import type { SourceMode } from '@/lib/types';
 
+/** The read-only copy of the workspace that ships inside a deployment. */
+const BUNDLE_ROOT = path.resolve(process.cwd(), '..');
+
+const SERVERLESS_ROOT = '/tmp/neetcode-workspace';
+
+/** Everything a request may read or write, beside the numbered problem folders. */
+const MIRRORED = ['shared', 'tests', '_gen', 'package.json', 'studio/bridge', 'studio/collections'];
+
+/**
+ * A serverless filesystem is read-only outside /tmp, so saving a solution,
+ * writing a note or promoting a scratch file would all fail where they work
+ * locally. The tree is barely a megabyte, so a cold start mirrors it into /tmp
+ * once and every path then resolves against a writable copy. The root
+ * package.json travels with it: without its `type: module` the runner would
+ * read the problem files as CommonJS. The mirror lives as long as the
+ * container does - a session, not a lifetime.
+ */
+function mirrorIntoTmp(): string {
+  const marker = path.join(SERVERLESS_ROOT, '.mirrored');
+  if (existsSync(marker)) return SERVERLESS_ROOT;
+
+  const problems = readdirSync(BUNDLE_ROOT).filter((name) => /^\d{2}-/.test(name));
+  for (const entry of [...problems, ...MIRRORED]) {
+    const from = path.join(BUNDLE_ROOT, entry);
+    if (existsSync(from)) cpSync(from, path.join(SERVERLESS_ROOT, entry), { recursive: true });
+  }
+
+  mkdirSync(path.join(SERVERLESS_ROOT, 'studio', '.studio'), { recursive: true });
+  writeFileSync(marker, '');
+  return SERVERLESS_ROOT;
+}
+
+/** The mirror is a deployment concern; a failed copy should not take the app down. */
+function serverlessRoot(): string {
+  try {
+    return mirrorIntoTmp();
+  } catch {
+    return BUNDLE_ROOT;
+  }
+}
+
 export const WORKSPACE_ROOT = process.env.NEETCODE_ROOT
   ? path.resolve(process.env.NEETCODE_ROOT)
-  : path.resolve(process.cwd(), '..');
+  : process.env.VERCEL
+    ? serverlessRoot()
+    : BUNDLE_ROOT;
 
 export const STUDIO_ROOT = path.join(WORKSPACE_ROOT, 'studio');
 
