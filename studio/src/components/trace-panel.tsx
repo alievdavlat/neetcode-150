@@ -53,6 +53,7 @@ interface TracePanelProps {
 
 const PLAY_MS = 700;
 const SPEEDS = [1, 2, 4, 0.5];
+const SPEED_KEY = 'neetcode-studio:play-speed';
 const COLUMNS = 240;
 
 const CHIP = 'rounded-full border px-2 py-0.5 font-mono text-[10px] transition-colors';
@@ -168,6 +169,22 @@ export function TracePanel({
     },
     [marks, last],
   );
+
+  /**
+   * How fast a replay reads is a preference, not a property of one trace, so it
+   * is remembered the way the Big-O toggle is. Read after mount rather than in
+   * the initial state, which the server has no way to match.
+   */
+  useEffect(() => {
+    const stored = Number(window.localStorage.getItem(SPEED_KEY));
+    if (SPEEDS.includes(stored)) setSpeed(stored);
+  }, []);
+
+  const cycleSpeed = () => {
+    const next = SPEEDS[(SPEEDS.indexOf(speed) + 1) % SPEEDS.length];
+    window.localStorage.setItem(SPEED_KEY, String(next));
+    setSpeed(next);
+  };
 
   useEffect(() => {
     if (!playing) return;
@@ -499,7 +516,8 @@ export function TracePanel({
         variant="ghost"
         size="xs"
         aria-label={`playback speed ${speed} times`}
-        onClick={() => setSpeed((now) => SPEEDS[(SPEEDS.indexOf(now) + 1) % SPEEDS.length])}
+        title={`Playback speed ${speed}× - click to cycle`}
+        onClick={cycleSpeed}
         className="font-mono text-[10px] text-muted-foreground"
       >
         {speed}&times;
