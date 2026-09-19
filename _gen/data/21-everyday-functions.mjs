@@ -6,7 +6,7 @@ export default {
   problems: [
     {
       n: 1001,
-      title: "Find the minimum cost path to reach (m,",
+      title: "Find the minimum cost path to reach (m, n) from (0, 0)",
       slug: "find-the-minimum-cost-path-to-reach-m-1",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -19,7 +19,7 @@ export default {
     },
     {
       n: 1002,
-      title: "Find the similar elements from the given two",
+      title: "Find the similar elements from the given two tuple lists",
       slug: "find-the-similar-elements-from-the-given-two-2",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -45,7 +45,7 @@ export default {
     },
     {
       n: 1004,
-      title: "Find the largest integers from a given list",
+      title: "Find the largest integers from a given list of numbers using heap queue algorithm",
       slug: "find-the-largest-integers-from-a-given-list-4",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -58,7 +58,7 @@ export default {
     },
     {
       n: 1005,
-      title: "Find the number of ways to fill it",
+      title: "Find the number of ways to fill it with 2 x 1 dominoes for the given 3 x n board",
       slug: "find-the-number-of-ways-to-fill-it-5",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -71,7 +71,7 @@ export default {
     },
     {
       n: 1006,
-      title: "Check whether the two numbers differ at one",
+      title: "Check whether the two numbers differ at one bit position only or not",
       slug: "check-whether-the-two-numbers-differ-at-one-6",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -84,7 +84,7 @@ export default {
     },
     {
       n: 1007,
-      title: "Find all words which are at least 4",
+      title: "Find all words which are at least 4 characters long in a string by using regex",
       slug: "find-all-words-which-are-at-least-4-7",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -97,7 +97,7 @@ export default {
     },
     {
       n: 1009,
-      title: "Find the minimum number of rotations required to",
+      title: "Find the minimum number of rotations required to get the same string",
       slug: "find-the-minimum-number-of-rotations-required-to-9",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -123,7 +123,7 @@ export default {
     },
     {
       n: 1011,
-      title: "Remove first and last occurrence of a given",
+      title: "Remove first and last occurrence of a given character from the string",
       slug: "remove-first-and-last-occurrence-of-a-given-11",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -136,7 +136,7 @@ export default {
     },
     {
       n: 1012,
-      title: "Sort a given matrix in ascending order according",
+      title: "Sort a given matrix in ascending order according to the sum of its rows",
       slug: "sort-a-given-matrix-in-ascending-order-according-12",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -175,7 +175,7 @@ export default {
     },
     {
       n: 1016,
-      title: "Find sequences of lowercase letters joined with an",
+      title: "Find sequences of lowercase letters joined with an underscore",
       slug: "find-sequences-of-lowercase-letters-joined-with-an-16",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -201,7 +201,7 @@ export default {
     },
     {
       n: 1018,
-      title: "Remove characters from the first string which are",
+      title: "Remove characters from the first string which are present in the second string",
       slug: "remove-characters-from-the-first-string-which-are-18",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -214,7 +214,7 @@ export default {
     },
     {
       n: 1020,
-      title: "Check if the given number is woodball or",
+      title: "Check if the given number is woodball or not",
       slug: "check-if-the-given-number-is-woodball-or-20",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -240,7 +240,7 @@ export default {
     },
     {
       n: 1023,
-      title: "Find the maximum sum of elements of list",
+      title: "Find the maximum sum of elements of list in a list of lists",
       slug: "find-the-maximum-sum-of-elements-of-list-23",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -253,7 +253,7 @@ export default {
     },
     {
       n: 1024,
-      title: "Convert the given binary number to its decimal",
+      title: "Convert the given binary number to its decimal equivalent",
       slug: "convert-the-given-binary-number-to-its-decimal-24",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -266,7 +266,7 @@ export default {
     },
     {
       n: 1025,
-      title: "Find the product of non-repeated elements in a",
+      title: "Find the product of non-repeated elements in a given array",
       slug: "find-the-product-of-non-repeated-elements-in-25",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -279,7 +279,7 @@ export default {
     },
     {
       n: 1026,
-      title: "Check if the given tuple list has all",
+      title: "Check if the given tuple list has all k elements",
       slug: "check-if-the-given-tuple-list-has-all-26",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -331,7 +331,7 @@ export default {
     },
     {
       n: 1030,
-      title: "Count all the substrings starting and ending with",
+      title: "Count all the substrings starting and ending with same characters",
       slug: "count-all-the-substrings-starting-and-ending-with-30",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -344,7 +344,7 @@ export default {
     },
     {
       n: 1031,
-      title: "Find the top k integers that occur most",
+      title: "Find the top k integers that occur most frequently from given lists",
       slug: "find-the-top-k-integers-that-occur-most-31",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -357,7 +357,7 @@ export default {
     },
     {
       n: 1032,
-      title: "Find the largest prime factor of a given",
+      title: "Find the largest prime factor of a given number",
       slug: "find-the-largest-prime-factor-of-a-given-32",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -409,7 +409,7 @@ export default {
     },
     {
       n: 1036,
-      title: "Find the nth digit in the proper fraction",
+      title: "Find the nth digit in the proper fraction of two given numbers",
       slug: "find-the-nth-digit-in-the-proper-fraction-36",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -422,7 +422,7 @@ export default {
     },
     {
       n: 1038,
-      title: "Find the division of first even and odd",
+      title: "Find the division of first even and odd number of a given list",
       slug: "find-the-division-of-first-even-and-odd-38",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -435,7 +435,7 @@ export default {
     },
     {
       n: 1039,
-      title: "Check if the letters of a given string",
+      title: "Check if the letters of a given string can be rearranged so",
       slug: "check-if-the-letters-of-a-given-string-39",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -461,7 +461,7 @@ export default {
     },
     {
       n: 1042,
-      title: "Find the sum of repeated elements in a",
+      title: "Find the sum of repeated elements in a given array",
       slug: "find-the-sum-of-repeated-elements-in-a-42",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -474,7 +474,7 @@ export default {
     },
     {
       n: 1043,
-      title: "Find sequences of lowercase letters joined with an",
+      title: "Find sequences of lowercase letters joined with an underscore using regex",
       slug: "find-sequences-of-lowercase-letters-joined-with-an-43",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -487,7 +487,7 @@ export default {
     },
     {
       n: 1044,
-      title: "Matches a word at the beginning of a",
+      title: "Matches a word at the beginning of a string",
       slug: "matches-a-word-at-the-beginning-of-a-44",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -513,7 +513,7 @@ export default {
     },
     {
       n: 1046,
-      title: "Determine whether all the numbers are different from",
+      title: "Determine whether all the numbers are different from each other are not",
       slug: "determine-whether-all-the-numbers-are-different-from-46",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -526,7 +526,7 @@ export default {
     },
     {
       n: 1047,
-      title: "Find the last digit when factorial of a",
+      title: "Find the last digit when factorial of a divides factorial of b",
       slug: "find-the-last-digit-when-factorial-of-a-47",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -552,7 +552,7 @@ export default {
     },
     {
       n: 1049,
-      title: "Extract every first or specified element from a",
+      title: "Extract every first or specified element from a given two-dimensional list",
       slug: "extract-every-first-or-specified-element-from-a-49",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -565,7 +565,7 @@ export default {
     },
     {
       n: 1051,
-      title: "Print check if the triangle is equilateral or",
+      title: "Print check if the triangle is equilateral or not",
       slug: "print-check-if-the-triangle-is-equilateral-or-51",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -591,7 +591,7 @@ export default {
     },
     {
       n: 1053,
-      title: "Check whether the first and last characters of",
+      title: "Check whether the first and last characters of a given string are equal or not",
       slug: "check-whether-the-first-and-last-characters-of-53",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -630,7 +630,7 @@ export default {
     },
     {
       n: 1056,
-      title: "Check if a given number is one less",
+      title: "Check if a given number is one less than twice its reverse",
       slug: "check-if-a-given-number-is-one-less-56",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -643,7 +643,7 @@ export default {
     },
     {
       n: 1057,
-      title: "Find the largest number that can be formed",
+      title: "Find the largest number that can be formed with the given digits",
       slug: "find-the-largest-number-that-can-be-formed-57",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -656,7 +656,7 @@ export default {
     },
     {
       n: 1058,
-      title: "Check whether the given two integers have opposite",
+      title: "Check whether the given two integers have opposite sign or not",
       slug: "check-whether-the-given-two-integers-have-opposite-58",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -682,7 +682,7 @@ export default {
     },
     {
       n: 1060,
-      title: "Find the maximum length of the subsequence with",
+      title: "Find the maximum length of the subsequence with difference",
       slug: "find-the-maximum-length-of-the-subsequence-with-60",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -695,7 +695,7 @@ export default {
     },
     {
       n: 1061,
-      title: "Count number of substrings with the sum of",
+      title: "Count number of substrings with the sum of digits equal to their length",
       slug: "count-number-of-substrings-with-the-sum-of-61",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -721,7 +721,7 @@ export default {
     },
     {
       n: 1063,
-      title: "Find the maximum difference between available pairs in",
+      title: "Find the maximum difference between available pairs in the given tuple list",
       slug: "find-the-maximum-difference-between-available-pairs-in-63",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -747,7 +747,7 @@ export default {
     },
     {
       n: 1067,
-      title: "Find the number of ways to partition a",
+      title: "Find the number of ways to partition a set of bell numbers",
       slug: "find-the-number-of-ways-to-partition-a-67",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -760,7 +760,7 @@ export default {
     },
     {
       n: 1068,
-      title: "Check whether the given array is monotonic or",
+      title: "Check whether the given array is monotonic or not",
       slug: "check-whether-the-given-array-is-monotonic-or-68",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -773,7 +773,7 @@ export default {
     },
     {
       n: 1069,
-      title: "Check whether a list contains the given sublist",
+      title: "Check whether a list contains the given sublist or not",
       slug: "check-whether-a-list-contains-the-given-sublist-69",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -786,7 +786,7 @@ export default {
     },
     {
       n: 1070,
-      title: "Find whether all the given tuples have equal",
+      title: "Find whether all the given tuples have equal length or not",
       slug: "find-whether-all-the-given-tuples-have-equal-70",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -812,7 +812,7 @@ export default {
     },
     {
       n: 1072,
-      title: "Check whether the given number can be represented",
+      title: "Check whether the given number can be represented as difference of two squares or not",
       slug: "check-whether-the-given-number-can-be-represented-72",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -825,7 +825,7 @@ export default {
     },
     {
       n: 1073,
-      title: "Split the given string with multiple delimiters by",
+      title: "Split the given string with multiple delimiters by using regex",
       slug: "split-the-given-string-with-multiple-delimiters-by-73",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -838,7 +838,7 @@ export default {
     },
     {
       n: 1074,
-      title: "Check whether it follows the sequence given in",
+      title: "Check whether it follows the sequence given in the patterns array",
       slug: "check-whether-it-follows-the-sequence-given-in-74",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -851,7 +851,7 @@ export default {
     },
     {
       n: 1075,
-      title: "Find tuples which have all elements divisible by",
+      title: "Find tuples which have all elements divisible by k from the given list of tuples",
       slug: "find-tuples-which-have-all-elements-divisible-by-75",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -877,7 +877,7 @@ export default {
     },
     {
       n: 1077,
-      title: "Find the difference between sum of even and",
+      title: "Find the difference between sum of even and odd digits",
       slug: "find-the-difference-between-sum-of-even-and-77",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -890,7 +890,7 @@ export default {
     },
     {
       n: 1078,
-      title: "Find number of integers with odd number of",
+      title: "Find number of integers with odd number of set bits",
       slug: "find-number-of-integers-with-odd-number-of-78",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -903,7 +903,7 @@ export default {
     },
     {
       n: 1079,
-      title: "Check whether the length of the word is",
+      title: "Check whether the length of the word is odd or not",
       slug: "check-whether-the-length-of-the-word-is-79",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -955,7 +955,7 @@ export default {
     },
     {
       n: 1083,
-      title: "Find the character made by adding all the",
+      title: "Find the character made by adding all the characters of the given string",
       slug: "find-the-character-made-by-adding-all-the-83",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1046,7 +1046,7 @@ export default {
     },
     {
       n: 1091,
-      title: "Check if a substring is present in a",
+      title: "Check if a substring is present in a given list of string values",
       slug: "check-if-a-substring-is-present-in-a-91",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1059,7 +1059,7 @@ export default {
     },
     {
       n: 1092,
-      title: "Check whether the given number is undulating or",
+      title: "Check whether the given number is undulating or not",
       slug: "check-whether-the-given-number-is-undulating-or-92",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1072,7 +1072,7 @@ export default {
     },
     {
       n: 1093,
-      title: "Calculate the value of 'a' to the power",
+      title: "Calculate the value of \'a\' to the power \'b\'",
       slug: "calculate-the-value-of-a-to-the-power-93",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1098,7 +1098,7 @@ export default {
     },
     {
       n: 1096,
-      title: "Find the number of divisors of a given",
+      title: "Find the number of divisors of a given integer",
       slug: "find-the-number-of-divisors-of-a-given-96",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1124,7 +1124,7 @@ export default {
     },
     {
       n: 1098,
-      title: "Multiply all the numbers in a list and",
+      title: "Multiply all the numbers in a list and divide with the length of the list",
       slug: "multiply-all-the-numbers-in-a-list-and-98",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1137,7 +1137,7 @@ export default {
     },
     {
       n: 1099,
-      title: "Convert the given decimal number to its binary",
+      title: "Convert the given decimal number to its binary equivalent",
       slug: "convert-the-given-decimal-number-to-its-binary-99",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1150,7 +1150,7 @@ export default {
     },
     {
       n: 1100,
-      title: "Find the next smallest palindrome of a specified",
+      title: "Find the next smallest palindrome of a specified number",
       slug: "find-the-next-smallest-palindrome-of-a-specified-100",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1189,7 +1189,7 @@ export default {
     },
     {
       n: 1104,
-      title: "Sort each sublist of strings in a given",
+      title: "Sort each sublist of strings in a given list of lists using lambda function",
       slug: "sort-each-sublist-of-strings-in-a-given-104",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1241,7 +1241,7 @@ export default {
     },
     {
       n: 1108,
-      title: "Merge multiple sorted inputs into a single sorted",
+      title: "Merge multiple sorted inputs into a single sorted iterator using heap queue algorithm",
       slug: "merge-multiple-sorted-inputs-into-a-single-sorted-108",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1254,7 +1254,7 @@ export default {
     },
     {
       n: 1109,
-      title: "Find the count of rotations of a binary",
+      title: "Find the count of rotations of a binary string with odd value",
       slug: "find-the-count-of-rotations-of-a-binary-109",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1267,7 +1267,7 @@ export default {
     },
     {
       n: 1110,
-      title: "Extract the ranges that are missing from the",
+      title: "Extract the ranges that are missing from the given list",
       slug: "extract-the-ranges-that-are-missing-from-the-110",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1280,13 +1280,13 @@ export default {
     },
     {
       n: 1111,
-      title: "Find common elements in given nested lists. *",
+      title: "Find common elements in given nested lists",
       slug: "find-common-elements-in-given-nested-lists-111",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
       pattern: "One idea, written out directly",
       complexity: "Not stated for this set - aim for the obvious single pass",
-      statement: "\nWrite a function to find common elements in given nested lists. * list item * list item * list item * list item\n",
+      statement: "Write a function to find common elements in given nested lists.",
       examples: ["Input:  rows = [[12,18,23,25,45],[7,12,18,24,28],[1,5,8,12,15,16,18]]\nOutput: [18,12]","Input:  rows = [[12,5,23,25,45],[7,11,5,23,28],[1,5,8,18,23,16]]\nOutput: [5,23]","Input:  rows = [[2,3,4,1],[4,5],[6,4,8],[4,5],[6,8,4]]\nOutput: [4]"],
       constraints: [],
       stub: "\nexport function commonInNestedLists(rows: number[][]): number[] {\n  throw new Error('Not implemented');\n}\n",
@@ -1306,7 +1306,7 @@ export default {
     },
     {
       n: 1113,
-      title: "Check if a string represents an integer or",
+      title: "Check if a string represents an integer or not",
       slug: "check-if-a-string-represents-an-integer-or-113",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1319,7 +1319,7 @@ export default {
     },
     {
       n: 1114,
-      title: "Assign frequency to each tuple in the given",
+      title: "Assign frequency to each tuple in the given tuple list",
       slug: "assign-frequency-to-each-tuple-in-the-given-114",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1332,7 +1332,7 @@ export default {
     },
     {
       n: 1116,
-      title: "Convert a given tuple of positive integers into",
+      title: "Convert a given tuple of positive integers into an integer",
       slug: "convert-a-given-tuple-of-positive-integers-into-116",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1345,7 +1345,7 @@ export default {
     },
     {
       n: 1117,
-      title: "Convert all possible convertible elements in the list",
+      title: "Convert all possible convertible elements in the list to float",
       slug: "convert-all-possible-convertible-elements-in-the-list-117",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1358,20 +1358,20 @@ export default {
     },
     {
       n: 1118,
-      title: "[link text](https:// [link text](https:// [link text](https://)))write a function",
+      title: "Convert a string to a list",
       slug: "link-text-https-link-text-https-link-text-118",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
       pattern: "One idea, written out directly",
       complexity: "Not stated for this set - aim for the obvious single pass",
-      statement: "\n[link text](https:// [link text](https:// [link text](https://)))write a function to convert a string to a list.\n",
+      statement: "Write a function to convert a string to a list.",
       examples: ["Input:  text = \"python programming\"\nOutput: [\"python\",\"programming\"]","Input:  text = \"lists tuples strings\"\nOutput: [\"lists\",\"tuples\",\"strings\"]","Input:  text = \"write a program\"\nOutput: [\"write\",\"a\",\"program\"]"],
       constraints: [],
       stub: "\nexport function stringToList(text: string): string[] {\n  throw new Error('Not implemented');\n}\n",
     },
     {
       n: 1119,
-      title: "Find the element that appears only once in",
+      title: "Find the element that appears only once in a sorted array",
       slug: "find-the-element-that-appears-only-once-in-119",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1384,7 +1384,7 @@ export default {
     },
     {
       n: 1120,
-      title: "Find the maximum product from the pairs of",
+      title: "Find the maximum product from the pairs of tuples within a given list",
       slug: "find-the-maximum-product-from-the-pairs-of-120",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1397,7 +1397,7 @@ export default {
     },
     {
       n: 1121,
-      title: "Find the triplet with sum of the given",
+      title: "Find the triplet with sum of the given array",
       slug: "find-the-triplet-with-sum-of-the-given-121",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1423,7 +1423,7 @@ export default {
     },
     {
       n: 1123,
-      title: "Sum all amicable numbers from 1 to a",
+      title: "Sum all amicable numbers from 1 to a specified number",
       slug: "sum-all-amicable-numbers-from-1-to-a-123",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1436,7 +1436,7 @@ export default {
     },
     {
       n: 1125,
-      title: "Find the maximum difference between the number of",
+      title: "Find the maximum difference between the number of 0s and number of 1s",
       slug: "find-the-maximum-difference-between-the-number-of-125",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1449,7 +1449,7 @@ export default {
     },
     {
       n: 1126,
-      title: "Find the sum of common divisors of two",
+      title: "Find the sum of common divisors of two given numbers",
       slug: "find-the-sum-of-common-divisors-of-two-126",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1462,7 +1462,7 @@ export default {
     },
     {
       n: 1127,
-      title: "Multiply two integers without using the * operator",
+      title: "Multiply two integers without using the * operator in TypeScript",
       slug: "multiply-two-integers-without-using-the-operator-127",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1475,7 +1475,7 @@ export default {
     },
     {
       n: 1128,
-      title: "Shortlist words that are longer than n from",
+      title: "Shortlist words that are longer than n from a given list of words",
       slug: "shortlist-words-that-are-longer-than-n-from-128",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1501,7 +1501,7 @@ export default {
     },
     {
       n: 1130,
-      title: "Find the item with maximum frequency in a",
+      title: "Find the item with maximum frequency in a given list",
       slug: "find-the-item-with-maximum-frequency-in-a-130",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1540,7 +1540,7 @@ export default {
     },
     {
       n: 1133,
-      title: "Calculate the sum of the negative numbers of",
+      title: "Calculate the sum of the negative numbers of a given list of numbers",
       slug: "calculate-the-sum-of-the-negative-numbers-of-133",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1553,7 +1553,7 @@ export default {
     },
     {
       n: 1134,
-      title: "Check whether the last element of given array",
+      title: "Check whether the last element of given array is even or odd",
       slug: "check-whether-the-last-element-of-given-array-134",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1592,7 +1592,7 @@ export default {
     },
     {
       n: 1137,
-      title: "Find the ration of zeroes in an array",
+      title: "Find the ration of zeroes in an array of integers",
       slug: "find-the-ration-of-zeroes-in-an-array-137",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1605,7 +1605,7 @@ export default {
     },
     {
       n: 1138,
-      title: "Check whether the given number can be represented",
+      title: "Check whether the given number can be represented as sum",
       slug: "check-whether-the-given-number-can-be-represented-138",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1631,7 +1631,7 @@ export default {
     },
     {
       n: 1140,
-      title: "Extract elements that occur singly in the given",
+      title: "Extract elements that occur singly in the given tuple list",
       slug: "extract-elements-that-occur-singly-in-the-given-140",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1670,7 +1670,7 @@ export default {
     },
     {
       n: 1143,
-      title: "Find number of lists present in the given",
+      title: "Find number of lists present in the given tuple",
       slug: "find-number-of-lists-present-in-the-given-143",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1683,7 +1683,7 @@ export default {
     },
     {
       n: 1144,
-      title: "Find the sum of absolute differences in all",
+      title: "Find the sum of absolute differences in all pairs of the given array",
       slug: "find-the-sum-of-absolute-differences-in-all-144",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1696,7 +1696,7 @@ export default {
     },
     {
       n: 1145,
-      title: "Find the maximum difference between any two elements",
+      title: "Find the maximum difference between any two elements in a given array",
       slug: "find-the-maximum-difference-between-any-two-elements-145",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1709,7 +1709,7 @@ export default {
     },
     {
       n: 1146,
-      title: "Find the ascii value of total characters in",
+      title: "Find the ascii value of total characters in a string",
       slug: "find-the-ascii-value-of-total-characters-in-146",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1722,7 +1722,7 @@ export default {
     },
     {
       n: 1147,
-      title: "Find the maximum total path sum in the",
+      title: "Find the maximum total path sum in the given triangle",
       slug: "find-the-maximum-total-path-sum-in-the-147",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1735,7 +1735,7 @@ export default {
     },
     {
       n: 1148,
-      title: "Divide a number into two parts such that",
+      title: "Divide a number into two parts such that the sum of digits is maximum",
       slug: "divide-a-number-into-two-parts-such-that-148",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1761,7 +1761,7 @@ export default {
     },
     {
       n: 1150,
-      title: "Find whether the given number is present in",
+      title: "Find whether the given number is present in the infinite sequence or not",
       slug: "find-whether-the-given-number-is-present-in-150",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1774,7 +1774,7 @@ export default {
     },
     {
       n: 1151,
-      title: "Check whether the given number is co-prime or",
+      title: "Check whether the given number is co-prime or not",
       slug: "check-whether-the-given-number-is-co-prime-151",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1813,7 +1813,7 @@ export default {
     },
     {
       n: 1154,
-      title: "Extract every specified element from a given two",
+      title: "Extract every specified element from a given two dimensional list",
       slug: "extract-every-specified-element-from-a-given-two-154",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1839,7 +1839,7 @@ export default {
     },
     {
       n: 1156,
-      title: "Convert a tuple of string values to a",
+      title: "Convert a tuple of string values to a tuple of integer values",
       slug: "convert-a-tuple-of-string-values-to-a-156",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1852,7 +1852,7 @@ export default {
     },
     {
       n: 1158,
-      title: "Find k number of operations required to make",
+      title: "Find k number of operations required to make all elements equal",
       slug: "find-k-number-of-operations-required-to-make-158",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1865,7 +1865,7 @@ export default {
     },
     {
       n: 1159,
-      title: "Print the season for the given month and",
+      title: "Print the season for the given month and day",
       slug: "print-the-season-for-the-given-month-and-159",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1878,7 +1878,7 @@ export default {
     },
     {
       n: 1161,
-      title: "Remove all elements from a given list present",
+      title: "Remove all elements from a given list present in another list",
       slug: "remove-all-elements-from-a-given-list-present-161",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1891,7 +1891,7 @@ export default {
     },
     {
       n: 1162,
-      title: "Calculate the sum of the positive integers of",
+      title: "Calculate the sum of the positive integers of n+(n-2)+(n-4)... (until n-x =< 0)",
       slug: "calculate-the-sum-of-the-positive-integers-of-162",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1917,7 +1917,7 @@ export default {
     },
     {
       n: 1164,
-      title: "Check whether the sum of divisors are same",
+      title: "Check whether the sum of divisors are same or not",
       slug: "check-whether-the-sum-of-divisors-are-same-164",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1930,7 +1930,7 @@ export default {
     },
     {
       n: 1165,
-      title: "Count characters at same position in a given",
+      title: "Count characters at same position in a given string (lower",
       slug: "count-characters-at-same-position-in-a-given-165",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1943,7 +1943,7 @@ export default {
     },
     {
       n: 1166,
-      title: "Count the pairs with xor as an even",
+      title: "Count the pairs with xor as an even number",
       slug: "count-the-pairs-with-xor-as-an-even-166",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1956,7 +1956,7 @@ export default {
     },
     {
       n: 1167,
-      title: "Find smallest power of 2 greater than or",
+      title: "Find smallest power of 2 greater than or equal to n",
       slug: "find-smallest-power-of-2-greater-than-or-167",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1969,7 +1969,7 @@ export default {
     },
     {
       n: 1168,
-      title: "Find the frequency of a number in a",
+      title: "Find the frequency of a number in a given array",
       slug: "find-the-frequency-of-a-number-in-a-168",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -1995,7 +1995,7 @@ export default {
     },
     {
       n: 1170,
-      title: "Find sum of the numbers in a list",
+      title: "Find sum of the numbers in a list between the indices of a specified range",
       slug: "find-sum-of-the-numbers-in-a-list-170",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2021,13 +2021,13 @@ export default {
     },
     {
       n: 1172,
-      title: "Find the occurence of characters 'std' in the",
+      title: "Find the occurence of characters \'std\' in the given string",
       slug: "find-the-occurence-of-characters-std-in-the-172",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
       pattern: "One idea, written out directly",
       complexity: "Not stated for this set - aim for the obvious single pass",
-      statement: "\nWrite a function to find the occurence of characters 'std' in the given string 1. list item 1. list item 1. list item 2. list item 2. list item 2. list item\n",
+      statement: "Write a function to find the occurence of characters \'std\' in the given string",
       examples: ["Input:  text = \"letstdlenstdporstd\"\nOutput: 3","Input:  text = \"truststdsolensporsd\"\nOutput: 1","Input:  text = \"makestdsostdworthit\"\nOutput: 2"],
       constraints: [],
       stub: "\nexport function countOccurance(text: string): number {\n  throw new Error('Not implemented');\n}\n",
@@ -2073,7 +2073,7 @@ export default {
     },
     {
       n: 1177,
-      title: "Find two distinct numbers such that their lcm",
+      title: "Find two distinct numbers such that their lcm lies within the given range",
       slug: "find-two-distinct-numbers-such-that-their-lcm-177",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2099,7 +2099,7 @@ export default {
     },
     {
       n: 1179,
-      title: "Find if the given number is a keith",
+      title: "Find if the given number is a keith number or not",
       slug: "find-if-the-given-number-is-a-keith-179",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2112,7 +2112,7 @@ export default {
     },
     {
       n: 1180,
-      title: "Calculate distance between two points using latitude and",
+      title: "Calculate distance between two points using latitude and longitude",
       slug: "calculate-distance-between-two-points-using-latitude-and-180",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2125,7 +2125,7 @@ export default {
     },
     {
       n: 1181,
-      title: "Find the longest common prefix in the given",
+      title: "Find the longest common prefix in the given set of strings",
       slug: "find-the-longest-common-prefix-in-the-given-181",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2138,7 +2138,7 @@ export default {
     },
     {
       n: 1182,
-      title: "Find uppercase, lowercase, special character and numeric values",
+      title: "Find uppercase, lowercase, special character and numeric values using regex",
       slug: "find-uppercase-lowercase-special-character-and-numeric-values-182",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2151,7 +2151,7 @@ export default {
     },
     {
       n: 1183,
-      title: "Count all the distinct pairs having a difference",
+      title: "Count all the distinct pairs having a difference of k in any array",
       slug: "count-all-the-distinct-pairs-having-a-difference-183",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2164,7 +2164,7 @@ export default {
     },
     {
       n: 1184,
-      title: "Find all the values in a list that",
+      title: "Find all the values in a list that are greater than a specified number",
       slug: "find-all-the-values-in-a-list-that-184",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2190,7 +2190,7 @@ export default {
     },
     {
       n: 1186,
-      title: "Search some literals strings in a string by",
+      title: "Search some literals strings in a string by using regex",
       slug: "search-some-literals-strings-in-a-string-by-186",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2203,7 +2203,7 @@ export default {
     },
     {
       n: 1187,
-      title: "Find the longest common subsequence for the given",
+      title: "Find the longest common subsequence for the given two sequences",
       slug: "find-the-longest-common-subsequence-for-the-given-187",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2216,7 +2216,7 @@ export default {
     },
     {
       n: 1188,
-      title: "Check whether the given number can be represented",
+      title: "Check whether the given number can be represented by product of two squares or not",
       slug: "check-whether-the-given-number-can-be-represented-188",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2242,7 +2242,7 @@ export default {
     },
     {
       n: 1190,
-      title: "Count the number of integral co-ordinates that lie",
+      title: "Count the number of integral co-ordinates that lie inside a square",
       slug: "count-the-number-of-integral-co-ordinates-that-190",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2255,7 +2255,7 @@ export default {
     },
     {
       n: 1191,
-      title: "Check whether the given month name contains 30",
+      title: "Check whether the given month name contains 30 days or not",
       slug: "check-whether-the-given-month-name-contains-30-191",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2268,7 +2268,7 @@ export default {
     },
     {
       n: 1192,
-      title: "Check whether a string has atleast one letter",
+      title: "Check whether a string has atleast one letter and one number",
       slug: "check-whether-a-string-has-atleast-one-letter-192",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2307,7 +2307,7 @@ export default {
     },
     {
       n: 1195,
-      title: "Find the first position of an element in",
+      title: "Find the first position of an element in a sorted array",
       slug: "find-the-first-position-of-an-element-in-195",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2346,7 +2346,7 @@ export default {
     },
     {
       n: 1198,
-      title: "Find the largest triangle that can be inscribed",
+      title: "Find the largest triangle that can be inscribed in an ellipse",
       slug: "find-the-largest-triangle-that-can-be-inscribed-198",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2359,7 +2359,7 @@ export default {
     },
     {
       n: 1199,
-      title: "Find highest power of 2 less than or",
+      title: "Find highest power of 2 less than or equal to given number",
       slug: "find-highest-power-of-2-less-than-or-199",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2372,7 +2372,7 @@ export default {
     },
     {
       n: 1200,
-      title: "Find all index positions of the maximum values",
+      title: "Find all index positions of the maximum values in a given list",
       slug: "find-all-index-positions-of-the-maximum-values-200",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2385,7 +2385,7 @@ export default {
     },
     {
       n: 1201,
-      title: "Check whether the elements in a list are",
+      title: "Check whether the elements in a list are same or not",
       slug: "check-whether-the-elements-in-a-list-are-201",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2424,7 +2424,7 @@ export default {
     },
     {
       n: 1204,
-      title: "Count the occurrence of a given character in",
+      title: "Count the occurrence of a given character in a string",
       slug: "count-the-occurrence-of-a-given-character-in-204",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2437,7 +2437,7 @@ export default {
     },
     {
       n: 1205,
-      title: "Find the inversions of tuple elements in the",
+      title: "Find the inversions of tuple elements in the given tuple list",
       slug: "find-the-inversions-of-tuple-elements-in-the-205",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2450,7 +2450,7 @@ export default {
     },
     {
       n: 1206,
-      title: "Perform the adjacent element concatenation in the given",
+      title: "Perform the adjacent element concatenation in the given tuples",
       slug: "perform-the-adjacent-element-concatenation-in-the-given-206",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2463,7 +2463,7 @@ export default {
     },
     {
       n: 1207,
-      title: "Count the longest repeating subsequences such that the",
+      title: "Count the longest repeating subsequences such",
       slug: "count-the-longest-repeating-subsequences-such-that-the-207",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2476,7 +2476,7 @@ export default {
     },
     {
       n: 1208,
-      title: "Check the given decimal with a precision of",
+      title: "Check the given decimal with a precision of 2 by using regex",
       slug: "check-the-given-decimal-with-a-precision-of-208",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2489,7 +2489,7 @@ export default {
     },
     {
       n: 1209,
-      title: "Delete the smallest element from the given heap",
+      title: "Delete the smallest element from the given heap and then insert a new item",
       slug: "delete-the-smallest-element-from-the-given-heap-209",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2502,7 +2502,7 @@ export default {
     },
     {
       n: 1210,
-      title: "Check that the given string contains only a",
+      title: "Check that the given string contains only a certain set",
       slug: "check-that-the-given-string-contains-only-a-210",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2515,7 +2515,7 @@ export default {
     },
     {
       n: 1211,
-      title: "Count numbers whose oth and nth bits are",
+      title: "Count numbers whose oth and nth bits are set",
       slug: "count-numbers-whose-oth-and-nth-bits-are-211",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2528,7 +2528,7 @@ export default {
     },
     {
       n: 1212,
-      title: "Find the sum of fourth power of n",
+      title: "Find the sum of fourth power of n natural numbers",
       slug: "find-the-sum-of-fourth-power-of-n-212",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2567,7 +2567,7 @@ export default {
     },
     {
       n: 1217,
-      title: "Find the first repeated character in a given",
+      title: "Find the first repeated character in a given string",
       slug: "find-the-first-repeated-character-in-a-given-217",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2580,7 +2580,7 @@ export default {
     },
     {
       n: 1218,
-      title: "Find the minimum operations required to make two",
+      title: "Find the minimum operations required to make two numbers equal",
       slug: "find-the-minimum-operations-required-to-make-two-218",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2593,7 +2593,7 @@ export default {
     },
     {
       n: 1219,
-      title: "Extract maximum and minimum k elements in the",
+      title: "Extract maximum and minimum k elements in the given tuple",
       slug: "extract-maximum-and-minimum-k-elements-in-the-219",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2606,7 +2606,7 @@ export default {
     },
     {
       n: 1220,
-      title: "Replace maximum n occurrences of spaces, commas, or",
+      title: "Replace maximum n occurrences of spaces, commas, or dots with a colon",
       slug: "replace-maximum-n-occurrences-of-spaces-commas-or-220",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2619,7 +2619,7 @@ export default {
     },
     {
       n: 1221,
-      title: "Find the first even number in a given",
+      title: "Find the first even number in a given list of numbers",
       slug: "find-the-first-even-number-in-a-given-221",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2632,7 +2632,7 @@ export default {
     },
     {
       n: 1223,
-      title: "Check for majority element in the given sorted",
+      title: "Check for majority element in the given sorted array",
       slug: "check-for-majority-element-in-the-given-sorted-223",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2658,7 +2658,7 @@ export default {
     },
     {
       n: 1225,
-      title: "Find the minimum element in a sorted and",
+      title: "Find the minimum element in a sorted and rotated array",
       slug: "find-the-minimum-element-in-a-sorted-and-225",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2671,7 +2671,7 @@ export default {
     },
     {
       n: 1226,
-      title: "Remove the characters which have odd index values",
+      title: "Remove the characters which have odd index values of a given string",
       slug: "remove-the-characters-which-have-odd-index-values-226",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2697,7 +2697,7 @@ export default {
     },
     {
       n: 1228,
-      title: "Check whether all the bits are unset in",
+      title: "Check whether all the bits are unset in the given range or not",
       slug: "check-whether-all-the-bits-are-unset-in-228",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2723,7 +2723,7 @@ export default {
     },
     {
       n: 1230,
-      title: "Replace blank spaces with any character in a",
+      title: "Replace blank spaces with any character in a string",
       slug: "replace-blank-spaces-with-any-character-in-a-230",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2736,7 +2736,7 @@ export default {
     },
     {
       n: 1231,
-      title: "Find the maximum sum in the given right",
+      title: "Find the maximum sum in the given right triangle of numbers",
       slug: "find-the-maximum-sum-in-the-given-right-231",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2801,7 +2801,7 @@ export default {
     },
     {
       n: 1236,
-      title: "Count the maximum number of equilateral triangles that",
+      title: "Count the maximum number of equilateral triangles",
       slug: "count-the-maximum-number-of-equilateral-triangles-that-236",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2814,7 +2814,7 @@ export default {
     },
     {
       n: 1238,
-      title: "Count number of non-empty substrings of a given",
+      title: "Count number of non-empty substrings of a given string",
       slug: "count-number-of-non-empty-substrings-of-a-238",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2827,7 +2827,7 @@ export default {
     },
     {
       n: 1239,
-      title: "Find the number of possible sequences of length",
+      title: "Find the number of possible sequences of length n such",
       slug: "find-the-number-of-possible-sequences-of-length-239",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2840,7 +2840,7 @@ export default {
     },
     {
       n: 1241,
-      title: "Generate a 3d array having each element as",
+      title: "Generate a 3d array having each element as \'*\'",
       slug: "generate-a-3d-array-having-each-element-as-241",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2866,7 +2866,7 @@ export default {
     },
     {
       n: 1244,
-      title: "Find the next perfect square greater than a",
+      title: "Find the next perfect square greater than a given number",
       slug: "find-the-next-perfect-square-greater-than-a-244",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2879,7 +2879,7 @@ export default {
     },
     {
       n: 1245,
-      title: "Find the maximum sum of bi-tonic sub-sequence for",
+      title: "Find the maximum sum of bi-tonic sub-sequence for the given array",
       slug: "find-the-maximum-sum-of-bi-tonic-sub-245",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2892,7 +2892,7 @@ export default {
     },
     {
       n: 1246,
-      title: "Write a function for computing square roots using",
+      title: "Computing square roots using the babylonian method",
       slug: "write-a-function-for-computing-square-roots-using-246",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2905,7 +2905,7 @@ export default {
     },
     {
       n: 1247,
-      title: "Find the longest palindromic subsequence in the given",
+      title: "Find the longest palindromic subsequence in the given string",
       slug: "find-the-longest-palindromic-subsequence-in-the-given-247",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2931,7 +2931,7 @@ export default {
     },
     {
       n: 1249,
-      title: "Find the intersection of two arrays using lambda",
+      title: "Find the intersection of two arrays using lambda function",
       slug: "find-the-intersection-of-two-arrays-using-lambda-249",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2944,7 +2944,7 @@ export default {
     },
     {
       n: 1250,
-      title: "Count the occcurences of an element in a",
+      title: "Count the occcurences of an element in a tuple",
       slug: "count-the-occcurences-of-an-element-in-a-250",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2957,7 +2957,7 @@ export default {
     },
     {
       n: 1251,
-      title: "Insert an element before each element of a",
+      title: "Insert an element before each element of a list",
       slug: "insert-an-element-before-each-element-of-a-251",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2983,7 +2983,7 @@ export default {
     },
     {
       n: 1254,
-      title: "Find all words starting with 'a' or 'e'",
+      title: "Find all words starting with \'a\' or \'e\' in a given string",
       slug: "find-all-words-starting-with-a-or-e-254",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -2996,7 +2996,7 @@ export default {
     },
     {
       n: 1255,
-      title: "Choose specified number of colours from three different",
+      title: "Choose specified number of colours from three different colours",
       slug: "choose-specified-number-of-colours-from-three-different-255",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3009,7 +3009,7 @@ export default {
     },
     {
       n: 1256,
-      title: "Count the number of prime numbers less than",
+      title: "Count the number of prime numbers less than a given non-negative number",
       slug: "count-the-number-of-prime-numbers-less-than-256",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3035,7 +3035,7 @@ export default {
     },
     {
       n: 1258,
-      title: "Find number of odd elements in the given",
+      title: "Find number of odd elements in the given list using lambda function",
       slug: "find-number-of-odd-elements-in-the-given-258",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3126,7 +3126,7 @@ export default {
     },
     {
       n: 1267,
-      title: "Find the sum of squares of first n",
+      title: "Find the sum of squares of first n odd natural numbers",
       slug: "find-the-sum-of-squares-of-first-n-267",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3165,7 +3165,7 @@ export default {
     },
     {
       n: 1270,
-      title: "Find the sum of even numbers at even",
+      title: "Find the sum of even numbers at even positions",
       slug: "find-the-sum-of-even-numbers-at-even-270",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3178,7 +3178,7 @@ export default {
     },
     {
       n: 1271,
-      title: "Find the sum of fifth power of first",
+      title: "Find the sum of fifth power of first n even natural numbers",
       slug: "find-the-sum-of-fifth-power-of-first-271",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3191,7 +3191,7 @@ export default {
     },
     {
       n: 1273,
-      title: "Substract the contents of one tuple with corresponding",
+      title: "Substract the contents of one tuple with corresponding index of other tuple",
       slug: "substract-the-contents-of-one-tuple-with-corresponding-273",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3217,7 +3217,7 @@ export default {
     },
     {
       n: 1275,
-      title: "Find the position of the last removed element",
+      title: "Find the position of the last removed element from the given array",
       slug: "find-the-position-of-the-last-removed-element-275",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3269,7 +3269,7 @@ export default {
     },
     {
       n: 1281,
-      title: "Check if the elements of a given list",
+      title: "Check if the elements of a given list are unique or not",
       slug: "check-if-the-elements-of-a-given-list-281",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3295,7 +3295,7 @@ export default {
     },
     {
       n: 1283,
-      title: "Check whether the frequency of each digit is",
+      title: "Check whether the frequency of each digit is less than or equal to the digit itself",
       slug: "check-whether-the-frequency-of-each-digit-is-283",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3308,7 +3308,7 @@ export default {
     },
     {
       n: 1285,
-      title: "Matches a string that has an a followed",
+      title: "Matches a string that has an a followed by two to three \'b\'",
       slug: "matches-a-string-that-has-an-a-followed-285",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3321,7 +3321,7 @@ export default {
     },
     {
       n: 1286,
-      title: "Find the largest sum of contiguous array in",
+      title: "Find the largest sum of contiguous array in the modified array",
       slug: "find-the-largest-sum-of-contiguous-array-in-286",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3334,7 +3334,7 @@ export default {
     },
     {
       n: 1287,
-      title: "Find the sum of squares of first n",
+      title: "Find the sum of squares of first n even natural numbers",
       slug: "find-the-sum-of-squares-of-first-n-287",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3347,7 +3347,7 @@ export default {
     },
     {
       n: 1288,
-      title: "Count array elements having modular inverse under given",
+      title: "Count array elements having modular inverse under given prime number p equal",
       slug: "count-array-elements-having-modular-inverse-under-given-288",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3360,7 +3360,7 @@ export default {
     },
     {
       n: 1289,
-      title: "Calculate the number of odd days in a",
+      title: "Calculate the number of odd days in a given year",
       slug: "calculate-the-number-of-odd-days-in-a-289",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3373,7 +3373,7 @@ export default {
     },
     {
       n: 1291,
-      title: "Find out the number of ways of painting",
+      title: "Find out the number of ways of painting the fence such",
       slug: "find-out-the-number-of-ways-of-painting-291",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3399,7 +3399,7 @@ export default {
     },
     {
       n: 1293,
-      title: "Find the third side of a right angled",
+      title: "Find the third side of a right angled triangle",
       slug: "find-the-third-side-of-a-right-angled-293",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3412,7 +3412,7 @@ export default {
     },
     {
       n: 1295,
-      title: "Return the sum of all divisors of a",
+      title: "Return the sum of all divisors of a number",
       slug: "return-the-sum-of-all-divisors-of-a-295",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3438,7 +3438,7 @@ export default {
     },
     {
       n: 1300,
-      title: "Find the count of all binary sequences of",
+      title: "Find the count of all binary sequences of length 2n such that sum",
       slug: "find-the-count-of-all-binary-sequences-of-300",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3464,7 +3464,7 @@ export default {
     },
     {
       n: 1302,
-      title: "Find the most significant bit number which is",
+      title: "Find the most significant bit number which is also a set bit",
       slug: "find-the-most-significant-bit-number-which-is-302",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3477,7 +3477,7 @@ export default {
     },
     {
       n: 1303,
-      title: "Check whether the count of inversion of two",
+      title: "Check whether the count of inversion of two types are same or not",
       slug: "check-whether-the-count-of-inversion-of-two-303",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3490,7 +3490,7 @@ export default {
     },
     {
       n: 1304,
-      title: "Find element at a given index after number",
+      title: "Find element at a given index after number of rotations",
       slug: "find-element-at-a-given-index-after-number-304",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3503,7 +3503,7 @@ export default {
     },
     {
       n: 1305,
-      title: "Match two words from a list of words",
+      title: "Match two words from a list of words starting with letter \'p\'",
       slug: "match-two-words-from-a-list-of-words-305",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3516,7 +3516,7 @@ export default {
     },
     {
       n: 1306,
-      title: "Find the maximum sum of increasing subsequence from",
+      title: "Find the maximum sum of increasing subsequence",
       slug: "find-the-maximum-sum-of-increasing-subsequence-from-306",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3529,7 +3529,7 @@ export default {
     },
     {
       n: 1308,
-      title: "Find the specified number of largest products from",
+      title: "Find the specified number of largest products from two given lists",
       slug: "find-the-specified-number-of-largest-products-from-308",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3594,7 +3594,7 @@ export default {
     },
     {
       n: 1314,
-      title: "Find out the maximum sum such that no",
+      title: "Find out the maximum sum such that no two chosen numbers are adjacent",
       slug: "find-out-the-maximum-sum-such-that-no-314",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3620,7 +3620,7 @@ export default {
     },
     {
       n: 1316,
-      title: "Find the index of the last occurrence of",
+      title: "Find the index of the last occurrence of a given number in a sorted array",
       slug: "find-the-index-of-the-last-occurrence-of-316",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3633,7 +3633,7 @@ export default {
     },
     {
       n: 1318,
-      title: "Find the maximum volume of a cuboid with",
+      title: "Find the maximum volume of a cuboid with given sum of sides",
       slug: "find-the-maximum-volume-of-a-cuboid-with-318",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3646,7 +3646,7 @@ export default {
     },
     {
       n: 1319,
-      title: "Find all five characters long word in the",
+      title: "Find all five characters long word in the given string by using regex",
       slug: "find-all-five-characters-long-word-in-the-319",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3659,7 +3659,7 @@ export default {
     },
     {
       n: 1320,
-      title: "Calculate the difference between the squared sum of",
+      title: "Calculate the difference between the squared sum",
       slug: "calculate-the-difference-between-the-squared-sum-of-320",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3685,7 +3685,7 @@ export default {
     },
     {
       n: 1322,
-      title: "Find all index positions of the minimum values",
+      title: "Find all index positions of the minimum values in a given list",
       slug: "find-all-index-positions-of-the-minimum-values-322",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3698,7 +3698,7 @@ export default {
     },
     {
       n: 1323,
-      title: "Re-arrange the given array in alternating positive and",
+      title: "Re-arrange the given array in alternating positive and negative items",
       slug: "re-arrange-the-given-array-in-alternating-positive-323",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3724,7 +3724,7 @@ export default {
     },
     {
       n: 1325,
-      title: "Find the minimum number of squares whose sum",
+      title: "Find the minimum number of squares whose sum is equal to a given number",
       slug: "find-the-minimum-number-of-squares-whose-sum-325",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3737,7 +3737,7 @@ export default {
     },
     {
       n: 1326,
-      title: "Get the word with most number of occurrences",
+      title: "Get the word with most number of occurrences in the given strings list",
       slug: "get-the-word-with-most-number-of-occurrences-326",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3750,7 +3750,7 @@ export default {
     },
     {
       n: 1327,
-      title: "Print check if the triangle is isosceles or",
+      title: "Print check if the triangle is isosceles or not",
       slug: "print-check-if-the-triangle-is-isosceles-or-327",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3763,7 +3763,7 @@ export default {
     },
     {
       n: 1328,
-      title: "Rotate a given list by specified number of",
+      title: "Rotate a given list by specified number of items to the left direction",
       slug: "rotate-a-given-list-by-specified-number-of-328",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3789,7 +3789,7 @@ export default {
     },
     {
       n: 1330,
-      title: "Find all three, four, five characters long words",
+      title: "Find all three, four, five characters long words in the given string by using regex",
       slug: "find-all-three-four-five-characters-long-words-330",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3828,7 +3828,7 @@ export default {
     },
     {
       n: 1334,
-      title: "Check whether the triangle is valid or not",
+      title: "Check whether the triangle is valid or not if sides are given",
       slug: "check-whether-the-triangle-is-valid-or-not-334",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3854,7 +3854,7 @@ export default {
     },
     {
       n: 1336,
-      title: "Check whether the given month name contains 28",
+      title: "Check whether the given month name contains 28 days or not",
       slug: "check-whether-the-given-month-name-contains-28-336",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3867,7 +3867,7 @@ export default {
     },
     {
       n: 1337,
-      title: "Matches a word at the end of a",
+      title: "Matches a word at the end of a string, with optional punctuation",
       slug: "matches-a-word-at-the-end-of-a-337",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3880,7 +3880,7 @@ export default {
     },
     {
       n: 1338,
-      title: "Count the number of substrings with same first",
+      title: "Count the number of substrings with same first and last characters",
       slug: "count-the-number-of-substrings-with-same-first-338",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3906,7 +3906,7 @@ export default {
     },
     {
       n: 1340,
-      title: "Find the sum of the three lowest positive",
+      title: "Find the sum of the three lowest positive numbers from a given list of numbers",
       slug: "find-the-sum-of-the-three-lowest-positive-340",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3919,7 +3919,7 @@ export default {
     },
     {
       n: 1342,
-      title: "Find the smallest range that includes at-least one",
+      title: "Find the smallest range that includes at-least one element",
       slug: "find-the-smallest-range-that-includes-at-least-342",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3932,7 +3932,7 @@ export default {
     },
     {
       n: 1343,
-      title: "Calculate the number of digits and letters in",
+      title: "Calculate the number of digits and letters in a string",
       slug: "calculate-the-number-of-digits-and-letters-in-343",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3945,7 +3945,7 @@ export default {
     },
     {
       n: 1344,
-      title: "Find number of elements with odd factors in",
+      title: "Find number of elements with odd factors in a given range",
       slug: "find-number-of-elements-with-odd-factors-in-344",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3958,7 +3958,7 @@ export default {
     },
     {
       n: 1345,
-      title: "Find the difference between two consecutive numbers in",
+      title: "Find the difference between two consecutive numbers in a given list",
       slug: "find-the-difference-between-two-consecutive-numbers-in-345",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -3997,7 +3997,7 @@ export default {
     },
     {
       n: 1348,
-      title: "Count sequences of given length having non-negative prefix",
+      title: "Count sequences of given length having non-negative prefix sums",
       slug: "count-sequences-of-given-length-having-non-negative-348",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4010,7 +4010,7 @@ export default {
     },
     {
       n: 1349,
-      title: "Check whether the given string is a binary",
+      title: "Check whether the given string is a binary string or not",
       slug: "check-whether-the-given-string-is-a-binary-349",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4023,7 +4023,7 @@ export default {
     },
     {
       n: 1350,
-      title: "Minimize the length of the string by removing",
+      title: "Minimize the length of the string by removing occurrence of only one character",
       slug: "minimize-the-length-of-the-string-by-removing-350",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4036,7 +4036,7 @@ export default {
     },
     {
       n: 1351,
-      title: "Find the first element occurring k times in",
+      title: "Find the first element occurring k times in a given array",
       slug: "find-the-first-element-occurring-k-times-in-351",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4049,7 +4049,7 @@ export default {
     },
     {
       n: 1352,
-      title: "Check whether all the characters in a given",
+      title: "Check whether all the characters in a given string are unique",
       slug: "check-whether-all-the-characters-in-a-given-352",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4062,7 +4062,7 @@ export default {
     },
     {
       n: 1353,
-      title: "Remove a specified column from a given nested",
+      title: "Remove a specified column from a given nested list",
       slug: "remove-a-specified-column-from-a-given-nested-353",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4088,7 +4088,7 @@ export default {
     },
     {
       n: 1355,
-      title: "Count the number of rectangles in a circle",
+      title: "Count the number of rectangles in a circle of radius r",
       slug: "count-the-number-of-rectangles-in-a-circle-355",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4101,7 +4101,7 @@ export default {
     },
     {
       n: 1356,
-      title: "Find the third angle of a triangle using",
+      title: "Find the third angle of a triangle using two angles",
       slug: "find-the-third-angle-of-a-triangle-using-356",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4114,7 +4114,7 @@ export default {
     },
     {
       n: 1357,
-      title: "Find the maximum element of all the given",
+      title: "Find the maximum element of all the given tuple records",
       slug: "find-the-maximum-element-of-all-the-given-357",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4127,7 +4127,7 @@ export default {
     },
     {
       n: 1358,
-      title: "Find modulo division of two lists using map",
+      title: "Find modulo division of two lists using map and lambda function",
       slug: "find-modulo-division-of-two-lists-using-map-358",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4140,7 +4140,7 @@ export default {
     },
     {
       n: 1359,
-      title: "Check whether one root of the quadratic equation",
+      title: "Check whether one root of the quadratic equation is twice of the other or not",
       slug: "check-whether-one-root-of-the-quadratic-equation-359",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4166,7 +4166,7 @@ export default {
     },
     {
       n: 1363,
-      title: "Add the k elements to each element in",
+      title: "Add the k elements to each element in the tuple",
       slug: "add-the-k-elements-to-each-element-in-363",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4179,7 +4179,7 @@ export default {
     },
     {
       n: 1364,
-      title: "Find the number of flips required to make",
+      title: "Find the number of flips required",
       slug: "find-the-number-of-flips-required-to-make-364",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4192,7 +4192,7 @@ export default {
     },
     {
       n: 1365,
-      title: "Count the number of digits of a given",
+      title: "Count the number of digits of a given number",
       slug: "count-the-number-of-digits-of-a-given-365",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4205,7 +4205,7 @@ export default {
     },
     {
       n: 1366,
-      title: "Find the largest product of the pair of",
+      title: "Find the largest product of the pair of adjacent elements",
       slug: "find-the-largest-product-of-the-pair-of-366",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4257,7 +4257,7 @@ export default {
     },
     {
       n: 1371,
-      title: "Find the smallest missing element in a sorted",
+      title: "Find the smallest missing element in a sorted array",
       slug: "find-the-smallest-missing-element-in-a-sorted-371",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4270,7 +4270,7 @@ export default {
     },
     {
       n: 1372,
-      title: "Sort a given list of elements in ascending",
+      title: "Sort a given list of elements in ascending order using heap queue algorithm",
       slug: "sort-a-given-list-of-elements-in-ascending-372",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4296,7 +4296,7 @@ export default {
     },
     {
       n: 1374,
-      title: "Print all permutations of a given string including",
+      title: "Print all permutations of a given string including duplicates",
       slug: "print-all-permutations-of-a-given-string-including-374",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4309,7 +4309,7 @@ export default {
     },
     {
       n: 1375,
-      title: "Round the given number to the nearest multiple",
+      title: "Round the given number to the nearest multiple of a specific number",
       slug: "round-the-given-number-to-the-nearest-multiple-375",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4322,7 +4322,7 @@ export default {
     },
     {
       n: 1377,
-      title: "Remove all occurrences of a character in a",
+      title: "Remove all occurrences of a character in a given string",
       slug: "remove-all-occurrences-of-a-character-in-a-377",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4335,7 +4335,7 @@ export default {
     },
     {
       n: 1378,
-      title: "Shift last element to first position in the",
+      title: "Shift last element to first position in the given list",
       slug: "shift-last-element-to-first-position-in-the-378",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4374,7 +4374,7 @@ export default {
     },
     {
       n: 1382,
-      title: "Find the number of rotations in a circularly",
+      title: "Find the number of rotations in a circularly sorted array",
       slug: "find-the-number-of-rotations-in-a-circularly-382",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4400,7 +4400,7 @@ export default {
     },
     {
       n: 1384,
-      title: "Find the frequency of the smallest value in",
+      title: "Find the frequency of the smallest value in a given array",
       slug: "find-the-frequency-of-the-smallest-value-in-384",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4426,7 +4426,7 @@ export default {
     },
     {
       n: 1386,
-      title: "Find out the minimum no of swaps required",
+      title: "Find out the minimum no of swaps required for bracket balancing in the given string",
       slug: "find-out-the-minimum-no-of-swaps-required-386",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4439,7 +4439,7 @@ export default {
     },
     {
       n: 1387,
-      title: "Check whether the hexadecimal number is even or",
+      title: "Check whether the hexadecimal number is even or odd",
       slug: "check-whether-the-hexadecimal-number-is-even-or-387",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4452,7 +4452,7 @@ export default {
     },
     {
       n: 1388,
-      title: "Find the highest power of 2 that is",
+      title: "Find the highest power of 2 that is less than or equal to n",
       slug: "find-the-highest-power-of-2-that-is-388",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4478,7 +4478,7 @@ export default {
     },
     {
       n: 1392,
-      title: "Find the maximum sum possible by using the",
+      title: "Find the maximum sum possible",
       slug: "find-the-maximum-sum-possible-by-using-the-392",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4504,7 +4504,7 @@ export default {
     },
     {
       n: 1396,
-      title: "Check whether the given string starts and ends",
+      title: "Check whether the given string starts and ends with the same character",
       slug: "check-whether-the-given-string-starts-and-ends-396",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4530,7 +4530,7 @@ export default {
     },
     {
       n: 1399,
-      title: "Perform the mathematical bitwise xor operation across the",
+      title: "Perform the mathematical bitwise xor operation across the given tuples",
       slug: "perform-the-mathematical-bitwise-xor-operation-across-the-399",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4543,7 +4543,7 @@ export default {
     },
     {
       n: 1400,
-      title: "Extract the frequency of unique tuples in the",
+      title: "Extract the frequency of unique tuples in the given list order irrespective",
       slug: "extract-the-frequency-of-unique-tuples-in-the-400",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4556,7 +4556,7 @@ export default {
     },
     {
       n: 1401,
-      title: "Perform index wise addition of tuple elements in",
+      title: "Perform index wise addition of tuple elements in the given two nested tuples",
       slug: "perform-index-wise-addition-of-tuple-elements-in-401",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4582,7 +4582,7 @@ export default {
     },
     {
       n: 1403,
-      title: "Check if a url is valid or not",
+      title: "Check if a url is valid or not using regex",
       slug: "check-if-a-url-is-valid-or-not-403",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4621,7 +4621,7 @@ export default {
     },
     {
       n: 1408,
-      title: "Find k number of pairs which consist of",
+      title: "Find k number of pairs which consist of one element from the first array",
       slug: "find-k-number-of-pairs-which-consist-of-408",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4634,7 +4634,7 @@ export default {
     },
     {
       n: 1409,
-      title: "Find the minimum product from the pairs of",
+      title: "Find the minimum product from the pairs of tuples within a given list",
       slug: "find-the-minimum-product-from-the-pairs-of-409",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4647,7 +4647,7 @@ export default {
     },
     {
       n: 1411,
-      title: "Convert the given snake case string to camel",
+      title: "Convert the given snake case string to camel case string by using regex",
       slug: "convert-the-given-snake-case-string-to-camel-411",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4673,7 +4673,7 @@ export default {
     },
     {
       n: 1414,
-      title: "Check whether the value exists in a sequence",
+      title: "Check whether the value exists in a sequence or not",
       slug: "check-whether-the-value-exists-in-a-sequence-414",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4686,7 +4686,7 @@ export default {
     },
     {
       n: 1415,
-      title: "Find a pair with highest product from a",
+      title: "Find a pair with highest product from a given array of integers",
       slug: "find-a-pair-with-highest-product-from-a-415",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4699,7 +4699,7 @@ export default {
     },
     {
       n: 1416,
-      title: "Find the maximum sum we can make by",
+      title: "Find the maximum sum we can make by dividing number",
       slug: "find-the-maximum-sum-we-can-make-by-416",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4712,7 +4712,7 @@ export default {
     },
     {
       n: 1417,
-      title: "Find common first element in given list of",
+      title: "Find common first element in given list of tuple",
       slug: "find-common-first-element-in-given-list-of-417",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4725,7 +4725,7 @@ export default {
     },
     {
       n: 1419,
-      title: "Round every number of a given list of",
+      title: "Round every number of a given list of numbers",
       slug: "round-every-number-of-a-given-list-of-419",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4738,7 +4738,7 @@ export default {
     },
     {
       n: 1420,
-      title: "Find the cube sum of first n even",
+      title: "Find the cube sum of first n even natural numbers",
       slug: "find-the-cube-sum-of-first-n-even-420",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4751,7 +4751,7 @@ export default {
     },
     {
       n: 1422,
-      title: "Find the average of cubes of first n",
+      title: "Find the average of cubes of first n natural numbers",
       slug: "find-the-average-of-cubes-of-first-n-422",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4777,7 +4777,7 @@ export default {
     },
     {
       n: 1424,
-      title: "Extract only the rear index element of each",
+      title: "Extract only the rear index element of each string in the given tuple",
       slug: "extract-only-the-rear-index-element-of-each-424",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4803,7 +4803,7 @@ export default {
     },
     {
       n: 1427,
-      title: "Convert a date of yyyy-mm-dd format to dd-mm-yyyy",
+      title: "Convert a date of yyyy-mm-dd format to dd-mm-yyyy format by using regex",
       slug: "convert-a-date-of-yyyy-mm-dd-format-427",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4829,7 +4829,7 @@ export default {
     },
     {
       n: 1429,
-      title: "Extract the elementwise and tuples from the given",
+      title: "Extract the elementwise and tuples from the given two tuples",
       slug: "extract-the-elementwise-and-tuples-from-the-given-429",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4868,7 +4868,7 @@ export default {
     },
     {
       n: 1433,
-      title: "Check whether the entered number is greater than",
+      title: "Check whether the entered number is greater than the elements of the given array",
       slug: "check-whether-the-entered-number-is-greater-than-433",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4881,7 +4881,7 @@ export default {
     },
     {
       n: 1434,
-      title: "Matches a string that has an a followed",
+      title: "Matches a string that has an a followed by one or more b\'s",
       slug: "matches-a-string-that-has-an-a-followed-434",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4933,7 +4933,7 @@ export default {
     },
     {
       n: 1439,
-      title: "Convert a list of multiple integers into a",
+      title: "Convert a list of multiple integers into a single integer",
       slug: "convert-a-list-of-multiple-integers-into-a-439",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4959,7 +4959,7 @@ export default {
     },
     {
       n: 1442,
-      title: "Find the ration of positive numbers in an",
+      title: "Find the ration of positive numbers in an array of integers",
       slug: "find-the-ration-of-positive-numbers-in-an-442",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4972,7 +4972,7 @@ export default {
     },
     {
       n: 1443,
-      title: "Find the largest negative number from the given",
+      title: "Find the largest negative number from the given list",
       slug: "find-the-largest-negative-number-from-the-given-443",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4985,7 +4985,7 @@ export default {
     },
     {
       n: 1444,
-      title: "Trim each tuple by k in the given",
+      title: "Trim each tuple by k in the given tuple list",
       slug: "trim-each-tuple-by-k-in-the-given-444",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -4998,7 +4998,7 @@ export default {
     },
     {
       n: 1445,
-      title: "Perform index wise multiplication of tuple elements in",
+      title: "Perform index wise multiplication of tuple elements in the given two tuples",
       slug: "perform-index-wise-multiplication-of-tuple-elements-in-445",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5024,7 +5024,7 @@ export default {
     },
     {
       n: 1449,
-      title: "Check whether the triangle is valid or not",
+      title: "Check whether the triangle is valid or not if 3 points are given",
       slug: "check-whether-the-triangle-is-valid-or-not-449",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5037,7 +5037,7 @@ export default {
     },
     {
       n: 1450,
-      title: "Extract specified size of strings from a give",
+      title: "Extract specified size of strings from a give list of string values",
       slug: "extract-specified-size-of-strings-from-a-give-450",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5050,7 +5050,7 @@ export default {
     },
     {
       n: 1451,
-      title: "Remove all whitespaces from the given string using",
+      title: "Remove all whitespaces from the given string using regex",
       slug: "remove-all-whitespaces-from-the-given-string-using-451",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5063,7 +5063,7 @@ export default {
     },
     {
       n: 1453,
-      title: "Find the sum of even factors of a",
+      title: "Find the sum of even factors of a number",
       slug: "find-the-sum-of-even-factors-of-a-453",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5089,7 +5089,7 @@ export default {
     },
     {
       n: 1455,
-      title: "Check whether the given month number contains 31",
+      title: "Check whether the given month number contains 31 days or not",
       slug: "check-whether-the-given-month-number-contains-31-455",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5102,7 +5102,7 @@ export default {
     },
     {
       n: 1456,
-      title: "Reverse strings in a given list of string",
+      title: "Reverse strings in a given list of string values",
       slug: "reverse-strings-in-a-given-list-of-string-456",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5128,7 +5128,7 @@ export default {
     },
     {
       n: 1459,
-      title: "Remove uppercase substrings from a given string by",
+      title: "Remove uppercase substrings from a given string by using regex",
       slug: "remove-uppercase-substrings-from-a-given-string-by-459",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5154,7 +5154,7 @@ export default {
     },
     {
       n: 1461,
-      title: "Count the upper case characters in a given",
+      title: "Count the upper case characters in a given string",
       slug: "count-the-upper-case-characters-in-a-given-461",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5167,7 +5167,7 @@ export default {
     },
     {
       n: 1462,
-      title: "Find all possible combinations of the elements of",
+      title: "Find all possible combinations of the elements of a given list",
       slug: "find-all-possible-combinations-of-the-elements-of-462",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5180,7 +5180,7 @@ export default {
     },
     {
       n: 1463,
-      title: "Find the maximum product subarray of the given",
+      title: "Find the maximum product subarray of the given array",
       slug: "find-the-maximum-product-subarray-of-the-given-463",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5193,7 +5193,7 @@ export default {
     },
     {
       n: 1464,
-      title: "Check if all values are same in a",
+      title: "Check if all values are same in a dictionary",
       slug: "check-if-all-values-are-same-in-a-464",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5258,7 +5258,7 @@ export default {
     },
     {
       n: 1469,
-      title: "Find the maximum profit earned from a maximum",
+      title: "Find the maximum profit earned from a maximum of k stock transactions",
       slug: "find-the-maximum-profit-earned-from-a-maximum-469",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5271,7 +5271,7 @@ export default {
     },
     {
       n: 1470,
-      title: "Find the pairwise addition of the elements of",
+      title: "Find the pairwise addition of the elements of the given tuples",
       slug: "find-the-pairwise-addition-of-the-elements-of-470",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5297,7 +5297,7 @@ export default {
     },
     {
       n: 1472,
-      title: "Check whether the given list contains consecutive numbers",
+      title: "Check whether the given list contains consecutive numbers or not",
       slug: "check-whether-the-given-list-contains-consecutive-numbers-472",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5323,7 +5323,7 @@ export default {
     },
     {
       n: 1476,
-      title: "Find the sum of the largest and smallest",
+      title: "Find the sum of the largest and smallest value in a given array",
       slug: "find-the-sum-of-the-largest-and-smallest-476",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5375,7 +5375,7 @@ export default {
     },
     {
       n: 1480,
-      title: "Find the maximum occurring character in a given",
+      title: "Find the maximum occurring character in a given string",
       slug: "find-the-maximum-occurring-character-in-a-given-480",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5388,7 +5388,7 @@ export default {
     },
     {
       n: 1481,
-      title: "Determine if there is a subset of the",
+      title: "Determine if there is a subset of the given set with sum equal to the given sum",
       slug: "determine-if-there-is-a-subset-of-the-481",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5401,7 +5401,7 @@ export default {
     },
     {
       n: 1482,
-      title: "Find sequences of one upper case letter followed",
+      title: "Find sequences of one upper case letter followed by lower case letters",
       slug: "find-sequences-of-one-upper-case-letter-followed-482",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5414,7 +5414,7 @@ export default {
     },
     {
       n: 1483,
-      title: "Find the first natural number whose factorial is",
+      title: "Find the first natural number whose factorial is divisible by x",
       slug: "find-the-first-natural-number-whose-factorial-is-483",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5427,7 +5427,7 @@ export default {
     },
     {
       n: 1484,
-      title: "Remove the matching tuples from the given two",
+      title: "Remove the matching tuples from the given two tuples",
       slug: "remove-the-matching-tuples-from-the-given-two-484",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5440,7 +5440,7 @@ export default {
     },
     {
       n: 1485,
-      title: "Find the largest palindromic number in the given",
+      title: "Find the largest palindromic number in the given array",
       slug: "find-the-largest-palindromic-number-in-the-given-485",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5453,7 +5453,7 @@ export default {
     },
     {
       n: 1487,
-      title: "Sort a list of tuples in increasing order",
+      title: "Sort a list of tuples in increasing order by the last element in each tuple",
       slug: "sort-a-list-of-tuples-in-increasing-order-487",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5479,7 +5479,7 @@ export default {
     },
     {
       n: 1489,
-      title: "Find the frequency of the largest value in",
+      title: "Find the frequency of the largest value in a given array",
       slug: "find-the-frequency-of-the-largest-value-in-489",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5505,7 +5505,7 @@ export default {
     },
     {
       n: 1492,
-      title: "Search an element in the given array by",
+      title: "Search an element in the given array by using binary search",
       slug: "search-an-element-in-the-given-array-by-492",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5518,7 +5518,7 @@ export default {
     },
     {
       n: 1493,
-      title: "Calculate a grid of hexagon coordinates where function",
+      title: "Calculate a grid of hexagon coordinates where function returns a list",
       slug: "calculate-a-grid-of-hexagon-coordinates-where-function-493",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5544,7 +5544,7 @@ export default {
     },
     {
       n: 1495,
-      title: "Remove lowercase substrings from a given string by",
+      title: "Remove lowercase substrings from a given string by using regex",
       slug: "remove-lowercase-substrings-from-a-given-string-by-495",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5557,7 +5557,7 @@ export default {
     },
     {
       n: 1496,
-      title: "Find the smallest integers from a given list",
+      title: "Find the smallest integers from a given list of numbers using heap queue algorithm",
       slug: "find-the-smallest-integers-from-a-given-list-496",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5609,7 +5609,7 @@ export default {
     },
     {
       n: 1500,
-      title: "Concatenate all elements of the given list into",
+      title: "Concatenate all elements of the given list into a string",
       slug: "concatenate-all-elements-of-the-given-list-into-500",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5622,7 +5622,7 @@ export default {
     },
     {
       n: 1501,
-      title: "Find common divisor between two numbers in a",
+      title: "Find common divisor between two numbers in a given pair",
       slug: "find-common-divisor-between-two-numbers-in-a-501",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5661,7 +5661,7 @@ export default {
     },
     {
       n: 1504,
-      title: "Find the cube sum of first n natural",
+      title: "Find the cube sum of first n natural numbers",
       slug: "find-the-cube-sum-of-first-n-natural-504",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5674,7 +5674,7 @@ export default {
     },
     {
       n: 1505,
-      title: "Move all zeroes to the end of the",
+      title: "Move all zeroes to the end of the given array",
       slug: "move-all-zeroes-to-the-end-of-the-505",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5713,7 +5713,7 @@ export default {
     },
     {
       n: 1508,
-      title: "Check if the common elements between two given",
+      title: "Check if the common elements between two given lists are in the same order or not",
       slug: "check-if-the-common-elements-between-two-given-508",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5726,7 +5726,7 @@ export default {
     },
     {
       n: 1509,
-      title: "Find the average of odd numbers till a",
+      title: "Find the average of odd numbers till a given odd number",
       slug: "find-the-average-of-odd-numbers-till-a-509",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5739,7 +5739,7 @@ export default {
     },
     {
       n: 1510,
-      title: "Find the number of subsequences having product smaller",
+      title: "Find the number of subsequences having product smaller than k",
       slug: "find-the-number-of-subsequences-having-product-smaller-510",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5752,7 +5752,7 @@ export default {
     },
     {
       n: 1511,
-      title: "Find minimum sum of factors of a given",
+      title: "Find minimum sum of factors of a given number",
       slug: "find-minimum-sum-of-factors-of-a-given-511",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5765,7 +5765,7 @@ export default {
     },
     {
       n: 1514,
-      title: "Find the summation of tuple elements in the",
+      title: "Find the summation of tuple elements in the given tuple list",
       slug: "find-the-summation-of-tuple-elements-in-the-514",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5778,7 +5778,7 @@ export default {
     },
     {
       n: 1515,
-      title: "Check if there is a subset with sum",
+      title: "Check if there is a subset with sum divisible by m",
       slug: "check-if-there-is-a-subset-with-sum-515",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5804,7 +5804,7 @@ export default {
     },
     {
       n: 1517,
-      title: "Find the largest postive number from the given",
+      title: "Find the largest postive number from the given list",
       slug: "find-the-largest-postive-number-from-the-given-517",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5856,7 +5856,7 @@ export default {
     },
     {
       n: 1521,
-      title: "Print check if the triangle is scalene or",
+      title: "Print check if the triangle is scalene or not",
       slug: "print-check-if-the-triangle-is-scalene-or-521",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5869,7 +5869,7 @@ export default {
     },
     {
       n: 1522,
-      title: "Find the longest bitonic subsequence for the given",
+      title: "Find the longest bitonic subsequence for the given array",
       slug: "find-the-longest-bitonic-subsequence-for-the-given-522",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5882,7 +5882,7 @@ export default {
     },
     {
       n: 1523,
-      title: "Check whether a given string has a capital",
+      title: "Check whether a given string has a capital letter, a lower case letter",
       slug: "check-whether-a-given-string-has-a-capital-523",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5895,7 +5895,7 @@ export default {
     },
     {
       n: 1524,
-      title: "Find the sum of maximum increasing subsequence of",
+      title: "Find the sum of maximum increasing subsequence of the given array",
       slug: "find-the-sum-of-maximum-increasing-subsequence-of-524",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5908,7 +5908,7 @@ export default {
     },
     {
       n: 1525,
-      title: "Check whether two given lines are parallel or",
+      title: "Check whether two given lines are parallel or not",
       slug: "check-whether-two-given-lines-are-parallel-or-525",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5921,7 +5921,7 @@ export default {
     },
     {
       n: 1526,
-      title: "Capitalize first and last letters of each word",
+      title: "Capitalize first and last letters of each word of a given string",
       slug: "capitalize-first-and-last-letters-of-each-word-526",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5934,7 +5934,7 @@ export default {
     },
     {
       n: 1527,
-      title: "Find all pairs in an integer array whose",
+      title: "Find all pairs in an integer array whose sum is equal to a given number",
       slug: "find-all-pairs-in-an-integer-array-whose-527",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5960,7 +5960,7 @@ export default {
     },
     {
       n: 1530,
-      title: "Find the ration of negative numbers in an",
+      title: "Find the ration of negative numbers in an array of integers",
       slug: "find-the-ration-of-negative-numbers-in-an-530",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5973,7 +5973,7 @@ export default {
     },
     {
       n: 1531,
-      title: "Find minimum number of coins that make a",
+      title: "Find minimum number of coins that make a given value",
       slug: "find-minimum-number-of-coins-that-make-a-531",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5986,7 +5986,7 @@ export default {
     },
     {
       n: 1532,
-      title: "Check if the two given strings are permutations",
+      title: "Check if the two given strings are permutations of each other",
       slug: "check-if-the-two-given-strings-are-permutations-532",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -5999,7 +5999,7 @@ export default {
     },
     {
       n: 1534,
-      title: "Search a literals string in a string and",
+      title: "Search a literals string in a string",
       slug: "search-a-literals-string-in-a-string-and-534",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6012,7 +6012,7 @@ export default {
     },
     {
       n: 1535,
-      title: "Find the top or bottom surface area of",
+      title: "Find the top or bottom surface area of a cylinder",
       slug: "find-the-top-or-bottom-surface-area-of-535",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6038,7 +6038,7 @@ export default {
     },
     {
       n: 1537,
-      title: "Find the first repeated word in a given",
+      title: "Find the first repeated word in a given string",
       slug: "find-the-first-repeated-word-in-a-given-537",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6064,7 +6064,7 @@ export default {
     },
     {
       n: 1539,
-      title: "Create a list containing the power of said",
+      title: "Create a list containing the power of said number in bases raised",
       slug: "create-a-list-containing-the-power-of-said-539",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6077,7 +6077,7 @@ export default {
     },
     {
       n: 1540,
-      title: "Find the difference between highest and least frequencies",
+      title: "Find the difference between highest and least frequencies in a given array",
       slug: "find-the-difference-between-highest-and-least-frequencies-540",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6090,7 +6090,7 @@ export default {
     },
     {
       n: 1541,
-      title: "Find if the given number is abundant or",
+      title: "Find if the given number is abundant or not",
       slug: "find-if-the-given-number-is-abundant-or-541",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6103,7 +6103,7 @@ export default {
     },
     {
       n: 1542,
-      title: "Replace all occurrences of spaces, commas, or dots",
+      title: "Replace all occurrences of spaces, commas, or dots with a colon",
       slug: "replace-all-occurrences-of-spaces-commas-or-dots-542",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6116,7 +6116,7 @@ export default {
     },
     {
       n: 1543,
-      title: "Add two numbers and print number of digits",
+      title: "Add two numbers and print number of digits of sum",
       slug: "add-two-numbers-and-print-number-of-digits-543",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6142,7 +6142,7 @@ export default {
     },
     {
       n: 1545,
-      title: "Toggle only first and last bits of a",
+      title: "Toggle only first and last bits of a given number",
       slug: "toggle-only-first-and-last-bits-of-a-545",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6155,7 +6155,7 @@ export default {
     },
     {
       n: 1547,
-      title: "Find the sum of hamming distances of all",
+      title: "Find the sum of hamming distances of all consecutive numbers from o to n",
       slug: "find-the-sum-of-hamming-distances-of-all-547",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6168,7 +6168,7 @@ export default {
     },
     {
       n: 1548,
-      title: "Find the length of the longest increasing subsequence",
+      title: "Find the length of the longest increasing subsequence of the given sequence",
       slug: "find-the-length-of-the-longest-increasing-subsequence-548",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6181,7 +6181,7 @@ export default {
     },
     {
       n: 1549,
-      title: "Find the sum of fifth power of first",
+      title: "Find the sum of fifth power of first n odd natural numbers",
       slug: "find-the-sum-of-fifth-power-of-first-549",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6194,7 +6194,7 @@ export default {
     },
     {
       n: 1550,
-      title: "Find the maximum element in a sorted and",
+      title: "Find the maximum element in a sorted and rotated array",
       slug: "find-the-maximum-element-in-a-sorted-and-550",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6207,7 +6207,7 @@ export default {
     },
     {
       n: 1551,
-      title: "Extract a specified column from a given nested",
+      title: "Extract a specified column from a given nested list",
       slug: "extract-a-specified-column-from-a-given-nested-551",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6220,7 +6220,7 @@ export default {
     },
     {
       n: 1552,
-      title: "Check whether a given sequence is linear or",
+      title: "Check whether a given sequence is linear or not",
       slug: "check-whether-a-given-sequence-is-linear-or-552",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6259,7 +6259,7 @@ export default {
     },
     {
       n: 1555,
-      title: "Find the difference between sum of cubes of",
+      title: "Find the difference between sum of cubes of first n natural numbers",
       slug: "find-the-difference-between-sum-of-cubes-of-555",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6272,7 +6272,7 @@ export default {
     },
     {
       n: 1556,
-      title: "Count the pairs with xor as an odd",
+      title: "Count the pairs with xor as an odd number",
       slug: "count-the-pairs-with-xor-as-an-odd-556",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6311,7 +6311,7 @@ export default {
     },
     {
       n: 1559,
-      title: "Find the largest sum of contiguous subarray in",
+      title: "Find the largest sum of contiguous subarray in the given array",
       slug: "find-the-largest-sum-of-contiguous-subarray-in-559",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6324,7 +6324,7 @@ export default {
     },
     {
       n: 1560,
-      title: "Find the union of elements of the given",
+      title: "Find the union of elements of the given tuples",
       slug: "find-the-union-of-elements-of-the-given-560",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6337,7 +6337,7 @@ export default {
     },
     {
       n: 1561,
-      title: "Assign with each element, its pair elements from",
+      title: "Assign with each element, its pair elements from other similar pairs",
       slug: "assign-with-each-element-its-pair-elements-from-561",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6415,7 +6415,7 @@ export default {
     },
     {
       n: 1567,
-      title: "Check whether a specified list is sorted or",
+      title: "Check whether a specified list is sorted or not",
       slug: "check-whether-a-specified-list-is-sorted-or-567",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6428,7 +6428,7 @@ export default {
     },
     {
       n: 1569,
-      title: "Sort each sublist of strings in a given",
+      title: "Sort each sublist of strings in a given list of lists",
       slug: "sort-each-sublist-of-strings-in-a-given-569",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6441,7 +6441,7 @@ export default {
     },
     {
       n: 1570,
-      title: "Remove words from a given list of strings",
+      title: "Remove words from a given list of strings containing a character or string",
       slug: "remove-words-from-a-given-list-of-strings-570",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6454,7 +6454,7 @@ export default {
     },
     {
       n: 1571,
-      title: "Find maximum possible sum of disjoint pairs for",
+      title: "Find maximum possible sum of disjoint pairs for the given array",
       slug: "find-maximum-possible-sum-of-disjoint-pairs-for-571",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6467,7 +6467,7 @@ export default {
     },
     {
       n: 1572,
-      title: "Remove two duplicate numbers from a given number",
+      title: "Remove two duplicate numbers from a given number of lists",
       slug: "remove-two-duplicate-numbers-from-a-given-number-572",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6480,7 +6480,7 @@ export default {
     },
     {
       n: 1573,
-      title: "Calculate the product of the unique numbers of",
+      title: "Calculate the product of the unique numbers of a given list",
       slug: "calculate-the-product-of-the-unique-numbers-of-573",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6506,7 +6506,7 @@ export default {
     },
     {
       n: 1575,
-      title: "Find nth number in a sequence which is",
+      title: "Find nth number in a sequence which is not a multiple of a given number",
       slug: "find-nth-number-in-a-sequence-which-is-575",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6519,7 +6519,7 @@ export default {
     },
     {
       n: 1576,
-      title: "Check whether an array is subarray of another",
+      title: "Check whether an array is subarray of another or not",
       slug: "check-whether-an-array-is-subarray-of-another-576",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6532,7 +6532,7 @@ export default {
     },
     {
       n: 1577,
-      title: "Find the last digit in factorial of a",
+      title: "Find the last digit in factorial of a given number",
       slug: "find-the-last-digit-in-factorial-of-a-577",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6558,7 +6558,7 @@ export default {
     },
     {
       n: 1579,
-      title: "Find the dissimilar elements in the given two",
+      title: "Find the dissimilar elements in the given two tuples",
       slug: "find-the-dissimilar-elements-in-the-given-two-579",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6584,7 +6584,7 @@ export default {
     },
     {
       n: 1583,
-      title: "Write a function for nth catalan number",
+      title: "Nth catalan number",
       slug: "write-a-function-for-nth-catalan-number-583",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6597,7 +6597,7 @@ export default {
     },
     {
       n: 1584,
-      title: "Find all adverbs and their positions in a",
+      title: "Find all adverbs and their positions in a given sentence by using regex",
       slug: "find-all-adverbs-and-their-positions-in-a-584",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6610,7 +6610,7 @@ export default {
     },
     {
       n: 1586,
-      title: "Split the array and add the first part",
+      title: "Split the array and add the first part to the end",
       slug: "split-the-array-and-add-the-first-part-586",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6636,7 +6636,7 @@ export default {
     },
     {
       n: 1588,
-      title: "Find the difference between largest and smallest value",
+      title: "Find the difference between largest and smallest value in a given array",
       slug: "find-the-difference-between-largest-and-smallest-value-588",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6662,7 +6662,7 @@ export default {
     },
     {
       n: 1591,
-      title: "Interchange the first and last elements in a",
+      title: "Interchange the first and last elements in a list",
       slug: "interchange-the-first-and-last-elements-in-a-591",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6701,7 +6701,7 @@ export default {
     },
     {
       n: 1594,
-      title: "Find the difference of first even and odd",
+      title: "Find the difference of first even and odd number of a given list",
       slug: "find-the-difference-of-first-even-and-odd-594",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6714,7 +6714,7 @@ export default {
     },
     {
       n: 1597,
-      title: "Find kth element from the given two sorted",
+      title: "Find kth element from the given two sorted arrays",
       slug: "find-kth-element-from-the-given-two-sorted-597",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6727,7 +6727,7 @@ export default {
     },
     {
       n: 1598,
-      title: "Check whether the given number is armstrong or",
+      title: "Check whether the given number is armstrong or not",
       slug: "check-whether-the-given-number-is-armstrong-or-598",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6740,7 +6740,7 @@ export default {
     },
     {
       n: 1599,
-      title: "Find sum and average of first n natural",
+      title: "Find sum and average of first n natural numbers",
       slug: "find-sum-and-average-of-first-n-natural-599",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6753,7 +6753,7 @@ export default {
     },
     {
       n: 1600,
-      title: "Check whether the given number is even or",
+      title: "Check whether the given number is even or not using bitwise operator",
       slug: "check-whether-the-given-number-is-even-or-600",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6766,7 +6766,7 @@ export default {
     },
     {
       n: 1602,
-      title: "Find the first repeated character in a given",
+      title: "Find the first repeated character in a given string",
       slug: "find-the-first-repeated-character-in-a-given-602",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6779,7 +6779,7 @@ export default {
     },
     {
       n: 1603,
-      title: "Get a lucid number smaller than or equal",
+      title: "Get a lucid number smaller than or equal to n",
       slug: "get-a-lucid-number-smaller-than-or-equal-603",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6805,7 +6805,7 @@ export default {
     },
     {
       n: 1605,
-      title: "Check if the given integer is a prime",
+      title: "Check if the given integer is a prime number",
       slug: "check-if-the-given-integer-is-a-prime-605",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6844,7 +6844,7 @@ export default {
     },
     {
       n: 1609,
-      title: "Find minimum possible value for the given periodic",
+      title: "Find minimum possible value for the given periodic function",
       slug: "find-minimum-possible-value-for-the-given-periodic-609",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6870,7 +6870,7 @@ export default {
     },
     {
       n: 1611,
-      title: "Find the maximum of nth column from the",
+      title: "Find the maximum of nth column from the given tuple list",
       slug: "find-the-maximum-of-nth-column-from-the-611",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6883,7 +6883,7 @@ export default {
     },
     {
       n: 1614,
-      title: "Find the cumulative sum of all the values",
+      title: "Find the cumulative sum of all the values that are present in the given tuple list",
       slug: "find-the-cumulative-sum-of-all-the-values-614",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6896,7 +6896,7 @@ export default {
     },
     {
       n: 1615,
-      title: "Find average value of the numbers in a",
+      title: "Find average value of the numbers in a given tuple of tuples",
       slug: "find-average-value-of-the-numbers-in-a-615",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6909,7 +6909,7 @@ export default {
     },
     {
       n: 1616,
-      title: "Perfom the modulo of tuple elements in the",
+      title: "Perfom the modulo of tuple elements in the given two tuples",
       slug: "perfom-the-modulo-of-tuple-elements-in-the-616",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6922,7 +6922,7 @@ export default {
     },
     {
       n: 1617,
-      title: "Check for the number of jumps required of",
+      title: "Check for the number of jumps required of given length to reach a point",
       slug: "check-for-the-number-of-jumps-required-of-617",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6948,7 +6948,7 @@ export default {
     },
     {
       n: 1619,
-      title: "Move all the numbers in it to the",
+      title: "Move all the numbers in it to the given string",
       slug: "move-all-the-numbers-in-it-to-the-619",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6961,7 +6961,7 @@ export default {
     },
     {
       n: 1620,
-      title: "Find the largest subset where each pair is",
+      title: "Find the largest subset where each pair is divisible",
       slug: "find-the-largest-subset-where-each-pair-is-620",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6974,7 +6974,7 @@ export default {
     },
     {
       n: 1621,
-      title: "Increment the numeric values in the given strings",
+      title: "Increment the numeric values in the given strings by k",
       slug: "increment-the-numeric-values-in-the-given-strings-621",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -6987,7 +6987,7 @@ export default {
     },
     {
       n: 1622,
-      title: "Find the median of two sorted arrays of",
+      title: "Find the median of two sorted arrays of same size",
       slug: "find-the-median-of-two-sorted-arrays-of-622",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7013,7 +7013,7 @@ export default {
     },
     {
       n: 1625,
-      title: "Interchange first and last elements in a given",
+      title: "Interchange first and last elements in a given list",
       slug: "interchange-first-and-last-elements-in-a-given-625",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7026,7 +7026,7 @@ export default {
     },
     {
       n: 1626,
-      title: "Find the largest triangle that can be inscribed",
+      title: "Find the largest triangle that can be inscribed in the semicircle",
       slug: "find-the-largest-triangle-that-can-be-inscribed-626",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7039,7 +7039,7 @@ export default {
     },
     {
       n: 1627,
-      title: "Find the smallest missing number from the given",
+      title: "Find the smallest missing number from the given array",
       slug: "find-the-smallest-missing-number-from-the-given-627",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7052,13 +7052,13 @@ export default {
     },
     {
       n: 1628,
-      title: "Replace all spaces in the given string with",
+      title: "Replace all spaces in the given string with character \'%20\'",
       slug: "replace-all-spaces-in-the-given-string-with-628",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
       pattern: "One idea, written out directly",
       complexity: "Not stated for this set - aim for the obvious single pass",
-      statement: "\nWrite a function to replace all spaces in the given string with character * list item * list item * list item * list item '%20'.\n",
+      statement: "Write a function to replace all spaces in the given string with character \'%20\'.",
       examples: ["Input:  text = \"My Name is Dawood\"\nOutput: \"My%20Name%20is%20Dawood\"","Input:  text = \"I am a Programmer\"\nOutput: \"I%20am%20a%20Programmer\"","Input:  text = \"I love Coding\"\nOutput: \"I%20love%20Coding\""],
       constraints: [],
       stub: "\nexport function replaceSpaces(text: string): string {\n  throw new Error('Not implemented');\n}\n",
@@ -7078,7 +7078,7 @@ export default {
     },
     {
       n: 1630,
-      title: "Extract all the adjacent coordinates of the given",
+      title: "Extract all the adjacent coordinates of the given coordinate tuple",
       slug: "extract-all-the-adjacent-coordinates-of-the-given-630",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7091,7 +7091,7 @@ export default {
     },
     {
       n: 1631,
-      title: "Replace whitespaces with an underscore and vice versa",
+      title: "Replace whitespaces with an underscore and vice versa in a given string",
       slug: "replace-whitespaces-with-an-underscore-and-vice-versa-631",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7104,7 +7104,7 @@ export default {
     },
     {
       n: 1632,
-      title: "Move all zeroes to the end of the",
+      title: "Move all zeroes to the end of the given list",
       slug: "move-all-zeroes-to-the-end-of-the-632",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7117,7 +7117,7 @@ export default {
     },
     {
       n: 1633,
-      title: "Find the sum of xor of all pairs",
+      title: "Find the sum of xor of all pairs of numbers in the given array",
       slug: "find-the-sum-of-xor-of-all-pairs-633",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7130,7 +7130,7 @@ export default {
     },
     {
       n: 1634,
-      title: "Find the sum of fourth power of first",
+      title: "Find the sum of fourth power of first n even natural numbers",
       slug: "find-the-sum-of-fourth-power-of-first-634",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7143,7 +7143,7 @@ export default {
     },
     {
       n: 1635,
-      title: "Push all values into a heap and then",
+      title: "Push all values into a heap and then pop off the smallest values one at a time",
       slug: "push-all-values-into-a-heap-and-then-635",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7156,7 +7156,7 @@ export default {
     },
     {
       n: 1636,
-      title: "Check if roots of a quadratic equation are",
+      title: "Check if roots of a quadratic equation are reciprocal of each other or not",
       slug: "check-if-roots-of-a-quadratic-equation-are-636",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7169,7 +7169,7 @@ export default {
     },
     {
       n: 1637,
-      title: "Check whether the given amount has no profit",
+      title: "Check whether the given amount has no profit and no loss",
       slug: "check-whether-the-given-amount-has-no-profit-637",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7195,7 +7195,7 @@ export default {
     },
     {
       n: 1639,
-      title: "Sum the length of the names of a",
+      title: "Sum the length of the names of a given list of names",
       slug: "sum-the-length-of-the-names-of-a-639",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7234,7 +7234,7 @@ export default {
     },
     {
       n: 1643,
-      title: "Matches a word containing 'z', not at the",
+      title: "Matches a word containing \'z\', not at the start or end of the word",
       slug: "matches-a-word-containing-z-not-at-the-643",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7260,7 +7260,7 @@ export default {
     },
     {
       n: 1645,
-      title: "Find the product of it’s kth index in",
+      title: "Find the product of it’s kth index in the given tuples",
       slug: "find-the-product-of-it-s-kth-index-645",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7273,7 +7273,7 @@ export default {
     },
     {
       n: 1646,
-      title: "Count number of cubes of size k in",
+      title: "Count number of cubes of size k in a cube of size n",
       slug: "count-number-of-cubes-of-size-k-in-646",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7299,7 +7299,7 @@ export default {
     },
     {
       n: 1648,
-      title: "Exchange the position of every n-th value with",
+      title: "Exchange the position of every n-th value with (n+1)th value",
       slug: "exchange-the-position-of-every-n-th-value-648",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7312,7 +7312,7 @@ export default {
     },
     {
       n: 1649,
-      title: "Calculate the sum of the numbers in a",
+      title: "Calculate the sum of the numbers in a list between the indices of a specified range",
       slug: "calculate-the-sum-of-the-numbers-in-a-649",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7325,7 +7325,7 @@ export default {
     },
     {
       n: 1650,
-      title: "Check whether the given two arrays are equal",
+      title: "Check whether the given two arrays are equal or not",
       slug: "check-whether-the-given-two-arrays-are-equal-650",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7338,7 +7338,7 @@ export default {
     },
     {
       n: 1651,
-      title: "Check if one tuple is a subset of",
+      title: "Check if one tuple is a subset of another tuple",
       slug: "check-if-one-tuple-is-a-subset-of-651",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7351,7 +7351,7 @@ export default {
     },
     {
       n: 1652,
-      title: "Flatten the given tuple matrix into the tuple",
+      title: "Flatten the given tuple matrix into the tuple list",
       slug: "flatten-the-given-tuple-matrix-into-the-tuple-652",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7377,7 +7377,7 @@ export default {
     },
     {
       n: 1655,
-      title: "Find the sum of fifth power of n",
+      title: "Find the sum of fifth power of n natural numbers",
       slug: "find-the-sum-of-fifth-power-of-n-655",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7390,7 +7390,7 @@ export default {
     },
     {
       n: 1656,
-      title: "Find the minimum sum of absolute differences of",
+      title: "Find the minimum sum of absolute differences of two arrays",
       slug: "find-the-minimum-sum-of-absolute-differences-of-656",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7403,7 +7403,7 @@ export default {
     },
     {
       n: 1657,
-      title: "Find the first digit in factorial of a",
+      title: "Find the first digit in factorial of a given number",
       slug: "find-the-first-digit-in-factorial-of-a-657",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7416,7 +7416,7 @@ export default {
     },
     {
       n: 1658,
-      title: "Find the item with maximum occurrences in a",
+      title: "Find the item with maximum occurrences in a given list",
       slug: "find-the-item-with-maximum-occurrences-in-a-658",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7442,7 +7442,7 @@ export default {
     },
     {
       n: 1660,
-      title: "Choose points from two ranges such that no",
+      title: "Choose points from two ranges such that no point lies in both the ranges",
       slug: "choose-points-from-two-ranges-such-that-no-660",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7481,7 +7481,7 @@ export default {
     },
     {
       n: 1663,
-      title: "Find the largest possible value of k such",
+      title: "Find the largest possible value of k such that k modulo x is y",
       slug: "find-the-largest-possible-value-of-k-such-663",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7494,7 +7494,7 @@ export default {
     },
     {
       n: 1664,
-      title: "Find the average of even numbers till a",
+      title: "Find the average of even numbers till a given even number",
       slug: "find-the-average-of-even-numbers-till-a-664",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7507,7 +7507,7 @@ export default {
     },
     {
       n: 1665,
-      title: "Shift first element to the end of given",
+      title: "Shift first element to the end of given list",
       slug: "shift-first-element-to-the-end-of-given-665",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7559,7 +7559,7 @@ export default {
     },
     {
       n: 1669,
-      title: "Check whether the given ip address is valid",
+      title: "Check whether the given ip address is valid or not using regex",
       slug: "check-whether-the-given-ip-address-is-valid-669",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7572,7 +7572,7 @@ export default {
     },
     {
       n: 1670,
-      title: "Check whether a sequence of numbers has a",
+      title: "Check whether a sequence of numbers has a decreasing trend or not",
       slug: "check-whether-a-sequence-of-numbers-has-a-670",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7611,7 +7611,7 @@ export default {
     },
     {
       n: 1673,
-      title: "Convert a list of multiple integers into a",
+      title: "Convert a list of multiple integers into a single integer",
       slug: "convert-a-list-of-multiple-integers-into-a-673",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7624,7 +7624,7 @@ export default {
     },
     {
       n: 1674,
-      title: "Remove duplicate words from a given string using",
+      title: "Remove duplicate words from a given string using collections module",
       slug: "remove-duplicate-words-from-a-given-string-using-674",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7637,7 +7637,7 @@ export default {
     },
     {
       n: 1675,
-      title: "Add two integers. however, if the sum is",
+      title: "Add two integers. however, if the sum is between the given range it will return 20",
       slug: "add-two-integers-however-if-the-sum-is-675",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7650,7 +7650,7 @@ export default {
     },
     {
       n: 1676,
-      title: "Remove everything except alphanumeric characters from the given",
+      title: "Remove everything except alphanumeric characters from the given string by using regex",
       slug: "remove-everything-except-alphanumeric-characters-from-the-given-676",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7702,7 +7702,7 @@ export default {
     },
     {
       n: 1680,
-      title: "Check whether a sequence of numbers has an",
+      title: "Check whether a sequence of numbers has an increasing trend or not",
       slug: "check-whether-a-sequence-of-numbers-has-an-680",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7741,7 +7741,7 @@ export default {
     },
     {
       n: 1683,
-      title: "Check whether the given number can be represented",
+      title: "Check whether the given number can be represented by sum of two squares or not",
       slug: "check-whether-the-given-number-can-be-represented-683",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7754,7 +7754,7 @@ export default {
     },
     {
       n: 1684,
-      title: "Count occurences of a character in a repeated",
+      title: "Count occurences of a character in a repeated string",
       slug: "count-occurences-of-a-character-in-a-repeated-684",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7767,7 +7767,7 @@ export default {
     },
     {
       n: 1685,
-      title: "Find sum of prime numbers between 1 to",
+      title: "Find sum of prime numbers between 1 to n",
       slug: "find-sum-of-prime-numbers-between-1-to-685",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7780,7 +7780,7 @@ export default {
     },
     {
       n: 1686,
-      title: "Find the frequency of each element in the",
+      title: "Find the frequency of each element in the given list",
       slug: "find-the-frequency-of-each-element-in-the-686",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7793,7 +7793,7 @@ export default {
     },
     {
       n: 1687,
-      title: "Find the greatest common divisor (gcd) of two",
+      title: "Find the greatest common divisor (gcd) of two integers by using recursion",
       slug: "find-the-greatest-common-divisor-gcd-of-two-687",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7819,13 +7819,13 @@ export default {
     },
     {
       n: 1689,
-      title: "## write a function to find the minimum",
+      title: "Find the minimum number of jumps to reach the end of the array",
       slug: "write-a-function-to-find-the-minimum-689",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
       pattern: "One idea, written out directly",
       complexity: "Not stated for this set - aim for the obvious single pass",
-      statement: "\n## write a function to find the minimum number of jumps to reach the end of the array for the given array of integers where each element represents the max number of steps that can be made forward from that element. > indented block > indented block\n",
+      statement: "Write a function to find the minimum number of jumps to reach the end of the array for the given array of integers where each element represents the max number of steps that can be made forward from that element.",
       examples: ["Input:  nums = [1,3,6,1,0,9], n = 6\nOutput: 3","Input:  nums = [1,3,5,8,9,2,6,7,6,8,9], n = 11\nOutput: 3","Input:  nums = [1,1,1,1,1,1,1,1,1,1,1], n = 11\nOutput: 10"],
       constraints: [],
       stub: "\nexport function minJumps(nums: number[], n: number): number {\n  throw new Error('Not implemented');\n}\n",
@@ -7845,7 +7845,7 @@ export default {
     },
     {
       n: 1691,
-      title: "Group the 1st elements on the basis of",
+      title: "Group the 1st elements on the basis of 2nd elements in the given tuple list",
       slug: "group-the-1st-elements-on-the-basis-of-691",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7858,7 +7858,7 @@ export default {
     },
     {
       n: 1692,
-      title: "Find the last two digits in factorial of",
+      title: "Find the last two digits in factorial of a given number",
       slug: "find-the-last-two-digits-in-factorial-of-692",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7871,7 +7871,7 @@ export default {
     },
     {
       n: 1693,
-      title: "Remove multiple spaces in a string by using",
+      title: "Remove multiple spaces in a string by using regex",
       slug: "remove-multiple-spaces-in-a-string-by-using-693",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7897,7 +7897,7 @@ export default {
     },
     {
       n: 1695,
-      title: "Check if each element of the second tuple",
+      title: "Check if each element of the second tuple is greater",
       slug: "check-if-each-element-of-the-second-tuple-695",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7910,7 +7910,7 @@ export default {
     },
     {
       n: 1697,
-      title: "Find number of even elements in the given",
+      title: "Find number of even elements in the given list using lambda function",
       slug: "find-number-of-even-elements-in-the-given-697",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7936,7 +7936,7 @@ export default {
     },
     {
       n: 1702,
-      title: "Find the minimum number of elements that should",
+      title: "Find the minimum number of elements that should be removed such that amax-amin<=k",
       slug: "find-the-minimum-number-of-elements-that-should-702",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7949,7 +7949,7 @@ export default {
     },
     {
       n: 1703,
-      title: "Check whether the given key is present in",
+      title: "Check whether the given key is present in the dictionary or not",
       slug: "check-whether-the-given-key-is-present-in-703",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7975,7 +7975,7 @@ export default {
     },
     {
       n: 1706,
-      title: "Find whether an array is subset of another",
+      title: "Find whether an array is subset of another array",
       slug: "find-whether-an-array-is-subset-of-another-706",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -7988,7 +7988,7 @@ export default {
     },
     {
       n: 1707,
-      title: "Count the total set bits from 1 to",
+      title: "Count the total set bits from 1 to n",
       slug: "count-the-total-set-bits-from-1-to-707",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8014,7 +8014,7 @@ export default {
     },
     {
       n: 1709,
-      title: "Count unique keys for each value present in",
+      title: "Count unique keys for each value present in the tuple",
       slug: "count-unique-keys-for-each-value-present-in-709",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8027,7 +8027,7 @@ export default {
     },
     {
       n: 1710,
-      title: "Access the initial and last data of the",
+      title: "Access the initial and last data of the given tuple record",
       slug: "access-the-initial-and-last-data-of-the-710",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8040,7 +8040,7 @@ export default {
     },
     {
       n: 1711,
-      title: "Check whether the product of digits of a",
+      title: "Check whether the product of digits of a number at even",
       slug: "check-whether-the-product-of-digits-of-a-711",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8053,7 +8053,7 @@ export default {
     },
     {
       n: 1713,
-      title: "Check if the given tuple contains all valid",
+      title: "Check if the given tuple contains all valid values or not",
       slug: "check-if-the-given-tuple-contains-all-valid-713",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8066,7 +8066,7 @@ export default {
     },
     {
       n: 1714,
-      title: "Count the number of distinct power of prime",
+      title: "Count the number of distinct power of prime factor of given number",
       slug: "count-the-number-of-distinct-power-of-prime-714",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8079,7 +8079,7 @@ export default {
     },
     {
       n: 1715,
-      title: "Convert the given string of integers into a",
+      title: "Convert the given string of integers into a tuple",
       slug: "convert-the-given-string-of-integers-into-a-715",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8118,7 +8118,7 @@ export default {
     },
     {
       n: 1719,
-      title: "Matches a string that has an a followed",
+      title: "Matches a string that has an a followed by zero or more b\'s",
       slug: "matches-a-string-that-has-an-a-followed-719",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8131,7 +8131,7 @@ export default {
     },
     {
       n: 1721,
-      title: "Find a path with the maximum average over",
+      title: "Find a path with the maximum average over all existing paths",
       slug: "find-a-path-with-the-maximum-average-over-721",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8144,7 +8144,7 @@ export default {
     },
     {
       n: 1722,
-      title: "Filter the height and width of students which",
+      title: "Filter the height and width of students which are stored in a dictionary",
       slug: "filter-the-height-and-width-of-students-which-722",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8157,7 +8157,7 @@ export default {
     },
     {
       n: 1723,
-      title: "Count the same pair in two given lists",
+      title: "Count the same pair in two given lists using map function",
       slug: "count-the-same-pair-in-two-given-lists-723",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8170,7 +8170,7 @@ export default {
     },
     {
       n: 1724,
-      title: "Calculate the sum of all digits of the",
+      title: "Calculate the sum of all digits of the base to the specified power",
       slug: "calculate-the-sum-of-all-digits-of-the-724",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8183,7 +8183,7 @@ export default {
     },
     {
       n: 1725,
-      title: "Extract values between quotation marks of the given",
+      title: "Extract values between quotation marks of the given string by using regex",
       slug: "extract-values-between-quotation-marks-of-the-given-725",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8209,7 +8209,7 @@ export default {
     },
     {
       n: 1727,
-      title: "Remove all characters except letters and numbers using",
+      title: "Remove all characters except letters and numbers using regex",
       slug: "remove-all-characters-except-letters-and-numbers-using-727",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8261,7 +8261,7 @@ export default {
     },
     {
       n: 1732,
-      title: "Replace all occurrences of spaces, commas, or dots",
+      title: "Replace all occurrences of spaces, commas, or dots with a colon",
       slug: "replace-all-occurrences-of-spaces-commas-or-dots-732",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8274,7 +8274,7 @@ export default {
     },
     {
       n: 1733,
-      title: "Find the index of the first occurrence of",
+      title: "Find the index of the first occurrence of a given number in a sorted array",
       slug: "find-the-index-of-the-first-occurrence-of-733",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8300,7 +8300,7 @@ export default {
     },
     {
       n: 1735,
-      title: "Toggle bits of the number except the first",
+      title: "Toggle bits of the number except the first and the last bit",
       slug: "toggle-bits-of-the-number-except-the-first-735",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8313,7 +8313,7 @@ export default {
     },
     {
       n: 1736,
-      title: "Locate the left insertion point for a specified",
+      title: "Locate the left insertion point for a specified value in sorted order",
       slug: "locate-the-left-insertion-point-for-a-specified-736",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8326,7 +8326,7 @@ export default {
     },
     {
       n: 1737,
-      title: "Check whether the given string is starting with",
+      title: "Check whether the given string is starting with a vowel or not using regex",
       slug: "check-whether-the-given-string-is-starting-with-737",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8352,7 +8352,7 @@ export default {
     },
     {
       n: 1739,
-      title: "Find the index of smallest triangular number with",
+      title: "Find the index of smallest triangular number with n digits",
       slug: "find-the-index-of-smallest-triangular-number-with-739",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8365,7 +8365,7 @@ export default {
     },
     {
       n: 1740,
-      title: "Convert the given tuple to a key-value dictionary",
+      title: "Convert the given tuple to a key-value dictionary using adjacent elements",
       slug: "convert-the-given-tuple-to-a-key-value-740",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8378,7 +8378,7 @@ export default {
     },
     {
       n: 1741,
-      title: "Check whether all the characters are same or",
+      title: "Check whether all the characters are same or not",
       slug: "check-whether-all-the-characters-are-same-or-741",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8404,7 +8404,7 @@ export default {
     },
     {
       n: 1743,
-      title: "Rotate a given list by specified number of",
+      title: "Rotate a given list by specified number of items to the right direction",
       slug: "rotate-a-given-list-by-specified-number-of-743",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8417,7 +8417,7 @@ export default {
     },
     {
       n: 1745,
-      title: "Find numbers within a given range where every",
+      title: "Find numbers within a given range where every number is divisible",
       slug: "find-numbers-within-a-given-range-where-every-745",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8430,7 +8430,7 @@ export default {
     },
     {
       n: 1747,
-      title: "Find the longest common subsequence for the given",
+      title: "Find the longest common subsequence for the given three string sequence",
       slug: "find-the-longest-common-subsequence-for-the-given-747",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8443,7 +8443,7 @@ export default {
     },
     {
       n: 1748,
-      title: "Put spaces between words starting with capital letters",
+      title: "Put spaces between words starting with capital letters in a given string",
       slug: "put-spaces-between-words-starting-with-capital-letters-748",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8456,7 +8456,7 @@ export default {
     },
     {
       n: 1749,
-      title: "Sort a given list of strings of numbers",
+      title: "Sort a given list of strings of numbers numerically",
       slug: "sort-a-given-list-of-strings-of-numbers-749",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8482,7 +8482,7 @@ export default {
     },
     {
       n: 1751,
-      title: "Check if the given array represents min heap",
+      title: "Check if the given array represents min heap or not",
       slug: "check-if-the-given-array-represents-min-heap-751",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8521,7 +8521,7 @@ export default {
     },
     {
       n: 1756,
-      title: "Matches a string that has an a followed",
+      title: "Matches a string that has an a followed by zero or one \'b\'",
       slug: "matches-a-string-that-has-an-a-followed-756",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8534,7 +8534,7 @@ export default {
     },
     {
       n: 1757,
-      title: "Count the pairs of reverse strings in the",
+      title: "Count the pairs of reverse strings in the given string list",
       slug: "count-the-pairs-of-reverse-strings-in-the-757",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8560,7 +8560,7 @@ export default {
     },
     {
       n: 1760,
-      title: "Check whether an array contains only one distinct",
+      title: "Check whether an array contains only one distinct element or not",
       slug: "check-whether-an-array-contains-only-one-distinct-760",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8573,7 +8573,7 @@ export default {
     },
     {
       n: 1762,
-      title: "Check whether the given month number contains 30",
+      title: "Check whether the given month number contains 30 days or not",
       slug: "check-whether-the-given-month-number-contains-30-762",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8586,7 +8586,7 @@ export default {
     },
     {
       n: 1763,
-      title: "Find the minimum difference between any two elements",
+      title: "Find the minimum difference between any two elements in a given array",
       slug: "find-the-minimum-difference-between-any-two-elements-763",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8625,7 +8625,7 @@ export default {
     },
     {
       n: 1766,
-      title: "Iterate over all pairs of consecutive items in",
+      title: "Iterate over all pairs of consecutive items in a given list",
       slug: "iterate-over-all-pairs-of-consecutive-items-in-766",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8638,7 +8638,7 @@ export default {
     },
     {
       n: 1767,
-      title: "Count the number of pairs whose sum is",
+      title: "Count the number of pairs whose sum is equal to ‘sum’",
       slug: "count-the-number-of-pairs-whose-sum-is-767",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8677,7 +8677,7 @@ export default {
     },
     {
       n: 1770,
-      title: "Find the sum of fourth power of first",
+      title: "Find the sum of fourth power of first n odd natural numbers",
       slug: "find-the-sum-of-fourth-power-of-first-770",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8690,7 +8690,7 @@ export default {
     },
     {
       n: 1771,
-      title: "Check if the given expression is balanced or",
+      title: "Check if the given expression is balanced or not",
       slug: "check-if-the-given-expression-is-balanced-or-771",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8703,7 +8703,7 @@ export default {
     },
     {
       n: 1772,
-      title: "Remove all the words with k length in",
+      title: "Remove all the words with k length in the given string",
       slug: "remove-all-the-words-with-k-length-in-772",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8716,7 +8716,7 @@ export default {
     },
     {
       n: 1774,
-      title: "Check if the string is a valid email",
+      title: "Check if the string is a valid email address or not using regex",
       slug: "check-if-the-string-is-a-valid-email-774",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8729,7 +8729,7 @@ export default {
     },
     {
       n: 1775,
-      title: "Check whether every odd index contains odd numbers",
+      title: "Check whether every odd index contains odd numbers of a given list",
       slug: "check-whether-every-odd-index-contains-odd-numbers-775",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8742,7 +8742,7 @@ export default {
     },
     {
       n: 1776,
-      title: "Count those characters which have vowels as their",
+      title: "Count those characters which have vowels as their neighbors in the given string",
       slug: "count-those-characters-which-have-vowels-as-their-776",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8755,7 +8755,7 @@ export default {
     },
     {
       n: 1777,
-      title: "Find the sum of non-repeated elements in a",
+      title: "Find the sum of non-repeated elements in a given array",
       slug: "find-the-sum-of-non-repeated-elements-in-777",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8768,7 +8768,7 @@ export default {
     },
     {
       n: 1780,
-      title: "Find the combinations of sums with tuples in",
+      title: "Find the combinations of sums with tuples in the given tuple list",
       slug: "find-the-combinations-of-sums-with-tuples-in-780",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8781,7 +8781,7 @@ export default {
     },
     {
       n: 1781,
-      title: "Check whether the count of divisors is even",
+      title: "Check whether the count of divisors is even or odd",
       slug: "check-whether-the-count-of-divisors-is-even-781",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8820,7 +8820,7 @@ export default {
     },
     {
       n: 1784,
-      title: "Find the product of first even and odd",
+      title: "Find the product of first even and odd number of a given list",
       slug: "find-the-product-of-first-even-and-odd-784",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8846,7 +8846,7 @@ export default {
     },
     {
       n: 1786,
-      title: "Locate the right insertion point for a specified",
+      title: "Locate the right insertion point for a specified value in sorted order",
       slug: "locate-the-right-insertion-point-for-a-specified-786",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8859,7 +8859,7 @@ export default {
     },
     {
       n: 1787,
-      title: "Matches a string that has an a followed",
+      title: "Matches a string that has an a followed by three \'b\'",
       slug: "matches-a-string-that-has-an-a-followed-787",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8872,7 +8872,7 @@ export default {
     },
     {
       n: 1788,
-      title: "Create a new tuple from the given string",
+      title: "Create a new tuple from the given string and list",
       slug: "create-a-new-tuple-from-the-given-string-788",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8898,7 +8898,7 @@ export default {
     },
     {
       n: 1790,
-      title: "Check whether every even index contains even numbers",
+      title: "Check whether every even index contains even numbers of a given list",
       slug: "check-whether-every-even-index-contains-even-numbers-790",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8911,7 +8911,7 @@ export default {
     },
     {
       n: 1792,
-      title: "Count the number of lists in a given",
+      title: "Count the number of lists in a given number of lists",
       slug: "count-the-number-of-lists-in-a-given-792",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8924,7 +8924,7 @@ export default {
     },
     {
       n: 1793,
-      title: "Find the last position of an element in",
+      title: "Find the last position of an element in a sorted array",
       slug: "find-the-last-position-of-an-element-in-793",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8937,7 +8937,7 @@ export default {
     },
     {
       n: 1794,
-      title: "Matches a string that has an 'a' followed",
+      title: "Matches a string that has an \'a\' followed by anything, ending in \'b\'",
       slug: "matches-a-string-that-has-an-a-followed-794",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -8950,20 +8950,20 @@ export default {
     },
     {
       n: 1796,
-      title: "Write function to find the sum of all",
+      title: "Find the sum of all items in the given dictionary",
       slug: "write-function-to-find-the-sum-of-all-796",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
       pattern: "One idea, written out directly",
       complexity: "Not stated for this set - aim for the obvious single pass",
-      statement: "\nWrite function to find the sum of all items in the given dictionary.\n",
+      statement: "Write a function to find the sum of all items in the given dictionary.",
       examples: ["Input:  value = {\"a\":100,\"b\":200,\"c\":300}\nOutput: 600","Input:  value = {\"a\":25,\"b\":18,\"c\":45}\nOutput: 88","Input:  value = {\"a\":36,\"b\":39,\"c\":49}\nOutput: 124"],
       constraints: [],
       stub: "\nexport function returnSum(value: object): number {\n  throw new Error('Not implemented');\n}\n",
     },
     {
       n: 1797,
-      title: "Find the sum of all odd natural numbers",
+      title: "Find the sum of all odd natural numbers within the range l and r",
       slug: "find-the-sum-of-all-odd-natural-numbers-797",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9015,7 +9015,7 @@ export default {
     },
     {
       n: 1801,
-      title: "Count the number of equal numbers from three",
+      title: "Count the number of equal numbers from three given integers",
       slug: "count-the-number-of-equal-numbers-from-three-801",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9028,7 +9028,7 @@ export default {
     },
     {
       n: 1802,
-      title: "Count the number of rotations required to generate",
+      title: "Count the number of rotations required to generate a sorted array",
       slug: "count-the-number-of-rotations-required-to-generate-802",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9041,7 +9041,7 @@ export default {
     },
     {
       n: 1803,
-      title: "Check whether the given number is a perfect",
+      title: "Check whether the given number is a perfect square or not",
       slug: "check-whether-the-given-number-is-a-perfect-803",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9054,7 +9054,7 @@ export default {
     },
     {
       n: 1804,
-      title: "Check whether the product of numbers is even",
+      title: "Check whether the product of numbers is even or not",
       slug: "check-whether-the-product-of-numbers-is-even-804",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9067,7 +9067,7 @@ export default {
     },
     {
       n: 1805,
-      title: "Find the list in a list of lists",
+      title: "Find the list in a list of lists whose sum of elements is the highest",
       slug: "find-the-list-in-a-list-of-lists-805",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9080,7 +9080,7 @@ export default {
     },
     {
       n: 1806,
-      title: "Find maximum run of uppercase characters in the",
+      title: "Find maximum run of uppercase characters in the given string",
       slug: "find-maximum-run-of-uppercase-characters-in-the-806",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9093,7 +9093,7 @@ export default {
     },
     {
       n: 1807,
-      title: "Find the first odd number in a given",
+      title: "Find the first odd number in a given list of numbers",
       slug: "find-the-first-odd-number-in-a-given-807",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9106,7 +9106,7 @@ export default {
     },
     {
       n: 1808,
-      title: "Check if the given tuples contain the k",
+      title: "Check if the given tuples contain the k or not",
       slug: "check-if-the-given-tuples-contain-the-k-808",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9119,7 +9119,7 @@ export default {
     },
     {
       n: 1809,
-      title: "Check if each element of second tuple is",
+      title: "Check if each element of second tuple is smaller",
       slug: "check-if-each-element-of-second-tuple-is-809",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9132,7 +9132,7 @@ export default {
     },
     {
       n: 1810,
-      title: "Iterate over elements repeating each as many times",
+      title: "Iterate over elements repeating each as many times as its count",
       slug: "iterate-over-elements-repeating-each-as-many-times-810",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9145,7 +9145,7 @@ export default {
     },
     {
       n: 1811,
-      title: "Check if two lists of tuples are identical",
+      title: "Check if two lists of tuples are identical or not",
       slug: "check-if-two-lists-of-tuples-are-identical-811",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9197,7 +9197,7 @@ export default {
     },
     {
       n: 1815,
-      title: "Sort the given array without using any sorting",
+      title: "Sort the given array without",
       slug: "sort-the-given-array-without-using-any-sorting-815",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9223,7 +9223,7 @@ export default {
     },
     {
       n: 1817,
-      title: "Find numbers divisible by m or n from",
+      title: "Find numbers divisible by m or n from a list of numbers using lambda function",
       slug: "find-numbers-divisible-by-m-or-n-from-817",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9249,7 +9249,7 @@ export default {
     },
     {
       n: 1819,
-      title: "Count the frequency of consecutive duplicate elements in",
+      title: "Count the frequency of consecutive duplicate elements in a given list of numbers",
       slug: "count-the-frequency-of-consecutive-duplicate-elements-in-819",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9262,7 +9262,7 @@ export default {
     },
     {
       n: 1820,
-      title: "Check whether the given month number contains 28",
+      title: "Check whether the given month number contains 28 days or not",
       slug: "check-whether-the-given-month-number-contains-28-820",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9301,7 +9301,7 @@ export default {
     },
     {
       n: 1823,
-      title: "Check if the given string starts with a",
+      title: "Check if the given string starts with a substring using regex",
       slug: "check-if-the-given-string-starts-with-a-823",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9327,7 +9327,7 @@ export default {
     },
     {
       n: 1825,
-      title: "Access multiple elements of specified index from a",
+      title: "Access multiple elements of specified index from a given list",
       slug: "access-multiple-elements-of-specified-index-from-a-825",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9340,7 +9340,7 @@ export default {
     },
     {
       n: 1826,
-      title: "Find the type of triangle from the given",
+      title: "Find the type of triangle from the given sides",
       slug: "find-the-type-of-triangle-from-the-given-826",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9353,7 +9353,7 @@ export default {
     },
     {
       n: 1827,
-      title: "Sum a specific column of a list in",
+      title: "Sum a specific column of a list in a given list of lists",
       slug: "sum-a-specific-column-of-a-list-in-827",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9366,7 +9366,7 @@ export default {
     },
     {
       n: 1828,
-      title: "Count alphabets,digits and special charactes in a given",
+      title: "Count alphabets,digits and special charactes in a given string",
       slug: "count-alphabets-digits-and-special-charactes-in-a-828",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9379,7 +9379,7 @@ export default {
     },
     {
       n: 1829,
-      title: "Find out the second most repeated (or frequent)",
+      title: "Find out the second most repeated (or frequent) string in the given sequence",
       slug: "find-out-the-second-most-repeated-or-frequent-829",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9418,7 +9418,7 @@ export default {
     },
     {
       n: 1832,
-      title: "Extract the maximum numeric value from a string",
+      title: "Extract the maximum numeric value from a string by using regex",
       slug: "extract-the-maximum-numeric-value-from-a-string-832",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9444,7 +9444,7 @@ export default {
     },
     {
       n: 1834,
-      title: "Generate a square matrix filled with elements from",
+      title: "Generate a square matrix filled with elements from 1 to n raised",
       slug: "generate-a-square-matrix-filled-with-elements-from-834",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9483,7 +9483,7 @@ export default {
     },
     {
       n: 1837,
-      title: "Find the cube sum of first n odd",
+      title: "Find the cube sum of first n odd natural numbers",
       slug: "find-the-cube-sum-of-first-n-odd-837",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9496,7 +9496,7 @@ export default {
     },
     {
       n: 1838,
-      title: "Find minimum number swaps required to make two",
+      title: "Find minimum number swaps required to make two binary strings equal",
       slug: "find-minimum-number-swaps-required-to-make-two-838",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9509,7 +9509,7 @@ export default {
     },
     {
       n: 1840,
-      title: "Check whether the roots of a quadratic equation",
+      title: "Check whether the roots",
       slug: "check-whether-the-roots-of-a-quadratic-equation-840",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9522,7 +9522,7 @@ export default {
     },
     {
       n: 1841,
-      title: "Count the number of inversions in the given",
+      title: "Count the number of inversions in the given array",
       slug: "count-the-number-of-inversions-in-the-given-841",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9535,7 +9535,7 @@ export default {
     },
     {
       n: 1842,
-      title: "Find the number which occurs for odd number",
+      title: "Find the number which occurs for odd number of times in the given array",
       slug: "find-the-number-which-occurs-for-odd-number-842",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9548,7 +9548,7 @@ export default {
     },
     {
       n: 1843,
-      title: "Find the nth super ugly number from a",
+      title: "Find the nth super ugly number from a given prime list of size k",
       slug: "find-the-nth-super-ugly-number-from-a-843",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9561,7 +9561,7 @@ export default {
     },
     {
       n: 1844,
-      title: "Find the kth element in an array containing",
+      title: "Find the kth element in an array containing odd elements first and then even elements",
       slug: "find-the-kth-element-in-an-array-containing-844",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9574,7 +9574,7 @@ export default {
     },
     {
       n: 1845,
-      title: "Count the number of digits in factorial of",
+      title: "Count the number of digits in factorial of a given number",
       slug: "count-the-number-of-digits-in-factorial-of-845",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9587,7 +9587,7 @@ export default {
     },
     {
       n: 1846,
-      title: "Find the minimum number of platforms required for",
+      title: "Find the minimum number of platforms required for a railway/bus station",
       slug: "find-the-minimum-number-of-platforms-required-for-846",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9626,7 +9626,7 @@ export default {
     },
     {
       n: 1849,
-      title: "Find sum of all prime divisors of a",
+      title: "Find sum of all prime divisors of a given number",
       slug: "find-sum-of-all-prime-divisors-of-a-849",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9639,7 +9639,7 @@ export default {
     },
     {
       n: 1850,
-      title: "Check if a triangle of positive area is",
+      title: "Check if a triangle of positive area is possible with the given angles",
       slug: "check-if-a-triangle-of-positive-area-is-850",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9691,7 +9691,7 @@ export default {
     },
     {
       n: 1854,
-      title: "Accepts an arbitrary list and converts it to",
+      title: "Convert an arbitrary list to a heap using heap queue algorithm",
       slug: "accepts-an-arbitrary-list-and-converts-it-to-854",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9717,7 +9717,7 @@ export default {
     },
     {
       n: 1856,
-      title: "Find minimum adjacent swaps required to sort binary",
+      title: "Find minimum adjacent swaps required to sort binary array",
       slug: "find-minimum-adjacent-swaps-required-to-sort-binary-856",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9730,7 +9730,7 @@ export default {
     },
     {
       n: 1857,
-      title: "List out the list of given strings individually",
+      title: "List out the list of given strings individually using map function",
       slug: "list-out-the-list-of-given-strings-individually-857",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9743,7 +9743,7 @@ export default {
     },
     {
       n: 1860,
-      title: "Check whether the given string is ending with",
+      title: "Check whether the given string is ending",
       slug: "check-whether-the-given-string-is-ending-with-860",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9756,7 +9756,7 @@ export default {
     },
     {
       n: 1861,
-      title: "Find all anagrams of a string in a",
+      title: "Find all anagrams of a string in a given list of strings using lambda function",
       slug: "find-all-anagrams-of-a-string-in-a-861",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9769,7 +9769,7 @@ export default {
     },
     {
       n: 1863,
-      title: "Find the length of the longest sub-sequence such",
+      title: "Find the length of the longest sub-sequence such that elements",
       slug: "find-the-length-of-the-longest-sub-sequence-863",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9782,7 +9782,7 @@ export default {
     },
     {
       n: 1864,
-      title: "Find palindromes in a given list of strings",
+      title: "Find palindromes in a given list of strings using lambda function",
       slug: "find-palindromes-in-a-given-list-of-strings-864",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9808,7 +9808,7 @@ export default {
     },
     {
       n: 1866,
-      title: "Check whether the given month name contains 31",
+      title: "Check whether the given month name contains 31 days or not",
       slug: "check-whether-the-given-month-name-contains-31-866",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9821,7 +9821,7 @@ export default {
     },
     {
       n: 1867,
-      title: "Add a minimum number such that the sum",
+      title: "Add a minimum number such that the sum of array becomes even",
       slug: "add-a-minimum-number-such-that-the-sum-867",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9834,7 +9834,7 @@ export default {
     },
     {
       n: 1868,
-      title: "Find the length of the last word in",
+      title: "Find the length of the last word in a given string",
       slug: "find-the-length-of-the-last-word-in-868",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9847,7 +9847,7 @@ export default {
     },
     {
       n: 1869,
-      title: "Remove sublists from a given list of lists,",
+      title: "Remove sublists from a given list of lists, which are outside a given range",
       slug: "remove-sublists-from-a-given-list-of-lists-869",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9860,7 +9860,7 @@ export default {
     },
     {
       n: 1870,
-      title: "Calculate the sum of the positive numbers of",
+      title: "Calculate the sum of the positive numbers of a given list of numbers",
       slug: "calculate-the-sum-of-the-positive-numbers-of-870",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9873,7 +9873,7 @@ export default {
     },
     {
       n: 1871,
-      title: "Check whether the given strings are rotations of",
+      title: "Check whether the given strings are rotations of each other or not",
       slug: "check-whether-the-given-strings-are-rotations-of-871",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9899,7 +9899,7 @@ export default {
     },
     {
       n: 1874,
-      title: "Check if the string is a concatenation of",
+      title: "Check if the string is a concatenation of another string",
       slug: "check-if-the-string-is-a-concatenation-of-874",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9912,7 +9912,7 @@ export default {
     },
     {
       n: 1875,
-      title: "Find the minimum difference in the tuple pairs",
+      title: "Find the minimum difference in the tuple pairs of given tuples",
       slug: "find-the-minimum-difference-in-the-tuple-pairs-875",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9951,7 +9951,7 @@ export default {
     },
     {
       n: 1878,
-      title: "Check if the given tuple contains only k",
+      title: "Check if the given tuple contains only k elements",
       slug: "check-if-the-given-tuple-contains-only-k-878",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9964,7 +9964,7 @@ export default {
     },
     {
       n: 1879,
-      title: "Matches a string that has an 'a' followed",
+      title: "Matches a string that has an \'a\' followed by anything, ending in \'b\' by using regex",
       slug: "matches-a-string-that-has-an-a-followed-879",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -9990,7 +9990,7 @@ export default {
     },
     {
       n: 1881,
-      title: "Find the sum of first even and odd",
+      title: "Find the sum of first even and odd number of a given list",
       slug: "find-the-sum-of-first-even-and-odd-881",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10016,7 +10016,7 @@ export default {
     },
     {
       n: 1883,
-      title: "Find numbers divisible by m and n from",
+      title: "Find numbers divisible by m and n from a list of numbers using lambda function",
       slug: "find-numbers-divisible-by-m-and-n-from-883",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10029,7 +10029,7 @@ export default {
     },
     {
       n: 1884,
-      title: "Check whether all the bits are within a",
+      title: "Check whether all the bits are within a given range or not",
       slug: "check-whether-all-the-bits-are-within-a-884",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10042,7 +10042,7 @@ export default {
     },
     {
       n: 1885,
-      title: "Check whether the two given strings are isomorphic",
+      title: "Check whether the two given strings are isomorphic to each other or not",
       slug: "check-whether-the-two-given-strings-are-isomorphic-885",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10055,7 +10055,7 @@ export default {
     },
     {
       n: 1886,
-      title: "Add all the numbers in a list and",
+      title: "Add all the numbers in a list and divide it with the length of the list",
       slug: "add-all-the-numbers-in-a-list-and-886",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10068,7 +10068,7 @@ export default {
     },
     {
       n: 1887,
-      title: "Check whether the given number is odd or",
+      title: "Check whether the given number is odd or not using bitwise operator",
       slug: "check-whether-the-given-number-is-odd-or-887",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10094,7 +10094,7 @@ export default {
     },
     {
       n: 1889,
-      title: "Reverse each list in a given list of",
+      title: "Reverse each list in a given list of lists",
       slug: "reverse-each-list-in-a-given-list-of-889",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10107,7 +10107,7 @@ export default {
     },
     {
       n: 1890,
-      title: "Find the index of an extra element present",
+      title: "Find the index of an extra element present in one sorted array",
       slug: "find-the-index-of-an-extra-element-present-890",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10120,7 +10120,7 @@ export default {
     },
     {
       n: 1891,
-      title: "Check whether the given two numbers have same",
+      title: "Check whether the given two numbers have same number of digits or not",
       slug: "check-whether-the-given-two-numbers-have-same-891",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10146,7 +10146,7 @@ export default {
     },
     {
       n: 1894,
-      title: "Convert the given string of float type into",
+      title: "Convert the given string of float type into tuple",
       slug: "convert-the-given-string-of-float-type-into-894",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10159,7 +10159,7 @@ export default {
     },
     {
       n: 1895,
-      title: "Find the maximum sum of subsequences of given",
+      title: "Find the maximum sum of subsequences of given array with no adjacent elements",
       slug: "find-the-maximum-sum-of-subsequences-of-given-895",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10172,7 +10172,7 @@ export default {
     },
     {
       n: 1896,
-      title: "Sort a list in increasing order by the",
+      title: "Sort a list in increasing order by the last element in each tuple",
       slug: "sort-a-list-in-increasing-order-by-the-896",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10185,7 +10185,7 @@ export default {
     },
     {
       n: 1897,
-      title: "Check whether the word is present in a",
+      title: "Check whether the word is present in a given sentence or not",
       slug: "check-whether-the-word-is-present-in-a-897",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10198,7 +10198,7 @@ export default {
     },
     {
       n: 1898,
-      title: "Extract specified number of elements from a given",
+      title: "Extract specified number of elements from a given list",
       slug: "extract-specified-number-of-elements-from-a-given-898",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10211,7 +10211,7 @@ export default {
     },
     {
       n: 1899,
-      title: "Check whether an array can be sorted or",
+      title: "Check whether an array can be sorted or not by picking only the corner elements",
       slug: "check-whether-an-array-can-be-sorted-or-899",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10224,7 +10224,7 @@ export default {
     },
     {
       n: 1900,
-      title: "Write a function where a string will start",
+      title: "A string will start with a specific number",
       slug: "write-a-function-where-a-string-will-start-900",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10237,7 +10237,7 @@ export default {
     },
     {
       n: 1901,
-      title: "Find the smallest multiple of the first n",
+      title: "Find the smallest multiple of the first n numbers",
       slug: "find-the-smallest-multiple-of-the-first-n-901",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10250,7 +10250,7 @@ export default {
     },
     {
       n: 1903,
-      title: "Count the total unset bits from 1 to",
+      title: "Count the total unset bits from 1 to n",
       slug: "count-the-total-unset-bits-from-1-to-903",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10263,7 +10263,7 @@ export default {
     },
     {
       n: 1904,
-      title: "Return true if the given number is even",
+      title: "Return true if the given number is even else return false",
       slug: "return-true-if-the-given-number-is-even-904",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10289,7 +10289,7 @@ export default {
     },
     {
       n: 1906,
-      title: "Extract year, month and date from a url",
+      title: "Extract year, month and date from a url by using regex",
       slug: "extract-year-month-and-date-from-a-url-906",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10341,7 +10341,7 @@ export default {
     },
     {
       n: 1911,
-      title: "Compute maximum product of three numbers of a",
+      title: "Compute maximum product of three numbers of a given array of integers",
       slug: "compute-maximum-product-of-three-numbers-of-a-911",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10354,7 +10354,7 @@ export default {
     },
     {
       n: 1913,
-      title: "Check for a number at the end of",
+      title: "Check for a number at the end of a string",
       slug: "check-for-a-number-at-the-end-of-913",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10367,7 +10367,7 @@ export default {
     },
     {
       n: 1914,
-      title: "Check whether the given string is made up",
+      title: "Check whether the given string is made up of two alternating characters or not",
       slug: "check-whether-the-given-string-is-made-up-914",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10380,7 +10380,7 @@ export default {
     },
     {
       n: 1915,
-      title: "Rearrange positive and negative numbers in a given",
+      title: "Rearrange positive and negative numbers in a given array using lambda function",
       slug: "rearrange-positive-and-negative-numbers-in-a-given-915",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10393,7 +10393,7 @@ export default {
     },
     {
       n: 1916,
-      title: "Find if there is a triplet in the",
+      title: "Find if there is a triplet in the array whose sum is equal to a given value",
       slug: "find-if-there-is-a-triplet-in-the-916",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10406,7 +10406,7 @@ export default {
     },
     {
       n: 1917,
-      title: "Find the sequences of one upper case letter",
+      title: "Find the sequences of one upper case letter followed by lower case letters",
       slug: "find-the-sequences-of-one-upper-case-letter-917",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10458,7 +10458,7 @@ export default {
     },
     {
       n: 1922,
-      title: "Find a pair with the highest product from",
+      title: "Find a pair with the highest product from a given array of integers",
       slug: "find-a-pair-with-the-highest-product-from-922",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10471,7 +10471,7 @@ export default {
     },
     {
       n: 1923,
-      title: "Find the length of the shortest string that",
+      title: "Find the length of the shortest string that has both str1 and str2 as subsequences",
       slug: "find-the-length-of-the-shortest-string-that-923",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10497,7 +10497,7 @@ export default {
     },
     {
       n: 1925,
-      title: "Calculate the product of all the numbers of",
+      title: "Calculate the product of all the numbers of a given tuple",
       slug: "calculate-the-product-of-all-the-numbers-of-925",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10523,7 +10523,7 @@ export default {
     },
     {
       n: 1928,
-      title: "Convert a date of yyyy-mm-dd format to dd-mm-yyyy",
+      title: "Convert a date of yyyy-mm-dd format to dd-mm-yyyy format",
       slug: "convert-a-date-of-yyyy-mm-dd-format-928",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10549,7 +10549,7 @@ export default {
     },
     {
       n: 1930,
-      title: "Matches a string that has an a followed",
+      title: "Matches a string that has an a followed by zero or more b\'s by using regex",
       slug: "matches-a-string-that-has-an-a-followed-930",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10575,7 +10575,7 @@ export default {
     },
     {
       n: 1932,
-      title: "Remove duplicate words from a given list of",
+      title: "Remove duplicate words from a given list of strings",
       slug: "remove-duplicate-words-from-a-given-list-of-932",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10588,7 +10588,7 @@ export default {
     },
     {
       n: 1933,
-      title: "Convert camel case string to snake case string",
+      title: "Convert camel case string to snake case string by using regex",
       slug: "convert-camel-case-string-to-snake-case-string-933",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10627,7 +10627,7 @@ export default {
     },
     {
       n: 1936,
-      title: "Re-arrange the given tuples based on the given",
+      title: "Re-arrange the given tuples based on the given ordered list",
       slug: "re-arrange-the-given-tuples-based-on-the-936",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10640,7 +10640,7 @@ export default {
     },
     {
       n: 1937,
-      title: "Count the most common character in a given",
+      title: "Count the most common character in a given string",
       slug: "count-the-most-common-character-in-a-given-937",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10679,7 +10679,7 @@ export default {
     },
     {
       n: 1942,
-      title: "Check if any list element is present in",
+      title: "Check if any list element is present in the given list",
       slug: "check-if-any-list-element-is-present-in-942",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10705,7 +10705,7 @@ export default {
     },
     {
       n: 1944,
-      title: "Separate and print the numbers and their position",
+      title: "Separate and print the numbers and their position of a given string",
       slug: "separate-and-print-the-numbers-and-their-position-944",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10731,7 +10731,7 @@ export default {
     },
     {
       n: 1949,
-      title: "Sort the given tuple list basis the total",
+      title: "Sort the given tuple list basis the total digits in tuple",
       slug: "sort-the-given-tuple-list-basis-the-total-949",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10744,7 +10744,7 @@ export default {
     },
     {
       n: 1950,
-      title: "Display sign of the chinese zodiac for given",
+      title: "Display sign of the chinese zodiac for given year",
       slug: "display-sign-of-the-chinese-zodiac-for-given-950",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10757,7 +10757,7 @@ export default {
     },
     {
       n: 1951,
-      title: "Find the maximum of similar indices in two",
+      title: "Find the maximum of similar indices in two lists of tuples",
       slug: "find-the-maximum-of-similar-indices-in-two-951",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10783,7 +10783,7 @@ export default {
     },
     {
       n: 1953,
-      title: "Find the minimun number of subsets with distinct",
+      title: "Find the minimun number of subsets with distinct elements",
       slug: "find-the-minimun-number-of-subsets-with-distinct-953",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10809,7 +10809,7 @@ export default {
     },
     {
       n: 1956,
-      title: "Split the given string at uppercase letters by",
+      title: "Split the given string at uppercase letters by using regex",
       slug: "split-the-given-string-at-uppercase-letters-by-956",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10887,7 +10887,7 @@ export default {
     },
     {
       n: 1962,
-      title: "Find the sum of all even natural numbers",
+      title: "Find the sum of all even natural numbers within the range l and r",
       slug: "find-the-sum-of-all-even-natural-numbers-962",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10900,7 +10900,7 @@ export default {
     },
     {
       n: 1964,
-      title: "Check whether the length of the word is",
+      title: "Check whether the length of the word is even or not",
       slug: "check-whether-the-length-of-the-word-is-964",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10939,7 +10939,7 @@ export default {
     },
     {
       n: 1968,
-      title: "Find maximum possible value for the given periodic",
+      title: "Find maximum possible value for the given periodic function",
       slug: "find-maximum-possible-value-for-the-given-periodic-968",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10952,7 +10952,7 @@ export default {
     },
     {
       n: 1969,
-      title: "Join the tuples if they have similar initial",
+      title: "Join the tuples if they have similar initial elements",
       slug: "join-the-tuples-if-they-have-similar-initial-969",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10978,7 +10978,7 @@ export default {
     },
     {
       n: 1971,
-      title: "Find the maximum number of segments of lengths",
+      title: "Find the maximum number of segments of lengths a, b and c that can be formed from n",
       slug: "find-the-maximum-number-of-segments-of-lengths-971",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -10991,7 +10991,7 @@ export default {
     },
     {
       n: 1972,
-      title: "Concatenate the given two tuples to a nested",
+      title: "Concatenate the given two tuples to a nested tuple",
       slug: "concatenate-the-given-two-tuples-to-a-nested-972",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
@@ -11017,7 +11017,7 @@ export default {
     },
     {
       n: 1974,
-      title: "Find the minimum total path sum in the",
+      title: "Find the minimum total path sum in the given triangle",
       slug: "find-the-minimum-total-path-sum-in-the-974",
       difficulty: "Easy",
       source: "MBPP · Google Research · Apache 2.0",
