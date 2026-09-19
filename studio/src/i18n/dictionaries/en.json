@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "sections": "Sections",
+    "problems": "Problems",
+    "courses": "Courses",
+    "notes": "Notes",
+    "settings": "Settings",
+    "collapse": "Collapse the menu",
+    "expand": "Expand the menu"
+  },
+  "settings": {
+    "title": "Settings",
+    "back": "Back",
+    "review": {
+      "heading": "Review",
+      "blurb": "Solving a problem once does not keep it. These decide how hard the workspace pushes you to write it again."
+    },
+    "keyboard": {
+      "heading": "Keyboard",
+      "blurb": "Every shortcut the studio binds. The list is the one the handler reads, so it cannot drift from what actually fires.",
+      "board": "Anywhere on a board",
+      "boardNote": "while the editor or the list has focus",
+      "replay": "The replay",
+      "replayNote": "while the transport has focus"
+    },
+    "language": {
+      "heading": "Language",
+      "blurb": "Changes the interface and, where a translation exists, the problem text. Examples and code are never translated: the runner reads its test cases out of them.",
+      "label": "Interface language",
+      "saving": "Saving…"
+    }
+  },
+  "shortcut": {
+    "palette": "Jump to any problem by number, title, category or pattern",
+    "save": "Save the file",
+    "run": "Save if needed, then run the tests",
+    "next": "Next problem in this list",
+    "previous": "Previous problem in this list",
+    "unsolved": "Next problem that is not solved yet",
+    "focus": "Focus mode: the editor alone, without the list and the brief",
+    "step": "One step back or forward through the replay",
+    "play": "Play or pause the replay"
+  }
+}

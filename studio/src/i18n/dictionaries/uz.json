@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "sections": "Bo‘limlar",
+    "problems": "Masalalar",
+    "courses": "Kurslar",
+    "notes": "Eslatmalar",
+    "settings": "Sozlamalar",
+    "collapse": "Menyuni yig‘ish",
+    "expand": "Menyuni ochish"
+  },
+  "settings": {
+    "title": "Sozlamalar",
+    "back": "Orqaga",
+    "review": {
+      "heading": "Takrorlash",
+      "blurb": "Masalani bir marta yechish uni eslab qolish degani emas. Bular ish muhiti sizdan uni qayta yozishni qanchalik qat’iy so‘rashini belgilaydi."
+    },
+    "keyboard": {
+      "heading": "Klaviatura",
+      "blurb": "Studiya bog‘laydigan barcha yorliqlar. Ishlovchi ham shu ro‘yxatni o‘qiydi, shuning uchun u haqiqatda ishlaydigan narsadan ajralib keta olmaydi.",
+      "board": "Doskaning istalgan joyida",
+      "boardNote": "fokus muharrirda yoki ro‘yxatda turganda",
+      "replay": "Qayta o‘ynatish",
+      "replayNote": "fokus boshqaruv panelida turganda"
+    },
+    "language": {
+      "heading": "Til",
+      "blurb": "Interfeysni, tarjima mavjud bo‘lsa masala matnini ham o‘zgartiradi. Misollar va kod hech qachon tarjima qilinmaydi: runner test holatlarini aynan ulardan oladi.",
+      "label": "Interfeys tili",
+      "saving": "Saqlanmoqda…"
+    }
+  },
+  "shortcut": {
+    "palette": "Istalgan masalaga raqami, nomi, turkumi yoki patterni bo‘yicha o‘tish",
+    "save": "Faylni saqlash",
+    "run": "Kerak bo‘lsa saqlab, testlarni ishga tushirish",
+    "next": "Bu ro‘yxatdagi keyingi masala",
+    "previous": "Bu ro‘yxatdagi oldingi masala",
+    "unsolved": "Hali yechilmagan keyingi masala",
+    "focus": "Fokus rejimi: faqat muharrir, ro‘yxat va tavsifsiz",
+    "step": "Qayta o‘ynatishda bir qadam orqaga yoki oldinga",
+    "play": "Qayta o‘ynatishni boshlash yoki to‘xtatish"
+  }
+}
