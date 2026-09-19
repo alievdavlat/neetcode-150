@@ -1,6 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { canMiss, changesOf, consequenceOf, passesOf, reachedIn, stepsChanging } from '../src/lib/trace-view.ts';
+import {
+  canMiss,
+  changesOf,
+  consequenceOf,
+  passesOf,
+  reachedIn,
+  stepsChanging,
+  stepsTouching,
+} from '../src/lib/trace-view.ts';
 
 const step = (over = {}) => ({
   line: 1,
@@ -99,4 +107,22 @@ test('only a lookup that can fail is worth calling a miss', () => {
   assert.equal(canMiss({ t: 'array', items: ['1'], truncated: false, set: true }), true);
   assert.equal(canMiss({ t: 'map', entries: [], truncated: false }), true);
   assert.equal(canMiss({ t: 'scalar', text: '3' }), false);
+});
+
+/**
+ * "How did this number get here?" is a question about a place in the data. For a
+ * two-pass solution the honest answer is two steps, not the whole replay.
+ */
+test('following one cell keeps only the steps that reached it', () => {
+  const touched = (touches) => step({ touched: touches });
+  const steps = [
+    touched([{ name: 'res', key: 0, write: true, from: 'i' }]),
+    touched([{ name: 'res', key: 1, write: true, from: 'i' }]),
+    touched([]),
+    touched([{ name: 'res', key: 0, write: true, from: 'i' }]),
+  ];
+
+  assert.deepEqual(stepsTouching(steps, 'res', '0'), [true, false, false, true]);
+  assert.deepEqual(stepsTouching(steps, 'res', '1'), [false, true, false, false]);
+  assert.deepEqual(stepsTouching(steps, 'nums', '0'), [false, false, false, false]);
 });

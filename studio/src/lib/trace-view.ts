@@ -224,3 +224,15 @@ export function reachedIn(value: TraceValue): (key: string) => boolean {
 
 /** A miss only means something where a lookup can actually fail. */
 export const canMiss = (value: TraceValue) => value.t === 'map' || (value.t === 'array' && value.set === true);
+
+/**
+ * The steps that reached one cell. "How did this number get here?" is a question
+ * about a place in the data, not about a variable, and answering it by stepping
+ * the whole replay is the slow way round: for a two-pass solution the honest
+ * answer is two steps out of forty.
+ */
+export function stepsTouching(steps: TraceStep[], name: string, key: string): boolean[] {
+  return steps.map((step) =>
+    step.touched.some((touch) => touch.name === name && String(touch.key) === key),
+  );
+}

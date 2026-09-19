@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ChevronDown, ChevronRight, Eye } from 'lucide-react';
 import type { TraceStep, TraceValue } from '@/lib/types';
 import { canMiss, reachedIn, shortIndex, UNCHANGED, type StepChanges, type VarChange } from '@/lib/trace-view';
+import type { Watched } from './trace-panel';
 import { cn } from '@/lib/utils';
 
 interface TraceStageProps {
@@ -13,8 +14,8 @@ interface TraceStageProps {
   covered: Record<string, Record<string, number>>;
   /** The same reaches in order, misses included, by name. */
   asked: Record<string, { key: string; write: boolean }[]>;
-  watching: string | null;
-  onWatch: (name: string | null) => void;
+  watching: Watched | null;
+  onWatch: (watched: Watched | null) => void;
 }
 
 /** Past this many entries a value is folded away unless this step is using it. */
@@ -112,16 +113,26 @@ export function TraceStage({ step, changes, covered, asked, watching, onWatch }:
               {moved.has(index) ? (was?.[index] ?? '') : ''}
             </span>
 
-            <div
-              title={seen > 0 ? `${item} — reached ${seen} ${seen === 1 ? 'time' : 'times'}` : item}
+            <button
+              type="button"
+              aria-pressed={watching?.name === name && watching.key === key}
+              onClick={() =>
+                onWatch(watching?.name === name && watching.key === key ? null : { name, key })
+              }
+              title={
+                seen > 0
+                  ? `${item} — reached ${seen} ${seen === 1 ? 'time' : 'times'}. Click to follow only those steps.`
+                  : `${item} — click to follow only the steps that reach it`
+              }
               className={cn(
                 'flex min-w-10 max-w-28 flex-col items-center rounded-md border px-1.5 py-1 font-mono text-[11px] transition-colors',
                 toneOf(touchOf(name, key), moved.has(index), seen),
+                watching?.name === name && watching.key === key && 'ring-1 ring-primary/70',
               )}
             >
               <span className="w-full truncate text-center">{item}</span>
               <span className="text-[9px] text-muted-foreground tabular-nums">{index}</span>
-            </div>
+            </button>
 
             <span className="h-3.5 font-mono text-[9px] text-cool">
               {pointers.get(String(index))?.join(' ') ?? ''}
@@ -150,13 +161,21 @@ export function TraceStage({ step, changes, covered, asked, watching, onWatch }:
           const quiet = !moved.has(key) && !touchOf(name, key) && seen === 0;
 
           return (
-          <div
+          <button
             key={key}
-            title={seen > 0 ? `reached ${seen} ${seen === 1 ? 'time' : 'times'}` : undefined}
+            type="button"
+            aria-pressed={watching?.name === name && watching.key === key}
+            onClick={() => onWatch(watching?.name === name && watching.key === key ? null : { name, key })}
+            title={
+              seen > 0
+                ? `reached ${seen} ${seen === 1 ? 'time' : 'times'}. Click to follow only those steps.`
+                : 'Click to follow only the steps that reach it'
+            }
             className={cn(
-              'flex items-center gap-2 rounded-md border px-2 py-0.5 font-mono text-[11px] transition-colors',
+              'flex w-full items-center gap-2 rounded-md border px-2 py-0.5 text-left font-mono text-[11px] transition-colors',
               toneOf(touchOf(name, key), moved.has(key), seen),
               quiet && 'border-transparent',
+              watching?.name === name && watching.key === key && 'ring-1 ring-primary/70',
             )}
           >
             <span className="text-foreground/90">{key}</span>
@@ -167,7 +186,7 @@ export function TraceStage({ step, changes, covered, asked, watching, onWatch }:
               <span className="text-[10px] text-muted-foreground/70 line-through">{was.get(key)}</span>
             )}
             <span className="break-all text-foreground/70">{item}</span>
-          </div>
+          </button>
           );
         })}
         {value.truncated && <span className="text-[11px] text-muted-foreground">&hellip;</span>}
@@ -368,14 +387,14 @@ export function TraceStage({ step, changes, covered, asked, watching, onWatch }:
         <dt className="mb-1 flex items-center gap-1.5">
           <button
             type="button"
-            onClick={() => onWatch(watching === name ? null : name)}
-            title={watching === name ? `Stop watching ${name}` : `Step only where ${name} changes`}
+            onClick={() => onWatch(watching?.name === name && watching.key === null ? null : { name, key: null })}
+            title={watching?.name === name && watching.key === null ? `Stop watching ${name}` : `Step only where ${name} changes`}
             className={cn(
               'flex items-center gap-1 rounded font-mono text-[10px] tracking-wide transition-colors',
-              watching === name ? 'text-primary' : 'text-muted-foreground hover:text-foreground',
+              watching?.name === name && watching.key === null ? 'text-primary' : 'text-muted-foreground hover:text-foreground',
             )}
           >
-            {watching === name && <Eye className="size-2.5" />}
+            {watching?.name === name && watching.key === null && <Eye className="size-2.5" />}
             {name}
           </button>
 

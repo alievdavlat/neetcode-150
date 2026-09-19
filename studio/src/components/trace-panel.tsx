@@ -28,7 +28,7 @@ import { PanelNotice } from './panel-notice';
 import { TraceExpression } from './trace-expression';
 import { TraceStage } from './trace-stage';
 import type { OperationProbe, TraceKind, TraceResult } from '@/lib/types';
-import { changesOf, passesOf, stepsChanging } from '@/lib/trace-view';
+import { changesOf, passesOf, stepsChanging, stepsTouching } from '@/lib/trace-view';
 import { cn } from '@/lib/utils';
 
 interface TraceCase {
@@ -59,6 +59,14 @@ const COLUMNS = 240;
 
 /** `1` is the speed the replay was written at, so it reads as a word, not a number. */
 const speedLabel = (value: number) => (value === 1 ? 'Normal' : `${value}×`);
+
+/** A name on its own, or one cell of it. */
+export interface Watched {
+  name: string;
+  key: string | null;
+}
+
+const labelOf = (watched: Watched) => (watched.key === null ? watched.name : `${watched.name}[${watched.key}]`);
 
 const CHIP = 'rounded-full border px-2 py-0.5 font-mono text-[10px] transition-colors';
 
@@ -94,7 +102,7 @@ export function TracePanel({
   const [playing, setPlaying] = useState(false);
   const [speed, setSpeed] = useState(1);
   const [speedOpen, setSpeedOpen] = useState(false);
-  const [watching, setWatching] = useState<string | null>(null);
+  const [watching, setWatching] = useState<Watched | null>(null);
   const [only, setOnly] = useState<string | null>(null);
   const [editing, setEditing] = useState(false);
   const [input, setInput] = useState('');
@@ -122,7 +130,11 @@ export function TracePanel({
    * watched variable, inside the function being followed, or both.
    */
   const marks = useMemo(() => {
-    const changing = watching ? stepsChanging(steps, watching) : null;
+    const changing = watching
+      ? watching.key === null
+        ? stepsChanging(steps, watching.name)
+        : stepsTouching(steps, watching.name, watching.key)
+      : null;
     if (!only) return changing;
 
     return steps.map((step, position) => step.fn === only && (changing === null || changing[position]));
@@ -602,11 +614,11 @@ export function TracePanel({
         <button
           type="button"
           onClick={() => setWatching(null)}
-          title={`Stop watching ${watching}`}
+          title={`Stop following ${labelOf(watching)}`}
           className={cn(CHIP, 'flex items-center gap-1 border-primary/40 bg-primary/10 text-primary')}
         >
           <Eye className="size-2.5" />
-          {watching}
+          {labelOf(watching)}
           <X className="size-2.5" />
         </button>
       )}
