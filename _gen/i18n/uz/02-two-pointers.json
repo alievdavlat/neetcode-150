@@ -1,0 +1,43 @@
+{
+  "010": {
+    "title": "Palindrom tekshiruvi",
+    "pattern": "Ikki chetdan ko‘rsatgichlar, harf va raqam bo‘lmaganini o‘tkazib",
+    "statement": "Ibora palindrom deyiladi, agar harf va raqamdan boshqa hamma belgi olib tashlanib, qolgani kichik harfga o‘tkazilgandan keyin chapdan o‘ngga va o‘ngdan chapga bir xil o‘qilsa. s satri berilgan — palindrom bo‘lsa true qaytaring.",
+    "followUp": "Satrning tozalangan nusxasini yasamasdan yechib ko‘ring.",
+    "constraints": ["1 <= s.length <= 2 * 10^5", "s bosiladigan ASCII belgilardan iborat"]
+  },
+  "011": {
+    "title": "Ikki sonning yig‘indisi II — massiv saralangan",
+    "pattern": "Saralangan massivda bir-biriga yaqinlashuvchi ko‘rsatgichlar",
+    "statement": "1 dan raqamlanuvchi, kamaymaydigan tartibda saralangan numbers massivi berilgan. Yig‘indisi target ga teng ikki sonni topib, indekslarini 1 dan boshlab [index1, index2] shaklida qaytaring, bunda index1 < index2. Aynan bitta yechim bor, bitta elementni ikki marta ishlatish mumkin emas va qo‘shimcha xotira faqat konstanta bo‘lishi kerak.",
+    "constraints": ["2 <= numbers.length <= 3 * 10^4", "-1000 <= numbers[i] <= 1000", "numbers kamaymaydigan tartibda saralangan", "Aynan bitta yechim bor", "Faqat konstanta qo‘shimcha xotira — hash jadval mumkin emas"]
+  },
+  "012": {
+    "title": "Uch sonning yig‘indisi",
+    "pattern": "Saralab, bitta sonni qotirib, ikki ko‘rsatgich yurgizish",
+    "statement": "nums butun sonlar massivi berilgan. Yig‘indisi nolga teng bo‘lgan, indekslari farqli i, j, k bo‘lgan barcha takrorlanmas [nums[i], nums[j], nums[k]] uchliklarni qaytaring. Natijada takrorlanuvchi uchlik bo‘lmasligi kerak; uchliklarning va ular ichidagi qiymatlarning tartibi muhim emas.",
+    "followUp": "Takrorlarni o‘tkazib yuborish — masalaning o‘zi. Satrlar to‘plamisiz bajaring.",
+    "constraints": ["3 <= nums.length <= 3000", "-10^5 <= nums[i] <= 10^5"]
+  },
+  "013": {
+    "title": "Eng ko‘p suv sig‘adigan idish",
+    "pattern": "Ochko‘z ikki ko‘rsatgich — har doim pastroq devorni surish",
+    "statement": "height ning har bir elementi — shu indeksdagi vertikal chiziqning balandligi. Ikki chiziqni shunday tanlang-ki, ular x o‘qi bilan yasagan idishga eng ko‘p suv sig‘sin, va o‘sha maksimal yuzani qaytaring. Idishni qiyshaytirish mumkin emas, ya’ni yuza ikki chiziq orasidagi masofani ikki balandlikning kichigiga ko‘paytirganga teng.",
+    "followUp": "Nega hozirgi ikki devorning pastrog‘ini tashlab yuborish har doim xavfsiz?",
+    "constraints": ["n === height.length", "2 <= n <= 10^5", "0 <= height[i] <= 10^4"]
+  },
+  "014": {
+    "title": "Yomg‘ir suvini to‘plash",
+    "pattern": "Chap va o‘ng maksimumni olib yuruvchi ikki ko‘rsatgich",
+    "statement": "n ta manfiy bo‘lmagan son berilgan, bunda height[i] — i indeksidagi balandlik va har bir ustunning kengligi 1. Yomg‘irdan keyin bu relyef qancha suv ushlab qolishini hisoblang. Ustun ustidagi suv uning chapidagi eng baland ustun va o‘ngidagi eng baland ustun bilan cheklanadi.",
+    "followUp": "Prefiks va suffiks maksimum massivlari — oson yo‘l. Ikkala massivni ham tashlab, O(1) xotirada bajara olasizmi?",
+    "constraints": ["n === height.length", "1 <= n <= 2 * 10^4", "0 <= height[i] <= 10^5"]
+  },
+  "154": {
+    "title": "Ranglarni saralash",
+    "pattern": "Golland bayrog‘i: past, yuqori va ular orasidagi kursor",
+    "statement": "nums da faqat 0, 1 va 2 qiymatlari bor. Uni joyida shunday qayta joylashtiring-ki, avval hamma 0, keyin hamma 1, keyin hamma 2 kelsin. Buni kutubxona saralashini chaqirmasdan, bitta o‘tishda bajaring. Funksiya hech nima qaytarmaydi — massivning o‘zini o‘zgartiring.",
+    "followUp": "Har qiymatni sanab, keyin qayta yozish — bu ikki o‘tish. Bitta o‘tish uchun uchta ko‘rsatgich kerak.",
+    "constraints": ["1 <= nums.length <= 300", "nums[i] — 0, 1 yoki 2"]
+  }
+}

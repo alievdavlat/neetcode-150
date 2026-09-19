@@ -1,0 +1,50 @@
+{
+  "028": {
+    "title": "Binar qidiruv",
+    "pattern": "Saralangan massivda klassik ikkiga bo‘lish",
+    "statement": "Farqli butun sonlardan tuzilgan saralangan nums massivi va target qiymati berilgan. target ning indeksini, yo‘q bo‘lsa -1 qaytaring. Ishlash vaqti O(log n) bo‘lishi kerak.",
+    "followUp": "Siklni chegaralar bo‘yicha qanday kelishuv tanlasangiz ham tugaydigan qilib yozing.",
+    "constraints": ["1 <= nums.length <= 10^4", "-10^4 < nums[i], target < 10^4", "nums dagi hamma qiymat takrorlanmas va o‘suvchi tartibda"]
+  },
+  "029": {
+    "title": "Ikki o‘lchovli matritsada qidirish",
+    "pattern": "Matritsani bitta yassi saralangan massiv deb qarash",
+    "statement": "m x n matritsa berilgan, unda har bir qator o‘suvchi tartibda saralangan va har qatorning birinchi qiymati oldingi qatorning oxirgi qiymatidan katta. target mavjud bo‘lsa true qaytaring. Ishlash vaqti O(log(m * n)) bo‘lishi kerak.",
+    "followUp": "Ikkita emas, bitta binar qidiruv — yassi indeksni qator va ustunga qanday qaytarasiz?",
+    "constraints": ["m === matrix.length, n === matrix[i].length", "1 <= m, n <= 100", "-10^4 <= matrix[i][j], target <= 10^4"]
+  },
+  "030": {
+    "title": "Koko banan yeyadi",
+    "pattern": "Javob oralig‘i bo‘yicha binar qidiruv",
+    "statement": "Koko soatiga k banan yeydi. Har soat u bitta uyumni tanlab, undan k tagacha banan yeydi; uyumda k dan kam qolgan bo‘lsa, uni yeb bo‘lib, soat oxirigacha kutadi. piles va h soat berilgan — u hamma uyumni h soat ichida tugatishi uchun eng kichik k ni qaytaring.",
+    "followUp": "Qidiruv maydoni qanday, va h soatda tugatish imkoni nega k bo‘yicha monoton?",
+    "constraints": ["1 <= piles.length <= 10^4", "piles.length <= h <= 10^9", "1 <= piles[i] <= 10^9"]
+  },
+  "031": {
+    "title": "Aylantirilgan saralangan massivdagi minimum",
+    "pattern": "O‘rtani o‘ng chet bilan solishtiruvchi binar qidiruv",
+    "statement": "Takrorlanmas butun sonlardan tuzilgan o‘suvchi massiv 1 dan n martagacha aylantirilgan. Uning minimal elementini O(log n) vaqtda qaytaring.",
+    "followUp": "O‘rtani chap chet bilan solishtirish — tuzoq. O‘ng chet bilan solishtirib, nega ekanini ko‘ring.",
+    "constraints": ["n === nums.length", "1 <= n <= 5000", "-5000 <= nums[i] <= 5000", "Hamma son takrorlanmas"]
+  },
+  "032": {
+    "title": "Aylantirilgan saralangan massivda qidirish",
+    "pattern": "Har qadamda qaysi yarmi saralanganini aniqlovchi binar qidiruv",
+    "statement": "Farqli butun sonlardan tuzilgan o‘suvchi massiv biror nuqtada aylantirilgan. Aylantirilgan massiv va target berilgan — target ning indeksini yoki -1 qaytaring. Ishlash vaqti O(log n) bo‘lishi kerak.",
+    "followUp": "Har o‘rtada aynan bitta tomon saralangani kafolatlangan. Qaysi biri, va target unda bormi?",
+    "constraints": ["1 <= nums.length <= 5000", "-10^4 <= nums[i], target <= 10^4", "Hamma qiymat takrorlanmas; nums — biror nuqtada aylantirilgan o‘suvchi massiv"]
+  },
+  "033": {
+    "title": "Vaqtga asoslangan kalit-qiymat ombori",
+    "pattern": "Har kalit uchun faqat qo‘shiladigan ro‘yxat + vaqt belgisi bo‘yicha binar qidiruv",
+    "statement": "Qiymatning har bir versiyasini vaqt belgisi bilan birga saqlaydigan kalit-qiymat omborini loyihalang. set(key, value, timestamp) qiymatni saqlaydi. get(key, timestamp) so‘ralgan vaqtdan katta bo‘lmagan eng katta belgiga ega qiymatni, bunday versiya bo‘lmasa bo‘sh satrni qaytaradi. Bitta kalit uchun set chaqiruvlari qat’iy o‘suvchi vaqt belgilari bilan keladi.",
+    "constraints": ["1 <= key.length, value.length <= 100", "key va value kichik lotin harflari va raqamlardan iborat", "1 <= timestamp <= 10^7", "set ga berilgan vaqt belgilari har kalit uchun qat’iy o‘sadi", "Jami ko‘pi bilan 2 * 10^5 chaqiruv"]
+  },
+  "034": {
+    "title": "Ikki saralangan massivning medianasi",
+    "pattern": "Qisqaroq massiv bo‘yicha kesish nuqtasini binar qidirish",
+    "statement": "m va n o‘lchamli, saralangan nums1 va nums2 massivlari berilgan. Birlashtirilgan saralangan massivning medianasini qaytaring. Ishlash vaqti O(log(m + n)) bo‘lishi kerak; birlashtirish juda sekin.",
+    "followUp": "Shunday kesim izlang-ki, uning chapidagi hamma narsa o‘ngidagi hamma narsadan katta bo‘lmasin — ikkala massiv bo‘ylab birga.",
+    "constraints": ["nums1.length === m, nums2.length === n", "0 <= m, n <= 1000 va 1 <= m + n <= 2000", "-10^6 <= nums1[i], nums2[i] <= 10^6"]
+  }
+}

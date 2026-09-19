@@ -1,0 +1,43 @@
+{
+  "015": {
+    "title": "Aksiyani sotib olish va sotishning eng yaxshi payti",
+    "pattern": "Shu paytgacha ko‘rilgan minimumni saqlab yurish",
+    "statement": "prices[i] — i kunidagi aksiya narxi. Bir kuni sotib olib, keyingi kunlardan birida sotib, foydani eng ko‘p qiling va o‘sha foydani qaytaring. Hech bir savdo foyda bermasa, 0 qaytaring.",
+    "constraints": ["1 <= prices.length <= 10^5", "0 <= prices[i] <= 10^4"]
+  },
+  "016": {
+    "title": "Takrorlanmaydigan eng uzun qism satr",
+    "pattern": "Siljuvchi oyna + to‘plam (yoki oxirgi indeks jadvali)",
+    "statement": "s satri berilgan. Takrorlanuvchi belgisi yo‘q eng uzun qism satrning uzunligini qaytaring. Qism satr ketma-ket turadi — qism ketma-ketlik bo‘lmaydi.",
+    "followUp": "Oxirgi ko‘rilgan indeks jadvali left ni sudralish o‘rniga sakrashga imkon beradi. Arziydimi?",
+    "constraints": ["0 <= s.length <= 5 * 10^4", "s lotin harflari, raqamlar, belgilar va bo‘shliqlardan iborat"]
+  },
+  "017": {
+    "title": "Almashtirishdan keyingi eng uzun bir xil harflar",
+    "pattern": "Oyna to‘g‘ri, agar (o‘lcham - eng ko‘p uchragan belgi soni) <= k",
+    "statement": "Katta lotin harflaridan tuzilgan s satri va k butun soni berilgan. Ko‘pi bilan k belgini boshqa istalgan katta harfga almashtirishingiz mumkin. Bitta takrorlanuvchi harfga keltirish mumkin bo‘lgan eng uzun qism satrning uzunligini qaytaring.",
+    "followUp": "Oyna har surilganda eng ko‘p uchragan belgi sonini qaytadan hisoblash shartmi?",
+    "constraints": ["1 <= s.length <= 10^5", "s faqat katta lotin harflaridan iborat", "0 <= k <= s.length"]
+  },
+  "018": {
+    "title": "Satr ichidagi o‘rin almashtirish",
+    "pattern": "Qat’iy o‘lchamli oyna + chastotalar mosligi",
+    "statement": "s1 va s2 ikki satr berilgan. Agar s2 ichida s1 ning o‘rni almashgan varianti bo‘lsa true qaytaring — ya’ni s2 ning biror qism satri s1 ning qayta joylashtirilgani bo‘lsa.",
+    "followUp": "Har qadamda 26 katakli ikki massivni solishtirish O(26n) turadi. Uning o‘rniga bitta “moslik” sanagichini yuritа olasizmi?",
+    "constraints": ["1 <= s1.length, s2.length <= 10^4", "s1 va s2 kichik lotin harflaridan iborat"]
+  },
+  "019": {
+    "title": "Eng kichik oyna qism satr",
+    "pattern": "Shart bajarilguncha kengaytirish, keyin bajarilib turganda qisqartirish",
+    "statement": "s va t satrlari berilgan. t ning har bir belgisini, takrorlari bilan birga o‘z ichiga olgan s ning eng qisqa qism satrini qaytaring. Bunday qism satr bo‘lmasa, bo‘sh satr qaytaring. Javob bor bo‘lsa, u yagona ekani kafolatlangan.",
+    "followUp": "O(m + n) da bajara olasizmi?",
+    "constraints": ["m === s.length, n === t.length", "1 <= m, n <= 10^5", "s va t katta va kichik lotin harflaridan iborat"]
+  },
+  "020": {
+    "title": "Siljuvchi oynadagi maksimum",
+    "pattern": "Indekslarning monoton kamayuvchi deki",
+    "statement": "nums massivi va k oyna o‘lchami berilgan. Oyna chap chetdan o‘ng chetga bir pozitsiya bo‘lib siljiydi. Har bir pozitsiyada oyna ichidagi maksimal qiymatni saqlagan massivni qaytaring.",
+    "followUp": "Heap O(n log k) beradi. Dek O(n) beradi — indeksni butunlay tashlab yuborish qachon xavfsiz bo‘ladi?",
+    "constraints": ["1 <= nums.length <= 10^5", "-10^4 <= nums[i] <= 10^4", "1 <= k <= nums.length"]
+  }
+}

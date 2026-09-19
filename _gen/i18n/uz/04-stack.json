@@ -1,0 +1,48 @@
+{
+  "021": {
+    "title": "To‘g‘ri qavslar",
+    "pattern": "Kutilayotgan yopuvchi qavslar steki",
+    "statement": "Faqat ( ) [ ] { } belgilaridan iborat satr berilgan. Uning to‘g‘ri yoki yo‘qligini aniqlang: har bir qavs o‘ziga juft turi bilan, to‘g‘ri tartibda yopilishi kerak, va hech bir yopuvchi qavs o‘z ochuvchisidan oldin kelmasligi kerak.",
+    "constraints": ["1 <= s.length <= 10^4", "s faqat ()[]{} belgilaridan iborat"]
+  },
+  "022": {
+    "title": "Minimumli stek",
+    "pattern": "Joriy minimumlarning parallel steki",
+    "statement": "push, pop, top va minimal elementni olishni — har birini konstanta vaqtda qo‘llaydigan stek loyihalang. pop, top va getMin har doim bo‘sh bo‘lmagan stekda chaqiriladi.",
+    "followUp": "Ikkinchi stekdan voz kechib, qiymat o‘rniga farqlarni saqlay olasizmi?",
+    "constraints": ["-2^31 <= val <= 2^31 - 1", "Jami ko‘pi bilan 3 * 10^4 chaqiruv", "Har bir metod O(1) da ishlashi kerak"]
+  },
+  "023": {
+    "title": "Teskari polyak yozuvini hisoblash",
+    "pattern": "Operandlar steki",
+    "statement": "Teskari polyak yozuvida yozilgan arifmetik ifodani hisoblang. Ruxsat etilgan amallar: +, -, * va /; har bir operand butun son yoki boshqa ifoda. Bo‘lish nolga qarab kesiladi, nolga bo‘lish hech qachon bo‘lmaydi, va kirish har doim to‘g‘ri ifoda bo‘lib, oraliq natijalari 32-bitli butun songa sig‘adi.",
+    "constraints": ["1 <= tokens.length <= 10^4", "Har bir token — amal yoki [-200, 200] oralig‘idagi butun son", "Bo‘lish nolga qarab kesiladi"]
+  },
+  "024": {
+    "title": "Qavslar hosil qilish",
+    "pattern": "Ochilgan va yopilgan sanagichi bilan orqaga qaytish",
+    "statement": "n juft qavs berilgan. Barcha to‘g‘ri kombinatsiyalarni hosil qiling. Tartib muhim emas.",
+    "followUp": "Qisman satrni hali davom ettirish mumkin bo‘lishini ta’minlaydigan ikki qoida qanday?",
+    "constraints": ["1 <= n <= 8"]
+  },
+  "025": {
+    "title": "Kunlik haroratlar",
+    "pattern": "Indekslarning monoton kamayuvchi steki",
+    "statement": "Kunlik haroratlar massivi berilgan. answer massivini qaytaring, bunda answer[i] — i kunidan keyin issiqroq harorat uchun necha kun kutish kerakligi. Issiqroq kun umuman kelmasa, answer[i] nolga teng.",
+    "constraints": ["1 <= temperatures.length <= 10^5", "30 <= temperatures[i] <= 100"]
+  },
+  "026": {
+    "title": "Mashinalar to‘dasi",
+    "pattern": "Pozitsiya bo‘yicha kamayuvchi saralash, yetib borish vaqtlari steki",
+    "statement": "n mashina bir qatorli yo‘lda target pozitsiyasidagi manzilga qarab ketadi. i mashina position[i] dan boshlaydi va speed[i] tezlikda yuradi. Sekinini quvib olgan tezroq mashina uning tezligiga tushishi shart, keyin ikkisi bir to‘da bo‘lib yonma-yon boradi — to‘da hech kimni quvib olmagan yolg‘iz mashina ham bo‘lishi mumkin. Aynan manzilda uchrashgan mashinalar ham bitta to‘da hisoblanadi. Manzilga nechta to‘da yetib borishini qaytaring.",
+    "followUp": "Masofa emas, yetib borish vaqti bilan o‘ylang — kim kimni hech qachon quvib olmaydi?",
+    "constraints": ["n === position.length === speed.length", "1 <= n <= 10^5", "0 < target <= 10^6", "0 <= position[i] < target, hamma pozitsiya farqli", "0 < speed[i] <= 10^6"]
+  },
+  "027": {
+    "title": "Gistogrammadagi eng katta to‘rtburchak",
+    "pattern": "(indeks, balandlik) juftlarining monoton o‘suvchi steki",
+    "statement": "Har bir ustuni kengligi 1 bo‘lgan gistogrammani ifodalovchi heights massivi berilgan. Gistogramma ichiga sig‘adigan eng katta to‘rtburchakning yuzasini qaytaring.",
+    "followUp": "Ustun stekdan chiqarilganda uning to‘rtburchagi chapdan qayerdan boshlanishi mumkin edi? O‘sha indeks butun masalaning javobi.",
+    "constraints": ["1 <= heights.length <= 10^5", "0 <= heights[i] <= 10^4"]
+  }
+}
