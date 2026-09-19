@@ -116,6 +116,29 @@
       "blurb": "The course this workspace was generated from: every problem in the list, solved on video.",
       "video": "T0u5nwSA0w0",
       "order": 3
+    },
+    {
+      "id": "concurrency",
+      "track": "Systems",
+      "order": 4,
+      "name": "Concurrency & multithreading",
+      "blurb": "Threads, locks, atomics and the visibility problem - the half of a system that only breaks under load.",
+      "video": "WldMTtUWqTg"
+    },
+    {
+      "id": "debugging",
+      "track": "Tools",
+      "name": "Debugging with GDB",
+      "blurb": "Breakpoints, watchpoints and reading a core dump, so a crash becomes a question you can ask rather than a guess.",
+      "video": "MTkDTjdDP3c"
+    },
+    {
+      "id": "binary-exploitation",
+      "track": "Systems",
+      "order": 5,
+      "name": "Binary exploitation",
+      "blurb": "Buffer overflows from the attacker's side, which is the only way the defences stop being abstract.",
+      "video": "wa3sMSdLyHw"
     }
   ]
 }

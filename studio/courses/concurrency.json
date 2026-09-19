@@ -1,0 +1,176 @@
+{
+  "id": "concurrency",
+  "track": "Systems",
+  "name": "Concurrency & multithreading",
+  "blurb": "Threads, locks, atomics and the visibility problem - the half of a system that only breaks under load.",
+  "order": 4,
+  "video": "WldMTtUWqTg",
+  "url": "https://www.youtube.com/watch?v=WldMTtUWqTg",
+  "title": "Java Concurrency & Multithreading Complete Course in 2 Hours | Zero to Hero",
+  "channel": "Riddhi Dutta",
+  "seconds": 7026,
+  "lessons": [
+    {
+      "title": "What to expect in the Course?",
+      "at": 0,
+      "seconds": 146
+    },
+    {
+      "title": "Multitasking",
+      "at": 146,
+      "seconds": 214
+    },
+    {
+      "title": "Difference between Thread and a Process",
+      "at": 360,
+      "seconds": 268
+    },
+    {
+      "title": "Threads in Java",
+      "at": 628,
+      "seconds": 142
+    },
+    {
+      "title": "The Main Thread",
+      "at": 770,
+      "seconds": 163
+    },
+    {
+      "title": "Thread Creation in Java",
+      "at": 933,
+      "seconds": 58
+    },
+    {
+      "title": "Extending Thread Class to create a Thread",
+      "at": 991,
+      "seconds": 479
+    },
+    {
+      "title": "Implementing Runnable",
+      "at": 1470,
+      "seconds": 240
+    },
+    {
+      "title": "Deep Diving into the Thread Class",
+      "at": 1710,
+      "seconds": 649
+    },
+    {
+      "title": "Synchronization in Java",
+      "at": 2359,
+      "seconds": 67
+    },
+    {
+      "title": "Race Condition and Introduction to Concurrency",
+      "at": 2426,
+      "seconds": 73
+    },
+    {
+      "title": "Synchronization Demo with Stacks (Synchronized Methods and Synchronized Blocks)",
+      "at": 2499,
+      "seconds": 665
+    },
+    {
+      "title": "Using Objects as Locks",
+      "at": 3164,
+      "seconds": 565
+    },
+    {
+      "title": "Synchronization in Static Methods",
+      "at": 3729,
+      "seconds": 96
+    },
+    {
+      "title": "Rules of Synchronization",
+      "at": 3825,
+      "seconds": 130
+    },
+    {
+      "title": "Race Condition",
+      "at": 3955,
+      "seconds": 60
+    },
+    {
+      "title": "Thread Safety",
+      "at": 4015,
+      "seconds": 25
+    },
+    {
+      "title": "The Volatile Keyword",
+      "at": 4040,
+      "seconds": 206
+    },
+    {
+      "title": "Using the Volatile Keyword in Singleton Design Pattern",
+      "at": 4246,
+      "seconds": 239
+    },
+    {
+      "title": "Producer Consumer Problem (Designing a Blocking Queue) (Introducing wait() and notify())",
+      "at": 4485,
+      "seconds": 1020
+    },
+    {
+      "title": "Thread States and Thread Transitions",
+      "at": 5505,
+      "seconds": 272
+    },
+    {
+      "title": "Running and Yielding of a Thread",
+      "at": 5777,
+      "seconds": 63
+    },
+    {
+      "title": "Sleeping and Waking Up of a Thread",
+      "at": 5840,
+      "seconds": 107
+    },
+    {
+      "title": "Waiting and Notifying of a Thread",
+      "at": 5947,
+      "seconds": 201
+    },
+    {
+      "title": "Thread Timed Out",
+      "at": 6148,
+      "seconds": 68
+    },
+    {
+      "title": "Interruption of a Thread",
+      "at": 6216,
+      "seconds": 24
+    },
+    {
+      "title": "Thread Joining",
+      "at": 6240,
+      "seconds": 259
+    },
+    {
+      "title": "Thread Priority",
+      "at": 6499,
+      "seconds": 97
+    },
+    {
+      "title": "Thread Scheduler",
+      "at": 6596,
+      "seconds": 136
+    },
+    {
+      "title": "Deadlocks",
+      "at": 6732,
+      "seconds": 105
+    },
+    {
+      "title": "Create a Deadlock in Java",
+      "at": 6837,
+      "seconds": 186
+    },
+    {
+      "title": "Support my Content",
+      "at": 7023,
+      "seconds": 3
+    }
+  ],
+  "from": "chapter panel",
+  "fetchedAt": "2026-09-19T10:03:05.030Z"
+}

@@ -1,0 +1,56 @@
+{
+  "id": "debugging",
+  "track": "Tools",
+  "name": "Debugging with GDB",
+  "blurb": "Breakpoints, watchpoints and reading a core dump, so a crash becomes a question you can ask rather than a guess.",
+  "order": null,
+  "video": "MTkDTjdDP3c",
+  "url": "https://www.youtube.com/watch?v=MTkDTjdDP3c",
+  "title": "GDB Beginner Masterclass",
+  "channel": "Mike Shah",
+  "seconds": 1411,
+  "lessons": [
+    {
+      "title": "Intro",
+      "at": 0,
+      "seconds": 118
+    },
+    {
+      "title": "C Program",
+      "at": 118,
+      "seconds": 409
+    },
+    {
+      "title": "Text User Interface",
+      "at": 527,
+      "seconds": 43
+    },
+    {
+      "title": "Debugging",
+      "at": 570,
+      "seconds": 140
+    },
+    {
+      "title": "Printing",
+      "at": 710,
+      "seconds": 58
+    },
+    {
+      "title": "Adding Functions",
+      "at": 768,
+      "seconds": 240
+    },
+    {
+      "title": "Segmentation Fault",
+      "at": 1008,
+      "seconds": 128
+    },
+    {
+      "title": "Breakpoints",
+      "at": 1136,
+      "seconds": 275
+    }
+  ],
+  "from": "chapter panel",
+  "fetchedAt": "2026-09-19T10:03:13.347Z"
+}
