@@ -729,9 +729,9 @@ ${line}
       .finally(() => setPlanSaving(false));
   };
 
-  const handlePlanStart = (days: number, perDay: number, note: string) => {
-    callRepeat({ action: 'start', days, perDay, note });
-    toast.success(t('repeat.started', { count: days * perDay }));
+  const handlePlanStart = (target: number, note: string) => {
+    callRepeat({ action: 'start', target, note });
+    toast.success(t('repeat.started', { count: target }));
   };
 
   const handlePlanStop = () => callRepeat({ action: 'stop' });

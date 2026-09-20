@@ -262,19 +262,19 @@
   "repeat": {
     "open": "Buni takrorlayman",
     "title": "Ro‘paramga qo‘yish",
-    "body": "Oraliqlar qanday yechganingizdan chiqariladi. Bu esa o‘rnashmaganini o‘zingiz bilgan holat uchun.",
-    "days": "Necha kun davomida",
-    "perDay": "Kuniga necha marta",
+    "body": "Oraliqlar qanday yechganingizdan chiqariladi. Bu esa o‘rnashmaganini o‘zingiz bilgan holat uchun. Bir kunda ikki marta so‘ramaydi.",
     "note": "Nimasi qiyin bo‘ldi",
     "notePlaceholder": "ko‘ra olmagan joyingiz",
-    "summary_one": "{{count}} takror, {{days}} kun davomida kuniga {{perDay}} marta",
-    "summary_other": "{{count}} takror, {{days}} kun davomida kuniga {{perDay}} marta",
+    "summary_one": "{{count}} marta toza o‘tkazish, oralarida",
+    "summary_other": "{{count}} marta toza o‘tkazish, oralarida",
     "confirm": "Navbatga qo‘shish",
     "cancel": "Bekor qilish",
-    "started_one": "Navbatga {{count}} takror qo‘shildi",
-    "started_other": "Navbatga {{count}} takror qo‘shildi",
-    "progress": "{{total}} dan {{done}}-takror",
-    "stop": "Rejani olib tashlash"
+    "started_one": "Navbatga {{count}} marta toza o‘tkazish uchun qo‘shildi",
+    "started_other": "Navbatga {{count}} marta toza o‘tkazish uchun qo‘shildi",
+    "progress": "{{total}} dan {{done}} marta o‘tkazildi",
+    "stop": "Rejani olib tashlash",
+    "target": "Necha marta toza o‘tkazasiz",
+    "summaryDays": "kunlik tanaffus bilan."
   },
   "review": {
     "badge": "TAKRORLASH",
@@ -283,7 +283,6 @@
     "dailyCap": "Kuniga masalalar",
     "dailyCapNote": "Navbat bir vaqtning o‘zida qancha vaqti kelgan masalani taklif qiladi. Qolganlari kutadi; ko‘rinmaydigan qarz — tashlab ketilmaydigan qarz.",
     "daysLate": "+{{days}} kun",
-    "defer": "Keyinga surish",
     "drill": "Mashq",
     "drillHint": "Oltmish soniya: qaysi usul va nega",
     "dueNow": "vaqti keldi",
@@ -311,10 +310,9 @@
     "runs_other": "{{count}} ishga tushirish",
     "strict": "Qat‘iy rejim",
     "strictNote": "Takrorlash vaqti kelgan biror masala bo‘lsa, boshqa hech narsa ochilmaydi. Bosh sahifa, to‘plamlar va boshqa masalalar vaqti kelgan masala testlardan yana o‘tmaguncha yopiq. Javobni ko‘rsatish ishlaydi, lekin darvozani ochmaydi — buni faqat muvaffaqiyatli ishga tushirish qiladi.",
-    "strictWarnLead": "Bu sahifa darvoza yopiq turganda ham ochiq qoladi, shuning uchun rejimni har doim o‘chirib qo‘yish mumkin. Har bir kutayotgan masalada",
-    "strictWarnTail": "ham bor: u masalani ertaga suradi va xato deb hisoblanadi — chiqish yo‘li ataylab, bepul emas.",
     "stuck": "tiqilib qolgan",
-    "stuckNote": "Qayd qaytadan yozilmaguncha kunlik navbatdan chiqarildi. Yechilmayotgan masalani qayta-qayta takrorlash navbatning qolganiga zarar qiladi."
+    "stuckNote": "Qayd qaytadan yozilmaguncha kunlik navbatdan chiqarildi. Yechilmayotgan masalani qayta-qayta takrorlash navbatning qolganiga zarar qiladi.",
+    "strictWarn": "Darvoza yopiq turganda masalani ertaga surib bo‘lmaydi: o‘tishning yagona yo‘li — uni yechish. Bu sahifa ochiq qoladi, shuning uchun rejimni har doim o‘chirishingiz mumkin."
   },
   "settings": {
     "title": "Sozlamalar",
@@ -417,15 +415,12 @@
       "late_many": "{{count}} kun kechikdi",
       "late_other": "{{count}} kun kechikdi",
       "writeAgain": "Qaytadan yozish",
-      "deferring": "Keyinga surilmoqda…",
-      "deferConfirm": "Ha, keyinga surish va uzilishni qabul qilish",
-      "defer": "Ertaga surish",
-      "deferNote": "Keyinga surish o‘tmagan takrorlash hisoblanadi: interval bir kunga tushadi, yengillik kamayadi, shuning uchun masala ertaga qaytadi va keyin tezroq keladi.",
       "moreAfter_one": "Bundan keyin yana {{count}} masala.",
       "moreAfter_few": "Bundan keyin yana {{count}} masala.",
       "moreAfter_many": "Bundan keyin yana {{count}} masala.",
       "moreAfter_other": "Bundan keyin yana {{count}} masala.",
-      "turnOff": "Qat’iy rejim yoniq — sozlamalarda o‘chiring"
+      "turnOff": "Qat’iy rejim yoniq — sozlamalarda o‘chiring",
+      "noDefer": "Qat’iy rejimda keyinga surib bo‘lmaydi. Masalani yeching yoki quyida rejimni o‘chiring."
     },
     "activity": {
       "title": "Faollik",

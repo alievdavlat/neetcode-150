@@ -1,13 +1,11 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { Lock, Settings2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Brand } from './brand';
 import { ALL_BOARD, DIFFICULTY_META } from '@/lib/meta';
-import { request } from '@/lib/api';
 import type { Problem, ProblemStatus } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
@@ -19,36 +17,14 @@ interface StrictGateProps {
 
 /**
  * Strict mode closed. Nothing else in the workspace opens until this problem
- * passes again. Two ways past it, both deliberate: solve it, or defer it and
- * take the lapse. Settings stays reachable, because a tool that can lock you out
- * of itself with no exit is broken rather than strict.
+ * passes again, and there is no "tomorrow" button: a deadline you can push is
+ * not a deadline, and pushing it was quietly costing a lapse anyway. The way
+ * out is to solve it, or to turn strict mode off in Settings - which stays
+ * reachable, because a tool that can lock you out of itself with no exit is
+ * broken rather than strict.
  */
 export function StrictGate({ problem, status, waiting }: StrictGateProps) {
   const { t } = useTranslation();
-  const [deferring, setDeferring] = useState(false);
-  const [confirming, setConfirming] = useState(false);
-
-  const defer = async () => {
-    setDeferring(true);
-    try {
-      await request('/api/review', {
-        method: 'POST',
-        body: JSON.stringify({
-          number: problem.number,
-          kind: 'solve',
-          passed: false,
-          revealed: false,
-          runs: 0,
-          hints: 0,
-          minutes: null,
-        }),
-      });
-      window.location.reload();
-    } finally {
-      setDeferring(false);
-    }
-  };
-
   const late = -(status.history.dueInDays ?? 0);
 
   return (
@@ -84,20 +60,9 @@ export function StrictGate({ problem, status, waiting }: StrictGateProps) {
             <Link href={`/c/${ALL_BOARD}?p=${problem.number}&review=1`}>{t('studio.strict.writeAgain')}</Link>
           </Button>
 
-          {confirming ? (
-            <Button variant="destructive" size="sm" onClick={defer} disabled={deferring}>
-              {deferring ? t('studio.strict.deferring') : t('studio.strict.deferConfirm')}
-            </Button>
-          ) : (
-            <Button variant="ghost" size="sm" onClick={() => setConfirming(true)}>
-              {t('studio.strict.defer')}
-            </Button>
-          )}
         </div>
 
-        {confirming && (
-          <p className="text-xs leading-relaxed text-muted-foreground">{t('studio.strict.deferNote')}</p>
-        )}
+        <p className="text-xs leading-relaxed text-muted-foreground">{t('studio.strict.noDefer')}</p>
 
         {waiting > 1 && (
           <p className="text-xs text-muted-foreground">

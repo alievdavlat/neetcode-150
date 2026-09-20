@@ -1,7 +1,18 @@
 import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import type { ProblemHistory, ReviewGrade, ReviewKind, RunStatus, SourceMode } from '@/lib/types';
-import { LEECH_LAPSES, MAX_PLAN_DAYS, MAX_PLAN_PER_DAY, planState, replay, seedInterval, type RepeatPlan } from './schedule';
+import {
+  LEECH_LAPSES,
+  MAX_PLAN_TARGET,
+  MIN_PLAN_TARGET,
+  firstDayWithRoom,
+  intervalAt,
+  planState,
+  replay,
+  seedStep,
+  type RepeatPlan,
+} from './schedule';
+import { getSettings } from './settings';
 import { STUDIO_ROOT } from './workspace';
 
 const HISTORY_FILE = path.join(STUDIO_ROOT, '.studio', 'history.json');
@@ -61,6 +72,37 @@ export const EMPTY_HISTORY: ProblemHistory = {
   plan: null,
 };
 
+/**
+ * Plans were once "N times a day for D days". Same-day repetition turned out to
+ * measure short-term memory rather than build long-term recall, so a plan is now
+ * a number of clean passes on the ladder. An old plan keeps the work already
+ * done and is given a target in proportion to the days it asked for.
+ */
+function migratePlan(plan: RepeatPlan & { days?: number; perDay?: number }): RepeatPlan {
+  if (typeof plan.target === 'number' && typeof plan.startAt === 'string') return plan;
+
+  const days = typeof plan.days === 'number' ? plan.days : 3;
+  const done = Array.isArray(plan.done) ? plan.done : [];
+
+  /**
+   * An old plan had no start date, so its first repetition was due the instant
+   * it was made - which is what made several of them pile onto one day. One
+   * that has not been started yet is moved to tomorrow; one already in progress
+   * is paced by its own last pass and needs nothing.
+   */
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  tomorrow.setHours(9, 0, 0, 0);
+
+  return {
+    createdAt: plan.createdAt,
+    target: Math.min(MAX_PLAN_TARGET, Math.max(MIN_PLAN_TARGET, Math.round(days / 2))),
+    done,
+    startAt: plan.startAt ?? (done.length === 0 ? tomorrow.toISOString() : plan.createdAt),
+    note: plan.note ?? null,
+  };
+}
+
 async function read(): Promise<HistoryFile> {
   const raw = await readFile(HISTORY_FILE, 'utf8').catch(() => null);
   if (raw === null) return { ...EMPTY };
@@ -72,7 +114,9 @@ async function read(): Promise<HistoryFile> {
       hints: parsed.hints ?? {},
       opens: parsed.opens ?? {},
       reviews: parsed.reviews ?? {},
-      plans: parsed.plans ?? {},
+      plans: Object.fromEntries(
+        Object.entries(parsed.plans ?? {}).map(([number, plan]) => [number, migratePlan(plan)]),
+      ),
     };
   } catch {
     return { ...EMPTY };
@@ -113,7 +157,7 @@ function summarize(
   const started = firstPass ? opens.find((at) => at <= firstPass.at) : null;
 
   const solved = firstPass !== null;
-  const seed = seedInterval(runsToFirstPass, hintLevel);
+  const seed = seedStep(runsToFirstPass, hintLevel);
   const schedule = solved ? replay(seed, reviews) : null;
 
   const lastReview = reviews[reviews.length - 1] ?? null;
@@ -149,7 +193,7 @@ function summarize(
     due: planDue || scheduleDue,
     reviews: reviews.length,
     lapses: schedule?.lapses ?? 0,
-    ease: schedule ? Math.round(schedule.ease * 100) / 100 : null,
+    ease: null,
     lastReviewAt: lastReview?.at ?? null,
     leech: (schedule?.streak ?? 0) >= LEECH_LAPSES && state === null,
     reviewMinutes: reviews
@@ -158,13 +202,13 @@ function summarize(
       .slice(-12),
     plan:
       plan && state && !state.finished
-        ? { days: plan.days, perDay: plan.perDay, done: state.done, total: state.total, nextAt: state.nextAt, note: plan.note }
+        ? { target: state.target, done: state.done, nextAt: state.nextAt, note: plan.note }
         : null,
   };
 }
 
-export async function getHistories(): Promise<Record<string, ProblemHistory>> {
-  const history = await read();
+/** Every problem the log knows about, summarised. Pure, so pacing can reuse it. */
+function summarizeAll(history: HistoryFile): Record<string, ProblemHistory> {
   const numbers = new Set([
     ...Object.keys(history.runs),
     ...Object.keys(history.hints),
@@ -185,6 +229,10 @@ export async function getHistories(): Promise<Record<string, ProblemHistory>> {
       ),
     ]),
   );
+}
+
+export async function getHistories(): Promise<Record<string, ProblemHistory>> {
+  return summarizeAll(await read());
 }
 
 interface RecordRunInput {
@@ -248,7 +296,7 @@ export async function recordReview({ number, ...rest }: RecordReviewInput): Prom
    */
   const plan = history.plans[number];
   if (plan) {
-    plan.done = [...plan.done, new Date().toISOString()].slice(-(planState(plan).total + 4));
+    plan.done = [...plan.done, new Date().toISOString()].slice(-(plan.target + 4));
     if (planState(plan).finished) delete history.plans[number];
     else history.plans[number] = plan;
   }
@@ -326,26 +374,51 @@ export async function getActivity(days = 119): Promise<{ days: ActivityDay[]; to
  */
 export async function startPlan({
   number,
-  days,
-  perDay,
+  target,
   note,
 }: {
   number: string;
-  days: number;
-  perDay: number;
+  target: number;
   note: string | null;
 }): Promise<void> {
   const history = await read();
+  const { dailyCap } = await getSettings();
 
   history.plans[number] = {
     createdAt: new Date().toISOString(),
-    days: Math.min(MAX_PLAN_DAYS, Math.max(1, Math.round(days))),
-    perDay: Math.min(MAX_PLAN_PER_DAY, Math.max(1, Math.round(perDay))),
+    target: Math.min(MAX_PLAN_TARGET, Math.max(MIN_PLAN_TARGET, Math.round(target))),
     done: [],
+    startAt: await firstFreeDay(history, dailyCap, number),
     note: note?.trim() ? note.trim() : null,
   };
 
   await write(history);
+}
+
+/**
+ * Where a new plan's first repetition lands.
+ *
+ * Never today: asking for a problem back means you want to reconstruct it, and
+ * you cannot reconstruct something you finished ten minutes ago. And never onto
+ * a day that is already full, because marking five problems as hard in one
+ * sitting used to make all five due at once, which is how a queue turns into a
+ * wall and stops being followed at all.
+ */
+async function firstFreeDay(history: HistoryFile, dailyCap: number, exclude: string): Promise<string> {
+  const load = new Map<string, number>();
+
+  for (const [key, entry] of Object.entries(summarizeAll(history))) {
+    if (key === exclude || entry.dueAt === null) continue;
+    const day = dayOf(new Date(entry.dueAt));
+    load.set(day, (load.get(day) ?? 0) + 1);
+  }
+
+  /** Tomorrow morning at the earliest, then the first day with room. */
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  tomorrow.setHours(9, 0, 0, 0);
+
+  return firstDayWithRoom(load, dailyCap, tomorrow, dayOf).toISOString();
 }
 
 export async function stopPlan(number: string): Promise<void> {

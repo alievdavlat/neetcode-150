@@ -17,33 +17,42 @@ import {
 import type { RepeatPlanState } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
-const DAYS = [1, 3, 5, 7, 14];
-const PER_DAY = [1, 2, 3, 4];
+/** Clean passes to ask for. Past six it is not a repeat plan, it is a rewrite. */
+const TARGETS = [2, 3, 4, 5, 6];
+
+/** The bottom of the ladder, so the dialog can show what it is committing to. */
+const FIRST_INTERVALS = [1, 3, 7, 16, 35, 90];
 
 interface RepeatDialogProps {
   plan: RepeatPlanState | null;
   saving: boolean;
-  onStart: (days: number, perDay: number, note: string) => void;
+  onStart: (target: number, note: string) => void;
   onStop: () => void;
 }
 
 /**
  * Spaced repetition only reacts to what it measured, so it cannot help with a
  * problem the learner already knows they have not learned. This is them saying
- * so directly: how many days, how many times a day, and why it was hard.
+ * so directly.
+ *
+ * It asks for clean passes rather than a number of days, because what fixes a
+ * hard problem is having to rebuild it after a gap - not seeing it three more
+ * times this afternoon while the answer is still in mind.
  */
 export function RepeatDialog({ plan, saving, onStart, onStop }: RepeatDialogProps) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-  const [days, setDays] = useState(3);
-  const [perDay, setPerDay] = useState(2);
+  const [target, setTarget] = useState(3);
   const [note, setNote] = useState('');
 
   const start = () => {
-    onStart(days, perDay, note);
+    onStart(target, note);
     setOpen(false);
     setNote('');
   };
+
+  /** The gaps this plan commits to, so the choice is not made blind. */
+  const schedule = FIRST_INTERVALS.slice(0, target).join(' · ');
 
   const renderChoice = (values: number[], value: number, onPick: (next: number) => void, label: string) => (
     <div className="space-y-1.5">
@@ -74,7 +83,7 @@ export function RepeatDialog({ plan, saving, onStart, onStop }: RepeatDialogProp
       <div className="flex items-center gap-2 rounded-lg border border-primary/25 bg-primary/[0.07] px-2.5 py-1.5">
         <Repeat2 className="size-3 shrink-0 text-primary" />
         <span className="text-[11px] text-primary">
-          {t('repeat.progress', { done: plan.done, total: plan.total })}
+          {t('repeat.progress', { done: plan.done, total: plan.target })}
         </span>
         <button
           type="button"
@@ -109,8 +118,7 @@ export function RepeatDialog({ plan, saving, onStart, onStop }: RepeatDialogProp
         </DialogHeader>
 
         <div className="space-y-4">
-          {renderChoice(DAYS, days, setDays, t('repeat.days'))}
-          {renderChoice(PER_DAY, perDay, setPerDay, t('repeat.perDay'))}
+          {renderChoice(TARGETS, target, setTarget, t('repeat.target'))}
 
           <div className="space-y-1.5">
             <label
@@ -129,8 +137,9 @@ export function RepeatDialog({ plan, saving, onStart, onStop }: RepeatDialogProp
             />
           </div>
 
-          <p className="text-[11px] text-muted-foreground">
-            {t('repeat.summary', { count: days * perDay, days, perDay })}
+          <p className="text-[11px] leading-relaxed text-muted-foreground">
+            {t('repeat.summary', { count: target })}{' '}
+            <span className="font-mono text-primary/80">{schedule}</span> {t('repeat.summaryDays')}
           </p>
         </div>
 

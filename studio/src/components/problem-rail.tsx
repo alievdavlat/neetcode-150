@@ -268,10 +268,10 @@ export function ProblemRail({
         <span className="relative flex-1 truncate text-[13px]">{problem.title}</span>
         {status.history.plan && (
           <span
-            title={t('rail.planProgress', { done: status.history.plan.done, total: status.history.plan.total })}
+            title={t('rail.planProgress', { done: status.history.plan.done, total: status.history.plan.target })}
             className="relative shrink-0 rounded-full border border-primary/30 bg-primary/10 px-1 font-mono text-[9px] text-primary"
           >
-            {status.history.plan.done}/{status.history.plan.total}
+            {status.history.plan.done}/{status.history.plan.target}
           </span>
         )}
         {status.history.due ? (

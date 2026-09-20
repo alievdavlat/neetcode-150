@@ -70,10 +70,9 @@ export interface ProblemHistory {
 
 /** What the learner asked for, and how far through it they are. */
 export interface RepeatPlanState {
-  days: number;
-  perDay: number;
+  /** Clean passes asked for before it graduates back to the normal ladder. */
+  target: number;
   done: number;
-  total: number;
   nextAt: string | null;
   note: string | null;
 }

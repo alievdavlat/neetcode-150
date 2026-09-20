@@ -1,15 +1,14 @@
 import { fail, ok } from '@/server/http';
 import { startPlan, stopPlan } from '@/server/history';
 import { getStatus } from '@/server/problems';
-import { MAX_PLAN_DAYS, MAX_PLAN_PER_DAY } from '@/server/schedule';
+import { MAX_PLAN_TARGET, MIN_PLAN_TARGET } from '@/server/schedule';
 
 export const dynamic = 'force-dynamic';
 
 interface RepeatBody {
   number?: string;
   action?: 'start' | 'stop';
-  days?: number;
-  perDay?: number;
+  target?: number;
   note?: string | null;
 }
 
@@ -29,16 +28,15 @@ export async function POST(request: Request) {
 
     if (body.action !== 'start') return fail('action must be start or stop');
 
-    const days = whole(body.days, 3);
-    const perDay = whole(body.perDay, 2);
+    const target = whole(body.target, 3);
 
-    if (days < 1 || days > MAX_PLAN_DAYS) return fail(`days must be between 1 and ${MAX_PLAN_DAYS}`);
-    if (perDay < 1 || perDay > MAX_PLAN_PER_DAY) return fail(`perDay must be between 1 and ${MAX_PLAN_PER_DAY}`);
+    if (target < MIN_PLAN_TARGET || target > MAX_PLAN_TARGET) {
+      return fail(`target must be between ${MIN_PLAN_TARGET} and ${MAX_PLAN_TARGET}`);
+    }
 
     await startPlan({
       number: body.number,
-      days,
-      perDay,
+      target,
       note: typeof body.note === 'string' ? body.note : null,
     });
 

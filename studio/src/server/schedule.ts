@@ -1,26 +1,26 @@
 import type { ReviewGrade, ReviewKind } from '@/lib/types';
 
 /**
- * When a solved problem should come back, and what a review earned. Pure on
- * purpose: no clock, no files, so it can be tested directly.
+ * When a solved problem should come back. Pure on purpose: no clock, no files,
+ * so it can be tested directly.
+ *
+ * Everything runs on one ladder of intervals rather than an ease factor. A
+ * ladder is explainable - every number on it is a real number of days the
+ * learner can reason about - and it cannot drift into the odd corners an ease
+ * multiplier reaches after a few bad gradings.
  */
 
-export const SEED_EASE = 2.3;
-export const MIN_EASE = 1.3;
-export const MAX_EASE = 2.8;
-export const MAX_INTERVAL = 180;
+/** Days between reviews, each step roughly twice the last. */
+export const LADDER = [1, 3, 7, 16, 35, 90] as const;
 
-/**
- * A drill answers "which pattern, and why" in under a minute. That is worth
- * spacing, but not as much as writing the solution again, so it grows the
- * interval at a lower rate and cannot push a problem past this. Past the
- * ceiling only a full re-solve moves the schedule.
- */
-export const DRILL_CEILING = 30;
+/** Enough consecutive failures to say the problem needs re-learning, not review. */
 export const LEECH_LAPSES = 3;
 
-/** Ease is stepped by hundredths, so it is kept at that precision rather than drifting. */
-const round2 = (value: number) => Math.round(value * 100) / 100;
+/**
+ * A drill answers "which pattern, and why" in under a minute. Worth something,
+ * but not as much as writing the solution again, so it cannot climb past here.
+ */
+export const DRILL_CEILING_STEP = 2;
 
 export interface Review {
   kind: ReviewKind;
@@ -28,30 +28,39 @@ export interface Review {
 }
 
 export interface Schedule {
+  /** Where on the ladder this problem sits. */
+  step: number;
+  /** Days until it comes back, read off the ladder. */
   interval: number;
-  ease: number;
   lapses: number;
+  /** Consecutive failures, for spotting a problem that is not being learned. */
   streak: number;
 }
 
+export const intervalAt = (step: number) => LADDER[Math.min(Math.max(step, 0), LADDER.length - 1)];
+
 /**
- * Where the schedule starts. The first solve is a real signal: one that needed
- * six attempts and two hints has not been learned yet and should come back in
- * days, not weeks.
+ * Where a problem joins the ladder, from how its first solve went. The worst
+ * case is tomorrow and the best is a week - never three weeks, which is far too
+ * long to wait before finding out whether a new pattern stuck.
  */
-export function seedInterval(runsToFirstPass: number | null, hintLevel: number): number {
-  if (hintLevel >= 2 || (runsToFirstPass ?? 99) > 5) return 3;
-  if (hintLevel === 1 || (runsToFirstPass ?? 99) > 2) return 7;
-  return 21;
+export function seedStep(runsToFirstPass: number | null, hintLevel: number): number {
+  if (hintLevel >= 2 || (runsToFirstPass ?? 99) > 5) return 0;
+  if (hintLevel === 1 || (runsToFirstPass ?? 99) > 2) return 1;
+  return 2;
 }
 
 /**
  * Replayed from the review log rather than stored, so the schedule can never
  * drift away from the history it claims to summarise.
+ *
+ * A clean pass climbs a step, a slow or hinted pass holds the same interval,
+ * and a failure drops back to the bottom. Holding rather than shrinking on a
+ * middling pass matters: it keeps a problem you half-know from sliding all the
+ * way back and crowding out the ones you do not know at all.
  */
 export function replay(seed: number, reviews: Review[]): Schedule {
-  let interval = seed;
-  let ease = SEED_EASE;
+  let step = seed;
   let lapses = 0;
   let streak = 0;
 
@@ -59,26 +68,18 @@ export function replay(seed: number, reviews: Review[]): Schedule {
     if (review.grade === 0) {
       lapses += 1;
       streak += 1;
-      ease = round2(Math.max(MIN_EASE, ease - 0.2));
-      interval = 1;
+      step = 0;
       continue;
     }
 
     streak = 0;
-    ease = round2(
-      review.grade === 1 ? Math.max(MIN_EASE, ease - 0.05) : Math.min(MAX_EASE, ease + 0.05),
-    );
+    if (review.grade === 2) step += 1;
 
-    const growth = review.grade === 1 ? 1.2 : ease;
-    const grown = Math.max(1, Math.round(interval * growth));
-
-    interval =
-      review.kind === 'drill'
-        ? Math.max(interval, Math.min(DRILL_CEILING, grown))
-        : Math.min(MAX_INTERVAL, grown);
+    if (review.kind === 'drill') step = Math.min(step, DRILL_CEILING_STEP);
+    step = Math.min(step, LADDER.length - 1);
   }
 
-  return { interval, ease, lapses, streak };
+  return { step, interval: intervalAt(step), lapses, streak };
 }
 
 /**
@@ -108,64 +109,75 @@ export function gradeReview({
 }
 
 /**
- * A plan the learner asked for by hand: "this one was hard, put it in front of
- * me N times a day for D days". It is deliberately not SM-2. Spacing earned by
- * measured recall is the right default, but it cannot help with a problem you
- * already know you have not learned, because it only reacts after the fact.
+ * A plan the learner asked for by hand: "I know I have not learned this one,
+ * hold it at the bottom of the ladder until I can prove it."
  *
- * Repetitions are spaced from the last one completed rather than from clock
- * slots, so a day that starts late does not dump every repetition at once.
+ * It counts clean passes, not exposures. Repeating the same problem three times
+ * in one afternoon mostly measures short-term memory - the answer is still in
+ * mind from the last attempt - so a plan never schedules two repetitions on the
+ * same day. What makes a hard problem stick is coming back tomorrow, and then
+ * in three days, having had to reconstruct it each time.
  */
 export interface RepeatPlan {
-  /** When the plan was asked for. */
   createdAt: string;
-  /** How many days the plan should run. */
-  days: number;
-  /** How many repetitions a day. */
-  perDay: number;
+  /** How many clean passes before it graduates back to the normal ladder. */
+  target: number;
   /** Completed repetitions, newest last. */
   done: string[];
+  /** When the first repetition is due; set when the plan is made, to pace the queue. */
+  startAt: string;
   /** Why it was hard, in the learner's own words. */
   note: string | null;
 }
 
 export interface PlanState {
-  /** Repetitions asked for in total. */
-  total: number;
-  /** Repetitions completed. */
+  target: number;
   done: number;
   /** When the next repetition is due, or null once the plan is finished. */
   nextAt: string | null;
-  /** True once every repetition is done or the window has closed. */
   finished: boolean;
 }
 
-export const MAX_PLAN_DAYS = 30;
-export const MAX_PLAN_PER_DAY = 12;
-
-/** Milliseconds between repetitions, spread across a 16-hour waking day. */
-const spacing = (perDay: number) => Math.round((16 * 3_600_000) / Math.max(1, perDay));
+export const MIN_PLAN_TARGET = 2;
+export const MAX_PLAN_TARGET = 6;
 
 /**
- * Where a plan stands right now. `now` is passed in so this stays pure and can
- * be tested at a fixed instant.
+ * Where a plan stands. `now` is passed in so this stays pure and can be tested
+ * at a fixed instant.
  */
 export function planState(plan: RepeatPlan, now: number = Date.now()): PlanState {
-  const total = Math.max(1, plan.days) * Math.max(1, plan.perDay);
+  const target = Math.max(1, plan.target);
   const done = plan.done.length;
 
-  if (done >= total) return { total, done, nextAt: null, finished: true };
-
-  const window = Math.max(1, plan.days) * 86_400_000;
-  const expiry = new Date(plan.createdAt).getTime() + window;
-  if (now > expiry) return { total, done, nextAt: null, finished: true };
+  if (done >= target) return { target, done, nextAt: null, finished: true };
 
   /**
-   * The first repetition is due immediately - the learner asked for this one
-   * because it is unlearned now, not tomorrow.
+   * The first repetition sits where the plan was paced to start; every one
+   * after climbs the bottom of the ladder from the last pass, so a learner who
+   * keeps passing sees it less often rather than the same amount.
    */
   const last = plan.done[plan.done.length - 1];
-  const nextAt = last === undefined ? plan.createdAt : new Date(new Date(last).getTime() + spacing(plan.perDay)).toISOString();
+  const nextAt =
+    last === undefined
+      ? plan.startAt
+      : new Date(new Date(last).getTime() + intervalAt(done - 1) * 86_400_000).toISOString();
 
-  return { total, done, nextAt, finished: false };
+  return { target, done, nextAt, finished: false };
+}
+
+/**
+ * The first day at or after `from` that has room under the cap.
+ *
+ * Marking five problems as hard in one sitting used to make all five due at
+ * once, which turns a queue into a wall and stops it being followed at all.
+ * Spreading them is what keeps the promise the cap is making.
+ */
+export function firstDayWithRoom(load: Map<string, number>, cap: number, from: Date, dayOf: (date: Date) => string): Date {
+  /** A month out is well past the point where the queue is the problem. */
+  for (let ahead = 0; ahead <= 30; ahead += 1) {
+    const candidate = new Date(from.getTime() + ahead * 86_400_000);
+    if ((load.get(dayOf(candidate)) ?? 0) < cap) return candidate;
+  }
+
+  return from;
 }

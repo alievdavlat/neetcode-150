@@ -101,7 +101,7 @@ export function DueSoon({ problems, statuses, limit = 6 }: DueSoonProps) {
                     className="flex shrink-0 items-center gap-1 rounded-full border border-primary/25 bg-primary/10 px-1.5 py-0.5 text-[10px] text-primary"
                   >
                     <Repeat2 className="size-2.5" />
-                    {plan.done}/{plan.total}
+                    {plan.done}/{plan.target}
                   </span>
                 )}
 

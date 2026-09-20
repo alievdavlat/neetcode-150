@@ -262,19 +262,19 @@
   "repeat": {
     "open": "I will repeat this",
     "title": "Put this in front of me",
-    "body": "Spacing is worked out from how you solved. Use this when you already know it has not stuck.",
-    "days": "For how many days",
-    "perDay": "Times a day",
+    "body": "Spacing is worked out from how you solved. Use this when you already know it has not stuck. It never asks twice in one day.",
     "note": "What was hard",
     "notePlaceholder": "the part you could not see",
-    "summary_one": "{{count}} repetition, {{perDay}} a day for {{days}} days",
-    "summary_other": "{{count}} repetitions, {{perDay}} a day for {{days}} days",
+    "summary_one": "{{count}} clean pass, with gaps of",
+    "summary_other": "{{count}} clean passes, with gaps of",
     "confirm": "Add to the queue",
     "cancel": "Cancel",
-    "started_one": "Queued {{count}} repetition",
-    "started_other": "Queued {{count}} repetitions",
-    "progress": "Repeat {{done}} of {{total}}",
-    "stop": "Drop the plan"
+    "started_one": "Queued for {{count}} clean pass",
+    "started_other": "Queued for {{count}} clean passes",
+    "progress": "Passed {{done}} of {{total}}",
+    "stop": "Drop the plan",
+    "target": "Clean passes to prove it",
+    "summaryDays": "days between them."
   },
   "review": {
     "badge": "REVIEW",
@@ -283,7 +283,6 @@
     "dailyCap": "Problems per day",
     "dailyCapNote": "How many due problems the queue offers at once. The rest wait; a backlog you cannot see is a backlog you will not abandon.",
     "daysLate": "{{days}}d late",
-    "defer": "Defer",
     "drill": "Drill",
     "drillHint": "Sixty seconds: which pattern, and why",
     "dueNow": "due now",
@@ -311,10 +310,9 @@
     "runs_other": "{{count}} runs",
     "strict": "Strict mode",
     "strictNote": "While anything is due, nothing else opens. The home page, the collections and the other problems are all closed until the due problem passes its tests again. Reveal still works, but it does not open the gate — only a passing run does.",
-    "strictWarnLead": "This page stays reachable while the gate is up, so you can always turn it off. Each due problem also has a",
-    "strictWarnTail": "that pushes it to tomorrow and counts as a lapse — the way out is deliberate, not free.",
     "stuck": "stuck",
-    "stuckNote": "Out of the daily queue until the note is rewritten. Repeating a problem that is not landing costs the rest of the queue."
+    "stuckNote": "Out of the daily queue until the note is rewritten. Repeating a problem that is not landing costs the rest of the queue.",
+    "strictWarn": "While the gate is up there is no way to push a problem to tomorrow: solving it is the only way through. This page stays reachable, so you can always turn the mode off."
   },
   "settings": {
     "title": "Settings",
@@ -417,15 +415,12 @@
       "late_many": "{{count}} days late",
       "late_other": "{{count}} days late",
       "writeAgain": "Write it again",
-      "deferring": "Deferring…",
-      "deferConfirm": "Yes, defer and take the lapse",
-      "defer": "Defer to tomorrow",
-      "deferNote": "Deferring counts as a failed review: the interval drops to a day and the ease goes down, so it comes back tomorrow and sooner after that.",
       "moreAfter_one": "{{count}} more after this one.",
       "moreAfter_few": "{{count}} more after this one.",
       "moreAfter_many": "{{count}} more after this one.",
       "moreAfter_other": "{{count}} more after this one.",
-      "turnOff": "Strict mode is on — turn it off in settings"
+      "turnOff": "Strict mode is on — turn it off in settings",
+      "noDefer": "There is no deferring while strict mode is on. Solve it, or turn the mode off below."
     },
     "activity": {
       "title": "Activity",

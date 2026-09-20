@@ -95,10 +95,7 @@ export function SettingsForm({ settings, due }: SettingsFormProps) {
       {draft.strictMode && draft.reviewEnabled && (
         <p className="flex items-start gap-2 rounded-xl border border-medium/30 bg-medium/[0.06] p-3 text-xs leading-relaxed text-medium">
           <AlertTriangle className="mt-0.5 size-4 shrink-0" />
-          <span>
-            {t('review.strictWarnLead')} <strong>{t('review.defer')}</strong>{' '}
-            {t('review.strictWarnTail')}
-          </span>
+          <span>{t('review.strictWarn')}</span>
         </p>
       )}
 

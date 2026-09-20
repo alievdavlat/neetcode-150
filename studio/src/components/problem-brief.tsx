@@ -38,7 +38,7 @@ interface ProblemBriefProps {
   onNoteSave: (note: string) => void;
   /** A repeat plan the learner asks for by hand, outside the measured schedule. */
   planSaving: boolean;
-  onPlanStart: (days: number, perDay: number, note: string) => void;
+  onPlanStart: (target: number, note: string) => void;
   onPlanStop: () => void;
 }
 
