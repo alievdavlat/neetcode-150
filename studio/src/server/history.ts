@@ -239,6 +239,20 @@ export async function recordReview({ number, ...rest }: RecordReviewInput): Prom
   const reviews = history.reviews[number] ?? [];
 
   history.reviews[number] = [...reviews, { at: new Date().toISOString(), ...rest }].slice(-KEEP_REVIEWS);
+
+  /**
+   * A repetition the learner asked for is spent by doing it, whatever it
+   * earned: the plan counts exposures, not successes, and a bad one is already
+   * punished by the measured schedule. Advancing here rather than at the call
+   * site means no route can record a review and forget the plan.
+   */
+  const plan = history.plans[number];
+  if (plan) {
+    plan.done = [...plan.done, new Date().toISOString()].slice(-(planState(plan).total + 4));
+    if (planState(plan).finished) delete history.plans[number];
+    else history.plans[number] = plan;
+  }
+
   await write(history);
 }
 
@@ -330,22 +344,6 @@ export async function startPlan({
     done: [],
     note: note?.trim() ? note.trim() : null,
   };
-
-  await write(history);
-}
-
-/** One repetition done. The next is spaced from this moment, not from a slot. */
-export async function tickPlan(number: string): Promise<void> {
-  const history = await read();
-  const plan = history.plans[number];
-  if (!plan) return;
-
-  const state = planState(plan);
-  plan.done = [...plan.done, new Date().toISOString()].slice(-(state.total + 4));
-
-  /** A finished plan is cleared rather than kept, so the schedule takes over again. */
-  if (planState(plan).finished) delete history.plans[number];
-  else history.plans[number] = plan;
 
   await write(history);
 }

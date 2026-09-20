@@ -130,3 +130,16 @@ test('a one-a-day plan spaces repetitions sixteen hours apart, not twenty-four',
 
   assert.equal(state.nextAt, new Date(Date.parse(done[0]) + 16 * HOUR).toISOString());
 });
+
+test('a repetition already done is spent, so the same one does not come back', () => {
+  const at = '2026-01-01T08:00:00.000Z';
+  const before = planState(plan(), Date.parse(at));
+  assert.equal(before.nextAt, at, 'due the moment it is asked for');
+
+  /** What recordReview does: append the moment it was done. */
+  const after = planState(plan({ done: [at] }), Date.parse(at) + 60_000);
+
+  assert.equal(after.done, 1);
+  assert.notEqual(after.nextAt, at, 'the next one must not be the one just finished');
+  assert.ok(Date.parse(after.nextAt) > Date.parse(at) + 60_000, 'and it must be in the future');
+});

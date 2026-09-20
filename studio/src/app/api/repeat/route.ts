@@ -1,5 +1,5 @@
 import { fail, ok } from '@/server/http';
-import { startPlan, stopPlan, tickPlan } from '@/server/history';
+import { startPlan, stopPlan } from '@/server/history';
 import { getStatus } from '@/server/problems';
 import { MAX_PLAN_DAYS, MAX_PLAN_PER_DAY } from '@/server/schedule';
 
@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 
 interface RepeatBody {
   number?: string;
-  action?: 'start' | 'tick' | 'stop';
+  action?: 'start' | 'stop';
   days?: number;
   perDay?: number;
   note?: string | null;
@@ -27,12 +27,7 @@ export async function POST(request: Request) {
       return ok({ status: await getStatus(body.number) });
     }
 
-    if (body.action === 'tick') {
-      await tickPlan(body.number);
-      return ok({ status: await getStatus(body.number) });
-    }
-
-    if (body.action !== 'start') return fail('action must be start, tick or stop');
+    if (body.action !== 'start') return fail('action must be start or stop');
 
     const days = whole(body.days, 3);
     const perDay = whole(body.perDay, 2);
