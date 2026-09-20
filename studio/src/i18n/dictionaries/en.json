@@ -137,7 +137,15 @@
     "save": "Save",
     "runLabel": "Run tests for this problem",
     "running": "Running",
-    "run": "Run"
+    "run": "Run",
+    "code": "Code",
+    "format": "Format",
+    "formatHint": "Lay the file out again, without changing what it does",
+    "reset": "Reset the solution",
+    "resetHint": "Back to the stub, keeping the header and the signature",
+    "resetTitle": "Clear what you wrote?",
+    "resetBody": "The function stays, its body goes back to the stub. Nothing is saved until you save, so this is undoable.",
+    "resetConfirm": "Clear it"
   },
   "home": {
     "allCollections": "all collections",
@@ -162,7 +170,10 @@
     "subtitle_few": "{{count}} problems in this workspace",
     "subtitle_many": "{{count}} problems in this workspace",
     "subtitle_other": "{{count}} problems in this workspace",
-    "tagSource": "tag source"
+    "tagSource": "tag source",
+    "comingUp": "Coming up",
+    "readyNow_one": "{{count}} ready",
+    "readyNow_other": "{{count}} ready"
   },
   "meta": {
     "easy": "Easy",
@@ -179,7 +190,12 @@
     "daysAgo": "{{count}}d ago",
     "minutesShort": "{{minutes}}m",
     "hoursShort": "{{hours}}h {{minutes}}m",
-    "staleNote": "code changed since the last run"
+    "staleNote": "code changed since the last run",
+    "notScheduled": "not scheduled",
+    "dueNow": "now",
+    "inMinutes": "in {{count}}m",
+    "inHours": "in {{count}}h",
+    "inDays": "in {{count}}d"
   },
   "nav": {
     "sections": "Sections",
@@ -226,7 +242,9 @@
       "empty": "Nothing matches “{{query}}”.",
       "showFewer": "show fewer",
       "more": "+{{value}} more"
-    }
+    },
+    "comesBack": "When it comes back",
+    "planProgress": "Repeat {{done}} of {{total}}"
   },
   "recall": {
     "hadIt": "I had it",
@@ -240,6 +258,23 @@
     "showAnswer": "Show the answer",
     "youSaid": "you said",
     "itWas": "it was"
+  },
+  "repeat": {
+    "open": "I will repeat this",
+    "title": "Put this in front of me",
+    "body": "Spacing is worked out from how you solved. Use this when you already know it has not stuck.",
+    "days": "For how many days",
+    "perDay": "Times a day",
+    "note": "What was hard",
+    "notePlaceholder": "the part you could not see",
+    "summary_one": "{{count}} repetition, {{perDay}} a day for {{days}} days",
+    "summary_other": "{{count}} repetitions, {{perDay}} a day for {{days}} days",
+    "confirm": "Add to the queue",
+    "cancel": "Cancel",
+    "started_one": "Queued {{count}} repetition",
+    "started_other": "Queued {{count}} repetitions",
+    "progress": "Repeat {{done}} of {{total}}",
+    "stop": "Drop the plan"
   },
   "review": {
     "badge": "REVIEW",
@@ -403,7 +438,8 @@
       "streak_many": "{{count}} day streak",
       "streak_other": "{{count}} day streak",
       "day": "{{day}} · {{runs}} runs · {{reviews}} reviews"
-    }
+    },
+    "resetDone": "Back to the stub"
   },
   "trace": {
     "loopEnds": "loop ends",

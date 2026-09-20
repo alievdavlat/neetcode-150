@@ -1,7 +1,7 @@
 import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import type { ProblemHistory, ReviewGrade, ReviewKind, RunStatus, SourceMode } from '@/lib/types';
-import { LEECH_LAPSES, replay, seedInterval } from './schedule';
+import { LEECH_LAPSES, MAX_PLAN_DAYS, MAX_PLAN_PER_DAY, planState, replay, seedInterval, type RepeatPlan } from './schedule';
 import { STUDIO_ROOT } from './workspace';
 
 const HISTORY_FILE = path.join(STUDIO_ROOT, '.studio', 'history.json');
@@ -34,9 +34,11 @@ interface HistoryFile {
   hints: Record<string, number>;
   opens: Record<string, string[]>;
   reviews: Record<string, ReviewRecord[]>;
+  /** Repeat plans the learner asked for by hand, keyed by problem number. */
+  plans: Record<string, RepeatPlan>;
 }
 
-const EMPTY: HistoryFile = { runs: {}, hints: {}, opens: {}, reviews: {} };
+const EMPTY: HistoryFile = { runs: {}, hints: {}, opens: {}, reviews: {}, plans: {} };
 
 export const EMPTY_HISTORY: ProblemHistory = {
   runs: 0,
@@ -47,6 +49,7 @@ export const EMPTY_HISTORY: ProblemHistory = {
   solveMinutes: null,
   reviewDays: null,
   dueInDays: null,
+  dueAt: null,
   hintLevel: 0,
   due: false,
   reviews: 0,
@@ -55,6 +58,7 @@ export const EMPTY_HISTORY: ProblemHistory = {
   lastReviewAt: null,
   leech: false,
   reviewMinutes: [],
+  plan: null,
 };
 
 async function read(): Promise<HistoryFile> {
@@ -68,6 +72,7 @@ async function read(): Promise<HistoryFile> {
       hints: parsed.hints ?? {},
       opens: parsed.opens ?? {},
       reviews: parsed.reviews ?? {},
+      plans: parsed.plans ?? {},
     };
   } catch {
     return { ...EMPTY };
@@ -95,6 +100,7 @@ function summarize(
   hintLevel: number,
   opens: string[],
   reviews: ReviewRecord[],
+  plan: RepeatPlan | null,
 ): ProblemHistory {
   const attempts = records.filter((record) => record.kind === 'run');
   const passes = attempts.filter((record) => record.ok);
@@ -114,6 +120,18 @@ function summarize(
   const anchor = lastReview?.at ?? lastPass?.at ?? null;
   const elapsed = anchor === null ? null : daysSince(anchor);
 
+  /**
+   * The measured schedule and the hand-made plan are separate clocks. The plan
+   * wins while it is running, because the learner asked for it precisely
+   * because the measured one was not bringing the problem back soon enough.
+   */
+  const state = plan ? planState(plan) : null;
+  const planDue = state !== null && !state.finished && state.nextAt !== null && Date.parse(state.nextAt) <= Date.now();
+  const scheduleDue = schedule !== null && elapsed !== null && elapsed >= schedule.interval;
+
+  const scheduledAt =
+    schedule && anchor ? new Date(new Date(anchor).getTime() + schedule.interval * 86_400_000).toISOString() : null;
+
   return {
     runs: attempts.length,
     runsToFirstPass,
@@ -127,16 +145,21 @@ function summarize(
     reviewDays: schedule?.interval ?? null,
     dueInDays: schedule && elapsed !== null ? Math.ceil(schedule.interval - elapsed) : null,
     hintLevel,
-    due: schedule !== null && elapsed !== null && elapsed >= schedule.interval,
+    dueAt: state && !state.finished ? state.nextAt : scheduledAt,
+    due: planDue || scheduleDue,
     reviews: reviews.length,
     lapses: schedule?.lapses ?? 0,
     ease: schedule ? Math.round(schedule.ease * 100) / 100 : null,
     lastReviewAt: lastReview?.at ?? null,
-    leech: (schedule?.streak ?? 0) >= LEECH_LAPSES,
+    leech: (schedule?.streak ?? 0) >= LEECH_LAPSES && state === null,
     reviewMinutes: reviews
       .filter((review) => review.kind === 'solve' && !review.revealed && review.grade > 0)
       .flatMap((review) => (review.minutes === null ? [] : [review.minutes]))
       .slice(-12),
+    plan:
+      plan && state && !state.finished
+        ? { days: plan.days, perDay: plan.perDay, done: state.done, total: state.total, nextAt: state.nextAt, note: plan.note }
+        : null,
   };
 }
 
@@ -147,6 +170,7 @@ export async function getHistories(): Promise<Record<string, ProblemHistory>> {
     ...Object.keys(history.hints),
     ...Object.keys(history.opens),
     ...Object.keys(history.reviews),
+    ...Object.keys(history.plans),
   ]);
 
   return Object.fromEntries(
@@ -157,6 +181,7 @@ export async function getHistories(): Promise<Record<string, ProblemHistory>> {
         history.hints[number] ?? 0,
         history.opens[number] ?? [],
         history.reviews[number] ?? [],
+        history.plans[number] ?? null,
       ),
     ]),
   );
@@ -278,4 +303,57 @@ export async function getActivity(days = 119): Promise<{ days: ActivityDay[]; to
     total: out.reduce((sum, entry) => sum + entry.runs + entry.reviews, 0),
     streak,
   };
+}
+
+/**
+ * Put a problem in front of the learner on their own terms. Spaced repetition
+ * reacts to what it measured; this is the learner saying "I know I have not
+ * got this" before the measurement catches up.
+ */
+export async function startPlan({
+  number,
+  days,
+  perDay,
+  note,
+}: {
+  number: string;
+  days: number;
+  perDay: number;
+  note: string | null;
+}): Promise<void> {
+  const history = await read();
+
+  history.plans[number] = {
+    createdAt: new Date().toISOString(),
+    days: Math.min(MAX_PLAN_DAYS, Math.max(1, Math.round(days))),
+    perDay: Math.min(MAX_PLAN_PER_DAY, Math.max(1, Math.round(perDay))),
+    done: [],
+    note: note?.trim() ? note.trim() : null,
+  };
+
+  await write(history);
+}
+
+/** One repetition done. The next is spaced from this moment, not from a slot. */
+export async function tickPlan(number: string): Promise<void> {
+  const history = await read();
+  const plan = history.plans[number];
+  if (!plan) return;
+
+  const state = planState(plan);
+  plan.done = [...plan.done, new Date().toISOString()].slice(-(state.total + 4));
+
+  /** A finished plan is cleared rather than kept, so the schedule takes over again. */
+  if (planState(plan).finished) delete history.plans[number];
+  else history.plans[number] = plan;
+
+  await write(history);
+}
+
+export async function stopPlan(number: string): Promise<void> {
+  const history = await read();
+  if (!history.plans[number]) return;
+
+  delete history.plans[number];
+  await write(history);
 }

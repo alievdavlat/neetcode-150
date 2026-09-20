@@ -45,6 +45,7 @@ export const NO_HISTORY: ProblemHistory = {
   solveMinutes: null,
   reviewDays: null,
   dueInDays: null,
+  dueAt: null,
   hintLevel: 0,
   due: false,
   reviews: 0,
@@ -53,6 +54,7 @@ export const NO_HISTORY: ProblemHistory = {
   lastReviewAt: null,
   leech: false,
   reviewMinutes: [],
+  plan: null,
 };
 
 export const UNKNOWN_STATUS: ProblemStatus = {
@@ -206,3 +208,21 @@ export const SHORTCUTS: Shortcut[] = [
 export const SHORTCUT_KEY = Object.fromEntries(
   SHORTCUTS.map((shortcut) => [shortcut.id, shortcut.key]),
 ) as Record<string, string | null>;
+
+/**
+ * How long until something comes due, as a short countdown. Overdue reads as
+ * "now" rather than as a negative: the learner only needs to know it is their
+ * turn, not by how much they are late.
+ */
+export const untilTime = (t: Translate, iso: string | null) => {
+  if (!iso) return t('meta.notScheduled');
+
+  const minutes = Math.round((new Date(iso).getTime() - Date.now()) / 60000);
+  if (minutes <= 0) return t('meta.dueNow');
+  if (minutes < 60) return t('meta.inMinutes', { count: minutes });
+  if (minutes < 1440) return t('meta.inHours', { count: Math.round(minutes / 60) });
+  return t('meta.inDays', { count: Math.round(minutes / 1440) });
+};
+
+/** True once the moment has arrived, for deciding what to show rather than how. */
+export const isReady = (iso: string | null) => iso !== null && new Date(iso).getTime() <= Date.now();

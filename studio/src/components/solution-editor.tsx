@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Trans, useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
@@ -12,7 +12,9 @@ import {
   Loader2,
   MoreHorizontal,
   Play,
+  RotateCcw,
   Save,
+  WandSparkles,
 } from 'lucide-react';
 import {
   AlertDialog,
@@ -28,6 +30,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Skeleton } from '@/components/ui/skeleton';
+import type { EditorActions } from './monaco-surface';
 import type { SourceMode, TypeMarker } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
@@ -65,6 +68,7 @@ interface SolutionEditorProps {
   onSave: () => void;
   onRun: () => void;
   onPromote: () => void;
+  onReset: () => void;
 }
 
 /** Dictionary keys, looked up where they are drawn. */
@@ -95,9 +99,11 @@ export function SolutionEditor({
   onSave,
   onRun,
   onPromote,
+  onReset,
 }: SolutionEditorProps) {
   const { t } = useTranslation();
   const [modifier, setModifier] = useState('Ctrl');
+  const actions = useRef<EditorActions | null>(null);
 
   useEffect(() => {
     if (navigator.userAgent.includes('Mac')) setModifier('⌘');
@@ -186,9 +192,59 @@ export function SolutionEditor({
           {renderBigO()}
         </div>
 
+        <div className="space-y-1.5">
+          <p className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase">
+            {t('editor.code')}
+          </p>
+          {renderFormat()}
+          {renderReset()}
+        </div>
+
         {snapshots > 0 && !reviewing && renderCompare()}
       </PopoverContent>
     </Popover>
+  );
+
+  const renderFormat = () => (
+    <button
+      type="button"
+      onClick={() => actions.current?.format()}
+      title={t('editor.formatHint')}
+      className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-[11px] text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
+    >
+      <WandSparkles className="size-3" />
+      {t('editor.format')}
+    </button>
+  );
+
+  /**
+   * Reset keeps the header and the signature and clears the body, which is the
+   * only part worth writing twice. It is behind a confirmation because it
+   * throws away work that is not in git.
+   */
+  const renderReset = () => (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <button
+          type="button"
+          title={t('editor.resetHint')}
+          className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-[11px] text-muted-foreground transition-colors hover:bg-white/5 hover:text-fail"
+        >
+          <RotateCcw className="size-3" />
+          {t('editor.reset')}
+        </button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>{t('editor.resetTitle')}</AlertDialogTitle>
+          <AlertDialogDescription>{t('editor.resetBody')}</AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>{t('editor.cancel')}</AlertDialogCancel>
+          <AlertDialogAction onClick={onReset}>{t('editor.resetConfirm')}</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 
   const renderPromote = () => (
@@ -301,6 +357,7 @@ export function SolutionEditor({
             onChange={onChange}
             onSave={onSave}
             onRun={onRun}
+            actions={actions}
           />
         )}
       </div>

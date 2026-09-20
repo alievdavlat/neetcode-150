@@ -137,7 +137,15 @@
     "save": "Saqlash",
     "runLabel": "Bu masala testlarini ishga tushirish",
     "running": "Ishlayapti",
-    "run": "Ishga tushirish"
+    "run": "Ishga tushirish",
+    "code": "Kod",
+    "format": "Formatlash",
+    "formatHint": "Faylni qaytadan tekislash, ishlashini o‘zgartirmasdan",
+    "reset": "Yechimni tozalash",
+    "resetHint": "Qoliqqa qaytish, sarlavha va imzoni saqlab",
+    "resetTitle": "Yozganingiz o‘chirilsinmi?",
+    "resetBody": "Funksiya qoladi, ichidagisi qoliqqa qaytadi. Saqlamaguningizcha hech nima yozilmaydi, shuning uchun buni qaytarish mumkin.",
+    "resetConfirm": "O‘chirish"
   },
   "home": {
     "allCollections": "barcha to‘plamlar",
@@ -162,7 +170,10 @@
     "subtitle_few": "bu ish maydonida {{count}} ta masala",
     "subtitle_many": "bu ish maydonida {{count}} ta masala",
     "subtitle_other": "bu ish maydonida {{count}} ta masala",
-    "tagSource": "belgi manbasi"
+    "tagSource": "belgi manbasi",
+    "comingUp": "Yaqinlashayotganlari",
+    "readyNow_one": "{{count}} tayyor",
+    "readyNow_other": "{{count}} tayyor"
   },
   "meta": {
     "easy": "Oson",
@@ -179,7 +190,12 @@
     "daysAgo": "{{count}} kun oldin",
     "minutesShort": "{{minutes}} daq",
     "hoursShort": "{{hours}} soat {{minutes}} daq",
-    "staleNote": "oxirgi ishga tushirishdan keyin kod o‘zgargan"
+    "staleNote": "oxirgi ishga tushirishdan keyin kod o‘zgargan",
+    "notScheduled": "rejalashtirilmagan",
+    "dueNow": "hozir",
+    "inMinutes": "{{count}} daqiqadan keyin",
+    "inHours": "{{count}} soatdan keyin",
+    "inDays": "{{count}} kundan keyin"
   },
   "nav": {
     "sections": "Bo‘limlar",
@@ -226,7 +242,9 @@
       "empty": "“{{query}}” bo‘yicha hech narsa topilmadi.",
       "showFewer": "kamroq ko‘rsatish",
       "more": "+{{value}} yana"
-    }
+    },
+    "comesBack": "Qachon qaytadi",
+    "planProgress": "{{total}} dan {{done}}-takror"
   },
   "recall": {
     "hadIt": "Esladim",
@@ -240,6 +258,23 @@
     "showAnswer": "Javobni ko‘rsatish",
     "youSaid": "siz aytdingiz",
     "itWas": "haqiqatda"
+  },
+  "repeat": {
+    "open": "Buni takrorlayman",
+    "title": "Ro‘paramga qo‘yish",
+    "body": "Oraliqlar qanday yechganingizdan chiqariladi. Bu esa o‘rnashmaganini o‘zingiz bilgan holat uchun.",
+    "days": "Necha kun davomida",
+    "perDay": "Kuniga necha marta",
+    "note": "Nimasi qiyin bo‘ldi",
+    "notePlaceholder": "ko‘ra olmagan joyingiz",
+    "summary_one": "{{count}} takror, {{days}} kun davomida kuniga {{perDay}} marta",
+    "summary_other": "{{count}} takror, {{days}} kun davomida kuniga {{perDay}} marta",
+    "confirm": "Navbatga qo‘shish",
+    "cancel": "Bekor qilish",
+    "started_one": "Navbatga {{count}} takror qo‘shildi",
+    "started_other": "Navbatga {{count}} takror qo‘shildi",
+    "progress": "{{total}} dan {{done}}-takror",
+    "stop": "Rejani olib tashlash"
   },
   "review": {
     "badge": "TAKRORLASH",
@@ -403,7 +438,8 @@
       "streak_many": "{{count}} kun ketma-ket",
       "streak_other": "{{count}} kun ketma-ket",
       "day": "{{day}} · ishga tushirish: {{runs}} · takrorlash: {{reviews}}"
-    }
+    },
+    "resetDone": "Qoliqqa qaytarildi"
   },
   "trace": {
     "loopEnds": "sikl tugaydi",

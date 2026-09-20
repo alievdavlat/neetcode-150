@@ -11,6 +11,7 @@ import { BoardCard } from './board-card';
 import { ActivityGrid } from './activity-grid';
 import { CommandPalette } from './command-palette';
 import { ContinueCard } from './continue-card';
+import { DueSoon } from './due-soon';
 import { ReviewQueue } from './review-queue';
 import { TagStrip, type Tag } from './tag-strip';
 import { accentFor, ALL_BOARD, DIFFICULTY_META, STATE_META, tagsOf } from '@/lib/meta';
@@ -252,6 +253,8 @@ export function Home({ problems, statuses, boards, companies, courses, activity,
       <ContinueCard problems={problems} courses={courses} />
 
       <ActivityGrid days={activity.days} total={activity.total} streak={activity.streak} />
+
+      {settings.reviewEnabled && <DueSoon problems={problems} statuses={statuses} />}
 
       {settings.reviewEnabled && (
         <ReviewQueue

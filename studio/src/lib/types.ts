@@ -54,6 +54,8 @@ export interface ProblemHistory {
   solveMinutes: number | null;
   reviewDays: number | null;
   dueInDays: number | null;
+  /** Exactly when it comes back, so the UI can count down rather than round to days. */
+  dueAt: string | null;
   hintLevel: number;
   due: boolean;
   reviews: number;
@@ -62,6 +64,18 @@ export interface ProblemHistory {
   lastReviewAt: string | null;
   leech: boolean;
   reviewMinutes: number[];
+  /** A repeat plan the learner asked for by hand, while it is still running. */
+  plan: RepeatPlanState | null;
+}
+
+/** What the learner asked for, and how far through it they are. */
+export interface RepeatPlanState {
+  days: number;
+  perDay: number;
+  done: number;
+  total: number;
+  nextAt: string | null;
+  note: string | null;
 }
 
 export interface Collection {

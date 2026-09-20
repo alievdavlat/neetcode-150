@@ -138,6 +138,7 @@ export function Studio({
   const [saving, setSaving] = useState(false);
   const [running, setRunning] = useState(false);
   const [promoting, setPromoting] = useState(false);
+  const [planSaving, setPlanSaving] = useState(false);
   const [syncing, setSyncing] = useState(false);
   const [bigO, setBigO] = useState(true);
   const [focus, setFocus] = useState(false);
@@ -689,6 +690,52 @@ ${line}
       .finally(() => setRunningCategory(null));
   };
 
+  /**
+   * Back to the stub, keeping the header and the signature. Nothing is written:
+   * the editor goes dirty like any other edit, so this is undoable and costs
+   * nothing until it is saved.
+   */
+  const handleReset = () => {
+    if (!active) return;
+
+    /** The live buffer, not the loaded copy: the header may have been edited too. */
+    const headerEnd = draft.current.indexOf('*/');
+    const header = headerEnd === -1 ? '' : `${draft.current.slice(0, headerEnd + 2)}
+
+`;
+    const next = `${header}${active.stub}
+`;
+
+    draft.current = next;
+    setSource(next);
+    setDirty(next !== baseline.current);
+    toast.success(t('studio.resetDone'));
+  };
+
+  /**
+   * A hand-made repeat plan. It is kept apart from the measured schedule on
+   * purpose: the learner is telling the app something it could not measure yet.
+   */
+  const callRepeat = (body: Record<string, unknown>) => {
+    if (!active) return;
+
+    setPlanSaving(true);
+    request<{ status: ProblemStatus }>('/api/repeat', {
+      method: 'POST',
+      body: JSON.stringify({ number: active.number, ...body }),
+    })
+      .then((payload) => setStatuses((current) => ({ ...current, [payload.status.number]: payload.status })))
+      .catch((error: unknown) => toast.error(messageOf(error)))
+      .finally(() => setPlanSaving(false));
+  };
+
+  const handlePlanStart = (days: number, perDay: number, note: string) => {
+    callRepeat({ action: 'start', days, perDay, note });
+    toast.success(t('repeat.started', { count: days * perDay }));
+  };
+
+  const handlePlanStop = () => callRepeat({ action: 'stop' });
+
   const handlePromote = () => {
     if (!active || busy.current) return;
 
@@ -972,6 +1019,9 @@ ${line}
             onStartReview={() => startReview(active.number)}
             onHint={handleHint}
             onNoteSave={handleNoteSave}
+            planSaving={planSaving}
+            onPlanStart={handlePlanStart}
+            onPlanStop={handlePlanStop}
           />
         </ResizablePanel>
         )}
@@ -1017,6 +1067,7 @@ ${line}
                 onSave={handleSave}
                 onRun={handleRun}
                 onPromote={handlePromote}
+                onReset={handleReset}
               />
             </ResizablePanel>
 

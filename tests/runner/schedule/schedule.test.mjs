@@ -5,6 +5,7 @@ import {
   MAX_INTERVAL,
   MIN_EASE,
   gradeReview,
+  planState,
   replay,
   seedInterval,
 } from '../../../studio/src/server/schedule.ts';
@@ -83,4 +84,49 @@ test('the grade comes from what was measured', () => {
   assert.equal(gradeReview({ ...base, hints: 1 }), 1);
   assert.equal(gradeReview({ ...base, minutes: 30 }), 1, 'slower than the first solve is not clean');
   assert.equal(gradeReview({ ...base, minutes: 30, baseline: null }), 2, 'no baseline, no penalty');
+});
+
+const HOUR = 3_600_000;
+const DAY = 86_400_000;
+const plan = (over) => ({ createdAt: '2026-01-01T08:00:00.000Z', days: 3, perDay: 2, done: [], note: null, ...over });
+
+test('a hand-made repeat plan is due the moment it is asked for', () => {
+  const state = planState(plan(), Date.parse('2026-01-01T08:00:00.000Z'));
+
+  assert.equal(state.total, 6);
+  assert.equal(state.done, 0);
+  assert.equal(state.finished, false);
+  assert.equal(state.nextAt, '2026-01-01T08:00:00.000Z');
+});
+
+test('repetitions space out across a waking day, counted from the last one done', () => {
+  const done = ['2026-01-01T09:00:00.000Z'];
+  const state = planState(plan({ done }), Date.parse('2026-01-01T10:00:00.000Z'));
+
+  /** Two a day over sixteen waking hours is one every eight. */
+  assert.equal(state.nextAt, new Date(Date.parse(done[0]) + 8 * HOUR).toISOString());
+  assert.equal(state.done, 1);
+});
+
+test('a plan finishes once every repetition is done', () => {
+  const done = Array.from({ length: 6 }, (_, index) => new Date(Date.parse('2026-01-01T08:00:00.000Z') + index * HOUR).toISOString());
+  const state = planState(plan({ done }), Date.parse('2026-01-02T08:00:00.000Z'));
+
+  assert.equal(state.finished, true);
+  assert.equal(state.nextAt, null);
+});
+
+test('a plan expires when its window closes, even half-finished', () => {
+  const state = planState(plan({ done: ['2026-01-01T09:00:00.000Z'] }), Date.parse('2026-01-01T08:00:00.000Z') + 3 * DAY + HOUR);
+
+  assert.equal(state.finished, true);
+  assert.equal(state.nextAt, null);
+  assert.equal(state.done, 1, 'the work that was done is still reported');
+});
+
+test('a one-a-day plan spaces repetitions sixteen hours apart, not twenty-four', () => {
+  const done = ['2026-01-01T08:00:00.000Z'];
+  const state = planState(plan({ perDay: 1, done }), Date.parse('2026-01-01T09:00:00.000Z'));
+
+  assert.equal(state.nextAt, new Date(Date.parse(done[0]) + 16 * HOUR).toISOString());
 });

@@ -1,12 +1,17 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type RefObject } from 'react';
 import { useTranslation } from 'react-i18next';
 import Editor, { loader, type BeforeMount, type Monaco, type OnMount } from '@monaco-editor/react';
 import type { editor } from 'monaco-editor';
 import type { TypeMarker } from '@/lib/types';
 
 loader.config({ paths: { vs: '/monaco/vs' } });
+
+/** What the toolbar can ask the editor to do, once it has mounted. */
+export interface EditorActions {
+  format: () => void;
+}
 
 interface MonacoSurfaceProps {
   path: string;
@@ -17,6 +22,8 @@ interface MonacoSurfaceProps {
   onChange: (value: string) => void;
   onSave: () => void;
   onRun: () => void;
+  /** Filled in on mount, so the toolbar outside can drive the editor. */
+  actions?: RefObject<EditorActions | null>;
 }
 
 export function MonacoSurface({
@@ -28,6 +35,7 @@ export function MonacoSurface({
   onChange,
   onSave,
   onRun,
+  actions,
 }: MonacoSurfaceProps) {
   const { t } = useTranslation();
   const save = useRef(onSave);
@@ -119,6 +127,18 @@ export function MonacoSurface({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [path]);
 
+  /**
+   * Monaco's own TypeScript worker does the formatting. Semantic checking is
+   * off because the browser cannot resolve `../shared/types.ts`, but that does
+   * not stop the worker from laying out code it can already parse.
+   */
+  const format = () => {
+    const instance = editorRef.current;
+    if (!instance) return;
+
+    instance.getAction('editor.action.formatDocument')?.run();
+  };
+
   const handleMount: OnMount = (instance, monaco) => {
     monacoRef.current = monaco;
     editorRef.current = instance;
@@ -126,6 +146,8 @@ export function MonacoSurface({
     foldHeader(instance);
     instance.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => save.current());
     instance.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => run.current());
+    /** Shift+Alt+F is Monaco's own binding for this; only the button needs wiring. */
+    if (actions) actions.current = { format };
 
     /** Clicking the gutter jumps the replay to the next time that line runs. */
     const gutter = new Set([

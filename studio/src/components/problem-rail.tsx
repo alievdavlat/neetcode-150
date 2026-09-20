@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { StatusDot } from './status-dot';
-import { DIFFICULTIES, DIFFICULTY_META, STATES, STATE_META, tagsOf, UNKNOWN_STATUS } from '@/lib/meta';
+import { DIFFICULTIES, DIFFICULTY_META, STATES, STATE_META, tagsOf, UNKNOWN_STATUS, untilTime } from '@/lib/meta';
 import type { Difficulty, Problem, ProblemState, ProblemStatus } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
@@ -266,8 +266,25 @@ export function ProblemRail({
         <StatusDot state={status.state} stale={status.stale} className="relative shrink-0" />
         <span className="relative font-mono text-[11px] tabular-nums opacity-50">{problem.number}</span>
         <span className="relative flex-1 truncate text-[13px]">{problem.title}</span>
-        {status.history.due && (
+        {status.history.plan && (
+          <span
+            title={t('rail.planProgress', { done: status.history.plan.done, total: status.history.plan.total })}
+            className="relative shrink-0 rounded-full border border-primary/30 bg-primary/10 px-1 font-mono text-[9px] text-primary"
+          >
+            {status.history.plan.done}/{status.history.plan.total}
+          </span>
+        )}
+        {status.history.due ? (
           <RotateCcw className="relative size-3 shrink-0 text-medium" aria-label={t('rail.dueForReview')} />
+        ) : (
+          status.history.dueAt !== null && (
+            <span
+              title={t('rail.comesBack')}
+              className="relative shrink-0 font-mono text-[9px] text-muted-foreground/60 tabular-nums"
+            >
+              {untilTime(t, status.history.dueAt)}
+            </span>
+          )
         )}
         <span
           className={cn('relative size-1.5 shrink-0 rounded-full', DIFFICULTY_META[problem.difficulty].dot)}

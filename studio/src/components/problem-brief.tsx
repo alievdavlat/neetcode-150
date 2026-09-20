@@ -19,6 +19,7 @@ import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Textarea } from '@/components/ui/textarea';
 import { DIFFICULTY_META, relativeTime, STATE_META } from '@/lib/meta';
+import { RepeatDialog } from './repeat-dialog';
 import type { Problem, ProblemStatus } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
@@ -35,6 +36,10 @@ interface ProblemBriefProps {
   onStartReview: () => void;
   onHint: (level: number) => void;
   onNoteSave: (note: string) => void;
+  /** A repeat plan the learner asks for by hand, outside the measured schedule. */
+  planSaving: boolean;
+  onPlanStart: (days: number, perDay: number, note: string) => void;
+  onPlanStop: () => void;
 }
 
 const SECTION = {
@@ -68,6 +73,9 @@ export function ProblemBrief({
   reviewing,
   repeating,
   onStartReview,
+  planSaving,
+  onPlanStart,
+  onPlanStop,
   onHint,
   onNoteSave,
 }: ProblemBriefProps) {
@@ -297,6 +305,10 @@ export function ProblemBrief({
               </Button>
             )}
           </div>
+
+          {history.firstPassAt !== null && repeating && !reviewing && (
+            <RepeatDialog plan={history.plan} saving={planSaving} onStart={onPlanStart} onStop={onPlanStop} />
+          )}
           <h1 className="text-balance font-heading text-[26px] leading-tight font-semibold tracking-tight">
             {problem.title}
           </h1>
