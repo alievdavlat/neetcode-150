@@ -1,0 +1,1422 @@
+{
+  "4001": {
+    "title": "Kamaymaydigan ballar",
+    "pattern": "Sikl va yig‘ish, kutubxona qisqa yo‘llarisiz",
+    "statement": "Uzunligi 2 yoki undan katta scores massivi berilgan. Qiymatlar hech qayerda kamaymasa, ya’ni har bir element o‘zidan oldingisidan kichik bo‘lmasa, true qaytaring."
+  },
+  "4002": {
+    "title": "Yonma-yon ikkita 100",
+    "pattern": "Sikl va yig‘ish, kutubxona qisqa yo‘llarisiz",
+    "statement": "Uzunligi 2 yoki undan katta scores massivi berilgan. Yonma-yon turgan ikki o‘rinda 100 qiymati turgan bo‘lsa, true qaytaring."
+  },
+  "4003": {
+    "title": "Uchta yaqin ball",
+    "pattern": "Sikl va yig‘ish, kutubxona qisqa yo‘llarisiz",
+    "statement": "scores massivi kamaymaydigan tartibda keladi. Ketma-ket turgan qandaydir uchta element 2 oralig‘iga sig‘sa, ya’ni uchtasining eng kattasi eng kichigidan ko‘pi bilan 2 ga ortiq bo‘lsa, true qaytaring."
+  },
+  "4004": {
+    "title": "Ikki o‘rtachadan kattasi",
+    "pattern": "Sikl va yig‘ish, kutubxona qisqa yo‘llarisiz",
+    "statement": "scores ni Math.floor(scores.length / 2) indeksidan oldingi qismga va shu indeksdan oxirigacha bo‘lgan qismga ajrating. Har bir qismning o‘rtachasini kasr qismini tashlab hisoblang va ikki o‘rtachadan kattasini qaytaring."
+  },
+  "4005": {
+    "title": "Kerakli uzunlikdagi so‘zlarni sanash",
+    "pattern": "Sikl va yig‘ish, kutubxona qisqa yo‘llarisiz",
+    "statement": "words ichida uzunligi aniq len belgi bo‘lgan satrlar sonini qaytaring."
+  },
+  "4006": {
+    "title": "Birinchi n so‘z",
+    "pattern": "Sikl va yig‘ish, kutubxona qisqa yo‘llarisiz",
+    "statement": "words ning birinchi n satridan tuzilgan yangi massiv qaytaring; n 1 dan words uzunligigacha bo‘ladi."
+  },
+  "4007": {
+    "title": "Boshqa uzunlikdagi so‘zlar",
+    "pattern": "Sikl va yig‘ish, kutubxona qisqa yo‘llarisiz",
+    "statement": "words ichidagi uzunligi len ga teng bo‘lmagan barcha satrlardan tuzilgan yangi massiv qaytaring, kelgan tartibini saqlab."
+  },
+  "4008": {
+    "title": "1 raqami bormi",
+    "pattern": "Sikl va yig‘ish, kutubxona qisqa yo‘llarisiz",
+    "statement": "Musbat butun son n berilgan. Uning o‘nlik raqamlaridan kamida bittasi 1 bo‘lsa, true qaytaring."
+  },
+  "4009": {
+    "title": "O‘z raqamlariga bo‘linadi",
+    "pattern": "Sikl va yig‘ish, kutubxona qisqa yo‘llarisiz",
+    "statement": "Musbat butun son n berilgan. n o‘zining har bir o‘nlik raqamiga qoldiqsiz bo‘linsa, true qaytaring. 0 raqamiga bo‘linish mumkin emas, shuning uchun raqamlari orasida 0 bo‘lgan har qanday n false beradi."
+  },
+  "4010": {
+    "title": "Birinchi juftlarning nusxasi",
+    "pattern": "Sikl va yig‘ish, kutubxona qisqa yo‘llarisiz",
+    "statement": "nums ning juft qiymatlarini uchrash tartibida oling va ulardan birinchi count tasini shu uzunlikdagi yangi massiv qilib qaytaring. Juft qiymatlar har doim kamida count ta bo‘ladi."
+  },
+  "4011": {
+    "title": "Chekka qiymatlarning nusxasi",
+    "pattern": "Sikl va yig‘ish, kutubxona qisqa yo‘llarisiz",
+    "statement": "Qiymat 0 dan 10 gacha shu sonlar bilan yoki 90 dan 100 gacha shu sonlar bilan oraliqda yotsa mos keladi. nums ning mos keladigan qiymatlarini uchrash tartibida oling va ulardan birinchi count tasini shu uzunlikdagi yangi massiv qilib qaytaring."
+  },
+  "4012": {
+    "title": "Birinchi belgilarning mos kelishi",
+    "pattern": "Sikl va yig‘ish, kutubxona qisqa yo‘llarisiz",
+    "statement": "a va b massivlarining uzunligi bir xil. Ikkalasida ham bo‘sh bo‘lmagan va bir xil belgi bilan boshlanadigan satrlar turgan o‘rinlar sonini qaytaring."
+  },
+  "4013": {
+    "title": "Javoblar uchun ball to‘plash",
+    "pattern": "Sikl va yig‘ish, kutubxona qisqa yo‘llarisiz",
+    "statement": "key massivi to‘g‘ri javoblarni, answers esa berilgan javoblarni saqlaydi; ikkisi ham bo‘sh emas va uzunligi bir xil, savol belgisi tashlab ketilgan javobni bildiradi. Umumiy ballni qaytaring: mos kelganiga 4, xato javobga -1, savol belgisiga esa 0 beriladi."
+  },
+  "4014": {
+    "title": "Berilgan so‘zdan tashqari so‘zlar",
+    "pattern": "Sikl va yig‘ish, kutubxona qisqa yo‘llarisiz",
+    "statement": "words ichidagi target ga teng bo‘lmagan barcha satrlardan tuzilgan yangi massiv qaytaring, kelgan tartibini saqlab."
+  },
+  "4015": {
+    "title": "Eng katta 10 karralilarning yig‘indisi",
+    "pattern": "Sikl va yig‘ish, kutubxona qisqa yo‘llarisiz",
+    "statement": "a va b massivlari manfiy bo‘lmagan butun sonlarni saqlaydi. a dagi eng katta 10 karrali son bilan b dagi eng katta 10 karrali sonning yig‘indisini qaytaring; 10 karralisi yo‘q massiv 0 beradi deb hisoblang."
+  },
+  "4016": {
+    "title": "Balandlik o‘zgarishlari yig‘indisi",
+    "pattern": "Sikl va yig‘ish, kutubxona qisqa yo‘llarisiz",
+    "statement": "heights massivi balandliklarni saqlaydi, start va end esa to‘g‘ri indekslar, start end dan katta emas. start dan end gacha oraliqda har bir element va undan keyingisi orasidagi ayirmalar modulining yig‘indisini qaytaring."
+  },
+  "4017": {
+    "title": "Ko‘tarilishi ikki karra hisoblangan yig‘indi",
+    "pattern": "Sikl va yig‘ish, kutubxona qisqa yo‘llarisiz",
+    "statement": "heights massivi balandliklarni saqlaydi, start va end esa to‘g‘ri indekslar, start end dan katta emas. start indeksidan end indeksiga qadam tashlab, har bir balandlik o‘zgarishining kattaligini qo‘shing, faqat ko‘tarilish o‘z kattaligidan ikki barobar qo‘shiladi, va shu yig‘indini qaytaring."
+  },
+  "4018": {
+    "title": "Katta o‘zgarishlarni sanash",
+    "pattern": "Sikl va yig‘ish, kutubxona qisqa yo‘llarisiz",
+    "statement": "heights massivi balandliklarni saqlaydi, start va end esa to‘g‘ri indekslar, start end dan katta emas. start dan end gacha oraliqda bir element va undan keyingisi orasidagi o‘zgarishlardan qanchasi balandlikni ikki yo‘nalishdan birida kamida 5 ga siljitganini qaytaring."
+  },
+  "4019": {
+    "title": "Ikki yozuvni taqqoslash",
+    "pattern": "Sikl va yig‘ish, kutubxona qisqa yo‘llarisiz",
+    "statement": "aName va aId dan tuzilgan bir yozuvni bName va bId dan tuzilgan boshqasiga nisbatan tartiblang: avval nomlarni taqqoslang, nomlar teng bo‘lsa sonlarga o‘ting. Birinchi yozuv oldin kelsa -1, keyin kelsa 1, ikki qismi ham teng bo‘lsa 0 qaytaring."
+  },
+  "4020": {
+    "title": "Ikki tartiblangan massivni birlashtirish",
+    "pattern": "Sikl va yig‘ish, kutubxona qisqa yo‘llarisiz",
+    "statement": "a va b massivlari o‘sish tartibida tartiblangan, har birining ichida takrorlanish yo‘q va ikkisining uzunligi kamida n. Ikki massivdan birgalikda olingan n ta eng kichik turli satrdan tuzilgan yangi massiv qaytaring, u ham o‘sish tartibida bo‘lsin."
+  },
+  "4021": {
+    "title": "Umumiy satrlar soni",
+    "pattern": "Sikl va yig‘ish, kutubxona qisqa yo‘llarisiz",
+    "statement": "a va b massivlari o‘sish tartibida tartiblangan va takrorlanuvchi qiymatlarga ega bo‘lishi mumkin. Ikkisida ham uchraydigan turli satrlar sonini qaytaring."
+  },
+  "4022": {
+    "title": "Boshida yoki oxirida 6",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "nums ning birinchi elementi yoki oxirgi elementi 6 ga teng bo‘lsa, true qaytaring."
+  },
+  "4023": {
+    "title": "Birinchi va oxirgi bir xil",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "nums bo‘sh bo‘lmasa va uning birinchi elementi oxirgisiga teng bo‘lsa, true qaytaring."
+  },
+  "4024": {
+    "title": "Cheklar bo‘yicha moslik",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "Ikkita bo‘sh bo‘lmagan massiv a va b berilgan. Ularning birinchi elementlari teng bo‘lsa yoki oxirgi elementlari teng bo‘lsa, true qaytaring."
+  },
+  "4025": {
+    "title": "Uch elementning yig‘indisi",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "Uzunligi 3 bo‘lgan nums berilgan. Uning uch elementining yig‘indisini qaytaring."
+  },
+  "4026": {
+    "title": "Uch elementni chapga surish",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "Uzunligi 3 bo‘lgan nums berilgan. Ikkinchi element, keyin uchinchi, keyin birinchi turadigan yangi massiv qaytaring."
+  },
+  "4027": {
+    "title": "Uch elementning teskari tartibi",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "Uzunligi 3 bo‘lgan nums berilgan. Uning elementlarini teskari tartibda qaytaring, ya’ni oxirgisi birinchi, birinchisi esa oxirgi bo‘ladi."
+  },
+  "4028": {
+    "title": "Cheklarning kattasi barcha o‘rinlarda",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "Uzunligi 3 bo‘lgan nums berilgan. Uning birinchi va oxirgi elementlaridan kattasini olib, shu qiymat har bir o‘rinda turadigan uzunligi 3 bo‘lgan massiv qaytaring."
+  },
+  "4029": {
+    "title": "Birinchi ikki elementning yig‘indisi",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "nums ning birinchi ikki elementining yig‘indisini qaytaring, nums bundan qisqaroq bo‘lsa, bor elementlarni qo‘shing; nums bo‘sh bo‘lsa, 0 qaytaring."
+  },
+  "4030": {
+    "title": "Ikki massivning o‘rta elementlari",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "Har biri uzunligi 3 bo‘lgan a va b massivlari berilgan. Ikki elementli massiv qaytaring: a ning o‘rta elementi, keyin b ning o‘rta elementi."
+  },
+  "4031": {
+    "title": "Cheklardan massiv",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "Bo‘sh bo‘lmagan nums berilgan. Ikki elementli massiv qaytaring: uning birinchi elementi va oxirgi elementi. nums da bitta element bo‘lsa, ikkala o‘rinda ham shu element turadi."
+  },
+  "4032": {
+    "title": "2 yoki 3 bormi",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "Uzunligi 2 bo‘lgan nums berilgan. Uning ikki elementidan kamida bittasi 2 yoki 3 ga teng bo‘lsa, true qaytaring."
+  },
+  "4033": {
+    "title": "Na 2, na 3",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "Uzunligi 2 bo‘lgan nums berilgan. Uning birorta elementi 2 ga teng bo‘lmasa va birortasi 3 ga teng bo‘lmasa, true qaytaring."
+  },
+  "4034": {
+    "title": "Ikki barobar uzunlikdagi oxirgi element",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "Bo‘sh bo‘lmagan nums berilgan. Uzunligi ikki barobar bo‘lgan yangi massiv qaytaring: uning oxirgi o‘rnida nums ning oxirgi elementi, qolgan barcha o‘rinlarida esa 0 turadi."
+  },
+  "4035": {
+    "title": "Ikkita 2 yoki ikkita 3",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "Uzunligi 0, 1 yoki 2 bo‘lgan nums berilgan. Unda ikkita 2 yoki ikkita 3 turgan bo‘lsa, true qaytaring."
+  },
+  "4036": {
+    "title": "2 dan keyingi 3 ni 0 ga almashtirish",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "Uzunligi 3 bo‘lgan nums berilgan. Bevosita ortidan 3 keladigan, 2 ga teng elementni topib, o‘sha 3 ni 0 ga almashtiring. nums ni qaytaring."
+  },
+  "4037": {
+    "title": "Qancha massiv 1 bilan boshlanadi",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "Ikki massivdan qanchasi 1 qiymati bilan boshlanishini sanang. Ichida hech narsa bo‘lmagan massiv hech narsa bilan boshlanmaydi, shuning uchun songa hech narsa qo‘shmaydi."
+  },
+  "4038": {
+    "title": "Yig‘indisi kattaroq massiv",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "Har biri uzunligi 2 bo‘lgan a va b massivlari berilgan. Ikki elementining yig‘indisi kattaroq bo‘lganini qaytaring, yig‘indilar teng bo‘lsa a ni qaytaring."
+  },
+  "4039": {
+    "title": "O‘rtadagi ikki element",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "Uzunligi juft va 2 dan kichik bo‘lmagan nums berilgan. nums ning o‘rtasida turgan ikki elementdan massiv qaytaring."
+  },
+  "4040": {
+    "title": "Ikki juftlikni ulash",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "Har biri uzunligi 2 bo‘lgan a va b massivlari berilgan. Uzunligi 4 bo‘lgan yangi massiv qaytaring: a ning ikkala elementi, keyin b ning ikkala elementi."
+  },
+  "4041": {
+    "title": "Cheklarni o‘rin almashtirish",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "Bo‘sh bo‘lmagan nums berilgan. Uning birinchi va oxirgi elementlarini o‘rin almashtirib, nums ni qaytaring."
+  },
+  "4042": {
+    "title": "O‘rta element va qo‘shnilari",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "Uzunligi toq va 3 dan kichik bo‘lmagan nums berilgan. Uch elementli massiv qaytaring: o‘rta element va uning har ikki yonidagi element."
+  },
+  "4043": {
+    "title": "Bosh, o‘rta va oxirning kattasi",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "Uzunligi toq bo‘lgan nums berilgan. Uning birinchi elementi, o‘rta elementi va oxirgi elementiga qarab, shu uchtasining kattasini qaytaring."
+  },
+  "4044": {
+    "title": "Boshidan ikki elementlik bo‘lak",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "nums ning birinchi ikki elementidan yangi massiv qaytaring, nums bundan qisqaroq bo‘lsa, bor elementlardan tuzing."
+  },
+  "4045": {
+    "title": "3 dan oldingi baxtsiz 1",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "nums da bevosita ortidan 3 keladigan 1 bo‘lsa va o‘sha 1 indeks 0 da, indeks 1 da yoki oxiridan bitta oldingi indeksda turgan bo‘lsa, true qaytaring."
+  },
+  "4046": {
+    "title": "Ikki massivdan aynan ikki element",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "Ikkisida birgalikda kamida ikki element bo‘lgan a va b massivlari berilgan. Aynan ikki elementli massiv qaytaring: elementlarni tartib bilan avval a dan, keyin b dan, ikkitasi yig‘ilgunicha oling."
+  },
+  "4047": {
+    "title": "Ikki massivning birinchi qiymatlari",
+    "pattern": "Kichik massivdagi aniq o‘rinlar",
+    "statement": "Har bir massivning boshidagi qiymatni yangi massivga avval a, keyin b tartibida yig‘ing. Ichida hech narsa bo‘lmagan massiv na qiymat, na bo‘shliq qoldiradi."
+  },
+  "4048": {
+    "title": "Eng kichik qiymatning indeksi",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "Kamida bitta elementga ega nums massivi berilgan. Uning eng kichik qiymati turgan indeksni qaytaring; bu qiymat bir martadan ko‘p uchrasa, eng oldingi shunday indeksni qaytaring."
+  },
+  "4049": {
+    "title": "Juftlarni sanash",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums dagi juft qiymatlar sonini qaytaring. Bo‘sh nums 0 beradi."
+  },
+  "4050": {
+    "title": "Eng katta va eng kichik orasidagi ayirma",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "Kamida bitta elementga ega nums massivi berilgan. Uning eng katta qiymatidan eng kichik qiymatini ayirib qaytaring."
+  },
+  "4051": {
+    "title": "O‘rtacha qiymat",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "Uch yoki undan ko‘p elementli nums massivi berilgan. Eng kichigining bitta nusxasi va eng kattasining bitta nusxasini tashlab, qolganlarining o‘rtachasini qaytaring. Butun bo‘lib, kasr qismini tashlang."
+  },
+  "4052": {
+    "title": "13 ni tashlab qo‘yadigan yig‘indi",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums qiymatlarining yig‘indisini qaytaring, faqat 13 hisobga olinmaydi va 13 dan keyin bevosita keladigan bitta qiymat ham hisobga olinmaydi. Bo‘sh nums 0 beradi."
+  },
+  "4053": {
+    "title": "6 dan 7 gacha bo‘laklarsiz yig‘indi",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums qiymatlarining yig‘indisini qaytaring, lekin 6 dan boshlanib undan keyingi birinchi 7 da tugaydigan har bir bo‘lakni, shu ikki qiymat bilan birga, hisobga olmang. Har bir 6 dan keyin qayerda bo‘lsa ham 7 bor, bo‘sh nums esa 0 beradi."
+  },
+  "4054": {
+    "title": "Ketma-ket ikkita 2",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums da 2 bo‘lsa va uning ortidan bevosita yana bitta 2 kelsa, true qaytaring."
+  },
+  "4055": {
+    "title": "Na 1, na 3 bor",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums dagi hech bir qiymat 1 ga ham, 3 ga ham teng bo‘lmasa, true qaytaring."
+  },
+  "4056": {
+    "title": "Ikkilar yig‘indisi 8 ga teng",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums dagi 2 ga teng qiymatlarning yig‘indisi aynan 8 bo‘lsa, true qaytaring."
+  },
+  "4057": {
+    "title": "Birlar to‘rtlardan ko‘p",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums da 1 lar soni 4 lar sonidan ko‘p bo‘lsa, true qaytaring."
+  },
+  "4058": {
+    "title": "Birinchi ikkitasi o‘rniga yig‘indi",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums ning birinchi ikki qiymatini ularning yig‘indisiga teng bitta qiymat bilan almashtiring, shunda massiv bir elementga qisqaradi, va uni qaytaring."
+  },
+  "4059": {
+    "title": "0 dan n - 1 gacha massiv",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "n soni berilgan. Uzunligi n bo‘lgan yangi massivni qaytaring, unda 0, 1, 2 va shu tartibda n - 1 gacha qiymatlar turadi. n 0 ga teng bo‘lsa, bo‘sh massiv chiqadi."
+  },
+  "4060": {
+    "title": "Faqat 1 va 4",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums dagi har bir qiymat 1 yoki 4 ga teng bo‘lsa, true qaytaring. Bo‘sh nums mos hisoblanadi."
+  },
+  "4061": {
+    "title": "0 dan n - 1 gacha satrlar",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "n soni berilgan. n ta satrdan iborat yangi massivni qaytaring: 0 dan n - 1 gacha har bir sonning satr ko‘rinishi, tartib bo‘yicha. n 0 ga teng bo‘lsa, bo‘sh massiv chiqadi."
+  },
+  "4062": {
+    "title": "1 va 4 birga kelmaydi",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums da kamida bitta 1 va kamida bitta 4 bo‘lgan holdan tashqari barcha hollarda true qaytaring."
+  },
+  "4063": {
+    "title": "Har bir qo‘shni juftlikda o‘sha qiymat",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums ning har bir qo‘shni qiymatlar juftligida kamida bittasi val ga teng bo‘lsa, true qaytaring."
+  },
+  "4064": {
+    "title": "Yo ketma-ket ikkita 2, yo ikkita 4",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums da ketma-ket ikkita 2 yoki ketma-ket ikkita 4 bo‘lsa, lekin ikkisi birga bo‘lmasa, true qaytaring."
+  },
+  "4065": {
+    "title": "Yaqin, ammo teng bo‘lmagan juftliklar",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "Uzunligi bir xil nums1 va nums2 berilgan. Qiymatlar juftligi teng bo‘lmagan, ammo ko‘pi bilan 2 ga farq qiladigan o‘rinlar sonini qaytaring."
+  },
+  "4066": {
+    "title": "Ikkita 7 yonma-yon yoki bitta qiymat oralab",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums da yonma-yon turgan yoki oralarida aynan bitta qiymat bo‘lgan ikkita 7 bo‘lsa, true qaytaring."
+  },
+  "4067": {
+    "title": "1, undan keyin qayerda bo‘lsa 2",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums da 1 bo‘lsa va undan keyin qayerda bo‘lsa ham 2 kelsa, true qaytaring."
+  },
+  "4068": {
+    "title": "Ketma-ket uchtasi bir xil juft yoki toq",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums ning ketma-ket keladigan uchta qiymati barchasi juft yoki barchasi toq bo‘lsa, true qaytaring."
+  },
+  "4069": {
+    "title": "Mediana",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "Kamida bitta elementli nums massivi berilgan. Uning medianasini qaytaring: qiymatlarni saralab, o‘rtadagisini oling, son juft bo‘lsa esa o‘rtadagi ikkisining o‘rtacha arifmetigini."
+  },
+  "4070": {
+    "title": "Aynan uchta 3, yonma-yon emas",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "3 qiymati nums da aynan uch marta uchrasa va bu uchlardan hech ikkitasi yonma-yon turmasa, true qaytaring."
+  },
+  "4071": {
+    "title": "Har bir 2 yolg‘iz emas",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums dagi har bir 2 ning yonida yana bitta 2 bo‘lsa, true qaytaring. Ichida 2 bo‘lmagan nums mos hisoblanadi."
+  },
+  "4072": {
+    "title": "Bir xil bosh va oxir",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "0 dan nums uzunligigacha bo‘lgan n berilgan. nums ning birinchi n qiymati oxirgi n qiymati bilan tartib bo‘yicha mos kelsa, true qaytaring. n 0 ga teng bo‘lsa, mos kelgan hisoblanadi."
+  },
+  "4073": {
+    "title": "Qadami 1 bo‘lgan ketma-ket uchta",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums da ketma-ket keladigan uchta qiymat bo‘lsa va ularning har biri oldingisidan aynan 1 ga katta bo‘lsa, true qaytaring."
+  },
+  "4074": {
+    "title": "start dan end gacha sonlar",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "start dan boshlanib end dan oldin to‘xtaydigan butun sonlar ketma-ketligini tuzing. Bu qiymatlar teng bo‘lsa, bo‘sh massiv qaytadi."
+  },
+  "4075": {
+    "title": "Chapga surish",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums ning har bir qiymatini bir o‘rin boshiga qarab suring, avvalgi birinchi qiymatni esa oxiriga o‘tkazing, so‘ng massivni qaytaring. Uzunligi 0 yoki 1 bo‘lgan nums o‘zgarishsiz qaytadi."
+  },
+  "4076": {
+    "title": "10 ga karrali son keyinga cho‘ziladi",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums bo‘ylab yuring va 10 ga karrali har bir sondan keyin uning ortidan keladigan qiymatlarni shu karrali son bilan qayta yozing, keyingi 10 ga karrali son uchramaguncha. Massivni qaytaring."
+  },
+  "4077": {
+    "title": "Birinchi 4 gacha bo‘lgan qiymatlar",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums ning birinchi 4 idan oldin turgan qiymatlaridan yangi massiv qaytaring. nums da kamida bitta 4 bor, shuning uchun birinchi qiymat 4 bo‘lsa, natija bo‘sh bo‘ladi."
+  },
+  "4078": {
+    "title": "Oxirgi 4 dan keyingi qiymatlar",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums ning oxirgi 4 idan keyin turgan qiymatlaridan yangi massiv qaytaring. nums da kamida bitta 4 bor, shuning uchun oxirgi qiymat 4 bo‘lsa, natija bo‘sh bo‘ladi."
+  },
+  "4079": {
+    "title": "Qiymatni kattaroq qo‘shnisiga almashtirish",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums ning val ga teng bo‘lgan va ikki tomonida ham qiymat turgan, bu qiymatlarning ikkisi ham val dan boshqa bo‘lgan har bir elementini shu ikki qo‘shni qiymatning kattarog‘iga almashtiring, so‘ng nums ni qaytaring."
+  },
+  "4080": {
+    "title": "Nollar oldinga",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums qiymatlarini shunday joylashtiring, barcha nollar oldinda, qolganlari ularning ortidan kelsin, so‘ng massivni qaytaring. Nolga teng bo‘lmagan qiymatlar har qanday tartibda qolishi mumkin."
+  },
+  "4081": {
+    "title": "Barcha 10 larni olib tashlash",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums dan har bir 10 ni olib tashlang, qolgan qiymatlarni asl tartibida boshiga qarab suring va oxirida bo‘shagan o‘rinlarni 0 bilan to‘ldiring, shunda uzunlik o‘zgarmaydi. Massivni qaytaring."
+  },
+  "4082": {
+    "title": "Nollar va o‘ngdagi eng katta toq son",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums dagi har bir 0 ni uning o‘ng tomonidagi eng katta toq qiymatga almashtiring, o‘ngida bitta ham toq qiymat bo‘lmasa, 0 ni o‘z holida qoldiring. Massivni qaytaring."
+  },
+  "4083": {
+    "title": "Juftlar toqlardan oldin",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "nums ni shunday joylashtiring, har bir juft qiymat har bir toq qiymatdan oldin kelsin, bunda juft qiymatlar ham, toq qiymatlar ham o‘z guruhi ichida avvalgi tartibini saqlasin, so‘ng massivni qaytaring."
+  },
+  "4084": {
+    "title": "Fizz Buzz",
+    "pattern": "Bitta o‘tish, kerakligini o‘zi bilan olib",
+    "statement": "start dan end gacha, end ning o‘zini qo‘shmasdan, sonlar uchun yangi satrlar massivini qaytaring: 3 ga karrali son uchun Fizz, 5 ga karrali son uchun Buzz, 3 ga ham 5 ga ham karrali son uchun FizzBuzz, boshqa hollarda esa sonning satr ko‘rinishi."
+  },
+  "4085": {
+    "title": "Qiymatning eng katta qamrovi",
+    "pattern": "Ikki indeks yoki joriy eng yaxshisi",
+    "statement": "Qiymatning qamrovi — bu nums dagi eng chapdagi o‘rnidan eng o‘ngdagi o‘rnigacha bo‘lgan elementlar soni, bunda ikki chek ham hisobga olinadi, shuning uchun bir marta uchraydigan qiymatning qamrovi 1 ga teng. nums dagi barcha qiymatlar orasidagi eng katta qamrovni qaytaring."
+  },
+  "4086": {
+    "title": "Har 3 dan keyin darhol 4",
+    "pattern": "Ikki indeks yoki joriy eng yaxshisi",
+    "statement": "nums ni shunday qayta joylashtiring: har bir 3 dan bevosita keyin 4 tursin, har bir 3 esa hozir turgan indeksida qolsin, qolgan qiymatlar kerakligicha ko‘chirilsin. Natijada kirishdagi qiymatlarning aynan o‘zi turadi. nums da 3 lar soni 4 lar soniga teng, birorta 3 dan keyin yana 3 kelmaydi va birinchi 3 birinchi 4 dan oldin turadi, deb berilgan."
+  },
+  "4087": {
+    "title": "Har 4 dan keyin darhol 5",
+    "pattern": "Ikki indeks yoki joriy eng yaxshisi",
+    "statement": "nums ni shunday qayta joylashtiring: har bir 4 dan bevosita keyin 5 tursin, har bir 4 esa hozir turgan indeksida qolsin, qolgan qiymatlar kerakligicha ko‘chirilsin. Natijada kirishdagi qiymatlarning aynan o‘zi turadi. nums da 4 lar soni 5 lar soniga teng va birorta 4 dan keyin yana 4 kelmaydi, deb berilgan, lekin 5 lar boshida xohlagan joyda turishi mumkin."
+  },
+  "4088": {
+    "title": "Muvozanat nuqtasi",
+    "pattern": "Ikki indeks yoki joriy eng yaxshisi",
+    "statement": "nums ni biror joyda yig‘indilari teng bo‘lgan oldingi ketma-ketlik va keyingi ketma-ketlikka kesish mumkin bo‘lsa, true qaytaring. Har bir element ikki ketma-ketlikdan aynan bittasiga tushadi va birorta ketma-ketlik bo‘sh bo‘lishi mumkin emas."
+  },
+  "4089": {
+    "title": "Bir massivning boshqasiga kirishi",
+    "pattern": "Ikki indeks yoki joriy eng yaxshisi",
+    "statement": "Ikkisi ham kamaymaydigan tartibda saralangan outer va inner berilgan. inner dagi har bir qiymat outer da biror joyda uchrasa, true qaytaring."
+  },
+  "4090": {
+    "title": "Kamayuvchi guruhlardan kvadrat",
+    "pattern": "Ikki indeks yoki joriy eng yaxshisi",
+    "statement": "0 dan kichik bo‘lmagan n berilgan. n ni n ga ko‘paytirgancha uzunlikdagi massiv qaytaring: u har biri n uzunlikdagi n guruhdan tuzilgan. Guruhlar 1 dan sanalganda, i guruh n minus i ta nol bilan boshlanadi, keyin i dan 1 gacha kamayib boradi."
+  },
+  "4091": {
+    "title": "O‘suvchi ketma-ketliklar qatori",
+    "pattern": "Ikki indeks yoki joriy eng yaxshisi",
+    "statement": "0 dan kichik bo‘lmagan n berilgan. n ta ketma-ketlikni birin-ketin ulab hosil qilingan massiv qaytaring, bunda i raqamli ketma-ketlik 1 dan i gacha o‘sib boradi."
+  },
+  "4092": {
+    "title": "Eng uzun ko‘zgu bo‘lagi",
+    "pattern": "Ikki indeks yoki joriy eng yaxshisi",
+    "statement": "Ko‘zgu bo‘lagi — nums ning qo‘shni elementlaridan tuzilgan ketma-ketlik bo‘lib, u nums da biror joyda teskari tartibda ham uchraydi; ikki ketma-ketlik ustma-ust tushishi mumkin, har ikki tomondan bir xil o‘qiladigan ketma-ketlik esa o‘zining ko‘zgusi hisoblanadi. Eng uzun ko‘zgu bo‘lagining uzunligini qaytaring, nums bo‘sh bo‘lsa 0 qaytaring."
+  },
+  "4093": {
+    "title": "Bir xil qo‘shnilar guruhlarini sanash",
+    "pattern": "Ikki indeks yoki joriy eng yaxshisi",
+    "statement": "Guruh — nums ning ikki yoki undan ko‘p qo‘shni elementidan tuzilgan ketma-ketlik bo‘lib, ularning barchasida bir xil qiymat turadi. nums da shunday guruh qanchaligini qaytaring, har bir guruhni uzunligidan qat’i nazar bir marta sanang."
+  },
+  "4094": {
+    "title": "Sigaralarning ruxsat etilgan soni",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "cigars soni va isWeekend mantiqiy qiymati berilgan. cigars kamida 40 va ko‘pi bilan 60 bo‘lganda true qaytaring. isWeekend true bo‘lganda yuqori chegara olib tashlanadi, shuning uchun 40 va undan katta har qanday son true beradi."
+  },
+  "4095": {
+    "title": "Ikki baho bo‘yicha natija",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "you va date berilgan, har biri 0 dan 10 gacha son. Ulardan kamida bittasi 8 yoki undan katta bo‘lganda 2, qolgan hollarda 1 qaytaring. Qiymatlardan birortasi 2 yoki undan kichik bo‘lsa, bu qoida bekor bo‘ladi va javob 0 ga teng bo‘ladi."
+  },
+  "4096": {
+    "title": "Ruxsat etilgan harorat",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "temp soni va isSummer mantiqiy qiymati berilgan. temp kamida 60 va ko‘pi bilan 90 bo‘lganda true qaytaring. isSummer true bo‘lganda yuqori chegara 100 gacha ko‘tariladi."
+  },
+  "4097": {
+    "title": "Tezlikni oshirgani uchun jarima",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "speed soni va isBirthday mantiqiy qiymati berilgan. speed ko‘pi bilan 60 bo‘lganda 0, speed 61 dan 80 gacha bo‘lganda 1, speed kamida 81 bo‘lganda 2 qaytaring. isBirthday true bo‘lganda bu chegaralarning har biri 5 ga oshadi."
+  },
+  "4098": {
+    "title": "10 dan 19 gacha oraliq almashtirilgan yig‘indi",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "a va b yig‘indisini qaytaring, lekin 10 dan 19 gacha, shu sonlar bilan, oraliqqa tushgan yig‘indi o‘rniga 20 qaytariladi."
+  },
+  "4099": {
+    "title": "Uyg‘otkich vaqti",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "day 0 dan 6 gacha son sifatida berilgan, bunda 0 yakshanba, 6 esa shanba, hamda vacation mantiqiy qiymati berilgan. 1 dan 5 gacha kunlar uchun 7:00 matnini, 0 va 6 kunlari uchun 10:00 matnini qaytaring. vacation true bo‘lganda 1 dan 5 gacha kunlar 10:00 beradi, 0 va 6 kunlari esa off beradi."
+  },
+  "4100": {
+    "title": "Qiymat, yig‘indi yoki ayirmada oltilik",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "a va b sonlari berilgan. Ulardan biri 6 ga teng bo‘lganda, yig‘indisi 6 ga teng bo‘lganda yoki ayirmasining absolyut qiymati 6 ga teng bo‘lganda true qaytaring."
+  },
+  "4101": {
+    "title": "Son oraliq ichida yoki tashqarisida",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "n soni va outsideMode mantiqiy qiymati berilgan. n 1 dan 10 gacha, shu sonlar bilan, oraliqda bo‘lganda true qaytaring. outsideMode true bo‘lganda esa uning o‘rniga n ko‘pi bilan 1 yoki kamida 10 bo‘lganda true qaytaring."
+  },
+  "4102": {
+    "title": "11 ga bo‘lgandagi qoldiq",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "Manfiy bo‘lmagan n soni berilgan. n ni 11 ga bo‘lgandagi qoldiq 0 yoki 1 ga teng bo‘lganda true qaytaring."
+  },
+  "4103": {
+    "title": "20 karralisidan 1 yoki 2 ga katta",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "Manfiy bo‘lmagan n soni berilgan. n ni 20 ga bo‘lgandagi qoldiq 1 yoki 2 ga teng bo‘lganda true qaytaring."
+  },
+  "4104": {
+    "title": "3 yoki 5 ga karrali, lekin ikkalasiga emas",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "Manfiy bo‘lmagan n soni berilgan. n 3 ga yoki 5 ga qoldiqsiz bo‘linganda true qaytaring, lekin u ikkalasiga ham qoldiqsiz bo‘linsa true qaytarilmaydi."
+  },
+  "4105": {
+    "title": "20 karralisidan 1 yoki 2 ga kichik",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "Manfiy bo‘lmagan n soni berilgan. n ni 20 ga bo‘lgandagi qoldiq 18 yoki 19 ga teng bo‘lganda true qaytaring, ya’ni n ga 20 ga karrali songa yetish uchun 1 yoki 2 yetmaganda."
+  },
+  "4106": {
+    "title": "O‘nga karrali songa yaqinlik",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "num o‘nga karrali biror sondan ko‘pi bilan ikki masofada turganda true qaytaring. Buni uning oxirgi raqami hal qiladi."
+  },
+  "4107": {
+    "title": "13 dan 19 gacha sonlarga tuzatishli yig‘indi",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "a va b yig‘indisini qaytaring, lekin qiymatlardan birortasi 13 dan 19 gacha, shu sonlar bilan, oraliqda bo‘lganda javob 19 ga teng bo‘ladi."
+  },
+  "4108": {
+    "title": "Qo‘ng‘iroqqa javob berish kerakmi",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "isMorning, isMom va isAsleep mantiqiy qiymatlari berilgan. isAsleep true bo‘lgan har qanday holatda false qaytaring. Aks holda true qaytaring, faqat isMorning true bo‘lganda javob isMom ham true bo‘lgan taqdirdagina true bo‘ladi."
+  },
+  "4109": {
+    "title": "Choy va shirinlik soniga qarab baho",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "tea va candy sonlari berilgan. Ulardan birortasi 5 dan kichik bo‘lganda 0 qaytaring. Aks holda, ulardan biri ikkinchisidan kamida ikki baravar katta bo‘lganda 2, qolgan barcha hollarda 1 qaytaring."
+  },
+  "4110": {
+    "title": "Birinchi va oxirgi harf bo‘yicha belgi",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "str satri berilgan. str f harfi bilan boshlansa Fizz, b harfi bilan tugasa Buzz, ikkisi ham to‘g‘ri bo‘lsa FizzBuzz qaytaring. Qolgan hollarda str ni o‘zgartirmasdan qaytaring."
+  },
+  "4111": {
+    "title": "Son yoki Fizz so‘zi undov belgisi bilan",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "n soni berilgan. Uning yozuvini qaytaring va ortidan undov belgisi qo‘yiladi, lekin 3 ga karrali son Fizz, 5 ga karrali son Buzz, ikkalasiga ham karrali son FizzBuzz deb yoziladi. Undov belgisi doim oxirida turadi."
+  },
+  "4112": {
+    "title": "Bir son qolgan ikkisining yig‘indisiga teng",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "a, b va c sonlari berilgan. Ulardan biri qolgan ikkisining yig‘indisiga teng bo‘lganda true qaytaring."
+  },
+  "4113": {
+    "title": "Uch sonning o‘sib borishi",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "a, b va c sonlari hamda bOk mantiqiy qiymati berilgan. c b dan katta va b a dan katta bo‘lganda true qaytaring. bOk true bo‘lganda b va a ni taqqoslash o‘tkazib yuboriladi, shuning uchun faqat c ning b dan katta bo‘lishi talab qilinadi."
+  },
+  "4114": {
+    "title": "Tenglikni hisobga olgan o‘sish",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "a, b va c sonlari hamda equalOk mantiqiy qiymati berilgan. a b dan kichik va b c dan kichik bo‘lganda true qaytaring. equalOk true bo‘lganda tenglik ham hisobga olinadi, shuning uchun a ko‘pi bilan b, b esa ko‘pi bilan c bo‘lishi yetarli."
+  },
+  "4115": {
+    "title": "Oxirgi raqamlarning mos kelishi",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "Manfiy bo‘lmagan a, b va c sonlari berilgan. Ulardan kamida ikkitasi bir xil o‘nlik raqam bilan tugaganda true qaytaring."
+  },
+  "4116": {
+    "title": "Kamida 10 lik farq",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "a, b va c sonlari berilgan. Ulardan biri boshqasidan 10 ga yoki undan ko‘proqqa kichik bo‘lganda true qaytaring."
+  },
+  "4117": {
+    "title": "Ikki kubik yig‘indisi, dublsiz",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "die1 va die2 berilgan, har biri 1 dan 6 gacha son. Ularning yig‘indisini qaytaring. noDoubles true bo‘lib, ikki qiymat teng bo‘lsa, ulardan biri avval 1 ga oshiriladi va bunda 6 aylanib 1 ga o‘tadi."
+  },
+  "4118": {
+    "title": "5 ga bo‘lgandagi qoldiq bo‘yicha son tanlash",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "a va b sonlari berilgan. Ular teng bo‘lganda 0 qaytaring. Aks holda, ikkisi 5 ga bo‘linganda bir xil qoldiq qoldirsa kichigini, qolgan barcha hollarda kattasini qaytaring."
+  },
+  "4119": {
+    "title": "Qizil chipta bo‘yicha yutuq",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "a, b va c berilgan, har biri 0, 1 yoki 2. Uchtasi ham 2 bo‘lganda 10, uchtasi ham bir xil bo‘lganda 5, b ham, c ham a dan farq qilganda 1, qolgan hollarda 0 qaytaring. Javobni shu ro‘yxatdagi birinchi mos keladigan qoida belgilaydi."
+  },
+  "4120": {
+    "title": "Yashil chipta bo‘yicha yutuq",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "a, b va c sonlari berilgan. Uchtasi ham bir xil bo‘lganda 20, aynan ikkitasi teng bo‘lganda 10, barchasi bir-biridan farq qilganda 0 qaytaring."
+  },
+  "4121": {
+    "title": "Ko‘k chipta bo‘yicha yutuq",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "a, b va c sonlari berilgan. Uchta juftlik yig‘indisini tuzing: a qo‘shuv b, b qo‘shuv c va a qo‘shuv c. Bu yig‘indilardan birortasi aynan 10 ga teng bo‘lganda 10, aks holda a va b yig‘indisi qolgan ikki yig‘indidan biridan roppa-rosa 10 ga katta bo‘lganda 5, aks holda 0 qaytaring."
+  },
+  "4122": {
+    "title": "Ikki sonning umumiy raqami",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "a va b sonlari berilgan, har biri 10 dan 99 gacha oraliqda. Biror raqam ikkisida ham uchraganda true qaytaring."
+  },
+  "4123": {
+    "title": "Raqamlar soni oshmagan yig‘indi",
+    "pattern": "Kichik qoidalar to‘plami bo‘yicha shoxlanish",
+    "statement": "Manfiy bo‘lmagan a va b sonlari berilgan. Yig‘indidagi o‘nlik raqamlar soni a dagidek bo‘lganda yig‘indini qaytaring, yig‘indidagi raqamlar soni a dagidan ko‘p bo‘lganda esa a ning o‘zini qaytaring."
+  },
+  "4124": {
+    "title": "G‘ishtlardan aynan kerakli uzunlik",
+    "pattern": "Qoidani avval qog‘ozda chiqarish",
+    "statement": "small va big sonlari berilgan. goal ni ko‘pi bilan big ta 5 ni ko‘pi bilan small ta 1 ga qo‘shib aynan to‘plash mumkin bo‘lsa, true qaytaring."
+  },
+  "4125": {
+    "title": "Takrorlanmagan qiymatlar yig‘indisi",
+    "pattern": "Qoidani avval qog‘ozda chiqarish",
+    "statement": "a, b va c sonlari berilgan. Qolgan ikkitasining birortasiga teng bo‘lmagan qiymatlarning yig‘indisini qaytaring, shuning uchun takrorlangan qiymat hech narsa qo‘shmaydi."
+  },
+  "4126": {
+    "title": "13 va undan keyingilarsiz yig‘indi",
+    "pattern": "Qoidani avval qog‘ozda chiqarish",
+    "statement": "a, b va c sonlari berilgan. Ularning yig‘indisini qaytaring, lekin ulardan biri 13 ga teng bo‘lsa, o‘sha qiymat va shu tartibda undan keyingi barcha qiymatlar hisobga olinmaydi."
+  },
+  "4127": {
+    "title": "13 dan 19 gacha sonlarsiz yig‘indi",
+    "pattern": "Qoidani avval qog‘ozda chiqarish",
+    "statement": "a, b va c sonlari berilgan. Ularning yig‘indisini qaytaring, lekin ulardan 13 dan 19 gacha oraliqdagi har biri 0 deb hisoblanadi, 15 va 16 esa o‘zi bo‘yicha hisoblanadi."
+  },
+  "4128": {
+    "title": "O‘nliklarga yaxlitlangandan keyingi yig‘indi",
+    "pattern": "Qoidani avval qog‘ozda chiqarish",
+    "statement": "a, b va c ning har birini 10 ga karrali songa yaxlitlang: oxirgi raqami 5 yoki undan katta bo‘lsa yuqoriga, aks holda pastga. Keyin uchta yaxlitlangan qiymatning yig‘indisini qaytaring."
+  },
+  "4129": {
+    "title": "Biri yaqin, ikkinchisi uzoq",
+    "pattern": "Qoidani avval qog‘ozda chiqarish",
+    "statement": "b va c dan aynan bittasi a dan ko‘pi bilan 1 masofada turgan bo‘lsa va qolgan qiymat boshqa ikkitasining har biridan kamida 2 masofada turgan bo‘lsa, true qaytaring."
+  },
+  "4130": {
+    "title": "21 ga yaqin, lekin undan oshmagan",
+    "pattern": "Qoidani avval qog‘ozda chiqarish",
+    "statement": "Musbat a va b sonlari berilgan. Ulardan 21 ga yaqinrog‘ini va 21 dan oshmaganini qaytaring, ikkisi ham 21 dan oshsa 0 qaytaring."
+  },
+  "4131": {
+    "title": "Uch son orasidagi teng oraliqlar",
+    "pattern": "Qoidani avval qog‘ozda chiqarish",
+    "statement": "a, b va c sonlari ixtiyoriy tartibda berilgan. Eng kichik bilan o‘rta qiymat orasidagi oraliq o‘rta qiymat bilan eng katta orasidagi oraliqqa teng bo‘lsa, true qaytaring."
+  },
+  "4132": {
+    "title": "Qancha kichik bo‘lak kerak",
+    "pattern": "Qoidani avval qog‘ozda chiqarish",
+    "statement": "small va big sonlari berilgan. goal ni 5 va 1 lardan to‘plang: goal dan oshmaydigan darajada ko‘p, ammo ko‘pi bilan big ta 5 oling, qolganini 1 lar bilan to‘ldiring. Buning uchun qancha 1 kerak bo‘lganini qaytaring, small tadan ko‘pi kerak bo‘lsa -1 qaytaring."
+  },
+  "4133": {
+    "title": "a ning qiymatini b ga o‘tkazish",
+    "pattern": "Lug‘atni kalit bo‘yicha o‘qish va yozish",
+    "statement": "Agar someMap da 'a' kaliti bo‘lsa, uning qiymatini 'b' kaliti ostiga yozing, 'a' ning qiymatini esa bo‘sh satr qilib qo‘ying. someMap ni o‘z joyida o‘zgartirib qaytaring."
+  },
+  "4134": {
+    "title": "a ni b ga ko‘chirish va c ni o‘chirish",
+    "pattern": "Lug‘atni kalit bo‘yicha o‘qish va yozish",
+    "statement": "Agar someMap da 'a' kaliti bo‘lsa, uning qiymatini 'b' kalitiga ko‘chiring. 'c' kalitini har qanday holatda o‘chiring, qolgan yozuvlarga tegmang va someMap ni qaytaring."
+  },
+  "4135": {
+    "title": "a va b qiymatlarini ulash",
+    "pattern": "Lug‘atni kalit bo‘yicha o‘qish va yozish",
+    "statement": "someMap da 'a' ham, 'b' ham bo‘lsa, ularning ikki qiymatini birga ulab, avval 'a' ning qiymati keladigan tartibda, 'ab' kaliti ostiga yozing. Boshqa hech narsani o‘zgartirmang va someMap ni qaytaring."
+  },
+  "4136": {
+    "title": "ice cream va bread uchun qiymatlar",
+    "pattern": "Lug‘atni kalit bo‘yicha o‘qish va yozish",
+    "statement": "Agar someMap da 'ice cream' kaliti bo‘lsa, uning qiymatini 'cherry' qilib qo‘ying. 'bread' kalitiga har qanday holatda 'butter' ni yozing, so‘ng someMap ni qaytaring."
+  },
+  "4137": {
+    "title": "yogurt uchun nusxa va spinach uchun almashtirish",
+    "pattern": "Lug‘atni kalit bo‘yicha o‘qish va yozish",
+    "statement": "Agar someMap da 'ice cream' kaliti bo‘lsa, uning qiymatini 'yogurt' kaliti ostiga ham yozing, agar 'spinach' kaliti bo‘lsa, uning qiymatini 'nuts' ga almashtiring. someMap ni qaytaring."
+  },
+  "4138": {
+    "title": "fries va spinach uchun nusxalar",
+    "pattern": "Lug‘atni kalit bo‘yicha o‘qish va yozish",
+    "statement": "Agar someMap da 'potato' kaliti bo‘lsa, uning qiymatini 'fries' kaliti ostiga ham yozing, agar 'salad' kaliti bo‘lsa, uning qiymatini 'spinach' kaliti ostiga ham yozing. someMap ni qaytaring."
+  },
+  "4139": {
+    "title": "Qiymatlari teng bo‘lsa a va b ni o‘chirish",
+    "pattern": "Lug‘atni kalit bo‘yicha o‘qish va yozish",
+    "statement": "someMap da 'a' ham, 'b' ham bo‘lsa va ularning qiymatlari teng bo‘lsa, bu ikki kalitni ham o‘chiring. Har qanday holatda someMap ni qaytaring."
+  },
+  "4140": {
+    "title": "a va b dan yo‘qini qo‘shish",
+    "pattern": "Lug‘atni kalit bo‘yicha o‘qish va yozish",
+    "statement": "someMap da 'a' va 'b' kalitlaridan aynan bittasi bo‘lsa, yo‘qini xuddi shu qiymat bilan qo‘shing. Har qanday holatda someMap ni qaytaring."
+  },
+  "4141": {
+    "title": "a va b qiymatlari uzunligini taqqoslash",
+    "pattern": "Lug‘atni kalit bo‘yicha o‘qish va yozish",
+    "statement": "someMap da 'a' ham, 'b' ham bo‘lsa, ularning qiymatlari uzunligini taqqoslang: uzunliklar farq qilsa, 'c' kalitiga uzunroq qiymatni yozing, teng bo‘lsa, 'a' va 'b' ning qiymatlarini bo‘sh satr qilib qo‘ying. Har qanday holatda someMap ni qaytaring."
+  },
+  "4142": {
+    "title": "Faktorial",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "n kamida 1 bo‘lganda 1 dan n gacha barcha butun sonlarni ko‘paytirib, shu ko‘paytmani qaytaring. Buni sikl bilan emas, rekursiya bilan yeching."
+  },
+  "4143": {
+    "title": "Ko‘paytirishsiz ikkilantirish",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "0 yoki undan katta bunnies soni berilgan. Shu sonning ikki barobarini qaytaring, uni har bir birlik uchun 2 qo‘shib yig‘ib boring. Buni sikl bilan emas, rekursiya bilan va ko‘paytirishsiz yeching."
+  },
+  "4144": {
+    "title": "Fibonachchi soni",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "0 bilan boshlanib, keyin 1 keladigan va har bir qiymati o‘zidan oldingi ikkitasining yig‘indisiga teng bo‘lgan ketma-ketlikning n o‘rnidagi qiymatini qaytaring; o‘rinlar 0 dan sanaladi. Buni sikl bilan emas, rekursiya bilan yeching."
+  },
+  "4145": {
+    "title": "Ikkilik va uchliklar yig‘indisi",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "1 dan bunnies gacha butun sonlarni olib, har bir juftiga 3, har bir toqiga 2 qo‘shing, so‘ng shu yig‘indini qaytaring. Buni sikl bilan emas, rekursiya bilan va ko‘paytirishsiz yeching."
+  },
+  "4146": {
+    "title": "Uchburchak soni",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "0 yoki undan katta rows berilgan. 1 dan rows gacha barcha butun sonlarning yig‘indisini qaytaring. Buni sikl bilan emas, rekursiya bilan va ko‘paytirishsiz yeching."
+  },
+  "4147": {
+    "title": "Raqamlar yig‘indisi",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "Manfiy bo‘lmagan butun son n berilgan. Uning o‘nlik raqamlarini qo‘shib, yig‘indini qaytaring. Buni sikl bilan emas, rekursiya bilan yeching."
+  },
+  "4148": {
+    "title": "Yettilarni sanash",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "Manfiy bo‘lmagan butun son n berilgan. Uning o‘nlik raqamlaridan qanchasi 7 ga tengligini qaytaring. Buni sikl bilan emas, rekursiya bilan yeching."
+  },
+  "4149": {
+    "title": "Sakkizlar, yonma-yoni ikki karra",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "Manfiy bo‘lmagan butun son n berilgan. Uning 8 ga teng raqamlarini sanang: chap tomonida darhol yana bitta 8 turgan sakkizga 2, boshqa har qanday sakkizga 1 qo‘shing, va shu sonni qaytaring. Buni sikl bilan emas, rekursiya bilan yeching."
+  },
+  "4150": {
+    "title": "Darajaga ko‘tarish",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "base va n har biri kamida 1 bo‘lganda base ning n ta nusxasining ko‘paytmasini qaytaring. Buni sikl bilan emas, rekursiya bilan yeching."
+  },
+  "4151": {
+    "title": "x belgilarini sanash",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "str ning belgilaridan qanchasi kichik x ga tengligini qaytaring. Buni sikl bilan emas, rekursiya bilan yeching."
+  },
+  "4152": {
+    "title": "hi juftliklarini sanash",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "str ichida hi harf juftligi necha marta uchraganini qaytaring. Buni sikl bilan emas, rekursiya bilan yeching."
+  },
+  "4153": {
+    "title": "x ni y ga almashtirish",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "str nusxasini qaytaring, unda har bir kichik x kichik y ga aylangan bo‘ladi. Buni sikl bilan emas, rekursiya bilan yeching."
+  },
+  "4154": {
+    "title": "pi ni 3.14 ga almashtirish",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "str nusxasini qaytaring, unda pi harflarining har bir uchrashi 3.14 matniga almashtirilgan bo‘ladi. Buni sikl bilan emas, rekursiya bilan yeching."
+  },
+  "4155": {
+    "title": "x belgilarini olib tashlash",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "str nusxasini qaytaring, undan barcha kichik x belgilari olib tashlangan, qolgani esa joyida qoldirilgan bo‘ladi. Buni sikl bilan emas, rekursiya bilan yeching."
+  },
+  "4156": {
+    "title": "6 qiymati bormi",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "nums ichida 6 qiymati i indeksida yoki undan keyin biror joyda uchrasa, true qaytaring. Buni sikl bilan emas, rekursiya bilan yeching: massiv bo‘ylab i + 1 ni uzatib yuring, eng tashqi chaqiruv i ga 0 uzatadi."
+  },
+  "4157": {
+    "title": "11 qiymatlarini sanash",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "nums ichida 11 qiymati i indeksidan oxirigacha necha marta uchraganini qaytaring. Buni sikl bilan emas, rekursiya bilan yeching: massiv bo‘ylab i + 1 ni uzatib yuring, eng tashqi chaqiruv i ga 0 uzatadi."
+  },
+  "4158": {
+    "title": "Yonidagi qiymat o‘n barobar katta",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "nums ning i indeksidagi yoki undan keyingi qandaydir elementidan keyin darhol o‘sha elementning o‘n barobari turgan bo‘lsa, true qaytaring. Buni sikl bilan emas, rekursiya bilan yeching: massiv bo‘ylab i + 1 ni uzatib yuring, eng tashqi chaqiruv i ga 0 uzatadi."
+  },
+  "4159": {
+    "title": "Belgilar orasiga yulduzcha",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "str nusxasini qaytaring, unda har bir belgi va undan keyingisi orasiga yulduzcha qo‘yilgan bo‘ladi. Buni sikl bilan emas, rekursiya bilan yeching."
+  },
+  "4160": {
+    "title": "Bir xil belgilar orasiga yulduzcha",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "str nusxasini qaytaring, unda belgi darhol takrorlangan har bir joyga yulduzcha qo‘yiladi, shunda ikki bir xil belgi ajralib qoladi. Buni sikl bilan emas, rekursiya bilan yeching."
+  },
+  "4161": {
+    "title": "x belgilarini oxiriga surish",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "str nusxasini qaytaring, unda har bir kichik x boshqa barcha belgilardan keyinga o‘tkazilgan, qolgan belgilar esa dastlabki tartibini saqlaydi. Buni sikl bilan emas, rekursiya bilan yeching."
+  },
+  "4162": {
+    "title": "Bitta belgi orqali juftliklarni sanash",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "str ning belgilaridan qanchasiga ikki o‘rin keyinda turgan xuddi shu belgi mos kelishini qaytaring, qoplanuvchi mos kelishlarni ham hisoblab. Buni sikl bilan emas, rekursiya bilan yeching."
+  },
+  "4163": {
+    "title": "abc va aba qism satrlarini sanash",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "str ning qism satrlaridan qanchasi abc yoki aba ekanini qaytaring; har bir boshlanish o‘rni alohida hisoblanadi, qism satrlar qoplanganda ham. Buni sikl bilan emas, rekursiya bilan yeching."
+  },
+  "4164": {
+    "title": "11 juftliklarini qoplanishsiz sanash",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "str ichida 11 raqam juftligi necha marta uchraganini qaytaring; mos kelishlar chapdan o‘ngga olinadi va bitta belgi qayta ishlatilmaydi, shuning uchun uchta birdan iborat ketma-ketlik bir marta hisoblanadi. Buni sikl bilan emas, rekursiya bilan yeching."
+  },
+  "4165": {
+    "title": "Bir xil belgilar ketma-ketligini qisqartirish",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "str nusxasini qaytaring, unda bir belgining o‘z yonida takrorlangan har bir ketma-ketligi shu belgining bitta nusxasiga qisqartirilgan bo‘ladi. Buni sikl bilan emas, rekursiya bilan yeching."
+  },
+  "4166": {
+    "title": "Oldida x bo‘lmagan hi juftliklarini sanash",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "str ichida hi harf juftligi necha marta uchraganini qaytaring, oldida darhol kichik x turgan uchrashlarni hisobga olmasdan. Buni sikl bilan emas, rekursiya bilan yeching."
+  },
+  "4167": {
+    "title": "Chiziqchadan yulduzchagacha bo‘lgan bo‘lak",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "str satri chiziqchani va undan keyin biror joyda yulduzchani saqlaydi. str ning shu chiziqchadan shu yulduzchagacha bo‘lgan bo‘lagini qaytaring, ikkisini ham qoldirib, tashqaridagi hammasini tashlab. Buni sikl bilan emas, rekursiya bilan yeching."
+  },
+  "4168": {
+    "title": "Ichma-ich qavslar",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "str bo‘sh bo‘lsa yoki bir qator ochiluvchi qavsdan, keyin xuddi shuncha yopiluvchi qavsdan iborat bo‘lib, boshqa hech nima bo‘lmasa, shunda har bir juftlik keyingisini o‘rab olsa, true qaytaring. Buni sikl bilan emas, rekursiya bilan yeching."
+  },
+  "4169": {
+    "title": "Qoplanmagan uchrashlar soni",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "Bo‘sh bo‘lmagan sub berilgan. Mos kelishlar chapdan o‘ngga olinib, bitta belgi ikki mos kelishda ishlatilmaganda sub ning str ichida necha marta uchraganini qaytaring. Buni sikl bilan emas, rekursiya bilan yeching."
+  },
+  "4170": {
+    "title": "n ta uchrash bormi",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "Bo‘sh bo‘lmagan sub va manfiy bo‘lmagan n berilgan. str ichida sub kamida n marta uchrasa, true qaytaring; uchrashlar bir-birini qoplashi mumkin. Buni sikl bilan emas, rekursiya bilan yeching."
+  },
+  "4171": {
+    "title": "Chetki uchrashlar orasidagi bo‘lak uzunligi",
+    "pattern": "Asosiy holat va bir qadam kichrog‘i",
+    "statement": "Bo‘sh bo‘lmagan sub berilgan. str ning boshida sub va oxirida sub turgan eng uzun bo‘lagini toping va uning necha belgi uzunligini qaytaring, sub yo‘q bo‘lsa 0 qaytaring. Buni sikl bilan emas, rekursiya bilan yeching."
+  },
+  "4172": {
+    "title": "Ism bilan salomlashish",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "Hello so‘zi, bo‘sh joy, name va oxirida undov belgisidan tuzilgan salomlashishni qaytaring."
+  },
+  "4173": {
+    "title": "a, b, b va a dan tuzilgan satr",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "Avval a, keyin b ikki marta, so‘ngra yana a keladigan satrni qaytaring. b bo‘sh bo‘lsa, natija ikki marta yozilgan a bo‘ladi."
+  },
+  "4174": {
+    "title": "HTML tegiga o‘rash",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "word ni nomi tag bo‘lgan HTML elementga o‘rab qaytaring: word dan oldin burchak qavslardagi ochuvchi teg, undan keyin esa mos yopuvchi teg turadi."
+  },
+  "4175": {
+    "title": "O‘ram ichidagi so‘z",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "Uzunligi 4 ta belgi bo‘lgan out satri berilgan. Uning birinchi ikki belgisini, keyin word ni, so‘ngra oxirgi ikki belgisini qaytaring."
+  },
+  "4176": {
+    "title": "Oxirgi ikki belgining uch nusxasi",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "str ning oxirgi ikki belgisining uch nusxasini ketma-ket ulab qaytaring. str kamida ikki belgidan iborat."
+  },
+  "4177": {
+    "title": "Birinchi ikki belgi",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "str ning birinchi ikki belgisini qaytaring, agar str bundan qisqa bo‘lsa, butun satrni qaytaring: bitta belgidan o‘sha belgining o‘zi, bo‘sh satrdan esa bo‘sh satr qaytadi."
+  },
+  "4178": {
+    "title": "Birinchi yarmi",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "Uzunligi juft bo‘lgan str satri berilgan. Uning birinchi yarmidagi belgilarni qaytaring."
+  },
+  "4179": {
+    "title": "Chetki belgilarsiz satr",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "str ni birinchi va oxirgi belgisidan ayirib qaytaring. str kamida ikki belgidan iborat, shuning uchun aynan ikki belgidan bo‘sh satr chiqadi."
+  },
+  "4180": {
+    "title": "Qisqa, uzun, qisqa",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "a va b dan qisqasini, keyin uzunini, so‘ngra yana qisqasini qaytaring. Uzunliklar hech qachon teng bo‘lmaydi, lekin satrlardan biri bo‘sh bo‘lishi mumkin."
+  },
+  "4181": {
+    "title": "Birinchi belgilarsiz ulash",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "a va b ni har birining birinchi belgisini tashlab, birga ulab qaytaring. Ikkala satr ham kamida bitta belgidan iborat."
+  },
+  "4182": {
+    "title": "Birinchi ikki belgi oxiriga",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "str ning birinchi ikki belgisini oxiriga ko‘chirib qaytaring. str kamida ikki belgidan iborat, shuning uchun aynan ikki belgili satr o‘zgarmaydi."
+  },
+  "4183": {
+    "title": "Oxirgi ikki belgi boshiga",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "str ning oxirgi ikki belgisini boshiga ko‘chirib qaytaring. str kamida ikki belgidan iborat, shuning uchun aynan ikki belgili satr o‘zgarmaydi."
+  },
+  "4184": {
+    "title": "Tanlangan uchdagi belgi",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "front true bo‘lganda str ning birinchi belgisini, false bo‘lganda oxirgi belgisini qaytaring. str hech qachon bo‘sh bo‘lmaydi, bitta belgili satr esa ikkala holatda ham o‘sha belgini beradi."
+  },
+  "4185": {
+    "title": "Qisqa satrda ham chetki belgilarsiz",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "str ni birinchi va oxirgi belgisidan ayirib qaytaring. str ikki belgidan iborat yoki undan qisqa bo‘lsa, natija bo‘sh satr bo‘ladi."
+  },
+  "4186": {
+    "title": "O‘rtadagi ikki belgi",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "Uzunligi juft va kamida ikki bo‘lgan str satri berilgan. Uning o‘rtasida turgan ikki belgini qaytaring."
+  },
+  "4187": {
+    "title": "ly bilan tugashi",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "str ly harflari bilan tugaganda true qaytaring. Ikki belgidan qisqa satr false beradi."
+  },
+  "4188": {
+    "title": "Birinchi va oxirgi n belgi",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "str ning birinchi n belgisini, keyin oxirgi n belgisini qaytaring. n qiymati str uzunligidan katta emas, ikki bo‘lak bir-birining ustiga tushishi mumkin, n 0 ga teng bo‘lganda esa bo‘sh satr chiqadi."
+  },
+  "4189": {
+    "title": "Berilgan indeksdan ikki belgi",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "str ning index indeksidan boshlanadigan ikki belgisini qaytaring. index manfiy bo‘lsa yoki undan keyin ikkitadan kam belgi qolsa, uning o‘rniga str ning birinchi ikki belgisini qaytaring."
+  },
+  "4190": {
+    "title": "O‘rtadagi uch belgi",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "Uzunligi toq va kamida uch bo‘lgan str ning o‘rtasida turgan uch belgini qaytaring."
+  },
+  "4191": {
+    "title": "Satr boshidagi bad harflari",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "bad harflari str da 0-o‘rindan yoki 1-o‘rindan boshlanganda true qaytaring. Undan keyingi har qanday o‘rin, shuningdek bu harflarni sig‘dira olmaydigan qisqa str false beradi."
+  },
+  "4192": {
+    "title": "@ bilan to‘ldirilgan ikki belgi",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "str boshidan olingan ikki belgili satrni qaytaring, str da yetmagan har bir belgi o‘rniga @ qo‘ying, shunda bo‘sh str @@ beradi."
+  },
+  "4193": {
+    "title": "a ning birinchi va b ning oxirgi belgisi",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "a ning birinchi belgisini, keyin b ning oxirgi belgisini qaytaring; tegishli satr bo‘sh bo‘lsa, o‘sha belgi o‘rniga @ yozing."
+  },
+  "4194": {
+    "title": "Tutashgan joyda takrorsiz ulash",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "a ni b ga ulab qaytaring, lekin a ning oxirgi belgisi b ning birinchi belgisi bilan bir xil bo‘lsa, bu juftlikdan faqat bittasini qoldiring. Satrlardan biri bo‘sh bo‘lishi mumkin."
+  },
+  "4195": {
+    "title": "Oxirgi ikki belgining o‘rin almashishi",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "str ning oxirgi ikki belgisining o‘rnini almashtirib qaytaring. Bitta belgili yoki bo‘sh satr o‘zgarishsiz qaytadi."
+  },
+  "4196": {
+    "title": "Satr boshidagi rang",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "str red bilan boshlanganda red, blue bilan boshlanganda blue, boshqa barcha holatlarda esa bo‘sh satr qaytaring."
+  },
+  "4197": {
+    "title": "Birinchi va oxirgi juftlikning mos kelishi",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "str ning birinchi ikki belgisi oxirgi ikki belgisi bilan bir xil bo‘lganda true qaytaring. Aynan ikki belgili satr ham to‘g‘ri keladi, chunki ikkala juftlik ham o‘sha belgilarning o‘zi."
+  },
+  "4198": {
+    "title": "Qisqa uzunlik bo‘yicha ulash",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "a va b dan uzunini qisqasining uzunligiga qadar qisqartirib, faqat uning oxirgi belgilarini qoldiring, so‘ngra ikkisini birga ulab qaytaring. a yoki b bo‘sh bo‘lsa, natija ham bo‘sh bo‘ladi."
+  },
+  "4199": {
+    "title": "Birinchi ikki belgining uch nusxasi",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "str ning birinchi ikki belgisining uch nusxasini ketma-ket ulab qaytaring. str da ikkitadan kam belgi bo‘lsa, boridan foydalaning, shuning uchun bo‘sh str bo‘sh satr beradi."
+  },
+  "4200": {
+    "title": "Boshdagi takroriy juftlikni olib tashlash",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "str ning birinchi ikki belgisi oxirgi ikkitasi bilan aynan bir xil juftlik bo‘lsa, str ni shu boshlang‘ich juftliksiz qaytaring; aks holda str ni o‘zgarishsiz qaytaring. Aynan ikki belgili satr o‘zi bilan mos keladi va bo‘sh satr beradi."
+  },
+  "4201": {
+    "title": "a va b dan tashqari birinchi ikki belgini olib tashlash",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "str ni birinchi ikki belgisidan ayirib qaytaring, lekin birinchi belgi a bo‘lsa, u saqlanadi, ikkinchi belgi b bo‘lsa, u ham saqlanadi."
+  },
+  "4202": {
+    "title": "Namunaga mos satr boshi",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "word str ga mos keladi deb hisoblang, agar ular boshidan bir xil ketsa va eng birinchi belgisiga farq qilish ruxsat etilsa. Mos kelganda str ning word uzunligidagi boshlang‘ich qismini qaytaring, mos kelmaganda yoki str word ni sig‘dira olmaydigan darajada qisqa bo‘lganda bo‘sh satr qaytaring."
+  },
+  "4203": {
+    "title": "Chetlardagi x ni olib tashlash",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "str ning birinchi belgisi x bo‘lsa, uni olib tashlang, oxirgi belgisi x bo‘lsa, uni ham olib tashlang va natijani qaytaring. Boshqa har qanday x o‘z joyida qoladi."
+  },
+  "4204": {
+    "title": "Birinchi ikki belgidagi x ni olib tashlash",
+    "pattern": "Kesib ulash, qisqa holatlarni yodda tutib",
+    "statement": "str ning birinchi ikki belgisiga qarab, ular orasidan x bo‘lgan har birini olib tashlang, str ning qolgan qismini o‘zgarishsiz qoldiring."
+  },
+  "4205": {
+    "title": "Har bir belgini ikkilantirish",
+    "pattern": "Satr bo‘ylab oyna bilan yurish",
+    "statement": "str ni har bir belgisi o‘z o‘rnida ikki marta yozilgan holda qaytaring. Bo‘sh str bo‘sh satr beradi."
+  },
+  "4206": {
+    "title": "hi uchrashlari soni",
+    "pattern": "Satr bo‘ylab oyna bilan yurish",
+    "statement": "str da hi harflar juftligi necha marta uchraganini qaytaring. Taqqoslash harf registrini hisobga oladi, shuning uchun bosh harfli HI sanalmaydi."
+  },
+  "4207": {
+    "title": "cat va dog ning teng soni",
+    "pattern": "Satr bo‘ylab oyna bilan yurish",
+    "statement": "cat va dog str da bir xil marta uchraganda true qaytaring."
+  },
+  "4208": {
+    "title": "Uchinchi belgisi har qanday bo‘lgan code ni sanash",
+    "pattern": "Satr bo‘ylab oyna bilan yurish",
+    "statement": "str da c dan keyin o, so‘ngra har qanday bitta belgi, keyin esa e keladigan o‘rinlar sonini qaytaring."
+  },
+  "4209": {
+    "title": "Bir satr ikkinchisining oxirida",
+    "pattern": "Satr bo‘ylab oyna bilan yurish",
+    "statement": "a b bilan tugaganda yoki b a bilan tugaganda true qaytaring, belgilarni harf registrini hisobga olmasdan taqqoslang."
+  },
+  "4210": {
+    "title": "Oldida nuqtasi yo‘q xyz harflari",
+    "pattern": "Satr bo‘ylab oyna bilan yurish",
+    "statement": "str da xyz harflari oldida nuqta turmagan o‘rinda uchraganda true qaytaring."
+  },
+  "4211": {
+    "title": "b, har qanday belgi va yana b",
+    "pattern": "Satr bo‘ylab oyna bilan yurish",
+    "statement": "str da ketma-ket b, har qanday bitta belgi va yana b kelganda true qaytaring."
+  },
+  "4212": {
+    "title": "Har bir x dan keyin y bor",
+    "pattern": "Satr bo‘ylab oyna bilan yurish",
+    "statement": "str dagi har bir x dan keyin biror joyda y bo‘lganda true qaytaring. Bitta y o‘zidan oldin turgan barcha x belgilarini qoplaydi."
+  },
+  "4213": {
+    "title": "Ikki satr belgilarini navbatlash",
+    "pattern": "Satr bo‘ylab oyna bilan yurish",
+    "statement": "a va b belgilarini navbatlab qaytaring: avval a ning birinchi belgisi, keyin b ning birinchi belgisi, so‘ngra har birining ikkinchi belgisi va shu tartibda davom etadi. Satrlardan biri tugagach, ikkinchisining qolgan qismi oxiriga qo‘shiladi."
+  },
+  "4214": {
+    "title": "Oxirgi n belgining n nusxasi",
+    "pattern": "Satr bo‘ylab oyna bilan yurish",
+    "statement": "str ning oxirgi n belgisining n nusxasini ketma-ket ulab qaytaring. n 0 dan str uzunligigacha qiymat oladi, n 0 ga teng bo‘lganda bo‘sh satr chiqadi."
+  },
+  "4215": {
+    "title": "Qisqarib boruvchi satr boshlari",
+    "pattern": "Satr bo‘ylab oyna bilan yurish",
+    "statement": "str ning birinchi n belgisini, keyin birinchi n minus 1 belgisini va shu tartibda bitta birinchi belgigacha qaytaring. n 0 dan str uzunligigacha qiymat oladi, n 0 ga teng bo‘lganda bo‘sh satr chiqadi."
+  },
+  "4216": {
+    "title": "So‘zni ajratuvchi bilan takrorlash",
+    "pattern": "Satr bo‘ylab oyna bilan yurish",
+    "statement": "word ning count nusxasini qaytaring, qo‘shni nusxalar orasiga sep qo‘yib. count 1 ga teng bo‘lganda faqat word, 0 ga teng bo‘lganda esa bo‘sh satr chiqadi."
+  },
+  "4217": {
+    "title": "Satr boshining keyinroq takrorlanishi",
+    "pattern": "Satr bo‘ylab oyna bilan yurish",
+    "statement": "str ning birinchi n belgisini olib, xuddi shu belgilar ketma-ketligi str da keyinroq yana uchrasa, true qaytaring. str bo‘sh emas, n esa 1 dan uning uzunligigacha qiymat oladi."
+  },
+  "4218": {
+    "title": "Satr o‘rtasidagi xyz harflari",
+    "pattern": "Satr bo‘ylab oyna bilan yurish",
+    "statement": "str da xyz harflari bo‘lib, ulardan oldingi belgilar soni bilan keyingi belgilar soni ko‘pi bilan bittaga farq qilganda true qaytaring."
+  },
+  "4219": {
+    "title": "Ikki bread orasidagi qism",
+    "pattern": "Satr bo‘ylab oyna bilan yurish",
+    "statement": "str da bread ning birinchi va oxirgi uchrashi orasida turgan qismni qaytaring, bread ikki martadan kam uchrasa, bo‘sh satr qaytaring."
+  },
+  "4220": {
+    "title": "Yulduzchalar atrofidagi bir xil belgilar",
+    "pattern": "Satr bo‘ylab oyna bilan yurish",
+    "statement": "str dagi ikki tomonida ham belgi bo‘lgan har bir yulduzchaning chapida va o‘ngida bir xil belgi turganda true qaytaring. str ning eng boshida yoki eng oxirida turgan yulduzchalar hisobga olinmaydi, bo‘sh str esa true beradi."
+  },
+  "4221": {
+    "title": "Uchtalik guruhlar ichida siljish",
+    "pattern": "Satr bo‘ylab oyna bilan yurish",
+    "statement": "str ni uchta belgili guruhlar bilan bo‘ylab yurib, har bir guruhning birinchi belgisini shu guruh oxiriga ko‘chiring, so‘ngra guruhlarni qaytadan ulab qaytaring. Uchtadan kam belgili oxirgi guruh tashlab yuboriladi."
+  },
+  "4222": {
+    "title": "z va p orasidagi o‘rtani olib tashlash",
+    "pattern": "Satr bo‘ylab oyna bilan yurish",
+    "statement": "str ni z bilan boshlanib p bilan tugaydigan har bir uchta belgili ketma-ketlikning o‘rta belgisini olib tashlab qaytaring."
+  },
+  "4223": {
+    "title": "Yulduzchalarni qo‘shnilari bilan olib tashlash",
+    "pattern": "Satr bo‘ylab oyna bilan yurish",
+    "statement": "str ni har bir yulduzcha bilan birga uning oldidagi va keyingi belgini ham olib tashlab qaytaring."
+  },
+  "4224": {
+    "title": "So‘zdan tashqari hammasini plyusga almashtirish",
+    "pattern": "Satr bo‘ylab oyna bilan yurish",
+    "statement": "str ni har bir belgisini plyus belgisiga almashtirib qaytaring, lekin word uchragan joylarni o‘z holida qoldiring. word hech qachon bo‘sh bo‘lmaydi."
+  },
+  "4225": {
+    "title": "So‘zning har bir uchrashidagi qo‘shnilar",
+    "pattern": "Satr bo‘ylab oyna bilan yurish",
+    "statement": "str da word uchragan har bir o‘rin oldidagi va keyingi belgidan tuzilgan satrni qaytaring. str ning har qanday chetidan chiqib ketadigan qo‘shni tashlab ketiladi, ikki uchrash orasida turgan belgi esa ikki marta olinadi."
+  },
+  "4226": {
+    "title": "y yoki z bilan tugagan so‘zlar soni",
+    "pattern": "Ketma-ketlikni qidirib, eng yaxshisini eslab qolish",
+    "statement": "str satri berilgan. y yoki z harfi, registri qanday bo‘lishidan qat’i nazar, to‘g‘ridan-to‘g‘ri ortidan alifbo harfi kelmagan holda necha marta uchraganini qaytaring. str ning eng oxiridagi y yoki z harfi ham hisobga olinadi."
+  },
+  "4227": {
+    "title": "Registrni hisobga olmasdan qism satrni o‘chirish",
+    "pattern": "Ketma-ketlikni qidirib, eng yaxshisini eslab qolish",
+    "statement": "base va remove satrlari berilgan. base ni remove ning barcha uchrashlari o‘chirilgan holda qaytaring, taqqoslashda harf registri hisobga olinmaydi. Mos kelishlar chapdan o‘ngga olinadi va bir-birining ustiga tushmaydi, saqlanib qolgan belgilar esa base dagi registrini saqlaydi."
+  },
+  "4228": {
+    "title": "is va not qism satrlarining teng soni",
+    "pattern": "Ketma-ketlikni qidirib, eng yaxshisini eslab qolish",
+    "statement": "str satri berilgan. is qism satri not qism satri bilan bir xil marta uchraganda true qaytaring. Ikki son ham butun satr bo‘ylab sanaladi va bunda harf registri hisobga olinadi."
+  },
+  "4229": {
+    "title": "Har bir g boshqa g yonida turadi",
+    "pattern": "Ketma-ketlikni qidirib, eng yaxshisini eslab qolish",
+    "statement": "str satri berilgan. Undagi har bir kichik g ning to‘g‘ridan-to‘g‘ri oldida yoki to‘g‘ridan-to‘g‘ri ortida boshqa kichik g bo‘lganda true qaytaring. Umuman g yo‘q satr true beradi."
+  },
+  "4230": {
+    "title": "Uchta bir xil belgidan iborat ketma-ketliklar soni",
+    "pattern": "Ketma-ketlikni qidirib, eng yaxshisini eslab qolish",
+    "statement": "str satri berilgan. Uchta bir xil belgidan iborat ketma-ketlikni boshlaydigan o‘rinlar sonini qaytaring. Ketma-ketliklar bir-birining ustiga tushishi mumkin, shuning uchun ketma-ket to‘rtta bir xil belgi ikki marta sanaladi."
+  },
+  "4231": {
+    "title": "Satrdagi raqamlar yig‘indisi",
+    "pattern": "Ketma-ketlikni qidirib, eng yaxshisini eslab qolish",
+    "statement": "str satri berilgan. Undagi 0 dan 9 gacha raqam belgilarining yig‘indisini qaytaring, bunda har biri alohida raqam sifatida olinadi. Qolgan barcha belgilar hisobga olinmaydi, raqamsiz satr esa 0 beradi."
+  },
+  "4232": {
+    "title": "Satrning mos keladigan boshi va oxiri",
+    "pattern": "Ketma-ketlikni qidirib, eng yaxshisini eslab qolish",
+    "statement": "string satrining eng uzun boshlang‘ich qismini qaytaring, u string oxirida ham uchrashi kerak va ikki nusxa bir-birining ustiga tushmasligi kerak. Shuning uchun javob string uzunligining yarmidan uzun bo‘lmaydi va bunday boshlang‘ich qism bo‘lmaganda javob bo‘sh bo‘ladi."
+  },
+  "4233": {
+    "title": "Boshi va oxirining teskari mos kelishi",
+    "pattern": "Ketma-ketlikni qidirib, eng yaxshisini eslab qolish",
+    "statement": "string satrining eng uzun boshlang‘ich qismini qaytaring, uning teskari yozuvi string oxirida uchrashi kerak. Ikki qism bir-birining ustiga tushishi mumkin, shuning uchun palindrom butun string ni qaytaradi, birinchi va oxirgi belgilar farq qilganda esa javob bo‘sh bo‘ladi."
+  },
+  "4234": {
+    "title": "Eng uzun belgilar ketma-ketligining uzunligi",
+    "pattern": "Ketma-ketlikni qidirib, eng yaxshisini eslab qolish",
+    "statement": "str satri berilgan. Yonma-yon turgan bir xil belgilarning eng uzun ketma-ketligi uzunligini qaytaring. Bo‘sh satr 0 beradi."
+  },
+  "4235": {
+    "title": "Satrdagi sonlar yig‘indisi",
+    "pattern": "Ketma-ketlikni qidirib, eng yaxshisini eslab qolish",
+    "statement": "str satri berilgan. Bir yoki bir nechta raqam belgisidan iborat har bir ketma-ketlikni alohida son deb hisoblang va shu sonlarning yig‘indisini qaytaring. Qolgan barcha belgilar hisobga olinmaydi, raqamsiz satr esa 0 beradi."
+  },
+  "4236": {
+    "title": "Alohida turgan is so‘zini is not bilan almashtirish",
+    "pattern": "Ketma-ketlikni qidirib, eng yaxshisini eslab qolish",
+    "statement": "str satri berilgan. Undagi har bir alohida turgan kichik harfli is ni is not ga aylantirib, satrni qaytaring. Uchrash faqat to‘g‘ridan-to‘g‘ri oldidagi belgi va to‘g‘ridan-to‘g‘ri ortidagi belgi alifbo harfi bo‘lmaganda alohida turgan hisoblanadi, shuning uchun uzunroq so‘z ichidagi is o‘zgarishsiz qoladi."
+  },
+  "4237": {
+    "title": "Uzoq uxlash mumkinmi",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "weekday va vacation mantiqiy qiymatlari berilgan. weekday true va vacation false bo‘lgan holatdan tashqari barcha holatlarda true qaytaring."
+  },
+  "4238": {
+    "title": "Ikki mantiqiy qiymatning mos kelishi",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "aSmile va bSmile mantiqiy qiymatlari berilgan. Ular teng bo‘lganda true, farq qilganda false qaytaring."
+  },
+  "4239": {
+    "title": "Ikkilantirilgan yig‘indi",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "a va b ning yig‘indisini qaytaring; bu ikki qiymat teng bo‘lganda yig‘indini ikkilantiring."
+  },
+  "4240": {
+    "title": "21 bilan farq",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "n ning 21 dan qanchalik farq qilishini qaytaring; n 21 dan katta bo‘lganda bu farqni ikki marta hisoblang."
+  },
+  "4241": {
+    "title": "Ruxsat etilgan soatlardan tashqari gap",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "talking true bo‘lganda va hour 7 dan 20 gacha, shu sonlar bilan, oraliqdan tashqarida bo‘lganda true qaytaring. hour qiymati 0 dan 23 gacha bo‘ladi."
+  },
+  "4242": {
+    "title": "10 hosil bo‘ladimi",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "a 10 ga teng bo‘lganda, b 10 ga teng bo‘lganda yoki a va b yig‘indisi 10 ni berganda true qaytaring."
+  },
+  "4243": {
+    "title": "100 yoki 200 ga yaqinlik",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "n 100 dan yoki 200 dan ko‘pi bilan 10 ga uzoqda bo‘lganda true qaytaring."
+  },
+  "4244": {
+    "title": "Ikki sonning ishoralari",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "a va b sonlari va negative mantiqiy qiymati berilgan. a va b dan biri manfiy, ikkinchisi musbat bo‘lganda true qaytaring. negative true bo‘lganda esa faqat a va b ning ikkisi ham manfiy bo‘lgan holda true qaytaring."
+  },
+  "4245": {
+    "title": "not so‘zini qo‘shish",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "str ning oldiga bo‘sh joy bilan 'not ' qo‘yib qaytaring. str allaqachon 'not' bilan boshlansa, str ni o‘zgartirmasdan qaytaring."
+  },
+  "4246": {
+    "title": "Belgini indeks bo‘yicha o‘chirish",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "str dan n indeksida turgan belgini olib tashlab qaytaring. n indeksi har doim str dagi mumkin bo‘lgan o‘rinni ko‘rsatadi."
+  },
+  "4247": {
+    "title": "Birinchi va oxirgi belgini almashtirish",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "str ni birinchi va oxirgi belgisi almashtirilgan holda qaytaring. Uzunligi ikki belgidan qisqa str o‘zgarishsiz qaytadi."
+  },
+  "4248": {
+    "title": "Birinchi uch belgining uch nusxasi",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "str ning birinchi uch belgisidan uch nusxa olib, ularni ulab qaytaring; str uch belgidan qisqa bo‘lsa, uni butunligicha oling."
+  },
+  "4249": {
+    "title": "Oxirgi belgi ikki tomondan",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "str ni oxirgi belgisining nusxasi oldiga ham, orqasiga ham qo‘shilgan holda qaytaring."
+  },
+  "4250": {
+    "title": "3 yoki 5 ga bo‘linish",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "n 3 ga yoki 5 ga qoldiqsiz bo‘linganda true qaytaring."
+  },
+  "4251": {
+    "title": "Birinchi ikki belgi ikki tomondan",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "str ning birinchi ikki belgisini, yoki str qisqaroq bo‘lsa uni butunligicha oling, so‘ng shu bo‘lakni, keyin str ni, keyin yana shu bo‘lakni qaytaring."
+  },
+  "4252": {
+    "title": "hi bilan boshlanish",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "str ning birinchi ikki belgisi aynan shu tartibda h va i bo‘lganda true qaytaring."
+  },
+  "4253": {
+    "title": "Sovuq va issiq birga",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "temp1 va temp2 dan biri 0 dan kichik, ikkinchisi 100 dan katta bo‘lganda true qaytaring."
+  },
+  "4254": {
+    "title": "10 dan 20 gacha son",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "a va b dan kamida bittasi 10 dan 20 gacha, shu sonlar bilan, oraliqda bo‘lganda true qaytaring."
+  },
+  "4255": {
+    "title": "13 dan 19 gacha son bormi",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "a, b va c dan kamida bittasi 13 dan 19 gacha, shu sonlar bilan, oraliqda bo‘lganda true qaytaring."
+  },
+  "4256": {
+    "title": "13 dan 19 gacha aynan bitta son",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "a va b dan aynan bittasi 13 dan 19 gacha, shu sonlar bilan, oraliqda bo‘lganda true qaytaring."
+  },
+  "4257": {
+    "title": "Birinchi belgidan keyingi del ni olib tashlash",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "str ning 1, 2 va 3 indekslaridagi uch belgi del so‘zini tashkil qilsa, str ni ular olib tashlangan holda qaytaring. Aks holda str ni o‘zgarishsiz qaytaring."
+  },
+  "4258": {
+    "title": "Ikkinchi va uchinchi o‘rinda i va x",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "str uzunligi kamida uch belgi bo‘lganda va uning ikkinchi hamda uchinchi belgilari i va x bo‘lganda true qaytaring."
+  },
+  "4259": {
+    "title": "Boshidagi o va z belgilarini tanlash",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "str ning birinchi ikki belgisidan tuzilgan satrni qaytaring: birinchi belgi faqat o bo‘lganda, ikkinchi belgi faqat z bo‘lganda saqlanadi."
+  },
+  "4260": {
+    "title": "Uch sondan eng kattasi",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "a, b va c sonlaridan eng kattasini qaytaring."
+  },
+  "4261": {
+    "title": "10 ga eng yaqini",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "a va b dan 10 ga yaqinrog‘ini qaytaring yoki ikkisi 10 dan bir xil uzoqlikda bo‘lsa, 0 qaytaring."
+  },
+  "4262": {
+    "title": "Ikki son ham bir oraliqda",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "a va b ning ikkisi ham 30 dan 40 gacha, shu sonlar bilan, oraliqda bo‘lganda yoki ikkisi ham 40 dan 50 gacha, shu sonlar bilan, oraliqda bo‘lganda true qaytaring."
+  },
+  "4263": {
+    "title": "10 dan 20 gacha eng katta son",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "a va b orasidan 10 dan 20 gacha, shu sonlar bilan, oraliqqa tushadigan kattaroq qiymatni qaytaring yoki hech biri bu oraliqqa tushmasa, 0 qaytaring."
+  },
+  "4264": {
+    "title": "e belgilarining soni",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "str da kamida bitta va ko‘pi bilan uchta kichik e belgisi bo‘lganda true qaytaring."
+  },
+  "4265": {
+    "title": "Bir xil oxirgi raqam",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "Manfiy bo‘lmagan a va b sonlari berilgan. Ular bir xil raqam bilan tugaganda true qaytaring."
+  },
+  "4266": {
+    "title": "Oxirgi uch belgi bosh harfda",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "str ni oxirgi uch belgisi bosh harflarga o‘girilgan holda qaytaring. str uch belgidan qisqa bo‘lsa, uni butunligicha bosh harflarga o‘giring."
+  },
+  "4267": {
+    "title": "Har n-chi belgi",
+    "pattern": "Bitta shart, to‘g‘ridan-to‘g‘ri yozilgan",
+    "statement": "0 indeksidan boshlab, har safar n belgi qadam tashlab, str belgilarini yig‘ing va ularni ulab qaytaring. n qiymati 1 yoki undan katta."
+  },
+  "4268": {
+    "title": "Satrning n nusxasi",
+    "pattern": "Satr yoki massiv bo‘ylab sikl",
+    "statement": "str ning n nusxasini ulab qaytaring; n nol yoki undan katta."
+  },
+  "4269": {
+    "title": "Birinchi uch belgining n nusxasi",
+    "pattern": "Satr yoki massiv bo‘ylab sikl",
+    "statement": "str ning birinchi uch belgisidan n nusxa olib, ularni ulab qaytaring; str uch belgidan qisqa bo‘lsa, uni butunligicha oling."
+  },
+  "4270": {
+    "title": "Ikkita x juftliklarini sanash",
+    "pattern": "Satr yoki massiv bo‘ylab sikl",
+    "statement": "str da ketma-ket keladigan ikkita x belgisi boshlanadigan o‘rinlar sonini qaytaring. Juftliklar bir-birining ustiga tushishi mumkin, shuning uchun ketma-ket uchta x ikkita juftlik beradi."
+  },
+  "4271": {
+    "title": "Birinchi x dan keyin yana x",
+    "pattern": "Satr yoki massiv bo‘ylab sikl",
+    "statement": "str dagi eng birinchi x belgisidan keyin darhol yana bitta x kelganda true qaytaring. str da x umuman bo‘lmasa, false qaytaring."
+  },
+  "4272": {
+    "title": "Juft indekslardagi belgilar",
+    "pattern": "Satr yoki massiv bo‘ylab sikl",
+    "statement": "str ning juft indekslarida turgan belgilarini ulab qaytaring."
+  },
+  "4273": {
+    "title": "Satrning o‘sib boruvchi boshlanishlari",
+    "pattern": "Satr yoki massiv bo‘ylab sikl",
+    "statement": "str ning barcha prefikslarini — bitta belgidan butun satrgacha — eng qisqasidan eng uzuniga qarab ulab qaytaring."
+  },
+  "4274": {
+    "title": "Oxirgi juftlikning takrorlanishi",
+    "pattern": "Satr yoki massiv bo‘ylab sikl",
+    "statement": "str ning oxirgi ikki belgisini oling va shu juftlik str da bundan oldin necha marta uchraganini qaytaring; oxirdagi juftlikning o‘zi hisobga olinmaydi."
+  },
+  "4275": {
+    "title": "To‘qqizlarni sanash",
+    "pattern": "Satr yoki massiv bo‘ylab sikl",
+    "statement": "nums ning nechta elementi 9 ga tengligini qaytaring."
+  },
+  "4276": {
+    "title": "Birinchi to‘rt elementda to‘qqiz",
+    "pattern": "Satr yoki massiv bo‘ylab sikl",
+    "statement": "nums ning birinchi to‘rt elementi orasida 9 bo‘lganda true qaytaring. Massivda to‘rttadan kam element bo‘lishi mumkin."
+  },
+  "4277": {
+    "title": "Ketma-ket 1, 2 va 3 qiymatlari",
+    "pattern": "Satr yoki massiv bo‘ylab sikl",
+    "statement": "1, 2 va 3 qiymatlari nums ning biror joyida aynan shu tartibda yonma-yon turganda true qaytaring."
+  },
+  "4278": {
+    "title": "Mos keladigan belgi juftliklari",
+    "pattern": "Satr yoki massiv bo‘ylab sikl",
+    "statement": "a va b bir xil ikki belgili qism satrni boshlaydigan o‘rinlar sonini qaytaring; faqat ikkala satrda ham yana ikki belgi qolgan o‘rinlar hisobga olinadi."
+  },
+  "4279": {
+    "title": "Chetlaridan tashqari x ni olib tashlash",
+    "pattern": "Satr yoki massiv bo‘ylab sikl",
+    "statement": "str dan barcha x belgilarini olib tashlab qaytaring; eng birinchi va eng oxirgi o‘rindagi x saqlanadi."
+  },
+  "4280": {
+    "title": "Belgi juftliklarini almashlab olish",
+    "pattern": "Satr yoki massiv bo‘ylab sikl",
+    "statement": "str ning birinchi ikki belgisini saqlab, keyingi ikkitasini tashlab yuboring va shu tarzda oxirigacha davom eting, saqlangan belgilarni ulab qaytaring."
+  },
+  "4281": {
+    "title": "y dan k gacha uch belgini olib tashlash",
+    "pattern": "Satr yoki massiv bo‘ylab sikl",
+    "statement": "str dan y bilan boshlanib k bilan tugaydigan barcha uch belgili bo‘laklarni olib tashlab qaytaring, o‘rtadagi belgi qanday bo‘lishidan qat’i nazar. Bunday bo‘laklar hech qachon bir-birining ustiga tushmaydi."
+  },
+  "4282": {
+    "title": "6 yoki 7 dan oldingi oltilik",
+    "pattern": "Satr yoki massiv bo‘ylab sikl",
+    "statement": "nums da 6 dan keyin darhol 6 yoki 7 kelgan holatlar sonini qaytaring."
+  },
+  "4283": {
+    "title": "Ketma-ket uchta bir xil qiymat yo‘q",
+    "pattern": "Satr yoki massiv bo‘ylab sikl",
+    "statement": "nums da hech bir qiymat ketma-ket uch marta uchramaganda true qaytaring."
+  },
+  "4284": {
+    "title": "2, 7 va 1 qoidasi bo‘yicha uchlik",
+    "pattern": "Satr yoki massiv bo‘ylab sikl",
+    "statement": "nums da uchta yonma-yon qiymat bo‘lganda true qaytaring: ikkinchisi birinchisidan beshga katta, uchinchisi esa birinchisidan bittaga kichik sondan ko‘pi bilan ikkiga farq qiladi."
+  }
+}
