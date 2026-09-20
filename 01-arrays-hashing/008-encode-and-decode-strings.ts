@@ -32,21 +32,18 @@ export function encode(strs: string[]): string {
   let res:string = '';
   for(const word of strs) res += `${word.length}#${word}`;
   return res;
-};
+}
 
 export function decode(str: string): string[] {
- let res:string[] = [];
- let i:number = 0;
-
-  while(i < str.length) {
-    const pos = str.indexOf('#', i)
-    const length = Number(str.slice(i, pos));
-    i = pos + 1;
+  let res:string[] = [];
+  let i:number = 0;
+  while(i < str.length){
+    let sharpPos = str.indexOf('#', i);
+    let length = Number(str.slice(i, sharpPos));
+    i = sharpPos + 1;
     const word = str.slice(i, length + i);
     res.push(word);
-
     i += length;
   }
-
   return res;
 }

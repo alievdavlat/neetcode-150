@@ -31,5 +31,44 @@
  * Video:     https://www.youtube.com/watch?v=T0u5nwSA0w0&t=7693s  (02:08:13)
  */
 export function twoSum(numbers: number[], target: number): [number, number] {
-  throw new Error('Not implemented');
+  let obj: Record<string, number> = {};
+  for (let i = 0; i < numbers.length; i++) {
+    let calc = target - numbers[i];
+    if (calc in obj) return [obj[calc] + 1, i + 1]
+    obj[numbers[i]] = i;
+  }
+  return [-1, -1]
+}
+console.log(twoSum([2, 7, 11, 15], 9)); // should be [1,2]
+
+
+export function twoSum2(nums: number[], target: number): [number, number] {
+  const seen = new Map<number, number>();
+
+  for (let i = 0; i < nums.length; i++) {
+    const need = target - nums[i];
+    if (seen.has(need)) return [seen.get(need)! + 1, i + 1];
+    seen.set(nums[i], i);
+  }
+
+  return [-1, -1];
+}
+
+export function twoSum3(numbers: number[], target: number): [number, number] {
+  let left = 0;
+  let right = numbers.length - 1;
+
+  while (left < right) {
+    const sum = numbers[left] + numbers[right];
+
+    if (sum === target) return [left + 1, right + 1];
+
+    if (sum < target) {
+      left++;
+    } else {
+      right--;
+    }
+  }
+
+  return [-1, -1];
 }

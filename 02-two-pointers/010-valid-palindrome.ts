@@ -29,5 +29,6 @@
  * Video:     https://www.youtube.com/watch?v=T0u5nwSA0w0&t=5731s  (01:35:31)
  */
 export function isPalindrome(s: string): boolean {
-  throw new Error('Not implemented');
+  const clean = s.toLowerCase().replace(/[^a-z0-9]/g, '');
+  return clean === clean.split('').reverse().join('');
 }

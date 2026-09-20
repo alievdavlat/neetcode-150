@@ -31,5 +31,27 @@
  * Video:     https://www.youtube.com/watch?v=T0u5nwSA0w0&t=7693s  (02:08:13)
  */
 export function threeSum(nums: number[]): number[][] {
-  throw new Error('Not implemented');
+  const a = [...nums].sort((x, y) => x - y);
+  const res: number[][] = [];
+
+  for (let i = 0; i < a.length - 2; i++) {
+    if (i > 0 && a[i] === a[i - 1]) continue;
+
+    let l = i + 1;
+    let r = a.length - 1;
+
+    while (l < r) {
+      const sum = a[i] + a[l] + a[r];
+
+      if (sum < 0) l++;
+      else if (sum > 0) r--;
+      else {
+        res.push([a[i], a[l], a[r]]);
+        while (l < r && a[l] === a[l + 1]) l++;
+        l++; r--;
+      }
+    }
+  }
+
+  return res;
 }
