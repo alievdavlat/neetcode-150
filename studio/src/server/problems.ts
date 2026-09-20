@@ -1,4 +1,4 @@
-import { mkdir, readFile, rename, stat, writeFile } from 'node:fs/promises';
+import { mkdir, readdir, readFile, rename, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import type {
   OperationProbe,
@@ -44,19 +44,44 @@ type ResultStore = Record<string, StoredResult>;
 /** One list per language, because the prose differs and the rest does not. */
 const problemsByLocale = new Map<string, Promise<Problem[]>>();
 
+const DATA_DIR = path.join(WORKSPACE_ROOT, '_gen', 'data');
+
+/**
+ * A stamp that changes whenever the generated set does: the newest write across
+ * `_gen/data`, plus how many files there are so a deletion counts too.
+ *
+ * The cache is keyed on this as well as the language. Clearing it by hand was
+ * not enough - in dev a route handler and a page render get their own copies of
+ * this module, so emptying the map from `/api/sync` left the page holding a list
+ * that predated a new category. Whichever language had been looked at first
+ * stayed stale, with nothing in the interface able to shift it.
+ */
+async function dataStamp(): Promise<string> {
+  const files = (await readdir(DATA_DIR).catch(() => [])).filter((name) => name.endsWith('.mjs'));
+  const times = await Promise.all(
+    files.map((name) => stat(path.join(DATA_DIR, name)).then((info) => info.mtimeMs).catch(() => 0)),
+  );
+
+  return `${files.length}:${Math.max(0, ...times)}`;
+}
+
 /** Drop the cached lists, so newly generated problems are picked up. */
 export function forgetProblems(): void {
   problemsByLocale.clear();
 }
 
 export async function getProblems(): Promise<Problem[]> {
-  const locale = await getLocale();
+  const [locale, stamp] = await Promise.all([getLocale(), dataStamp()]);
+  const key = `${locale}@${stamp}`;
 
-  const held = problemsByLocale.get(locale);
+  const held = problemsByLocale.get(key);
   if (held) return held;
 
+  /** A new stamp makes every older entry dead weight. */
+  problemsByLocale.clear();
+
   const loading = runBridge<Problem[]>({ script: 'problems.mjs', args: [locale], timeoutMs: 30000 });
-  problemsByLocale.set(locale, loading);
+  problemsByLocale.set(key, loading);
 
   return loading;
 }
