@@ -163,3 +163,21 @@ test('pacing gives up rather than searching forever when every day is full', () 
 
   assert.equal(dayKey(firstDayWithRoom(full, 8, from, dayKey)), '2026-01-05');
 });
+
+test('a repetition that is not due yet cannot be spent', () => {
+  const done = ['2026-01-02T09:00:00.000Z'];
+  const state = planState(plan({ done }), Date.parse(done[0]) + 60_000);
+
+  /** What the store checks before counting a pass. */
+  const dueNow = state.nextAt !== null && Date.parse(state.nextAt) <= Date.parse(done[0]) + 60_000;
+
+  assert.equal(dueNow, false, 'running it again minutes later must not burn the plan');
+});
+
+test('a plan can be put on a problem that was never solved', () => {
+  const fresh = planState(plan({ done: [] }), Date.parse(START));
+
+  assert.equal(fresh.done, 0);
+  assert.equal(fresh.finished, false);
+  assert.equal(fresh.nextAt, START, 'nothing about a plan needs a previous pass');
+});

@@ -251,6 +251,15 @@ export async function recordRun(input: RecordRunInput): Promise<void> {
   const records = history.runs[number] ?? [];
 
   history.runs[number] = [...records, { at: new Date().toISOString(), ...rest }].slice(-KEEP_PER_PROBLEM);
+
+  /**
+   * A plan can be put on a problem that has never been solved - "make me come
+   * back to this until I can do it" - and those are proved by an ordinary run
+   * rather than by a review session. A bulk recheck is not an attempt, so it
+   * never counts.
+   */
+  if (rest.kind === 'run' && rest.ok) advancePlan(history, number);
+
   await write(history);
 }
 
@@ -288,20 +297,30 @@ export async function recordReview({ number, ...rest }: RecordReviewInput): Prom
 
   history.reviews[number] = [...reviews, { at: new Date().toISOString(), ...rest }].slice(-KEEP_REVIEWS);
 
-  /**
-   * A repetition the learner asked for is spent by doing it, whatever it
-   * earned: the plan counts exposures, not successes, and a bad one is already
-   * punished by the measured schedule. Advancing here rather than at the call
-   * site means no route can record a review and forget the plan.
-   */
-  const plan = history.plans[number];
-  if (plan) {
-    plan.done = [...plan.done, new Date().toISOString()].slice(-(plan.target + 4));
-    if (planState(plan).finished) delete history.plans[number];
-    else history.plans[number] = plan;
-  }
-
+  advancePlan(history, number);
   await write(history);
+}
+
+/**
+ * One repetition of a hand-made plan, spent.
+ *
+ * Only a repetition that is actually due counts. Without that guard a learner
+ * who ran the same problem four times in one sitting would burn the whole plan
+ * in an afternoon, which is exactly the massed repetition the plan exists to
+ * avoid. Mutates `history`; the caller writes.
+ */
+function advancePlan(history: HistoryFile, number: string): void {
+  const plan = history.plans[number];
+  if (!plan) return;
+
+  const state = planState(plan);
+  if (state.finished || state.nextAt === null || Date.parse(state.nextAt) > Date.now()) return;
+
+  plan.done = [...plan.done, new Date().toISOString()].slice(-(plan.target + 4));
+
+  /** A finished plan is cleared, so the normal ladder takes over again. */
+  if (planState(plan).finished) delete history.plans[number];
+  else history.plans[number] = plan;
 }
 
 export interface ActivityDay {

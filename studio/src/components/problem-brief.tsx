@@ -306,7 +306,9 @@ export function ProblemBrief({
             )}
           </div>
 
-          {history.firstPassAt !== null && repeating && !reviewing && (
+          {/* Also offered before a first solve: a problem you cannot do yet is
+              the one most worth being made to come back to. */}
+          {repeating && !reviewing && (
             <RepeatDialog plan={history.plan} saving={planSaving} onStart={onPlanStart} onStop={onPlanStop} />
           )}
           <h1 className="text-balance font-heading text-[26px] leading-tight font-semibold tracking-tight">
