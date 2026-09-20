@@ -74,7 +74,8 @@ npm run check     # tsc --noEmit
 | [Classic Algorithms](./20-classic-algorithms/) | 7 | 3 | 4 | 0 |
 | [Everyday Functions](./21-everyday-functions/) | 848 | 848 | 0 | 0 |
 | [Exercism](./22-exercism/) | 97 | 97 | 0 | 0 |
-| **Total** | **1109** | **982** | **106** | **21** |
+| [CodingJS](./23-codingjs/) | 284 | 137 | 147 | 0 |
+| **Total** | **1393** | **1119** | **253** | **21** |
 
 ## Suggested order
 
