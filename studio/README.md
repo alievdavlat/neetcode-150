@@ -1,6 +1,6 @@
 # Studio
 
-A LeetCode-shaped browser UI over this workspace. Same 1109 problems across 22
+A LeetCode-shaped browser UI over this workspace. Same 1393 problems across 23
 categories, same files on disk, same test runner — only the surface is different.
 
 ```bash
@@ -84,6 +84,13 @@ Below the filters is a row of technique tags (`hash map`, `sliding window`, `dfs
 They are derived from each problem's own pattern line: every problem carries a unique
 sentence there, so grouping by it would give one group per problem. Twenty-one tag
 rules in `src/lib/meta.ts` cover the whole workspace instead.
+
+## Boards
+
+The cards on the home page come from `collections/*.json`, not from the
+generated categories. A file names the problem numbers it covers and the group
+it sits under, so a new category in `_gen/data` shows up in the problem list and
+the rail straight away but gets no card of its own until a collection names it.
 
 ## Languages
 
