@@ -37,7 +37,7 @@ export function longestConsecutive(nums: number[]): number {
     if (!set.has(num - 1)) {
       let length = 1;
       let current = num + 1;
-      while(set.has(current)) {
+      while (set.has(current)) {
         length++;
         current++;
       };
@@ -46,4 +46,28 @@ export function longestConsecutive(nums: number[]): number {
   }
   return longest;
 };
-console.log(longestConsecutive([100,4,200,1,3,2])); // should be 4
+
+// export function longestConsecutive2(nums: number[]): number {
+//   if(!nums.length) return 0;
+//   let longest = 0;
+//   let tempLongest = 0;
+
+//   const set = new Set(nums);
+//   for (let num of set) {
+//     set.add(num);
+//   }
+
+//   let sorted = [...set.values()];
+
+//   for (let i = 0; i < sorted.length; i++) {
+//     if (sorted[i + 1] - sorted[i] === 1) {
+//       tempLongest++;
+//     } else {
+//       longest = longest < tempLongest ? tempLongest : longest;
+//       tempLongest = 0;
+//     }
+//   }
+
+//   return longest + 1;
+
+// };
