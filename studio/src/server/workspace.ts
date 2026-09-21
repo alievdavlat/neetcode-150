@@ -37,7 +37,13 @@ function mirrorIntoTmp(): string {
 
   const problems = readdirSync(BUNDLE_ROOT).filter((name) => /^\d{2}-/.test(name));
   for (const entry of [...problems, ...MIRRORED]) {
-    const from = path.join(BUNDLE_ROOT, entry);
+    /**
+     * `turbopackIgnore` because a path built at runtime makes the tracer give
+     * up and ship the entire project - `public/monaco` and all - inside every
+     * function. What this copies is already named in `next.config.ts`, which
+     * is the list that should decide what travels.
+     */
+    const from = path.join(/*turbopackIgnore: true*/ BUNDLE_ROOT, entry);
     if (existsSync(from)) cpSync(from, path.join(SERVERLESS_ROOT, entry), { recursive: true });
   }
 

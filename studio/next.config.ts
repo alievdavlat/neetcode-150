@@ -38,6 +38,12 @@ const nextConfig: NextConfig = {
     '/': WORKSPACE,
     '/**': WORKSPACE,
   },
+  /**
+   * No `outputFileTracingExcludes` here on purpose: the Turbopack build ignores
+   * it (measured on 16.3.5 - three glob spellings, monaco-editor stayed at its
+   * 93 MB in the trace), so writing one would only look like it was doing
+   * something. The deploy fits regardless.
+   */
 };
 
 export default nextConfig;
