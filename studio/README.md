@@ -230,6 +230,13 @@ workspace itself: nothing written there reaches your files or your git history.
 - All the endpoints are one function (`src/app/api/[...action]/route.ts`): the
   Hobby plan allows twelve and a file per route is nineteen. The URLs are
   unchanged, so nothing in the app had to move.
+- **`npm run build` passes `--webpack` on purpose.** Vercel groups routes into
+  shared functions only while a bundle stays small, and Turbopack's file
+  tracing in 16.3.5 hands every route the whole of `node_modules` — measured at
+  518 MB per route, including 93 MB of Monaco for a page that never loads it.
+  The webpack tracer gives the same routes **30 MB** each and no Monaco at all,
+  which is the difference between eight pages sharing a function and eight
+  pages each needing their own. `next dev` still uses Turbopack.
 
 **A deployment is read-only until you give it a password.** Saving a file and
 then running it is the whole point of this app, and on a public URL that is a
