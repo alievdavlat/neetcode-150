@@ -717,21 +717,29 @@ ${line}
    * purpose: the learner is telling the app something it could not measure yet.
    */
   const callRepeat = (body: Record<string, unknown>) => {
-    if (!active) return;
+    if (!active) return null;
 
     setPlanSaving(true);
-    request<{ status: ProblemStatus }>('/api/repeat', {
+    return request<{ status: ProblemStatus }>('/api/repeat', {
       method: 'POST',
       body: JSON.stringify({ number: active.number, ...body }),
     })
-      .then((payload) => setStatuses((current) => ({ ...current, [payload.status.number]: payload.status })))
-      .catch((error: unknown) => toast.error(messageOf(error)))
+      .then((payload) => {
+        setStatuses((current) => ({ ...current, [payload.status.number]: payload.status }));
+        return true;
+      })
+      .catch((error: unknown) => {
+        toast.error(messageOf(error));
+        return false;
+      })
       .finally(() => setPlanSaving(false));
   };
 
+  /** The plan is only announced once the server has taken it. */
   const handlePlanStart = (target: number, note: string) => {
-    callRepeat({ action: 'start', target, note });
-    toast.success(t('repeat.started', { count: target }));
+    callRepeat({ action: 'start', target, note })?.then(
+      (ok) => ok && toast.success(t('repeat.started', { count: target })),
+    );
   };
 
   const handlePlanStop = () => callRepeat({ action: 'stop' });

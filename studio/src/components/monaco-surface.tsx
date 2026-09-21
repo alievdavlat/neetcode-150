@@ -122,9 +122,8 @@ export function MonacoSurface({
     const instance = editorRef.current;
     if (!instance) return;
 
-    return foldHeader(instance);
     /** A new file is a new header to fold; typing in one is not. */
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return foldHeader(instance);
   }, [path]);
 
   /**

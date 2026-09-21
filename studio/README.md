@@ -214,6 +214,32 @@ runner at a practice copy: the cases, the signature and the node conversions sti
 from `_gen/data`, only the code is read from somewhere else. The report is the runner's
 own object, rendered instead of printed.
 
+## Deploying
+
+It runs on Vercel, but a deployment is a copy of the workspace, never the
+workspace itself: nothing written there reaches your files or your git history.
+
+- Set the project's **Root Directory** to `studio` and turn on **Include source
+  files outside of the Root Directory**. The app reads the problem tree, the
+  cases and the bridge scripts out of the parent folder, and because nothing
+  imports them, `next.config.ts` has to name every one of those paths for file
+  tracing or they never ship.
+- A serverless filesystem is read-only outside `/tmp`, so the first request
+  mirrors the workspace into `/tmp/neetcode-workspace` and every later path
+  resolves against that copy. It lives as long as the container does.
+- All the endpoints are one function (`src/app/api/[...action]/route.ts`): the
+  Hobby plan allows twelve and a file per route is nineteen. The URLs are
+  unchanged, so nothing in the app had to move.
+
+**A deployment is read-only until you give it a password.** Saving a file and
+then running it is the whole point of this app, and on a public URL that is a
+stranger executing code on the host. So without `STUDIO_PASSWORD` set, a
+deployment answers reads and refuses every write and every run. Set
+`STUDIO_PASSWORD` in the project's environment variables and open
+`https://<deployment>/?key=<password>` once; the cookie it leaves behind unlocks
+the whole app for a month. Locally none of this applies unless you set the
+variable yourself.
+
 ## Layout
 
 ```
@@ -221,7 +247,8 @@ bridge/          spawned Node scripts, the only code that touches the runner
 .studio/         run results and practice copies, gitignored
 scripts/         copies the Monaco bundle into public/ so the editor works offline
 src/server/      path guard, child process wrapper, status derivation
-src/app/api/     file read/write, run, promote, sync
+src/app/api/     one catch-all route: read/write a file, run, promote, sync, trace
+src/middleware.ts  the password gate, and the read-only rule for a deployment
 src/components/  rail, brief, editor, verdicts
 ```
 

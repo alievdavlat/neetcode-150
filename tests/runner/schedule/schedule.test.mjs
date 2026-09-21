@@ -93,7 +93,7 @@ const START = '2026-01-02T09:00:00.000Z';
 const plan = (over) => ({ createdAt: '2026-01-01T08:00:00.000Z', target: 3, done: [], startAt: START, note: null, ...over });
 
 test('a plan waits for the day it was paced to, not the moment it was asked for', () => {
-  const state = planState(plan(), Date.parse('2026-01-01T08:00:00.000Z'));
+  const state = planState(plan());
 
   assert.equal(state.nextAt, START);
   assert.ok(Date.parse(state.nextAt) > Date.parse('2026-01-01T08:00:00.000Z'), 'never due the same instant');
@@ -101,7 +101,7 @@ test('a plan waits for the day it was paced to, not the moment it was asked for'
 
 test('a plan never asks twice in one day', () => {
   const done = ['2026-01-02T09:00:00.000Z'];
-  const state = planState(plan({ done }), Date.parse(done[0]) + 60_000);
+  const state = planState(plan({ done }));
 
   const gap = Date.parse(state.nextAt) - Date.parse(done[0]);
   assert.ok(gap >= DAY, `the next repetition must be at least a day later, got ${gap / DAY}`);
@@ -117,7 +117,7 @@ test('repetitions inside a plan climb the bottom of the ladder', () => {
 
 test('a plan finishes once it has been passed the number of times asked for', () => {
   const done = ['2026-01-02T09:00:00.000Z', '2026-01-03T09:00:00.000Z', '2026-01-06T09:00:00.000Z'];
-  const state = planState(plan({ done }), Date.parse('2026-01-20T09:00:00.000Z'));
+  const state = planState(plan({ done }));
 
   assert.equal(state.finished, true);
   assert.equal(state.nextAt, null);
@@ -125,10 +125,10 @@ test('a plan finishes once it has been passed the number of times asked for', ()
 });
 
 test('a repetition already done is spent, so the same one does not come back', () => {
-  const before = planState(plan(), Date.parse(START));
+  const before = planState(plan());
   assert.equal(before.nextAt, START);
 
-  const after = planState(plan({ done: [START] }), Date.parse(START) + 60_000);
+  const after = planState(plan({ done: [START] }));
 
   assert.equal(after.done, 1);
   assert.notEqual(after.nextAt, START);
@@ -166,7 +166,7 @@ test('pacing gives up rather than searching forever when every day is full', () 
 
 test('a repetition that is not due yet cannot be spent', () => {
   const done = ['2026-01-02T09:00:00.000Z'];
-  const state = planState(plan({ done }), Date.parse(done[0]) + 60_000);
+  const state = planState(plan({ done }));
 
   /** What the store checks before counting a pass. */
   const dueNow = state.nextAt !== null && Date.parse(state.nextAt) <= Date.parse(done[0]) + 60_000;
@@ -175,7 +175,7 @@ test('a repetition that is not due yet cannot be spent', () => {
 });
 
 test('a plan can be put on a problem that was never solved', () => {
-  const fresh = planState(plan({ done: [] }), Date.parse(START));
+  const fresh = planState(plan({ done: [] }));
 
   assert.equal(fresh.done, 0);
   assert.equal(fresh.finished, false);

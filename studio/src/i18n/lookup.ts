@@ -1,4 +1,5 @@
-import { DEFAULT_LOCALE, type Locale } from './config';
+/** The extension is explicit so `tests/` can load this through type stripping. */
+import { DEFAULT_LOCALE, type Locale } from './config.ts';
 
 export type Values = Record<string, string | number>;
 

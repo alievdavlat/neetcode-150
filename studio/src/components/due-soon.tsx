@@ -48,13 +48,13 @@ export function DueSoon({ problems, statuses, limit = 6 }: DueSoonProps) {
   const rows = useMemo(
     () =>
       statuses
-        .filter((status) => status.history.dueAt !== null && !status.history.leech)
-        .map((status) => ({
-          status,
-          problem: byNumber.get(status.number) ?? null,
-          at: Date.parse(status.history.dueAt as string),
-        }))
-        .filter((row) => row.problem !== null)
+        .flatMap((status) => {
+          const { dueAt, leech } = status.history;
+          const problem = byNumber.get(status.number);
+          if (dueAt === null || leech || !problem) return [];
+
+          return [{ status, problem, at: Date.parse(dueAt) }];
+        })
         .sort((left, right) => left.at - right.at)
         .slice(0, limit),
     [statuses, byNumber, limit],

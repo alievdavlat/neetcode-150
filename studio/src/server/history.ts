@@ -6,7 +6,6 @@ import {
   MAX_PLAN_TARGET,
   MIN_PLAN_TARGET,
   firstDayWithRoom,
-  intervalAt,
   planState,
   replay,
   seedStep,

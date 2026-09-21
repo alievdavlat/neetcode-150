@@ -1,12 +1,20 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import en from '../src/i18n/dictionaries/en.json' with { type: 'json' };
+import { translator } from '../src/i18n/lookup.ts';
 import { duration, stamp, tagsOfText } from '../src/lib/meta.ts';
 
+/**
+ * The real English dictionary rather than a stub, so a renamed or deleted key
+ * fails here instead of printing its own name on screen.
+ */
+const t = translator(en, 'en');
+
 test('a lesson is minutes and a course is hours', () => {
-  assert.equal(duration(90), '2m');
-  assert.equal(duration(3540), '59m');
-  assert.equal(duration(3600), '1h 00m');
-  assert.equal(duration(14816), '4h 07m');
+  assert.equal(duration(t, 90), '2m');
+  assert.equal(duration(t, 3540), '59m');
+  assert.equal(duration(t, 3600), '1h 00m');
+  assert.equal(duration(t, 14816), '4h 07m');
 });
 
 test('a timestamp reads like the video scrubber', () => {

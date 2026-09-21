@@ -16,12 +16,14 @@ import {
 } from '@/components/ui/dialog';
 import type { RepeatPlanState } from '@/lib/types';
 import { cn } from '@/lib/utils';
+/** The scheduler's own ladder, so the gaps promised here cannot drift from it. */
+import { LADDER, MAX_PLAN_TARGET, MIN_PLAN_TARGET } from '@/server/schedule';
 
 /** Clean passes to ask for. Past six it is not a repeat plan, it is a rewrite. */
-const TARGETS = [2, 3, 4, 5, 6];
-
-/** The bottom of the ladder, so the dialog can show what it is committing to. */
-const FIRST_INTERVALS = [1, 3, 7, 16, 35, 90];
+const TARGETS = Array.from(
+  { length: MAX_PLAN_TARGET - MIN_PLAN_TARGET + 1 },
+  (_, step) => MIN_PLAN_TARGET + step,
+);
 
 interface RepeatDialogProps {
   plan: RepeatPlanState | null;
@@ -52,7 +54,7 @@ export function RepeatDialog({ plan, saving, onStart, onStop }: RepeatDialogProp
   };
 
   /** The gaps this plan commits to, so the choice is not made blind. */
-  const schedule = FIRST_INTERVALS.slice(0, target).join(' · ');
+  const schedule = LADDER.slice(0, target).join(' · ');
 
   const renderChoice = (values: number[], value: number, onPick: (next: number) => void, label: string) => (
     <div className="space-y-1.5">

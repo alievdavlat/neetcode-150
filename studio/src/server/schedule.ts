@@ -142,10 +142,11 @@ export const MIN_PLAN_TARGET = 2;
 export const MAX_PLAN_TARGET = 6;
 
 /**
- * Where a plan stands. `now` is passed in so this stays pure and can be tested
- * at a fixed instant.
+ * Where a plan stands. It reports when the next repetition falls due rather
+ * than whether it is due yet, so it never reads a clock and the caller owns
+ * the comparison.
  */
-export function planState(plan: RepeatPlan, now: number = Date.now()): PlanState {
+export function planState(plan: RepeatPlan): PlanState {
   const target = Math.max(1, plan.target);
   const done = plan.done.length;
 

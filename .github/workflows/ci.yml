@@ -1,0 +1,60 @@
+# Two jobs because the workspace and the studio are two installs. Both run on
+# every push: this repo is worked on from more than one machine, and the point
+# of the check is to find out on the machine that did not make the change.
+name: CI
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  workspace:
+    name: workspace
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Pinned: the npm scripts pass --experimental-strip-types, which is what
+      # lets the runner import the .ts problem files without a build step.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.14.0
+          cache: npm
+
+      - run: npm ci
+      - run: npm run check
+
+      # Every attempted problem against its cases. Exits 1 on a failed case.
+      - run: npm test
+      - run: npm run test:trace
+      - run: npm run test:review
+
+  studio:
+    name: studio
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: studio
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.14.0
+          cache: npm
+          cache-dependency-path: studio/package-lock.json
+
+      - run: npm ci
+
+      # Build first: it is the step that catches a dependency added to
+      # package.json but never installed, and it writes the .next/types the
+      # typecheck needs for LayoutProps and friends.
+      - run: npm run build
+      - run: npx tsc --noEmit
+      - run: npm test
+
+      # Advisory for now. The 23 remaining errors are React Compiler rules on
+      # code written before them; failing the build on those would only teach
+      # everyone to ignore a red tick.
+      - run: npm run lint
+        continue-on-error: true
