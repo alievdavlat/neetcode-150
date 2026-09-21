@@ -6,7 +6,8 @@ import type { SourceMode } from '@/lib/types';
 /** The read-only copy of the workspace that ships inside a deployment. */
 const BUNDLE_ROOT = path.resolve(process.cwd(), '..');
 
-const SERVERLESS_ROOT = '/tmp/neetcode-workspace';
+/** Resolved, because the path guard compares this against a resolved path. */
+const SERVERLESS_ROOT = path.resolve('/tmp/neetcode-workspace');
 
 /** Everything a request may read or write, beside the numbered problem folders. */
 const MIRRORED = [

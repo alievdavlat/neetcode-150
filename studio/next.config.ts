@@ -23,10 +23,16 @@ const WORKSPACE = [
   './node_modules/@types/node/**',
 ];
 
-/** The parent workspace holds its own lockfile; pin the root so Turbopack stays inside the studio. */
+/**
+ * The workspace, pinned explicitly: the parent holds its own lockfile, so left
+ * to infer it Next picks one and warns. Tracing has to reach up there for the
+ * files above, and Turbopack refuses to disagree with tracing about the root.
+ */
+const ROOT = path.resolve('..');
+
 const nextConfig: NextConfig = {
-  turbopack: { root: path.resolve() },
-  outputFileTracingRoot: path.resolve('..'),
+  turbopack: { root: ROOT },
+  outputFileTracingRoot: ROOT,
   /** Every page reads the problem tree too, not only the API, so this is all of them. */
   outputFileTracingIncludes: {
     '/': WORKSPACE,
