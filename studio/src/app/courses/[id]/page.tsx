@@ -6,6 +6,7 @@ import { StrictGate } from '@/components/strict-gate';
 import { translator } from '@/i18n/lookup';
 import { getDictionary, getLocale } from '@/i18n/server';
 import { getCourse, getCourseNotes, getWatched } from '@/server/courses';
+import { getPlayground } from '@/server/playground';
 import { getProblems, getStatuses } from '@/server/problems';
 import { dueQueue } from '@/server/review';
 import { getSettings } from '@/server/settings';
@@ -31,6 +32,9 @@ export default async function CoursePage({
     getSettings(),
     getDictionary(locale),
   ]);
+
+  /** A playground that cannot be read is one missing block, not a broken lesson. */
+  const { items: playground } = await getPlayground().catch(() => ({ items: [] }));
 
   const waiting = settings.reviewEnabled ? dueQueue(statuses) : [];
   if (settings.strictMode && waiting.length > 0) {
@@ -76,6 +80,7 @@ export default async function CoursePage({
         watched={watched[course.id] ?? []}
         notes={notes[course.id] ?? {}}
         practice={practice}
+        playground={playground}
         start={Number.isInteger(asked) ? asked : undefined}
       />
     </main>

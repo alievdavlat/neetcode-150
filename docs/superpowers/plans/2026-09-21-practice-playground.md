@@ -1,7 +1,7 @@
 # A practice playground — plan
 
 Date: 2026-09-21
-Status: designed, nothing built
+Status: stages 1-6 built and verified 2026-09-21; 7-8 not started
 Branch: `playground`
 
 ## The problem

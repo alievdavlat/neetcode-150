@@ -18,6 +18,7 @@ import {
   traceProblem,
   writeProblemSource,
 } from '@/server/problems';
+import { getPlaygroundItem, runStages } from '@/server/playground';
 import { gradeReview, MAX_PLAN_TARGET, MIN_PLAN_TARGET } from '@/server/schedule';
 import { getSettings, saveSettings } from '@/server/settings';
 import { listSolutions } from '@/server/solutions';
@@ -264,6 +265,19 @@ const post: Record<string, Handler> = {
     return ok({ grade, measured, status: await getStatus(payload.number) });
   },
 
+  async 'playground/run'(request) {
+    const payload = await body<{ slug?: string; upTo?: number }>(request);
+    if (!payload?.slug || !/^[a-z0-9-]{1,64}$/.test(payload.slug)) return fail('a challenge slug is required');
+
+    const item = await getPlaygroundItem(payload.slug);
+    if (!item) return fail(`no challenge called ${payload.slug}`, 404);
+    if (item.kind !== 'challenge') return fail('a lab runs from a terminal, not from here');
+    if (item.machine.state === 'unavailable') return fail(`this machine cannot run it: ${item.machine.reason}`);
+
+    const upTo = typeof payload.upTo === 'number' && payload.upTo > 0 ? Math.round(payload.upTo) : undefined;
+    return ok({ report: await runStages(payload.slug, upTo) });
+  },
+
   async 'review/start'(request) {
     const payload = await body<{ number?: string }>(request);
     if (!payload?.number || !/^\d{3,4}$/.test(payload.number)) return fail('a problem number is required');
@@ -325,7 +339,7 @@ const put: Record<string, Handler> = {
 };
 
 /** The work these endpoints hand off can fail on its own terms, not the caller's. */
-const SERVER_FAULT = new Set(['run', 'run-category', 'run-board', 'sync', 'typecheck', 'ops', 'trace']);
+const SERVER_FAULT = new Set(['run', 'run-category', 'run-board', 'sync', 'typecheck', 'ops', 'trace', 'playground/run']);
 
 /**
  * Every endpoint behind one function. A deployment on the Hobby plan may carry

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { ArrowUpRight, Check, ExternalLink, NotebookPen, Play } from 'lucide-react';
+import { ArrowUpRight, Check, ExternalLink, FlaskConical, Hammer, NotebookPen, Play } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
@@ -12,7 +12,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { request } from '@/lib/api';
 import { ALL_BOARD, DIFFICULTY_META, duration, stamp } from '@/lib/meta';
 import { practiceFor, type PracticeProblem } from '@/lib/practice';
-import type { Course } from '@/lib/types';
+import type { Course, PlaygroundItem } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
 interface CoursePlayerProps {
@@ -20,6 +20,8 @@ interface CoursePlayerProps {
   watched: number[];
   /** The workspace's problems, trimmed to what a lesson needs to link to one. */
   practice: PracticeProblem[];
+  /** Challenges and labs, matched to a lesson by the course and timestamp they declare. */
+  playground: PlaygroundItem[];
   /** What you wrote against each lesson, keyed by where it starts. */
   notes: Record<string, string>;
   /** A link can name the lesson: `/courses/<id>?at=<seconds>`. */
@@ -31,7 +33,7 @@ const LAST_COURSE_KEY = 'neetcode-studio:last-course';
 
 const messageOf = (error: unknown) => (error instanceof Error ? error.message : String(error));
 
-export function CoursePlayer({ course, watched, practice, notes, start }: CoursePlayerProps) {
+export function CoursePlayer({ course, watched, practice, playground, notes, start }: CoursePlayerProps) {
   const { t } = useTranslation();
   const [seen, setSeen] = useState<number[]>(watched);
   const [current, setCurrent] = useState(() => {
@@ -117,6 +119,45 @@ export function CoursePlayer({ course, watched, practice, notes, start }: Course
             {t('courses.saveNote')}
           </Button>
         )}
+      </section>
+    );
+  };
+
+  /**
+   * A challenge or a lab says which lesson it belongs to, so this is a lookup
+   * rather than the guess the problem list has to make from titles and tags.
+   */
+  const renderBuild = () => {
+    if (!lesson) return null;
+
+    const here = playground.filter((item) => item.course === course.id && item.lessonAt === lesson.at);
+    if (here.length === 0) return null;
+
+    return (
+      <section className="space-y-2 rounded-2xl border border-primary/25 bg-primary/[0.05] p-3">
+        <h2 className="text-[10px] font-semibold tracking-[0.18em] text-primary uppercase">{t('courses.build')}</h2>
+
+        <ul className="space-y-px">
+          {here.map((item) => (
+            <li key={item.slug}>
+              <Link
+                href={`/play/${item.slug}`}
+                className="flex items-center gap-3 rounded-lg px-2 py-1.5 transition-colors hover:bg-white/[0.04]"
+              >
+                {item.kind === 'challenge' ? (
+                  <Hammer className="size-3 shrink-0 text-primary" />
+                ) : (
+                  <FlaskConical className="size-3 shrink-0 text-primary" />
+                )}
+                <span className="min-w-0 flex-1 truncate text-[13px]">{item.title}</span>
+                <span className="font-mono text-[10px] text-muted-foreground">
+                  {t(item.kind === 'challenge' ? 'play.stages' : 'play.checks', { count: item.steps.length })}
+                </span>
+                <ArrowUpRight className="size-3 shrink-0 text-muted-foreground" />
+              </Link>
+            </li>
+          ))}
+        </ul>
       </section>
     );
   };
@@ -261,6 +302,7 @@ export function CoursePlayer({ course, watched, practice, notes, start }: Course
           )}
         </div>
 
+        {renderBuild()}
         {renderPractice()}
         {renderNote()}
       </div>

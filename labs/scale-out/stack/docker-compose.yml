@@ -1,0 +1,43 @@
+# The stack you are fixing. Four checks say what is wrong with it; this file
+# and nginx/default.conf are where the answers go.
+#
+#   npm run lab -- scale-out          run the checks
+#   npm run lab -- scale-out --keep   leave the stack up afterwards
+#
+# app/server.mjs is given working. Changing it is not the exercise.
+#
+# The images are built rather than bind-mounted, and app.Dockerfile says why.
+# The runner rebuilds every run, so what you edit is what runs.
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - app1
+    mem_limit: 64m
+
+  app1:
+    build:
+      context: .
+      dockerfile: app.Dockerfile
+    environment:
+      REDIS_HOST: redis
+      READY_AFTER_MS: 4000
+    mem_limit: 96m
+
+  app2:
+    build:
+      context: .
+      dockerfile: app.Dockerfile
+    environment:
+      REDIS_HOST: redis
+      READY_AFTER_MS: 4000
+    mem_limit: 96m
+
+  redis:
+    image: redis:latest
+    mem_limit: 64m

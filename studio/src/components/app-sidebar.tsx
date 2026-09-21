@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
-import { GraduationCap, ListChecks, NotebookPen, PanelLeftClose, PanelLeftOpen, Settings2 } from 'lucide-react';
+import { GraduationCap, Hammer, ListChecks, NotebookPen, PanelLeftClose, PanelLeftOpen, Settings2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface Item {
@@ -30,6 +30,12 @@ const ITEMS: Item[] = [
     label: 'nav.courses',
     icon: GraduationCap,
     owns: (path) => path.startsWith('/courses'),
+  },
+  {
+    href: '/play',
+    label: 'nav.play',
+    icon: Hammer,
+    owns: (path) => path.startsWith('/play'),
   },
   {
     href: '/notes',

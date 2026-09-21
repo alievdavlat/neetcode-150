@@ -296,3 +296,59 @@ export interface TraceResult {
   truncated: boolean;
   source: string;
 }
+
+/** What a machine can be asked to run, and what it made of one piece of work. */
+export interface MachineProfile {
+  at: string;
+  platform: string;
+  cores: number;
+  memoryMb: number;
+  freeMb: number;
+  docker: { available: boolean; memoryMb: number; version: string | null; running: number };
+}
+
+export interface MachineVerdict {
+  machine: MachineProfile;
+  state: 'ready' | 'heavy' | 'unavailable';
+  reason: string | null;
+}
+
+export interface PlaygroundStep {
+  slug: string;
+  title: string;
+  description: string;
+}
+
+/** A challenge is stages against your program; a lab is checks against your stack. */
+export interface PlaygroundItem {
+  kind: 'challenge' | 'lab';
+  slug: string;
+  title: string;
+  blurb: string | null;
+  course: string | null;
+  lessonAt: number | null;
+  needs: { memoryMb?: number; containers?: number; docker?: boolean };
+  machine: { state: MachineVerdict['state']; reason: string | null };
+  command: string;
+  steps: PlaygroundStep[];
+  file: string;
+}
+
+export interface StageResult {
+  slug: string;
+  title: string;
+  passed: boolean;
+  message: string | null;
+  log: string[];
+  output?: string;
+  ms: number;
+}
+
+export interface StageReport {
+  slug: string;
+  title: string;
+  total: number;
+  entry: string;
+  results: StageResult[];
+  passed: boolean;
+}

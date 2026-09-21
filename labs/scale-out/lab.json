@@ -1,0 +1,15 @@
+{
+  "slug": "scale-out",
+  "title": "One service becomes many",
+  "blurb": "A load balancer in front of replicas you add yourself, a store that has to survive a restart, and four invariants that say whether it actually worked.",
+  "course": "system-design",
+  "lessonAt": 982,
+  "needs": {
+    "memoryMb": 400,
+    "containers": 4,
+    "docker": true
+  },
+  "port": 8080,
+  "ready": "/health",
+  "readyMs": 120000
+}

@@ -14,6 +14,8 @@ const MIRRORED = [
   'shared',
   'tests',
   '_gen',
+  'challenges',
+  'labs',
   'package.json',
   'tsconfig.json',
   'studio/bridge',

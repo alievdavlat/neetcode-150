@@ -12,6 +12,8 @@ const WORKSPACE = [
   '../shared/**',
   '../tests/**',
   '../_gen/**',
+  '../challenges/**',
+  '../labs/**',
   '../package.json',
   '../tsconfig.json',
   './bridge/**',

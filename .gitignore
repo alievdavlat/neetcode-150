@@ -1,3 +1,4 @@
 node_modules/
 *.tsbuildinfo
 tests/runner/trace/.tmp/
+challenges/*/.tmp/

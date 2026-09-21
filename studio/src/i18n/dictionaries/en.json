@@ -93,7 +93,8 @@
     "searchPlaceholder": "Search lessons and courses",
     "startHere": "Start here",
     "timeLeft": "{{time}} left",
-    "watched": "Watched"
+    "watched": "Watched",
+    "build": "Build it"
   },
   "editor": {
     "loading": "loading editor…",
@@ -204,7 +205,8 @@
     "notes": "Notes",
     "settings": "Settings",
     "collapse": "Collapse the menu",
-    "expand": "Expand the menu"
+    "expand": "Expand the menu",
+    "play": "Playground"
   },
   "palette": {
     "title": "Jump to a problem or a course",
@@ -596,5 +598,24 @@
     "runningBody": "Each export is tested against the worked examples and any hand-written cases.",
     "noRunTitle": "No run yet",
     "noRunBody": "Save your attempt and run it. Cases come from the worked examples plus anything in tests/cases."
+  },
+  "play": {
+    "title": "Playground",
+    "blurb": "Build the thing, then break it. A challenge runs your program stage by stage; a lab brings up a stack and takes pieces out of it.",
+    "machine": "{{cores}} cores · {{free}} MB free · docker {{docker}}",
+    "noDocker": "not running",
+    "empty": "Nothing here yet.",
+    "stages": "{{count}} stages",
+    "checks": "{{count}} checks",
+    "state": {
+      "ready": "ready",
+      "heavy": "heavy",
+      "unavailable": "no room"
+    },
+    "back": "Back to the playground",
+    "youEdit": "You edit",
+    "run": "Run",
+    "running": "Running…",
+    "passedOf": "{{passed}} of {{total}} passed"
   }
 }

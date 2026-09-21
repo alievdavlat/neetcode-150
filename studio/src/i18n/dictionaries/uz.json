@@ -93,7 +93,8 @@
     "searchPlaceholder": "Darslar va kurslar bo‘yicha qidiruv",
     "startHere": "Shu yerdan boshlang",
     "timeLeft": "{{time}} qoldi",
-    "watched": "Ko‘rilgan"
+    "watched": "Ko‘rilgan",
+    "build": "Oʻzingiz quring"
   },
   "editor": {
     "loading": "tahrirlovchi yuklanmoqda…",
@@ -204,7 +205,8 @@
     "notes": "Eslatmalar",
     "settings": "Sozlamalar",
     "collapse": "Menyuni yig‘ish",
-    "expand": "Menyuni ochish"
+    "expand": "Menyuni ochish",
+    "play": "Mashq maydoni"
   },
   "palette": {
     "title": "Masala yoki kursga o‘tish",
@@ -596,5 +598,24 @@
     "runningBody": "Har bir eksport ishlangan misollarda va qo‘lda yozilgan holatlarda tekshiriladi.",
     "noRunTitle": "Hali ishga tushirilmagan",
     "noRunBody": "Urinishingizni saqlab, ishga tushiring. Holatlar ishlangan misollardan va tests/cases dagi hamma narsadan olinadi."
+  },
+  "play": {
+    "title": "Mashq maydoni",
+    "blurb": "Avval qur, keyin sindir. Challenge dasturingizni bosqichma-bosqich yurgizadi; lab esa stackni koʻtarib, undan boʻlak sugʻurib oladi.",
+    "machine": "{{cores}} yadro · {{free}} MB boʻsh · docker {{docker}}",
+    "noDocker": "ishlamayapti",
+    "empty": "Hozircha boʻsh.",
+    "stages": "{{count}} bosqich",
+    "checks": "{{count}} tekshiruv",
+    "state": {
+      "ready": "tayyor",
+      "heavy": "ogʻir",
+      "unavailable": "sigʻmaydi"
+    },
+    "back": "Mashq maydoniga qaytish",
+    "youEdit": "Siz tahrirlaysiz",
+    "run": "Yurgizish",
+    "running": "Yuryapti…",
+    "passedOf": "{{total}} dan {{passed}} tasi oʻtdi"
   }
 }

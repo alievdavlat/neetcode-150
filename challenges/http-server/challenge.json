@@ -1,0 +1,18 @@
+{
+  "slug": "http-server",
+  "title": "Build your own HTTP server",
+  "blurb": "A TCP socket, the HTTP request format, and enough of a server to answer four connections at once.",
+  "course": "networking",
+  "lessonAt": 6622,
+  "needs": {
+    "memoryMb": 120,
+    "containers": 0,
+    "docker": false
+  },
+  "port": 4221,
+  "run": {
+    "command": "node",
+    "flags": ["--experimental-strip-types", "--disable-warning=ExperimentalWarning"],
+    "entry": "solution/main.ts"
+  }
+}
