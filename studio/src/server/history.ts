@@ -5,7 +5,8 @@ import {
   LEECH_LAPSES,
   MAX_PLAN_TARGET,
   MIN_PLAN_TARGET,
-  firstDayWithRoom,
+  nextWindowOpen,
+  placeQueue,
   planState,
   replay,
   seedStep,
@@ -85,19 +86,14 @@ function migratePlan(plan: RepeatPlan & { days?: number; perDay?: number }): Rep
 
   /**
    * An old plan had no start date, so its first repetition was due the instant
-   * it was made - which is what made several of them pile onto one day. One
-   * that has not been started yet is moved to tomorrow; one already in progress
-   * is paced by its own last pass and needs nothing.
+   * it was made. One that has not been started yet is moved to tomorrow
+   * morning; one already in progress is paced by its own last pass.
    */
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  tomorrow.setHours(9, 0, 0, 0);
-
   return {
     createdAt: plan.createdAt,
     target: Math.min(MAX_PLAN_TARGET, Math.max(MIN_PLAN_TARGET, Math.round(days / 2))),
     done,
-    startAt: plan.startAt ?? (done.length === 0 ? tomorrow.toISOString() : plan.createdAt),
+    startAt: plan.startAt ?? (done.length === 0 ? nextWindowOpen(new Date()).toISOString() : plan.createdAt),
     note: plan.note ?? null,
   };
 }
@@ -131,12 +127,22 @@ async function write(history: HistoryFile): Promise<void> {
   await rename(temp, HISTORY_FILE);
 }
 
-const daysSince = (iso: string) => (Date.now() - new Date(iso).getTime()) / 86_400_000;
+/** A problem's own reading of itself, before the board is allowed a say. */
+interface Reading {
+  history: ProblemHistory;
+  /** The earliest it may come back. `null` means it is not in the rotation. */
+  earliest: string | null;
+}
 
 /**
  * Attempts are what you typed. A bulk recheck proves the file still passes; it
  * says nothing about whether you could write it again, so it is never an
  * attempt, never a pass, and never advances the schedule.
+ *
+ * `dueAt`, `dueInDays` and `due` are deliberately left empty here. When a
+ * problem comes back is not a fact about that problem alone - it depends on
+ * what else is already waiting - so it is settled once, for the whole board, in
+ * `summarizeAll`.
  */
 function summarize(
   records: RunRecord[],
@@ -144,7 +150,7 @@ function summarize(
   opens: string[],
   reviews: ReviewRecord[],
   plan: RepeatPlan | null,
-): ProblemHistory {
+): Reading {
   const attempts = records.filter((record) => record.kind === 'run');
   const passes = attempts.filter((record) => record.ok);
   const firstPass = passes[0] ?? null;
@@ -161,53 +167,75 @@ function summarize(
 
   const lastReview = reviews[reviews.length - 1] ?? null;
   const anchor = lastReview?.at ?? lastPass?.at ?? null;
-  const elapsed = anchor === null ? null : daysSince(anchor);
 
   /**
-   * The measured schedule and the hand-made plan are separate clocks. The plan
-   * wins while it is running, because the learner asked for it precisely
+   * The measured schedule and the hand-made plan are separate clocks, and the
+   * plan wins outright while it is running - the learner asked for it precisely
    * because the measured one was not bringing the problem back soon enough.
+   *
+   * It has to win outright rather than whichever fires first. Read as an
+   * either-or, a plan that had climbed to a three-day gap could still be
+   * dragged in tomorrow by a ladder sitting at one, so the problem came back on
+   * a date nothing on screen had ever promised.
    */
   const state = plan ? planState(plan) : null;
-  const planDue = state !== null && !state.finished && state.nextAt !== null && Date.parse(state.nextAt) <= Date.now();
-  const scheduleDue = schedule !== null && elapsed !== null && elapsed >= schedule.interval;
+  const running = state !== null && !state.finished;
 
-  const scheduledAt =
+  const laddered =
     schedule && anchor ? new Date(new Date(anchor).getTime() + schedule.interval * 86_400_000).toISOString() : null;
 
   return {
-    runs: attempts.length,
-    runsToFirstPass,
-    firstPassAt: firstPass?.at ?? null,
-    lastPassAt: lastPass?.at ?? null,
-    lastRunAt: last?.at ?? null,
-    solveMinutes:
-      firstPass && started
-        ? Math.max(1, Math.round((new Date(firstPass.at).getTime() - new Date(started).getTime()) / 60000))
-        : null,
-    reviewDays: schedule?.interval ?? null,
-    dueInDays: schedule && elapsed !== null ? Math.ceil(schedule.interval - elapsed) : null,
-    hintLevel,
-    dueAt: state && !state.finished ? state.nextAt : scheduledAt,
-    due: planDue || scheduleDue,
-    reviews: reviews.length,
-    lapses: schedule?.lapses ?? 0,
-    ease: null,
-    lastReviewAt: lastReview?.at ?? null,
-    leech: (schedule?.streak ?? 0) >= LEECH_LAPSES && state === null,
-    reviewMinutes: reviews
-      .filter((review) => review.kind === 'solve' && !review.revealed && review.grade > 0)
-      .flatMap((review) => (review.minutes === null ? [] : [review.minutes]))
-      .slice(-12),
-    plan:
-      plan && state && !state.finished
-        ? { target: state.target, done: state.done, nextAt: state.nextAt, note: plan.note }
-        : null,
+    earliest: running ? state.nextAt : laddered,
+    history: {
+      runs: attempts.length,
+      runsToFirstPass,
+      firstPassAt: firstPass?.at ?? null,
+      lastPassAt: lastPass?.at ?? null,
+      lastRunAt: last?.at ?? null,
+      solveMinutes:
+        firstPass && started
+          ? Math.max(1, Math.round((new Date(firstPass.at).getTime() - new Date(started).getTime()) / 60000))
+          : null,
+      reviewDays: schedule?.interval ?? null,
+      dueInDays: null,
+      hintLevel,
+      dueAt: null,
+      due: false,
+      reviews: reviews.length,
+      lapses: schedule?.lapses ?? 0,
+      ease: null,
+      lastReviewAt: lastReview?.at ?? null,
+      leech: (schedule?.streak ?? 0) >= LEECH_LAPSES && !running,
+      reviewMinutes: reviews
+        .filter((review) => review.kind === 'solve' && !review.revealed && review.grade > 0)
+        .flatMap((review) => (review.minutes === null ? [] : [review.minutes]))
+        .slice(-12),
+      plan: running ? { target: state.target, done: state.done, nextAt: state.nextAt, note: plan?.note ?? null } : null,
+    },
   };
 }
 
-/** Every problem the log knows about, summarised. Pure, so pacing can reuse it. */
-function summarizeAll(history: HistoryFile): Record<string, ProblemHistory> {
+/**
+ * The last thing graded anywhere on the board. It is what stops a cleared queue
+ * handing over the next problem the same minute, so a repetition proved by a
+ * plain run counts here too - otherwise that path would still hand straight
+ * over.
+ */
+function lastGradedAt(history: HistoryFile): string | null {
+  const stamps = [
+    ...Object.values(history.reviews).flatMap((records) => records.map((record) => record.at)),
+    ...Object.values(history.plans).flatMap((plan) => plan.done),
+  ];
+
+  return stamps.length === 0 ? null : stamps.reduce((latest, at) => (at > latest ? at : latest));
+}
+
+/**
+ * Every problem the log knows about, summarised, with the queue laid out across
+ * all of them at once. Pure apart from reading the clock to answer "is it due
+ * yet", which is the one question that genuinely needs it.
+ */
+function summarizeAll(history: HistoryFile, dailyCap: number): Record<string, ProblemHistory> {
   const numbers = new Set([
     ...Object.keys(history.runs),
     ...Object.keys(history.hints),
@@ -216,22 +244,51 @@ function summarizeAll(history: HistoryFile): Record<string, ProblemHistory> {
     ...Object.keys(history.plans),
   ]);
 
+  const readings = [...numbers].map((number): [string, Reading] => [
+    number,
+    summarize(
+      history.runs[number] ?? [],
+      history.hints[number] ?? 0,
+      history.opens[number] ?? [],
+      history.reviews[number] ?? [],
+      history.plans[number] ?? null,
+    ),
+  ]);
+
+  const placed = placeQueue(
+    readings.flatMap(([number, reading]) =>
+      reading.earliest === null || reading.history.leech ? [] : [{ number, earliest: reading.earliest }],
+    ),
+    dailyCap,
+    lastGradedAt(history),
+  );
+
+  const now = Date.now();
+
   return Object.fromEntries(
-    [...numbers].map((number) => [
-      number,
-      summarize(
-        history.runs[number] ?? [],
-        history.hints[number] ?? 0,
-        history.opens[number] ?? [],
-        history.reviews[number] ?? [],
-        history.plans[number] ?? null,
-      ),
-    ]),
+    readings.map(([number, reading]) => {
+      const dueAt = placed.get(number) ?? null;
+      if (dueAt === null) return [number, reading.history];
+
+      const at = Date.parse(dueAt);
+
+      return [
+        number,
+        {
+          ...reading.history,
+          dueAt,
+          dueInDays: Math.ceil((at - now) / 86_400_000),
+          due: at <= now,
+        },
+      ];
+    }),
   );
 }
 
 export async function getHistories(): Promise<Record<string, ProblemHistory>> {
-  return summarizeAll(await read());
+  const [history, settings] = await Promise.all([read(), getSettings()]);
+
+  return summarizeAll(history, settings.dailyCap);
 }
 
 interface RecordRunInput {
@@ -400,43 +457,24 @@ export async function startPlan({
   note: string | null;
 }): Promise<void> {
   const history = await read();
-  const { dailyCap } = await getSettings();
 
+  /**
+   * Tomorrow morning, never today: asking for a problem back means you want to
+   * reconstruct it, and you cannot reconstruct something you finished ten
+   * minutes ago. Where it lands among everything else already waiting is not
+   * decided here - the whole queue is laid out on every read, so a plan made
+   * today is paced against the board as it will be tomorrow rather than as it
+   * happened to look at the moment the button was pressed.
+   */
   history.plans[number] = {
     createdAt: new Date().toISOString(),
     target: Math.min(MAX_PLAN_TARGET, Math.max(MIN_PLAN_TARGET, Math.round(target))),
     done: [],
-    startAt: await firstFreeDay(history, dailyCap, number),
+    startAt: nextWindowOpen(new Date()).toISOString(),
     note: note?.trim() ? note.trim() : null,
   };
 
   await write(history);
-}
-
-/**
- * Where a new plan's first repetition lands.
- *
- * Never today: asking for a problem back means you want to reconstruct it, and
- * you cannot reconstruct something you finished ten minutes ago. And never onto
- * a day that is already full, because marking five problems as hard in one
- * sitting used to make all five due at once, which is how a queue turns into a
- * wall and stops being followed at all.
- */
-async function firstFreeDay(history: HistoryFile, dailyCap: number, exclude: string): Promise<string> {
-  const load = new Map<string, number>();
-
-  for (const [key, entry] of Object.entries(summarizeAll(history))) {
-    if (key === exclude || entry.dueAt === null) continue;
-    const day = dayOf(new Date(entry.dueAt));
-    load.set(day, (load.get(day) ?? 0) + 1);
-  }
-
-  /** Tomorrow morning at the earliest, then the first day with room. */
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  tomorrow.setHours(9, 0, 0, 0);
-
-  return firstDayWithRoom(load, dailyCap, tomorrow, dayOf).toISOString();
 }
 
 export async function stopPlan(number: string): Promise<void> {

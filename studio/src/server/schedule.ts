@@ -124,7 +124,7 @@ export interface RepeatPlan {
   target: number;
   /** Completed repetitions, newest last. */
   done: string[];
-  /** When the first repetition is due; set when the plan is made, to pace the queue. */
+  /** The earliest the first repetition may be asked for: tomorrow, at the soonest. */
   startAt: string;
   /** Why it was hard, in the learner's own words. */
   note: string | null;
@@ -142,9 +142,10 @@ export const MIN_PLAN_TARGET = 2;
 export const MAX_PLAN_TARGET = 6;
 
 /**
- * Where a plan stands. It reports when the next repetition falls due rather
- * than whether it is due yet, so it never reads a clock and the caller owns
- * the comparison.
+ * Where a plan stands. It reports the earliest the next repetition may be asked
+ * for rather than whether it is due yet, so it never reads a clock and the
+ * caller owns the comparison. The board decides where that lands among
+ * everything else waiting - see `placeQueue`.
  */
 export function planState(plan: RepeatPlan): PlanState {
   const target = Math.max(1, plan.target);
@@ -167,18 +168,99 @@ export function planState(plan: RepeatPlan): PlanState {
 }
 
 /**
- * The first day at or after `from` that has room under the cap.
+ * The hours a review may be asked for, local time.
  *
- * Marking five problems as hard in one sitting used to make all five due at
- * once, which turns a queue into a wall and stops it being followed at all.
- * Spreading them is what keeps the promise the cap is making.
+ * Outside them the queue is quiet. A problem that falls due at two in the
+ * morning is not a review, it is a notification waiting to be resented - and a
+ * backlog left to spill through the night arrives as one wall at breakfast,
+ * which is the shape this whole module exists to avoid.
  */
-export function firstDayWithRoom(load: Map<string, number>, cap: number, from: Date, dayOf: (date: Date) => string): Date {
-  /** A month out is well past the point where the queue is the problem. */
-  for (let ahead = 0; ahead <= 30; ahead += 1) {
-    const candidate = new Date(from.getTime() + ahead * 86_400_000);
-    if ((load.get(dayOf(candidate)) ?? 0) < cap) return candidate;
+export const REVIEW_WINDOW = { open: 9, close: 21 } as const;
+
+const MINUTE = 60_000;
+
+/**
+ * Minutes between two consecutive reviews. It is the daily cap read the other
+ * way round - fit that many into the waking window and this is the gap - so
+ * there is one number to tune rather than two that can drift apart.
+ */
+export const gapMinutes = (cap: number) =>
+  Math.round(((REVIEW_WINDOW.close - REVIEW_WINDOW.open) * 60) / Math.min(40, Math.max(1, cap)));
+
+/** The same clock hour on whatever local day `date` falls in. */
+function atHour(date: Date, hour: number): Date {
+  const out = new Date(date);
+  out.setHours(hour, 0, 0, 0);
+  return out;
+}
+
+/**
+ * `date`, moved into a review window if it landed outside one. Only ever
+ * forward: the allocator below relies on that to keep its cursor monotonic.
+ */
+export function insideWindow(date: Date): Date {
+  const open = atHour(date, REVIEW_WINDOW.open);
+  if (date.getTime() < open.getTime()) return open;
+
+  if (date.getTime() < atHour(date, REVIEW_WINDOW.close).getTime()) return date;
+
+  const tomorrow = new Date(date);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  return atHour(tomorrow, REVIEW_WINDOW.open);
+}
+
+export interface DueWant {
+  number: string;
+  /** The earliest this problem may come back, read off its own history alone. */
+  earliest: string;
+}
+
+/**
+ * When each problem actually comes back, decided for the whole board at once.
+ *
+ * Deciding it one problem at a time was the bug this replaces: a ladder and a
+ * plan each know when their own problem is ready and neither can see the other
+ * nine that are ready at the same minute. Ten problems marked hard in one
+ * sitting came back in one sitting, were cleared in one sitting, and re-armed
+ * themselves into the same sitting a day later - a queue that reproduces its
+ * own pile-up every time it is emptied.
+ *
+ * So nothing is ever placed within `gap` of the item before it. The most
+ * overdue problem keeps its own time and the rest fall in behind it, which is
+ * what makes a queue something you walk through rather than a wall.
+ *
+ * `quietUntil` is the last thing graded anywhere on the board, and it seeds the
+ * cursor so finishing one review pushes the next one out rather than handing it
+ * over immediately.
+ *
+ * No clock is read. Two calls a second apart, or either side of a restart,
+ * return the same answer for the same history - which is the other half of the
+ * promise, because a schedule that re-rolls on every page load is not a
+ * schedule.
+ */
+export function placeQueue(wants: DueWant[], cap: number, quietUntil: string | null): Map<string, string> {
+  const gap = gapMinutes(cap) * MINUTE;
+  const ordered = [...wants].sort(
+    (left, right) =>
+      Date.parse(left.earliest) - Date.parse(right.earliest) || left.number.localeCompare(right.number),
+  );
+
+  const placed = new Map<string, string>();
+  let cursor = quietUntil === null ? Number.NEGATIVE_INFINITY : Date.parse(quietUntil) + gap;
+
+  for (const want of ordered) {
+    const slot = insideWindow(new Date(Math.max(Date.parse(want.earliest), cursor)));
+
+    placed.set(want.number, slot.toISOString());
+    cursor = slot.getTime() + gap;
   }
 
-  return from;
+  return placed;
+}
+
+/** Tomorrow, when the window opens: never today, and never the small hours. */
+export function nextWindowOpen(from: Date): Date {
+  const tomorrow = new Date(from);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  return atHour(tomorrow, REVIEW_WINDOW.open);
 }

@@ -4,9 +4,13 @@ import {
   DRILL_CEILING_STEP,
   LADDER,
   LEECH_LAPSES,
-  firstDayWithRoom,
+  REVIEW_WINDOW,
+  gapMinutes,
   gradeReview,
+  insideWindow,
   intervalAt,
+  nextWindowOpen,
+  placeQueue,
   planState,
   replay,
   seedStep,
@@ -135,35 +139,6 @@ test('a repetition already done is spent, so the same one does not come back', (
   assert.ok(Date.parse(after.nextAt) > Date.parse(START) + 60_000);
 });
 
-const dayKey = (date) => date.toISOString().slice(0, 10);
-
-test('a new plan lands on the first day that is not already full', () => {
-  const from = new Date('2026-01-05T09:00:00.000Z');
-  const load = new Map([
-    ['2026-01-05', 8],
-    ['2026-01-06', 8],
-    ['2026-01-07', 3],
-  ]);
-
-  assert.equal(dayKey(firstDayWithRoom(load, 8, from, dayKey)), '2026-01-07');
-});
-
-test('an empty schedule takes the first day offered', () => {
-  const from = new Date('2026-01-05T09:00:00.000Z');
-
-  assert.equal(dayKey(firstDayWithRoom(new Map(), 8, from, dayKey)), '2026-01-05');
-});
-
-test('pacing gives up rather than searching forever when every day is full', () => {
-  const from = new Date('2026-01-05T09:00:00.000Z');
-  const full = new Map();
-  for (let ahead = 0; ahead <= 40; ahead += 1) {
-    full.set(dayKey(new Date(from.getTime() + ahead * 86_400_000)), 99);
-  }
-
-  assert.equal(dayKey(firstDayWithRoom(full, 8, from, dayKey)), '2026-01-05');
-});
-
 test('a repetition that is not due yet cannot be spent', () => {
   const done = ['2026-01-02T09:00:00.000Z'];
   const state = planState(plan({ done }));
@@ -180,4 +155,118 @@ test('a plan can be put on a problem that was never solved', () => {
   assert.equal(fresh.done, 0);
   assert.equal(fresh.finished, false);
   assert.equal(fresh.nextAt, START, 'nothing about a plan needs a previous pass');
+});
+
+
+const CAP = 8;
+const GAP = gapMinutes(CAP) * 60_000;
+
+/** Local, because the window is local: a UTC hour would drift with the machine. */
+const hourOf = (iso) => new Date(iso).getHours();
+const want = (number, earliest) => ({ number, earliest });
+
+/** The state that reproduces the pile-up, taken from a real history.json. */
+const PILE_UP = [
+  want('007', '2026-09-23T15:46:51.175Z'),
+  want('009', '2026-09-23T15:56:13.208Z'),
+  want('010', '2026-09-23T15:58:35.938Z'),
+  want('011', '2026-09-23T16:05:14.740Z'),
+  want('005', '2026-09-23T16:14:09.097Z'),
+  want('006', '2026-09-23T16:17:08.631Z'),
+];
+
+const placedTimes = (map) => [...map.values()].map(Date.parse).sort((a, b) => a - b);
+
+test('the gap is the daily cap read the other way round', () => {
+  const waking = (REVIEW_WINDOW.close - REVIEW_WINDOW.open) * 60;
+
+  assert.equal(gapMinutes(CAP) * CAP, waking, 'the cap must be exactly what fits in a day');
+  assert.ok(gapMinutes(1) > gapMinutes(40), 'a smaller cap means a longer gap');
+});
+
+test('six problems that fall due in one half hour do not come back in one half hour', () => {
+  const times = placedTimes(placeQueue(PILE_UP, CAP, null));
+
+  assert.equal(times.length, 6);
+  for (let index = 1; index < times.length; index += 1) {
+    assert.ok(
+      times[index] - times[index - 1] >= GAP,
+      `items ${index - 1} and ${index} are ${(times[index] - times[index - 1]) / 60_000} minutes apart`,
+    );
+  }
+});
+
+test('the most overdue problem keeps its own time, so the queue is never empty when work is owed', () => {
+  const placed = placeQueue(PILE_UP, CAP, null);
+
+  assert.equal(placed.get('007'), PILE_UP[0].earliest, 'the front of the queue is not pushed back');
+});
+
+test('clearing one problem pushes the next one out rather than handing it straight over', () => {
+  const cleared = '2026-09-23T16:30:00.000Z';
+  const rest = PILE_UP.slice(1);
+
+  const handedOver = Date.parse(placeQueue(rest, CAP, null).get('009'));
+  const paced = Date.parse(placeQueue(rest, CAP, cleared).get('009'));
+
+  assert.ok(handedOver <= Date.parse(cleared), 'without the guard the next one is already due');
+  assert.ok(paced - Date.parse(cleared) >= GAP, 'after it, the next one is a full gap away');
+});
+
+test('the same history always places the same queue, so a restart changes nothing', () => {
+  const first = placeQueue(PILE_UP, CAP, '2026-09-23T16:30:00.000Z');
+  const again = placeQueue([...PILE_UP].reverse(), CAP, '2026-09-23T16:30:00.000Z');
+
+  assert.deepEqual([...again.entries()].sort(), [...first.entries()].sort());
+});
+
+test('a day never takes more than the cap', () => {
+  const crowd = Array.from({ length: 20 }, (_, index) =>
+    want(String(index).padStart(3, '0'), '2026-09-23T04:00:00.000Z'),
+  );
+
+  const perDay = new Map();
+  for (const iso of placeQueue(crowd, CAP, null).values()) {
+    const day = new Date(iso).toDateString();
+    perDay.set(day, (perDay.get(day) ?? 0) + 1);
+  }
+
+  for (const [day, count] of perDay) assert.ok(count <= CAP, `${day} took ${count}`);
+});
+
+test('nothing is ever asked for in the middle of the night', () => {
+  const crowd = Array.from({ length: 20 }, (_, index) =>
+    want(String(index).padStart(3, '0'), '2026-09-23T04:00:00.000Z'),
+  );
+
+  for (const iso of placeQueue(crowd, CAP, null).values()) {
+    const hour = hourOf(iso);
+    assert.ok(hour >= REVIEW_WINDOW.open && hour < REVIEW_WINDOW.close, `placed at ${hour}:00 local`);
+  }
+});
+
+test('the window only ever moves a time forward', () => {
+  const inside = new Date(2026, 8, 23, 14, 0, 0);
+  const early = new Date(2026, 8, 23, 3, 0, 0);
+  const late = new Date(2026, 8, 23, 23, 30, 0);
+
+  assert.equal(insideWindow(inside).getTime(), inside.getTime(), 'a time already inside is left alone');
+  assert.equal(insideWindow(early).getHours(), REVIEW_WINDOW.open);
+  assert.ok(insideWindow(late).getTime() > late.getTime());
+  assert.equal(insideWindow(late).getDate(), late.getDate() + 1, 'after hours rolls to the next morning');
+});
+
+test('a problem due next week is not dragged forward by a backlog today', () => {
+  const later = want('099', '2026-09-30T06:00:00.000Z');
+  const placed = placeQueue([...PILE_UP, later], CAP, null);
+
+  assert.ok(Date.parse(placed.get('099')) >= Date.parse(later.earliest));
+});
+
+test('a new plan starts tomorrow morning, never today', () => {
+  const evening = new Date(2026, 8, 23, 20, 30, 0);
+  const start = nextWindowOpen(evening);
+
+  assert.equal(start.getDate(), evening.getDate() + 1);
+  assert.equal(start.getHours(), REVIEW_WINDOW.open);
 });
